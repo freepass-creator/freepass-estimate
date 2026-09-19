@@ -61,6 +61,7 @@ jobs:
           WELRIX_DB_PATH: ../../.welrix-reference/public/welrix-db.js
         run: |
           node scripts/build-freepass-vehicle-db.mjs
+          node scripts/build-readiness-gaps.mjs
           node --check public/vehicle-db.js
           node --check public/welrix-db.js
       - name: Commit synchronized source
