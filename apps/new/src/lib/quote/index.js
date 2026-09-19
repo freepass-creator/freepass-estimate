@@ -18,7 +18,7 @@ export function 계산기고르기(이름 = null) {
   다시계산();
 }
 
-export function 지금계산기() { return 활성계산기이름(); }
+export function 지금계산기() { return 활성계산기이름(강제계산기); }
 
 export const 견적상태 = reactive({
   상태: 'idle',
@@ -52,8 +52,8 @@ async function 보내기() {
   if (캐시) {
     견적상태.결과 = 캐시.결과;
     견적상태.차량가 = 캐시.차량가;
-    견적상태.계산기 = 답?.계산기 || 계산기들[이름].이름;
-    견적상태.공급자 = providerKey;
+    견적상태.계산기 = 캐시.계산기 || 계산기들[이름].이름;
+    견적상태.공급자 = 캐시.공급자 || providerKey;
     견적상태.오류 = '';
     견적상태.상태 = 'ok';
     return;
