@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "check": "node scripts/check-sync.mjs",
     "test:ui": "node scripts/e2e-mobile-ux.mjs",
-    "check:provider": "node scripts/check-provider-contract.mjs"
+    "check:provider": "node scripts/check-provider-contract.mjs",
+    "check:runtime": "node scripts/check-quote-execution-contract.mjs",
+    "check:release": "node scripts/check-release-proof.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"
@@ -19,5 +21,5 @@
     "firebase": "^12.12.0",
     "vue": "^3.5.34"
   },
-  "description": "FreePass Estimate new-car app — UI baseline imported from pinned Welrix reference"
+  "description": "FreePass Estimate new-car app — canonical estimator upstream / SSOT"
 }
