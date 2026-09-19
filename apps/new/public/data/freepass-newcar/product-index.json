@@ -1,0 +1,4822 @@
+{
+  "v": 1,
+  "data_as_of": "2026-09-18",
+  "count": 535,
+  "products": {
+    "kia_niro_하이브리드_시그니처": {
+      "maker": "기아",
+      "model": "니로",
+      "engine": "하이브리드 1.6",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 1
+    },
+    "kia_niro_하이브리드_트렌디": {
+      "maker": "기아",
+      "model": "니로",
+      "engine": "하이브리드 1.6",
+      "trim": "트렌디",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 1
+    },
+    "kia_niro_하이브리드_프레스티지": {
+      "maker": "기아",
+      "model": "니로",
+      "engine": "하이브리드 1.6",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 1
+    },
+    "kia_ray_가솔린1.0_시그니처": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 1
+    },
+    "kia_ray_가솔린1.0_트렌디": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "트렌디",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 3
+    },
+    "kia_ray_가솔린1.0_트렌디1인승밴": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "트렌디",
+      "group": "밴 1인승",
+      "canonicalCandidates": 10,
+      "providerCandidates": 3
+    },
+    "kia_ray_가솔린1.0_트렌디2인승밴": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "트렌디",
+      "group": "밴 2인승",
+      "canonicalCandidates": 10,
+      "providerCandidates": 3
+    },
+    "kia_ray_가솔린1.0_프레스티지": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 3
+    },
+    "kia_ray_가솔린1.0_프레스티지스페셜1인승밴": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "프레스티지 스페셜",
+      "group": "밴 1인승",
+      "canonicalCandidates": 10,
+      "providerCandidates": 2
+    },
+    "kia_ray_가솔린1.0_프레스티지스페셜2인승밴": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "프레스티지 스페셜",
+      "group": "밴 2인승",
+      "canonicalCandidates": 10,
+      "providerCandidates": 2
+    },
+    "kia_ray_가솔린1.0_프레스티지1인승밴": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "프레스티지",
+      "group": "밴 1인승",
+      "canonicalCandidates": 10,
+      "providerCandidates": 3
+    },
+    "kia_ray_가솔린1.0_프레스티지2인승밴": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "프레스티지",
+      "group": "밴 2인승",
+      "canonicalCandidates": 10,
+      "providerCandidates": 3
+    },
+    "kia_ray_가솔린1.0_xline": {
+      "maker": "기아",
+      "model": "레이",
+      "engine": "가솔린 1.0",
+      "trim": "X-Line",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 1
+    },
+    "kia_morning_가솔린1.0_시그니처": {
+      "maker": "기아",
+      "model": "모닝",
+      "engine": "가솔린 1.0",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 1
+    },
+    "kia_morning_가솔린1.0_트렌디": {
+      "maker": "기아",
+      "model": "모닝",
+      "engine": "가솔린 1.0",
+      "trim": "트렌디",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 2
+    },
+    "kia_morning_가솔린1.0_트렌디밴": {
+      "maker": "기아",
+      "model": "모닝",
+      "engine": "가솔린 1.0",
+      "trim": "트렌디",
+      "group": "밴",
+      "canonicalCandidates": 6,
+      "providerCandidates": 2
+    },
+    "kia_morning_가솔린1.0_프레스티지": {
+      "maker": "기아",
+      "model": "모닝",
+      "engine": "가솔린 1.0",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 2
+    },
+    "kia_morning_가솔린1.0_프레스티지밴": {
+      "maker": "기아",
+      "model": "모닝",
+      "engine": "가솔린 1.0",
+      "trim": "프레스티지",
+      "group": "밴",
+      "canonicalCandidates": 6,
+      "providerCandidates": 2
+    },
+    "kia_morning_가솔린1.0_gtline": {
+      "maker": "기아",
+      "model": "모닝",
+      "engine": "가솔린 1.0",
+      "trim": "GT-Line",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 0
+    },
+    "kia_seltos_가솔린1.6터보_시그니처": {
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "가솔린 1.6 터보",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 0
+    },
+    "kia_seltos_가솔린1.6터보_트렌디": {
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "가솔린 1.6 터보",
+      "trim": "트렌디",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 0
+    },
+    "kia_seltos_가솔린1.6터보_프레스티지": {
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 0
+    },
+    "kia_seltos_가솔린1.6터보_xline": {
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "가솔린 1.6 터보",
+      "trim": "X-Line",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 0
+    },
+    "kia_seltos_하이브리드_시그니처": {
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "하이브리드 1.6",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_seltos_하이브리드_트렌디": {
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "하이브리드 1.6",
+      "trim": "트렌디",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_seltos_하이브리드_프레스티지": {
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "하이브리드 1.6",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_seltos_하이브리드_xline": {
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "하이브리드 1.6",
+      "trim": "X-Line",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "kia_sportage_가솔린1.6터보_노블레스": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 2
+    },
+    "kia_sportage_가솔린1.6터보_블랙에디션": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "블랙 에디션",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 1
+    },
+    "kia_sportage_가솔린1.6터보_시그니처": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 2
+    },
+    "kia_sportage_가솔린1.6터보_시그니처xline": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "시그니처 X-Line",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 0
+    },
+    "kia_sportage_가솔린1.6터보_프레스티지": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 2
+    },
+    "kia_sportage_하이브리드터보_노블레스": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kia_sportage_하이브리드터보_블랙에디션": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "블랙 에디션",
+      "group": "",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kia_sportage_하이브리드터보_시그니처": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kia_sportage_하이브리드터보_시그니처xline": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처 X-Line",
+      "group": "",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kia_sportage_하이브리드터보_프레스티지": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kia_sportage_lpg2.0_노블레스": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "LPG 2.0",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_sportage_lpg2.0_시그니처": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "LPG 2.0",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_sportage_lpg2.0_시그니처xline": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "LPG 2.0",
+      "trim": "시그니처 X-Line",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "kia_sportage_lpg2.0_프레스티지": {
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "LPG 2.0",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_sorento_가솔린2.5터보_노블레스": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 6
+    },
+    "kia_sorento_가솔린2.5터보_블랙에디션": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "블랙 에디션",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 6
+    },
+    "kia_sorento_가솔린2.5터보_시그니처": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 6
+    },
+    "kia_sorento_가솔린2.5터보_프레스티지": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 6
+    },
+    "kia_sorento_가솔린2.5터보_xline": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "X-Line",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 6
+    },
+    "kia_sorento_하이브리드터보_노블레스2wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_노블레스전자식4wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "group": "4WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_블랙에디션2wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "블랙 에디션",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_블랙에디션전자식4wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "블랙 에디션",
+      "group": "4WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_시그니처2wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_시그니처전자식4wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "group": "4WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_프레스티지2wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_프레스티지전자식4wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "4WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_xline2wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "X-Line",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_sorento_하이브리드터보_xline전자식4wd": {
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "X-Line",
+      "group": "4WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_노블레스아웃도어7인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "노블레스 아웃도어(7인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_노블레스7인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "노블레스(7인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_노블레스9인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "노블레스(9인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_노블레스9인승하이루프": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "노블레스",
+      "group": "하이루프 9인승",
+      "canonicalCandidates": 11,
+      "providerCandidates": 2
+    },
+    "kia_carnival_가솔린3.5_블랙에디션7인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "블랙 에디션(7인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_블랙에디션9인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "블랙 에디션(9인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_시그니처7인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "시그니처(7인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_시그니처9인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "시그니처(9인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_시그니처9인승하이루프": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "시그니처",
+      "group": "하이루프 9인승",
+      "canonicalCandidates": 11,
+      "providerCandidates": 2
+    },
+    "kia_carnival_가솔린3.5_프레스티지9인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "프레스티지(9인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_xline7인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "X-Line(7인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_carnival_가솔린3.5_xline9인": {
+      "maker": "기아",
+      "model": "카니발",
+      "engine": "가솔린 3.5",
+      "trim": "X-Line(9인)",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "kia_ev3_전기_어스롱레인지": {
+      "maker": "기아",
+      "model": "EV3",
+      "engine": "전기",
+      "trim": "어스 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev3_전기_어스스탠다드": {
+      "maker": "기아",
+      "model": "EV3",
+      "engine": "전기",
+      "trim": "어스 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev3_전기_에어롱레인지": {
+      "maker": "기아",
+      "model": "EV3",
+      "engine": "전기",
+      "trim": "에어 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev3_전기_에어스탠다드": {
+      "maker": "기아",
+      "model": "EV3",
+      "engine": "전기",
+      "trim": "에어 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev3_전기_gtline롱레인지": {
+      "maker": "기아",
+      "model": "EV3",
+      "engine": "전기",
+      "trim": "GT-Line 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev3_전기_gtline스탠다드": {
+      "maker": "기아",
+      "model": "EV3",
+      "engine": "전기",
+      "trim": "GT-Line 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev4_전기_어스롱레인지": {
+      "maker": "기아",
+      "model": "EV4",
+      "engine": "전기",
+      "trim": "어스 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev4_전기_어스스탠다드": {
+      "maker": "기아",
+      "model": "EV4",
+      "engine": "전기",
+      "trim": "어스 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev4_전기_에어롱레인지": {
+      "maker": "기아",
+      "model": "EV4",
+      "engine": "전기",
+      "trim": "에어 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev4_전기_에어스탠다드": {
+      "maker": "기아",
+      "model": "EV4",
+      "engine": "전기",
+      "trim": "에어 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev4_전기_gtline롱레인지": {
+      "maker": "기아",
+      "model": "EV4",
+      "engine": "전기",
+      "trim": "GT-Line 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev4_전기_gtline스탠다드": {
+      "maker": "기아",
+      "model": "EV4",
+      "engine": "전기",
+      "trim": "GT-Line 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev5_전기_어스롱레인지": {
+      "maker": "기아",
+      "model": "EV5",
+      "engine": "전기",
+      "trim": "어스 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev5_전기_어스스탠다드": {
+      "maker": "기아",
+      "model": "EV5",
+      "engine": "전기",
+      "trim": "어스 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev5_전기_에어롱레인지": {
+      "maker": "기아",
+      "model": "EV5",
+      "engine": "전기",
+      "trim": "에어 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev5_전기_에어스탠다드": {
+      "maker": "기아",
+      "model": "EV5",
+      "engine": "전기",
+      "trim": "에어 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev5_전기_gtline롱레인지": {
+      "maker": "기아",
+      "model": "EV5",
+      "engine": "전기",
+      "trim": "GT-Line 롱레인지",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev5_전기_gtline스탠다드": {
+      "maker": "기아",
+      "model": "EV5",
+      "engine": "전기",
+      "trim": "GT-Line 스탠다드",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev6_전기_라이트롱레인지": {
+      "maker": "기아",
+      "model": "EV6",
+      "engine": "전기",
+      "trim": "라이트 롱레인지",
+      "group": "",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "kia_ev6_전기_라이트스탠다드": {
+      "maker": "기아",
+      "model": "EV6",
+      "engine": "전기",
+      "trim": "라이트 스탠다드",
+      "group": "",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "kia_ev6_전기_어스롱레인지": {
+      "maker": "기아",
+      "model": "EV6",
+      "engine": "전기",
+      "trim": "어스 롱레인지",
+      "group": "",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "kia_ev6_전기_어스스탠다드": {
+      "maker": "기아",
+      "model": "EV6",
+      "engine": "전기",
+      "trim": "어스 스탠다드",
+      "group": "",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "kia_ev6_전기_에어롱레인지": {
+      "maker": "기아",
+      "model": "EV6",
+      "engine": "전기",
+      "trim": "에어 롱레인지",
+      "group": "",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "kia_ev6_전기_에어스탠다드": {
+      "maker": "기아",
+      "model": "EV6",
+      "engine": "전기",
+      "trim": "에어 스탠다드",
+      "group": "",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "kia_ev6_전기_gtline롱레인지": {
+      "maker": "기아",
+      "model": "EV6",
+      "engine": "전기",
+      "trim": "GT-Line 롱레인지",
+      "group": "",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_라이트롱레인지2wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "라이트 롱레인지",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_라이트롱레인지4wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "라이트 롱레인지",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_라이트스탠다드2wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "라이트 스탠다드",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_어스롱레인지2wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "어스 롱레인지",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_어스롱레인지4wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "어스 롱레인지",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_어스스탠다드2wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "어스 스탠다드",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_에어롱레인지2wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "에어 롱레인지",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_에어롱레인지4wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "에어 롱레인지",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_에어스탠다드2wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "에어 스탠다드",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_ev9_전기_gtline롱레인지4wd": {
+      "maker": "기아",
+      "model": "EV9",
+      "engine": "전기",
+      "trim": "GT-Line 롱레인지",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kia_k5_가솔린1.6터보_노블레스": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 1.6 터보",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k5_가솔린1.6터보_베스트셀렉션": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 1.6 터보",
+      "trim": "베스트 셀렉션",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k5_가솔린1.6터보_시그니처": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 1.6 터보",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k5_가솔린1.6터보_프레스티지": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k5_가솔린2.0_노블레스": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 2.0",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k5_가솔린2.0_베스트셀렉션": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 2.0",
+      "trim": "베스트 셀렉션",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k5_가솔린2.0_스마트셀렉션": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 2.0",
+      "trim": "스마트 셀렉션",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k5_가솔린2.0_시그니처": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 2.0",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k5_가솔린2.0_프레스티지": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "가솔린 2.0",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k5_하이브리드_노블레스": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "하이브리드 2.0",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k5_하이브리드_베스트셀렉션": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "하이브리드 2.0",
+      "trim": "베스트 셀렉션",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k5_하이브리드_시그니처": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "하이브리드 2.0",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k5_하이브리드_프레스티지": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "하이브리드 2.0",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k5_lpg2.0_노블레스": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "LPG 2.0",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 1
+    },
+    "kia_k5_lpg2.0_시그니처": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "LPG 2.0",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 1
+    },
+    "kia_k5_lpg2.0_프레스티지": {
+      "maker": "기아",
+      "model": "K5",
+      "engine": "LPG 2.0",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 2
+    },
+    "kia_k8_가솔린2.5_노블레스": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 2.5",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k8_가솔린2.5_노블레스라이트": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 2.5",
+      "trim": "노블레스 라이트",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k8_가솔린2.5_베스트셀렉션": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 2.5",
+      "trim": "베스트 셀렉션",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k8_가솔린2.5_시그니처": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 2.5",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k8_가솔린2.5_시그니처블랙": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 2.5",
+      "trim": "시그니처 블랙",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "kia_k8_가솔린3.5_노블레스": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 2
+    },
+    "kia_k8_가솔린3.5_노블레스라이트": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "노블레스 라이트",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 1
+    },
+    "kia_k8_가솔린3.5_베스트셀렉션": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "베스트 셀렉션",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 1
+    },
+    "kia_k8_가솔린3.5_시그니처": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 2
+    },
+    "kia_k8_가솔린3.5_시그니처블랙": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "시그니처 블랙",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 2
+    },
+    "kia_k8_하이브리드터보_노블레스": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "kia_k8_하이브리드터보_노블레스라이트": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "노블레스 라이트",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "kia_k8_하이브리드터보_베스트셀렉션": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "베스트 셀렉션",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "kia_k8_하이브리드터보_시그니처": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "kia_k8_하이브리드터보_시그니처블랙": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처 블랙",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "kia_k8_lpg3.5_노블레스": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "LPG 3.5",
+      "trim": "노블레스",
+      "group": "",
+      "canonicalCandidates": 2,
+      "providerCandidates": 2
+    },
+    "kia_k8_lpg3.5_프레스티지": {
+      "maker": "기아",
+      "model": "K8",
+      "engine": "LPG 3.5",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 2,
+      "providerCandidates": 2
+    },
+    "kia_k9_가솔린3.3터보_마스터즈": {
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.3 터보",
+      "trim": "마스터즈",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "kia_k9_가솔린3.3터보_베스트셀렉션ⅰ": {
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.3 터보",
+      "trim": "베스트 셀렉션 Ⅰ",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "kia_k9_가솔린3.3터보_베스트셀렉션ⅱ": {
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.3 터보",
+      "trim": "베스트 셀렉션 Ⅱ",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "kia_k9_가솔린3.3터보_플래티넘": {
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.3 터보",
+      "trim": "플래티넘",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 2
+    },
+    "kia_k9_가솔린3.8_마스터즈": {
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.8",
+      "trim": "마스터즈",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "kia_k9_가솔린3.8_베스트셀렉션ⅰ": {
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.8",
+      "trim": "베스트 셀렉션 Ⅰ",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "kia_k9_가솔린3.8_베스트셀렉션ⅱ": {
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.8",
+      "trim": "베스트 셀렉션 Ⅱ",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "kia_k9_가솔린3.8_플래티넘": {
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.8",
+      "trim": "플래티넘",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "renault_그랑 콜레오스_가솔린 2.0 터보_esprit Alpine": {
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "engine": "가솔린",
+      "trim": "esprit Alpine",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_그랑 콜레오스_가솔린 2.0 터보_iconic": {
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "engine": "가솔린",
+      "trim": "iconic",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_그랑 콜레오스_가솔린 2.0 터보_techno": {
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "engine": "가솔린",
+      "trim": "techno",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_그랑 콜레오스_가솔린 2.0 터보_iconic 4WD": {
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "engine": "가솔린",
+      "trim": "iconic 4WD",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_그랑 콜레오스_하이브리드 E-Tech_esprit Alpine": {
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "engine": "하이브리드",
+      "trim": "esprit Alpine",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_그랑 콜레오스_하이브리드 E-Tech_esprit Alpine étoile": {
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "engine": "하이브리드",
+      "trim": "esprit Alpine étoile",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_그랑 콜레오스_하이브리드 E-Tech_iconic": {
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "engine": "하이브리드",
+      "trim": "iconic",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_그랑 콜레오스_하이브리드 E-Tech_techno": {
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "engine": "하이브리드",
+      "trim": "techno",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_아르카나_1.6 GTe_iconic": {
+      "maker": "르노",
+      "model": "아르카나",
+      "engine": "가솔린",
+      "trim": "iconic",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_아르카나_하이브리드 E-Tech_iconic": {
+      "maker": "르노",
+      "model": "아르카나",
+      "engine": "하이브리드",
+      "trim": "iconic",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_필랑트_하이브리드 E-Tech_esprit Alpine": {
+      "maker": "르노",
+      "model": "필랑트",
+      "engine": "하이브리드",
+      "trim": "esprit Alpine",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_필랑트_하이브리드 E-Tech_iconic": {
+      "maker": "르노",
+      "model": "필랑트",
+      "engine": "하이브리드",
+      "trim": "iconic",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "renault_필랑트_하이브리드 E-Tech_techno": {
+      "maker": "르노",
+      "model": "필랑트",
+      "engine": "하이브리드",
+      "trim": "techno",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "chevy_트랙스 크로스오버_ACTIV": {
+      "maker": "쉐보레",
+      "model": "트랙스 크로스오버",
+      "engine": "가솔린 1.2 터보",
+      "trim": "ACTIV",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "chevy_트랙스 크로스오버_LS": {
+      "maker": "쉐보레",
+      "model": "트랙스 크로스오버",
+      "engine": "가솔린 1.2 터보",
+      "trim": "LS",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "chevy_트랙스 크로스오버_Redline": {
+      "maker": "쉐보레",
+      "model": "트랙스 크로스오버",
+      "engine": "가솔린 1.2 터보",
+      "trim": "Redline",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "chevy_트랙스 크로스오버_RS": {
+      "maker": "쉐보레",
+      "model": "트랙스 크로스오버",
+      "engine": "가솔린 1.2 터보",
+      "trim": "RS",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "chevy_트레일블레이저_Premier": {
+      "maker": "쉐보레",
+      "model": "트레일블레이저",
+      "engine": "가솔린 1.3 터보",
+      "trim": "Premier",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 0
+    },
+    "chevy_트레일블레이저_RS": {
+      "maker": "쉐보레",
+      "model": "트레일블레이저",
+      "engine": "가솔린 1.3 터보",
+      "trim": "RS",
+      "group": "",
+      "canonicalCandidates": 6,
+      "providerCandidates": 0
+    },
+    "genesis_g70": {
+      "maker": "제네시스",
+      "model": "G70",
+      "engine": "가솔린",
+      "trim": "기본형",
+      "group": "",
+      "canonicalCandidates": 14,
+      "providerCandidates": 0
+    },
+    "genesis_g80__가솔린_2.5_터보_2WD__스탠다드": {
+      "maker": "제네시스",
+      "model": "G80",
+      "engine": "가솔린 2.5 터보",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "genesis_g80__가솔린_2.5_터보_AWD__스탠다드": {
+      "maker": "제네시스",
+      "model": "G80",
+      "engine": "가솔린 2.5 터보",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "genesis_g80__가솔린_3.5_터보_2WD__스탠다드": {
+      "maker": "제네시스",
+      "model": "G80",
+      "engine": "가솔린 3.5 터보",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "genesis_g80__가솔린_3.5_터보_AWD__스탠다드": {
+      "maker": "제네시스",
+      "model": "G80",
+      "engine": "가솔린 3.5 터보",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "genesis_g80-ev": {
+      "maker": "제네시스",
+      "model": "G80 전기",
+      "engine": "전기",
+      "trim": "기본형",
+      "group": "",
+      "canonicalCandidates": 1,
+      "providerCandidates": 0
+    },
+    "genesis_g90__가솔린_3.5_터보_2WD_후륜___스탠다드": {
+      "maker": "제네시스",
+      "model": "G90",
+      "engine": "가솔린 3.5 터보(후륜)",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 2,
+      "providerCandidates": 0
+    },
+    "genesis_g90__가솔린_3.5_터보_AWD__스탠다드": {
+      "maker": "제네시스",
+      "model": "G90",
+      "engine": "가솔린 3.5 터보",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 2,
+      "providerCandidates": 0
+    },
+    "genesis_gv60": {
+      "maker": "제네시스",
+      "model": "GV60",
+      "engine": "전기",
+      "trim": "기본형",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "genesis_gv70__가솔린_2.5_터보_2WD_후륜___스탠다드": {
+      "maker": "제네시스",
+      "model": "GV70",
+      "engine": "가솔린 2.5 터보(후륜)",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "genesis_gv70__가솔린_2.5_터보_AWD_오토_터레인_모드_포함___스탠다드": {
+      "maker": "제네시스",
+      "model": "GV70",
+      "engine": "가솔린 2.5 터보(오토 터레인 모드 포함)",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "genesis_gv70-ev": {
+      "maker": "제네시스",
+      "model": "GV70 전기",
+      "engine": "전기",
+      "trim": "기본형",
+      "group": "",
+      "canonicalCandidates": 1,
+      "providerCandidates": 0
+    },
+    "genesis_gv80__가솔린_2.5_터보__블랙": {
+      "maker": "제네시스",
+      "model": "GV80",
+      "engine": "가솔린 2.5 터보",
+      "trim": "블랙",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 4
+    },
+    "genesis_gv80__가솔린_2.5_터보_2WD_후륜___스탠다드": {
+      "maker": "제네시스",
+      "model": "GV80",
+      "engine": "가솔린 2.5 터보(후륜)",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "genesis_gv80__가솔린_2.5_터보_AWD__스탠다드": {
+      "maker": "제네시스",
+      "model": "GV80",
+      "engine": "가솔린 2.5 터보",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "genesis_gv80__가솔린_3.5_터보__블랙": {
+      "maker": "제네시스",
+      "model": "GV80",
+      "engine": "가솔린 3.5 터보",
+      "trim": "블랙",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 4
+    },
+    "genesis_gv80__가솔린_3.5_터보_2WD_후륜___스탠다드": {
+      "maker": "제네시스",
+      "model": "GV80",
+      "engine": "가솔린 3.5 터보(후륜)",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "genesis_gv80__가솔린_3.5_터보_AWD__스탠다드": {
+      "maker": "제네시스",
+      "model": "GV80",
+      "engine": "가솔린 3.5 터보",
+      "trim": "스탠다드",
+      "group": "",
+      "canonicalCandidates": 11,
+      "providerCandidates": 0
+    },
+    "HEJJ5HDT2": {
+      "maker": "현대",
+      "model": "넥쏘",
+      "engine": "수소",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "HEJJ5HAT2": {
+      "maker": "현대",
+      "model": "넥쏘",
+      "engine": "수소",
+      "trim": "익스클루시브",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "HEJJ5HCT2": {
+      "maker": "현대",
+      "model": "넥쏘",
+      "engine": "수소",
+      "trim": "프레스티지",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "GNJS4RBT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 2.5",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "GNJS4RCT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 2.5",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "GNJS4RAT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 2.5",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "GNJS4SBT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 3.5",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 2
+    },
+    "GNJS4SCT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 3.5",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 2
+    },
+    "GNJS4SAT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 3.5",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 8,
+      "providerCandidates": 2
+    },
+    "GNJS4ZBT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "group": "2WD",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "GNJS4ZCT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "group": "2WD",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "GNJS4ZAT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프리미엄",
+      "group": "2WD",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "GNJS4LBT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "LPG 3.5",
+      "trim": "익스클루시브",
+      "group": "2WD",
+      "canonicalCandidates": 2,
+      "providerCandidates": 1
+    },
+    "GNJS4LAT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "LPG 3.5",
+      "trim": "프리미엄",
+      "group": "2WD",
+      "canonicalCandidates": 2,
+      "providerCandidates": 1
+    },
+    "GNTS4LVT4": {
+      "maker": "현대",
+      "model": "더 뉴 그랜저 택시",
+      "engine": "LPG 3.5",
+      "trim": "고급형",
+      "group": "2WD",
+      "canonicalCandidates": 2,
+      "providerCandidates": 0
+    },
+    "USJC3VMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Electric",
+      "engine": "전기",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "USJC5VMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Electric",
+      "engine": "전기",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "USJTBVMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Electric",
+      "engine": "전기",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "USJC2ZMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJC5ZMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJT9ZMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJTBZMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJT9ZST4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "스마트",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJTBZST4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "스마트",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJC2ZCT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "스마트(센터콘솔)",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJC5ZCT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "스마트(센터콘솔)",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJC3LMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "engine": "LPG 3.5",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USJC5LMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "engine": "LPG 3.5",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USJTBLMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "engine": "LPG 3.5",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USJC3LST4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "engine": "LPG 3.5",
+      "trim": "스마트",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USJTBLST4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "engine": "LPG 3.5",
+      "trim": "스마트",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USJC5LCT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "engine": "LPG 3.5",
+      "trim": "스마트(센터콘솔)",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USJL7VET4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 Electric",
+      "engine": "전기",
+      "trim": "인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "USJL7VPT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 Electric",
+      "engine": "전기",
+      "trim": "프레스티지",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "USJLBVPT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 Electric",
+      "engine": "전기",
+      "trim": "프레스티지",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "USJL7ZET4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJL9ZET4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJL9ZPT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJL7LET4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지",
+      "engine": "LPG 3.5",
+      "trim": "인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USTL7ZBT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 모빌리티 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모빌리티",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USTL9ZBT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 모빌리티 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모빌리티",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USTL7LBT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 모빌리티",
+      "engine": "LPG 3.5",
+      "trim": "모빌리티",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USJV6VET4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 리무진 Electric",
+      "engine": "전기",
+      "trim": "인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "USJV6ZET4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 리무진 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USJV9ZET4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 리무진 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USCTBZMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 킨더 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USCTFZMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 킨더 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 13,
+      "providerCandidates": 0
+    },
+    "USCTBLMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 킨더",
+      "engine": "LPG 3.5",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "USCTFLMT4": {
+      "maker": "현대",
+      "model": "더 뉴 스타리아 킨더",
+      "engine": "LPG 3.5",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "CEJS4VLD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "E-LITE(롱레인지) 18인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VSD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "E-LITE(롱레인지) 20인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VHD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "E-Value +(스탠다드) 18인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VBD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "익스클루시브(롱레인지) 18인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VCD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "익스클루시브(롱레인지) 20인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VAD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "익스클루시브(스탠다드) 18인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VMD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "N Line 익스클루시브(롱레인지) 20인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VND3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "N Line 프레스티지(롱레인지) 20인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VFD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "프레스티지(롱레인지) 18인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VGD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "프레스티지(롱레인지) 20인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VPD3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "프레스티지(스탠다드) 18인치",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VLA3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "E-LITE(롱레인지) 18인치",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VSA3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "E-LITE(롱레인지) 20인치",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VBA3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "익스클루시브(롱레인지) 18인치",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VCA3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "익스클루시브(롱레인지) 20인치",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VMA3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "N Line 익스클루시브(롱레인지) 20인치",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VNA3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "N Line 프레스티지(롱레인지) 20인치",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VFA3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "프레스티지(롱레인지) 18인치",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "CEJS4VGA3": {
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "engine": "전기",
+      "trim": "프레스티지(롱레인지) 20인치",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "QV1BFABA7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BFABB7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BHABA7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BHABB7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BKABA7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BKABB7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BLABA7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BLABB7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BPABA7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BPABB7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BQABA7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "QV1BQABB7": {
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "engine": "디젤 6.8",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "FNJS4RMT1": {
+      "maker": "현대",
+      "model": "디 올 뉴 아반떼",
+      "engine": "가솔린",
+      "trim": "모던",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "FNJS4RST1": {
+      "maker": "현대",
+      "model": "디 올 뉴 아반떼",
+      "engine": "가솔린",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "FNJS4RPT1": {
+      "maker": "현대",
+      "model": "디 올 뉴 아반떼",
+      "engine": "가솔린",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "FNJS4ZMD1": {
+      "maker": "현대",
+      "model": "디 올 뉴 아반떼 Hybrid",
+      "engine": "하이브리드 1.6",
+      "trim": "모던",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "FNJS4ZSD1": {
+      "maker": "현대",
+      "model": "디 올 뉴 아반떼 Hybrid",
+      "engine": "하이브리드 1.6",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "FNJS4ZPD1": {
+      "maker": "현대",
+      "model": "디 올 뉴 아반떼 Hybrid",
+      "engine": "하이브리드 1.6",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 2
+    },
+    "QXJJ5GFC6": {
+      "maker": "현대",
+      "model": "베뉴",
+      "engine": "가솔린 1.6",
+      "trim": "FLUX",
+      "group": "2WD",
+      "canonicalCandidates": 3,
+      "providerCandidates": 1
+    },
+    "QXJJ5GDC6": {
+      "maker": "현대",
+      "model": "베뉴",
+      "engine": "가솔린 1.6",
+      "trim": "프리미엄",
+      "group": "2WD",
+      "canonicalCandidates": 3,
+      "providerCandidates": 1
+    },
+    "QXJJ5GAC6": {
+      "maker": "현대",
+      "model": "베뉴",
+      "engine": "가솔린 1.6",
+      "trim": "스마트",
+      "group": "2WD",
+      "canonicalCandidates": 3,
+      "providerCandidates": 1
+    },
+    "MXJJ5TCT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ5THT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ5TFT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ5TMT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ5TCA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ5THA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ5TFA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ5TMA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ6TCT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ6THT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ6TFT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ6TMT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ6TCA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ6THA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ6TFA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ6TMA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ7TCT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ7THT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ7TFT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ7TMT3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ7TCA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ7THA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ7TFA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ7TMA3": {
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 6
+    },
+    "MXJJ5ZCT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ5ZHT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ5ZFT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ5ZMT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ5ZCA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ5ZHA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ5ZFA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ5ZMA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ6ZCT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ6ZHT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ6ZFT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ6ZMT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ6ZCA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ6ZHA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ6ZFA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ6ZMA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ7ZCT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ7ZHT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ7ZFT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ7ZMT3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ7ZCA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ7ZHA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ7ZFA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "MXJJ7ZMA3": {
+      "maker": "현대",
+      "model": "싼타페 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 30,
+      "providerCandidates": 0
+    },
+    "DNJS4RCT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "DNJS4RET7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "DNJS4TLT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "N Line",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "DNJS4RBT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "DNJS4RUT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "S",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "DNJS4SCT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 2.0",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "DNJS4SET7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 2.0",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "DNJS4SBT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 2.0",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "DNJS4SUT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 2.0",
+      "trim": "S",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "DNJS4NLT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "가솔린 2.5 터보",
+      "trim": "N Line",
+      "group": "",
+      "canonicalCandidates": 1,
+      "providerCandidates": 0
+    },
+    "DNJS4ZCT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지 Hybrid",
+      "engine": "하이브리드 2.0",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "DNJS4ZET7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지 Hybrid",
+      "engine": "하이브리드 2.0",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "DNJS4ZBT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지 Hybrid",
+      "engine": "하이브리드 2.0",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "DNJS4ZUT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지 Hybrid",
+      "engine": "하이브리드 2.0",
+      "trim": "S",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 1
+    },
+    "DNJS4LCT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "LPG 2.0",
+      "trim": "익스클루시브",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "DNJS4LET7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "LPG 2.0",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "DNJS4LBT7": {
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "engine": "LPG 2.0",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 1
+    },
+    "TXTS4LMT2": {
+      "maker": "현대",
+      "model": "쏘나타 택시",
+      "engine": "LPG 2.0",
+      "trim": "모빌리티",
+      "group": "",
+      "canonicalCandidates": 5,
+      "providerCandidates": 0
+    },
+    "CNJS4NND5": {
+      "maker": "현대",
+      "model": "아반떼 N",
+      "engine": "가솔린 2.0 터보",
+      "trim": "N",
+      "group": "",
+      "canonicalCandidates": 1,
+      "providerCandidates": 0
+    },
+    "CNJS4NNN5": {
+      "maker": "현대",
+      "model": "아반떼 N",
+      "engine": "가솔린 2.0 터보",
+      "trim": "N",
+      "group": "",
+      "canonicalCandidates": 1,
+      "providerCandidates": 0
+    },
+    "NEJJ5VOD8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "모던(롱레인지) 19인치",
+      "group": "2WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VID8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "인스퍼레이션(롱레인지) 19인치",
+      "group": "2WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VJD8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "인스퍼레이션(롱레인지) 20인치",
+      "group": "2WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VPD8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "프리미엄(롱레인지) 19인치",
+      "group": "2WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VUD8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "프리미엄(롱레인지) 20인치",
+      "group": "2WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VHD8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "E-Lite(롱레인지) 19인치",
+      "group": "2WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VVD8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "E-Value +(스탠다드) 19인치",
+      "group": "2WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VZD8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "N LINE(롱레인지) 20인치",
+      "group": "2WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VOA8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "모던(롱레인지) 19인치",
+      "group": "4WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VIA8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "인스퍼레이션(롱레인지) 19인치",
+      "group": "4WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VJA8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "인스퍼레이션(롱레인지) 20인치",
+      "group": "4WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VPA8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "프리미엄(롱레인지) 19인치",
+      "group": "4WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VUA8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "프리미엄(롱레인지) 20인치",
+      "group": "4WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VHA8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "E-Lite(롱레인지) 19인치",
+      "group": "4WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ5VZA8": {
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "engine": "전기",
+      "trim": "N LINE(롱레인지) 20인치",
+      "group": "4WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ58BA7": {
+      "maker": "현대",
+      "model": "아이오닉 5 N",
+      "engine": "전기",
+      "trim": "IONIQ 5 N Essential",
+      "group": "",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "NEJJ58RA7": {
+      "maker": "현대",
+      "model": "아이오닉 5 N",
+      "engine": "전기",
+      "trim": "IONIQ 5 N",
+      "group": "4WD",
+      "canonicalCandidates": 24,
+      "providerCandidates": 0
+    },
+    "CEJS48RA4": {
+      "maker": "현대",
+      "model": "아이오닉 6 N",
+      "engine": "전기",
+      "trim": "N",
+      "group": "4WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "MEJJ6VAT2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "익스클루시브 19인치",
+      "group": "6인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VCT2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 19인치",
+      "group": "6인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VET2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 21인치",
+      "group": "6인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VBT2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 19인치",
+      "group": "6인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VDT2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 21인치",
+      "group": "6인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VAA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "익스클루시브 19인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VAH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "익스클루시브 19인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VCA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 19인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VCH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 19인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VEA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 21인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VEH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 21인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VBA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 19인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VBH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 19인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VDA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 21인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ6VDH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 21인치",
+      "group": "6인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VAT2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "익스클루시브 19인치",
+      "group": "7인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VCT2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 19인치",
+      "group": "7인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VET2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 21인치",
+      "group": "7인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VBT2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 19인치",
+      "group": "7인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VDT2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 21인치",
+      "group": "7인승 2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VAA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "익스클루시브 19인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VAH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "익스클루시브 19인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VCA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 19인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VCH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 19인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VEA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 21인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VEH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "캘리그래피 21인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VBA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 19인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VBH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 19인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VDA2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 21인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "MEJJ7VDH2": {
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "engine": "전기",
+      "trim": "프레스티지 21인치",
+      "group": "7인승 4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "SXJJ5THD4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "H-Pick",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 1
+    },
+    "SXJJ5TCD4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 2
+    },
+    "SXJJ5TAD4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 10,
+      "providerCandidates": 1
+    },
+    "SXJJ5TMD4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "N Line 인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "SXJJ5TBD4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 2
+    },
+    "SXJJ5TCE4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 2
+    },
+    "SXJJ5TME4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "N Line 인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "SXJJ5TBE4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 2
+    },
+    "SXJJ5KHD4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 2.0",
+      "trim": "H-Pick",
+      "group": "2WD",
+      "canonicalCandidates": 2,
+      "providerCandidates": 0
+    },
+    "SXJJ5KAD4": {
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 2.0",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 2,
+      "providerCandidates": 0
+    },
+    "SXJJ5VES3": {
+      "maker": "현대",
+      "model": "코나 Electric",
+      "engine": "전기",
+      "trim": "E-Value +",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "SXJJ5VCR3": {
+      "maker": "현대",
+      "model": "코나 Electric",
+      "engine": "전기",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "SXJJ5VPR3": {
+      "maker": "현대",
+      "model": "코나 Electric",
+      "engine": "전기",
+      "trim": "모던 plus",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "SXJJ5VMR3": {
+      "maker": "현대",
+      "model": "코나 Electric",
+      "engine": "전기",
+      "trim": "N Line 인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "SXJJ5VBR3": {
+      "maker": "현대",
+      "model": "코나 Electric",
+      "engine": "전기",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "SXJJ5VBS3": {
+      "maker": "현대",
+      "model": "코나 Electric",
+      "engine": "전기",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 4,
+      "providerCandidates": 0
+    },
+    "SXJJ5ZHD4": {
+      "maker": "현대",
+      "model": "코나 Hybrid",
+      "engine": "하이브리드 1.6",
+      "trim": "H-Pick",
+      "group": "2WD",
+      "canonicalCandidates": 6,
+      "providerCandidates": 1
+    },
+    "SXJJ5ZCD4": {
+      "maker": "현대",
+      "model": "코나 Hybrid",
+      "engine": "하이브리드 1.6",
+      "trim": "인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 6,
+      "providerCandidates": 1
+    },
+    "SXJJ5ZAD4": {
+      "maker": "현대",
+      "model": "코나 Hybrid",
+      "engine": "하이브리드 1.6",
+      "trim": "모던",
+      "group": "2WD",
+      "canonicalCandidates": 6,
+      "providerCandidates": 1
+    },
+    "SXJJ5ZMD4": {
+      "maker": "현대",
+      "model": "코나 Hybrid",
+      "engine": "하이브리드 1.6",
+      "trim": "N Line 인스퍼레이션",
+      "group": "2WD",
+      "canonicalCandidates": 6,
+      "providerCandidates": 0
+    },
+    "SXJJ5ZBD4": {
+      "maker": "현대",
+      "model": "코나 Hybrid",
+      "engine": "하이브리드 1.6",
+      "trim": "프리미엄",
+      "group": "2WD",
+      "canonicalCandidates": 6,
+      "providerCandidates": 1
+    },
+    "NXJJ5THD5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 2
+    },
+    "NXJJ5TPD5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 2
+    },
+    "NXJJ5TDD5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "모던",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 2
+    },
+    "NXJJ5TMD5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "N Line",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "NXJJ5TCD5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 2
+    },
+    "NXJJ5THH5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 2
+    },
+    "NXJJ5TPH5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 2
+    },
+    "NXJJ5TDH5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "모던",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 2
+    },
+    "NXJJ5TMH5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "N Line",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "NXJJ5TCH5": {
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 9,
+      "providerCandidates": 2
+    },
+    "NXJJ5ZHT5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZPT5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZDT5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZMT5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "N Line",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZCT5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZHA5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZPA5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "인스퍼레이션",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZDA5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZMA5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "N Line",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "NXJJ5ZCA5": {
+      "maker": "현대",
+      "model": "투싼 Hybrid",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프리미엄",
+      "group": "",
+      "canonicalCandidates": 10,
+      "providerCandidates": 0
+    },
+    "FXJJ7TAT2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "익스클루시브",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7TCT2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "캘리그래피",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7TET2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "하이루프",
+      "group": "하이루프 7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7THT2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "H-Pick",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7TDT2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "XRT",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7TAA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "익스클루시브",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7TCA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "캘리그래피",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7TEA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "하이루프",
+      "group": "하이루프 7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7THA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "H-Pick",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7TDA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "XRT",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9TAT2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "익스클루시브",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9TCT2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "캘리그래피",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9TET2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "하이루프",
+      "group": "하이루프 9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9THT2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "H-Pick",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9TDT2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "XRT",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9TAA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "익스클루시브",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9TCA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "캘리그래피",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9TEA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "하이루프",
+      "group": "하이루프 9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9THA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "H-Pick",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9TDA2": {
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "XRT",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7ZAT2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "익스클루시브",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7ZCT2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "캘리그래피",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7ZET2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "하이루프",
+      "group": "하이루프 7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7ZHT2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "H-Pick",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7ZAA2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "익스클루시브",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7ZCA2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "캘리그래피",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7ZEA2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "하이루프",
+      "group": "하이루프 7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ7ZHA2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "H-Pick",
+      "group": "7인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9ZAT2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "익스클루시브",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9ZCT2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "캘리그래피",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9ZET2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "하이루프",
+      "group": "하이루프 9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9ZHT2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "H-Pick",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9ZAA2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "익스클루시브",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9ZCA2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "캘리그래피",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9ZEA2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "하이루프",
+      "group": "하이루프 9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "FXJJ9ZHA2": {
+      "maker": "현대",
+      "model": "팰리세이드 Hybrid",
+      "engine": "하이브리드 2.5",
+      "trim": "H-Pick",
+      "group": "9인승",
+      "canonicalCandidates": 12,
+      "providerCandidates": 0
+    },
+    "kgm_GL5_G5C2M_GL5AP02": {
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(5인승)",
+      "engine": "디젤",
+      "trim": "노블레스",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_GL5_G5A1M_GL5AP01": {
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(5인승)",
+      "engine": "디젤",
+      "trim": "프리미엄",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_GL5_G5D2M_GL5AP02": {
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(5인승)",
+      "engine": "디젤",
+      "trim": "노블레스",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_GL5_G5B1M_GL5AP01": {
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(5인승)",
+      "engine": "디젤",
+      "trim": "프리미엄",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_GL7_G7C2M_GL7AL02": {
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(7인승)",
+      "engine": "디젤",
+      "trim": "노블레스",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_GL7_G7A1M_GL7AL01": {
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(7인승)",
+      "engine": "디젤",
+      "trim": "프리미엄",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_GL7_G7D2M_GL7AL02": {
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(7인승)",
+      "engine": "디젤",
+      "trim": "노블레스",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_GL7_G7B1M_GL7AL01": {
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(7인승)",
+      "engine": "디젤",
+      "trim": "프리미엄",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_OP5_OP9BC_OP5AB02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘 EV",
+      "engine": "전기",
+      "trim": "블랙엣지",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_OP5_OP9AC_OP5AB01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘 EV",
+      "engine": "전기",
+      "trim": "MX",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_OP5_OP9BD_OP5AB02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘 EV",
+      "engine": "전기",
+      "trim": "블랙엣지",
+      "group": "AWD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_OP5_OP9AD_OP5AB01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘 EV",
+      "engine": "전기",
+      "trim": "MX",
+      "group": "AWD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QGSMA_UH5AP01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "가솔린",
+      "trim": "M5",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QGSOA_UH5AP02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "가솔린",
+      "trim": "M7",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QGGSA_UH5AQ01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "가솔린",
+      "trim": "M7 그랜드 스타일",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QGSQA_UH5AP03": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "가솔린",
+      "trim": "M9",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QGGUA_UH5AQ02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "가솔린",
+      "trim": "M9 그랜드 스타일",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QDSMA_UH5AP01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "디젤",
+      "trim": "M5",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QDSOA_UH5AP02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "디젤",
+      "trim": "M7",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QDGSA_UH5AQ01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "디젤",
+      "trim": "M7 그랜드 스타일",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QDSQA_UH5AP03": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "디젤",
+      "trim": "M9",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UH5_QDGUA_UH5AQ02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "engine": "디젤",
+      "trim": "M9 그랜드 스타일",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGSAA_UP5AP01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M5",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGSCA_UP5AP02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M7",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGGGA_UP5AQ01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M7 그랜드 스타일",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGSEA_UP5AP03": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M9",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGGJA_UP5AQ02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M9 그랜드 스타일",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGSBA_UP5AP01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M5",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGSDA_UP5AP02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M7",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGGHA_UP5AQ01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M7 그랜드 스타일",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGSFA_UP5AP03": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M9",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QGGKA_UP5AQ02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "가솔린",
+      "trim": "M9 그랜드 스타일",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDSAA_UP5AP01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M5",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDSCA_UP5AP02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M7",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDGGA_UP5AQ01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M7 그랜드 스타일",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDSEA_UP5AP03": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M9",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDGJA_UP5AQ02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M9 그랜드 스타일",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDSBA_UP5AP01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M5",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDSDA_UP5AP02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M7",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDGHA_UP5AQ01": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M7 그랜드 스타일",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDSFA_UP5AP03": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M9",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_UP5_QDGKA_UP5AQ02": {
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "engine": "디젤",
+      "trim": "M9 그랜드 스타일",
+      "group": "4WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_MC5_MC5QA_MC5AE01": {
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "engine": "가솔린",
+      "trim": "S8",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_MC5_MC5SA_MC5AE01": {
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "engine": "가솔린",
+      "trim": "S8 (투톤)",
+      "group": "2WD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_MC5_MC5RA_MC5AE01": {
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "engine": "가솔린",
+      "trim": "S8",
+      "group": "AWD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_MC5_MC5TA_MC5AE01": {
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "engine": "가솔린",
+      "trim": "S8 (투톤)",
+      "group": "AWD",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_MD5_MD5CA_MD5AB01": {
+      "maker": "KG모빌리티",
+      "model": "액티언 하이브리드",
+      "engine": "하이브리드",
+      "trim": "S8",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_MD5_MD5DA_MD5AB01": {
+      "maker": "KG모빌리티",
+      "model": "액티언 하이브리드",
+      "engine": "하이브리드",
+      "trim": "S8 (투톤)",
+      "group": "",
+      "canonicalCandidates": 0,
+      "providerCandidates": 0
+    },
+    "kgm_MW5_MW5ZL_MW5AM01": {
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "engine": "가솔린 1.5 터보",
+      "trim": "T5",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_MW5_MW5ZN_MW5AM02": {
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "engine": "가솔린 1.5 터보",
+      "trim": "T7",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_MW5_MW5ZP_MW5AM02": {
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "engine": "가솔린 1.5 터보",
+      "trim": "T7 (투톤)",
+      "group": "2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_MW5_MW5ZM_MW5AM01": {
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "engine": "가솔린 1.5 터보",
+      "trim": "T5",
+      "group": "AWD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_MW5_MW5ZO_MW5AM02": {
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "engine": "가솔린 1.5 터보",
+      "trim": "T7",
+      "group": "AWD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_MW5_MW5ZQ_MW5AM02": {
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "engine": "가솔린 1.5 터보",
+      "trim": "T7 (투톤)",
+      "group": "AWD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_MY5_MY5HA_MY5AB01": {
+      "maker": "KG모빌리티",
+      "model": "토레스 하이브리드",
+      "engine": "하이브리드 1.5 터보",
+      "trim": "T5",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_MY5_MY5IA_MY5AB02": {
+      "maker": "KG모빌리티",
+      "model": "토레스 하이브리드",
+      "engine": "하이브리드 1.5 터보",
+      "trim": "T7",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_MY5_MY5JA_MY5AB02": {
+      "maker": "KG모빌리티",
+      "model": "토레스 하이브리드",
+      "engine": "하이브리드 1.5 터보",
+      "trim": "T7 (투톤)",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_MV2_MV2KA_MV2AE01": {
+      "maker": "KG모빌리티",
+      "model": "토레스 밴",
+      "engine": "가솔린 1.5 터보",
+      "trim": "TV5",
+      "group": "밴 2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_MV2_MV2LA_MV2AE02": {
+      "maker": "KG모빌리티",
+      "model": "토레스 밴",
+      "engine": "가솔린 1.5 터보",
+      "trim": "TV7",
+      "group": "밴 2WD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_MV2_MV2MA_MV2AE02": {
+      "maker": "KG모빌리티",
+      "model": "토레스 밴",
+      "engine": "가솔린 1.5 터보",
+      "trim": "TV7",
+      "group": "밴 AWD",
+      "canonicalCandidates": 9,
+      "providerCandidates": 0
+    },
+    "kgm_FL5_FMEQB_FL5AH01": {
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX",
+      "engine": "전기",
+      "trim": "E5",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_FL5_FMERB_FL5AH02": {
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX",
+      "engine": "전기",
+      "trim": "E7",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_FL5_FMESB_FL5AH02": {
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX",
+      "engine": "전기",
+      "trim": "E7 (투톤)",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_FL5_FMEDA_FL5AE01": {
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX",
+      "engine": "전기",
+      "trim": "TAXI",
+      "group": "",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_FL2_FL2FB_FL2AD01": {
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX 밴",
+      "engine": "전기",
+      "trim": "TV5",
+      "group": "밴",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_FL2_FL2GB_FL2AD02": {
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX 밴",
+      "engine": "전기",
+      "trim": "TV7",
+      "group": "밴",
+      "canonicalCandidates": 3,
+      "providerCandidates": 0
+    },
+    "kgm_XW5_XMHIA_XW5BD01": {
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "engine": "가솔린",
+      "trim": "V1",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kgm_XW5_XMHJA_XW5BD02": {
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "engine": "가솔린",
+      "trim": "V3",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kgm_XW5_XMHKA_XW5BD02": {
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "engine": "가솔린",
+      "trim": "V3 (투톤)",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kgm_XW5_XMHLA_XW5BE01": {
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "engine": "가솔린",
+      "trim": "V5",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kgm_XW5_XMHMA_XW5BE02": {
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "engine": "가솔린",
+      "trim": "V7",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    },
+    "kgm_XW5_XMHNA_XW5BE02": {
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "engine": "가솔린",
+      "trim": "V7 (투톤)",
+      "group": "2WD",
+      "canonicalCandidates": 7,
+      "providerCandidates": 0
+    }
+  }
+}
