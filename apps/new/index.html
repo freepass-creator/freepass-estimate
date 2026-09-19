@@ -148,7 +148,7 @@
     display: grid;
     /* 좌(차량) 400px 고정 — 손오공 견적기와 좌패널 폭 통일. 중(견적):우(채팅) = 52:20 잔여배분 */
     grid-template-columns: 400px minmax(0, 52fr) minmax(0, 20fr);
-    grid-template-rows: 48px 1fr;
+    grid-template-rows: 48px minmax(0, 1fr) 50px;
     gap: 0;
     height: 100vh;
     overflow: hidden;
@@ -178,7 +178,51 @@
     background: var(--brand-50); font-variant-numeric: tabular-nums;
   }
   .global-topbar .spacer { flex: 1; }
-  .global-topbar__actions { display: flex; gap: 2px; }
+
+  /* FreePass 공통 액션 배치: 상단 CTA 금지, 하단 고정 액션바 */
+  .global-topbar__actions { display: none !important; }
+  .desktop-action-bar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    z-index: 60;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+  .desktop-action-bar__inner {
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+  .desktop-action-bar__spacer { flex: 1; }
+  .bottom-action {
+    height: 36px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: var(--radius);
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .bottom-action.secondary { background: var(--bg-soft); color: var(--ink-2); }
+  .bottom-action.primary { background: var(--brand); color: #fff; font-weight: 600; }
+  .bottom-action:disabled { opacity: .38; cursor: not-allowed; }
+  @media (max-width: 1024px) {
+    .desktop-action-bar__inner { overflow-x: auto; padding: 0 10px; }
+    .bottom-action { flex: 0 0 auto; }
+  }
   /* 톱바 버튼 — 박스 없이 텍스트 + 아이콘 (hover시 옅은 회색 bg만) */
   /* === 상단바 버튼 통일 규격 === */
   .gt-btn {
@@ -511,7 +555,35 @@
     padding: 14px 18px; background: #fafafa; border-bottom: 1px solid #eee;
     font-size: 12.5px; font-weight: 500; color: var(--brand);
   }
-  .quote-modal__head .actions { margin-left: auto; display: flex; gap: 6px; }
+  .quote-modal__head .actions { display: none !important; }
+  .quote-modal__foot {
+    min-height: 48px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .quote-modal__foot .spacer { flex: 1; }
+  .quote-modal__foot button {
+    min-height: 32px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: var(--radius-sm);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .quote-modal__foot button.outline { background: var(--bg-soft); color: var(--ink-2); }
+  .quote-modal__foot button.primary { background: var(--brand); color: #fff; font-weight: 600; }
+  @media (max-width: 1024px) {
+    .quote-modal__foot { overflow-x: auto; }
+    .quote-modal__foot button { flex: 0 0 auto; }
+  }
   .quote-modal__opt {
     display: inline-flex; align-items: center; gap: 4px;
     margin-left: 12px; padding: 4px 8px;
@@ -722,30 +794,32 @@
   <span class="global-topbar__hint">신차 장기렌터카 견적기</span>
   <span class="global-topbar__ver" id="excel-ver-top" title="견적 계산에 적용된 엑셀 견적기 버전" hidden></span>
   <span class="spacer"></span>
-  <div class="global-topbar__actions">
-    <!-- 견적 그룹 — 견적/견적바구니 일관 라벨 -->
-    <button class="gt-btn outline" id="btn-add-to-cart" title="현재 견적을 견적바구니에 담기">
-      <i class="ph ph-plus"></i>견적 담기
-    </button>
-    <button class="gt-btn outline" id="btn-preview-quote" title="현재 차종 1대 견적서 미리보기">
-      <i class="ph ph-file-text"></i>견적 미리보기
-    </button>
-    <button class="gt-btn primary" id="btn-open-cart" title="견적바구니 — 체크해서 손님에게 한 번에 발송">
-      <i class="ph ph-shopping-bag-open"></i>견적바구니<span class="cart-badge" id="cart-badge">0</span>
-    </button>
 
-    <span class="gt-divider" aria-hidden="true"></span>
+</div>
 
-    <!-- 보조 액션 — 모두 outline 통일 -->
-    <button class="gt-btn outline" id="btn-standard-price" title="제조사별 표준 견적 — 미리보기/이미지복사/PDF/공식가격표"
+
+<!-- FreePass 공통 UI 규격: 행동 CTA는 하단 고정 액션바. 상단은 표시 전용. -->
+<div class="desktop-action-bar" role="toolbar" aria-label="견적 작업">
+  <div class="desktop-action-bar__inner">
+    <button class="bottom-action secondary" id="reset-btn" title="입력 초기화">
+      <i class="ph ph-arrow-counter-clockwise"></i>초기화
+    </button>
+    <button class="bottom-action secondary" id="btn-copy-sign-link" title="조회 동의 페이지 링크 복사">
+      <i class="ph ph-signature"></i>조회동의
+    </button>
+    <button class="bottom-action secondary" id="btn-standard-price" title="제조사별 표준 견적"
             onclick="window.__welrix_openStandardPriceTable && window.__welrix_openStandardPriceTable()">
       <i class="ph ph-file-text"></i>표준 견적
     </button>
-    <button class="gt-btn outline" id="btn-copy-sign-link" title="조회 동의 페이지 링크 복사">
-      <i class="ph ph-signature"></i>조회동의
+    <span class="desktop-action-bar__spacer"></span>
+    <button class="bottom-action secondary" id="btn-add-to-cart" title="현재 견적을 견적바구니에 담기">
+      <i class="ph ph-plus"></i>견적 담기
     </button>
-    <button class="gt-btn outline" id="reset-btn" title="입력 초기화">
-      <i class="ph ph-arrow-counter-clockwise"></i>초기화
+    <button class="bottom-action secondary" id="btn-preview-quote" title="현재 차종 1대 견적서 미리보기">
+      <i class="ph ph-file-text"></i>미리보기
+    </button>
+    <button class="bottom-action primary" id="btn-open-cart" title="견적바구니">
+      <i class="ph ph-shopping-bag-open"></i>견적바구니<span class="cart-badge" id="cart-badge">0</span>
     </button>
   </div>
 </div>
@@ -4620,16 +4694,17 @@ render();
         <input type="checkbox" id="opt-exclude-logo" />
         <span>CI 제외</span>
       </label>
-      <div class="actions">
-        <button class="outline" id="btn-modal-copy-text"><i class="ph ph-copy"></i>텍스트</button>
-        <button class="outline" id="btn-modal-save-image"><i class="ph ph-download-simple"></i>이미지 저장</button>
-        <button class="outline" id="btn-modal-copy-image"><i class="ph ph-clipboard"></i>이미지 복사</button>
-        <button class="outline" id="btn-modal-print"><i class="ph ph-file-pdf"></i>PDF 출력</button>
-        <button class="primary" id="btn-modal-send-link"><i class="ph ph-link"></i>링크 복사</button>
-        <button class="close" id="btn-modal-close"><i class="ph ph-x"></i></button>
-      </div>
     </div>
     <div class="quote-modal__body" id="quote-modal-body"></div>
+    <div class="quote-modal__foot" role="toolbar" aria-label="견적서 작업">
+      <button class="outline" id="btn-modal-close"><i class="ph ph-x"></i>닫기</button>
+      <span class="spacer"></span>
+      <button class="outline" id="btn-modal-copy-text"><i class="ph ph-copy"></i>텍스트</button>
+      <button class="outline" id="btn-modal-save-image"><i class="ph ph-download-simple"></i>이미지 저장</button>
+      <button class="outline" id="btn-modal-copy-image"><i class="ph ph-clipboard"></i>이미지 복사</button>
+      <button class="outline" id="btn-modal-print"><i class="ph ph-file-pdf"></i>PDF 출력</button>
+      <button class="primary" id="btn-modal-send-link"><i class="ph ph-link"></i>링크 복사</button>
+    </div>
   </div>
 </div>
 
