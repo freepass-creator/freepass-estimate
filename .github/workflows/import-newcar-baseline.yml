@@ -43,6 +43,9 @@ jobs:
           cp .upstream-welrix/quote.js apps/new/quote.js
           cp .upstream-welrix/package.json apps/new/package.json
           cp .upstream-welrix/package-lock.json apps/new/package-lock.json
+          cp .upstream-welrix/vite.config.js apps/new/vite.config.js
+          cp .upstream-welrix/vercel.json apps/new/vercel.json
+          cp .upstream-welrix/.vercelignore apps/new/.vercelignore
 
           cp -R .upstream-welrix/src apps/new/src
           cp -R .upstream-welrix/public apps/new/public
@@ -51,6 +54,7 @@ jobs:
           mkdir -p apps/new/scripts
           cp .upstream-welrix/scripts/check-sync.mjs apps/new/scripts/check-sync.mjs
           cp .upstream-welrix/scripts/e2e-mobile-ux.mjs apps/new/scripts/e2e-mobile-ux.mjs
+          cp .upstream-welrix/scripts/excel-cases.mjs apps/new/scripts/excel-cases.mjs
 
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
