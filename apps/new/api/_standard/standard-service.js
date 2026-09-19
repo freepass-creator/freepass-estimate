@@ -36,10 +36,20 @@ export function engineFuel(label) {
 }
 
 export function ccFromRequest(car) {
-  const canonical = car?.구성?.canonical?.candidate;
+  const resolved = car?.구성?.canonical;
+  const canonical = resolved?.candidate;
   const exact = Number(canonical?.engine_cc || car?.배기량 || 0);
   if (exact > 0) return exact;
-  const m = S(car?.파워트레인 || car?.연료).match(/(?:^|[^0-9.])([1-6]\.[0-9])(?![0-9])/);
+
+  // 후보가 여러 트림/구동으로 갈려도 엔진 cc가 하나로 수렴하면 그 값은 안전한 차량 사실이다.
+  const candidateCcs = [...new Set((resolved?.candidates || [])
+    .map((x) => Number(x?.engine_cc || 0))
+    .filter((x) => x > 0))];
+  if (candidateCcs.length === 1) return candidateCcs[0];
+
+  // 제조사 상품키/파워트레인에 배기량이 명시된 경우만 보강한다.
+  const text = [car?.파워트레인, car?.연료, car?.상품키, car?.트림].map(S).filter(Boolean).join(' ');
+  const m = text.match(/(?:^|[^0-9.])([1-6]\.[0-9])(?![0-9])/);
   if (m) return Math.round(Number(m[1]) * 1000);
   return null;
 }
