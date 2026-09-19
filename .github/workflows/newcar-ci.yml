@@ -55,12 +55,14 @@ jobs:
         run: npm ci
       - name: Syntax check provider files
         run: |
+          node --check src/lib/quote/contracts.js
           node --check src/lib/quote/provider-config.js
           node --check src/lib/quote/calculate.js
           node --check src/lib/quote/execution-result.js
           node --check src/lib/quote/build-request.js
           node --check src/lib/quote/engines/freepass-standard.js
           node --check src/lib/quote/engines/external.js
+          node --check src/lib/share-link.js
           node --check api/external-quote.js
           node --check api/standard-quote.js
           node --check api/version.js
@@ -77,6 +79,8 @@ jobs:
         run: node scripts/test-provider-routing.mjs
       - name: Quote runtime proof contract
         run: npm run check:runtime
+      - name: Share snapshot provenance contract
+        run: npm run check:snapshot
       - name: Release revision proof contract
         run: npm run check:release
       - name: Existing sync checks
