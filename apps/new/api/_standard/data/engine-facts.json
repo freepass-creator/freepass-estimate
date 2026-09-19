@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-19",
+  "rules": [
+    {
+      "maker": "현대",
+      "model_contains": "아반떼",
+      "fuel": "gasoline",
+      "cc": 1598,
+      "source": "https://www.hyundai.com/contents/repn-car/catalog/avante-2026-price.pdf",
+      "note": "2026 AVANTE 스마트스트림 가솔린 1.6 공식 배기량"
+    },
+    {
+      "maker": "제네시스",
+      "model_contains": "G70",
+      "fuel": "gasoline",
+      "cc": 2497,
+      "source": "https://www.genesis.com/kr/ko/models/g70",
+      "note": "G70 기본 가솔린 2.5 터보"
+    },
+    {
+      "maker": "제네시스",
+      "model_contains": "G70",
+      "fuel": "gasoline",
+      "option_regex": "3\\.3.*엔진|가솔린\\s*3\\.3",
+      "cc": 3342,
+      "source": "https://www.genesis.com/kr/ko/models/g70",
+      "note": "G70 가솔린 3.3 터보 엔진 옵션 선택 시"
+    },
+    {
+      "maker": "르노",
+      "model_contains": "그랑 콜레오스",
+      "fuel": "hybrid",
+      "cc": 1499,
+      "source": "https://cdn.renault.co.kr/upload/asset/price/price_koleos_202606.pdf",
+      "note": "Grand Koleos hybrid E-Tech"
+    },
+    {
+      "maker": "르노",
+      "model_contains": "아르카나",
+      "fuel": "hybrid",
+      "cc": 1598,
+      "source": "https://cdn.renault.co.kr/upload/asset/price/price_Arkana_202604.pdf",
+      "note": "Arkana hybrid E-Tech"
+    },
+    {
+      "maker": "르노",
+      "model_contains": "필랑트",
+      "fuel": "hybrid",
+      "cc": 1499,
+      "source": "https://cdn.renault.co.kr/upload/asset/price/price_filante_202606.pdf",
+      "note": "Filante hybrid E-Tech"
+    },
+    {
+      "maker": "KG모빌리티",
+      "model_contains": "렉스턴 뉴 아레나",
+      "fuel": "diesel",
+      "cc": 2157,
+      "source": "https://www.kg-mobility.com/attached/contents/display/file/2000001000100120001/20251031112404559_cAIJj3.pdf",
+      "note": "Rexton New Arena 2.2 diesel"
+    },
+    {
+      "maker": "KG모빌리티",
+      "model_contains": "무쏘",
+      "fuel": "gasoline",
+      "cc": 1998,
+      "source": "https://www.kg-mobility.com/attached/contents/display/file/2000001000300040001/musso_catalog_20260105.pdf",
+      "note": "Musso gasoline 2.0 turbo"
+    },
+    {
+      "maker": "KG모빌리티",
+      "model_contains": "무쏘",
+      "fuel": "diesel",
+      "cc": 2157,
+      "source": "https://www.kg-mobility.com/attached/contents/display/file/2000001000300040001/musso_catalog_20260105.pdf",
+      "note": "Musso diesel 2.2 LET"
+    },
+    {
+      "maker": "KG모빌리티",
+      "model_contains": "액티언",
+      "fuel": "gasoline",
+      "cc": 1497,
+      "source": "https://certified.kg-mobility.com/",
+      "note": "Actyon 1.5 gasoline turbo official KGM vehicle specification"
+    },
+    {
+      "maker": "KG모빌리티",
+      "model_contains": "액티언",
+      "fuel": "hybrid",
+      "cc": 1498,
+      "source": "https://www.kg-mobility.com/attached/contents/display/file/2000001000100180001/20260529151052815_zXL9oW.pdf",
+      "note": "Actyon Hybrid e-DHT"
+    }
+  ]
+}
