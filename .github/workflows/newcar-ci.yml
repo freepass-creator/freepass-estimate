@@ -37,6 +37,9 @@ jobs:
       - name: Action placement standard
         working-directory: apps/new
         run: node scripts/check-action-placement.mjs
+      - name: FreePass visual grammar
+        working-directory: apps/new
+        run: node scripts/check-freepass-visual-grammar.mjs
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
