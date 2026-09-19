@@ -25,8 +25,8 @@
     "deposit_buckets_step": "보증금 단위 (50만원)",
     "deposit_buckets_max": "보증금 상한 (1,000만원)"
   },
-  "excel_version": "v6.1",
-  "excel_version_date": "2026-06-30",
+  "excel_version": "",
+  "excel_version_date": "",
   "company_id": "freepass",
   "name": "프리패스모빌리티",
   "logo_url": "/freepass-wordmark.svg",
@@ -208,8 +208,7 @@
     "deposit_buckets_max": 10000000
   },
   "quote_provider": {
-    "mode": "external",
-    "kind": "excel",
-    "adapter_id": "welrix"
+    "mode": "standard",
+    "adapter_id": "freepass-standard"
   }
 }
