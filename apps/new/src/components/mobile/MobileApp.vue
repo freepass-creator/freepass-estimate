@@ -306,7 +306,11 @@ async function shareSignLink() {
 
     <StickyQuote v-if="금액바보임" />
 
-    <footer class="m-footer" v-if="!자동전진단계 || 하단내비.hasPrev || (공유견적 && currentStep.key === 'result')">
+    <footer
+      class="m-footer"
+      v-show="!자동전진단계 || 하단내비.hasPrev || (공유견적 && currentStep.key === 'result')"
+      :data-nav-mode="하단내비.mode"
+    >
       <!-- 공유받은 확정견적은 먼저 «그대로» 보여 준다. 수정 버튼을 눌러야 새 계산이 시작된다. -->
       <template v-if="공유견적 && currentStep.key === 'result'">
         <button class="m-btn m-btn--soft" @click="수정하기">
