@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { configurationAxes, resolveProviderCandidate, absorbedAxisOptionIds } from '../src/lib/newcar/configuration-resolver.js';
+import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 
 // Server-side external quote adapter router.
 // Never exposes partner Excel files, ERP credentials or upstream auth to the browser.
@@ -122,7 +123,10 @@ export default async function handler(req, res) {
 
   const { kind, adapterId, request } = req.body || {};
   if (!request?.차?.키 || !Array.isArray(request?.안들)) {
-    return bad(res, 400, '견적 요청 형식이 올바르지 않습니다');
+    return bad(res, 400, '견적 요청 형식이 올바르지 않습니다', 'QUOTE_REQUEST_INVALID');
+  }
+  if (request?.계약 && request.계약 !== QUOTE_REQUEST_CONTRACT) {
+    return bad(res, 400, `지원하지 않는 견적 요청 계약입니다: ${request.계약}`, 'QUOTE_REQUEST_CONTRACT_UNSUPPORTED');
   }
 
   try {
@@ -137,7 +141,7 @@ export default async function handler(req, res) {
       return bad(res, 400, '외부 견적 종류가 올바르지 않습니다');
     }
 
-    res.status(200).json({ ok: true, ...out });
+    res.status(200).json({ ok: true, contract: QUOTE_RESULT_CONTRACT, providerContract: QUOTE_PROVIDER_CONTRACT, ...out });
   } catch (e) {
     if (e?.code === 'PROVIDER_UNSUPPORTED') {
       return bad(res, 422, e?.message || '현재 계산 공급자에서 지원하지 않는 차량입니다', 'PROVIDER_UNSUPPORTED');
