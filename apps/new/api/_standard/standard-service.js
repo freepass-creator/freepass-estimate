@@ -41,6 +41,7 @@ function ccFromOfficialFacts(car) {
   const model=S(car?.모델);
   const fuel=engineFuel(car?.연료 || car?.파워트레인);
   const selected=(car?.구성?.선택옵션 || []).map((o) => S(o?.name)).filter(Boolean).join(' ');
+  const trim=S(car?.트림);
 
   // More specific option rules win over base-model rules.
   const rules=[...(ENGINE_FACTS?.rules || [])].sort((a,b) => Number(!!b.option_regex)-Number(!!a.option_regex));
@@ -49,6 +50,7 @@ function ccFromOfficialFacts(car) {
     if (S(r.model_contains) && !model.includes(S(r.model_contains))) continue;
     if (S(r.fuel) && S(r.fuel)!==fuel) continue;
     if (r.option_regex && !(new RegExp(r.option_regex,'i')).test(selected)) continue;
+    if (r.trim_regex && !(new RegExp(r.trim_regex,'i')).test(trim)) continue;
     const cc=Number(r.cc||0);
     if (cc>0) return cc;
   }
