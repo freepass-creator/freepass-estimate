@@ -327,13 +327,13 @@ async function shareSignLink() {
           @click="next"
         >{{ STEPS[stepIdx + 1]?.key === 'result' ? '견적 보기' : '다음' }}<i class="ph ph-arrow-right"></i></button>
         <button
-          v-else-if="담당자"
+          v-else-if="stepIdx === STEPS.length - 1 && 담당자"
           class="m-btn m-btn--primary"
           :disabled="!견적준비됨"
           @click="openSend"
         ><i class="ph ph-paper-plane-tilt"></i>견적 발송</button>
         <button
-          v-else
+          v-else-if="stepIdx === STEPS.length - 1"
           class="m-btn m-btn--primary"
           :disabled="!견적준비됨 || 공유중"
           @click="공유하기"
