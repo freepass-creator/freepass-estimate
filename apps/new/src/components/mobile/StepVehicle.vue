@@ -754,16 +754,17 @@ function onFeeChange() {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 10px; padding: 22px 8px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: var(--r-card);
   font-family: inherit; cursor: pointer;
-  transition: transform .12s, border-color .12s, background .12s;
+  transition: transform .12s, background .12s;
 }
 .sv-brand-card img { width: 38px; height: 38px; object-fit: contain; }
 .sv-brand-card img[src*="genesis"] { width: auto; height: 18px; max-width: 70px; }
 .sv-brand-card__name { font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-1); }
 .sv-brand-card:active { transform: scale(0.97); }
 .sv-brand-card.is-selected { background: var(--brand-50); }
+.sv-brand-card.is-selected .sv-brand-card__name { color: var(--brand); font-weight: var(--fw-bold); }
 
 .sv-debug {
   padding: 12px 14px;
@@ -780,23 +781,24 @@ function onFeeChange() {
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--sp-4);
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: var(--r-card);
   font-family: inherit; cursor: pointer;
-  transition: background .12s, border-color .12s;
+  transition: background .12s;
 }
 .sv-row__label { font-size: var(--fs-lg); font-weight: var(--fw-medium); color: var(--ink-1); letter-spacing: -0.3px; }
 .sv-row__hint { display: block; margin-top: 3px; font-size: var(--fs-sm); font-weight: var(--fw-regular); color: var(--ink-4); }
 .sv-row__chev { font-size: 18px; color: var(--ink-4); }
 .sv-row:active { background: var(--brand-50); }
 .sv-row.is-selected { background: var(--brand-50); }
+.sv-row.is-selected .sv-row__label { color: var(--brand); font-weight: var(--fw-bold); }
 
 /* 트림 카드 */
 .sv-trim-card {
   display: flex; flex-direction: column; gap: 6px;
   padding: 16px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: 12px;
   text-align: left;
   font-family: inherit; cursor: pointer;
@@ -810,6 +812,7 @@ function onFeeChange() {
 }
 .sv-trim-card:active { background: var(--brand-50); }
 .sv-trim-card.is-selected { background: var(--brand-50); }
+.sv-trim-card.is-selected .sv-trim-card__name { color: var(--brand); font-weight: var(--fw-bold); }
 /* 트림 소제목 — 인승·구동·용도 (예: 5인승 2WD) */
 .sv-group {
   margin: 14px 2px 2px; font-size: var(--fs-md); font-weight: var(--fw-bold);
@@ -839,10 +842,10 @@ function onFeeChange() {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
   padding: 12px 6px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: var(--r-card);
   font-family: inherit; cursor: pointer;
-  transition: background .12s, border-color .12s;
+  transition: background .12s;
 }
 .sv-color-swatch {
   width: 44px; height: 44px; border-radius: 50%;
@@ -935,7 +938,7 @@ function onFeeChange() {
   display: flex; flex-direction: column; gap: 4px;
   padding: 12px 14px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: 10px;
   text-align: left;
   font-family: inherit; cursor: pointer;
