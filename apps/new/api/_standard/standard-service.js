@@ -3,6 +3,7 @@ import { computeTerm } from './calc.js';
 
 const DEFAULTS = JSON.parse(readFileSync(new URL('./standard-quote-defaults.snapshot.json', import.meta.url), 'utf8'));
 const DELTA = JSON.parse(readFileSync(new URL('./data/residual-delta.json', import.meta.url), 'utf8'));
+const ENGINE_FACTS = JSON.parse(readFileSync(new URL('./data/engine-facts.json', import.meta.url), 'utf8'));
 
 const STANDARD = { 1: 85, 2: 75, 3: 66, 4: 58, 5: 51, 6: 44, 7: 38, 8: 33 };
 const TERM_YEAR = { 24: 2, 36: 3, 48: 4, 60: 5 };
@@ -35,6 +36,25 @@ export function engineFuel(label) {
   return 'gasoline';
 }
 
+function ccFromOfficialFacts(car) {
+  const maker=S(car?.브랜드);
+  const model=S(car?.모델);
+  const fuel=engineFuel(car?.연료 || car?.파워트레인);
+  const selected=(car?.구성?.선택옵션 || []).map((o) => S(o?.name)).filter(Boolean).join(' ');
+
+  // More specific option rules win over base-model rules.
+  const rules=[...(ENGINE_FACTS?.rules || [])].sort((a,b) => Number(!!b.option_regex)-Number(!!a.option_regex));
+  for (const r of rules) {
+    if (S(r.maker) && S(r.maker)!==maker) continue;
+    if (S(r.model_contains) && !model.includes(S(r.model_contains))) continue;
+    if (S(r.fuel) && S(r.fuel)!==fuel) continue;
+    if (r.option_regex && !(new RegExp(r.option_regex,'i')).test(selected)) continue;
+    const cc=Number(r.cc||0);
+    if (cc>0) return cc;
+  }
+  return null;
+}
+
 export function ccFromRequest(car) {
   const resolved = car?.구성?.canonical;
   const canonical = resolved?.candidate;
@@ -51,7 +71,9 @@ export function ccFromRequest(car) {
   const text = [car?.파워트레인, car?.연료, car?.상품키, car?.트림].map(S).filter(Boolean).join(' ');
   const m = text.match(/(?:^|[^0-9.])([1-6]\.[0-9])(?![0-9])/);
   if (m) return Math.round(Number(m[1]) * 1000);
-  return null;
+
+  // 마지막 보강은 제조사 공식 제원으로 확인한 facts만 허용한다.
+  return ccFromOfficialFacts(car);
 }
 
 function deltaKeyFromCanonical(car) {
