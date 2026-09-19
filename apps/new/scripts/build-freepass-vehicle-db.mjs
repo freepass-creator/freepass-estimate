@@ -269,8 +269,9 @@ function mergeOptionRow(v,r,productId){
    }
  }
  const rawAvail=Array.isArray(r.availableOptions)?r.availableOptions:(Object.keys(om).length?Object.keys(om):Object.keys(idMap));
- const available=rawAvail.map(x=>idMap[x]).filter(Boolean);
  const implied=(Array.isArray(r.impliedOptions)?r.impliedOptions:[]).map(x=>idMap[x]).filter(Boolean);
+ const impliedSet=new Set(implied);
+ const available=rawAvail.map(x=>idMap[x]).filter(Boolean).filter(id=>!impliedSet.has(id));
 
  for(const g of Array.isArray(r.exclusiveGroups)?r.exclusiveGroups:[]){
    const members=(g.members||[]).map(x=>idMap[x]).filter(Boolean);
