@@ -6,6 +6,7 @@ const S=v=>String(v??'').trim();
 const idx=JSON.parse(fs.readFileSync('public/data/freepass-newcar/product-index.json','utf8'));
 const feed=JSON.parse(fs.readFileSync('public/data/freepass-newcar/current-feed.snapshot.json','utf8'));
 const master=JSON.parse(fs.readFileSync('public/data/freepass-newcar/vehicle-trim-master.json','utf8'));
+const legacyMap=JSON.parse(fs.readFileSync('public/data/freepass-newcar/welrix-id-map.json','utf8')).map||{};
 
 const ctx={window:{},console:{log(){},warn(){},error(){}}};
 vm.createContext(ctx);
@@ -78,6 +79,19 @@ console.log(JSON.stringify({...stat,
 
 console.log('\n[BY MAKER]');
 for(const [k,v] of [...byMaker.entries()].sort())console.log(k,JSON.stringify({...v,canonicalPct:pct(v.canonical,v.total),providerPct:pct(v.provider,v.total)}));
+
+const feedIds=new Set((feed.rows||[]).map(r=>S(r.id)));
+const legacyKeys=Object.keys(legacyMap).filter(id=>feedIds.has(id));
+const legacyNowMapped=legacyKeys.filter(id=>(products[id]?.providerCandidates||[]).length>0);
+const legacyLost=legacyKeys.filter(id=>!(products[id]?.providerCandidates||[]).length);
+console.log('\n[LEGACY WELRIX MAP]');
+console.log(JSON.stringify({
+  legacy_in_current_feed:legacyKeys.length,
+  mapped_to_current_provider:legacyNowMapped.length,
+  lost_against_current_provider:legacyLost.length,
+  coverage:pct(legacyNowMapped.length,legacyKeys.length)
+}));
+for(const id of legacyLost.slice(0,50))console.log('LEGACY_LOST '+JSON.stringify({id,label:legacyMap[id]?._label||'',product:products[id]||null}));
 
 console.log('\n[LOW PROVIDER MODELS]');
 for(const [k,v] of [...byModel.entries()].sort((a,b)=>(a[1].provider/a[1].total)-(b[1].provider/b[1].total)||b[1].total-a[1].total).slice(0,40))
