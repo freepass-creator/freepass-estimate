@@ -1,5 +1,9 @@
 # AGENTS — FreePass Estimate
 
+
+## AI Core 공통 UI 매뉴얼
+
+UI/UX 작업은 이 저장소의 제품 정본만 보지 말고 루트 `AI_CORE_UI.md`를 먼저 확인한다. 공통 행동 문법은 AI Core `docs/FREEPASS_UI_STANDARD.md`, 접근성 baseline은 `docs/SCREEN_DESIGN_STANDARD.md`를 따른다. 제품 고유 업무·브랜드·데이터 정본은 이 저장소가 계속 소유한다. 프로젝트 구현이 공통 매뉴얼보다 앞서면 되돌리지 말고 Learning Packet 후보로 남긴다.
 Read `PROJECT.md` and `docs/UI_BASELINE.md` before editing UI.
 
 ## Authority
