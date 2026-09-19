@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { resolveCanonicalIdentity, resolveProviderCandidate } from '../src/lib/newcar/configuration-resolver.js';
 
 const S=v=>String(v??'').trim();
 const idx=JSON.parse(fs.readFileSync('public/data/freepass-newcar/product-index.json','utf8'));
@@ -18,13 +19,13 @@ for(const mf of db.manufacturers||[])for(const md of mf.models||[])for(const v o
 
 const stat={
  total:Object.keys(products).length,
- canonicalCandidate:0,canonicalUnique:0,canonicalAmbiguous:0,canonicalNone:0,
- providerCandidate:0,providerUnique:0,providerAmbiguous:0,providerNone:0,
+ canonicalCandidate:0,canonicalResolvedBase:0,canonicalUnresolvedBase:0,
+ providerCandidate:0,providerResolvedBase:0,providerUnresolvedBase:0,
  detailedOptions:0,flatOptions:0,noOptions:0,axisOptions:0,
  priced:0,colorExt:0,colorInt:0
 };
 const byMaker=new Map(),byModel=new Map(),noProvider=[],noCanonical=[],ambProvider=[],ambCanonical=[];
-const add=(map,k,fn)=>{if(!map.has(k))map.set(k,{total:0,canonical:0,provider:0,uniqueProvider:0,uniqueCanonical:0});fn(map.get(k))};
+const add=(map,k,fn)=>{if(!map.has(k))map.set(k,{total:0,canonical:0,provider:0});fn(map.get(k))};
 
 for(const [id,p] of Object.entries(products)){
  const c=p.canonicalCandidates||[],w=p.providerCandidates||[];
@@ -32,8 +33,29 @@ for(const [id,p] of Object.entries(products)){
  const dbt=trimById.get(id)?.t;
  stat.canonicalCandidate+=c.length?1:0;
  stat.providerCandidate+=w.length?1:0;
- if(c.length===1)stat.canonicalUnique++; else if(c.length>1){stat.canonicalAmbiguous++;ambCanonical.push({id,...p,count:c.length})} else {stat.canonicalNone++;noCanonical.push({id,...p})}
- if(w.length===1)stat.providerUnique++; else if(w.length>1){stat.providerAmbiguous++;ambProvider.push({id,...p,count:w.length})} else {stat.providerNone++;noProvider.push({id,...p})}
+
+ const dbTrim=dbt||{_base_axes:p.baseAxes||{},_canonical_candidates:c};
+ const canonicalResolved=resolveCanonicalIdentity(
+   {...dbTrim,_base_axes:p.baseAxes||dbTrim._base_axes||{},_canonical_candidates:c},
+   {},
+   []
+ );
+ if(canonicalResolved?.candidate){
+   stat.canonicalResolvedBase++;
+ }else{
+   stat.canonicalUnresolvedBase++;
+   noCanonical.push({id,...p,resolution:canonicalResolved?.level||'none'});
+ }
+
+ const baseAxes=p.baseAxes||dbTrim?._base_axes||{};
+ const providerResolved=resolveProviderCandidate(w,baseAxes);
+ if(providerResolved){
+   stat.providerResolvedBase++;
+ }else{
+   stat.providerUnresolvedBase++;
+   noProvider.push({id,...p});
+   if(w.length>1)ambProvider.push({id,...p,count:w.length});
+ }
  if(Number(f.priceBefore||f.priceAfter||0)>0)stat.priced++;
  if(Array.isArray(f.extColors)&&f.extColors.length)stat.colorExt++;
  if(Array.isArray(f.intColors)&&f.intColors.length)stat.colorInt++;
@@ -41,17 +63,17 @@ for(const [id,p] of Object.entries(products)){
  else if(Array.isArray(f.options)&&f.options.length)stat.flatOptions++; else stat.noOptions++;
  if((p.axisOptionIds||[]).length)stat.axisOptions++;
  const maker=S(p.maker),model=S(p.model);
- add(byMaker,maker,x=>{x.total++;if(c.length)x.canonical++;if(w.length)x.provider++;if(c.length===1)x.uniqueCanonical++;if(w.length===1)x.uniqueProvider++});
- add(byModel,maker+' '+model,x=>{x.total++;if(c.length)x.canonical++;if(w.length)x.provider++;if(c.length===1)x.uniqueCanonical++;if(w.length===1)x.uniqueProvider++});
+ add(byMaker,maker,x=>{x.total++;if(canonicalResolved?.candidate)x.canonical++;if(providerResolved)x.provider++;});
+ add(byModel,maker+' '+model,x=>{x.total++;if(canonicalResolved?.candidate)x.canonical++;if(providerResolved)x.provider++;});
 }
 
 const pct=(a,b)=>b?Math.round(a*1000/b)/10:0;
 console.log('=== NEW CAR READINESS ===');
 console.log(JSON.stringify({...stat,
  canonicalCoverage:pct(stat.canonicalCandidate,stat.total),
- canonicalUniqueCoverage:pct(stat.canonicalUnique,stat.total),
+ canonicalResolvedBaseCoverage:pct(stat.canonicalResolvedBase,stat.total),
  providerCoverage:pct(stat.providerCandidate,stat.total),
- providerUniqueCoverage:pct(stat.providerUnique,stat.total)
+ providerResolvedBaseCoverage:pct(stat.providerResolvedBase,stat.total)
 },null,2));
 
 console.log('\n[BY MAKER]');
