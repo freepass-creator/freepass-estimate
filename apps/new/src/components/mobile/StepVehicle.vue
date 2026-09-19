@@ -727,8 +727,8 @@ function onFeeChange() {
   height: var(--h-input);
   padding: 0 10px;
   background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-chip);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
   transition: border-color .12s;
 }
 .sv-pc__in:focus-within { border-color: var(--brand); }
@@ -870,7 +870,7 @@ function onFeeChange() {
 .sv-empty {
   padding: 18px; text-align: center;
   background: var(--bg-soft);
-  border-radius: 10px;
+  border-radius: var(--r-md);
   color: var(--ink-4); font-size: var(--fs-md);
 }
 
@@ -878,7 +878,7 @@ function onFeeChange() {
 .sv-disclosure {
   margin-top: 18px;
   background: var(--bg-soft);
-  border-radius: var(--r-chip);
+  border-radius: var(--r-md);
   padding: 12px 14px;
 }
 .sv-disclosure__summary {
@@ -912,8 +912,8 @@ function onFeeChange() {
   height: var(--h-input);
   padding: 0 14px;
   background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-chip);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
 }
 .sv-discount:focus-within { border-color: var(--brand); }
 .sv-discount__input {
@@ -939,7 +939,7 @@ function onFeeChange() {
   padding: 12px 14px;
   background: var(--bg-soft);
   border: 0;
-  border-radius: 10px;
+  border-radius: var(--r-md);
   text-align: left;
   font-family: inherit; cursor: pointer;
   transition: background .12s, border-color .12s, opacity .12s;
