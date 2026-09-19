@@ -1117,6 +1117,13 @@ const getModel = () => getManufacturer()?.models.find(x => x.model_id === state.
 const getVariant = () => getModel()?.variants.find(v => v.variant_id === state.variant);
 const getTrim = () => getVariant()?.trims.find(t => t.trim_id === state.trim);
 const getOptionsMaster = () => getVariant()?.options_master || {};
+// FreePass 신차 상품마스터는 색상이 트림별로 갈릴 수 있다.
+// 기존 Welrix UI 구조는 유지하되, 데이터는 선택 트림의 실제 제조사 색상이 우선한다.
+const getExteriorColors = () => {
+  const t = getTrim();
+  return t?._exterior_colors?.length ? t._exterior_colors : (getModel()?.exterior_colors || []);
+};
+const getInteriorColors = () => getTrim()?._interior_colors || [];
 
 // 트림별 옵션 가격: opt.trim_prices[trimId]가 있으면 그 가격, 없으면 opt.price
 function getOptionPrice(opt, trimId) {
@@ -1455,7 +1462,7 @@ function renderColors() {
     return;
   }
   sec.classList.remove('hidden');
-  $('colors').innerHTML = getModel().exterior_colors.map((c, i) => `
+  $('colors').innerHTML = getExteriorColors().map((c, i) => `
     <div class="color-card ${state.color === i ? 'active' : ''}" data-color="${i}">
       <div class="color-swatch" style="background:${c.hex};"></div>
       <div class="c-name">${c.name}</div>
@@ -1477,7 +1484,7 @@ function renderTotal() {
       if (om[id]) optionsPrice += getOptionPrice(om[id], state.trim);
     });
     if (state.options.size > 0) summary += ` + 옵션${state.options.size}`;
-    if (state.color !== null) colorPrice = model.exterior_colors[state.color].price;
+    if (state.color !== null) colorPrice = getExteriorColors()[state.color]?.price || 0;
     total = trimPrice + optionsPrice + colorPrice;
   }
   $('selected-summary').textContent = summary;
@@ -1503,7 +1510,17 @@ function renderTotal() {
       color_price_manwon: colorPrice,
       tax_rate: state.tax_rate,
       options: Array.from(state.options).map(id => om?.[id]?.name).filter(Boolean),
-      colorExt: (state.color !== null && model?.exterior_colors) ? model.exterior_colors[state.color]?.name : null,
+      colorExt: state.color !== null ? getExteriorColors()[state.color]?.name : null,
+      _product_id: trim?._product_id || trim?.trim_id || null,
+      _base_axes: trim?._base_axes || {},
+      _trim_meta: trim || null,
+      _options_master: om || {},
+      _selected_option_ids: Array.from(state.options),
+      _selected_options: Array.from(state.options).map(id => ({
+        id,
+        name: om?.[id]?.name || id,
+        price_won: Math.round(getOptionPrice(om?.[id], state.trim) * 10000),
+      })),
     });
   }
 }
@@ -1589,17 +1606,27 @@ function syncToVueStore() {
   } else {
     vs.trimOptions = [];
   }
-  // 외장 색상
+  // 외장/내장 색상 — 선택 트림의 제조사 실제 색상이 우선.
   if (model && state.trim) {
-    vs.exteriorColorOptions = (model.exterior_colors || []).map((c, i) => ({
+    vs.exteriorColorOptions = getExteriorColors().map((c, i) => ({
       value: String(i),
       label: c.name,
       sub: c.price > 0 ? `+${(c.price * 10000).toLocaleString()}원` : '무료',
       name: c.name,
       swatch: c.hex,
     }));
+    vs.interiorColorOptions = getInteriorColors().map((c) => {
+      const won = Number(c?._price_won ?? ((c?.price || 0) * 10000));
+      const name = c?.name || c?.label || '';
+      return {
+        value: `${name}|${won}`,
+        label: won > 0 ? `${name} (+${won.toLocaleString()}원)` : name,
+        swatch: c?.hex || window.__welrix_guessColor?.(name) || '#d9dde1',
+      };
+    }).filter((c) => c.value && !c.value.startsWith('|'));
   } else {
     vs.exteriorColorOptions = [];
+    vs.interiorColorOptions = [];
   }
   // 옵션 메타 (기존)
   if (state.trim) {
