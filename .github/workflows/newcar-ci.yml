@@ -63,6 +63,8 @@ jobs:
           node --check src/lib/quote/build-request.js
           node --check src/lib/quote/engines/freepass-standard.js
           node --check src/lib/quote/engines/external.js
+          node --check src/lib/quote/provider-policy.js
+          node --check scripts/check-provider-runtime-policy.mjs
           node --check src/lib/share-link.js
           node --check api/external-quote.js
           node --check api/standard-quote.js
@@ -78,6 +80,8 @@ jobs:
         run: npm run check:provider
       - name: Provider routing
         run: node scripts/test-provider-routing.mjs
+      - name: Provider runtime failure/privacy policy
+        run: npm run check:provider-policy
       - name: Quote runtime proof contract
         run: npm run check:runtime
       - name: Share snapshot provenance contract
