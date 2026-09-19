@@ -5580,7 +5580,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "스포티지 1.6 하이브리드 2WD 노블레스",
+          "label": "스포티지 · 하이브리드 1.6 · 2WD · 노블레스",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 39030000,
+          "trim_match": true
+        },
+        {
+          "api_model": "스포티지 1.6 하이브리드 4WD 노블레스",
+          "label": "스포티지 · 하이브리드 1.6 · 4WD · 노블레스",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 41260000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_bcc8eb34ebcf",
         "o_0cbd7f796432",
@@ -5893,7 +5912,26 @@
           "trim_match": true
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "스포티지 1.6 하이브리드 2WD 시그니처",
+          "label": "스포티지 · 하이브리드 1.6 · 2WD · 시그니처",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 41380000,
+          "trim_match": true
+        },
+        {
+          "api_model": "스포티지 1.6 하이브리드 4WD 시그니처",
+          "label": "스포티지 · 하이브리드 1.6 · 4WD · 시그니처",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 43610000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_652686d6e15b",
         "o_c3df91b27f94",
@@ -6204,7 +6242,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "스포티지 1.6 하이브리드 2WD 프레스티지",
+          "label": "스포티지 · 하이브리드 1.6 · 2WD · 프레스티지",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 35360000,
+          "trim_match": true
+        },
+        {
+          "api_model": "스포티지 1.6 하이브리드 4WD 프레스티지",
+          "label": "스포티지 · 하이브리드 1.6 · 4WD · 프레스티지",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 37590000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_9903481ea67d",
         "o_a12d054f6092",
@@ -18627,7 +18684,17 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "The new K8 1.6 하이브리드 2WD 노블레스",
+          "label": "K8 · 하이브리드 1.6 · 노블레스",
+          "group": "",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 47780000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_c07754019c26",
         "o_ab9c16047bda",
@@ -18741,7 +18808,17 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "The new K8 1.6 하이브리드 2WD 노블레스 라이트",
+          "label": "K8 · 하이브리드 1.6 · 노블레스 라이트",
+          "group": "",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 43670000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_5bc8cf82b87d",
         "o_89c69baa9f8e",
@@ -18855,7 +18932,17 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "The new K8 1.6 하이브리드 2WD 베스트 셀렉션",
+          "label": "K8 · 하이브리드 1.6 · 베스트 셀렉션",
+          "group": "",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 45200000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_002753a9047e",
         "o_92e74d1d9382",
@@ -18968,7 +19055,17 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "The new K8 1.6 하이브리드 2WD 시그니처",
+          "label": "K8 · 하이브리드 1.6 · 시그니처",
+          "group": "",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 51380000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_35bd8554db0f",
         "o_a41b833681b7",
@@ -19080,7 +19177,17 @@
           "trim_match": true
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "The new K8 1.6 하이브리드 2WD 시그니처 블랙",
+          "label": "K8 · 하이브리드 1.6 · 시그니처 블랙",
+          "group": "",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 52750000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_cc2840cb3bf1",
         "o_3f390ff4ca8f",
@@ -36316,7 +36423,17 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 아반떼 2.0 가솔린 Modern",
+          "label": "아반떼 · 가솔린 2.0 · 일반 · Modern",
+          "group": "일반",
+          "drivetrain": "",
+          "seats": null,
+          "price_won": 23980000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_1572364299d5",
         "o_fea80d8b35e0",
@@ -36431,7 +36548,17 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 아반떼 2.0 가솔린 Inspiration",
+          "label": "아반떼 · 가솔린 2.0 · 일반 · Inspiration",
+          "group": "일반",
+          "drivetrain": "",
+          "seats": null,
+          "price_won": 31520000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_5dfcb508026f",
         "o_6831c90159fb",
@@ -36542,7 +36669,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 아반떼 2.0 가솔린 Premium",
+          "label": "아반떼 · 가솔린 2.0 · 일반 · Premium",
+          "group": "일반",
+          "drivetrain": "",
+          "seats": null,
+          "price_won": 27710000,
+          "trim_match": true
+        },
+        {
+          "api_model": "(선구매)디 올 뉴 아반떼 2.0 가솔린 Premium",
+          "label": "아반떼 · 가솔린 2.0 · 선구매 · Premium",
+          "group": "선구매",
+          "drivetrain": "",
+          "seats": null,
+          "price_won": 27710000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_68ae03869de1",
         "o_4ba306740d0d",
@@ -52773,7 +52919,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 익스클루시브",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 41220000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 익스클루시브",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 43450000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 익스클루시브",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 42260000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 익스클루시브",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 44490000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 익스클루시브",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 41910000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 익스클루시브",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 44140000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_261147867ef1",
         "o_8f12f2f0c05f",
@@ -53346,7 +53547,62 @@
           "trim_match": true
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 캘리그래피",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 49770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 캘리그래피",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 52000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 캘리그래피",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 50810000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 캘리그래피",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 53040000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 캘리그래피",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 50460000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 캘리그래피",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 52690000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_7603c9585776",
         "o_4e2798652ada",
@@ -53914,7 +54170,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 프레스티지",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 44090000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 프레스티지",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 46320000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 프레스티지",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 45130000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 프레스티지",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 47360000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 프레스티지",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 44780000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 프레스티지",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 47010000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_19c59cab0104",
         "o_d00fd3866922",
@@ -54487,7 +54798,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · H-Pick",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 46730000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · H-Pick",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 48960000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · H-Pick",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 47770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · H-Pick",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 50000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · H-Pick",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 47420000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · H-Pick",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 49650000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_bf170fa31ee3",
         "o_9518459094d6",
@@ -55057,7 +55423,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 익스클루시브",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 41220000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 익스클루시브",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 43450000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 익스클루시브",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 42260000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 익스클루시브",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 44490000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 익스클루시브",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 41910000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 익스클루시브",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 44140000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_6cfe3dee8959",
         "o_b4137ef3c958",
@@ -55630,7 +56051,62 @@
           "trim_match": true
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 캘리그래피",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 49770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 캘리그래피",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 52000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 캘리그래피",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 50810000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 캘리그래피",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 53040000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 캘리그래피",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 50460000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 캘리그래피",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 52690000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_2029b56b689f",
         "o_086049b7538b",
@@ -56198,7 +56674,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 프레스티지",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 44090000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 프레스티지",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 46320000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 프레스티지",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 45130000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 프레스티지",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 47360000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 프레스티지",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 44780000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 프레스티지",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 47010000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_daa20750846a",
         "o_5b5550957bc3",
@@ -56771,7 +57302,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · H-Pick",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 46730000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · H-Pick",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 48960000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · H-Pick",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 47770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · H-Pick",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 50000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · H-Pick",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 47420000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · H-Pick",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 49650000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_4edb76ae57d4",
         "o_e04a359462d1",
@@ -57341,7 +57927,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 익스클루시브",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 41220000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 익스클루시브",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 43450000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 익스클루시브",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 42260000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 익스클루시브",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 44490000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 익스클루시브",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 41910000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 익스클루시브",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 44140000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_846bb9b4c7ad",
         "o_0e8e0c2bfc6b",
@@ -57914,7 +58555,62 @@
           "trim_match": true
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 캘리그래피",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 49770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 캘리그래피",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 52000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 캘리그래피",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 50810000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 캘리그래피",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 53040000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 캘리그래피",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 50460000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 캘리그래피",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 52690000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_bb2f70183c28",
         "o_900cf1c738d6",
@@ -58482,7 +59178,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 프레스티지",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 44090000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 프레스티지",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 46320000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 프레스티지",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 45130000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 프레스티지",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 47360000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 프레스티지",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 44780000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 프레스티지",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 47010000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_48970ef65d9b",
         "o_fb217bb77428",
@@ -59055,7 +59806,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · H-Pick",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 46730000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · H-Pick",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 48960000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · H-Pick",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 47770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · H-Pick",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 50000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · H-Pick",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 47420000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · H-Pick",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 49650000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_a4f94f274856",
         "o_207549fff32b",
@@ -59625,7 +60431,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 익스클루시브",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 41220000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 익스클루시브",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 43450000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 익스클루시브",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 42260000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 익스클루시브",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 44490000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 익스클루시브",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 41910000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 익스클루시브",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 44140000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_839f3e0fc3a0",
         "o_1b569d613d9a",
@@ -60198,7 +61059,62 @@
           "trim_match": true
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 캘리그래피",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 49770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 캘리그래피",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 52000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 캘리그래피",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 50810000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 캘리그래피",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 53040000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 캘리그래피",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 50460000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 캘리그래피",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 52690000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_31767f9ae7c0",
         "o_ea7537f7d953",
@@ -60766,7 +61682,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 프레스티지",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 44090000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 프레스티지",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 46320000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 프레스티지",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 45130000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 프레스티지",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 47360000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 프레스티지",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 44780000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 프레스티지",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 47010000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_869d159cb0f8",
         "o_a3ec748c4d9e",
@@ -61339,7 +62310,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · H-Pick",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 46730000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · H-Pick",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 48960000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · H-Pick",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 47770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · H-Pick",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 50000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · H-Pick",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 47420000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · H-Pick",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 49650000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_73c2499faf29",
         "o_1e627782861f",
@@ -61909,7 +62935,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 익스클루시브",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 41220000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 익스클루시브",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 43450000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 익스클루시브",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 42260000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 익스클루시브",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 44490000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 익스클루시브",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 41910000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 익스클루시브",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 44140000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_ffee4edaee06",
         "o_7a840d52748e",
@@ -62482,7 +63563,62 @@
           "trim_match": true
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 캘리그래피",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 49770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 캘리그래피",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 52000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 캘리그래피",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 50810000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 캘리그래피",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 53040000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 캘리그래피",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 50460000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 캘리그래피",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 52690000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_c0c7b72a162b",
         "o_64efee515fd0",
@@ -63050,7 +64186,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 프레스티지",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 44090000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 프레스티지",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 46320000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 프레스티지",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 45130000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 프레스티지",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 47360000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 프레스티지",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 44780000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 프레스티지",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 47010000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_7415ae53ee15",
         "o_1a7b0ab0cfb8",
@@ -63623,7 +64814,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · H-Pick",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 46730000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · H-Pick",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 48960000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · H-Pick",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 47770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · H-Pick",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 50000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · H-Pick",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 47420000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · H-Pick",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 49650000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_742fcad04832",
         "o_89a191217916",
@@ -64193,7 +65439,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 익스클루시브",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 41220000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 익스클루시브",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 43450000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 익스클루시브",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 42260000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 익스클루시브",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 44490000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 익스클루시브",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 41910000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 익스클루시브",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 44140000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_4a487365e363",
         "o_2dadb417fb09",
@@ -64766,7 +66067,62 @@
           "trim_match": true
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 캘리그래피",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 49770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 캘리그래피",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 52000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 캘리그래피",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 50810000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 캘리그래피",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 53040000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 캘리그래피",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 50460000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 캘리그래피",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 52690000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_68062a1589d9",
         "o_85143924da35",
@@ -65334,7 +66690,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · 프레스티지",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 44090000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · 프레스티지",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 46320000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · 프레스티지",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 45130000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · 프레스티지",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 47360000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · 프레스티지",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 44780000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · 프레스티지",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 47010000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_8d72ecff2ec3",
         "o_9e4064654618",
@@ -65907,7 +67318,62 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 2WD · H-Pick",
+          "group": "5인승 2WD",
+          "drivetrain": "two",
+          "seats": 5,
+          "price_won": 46730000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 5인승 4WD · H-Pick",
+          "group": "5인승 4WD",
+          "drivetrain": "all",
+          "seats": 5,
+          "price_won": 48960000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 2WD · H-Pick",
+          "group": "6인승 2WD",
+          "drivetrain": "two",
+          "seats": 6,
+          "price_won": 47770000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 6인승 4WD · H-Pick",
+          "group": "6인승 4WD",
+          "drivetrain": "all",
+          "seats": 6,
+          "price_won": 50000000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 2WD · H-Pick",
+          "group": "7인승 2WD",
+          "drivetrain": "two",
+          "seats": 7,
+          "price_won": 47420000,
+          "trim_match": true
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+          "label": "싼타페 · 하이브리드 1.6 · 7인승 4WD · H-Pick",
+          "group": "7인승 4WD",
+          "drivetrain": "all",
+          "seats": 7,
+          "price_won": 49650000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_51cf0391f272",
         "o_f12448f5f87a",
@@ -81725,7 +83191,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD H-Pick",
+          "label": "투싼 · 하이브리드 1.6 · 2WD · H-Pick",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 37490000,
+          "trim_match": true
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD H-Pick",
+          "label": "투싼 · 하이브리드 1.6 · 4WD · H-Pick",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 39720000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_7e887266550b",
         "o_6195c04ab235",
@@ -81934,7 +83419,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Inspiration",
+          "label": "투싼 · 하이브리드 1.6 · 2WD · Inspiration",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 40170000,
+          "trim_match": true
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Inspiration",
+          "label": "투싼 · 하이브리드 1.6 · 4WD · Inspiration",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 42400000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_b81ddad7e895",
         "o_49c96bce2a53",
@@ -82144,7 +83648,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Modern",
+          "label": "투싼 · 하이브리드 1.6 · 2WD · Modern",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 34180000,
+          "trim_match": true
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Modern",
+          "label": "투싼 · 하이브리드 1.6 · 4WD · Modern",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 36410000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_9abebd9c7250",
         "o_36add929aead",
@@ -82563,7 +84086,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Premium",
+          "label": "투싼 · 하이브리드 1.6 · 2WD · Premium",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 36650000,
+          "trim_match": true
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Premium",
+          "label": "투싼 · 하이브리드 1.6 · 4WD · Premium",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 38880000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_e6fb2cc2f423",
         "o_72b2a9fad24e",
@@ -82774,7 +84316,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD H-Pick",
+          "label": "투싼 · 하이브리드 1.6 · 2WD · H-Pick",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 37490000,
+          "trim_match": true
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD H-Pick",
+          "label": "투싼 · 하이브리드 1.6 · 4WD · H-Pick",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 39720000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_278320c3145f",
         "o_c23b84cd69a9",
@@ -82983,7 +84544,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Inspiration",
+          "label": "투싼 · 하이브리드 1.6 · 2WD · Inspiration",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 40170000,
+          "trim_match": true
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Inspiration",
+          "label": "투싼 · 하이브리드 1.6 · 4WD · Inspiration",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 42400000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_766ae5a4ba4a",
         "o_3cf8b17054fe",
@@ -83193,7 +84773,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Modern",
+          "label": "투싼 · 하이브리드 1.6 · 2WD · Modern",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 34180000,
+          "trim_match": true
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Modern",
+          "label": "투싼 · 하이브리드 1.6 · 4WD · Modern",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 36410000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_0d9e2e3b0cd5",
         "o_bc65b34dfd4c",
@@ -83612,7 +85211,26 @@
           "trim_match": false
         }
       ],
-      "providerCandidates": [],
+      "providerCandidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Premium",
+          "label": "투싼 · 하이브리드 1.6 · 2WD · Premium",
+          "group": "2WD",
+          "drivetrain": "two",
+          "seats": null,
+          "price_won": 36650000,
+          "trim_match": true
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Premium",
+          "label": "투싼 · 하이브리드 1.6 · 4WD · Premium",
+          "group": "4WD",
+          "drivetrain": "all",
+          "seats": null,
+          "price_won": 38880000,
+          "trim_match": true
+        }
+      ],
       "availableOptions": [
         "o_ee56a441a4e1",
         "o_1e7091b0c157",
