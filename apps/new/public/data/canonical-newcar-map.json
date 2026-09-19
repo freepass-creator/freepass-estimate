@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-19T02:32:12.656Z",
+  "generated_at": "2026-09-19T02:34:33.494Z",
   "master_data_as_of": "2026-08-15",
   "master_source": {
     "spreadsheet_id": "1T_RrErmGoj_yG9S1u7n--2NDolTOw8wA8ROQjPWuAlg",
@@ -9,21 +9,127 @@
   },
   "stats": {
     "total": 443,
-    "mapped": 316,
-    "unresolved": 127,
-    "exact": 219,
-    "alias_or_axis": 97,
-    "unique_axis_fallback": 27
+    "mapped": 342,
+    "unresolved": 101,
+    "exact": 228,
+    "alias_or_axis": 70,
+    "unique_axis_fallback": 44,
+    "identity_levels": {
+      "trim": 298,
+      "powertrain": 44
+    }
   },
   "by_trim_id": {
+    "캐스퍼 1.0 가솔린 스마트": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v01::t01",
+      "master_id": "mf-001.md-062.sm-ax1-my2027__casper-2027",
+      "powertrain_seq": 1,
+      "maker": "현대",
+      "model": "캐스퍼",
+      "sub_model": "더 뉴 캐스퍼 AX1",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "스마트",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 4,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "캐스퍼 1.0 가솔린 디 에센셜": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v01::t02",
+      "master_id": "mf-001.md-062.sm-ax1-my2027__casper-2027",
+      "powertrain_seq": 1,
+      "maker": "현대",
+      "model": "캐스퍼",
+      "sub_model": "더 뉴 캐스퍼 AX1",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "디 에센셜",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 4,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "캐스퍼 1.0 가솔린 인스퍼레이션": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v01::t03",
+      "master_id": "mf-001.md-062.sm-ax1-my2027__casper-2027",
+      "powertrain_seq": 1,
+      "maker": "현대",
+      "model": "캐스퍼",
+      "sub_model": "더 뉴 캐스퍼 AX1",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "인스퍼레이션",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 4,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "캐스퍼 밴 1.0 가솔린 스마트": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v03::t01",
+      "master_id": "mf-001.md-062.sm-ax1-my2027__casper-2027",
+      "powertrain_seq": 3,
+      "maker": "현대",
+      "model": "캐스퍼",
+      "sub_model": "더 뉴 캐스퍼 AX1",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "스마트",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 2,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "캐스퍼 밴 1.0 가솔린 스마트 초이스": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v03::t02",
+      "master_id": "mf-001.md-062.sm-ax1-my2027__casper-2027",
+      "powertrain_seq": 3,
+      "maker": "현대",
+      "model": "캐스퍼",
+      "sub_model": "더 뉴 캐스퍼 AX1",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "스마트 초이스",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 2,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
     "디 올 뉴 아반떼 2.0 가솔린 Modern": {
-      "trim_row_key": "mf-001.md-019.sm-cn7::v01::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-001.md-019.sm-cn7",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "아반떼",
       "sub_model": "더 뉴 아반떼 CN7",
       "powertrain": "가솔린 2.0T FWD",
-      "trim": "N",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 1998,
       "displacement_l": 2,
@@ -32,16 +138,19 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "Modern",
+      "match": "powertrain_product_config"
     },
     "디 올 뉴 아반떼 2.0 가솔린 Premium": {
-      "trim_row_key": "mf-001.md-019.sm-cn7::v01::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-001.md-019.sm-cn7",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "아반떼",
       "sub_model": "더 뉴 아반떼 CN7",
       "powertrain": "가솔린 2.0T FWD",
-      "trim": "N",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 1998,
       "displacement_l": 2,
@@ -50,16 +159,19 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "Premium",
+      "match": "powertrain_product_config"
     },
     "디 올 뉴 아반떼 2.0 가솔린 Inspiration": {
-      "trim_row_key": "mf-001.md-019.sm-cn7::v01::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-001.md-019.sm-cn7",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "아반떼",
       "sub_model": "더 뉴 아반떼 CN7",
       "powertrain": "가솔린 2.0T FWD",
-      "trim": "N",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 1998,
       "displacement_l": 2,
@@ -68,16 +180,19 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "Inspiration",
+      "match": "powertrain_product_config"
     },
     "(선구매)디 올 뉴 아반떼 2.0 가솔린 Premium": {
-      "trim_row_key": "mf-001.md-019.sm-cn7::v01::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-001.md-019.sm-cn7",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "아반떼",
       "sub_model": "더 뉴 아반떼 CN7",
       "powertrain": "가솔린 2.0T FWD",
-      "trim": "N",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 1998,
       "displacement_l": 2,
@@ -86,11 +201,14 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "Premium",
+      "match": "powertrain_product_config"
     },
     "디 올 뉴 아반떼 1.6 하이브리드 Modern": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-019.sm-cn7::v04::t02",
       "master_id": "mf-001.md-019.sm-cn7",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "아반떼",
       "sub_model": "더 뉴 아반떼 CN7",
@@ -107,8 +225,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 아반떼 1.6 하이브리드 Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-019.sm-cn7::v04::t04",
       "master_id": "mf-001.md-019.sm-cn7",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "아반떼",
       "sub_model": "더 뉴 아반떼 CN7",
@@ -125,8 +245,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 1.6 터보 가솔린 Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8::v02::t02",
       "master_id": "mf-001.md-018.sm-dn8",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -143,8 +265,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 1.6 터보 가솔린 S": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8-s-2026__sonata-the-edge-s::v02::t01",
       "master_id": "mf-001.md-018.sm-dn8-s-2026__sonata-the-edge-s",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -161,8 +285,10 @@
       "match": "exact"
     },
     "쏘나타 디 엣지 1.6 터보 가솔린 Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8::v02::t03",
       "master_id": "mf-001.md-018.sm-dn8",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -179,8 +305,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 1.6 터보 가솔린 Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8::v02::t04",
       "master_id": "mf-001.md-018.sm-dn8",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -197,8 +325,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 가솔린 Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8::v01::t02",
       "master_id": "mf-001.md-018.sm-dn8",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -215,8 +345,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 가솔린 S": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8-s-2026__sonata-the-edge-s::v01::t01",
       "master_id": "mf-001.md-018.sm-dn8-s-2026__sonata-the-edge-s",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -233,8 +365,10 @@
       "match": "exact"
     },
     "쏘나타 디 엣지 2.0 가솔린 Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8::v01::t03",
       "master_id": "mf-001.md-018.sm-dn8",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -251,8 +385,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 가솔린 Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8-my2026-gap__sonata-the-edge-2026::v01::t01",
       "master_id": "mf-001.md-018.sm-dn8-my2026-gap__sonata-the-edge-2026",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -269,8 +405,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 LPG Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8-my2026-gap__sonata-the-edge-2026::v02::t01",
       "master_id": "mf-001.md-018.sm-dn8-my2026-gap__sonata-the-edge-2026",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -287,8 +425,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 LPG Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8::v03::t01",
       "master_id": "mf-001.md-018.sm-dn8",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -305,8 +445,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 LPG Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8::v03::t02",
       "master_id": "mf-001.md-018.sm-dn8",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -323,8 +465,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 LPG Business 1": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8-my2026-rent__sonata-the-edge-rental::v01::t01",
       "master_id": "mf-001.md-018.sm-dn8-my2026-rent__sonata-the-edge-rental",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -341,8 +485,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 LPG Business 2": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8-my2026-rent__sonata-the-edge-rental::v01::t02",
       "master_id": "mf-001.md-018.sm-dn8-my2026-rent__sonata-the-edge-rental",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -359,8 +505,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 하이브리드 Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8__쏘나타-디-엣지-하이브리드-dn8::v01::t02",
       "master_id": "mf-001.md-018.sm-dn8__쏘나타-디-엣지-하이브리드-dn8",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -377,8 +525,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 하이브리드 S": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8-s-2026__sonata-the-edge-s::v03::t01",
       "master_id": "mf-001.md-018.sm-dn8-s-2026__sonata-the-edge-s",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -395,8 +545,10 @@
       "match": "exact"
     },
     "쏘나타 디 엣지 2.0 하이브리드 Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8__쏘나타-디-엣지-하이브리드-dn8::v01::t03",
       "master_id": "mf-001.md-018.sm-dn8__쏘나타-디-엣지-하이브리드-dn8",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -413,8 +565,10 @@
       "match": "alias_or_axis"
     },
     "쏘나타 디 엣지 2.0 하이브리드 Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-018.sm-dn8__쏘나타-디-엣지-하이브리드-dn8::v01::t04",
       "master_id": "mf-001.md-018.sm-dn8__쏘나타-디-엣지-하이브리드-dn8",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "쏘나타",
       "sub_model": "쏘나타 DN8 디 엣지",
@@ -431,8 +585,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 2.5 가솔린 2WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v01::t01",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -449,8 +605,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 2.5 가솔린 2WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v01::t02",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -467,8 +625,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 2.5 가솔린 2WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v01::t03",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -485,8 +645,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 3.5 가솔린 2WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v02::t01",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -503,8 +665,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 3.5 가솔린 2WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v02::t02",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -521,8 +685,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 3.5 가솔린 2WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v02::t03",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -539,8 +705,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 3.5 가솔린 4WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v03::t01",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -557,8 +725,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 3.5 가솔린 4WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v03::t02",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -575,8 +745,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 3.5 가솔린 4WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v03::t03",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -593,8 +765,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 3.5 LPG 2WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v04::t01",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -611,8 +785,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 3.5 LPG 2WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v04::t02",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -629,8 +805,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 1.6 하이브리드 2WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v05::t01",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -647,8 +825,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 1.6 하이브리드 2WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v05::t02",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -665,8 +845,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 그랜저 1.6 하이브리드 2WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-004.sm-gn11__the-new-grandeur::v05::t03",
       "master_id": "mf-001.md-004.sm-gn11__the-new-grandeur",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "그랜저",
       "sub_model": "그랜저 GN11",
@@ -683,8 +865,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 1.6 가솔린 터보 2WD Modern": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v01::t01",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -701,8 +885,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 1.6 가솔린 터보 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v01::t02",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -719,8 +905,10 @@
       "match": "exact"
     },
     "디 올 뉴 코나 1.6 가솔린 터보 2WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v01::t03",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -737,8 +925,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 1.6 가솔린 터보 2WD Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v01::t04",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -755,8 +945,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 1.6 가솔린 터보 2WD Black Exterior": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v01::t05",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -773,8 +965,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 1.6 가솔린 터보 4WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v02::t01",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -791,8 +985,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 1.6 가솔린 터보 4WD Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v02::t02",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -809,8 +1005,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 2.0 가솔린 터보 2WD Modern": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v03::t01",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -827,8 +1025,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 2.0 가솔린 터보 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v03::t02",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -845,8 +1045,10 @@
       "match": "exact"
     },
     "디 올 뉴 코나 1.6 하이브리드 2WD Modern": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v04::t01",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -863,8 +1065,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 1.6 하이브리드 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v04::t02",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -881,8 +1085,10 @@
       "match": "exact"
     },
     "디 올 뉴 코나 1.6 하이브리드 2WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v04::t03",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -899,8 +1105,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 코나 1.6 하이브리드 2WD Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-055.sm-sx2-my2027__kona-2027::v04::t04",
       "master_id": "mf-001.md-055.sm-sx2-my2027__kona-2027",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "코나",
       "sub_model": "디 올 뉴 코나 SX2",
@@ -917,8 +1125,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 가솔린 터보 2WD Modern": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v01::t01",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -935,8 +1145,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 가솔린 터보 2WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v01::t02",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -953,8 +1165,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 가솔린 터보 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4-hpick-2026__tucson-h-pick::v01::t01",
       "master_id": "mf-001.md-032.sm-nx4-hpick-2026__tucson-h-pick",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -971,8 +1185,10 @@
       "match": "exact"
     },
     "더 뉴 투싼 1.6 가솔린 터보 2WD Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v01::t03",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -989,8 +1205,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 가솔린 터보 4WD Modern": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v02::t01",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1007,8 +1225,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 가솔린 터보 4WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v02::t02",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1025,8 +1245,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 가솔린 터보 4WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4-hpick-2026__tucson-h-pick::v01::t01",
       "master_id": "mf-001.md-032.sm-nx4-hpick-2026__tucson-h-pick",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1043,8 +1265,10 @@
       "match": "exact"
     },
     "더 뉴 투싼 1.6 가솔린 터보 4WD Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v02::t03",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1061,8 +1285,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 하이브리드 2WD Modern": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v05::t01",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1079,8 +1305,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 하이브리드 2WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v05::t02",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1097,8 +1325,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 하이브리드 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4-hpick-2026__tucson-h-pick::v02::t01",
       "master_id": "mf-001.md-032.sm-nx4-hpick-2026__tucson-h-pick",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1115,8 +1345,10 @@
       "match": "exact"
     },
     "더 뉴 투싼 1.6 하이브리드 2WD Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v05::t04",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1133,8 +1365,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 하이브리드 4WD Modern": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v05::t01",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1151,8 +1385,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 하이브리드 4WD Premium": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v06::t01",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 6,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1169,8 +1405,10 @@
       "match": "alias_or_axis"
     },
     "더 뉴 투싼 1.6 하이브리드 4WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4-hpick-2026__tucson-h-pick::v03::t01",
       "master_id": "mf-001.md-032.sm-nx4-hpick-2026__tucson-h-pick",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1187,8 +1425,10 @@
       "match": "exact"
     },
     "더 뉴 투싼 1.6 하이브리드 4WD Inspiration": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-032.sm-nx4::v06::t02",
       "master_id": "mf-001.md-032.sm-nx4",
+      "powertrain_seq": 6,
       "maker": "현대",
       "model": "투싼",
       "sub_model": "더 뉴 투싼 NX4",
@@ -1205,8 +1445,10 @@
       "match": "alias_or_axis"
     },
     "베뉴 1.6 가솔린 2WD SMART": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-059.sm-qx1-venue-2025-korea__venue-1.6-ivt::v01::t01",
       "master_id": "mf-001.md-059.sm-qx1-venue-2025-korea__venue-1.6-ivt",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "베뉴",
       "sub_model": "베뉴 QX1",
@@ -1223,8 +1465,10 @@
       "match": "alias_or_axis"
     },
     "베뉴 1.6 가솔린 2WD PREMIUM": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-059.sm-qx1-venue-2025-korea__venue-1.6-ivt::v01::t02",
       "master_id": "mf-001.md-059.sm-qx1-venue-2025-korea__venue-1.6-ivt",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "베뉴",
       "sub_model": "베뉴 QX1",
@@ -1241,8 +1485,10 @@
       "match": "alias_or_axis"
     },
     "베뉴 1.6 가솔린 2WD FLUX": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-059.sm-qx1-venue-2025-korea__venue-1.6-ivt::v01::t03",
       "master_id": "mf-001.md-059.sm-qx1-venue-2025-korea__venue-1.6-ivt",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "베뉴",
       "sub_model": "베뉴 QX1",
@@ -1259,8 +1505,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v01::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1277,8 +1525,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v01::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1295,8 +1545,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v01::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1313,8 +1565,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v01::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1331,8 +1585,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v04::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1349,8 +1605,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v04::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1367,8 +1625,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v04::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1385,8 +1645,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v04::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1403,8 +1665,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v02::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1421,8 +1685,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v02::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1439,8 +1705,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v02::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1457,8 +1725,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v02::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1475,8 +1745,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v05::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1493,8 +1765,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v05::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1511,8 +1785,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v05::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1529,8 +1805,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v05::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1547,8 +1825,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v03::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1565,8 +1845,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v03::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1583,8 +1865,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v03::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1601,8 +1885,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v03::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1619,8 +1905,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v06::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 6,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1637,8 +1925,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v06::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 6,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1655,8 +1945,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v06::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 6,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1673,8 +1965,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v06::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 6,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1691,8 +1985,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v07::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 7,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1709,8 +2005,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v07::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 7,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1727,8 +2025,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v07::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 7,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1745,8 +2045,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v07::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 7,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1763,8 +2065,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v10::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 10,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1781,8 +2085,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v10::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 10,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1799,8 +2105,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v10::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 10,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1817,8 +2125,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v10::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 10,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1835,8 +2145,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v08::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 8,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1853,8 +2165,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v08::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 8,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1871,8 +2185,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v08::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 8,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1889,8 +2205,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v08::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 8,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1907,8 +2225,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v11::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 11,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1925,8 +2245,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v11::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 11,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1943,8 +2265,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v11::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 11,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1961,8 +2285,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v11::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 11,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1979,8 +2305,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v09::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 9,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -1997,8 +2325,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v09::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 9,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -2015,8 +2345,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v09::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 9,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -2033,8 +2365,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v09::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 9,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -2051,8 +2385,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v12::t01",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 12,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -2069,8 +2405,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v12::t02",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 12,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -2087,8 +2425,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick::v12::t01",
       "master_id": "mf-001.md-017.sm-mx5-hpick-2026__santafe-h-pick",
+      "powertrain_seq": 12,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -2105,8 +2445,10 @@
       "match": "exact"
     },
     "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-017.sm-mx5::v12::t04",
       "master_id": "mf-001.md-017.sm-mx5",
+      "powertrain_seq": 12,
       "maker": "현대",
       "model": "싼타페",
       "sub_model": "디 올 뉴 싼타페 MX5",
@@ -2123,8 +2465,10 @@
       "match": "exact"
     },
     "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v09::t01",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 9,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2141,8 +2485,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v06::t02",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 6,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2159,8 +2505,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v10::t01",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 10,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2177,8 +2525,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v01::t02",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 1,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2195,8 +2545,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v05::t01",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2212,9 +2564,53 @@
       "usage_tier": "automatic",
       "match": "alias_or_axis"
     },
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD H-Pick": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 5,
+      "maker": "현대",
+      "model": "팰리세이드",
+      "sub_model": "팰리세이드 LX3",
+      "powertrain": "가솔린 2.5T FWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "FWD",
+      "seats": 9,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "H-Pick",
+      "match": "powertrain_product_config"
+    },
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD XRT": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 5,
+      "maker": "현대",
+      "model": "팰리세이드",
+      "sub_model": "팰리세이드 LX3",
+      "powertrain": "가솔린 2.5T FWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "FWD",
+      "seats": 9,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "XRT",
+      "match": "powertrain_product_config"
+    },
     "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v05::t03",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 5,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2231,8 +2627,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v11::t01",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 11,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2249,8 +2647,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v04::t02",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 4,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2267,8 +2667,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v02::t01",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2284,9 +2686,32 @@
       "usage_tier": "automatic",
       "match": "alias_or_axis"
     },
+    "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD H-Pick": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 2,
+      "maker": "현대",
+      "model": "팰리세이드",
+      "sub_model": "팰리세이드 LX3",
+      "powertrain": "하이브리드 2.5T FWD",
+      "trim": null,
+      "fuel": "하이브리드",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "FWD",
+      "seats": 7,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "H-Pick",
+      "match": "powertrain_product_config"
+    },
     "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v02::t03",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 2,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2303,8 +2728,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v07::t01",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 7,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2320,9 +2747,32 @@
       "usage_tier": "automatic",
       "match": "alias_or_axis"
     },
+    "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 7,
+      "maker": "현대",
+      "model": "팰리세이드",
+      "sub_model": "팰리세이드 LX3",
+      "powertrain": "하이브리드 2.5T AWD",
+      "trim": null,
+      "fuel": "하이브리드",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "AWD",
+      "seats": 7,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "H-Pick",
+      "match": "powertrain_product_config"
+    },
     "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v07::t03",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 7,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2339,8 +2789,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v08::t01",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 8,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2356,9 +2808,32 @@
       "usage_tier": "automatic",
       "match": "alias_or_axis"
     },
+    "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD H-Pick": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 8,
+      "maker": "현대",
+      "model": "팰리세이드",
+      "sub_model": "팰리세이드 LX3",
+      "powertrain": "하이브리드 2.5T FWD",
+      "trim": null,
+      "fuel": "하이브리드",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "FWD",
+      "seats": 9,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "H-Pick",
+      "match": "powertrain_product_config"
+    },
     "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v08::t03",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 8,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2375,8 +2850,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Exclusive": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v12::t01",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 12,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2393,8 +2870,10 @@
       "match": "alias_or_axis"
     },
     "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Calligraphy": {
+      "identity_level": "trim",
       "trim_row_key": "mf-001.md-058.sm-lx3::v03::t02",
       "master_id": "mf-001.md-058.sm-lx3",
+      "powertrain_seq": 3,
       "maker": "현대",
       "model": "팰리세이드",
       "sub_model": "팰리세이드 LX3",
@@ -2410,9 +2889,51 @@
       "usage_tier": "automatic",
       "match": "alias_or_axis"
     },
+    "모닝 해치백 1.0 가솔린 트렌디": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v01::t01",
+      "master_id": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning",
+      "powertrain_seq": 1,
+      "maker": "기아",
+      "model": "모닝",
+      "sub_model": "더 뉴 모닝 JA",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "트렌디",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "모닝 해치백 1.0 가솔린 프레스티지": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v01::t02",
+      "master_id": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning",
+      "powertrain_seq": 1,
+      "maker": "기아",
+      "model": "모닝",
+      "sub_model": "더 뉴 모닝 JA",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "프레스티지",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
     "모닝 해치백 1.0 가솔린 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v01::t03",
       "master_id": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "모닝",
       "sub_model": "더 뉴 모닝 JA",
@@ -2428,9 +2949,91 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "모닝 밴 1.0 가솔린 트렌디": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v02::t01",
+      "master_id": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning",
+      "powertrain_seq": 2,
+      "maker": "기아",
+      "model": "모닝",
+      "sub_model": "더 뉴 모닝 JA",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "트렌디",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 2,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "모닝 밴 1.0 가솔린 프레스티지": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v02::t02",
+      "master_id": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning",
+      "powertrain_seq": 2,
+      "maker": "기아",
+      "model": "모닝",
+      "sub_model": "더 뉴 모닝 JA",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "프레스티지",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 2,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "레이 해치백 1.0 가솔린 트렌디": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v01::t01",
+      "master_id": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray",
+      "powertrain_seq": 1,
+      "maker": "기아",
+      "model": "레이",
+      "sub_model": "더 뉴 기아 레이",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "트렌디",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 5,
+      "body_configuration": "승용",
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "레이 해치백 1.0 가솔린 프레스티지": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v01::t02",
+      "master_id": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray",
+      "powertrain_seq": 1,
+      "maker": "기아",
+      "model": "레이",
+      "sub_model": "더 뉴 기아 레이",
+      "powertrain": "가솔린 1.0 FWD",
+      "trim": "프레스티지",
+      "fuel": "가솔린",
+      "engine_cc": 998,
+      "displacement_l": 1,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 5,
+      "body_configuration": "승용",
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
     "레이 해치백 1.0 가솔린 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v01::t03",
       "master_id": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "레이",
       "sub_model": "더 뉴 기아 레이",
@@ -2447,8 +3050,10 @@
       "match": "exact"
     },
     "레이 해치백 1.0 가솔린 X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v01::t04",
       "master_id": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "레이",
       "sub_model": "더 뉴 기아 레이",
@@ -2465,8 +3070,10 @@
       "match": "exact"
     },
     "레이 밴 1.0 가솔린 트렌디 (1인승)": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v02::t01",
       "master_id": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "레이",
       "sub_model": "더 뉴 기아 레이",
@@ -2483,8 +3090,10 @@
       "match": "exact"
     },
     "레이 밴 1.0 가솔린 프레스티지 (1인승)": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v02::t02",
       "master_id": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "레이",
       "sub_model": "더 뉴 기아 레이",
@@ -2501,8 +3110,10 @@
       "match": "exact"
     },
     "레이 밴 1.0 가솔린 프레스티지 스페셜 (1인승)": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v02::t03",
       "master_id": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "레이",
       "sub_model": "더 뉴 기아 레이",
@@ -2519,8 +3130,10 @@
       "match": "exact"
     },
     "K5 1.6 가솔린 터보 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v03::t01",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2537,8 +3150,10 @@
       "match": "exact"
     },
     "K5 1.6 가솔린 터보 베스트 셀렉션": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v03::t02",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2555,8 +3170,10 @@
       "match": "exact"
     },
     "K5 1.6 가솔린 터보 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v03::t03",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2573,8 +3190,10 @@
       "match": "exact"
     },
     "K5 1.6 가솔린 터보 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v03::t04",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2591,8 +3210,10 @@
       "match": "exact"
     },
     "K5 2.0 가솔린 스마트 셀렉션": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v02::t01",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2609,8 +3230,10 @@
       "match": "exact"
     },
     "K5 2.0 가솔린 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v02::t02",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2627,8 +3250,10 @@
       "match": "exact"
     },
     "K5 2.0 가솔린 베스트 셀렉션": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v02::t03",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2645,8 +3270,10 @@
       "match": "exact"
     },
     "K5 2.0 가솔린 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v02::t04",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2663,8 +3290,10 @@
       "match": "exact"
     },
     "K5 2.0 가솔린 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v02::t05",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2681,8 +3310,10 @@
       "match": "exact"
     },
     "K5 2.0 하이브리드 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v01::t01",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2699,8 +3330,10 @@
       "match": "exact"
     },
     "K5 2.0 하이브리드 베스트 셀렉션": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v01::t02",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2717,8 +3350,10 @@
       "match": "exact"
     },
     "K5 2.0 하이브리드 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v01::t03",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2735,8 +3370,10 @@
       "match": "exact"
     },
     "K5 2.0 하이브리드 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v01::t04",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2753,8 +3390,10 @@
       "match": "exact"
     },
     "K5 2.0 Lpi 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v04::t02",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2771,8 +3410,10 @@
       "match": "exact"
     },
     "K5 2.0 Lpi 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027::v04::t03",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027__k5-2027",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2789,8 +3430,10 @@
       "match": "exact"
     },
     "K5 2.0 Lpi 렌터카 트렌디": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-001.sm-dl3-pe-my2027-rent__k5-2027-rental::v01::t01",
       "master_id": "mf-002.md-001.sm-dl3-pe-my2027-rent__k5-2027-rental",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K5",
       "sub_model": "더 뉴 K5 DL3",
@@ -2807,8 +3450,10 @@
       "match": "exact"
     },
     "The new K8 2.5 가솔린 2WD 노블레스 라이트": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v01::t01",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2825,8 +3470,10 @@
       "match": "exact"
     },
     "The new K8 2.5 가솔린 2WD 베스트 셀렉션": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3-pe-best-selection-2026__k8-best-selection::v01::t01",
       "master_id": "mf-002.md-065.sm-gl3-pe-best-selection-2026__k8-best-selection",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2843,8 +3490,10 @@
       "match": "exact"
     },
     "The new K8 2.5 가솔린 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v01::t02",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2861,8 +3510,10 @@
       "match": "exact"
     },
     "The new K8 2.5 가솔린 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v01::t04",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2879,8 +3530,10 @@
       "match": "exact"
     },
     "The new K8 2.5 가솔린 2WD 시그니처 블랙": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v01::t05",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2897,8 +3550,10 @@
       "match": "exact"
     },
     "The new K8 3.5 가솔린 2WD 베스트 셀렉션": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3-pe-best-selection-2026__k8-best-selection::v02::t01",
       "master_id": "mf-002.md-065.sm-gl3-pe-best-selection-2026__k8-best-selection",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2915,8 +3570,10 @@
       "match": "exact"
     },
     "The new K8 3.5 가솔린 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v02::t01",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2933,8 +3590,10 @@
       "match": "exact"
     },
     "The new K8 3.5 가솔린 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v02::t02",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2951,8 +3610,10 @@
       "match": "exact"
     },
     "The new K8 3.5 가솔린 2WD 시그니처 블랙": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v02::t03",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2969,8 +3630,10 @@
       "match": "exact"
     },
     "The new K8 3.5 가솔린 AWD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v02::t01",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -2987,8 +3650,10 @@
       "match": "exact"
     },
     "The new K8 3.5 가솔린 AWD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v03::t01",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3005,8 +3670,10 @@
       "match": "exact"
     },
     "The new K8 3.5 가솔린 AWD 시그니처 블랙": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v03::t02",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3023,8 +3690,10 @@
       "match": "exact"
     },
     "The new K8 1.6 하이브리드 2WD 노블레스 라이트": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v05::t01",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3041,8 +3710,10 @@
       "match": "exact"
     },
     "The new K8 1.6 하이브리드 2WD 베스트 셀렉션": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3-pe-best-selection-2026__k8-best-selection::v03::t01",
       "master_id": "mf-002.md-065.sm-gl3-pe-best-selection-2026__k8-best-selection",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3059,8 +3730,10 @@
       "match": "exact"
     },
     "The new K8 1.6 하이브리드 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v05::t02",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3077,8 +3750,10 @@
       "match": "exact"
     },
     "The new K8 1.6 하이브리드 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v05::t04",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3095,8 +3770,10 @@
       "match": "exact"
     },
     "The new K8 1.6 하이브리드 2WD 시그니처 블랙": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v05::t05",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3113,8 +3790,10 @@
       "match": "exact"
     },
     "The new K8 3.5 Lpi 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v04::t01",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3131,8 +3810,10 @@
       "match": "exact"
     },
     "The new K8 3.5 Lpi 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v04::t02",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3149,8 +3830,10 @@
       "match": "exact"
     },
     "The new K8 3.5 Lpi 렌터카 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v04::t01",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3167,8 +3850,10 @@
       "match": "exact"
     },
     "The new K8 3.5 Lpi 렌터카 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-065.sm-gl3::v04::t02",
       "master_id": "mf-002.md-065.sm-gl3",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "K8",
       "sub_model": "더 뉴 K8",
@@ -3185,8 +3870,10 @@
       "match": "exact"
     },
     "K9 3.3 가솔린 터보 2WD 플래티넘": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-059.sm-rj::v03::t03",
       "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K9",
       "sub_model": "K9 RJ",
@@ -3203,8 +3890,10 @@
       "match": "exact"
     },
     "K9 3.3 가솔린 터보 AWD 플래티넘": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-059.sm-rj::v03::t03",
       "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K9",
       "sub_model": "K9 RJ",
@@ -3220,9 +3909,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "K9 3.3 가솔린 터보 AWD 플래티넘+베스트셀렉션1": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 3,
+      "maker": "기아",
+      "model": "K9",
+      "sub_model": "K9 RJ",
+      "powertrain": "가솔린 3.3T AWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 3342,
+      "displacement_l": 3.3,
+      "turbo": true,
+      "drivetrain": "AWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "플래티넘+베스트셀렉션1",
+      "match": "powertrain_product_config"
+    },
     "K9 3.3 가솔린 터보 AWD 마스터즈": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-059.sm-rj::v03::t04",
       "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "K9",
       "sub_model": "K9 RJ",
@@ -3238,9 +3950,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "K9 3.3 가솔린 터보 AWD 마스터즈+베스트셀렉션2": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 3,
+      "maker": "기아",
+      "model": "K9",
+      "sub_model": "K9 RJ",
+      "powertrain": "가솔린 3.3T AWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 3342,
+      "displacement_l": 3.3,
+      "turbo": true,
+      "drivetrain": "AWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "마스터즈+베스트셀렉션2",
+      "match": "powertrain_product_config"
+    },
     "K9 3.8 가솔린 터보 2WD 플래티넘": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-059.sm-rj::v04::t01",
       "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "K9",
       "sub_model": "K9 RJ",
@@ -3257,8 +3992,10 @@
       "match": "exact"
     },
     "K9 3.8 가솔린 터보 AWD 플래티넘": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-059.sm-rj::v01::t03",
       "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K9",
       "sub_model": "K9 RJ",
@@ -3274,9 +4011,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "K9 3.8 가솔린 터보 AWD 플래티넘+베스트셀렉션1": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 1,
+      "maker": "기아",
+      "model": "K9",
+      "sub_model": "K9 RJ",
+      "powertrain": "가솔린 3.8 AWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 3778,
+      "displacement_l": 3.8,
+      "turbo": false,
+      "drivetrain": "AWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "플래티넘+베스트셀렉션1",
+      "match": "powertrain_product_config"
+    },
     "K9 3.8 가솔린 터보 AWD 마스터즈": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-059.sm-rj::v01::t04",
       "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "K9",
       "sub_model": "K9 RJ",
@@ -3292,9 +4052,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "K9 3.8 가솔린 터보 AWD 마스터즈+베스트셀렉션2": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-002.md-059.sm-rj",
+      "powertrain_seq": 1,
+      "maker": "기아",
+      "model": "K9",
+      "sub_model": "K9 RJ",
+      "powertrain": "가솔린 3.8 AWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 3778,
+      "displacement_l": 3.8,
+      "turbo": false,
+      "drivetrain": "AWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "마스터즈+베스트셀렉션2",
+      "match": "powertrain_product_config"
+    },
     "셀토스 1.6 가솔린 2WD 트렌디": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v01::t01",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3311,8 +4094,10 @@
       "match": "exact"
     },
     "셀토스 1.6 가솔린 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v01::t02",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3329,8 +4114,10 @@
       "match": "exact"
     },
     "셀토스 1.6 가솔린 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v01::t03",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3347,8 +4134,10 @@
       "match": "exact"
     },
     "셀토스 1.6 가솔린 2WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v01::t04",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3365,8 +4154,10 @@
       "match": "exact"
     },
     "셀토스 1.6 가솔린 4WD 트렌디": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v02::t01",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3383,8 +4174,10 @@
       "match": "exact"
     },
     "셀토스 1.6 가솔린 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v02::t02",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3401,8 +4194,10 @@
       "match": "exact"
     },
     "셀토스 1.6 가솔린 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v02::t03",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3419,8 +4214,10 @@
       "match": "exact"
     },
     "셀토스 1.6 가솔린 4WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v02::t04",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3437,8 +4234,10 @@
       "match": "exact"
     },
     "셀토스 1.6 하이브리드 2WD 트렌디": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v03::t01",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3455,8 +4254,10 @@
       "match": "exact"
     },
     "셀토스 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v03::t02",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3473,8 +4274,10 @@
       "match": "exact"
     },
     "셀토스 1.6 하이브리드 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos::v03::t03",
       "master_id": "mf-002.md-064.sm-sp3-seltos-2026-korea__all-new-seltos",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "셀토스",
       "sub_model": "디 올 뉴 셀토스 SP3",
@@ -3491,8 +4294,10 @@
       "match": "exact"
     },
     "니로 1.6 하이브리드 2WD 트렌디": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-061.sm-sg2-niro-pe-2026-korea__the-new-niro-hev::v01::t01",
       "master_id": "mf-002.md-061.sm-sg2-niro-pe-2026-korea__the-new-niro-hev",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "니로",
       "sub_model": "더 뉴 니로 SG2 부분변경",
@@ -3509,8 +4314,10 @@
       "match": "exact"
     },
     "니로 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-061.sm-sg2-niro-pe-2026-korea__the-new-niro-hev::v01::t02",
       "master_id": "mf-002.md-061.sm-sg2-niro-pe-2026-korea__the-new-niro-hev",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "니로",
       "sub_model": "더 뉴 니로 SG2 부분변경",
@@ -3527,8 +4334,10 @@
       "match": "exact"
     },
     "니로 1.6 하이브리드 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-061.sm-sg2-niro-pe-2026-korea__the-new-niro-hev::v01::t03",
       "master_id": "mf-002.md-061.sm-sg2-niro-pe-2026-korea__the-new-niro-hev",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "니로",
       "sub_model": "더 뉴 니로 SG2 부분변경",
@@ -3545,8 +4354,10 @@
       "match": "exact"
     },
     "스포티지 1.6 가솔린 터보 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v01::t01",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3563,8 +4374,10 @@
       "match": "exact"
     },
     "스포티지 1.6 가솔린 터보 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v01::t02",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3581,8 +4394,10 @@
       "match": "exact"
     },
     "스포티지 1.6 가솔린 터보 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v01::t03",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3599,8 +4414,10 @@
       "match": "exact"
     },
     "스포티지 1.6 가솔린 터보 2WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line::v01::t01",
       "master_id": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 X-Line NQ5",
@@ -3617,8 +4434,10 @@
       "match": "exact"
     },
     "스포티지 1.6 가솔린 터보 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v02::t01",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3635,8 +4454,10 @@
       "match": "exact"
     },
     "스포티지 1.6 가솔린 터보 4WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v02::t02",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3653,8 +4474,10 @@
       "match": "exact"
     },
     "스포티지 1.6 가솔린 터보 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v02::t03",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3671,8 +4494,10 @@
       "match": "exact"
     },
     "스포티지 1.6 가솔린 터보 4WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line::v02::t01",
       "master_id": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 X-Line NQ5",
@@ -3689,8 +4514,10 @@
       "match": "exact"
     },
     "스포티지 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v05::t01",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3707,8 +4534,10 @@
       "match": "exact"
     },
     "스포티지 1.6 하이브리드 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v05::t02",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3725,8 +4554,10 @@
       "match": "exact"
     },
     "스포티지 1.6 하이브리드 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v05::t03",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3743,8 +4574,10 @@
       "match": "exact"
     },
     "스포티지 1.6 하이브리드 2WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line::v04::t01",
       "master_id": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 X-Line NQ5",
@@ -3761,8 +4594,10 @@
       "match": "exact"
     },
     "스포티지 1.6 하이브리드 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v05::t01",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3779,8 +4614,10 @@
       "match": "exact"
     },
     "스포티지 1.6 하이브리드 4WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v04::t01",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3797,8 +4634,10 @@
       "match": "exact"
     },
     "스포티지 1.6 하이브리드 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v04::t02",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3815,8 +4654,10 @@
       "match": "exact"
     },
     "스포티지 1.6 하이브리드 4WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line::v05::t01",
       "master_id": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 X-Line NQ5",
@@ -3833,8 +4674,10 @@
       "match": "exact"
     },
     "스포티지 2.0 LPG 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v03::t01",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3851,8 +4694,10 @@
       "match": "exact"
     },
     "스포티지 2.0 LPG 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v03::t02",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3869,8 +4714,10 @@
       "match": "exact"
     },
     "스포티지 2.0 LPG 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5::v03::t03",
       "master_id": "mf-002.md-025.sm-nq5",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 NQ5",
@@ -3887,8 +4734,10 @@
       "match": "exact"
     },
     "스포티지 2.0 LPG X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line::v03::t01",
       "master_id": "mf-002.md-025.sm-nq5-pe-xline__sportage-x-line",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "스포티지",
       "sub_model": "더 뉴 스포티지 X-Line NQ5",
@@ -3905,8 +4754,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 2.5 가솔린 터보 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -3923,8 +4774,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 2.5 가솔린 터보 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -3941,8 +4794,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 2.5 가솔린 터보 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t03",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -3959,26 +4814,52 @@
       "match": "exact"
     },
     "쏘렌토 5인승 2.5 가솔린 터보 2WD X-Line": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v01::t01",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T FWD",
-      "trim": "X-Line",
+      "powertrain": "가솔린 2.5 FWD",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
-      "turbo": true,
+      "turbo": false,
       "drivetrain": "FWD",
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "exact"
+      "product_configuration": "X-Line",
+      "match": "powertrain_product_config"
+    },
+    "쏘렌토 5인승 2.5 가솔린 터보 2WD 블랙 에디션": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
+      "maker": "기아",
+      "model": "쏘렌토",
+      "sub_model": "더 뉴 쏘렌토 MQ4",
+      "powertrain": "가솔린 2.5 FWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "블랙 에디션",
+      "match": "powertrain_product_config"
     },
     "쏘렌토 5인승 2.5 가솔린 터보 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -3995,8 +4876,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 2.5 가솔린 터보 4WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4013,8 +4896,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 2.5 가솔린 터보 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t03",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4030,45 +4915,11 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
-    "쏘렌토 5인승 2.5 가솔린 터보 4WD X-Line": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v02::t01",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
-      "maker": "기아",
-      "model": "쏘렌토",
-      "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T AWD",
-      "trim": "X-Line",
-      "fuel": "가솔린",
-      "engine_cc": 2497,
-      "displacement_l": 2.5,
-      "turbo": true,
-      "drivetrain": "AWD",
-      "seats": 5,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "exact"
-    },
-    "쏘렌토 5인승 2.5 가솔린 터보 4WD 블랙 에디션": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v02::t01",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
-      "maker": "기아",
-      "model": "쏘렌토",
-      "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T AWD",
-      "trim": "X-Line",
-      "fuel": "가솔린",
-      "engine_cc": 2497,
-      "displacement_l": 2.5,
-      "turbo": true,
-      "drivetrain": "AWD",
-      "seats": 5,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "alias_or_axis"
-    },
     "쏘렌토 6인승 2.5 가솔린 터보 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4085,8 +4936,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 2.5 가솔린 터보 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4103,8 +4956,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 2.5 가솔린 터보 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t03",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4120,45 +4975,11 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
-    "쏘렌토 6인승 2.5 가솔린 터보 2WD X-Line": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v01::t02",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
-      "maker": "기아",
-      "model": "쏘렌토",
-      "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T FWD",
-      "trim": "X-Line",
-      "fuel": "가솔린",
-      "engine_cc": 2497,
-      "displacement_l": 2.5,
-      "turbo": true,
-      "drivetrain": "FWD",
-      "seats": 6,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "exact"
-    },
-    "쏘렌토 6인승 2.5 가솔린 터보 2WD 블랙 에디션": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v01::t02",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
-      "maker": "기아",
-      "model": "쏘렌토",
-      "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T FWD",
-      "trim": "X-Line",
-      "fuel": "가솔린",
-      "engine_cc": 2497,
-      "displacement_l": 2.5,
-      "turbo": true,
-      "drivetrain": "FWD",
-      "seats": 6,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "alias_or_axis"
-    },
     "쏘렌토 6인승 2.5 가솔린 터보 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4175,8 +4996,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 2.5 가솔린 터보 4WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v02::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4193,8 +5016,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 2.5 가솔린 터보 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v02::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4210,45 +5035,11 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
-    "쏘렌토 6인승 2.5 가솔린 터보 4WD X-Line": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v02::t02",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
-      "maker": "기아",
-      "model": "쏘렌토",
-      "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T AWD",
-      "trim": "X-Line",
-      "fuel": "가솔린",
-      "engine_cc": 2497,
-      "displacement_l": 2.5,
-      "turbo": true,
-      "drivetrain": "AWD",
-      "seats": 6,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "exact"
-    },
-    "쏘렌토 6인승 2.5 가솔린 터보 4WD 블랙 에디션": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v02::t02",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
-      "maker": "기아",
-      "model": "쏘렌토",
-      "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T AWD",
-      "trim": "X-Line",
-      "fuel": "가솔린",
-      "engine_cc": 2497,
-      "displacement_l": 2.5,
-      "turbo": true,
-      "drivetrain": "AWD",
-      "seats": 6,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "alias_or_axis"
-    },
     "쏘렌토 7인승 2.5 가솔린 터보 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4265,8 +5056,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 2.5 가솔린 터보 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v02::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4283,8 +5076,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 2.5 가솔린 터보 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v02::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4300,45 +5095,11 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
-    "쏘렌토 7인승 2.5 가솔린 터보 2WD X-Line": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v01::t03",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
-      "maker": "기아",
-      "model": "쏘렌토",
-      "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T FWD",
-      "trim": "X-Line",
-      "fuel": "가솔린",
-      "engine_cc": 2497,
-      "displacement_l": 2.5,
-      "turbo": true,
-      "drivetrain": "FWD",
-      "seats": 7,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "exact"
-    },
-    "쏘렌토 7인승 2.5 가솔린 터보 2WD 블랙 에디션": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v01::t03",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
-      "maker": "기아",
-      "model": "쏘렌토",
-      "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T FWD",
-      "trim": "X-Line",
-      "fuel": "가솔린",
-      "engine_cc": 2497,
-      "displacement_l": 2.5,
-      "turbo": true,
-      "drivetrain": "FWD",
-      "seats": 7,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "alias_or_axis"
-    },
     "쏘렌토 7인승 2.5 가솔린 터보 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v01::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4355,8 +5116,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 2.5 가솔린 터보 4WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v02::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4373,8 +5136,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 2.5 가솔린 터보 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v02::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4391,26 +5156,52 @@
       "match": "exact"
     },
     "쏘렌토 7인승 2.5 가솔린 터보 4WD X-Line": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v02::t03",
-      "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
-      "powertrain": "가솔린 2.5T AWD",
-      "trim": "X-Line",
+      "powertrain": "가솔린 2.5 AWD",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
-      "turbo": true,
+      "turbo": false,
       "drivetrain": "AWD",
       "seats": 7,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "exact"
+      "product_configuration": "X-Line",
+      "match": "powertrain_product_config"
+    },
+    "쏘렌토 7인승 2.5 가솔린 터보 4WD 블랙 에디션": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 2,
+      "maker": "기아",
+      "model": "쏘렌토",
+      "sub_model": "더 뉴 쏘렌토 MQ4",
+      "powertrain": "가솔린 2.5 AWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": false,
+      "drivetrain": "AWD",
+      "seats": 7,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "블랙 에디션",
+      "match": "powertrain_product_config"
     },
     "쏘렌토 5인승 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4427,8 +5218,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 1.6 하이브리드 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4445,8 +5238,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 1.6 하이브리드 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v06::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4463,8 +5258,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 1.6 하이브리드 2WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v05::t01",
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4481,13 +5278,15 @@
       "match": "exact"
     },
     "쏘렌토 5인승 1.6 하이브리드 2WD 블랙 에디션": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v05::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
       "powertrain": "하이브리드 1.6T FWD",
-      "trim": "X-Line",
+      "trim": null,
       "fuel": "하이브리드",
       "engine_cc": 1598,
       "displacement_l": 1.6,
@@ -4496,11 +5295,14 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "블랙 에디션",
+      "match": "powertrain_product_config"
     },
     "쏘렌토 5인승 1.6 하이브리드 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4517,8 +5319,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 1.6 하이브리드 4WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4535,8 +5339,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 1.6 하이브리드 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v06::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4553,8 +5359,10 @@
       "match": "exact"
     },
     "쏘렌토 5인승 1.6 하이브리드 4WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v06::t01",
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4571,8 +5379,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4589,8 +5399,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4607,8 +5419,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t03",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4625,8 +5439,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 2WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v05::t02",
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4643,13 +5459,15 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 2WD 블랙 에디션": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v05::t02",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
       "powertrain": "하이브리드 1.6T FWD",
-      "trim": "X-Line",
+      "trim": null,
       "fuel": "하이브리드",
       "engine_cc": 1598,
       "displacement_l": 1.6,
@@ -4658,11 +5476,14 @@
       "seats": 6,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "블랙 에디션",
+      "match": "powertrain_product_config"
     },
     "쏘렌토 6인승 1.6 하이브리드 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4679,8 +5500,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 4WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4697,8 +5520,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v06::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4715,8 +5540,10 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 4WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v06::t02",
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4733,13 +5560,15 @@
       "match": "exact"
     },
     "쏘렌토 6인승 1.6 하이브리드 4WD 블랙 에디션": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v06::t02",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
       "powertrain": "하이브리드 1.6T AWD",
-      "trim": "X-Line",
+      "trim": null,
       "fuel": "하이브리드",
       "engine_cc": 1598,
       "displacement_l": 1.6,
@@ -4748,11 +5577,14 @@
       "seats": 6,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "블랙 에디션",
+      "match": "powertrain_product_config"
     },
     "쏘렌토 7인승 1.6 하이브리드 2WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4769,8 +5601,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 1.6 하이브리드 2WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4787,8 +5621,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 1.6 하이브리드 2WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t03",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4805,8 +5641,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 1.6 하이브리드 2WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v05::t03",
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4823,8 +5661,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 1.6 하이브리드 4WD 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t01",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4841,8 +5681,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 1.6 하이브리드 4WD 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t02",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4859,8 +5701,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 1.6 하이브리드 4WD 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4::v04::t03",
       "master_id": "mf-002.md-027.sm-mq4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4877,8 +5721,10 @@
       "match": "exact"
     },
     "쏘렌토 7인승 1.6 하이브리드 4WD X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v06::t03",
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
@@ -4895,13 +5741,15 @@
       "match": "exact"
     },
     "쏘렌토 7인승 1.6 하이브리드 4WD 블랙 에디션": {
-      "trim_row_key": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line::v06::t03",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-002.md-027.sm-mq4-pe-xline-2026__sorento-x-line",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "쏘렌토",
       "sub_model": "더 뉴 쏘렌토 MQ4",
       "powertrain": "하이브리드 1.6T AWD",
-      "trim": "X-Line",
+      "trim": null,
       "fuel": "하이브리드",
       "engine_cc": 1598,
       "displacement_l": 1.6,
@@ -4910,11 +5758,14 @@
       "seats": 7,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "블랙 에디션",
+      "match": "powertrain_product_config"
     },
     "카니발 7인승 3.5 가솔린 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4::v04::t01",
       "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -4931,8 +5782,10 @@
       "match": "exact"
     },
     "카니발 7인승 3.5 가솔린 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4::v04::t02",
       "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 4,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -4949,8 +5802,10 @@
       "match": "exact"
     },
     "카니발 7인승 3.5 가솔린 X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4-pe-xline-2026__carnival-x-line::v01::t01",
       "master_id": "mf-002.md-036.sm-ka4-pe-xline-2026__carnival-x-line",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -4967,8 +5822,10 @@
       "match": "exact"
     },
     "카니발 9인승 3.5 가솔린 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4::v03::t01",
       "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 3,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -4984,9 +5841,51 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "카니발 9인승 3.5 가솔린 노블레스": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-036.sm-ka4::v03::t02",
+      "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 3,
+      "maker": "기아",
+      "model": "카니발",
+      "sub_model": "더 뉴 카니발 KA4",
+      "powertrain": "가솔린 3.5 FWD",
+      "trim": "노블레스",
+      "fuel": "가솔린",
+      "engine_cc": 3470,
+      "displacement_l": 3.5,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 9,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "카니발 9인승 3.5 가솔린 시그니처": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-036.sm-ka4::v03::t03",
+      "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 3,
+      "maker": "기아",
+      "model": "카니발",
+      "sub_model": "더 뉴 카니발 KA4",
+      "powertrain": "가솔린 3.5 FWD",
+      "trim": "시그니처",
+      "fuel": "가솔린",
+      "engine_cc": 3470,
+      "displacement_l": 3.5,
+      "turbo": false,
+      "drivetrain": "FWD",
+      "seats": 9,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
     "카니발 9인승 3.5 가솔린 X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4-pe-xline-2026__carnival-x-line::v01::t02",
       "master_id": "mf-002.md-036.sm-ka4-pe-xline-2026__carnival-x-line",
+      "powertrain_seq": 1,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -5003,8 +5902,10 @@
       "match": "exact"
     },
     "카니발 7인승 1.6 하이브리드 노블레스": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4::v05::t01",
       "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -5021,8 +5922,10 @@
       "match": "exact"
     },
     "카니발 7인승 1.6 하이브리드 시그니처": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4::v05::t02",
       "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 5,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -5039,8 +5942,10 @@
       "match": "exact"
     },
     "카니발 7인승 1.6 하이브리드 X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4-pe-xline-2026__carnival-x-line::v02::t01",
       "master_id": "mf-002.md-036.sm-ka4-pe-xline-2026__carnival-x-line",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -5057,8 +5962,10 @@
       "match": "exact"
     },
     "카니발 9인승 1.6 하이브리드 프레스티지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4::v06::t01",
       "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 6,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -5074,9 +5981,51 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "카니발 9인승 1.6 하이브리드 노블레스": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-036.sm-ka4::v06::t02",
+      "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 6,
+      "maker": "기아",
+      "model": "카니발",
+      "sub_model": "더 뉴 카니발 KA4",
+      "powertrain": "하이브리드 1.6T FWD",
+      "trim": "노블레스",
+      "fuel": "하이브리드",
+      "engine_cc": 1598,
+      "displacement_l": 1.6,
+      "turbo": true,
+      "drivetrain": "FWD",
+      "seats": 9,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
+    "카니발 9인승 1.6 하이브리드 시그니처": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-002.md-036.sm-ka4::v06::t03",
+      "master_id": "mf-002.md-036.sm-ka4",
+      "powertrain_seq": 6,
+      "maker": "기아",
+      "model": "카니발",
+      "sub_model": "더 뉴 카니발 KA4",
+      "powertrain": "하이브리드 1.6T FWD",
+      "trim": "시그니처",
+      "fuel": "하이브리드",
+      "engine_cc": 1598,
+      "displacement_l": 1.6,
+      "turbo": true,
+      "drivetrain": "FWD",
+      "seats": 9,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
     "카니발 9인승 1.6 하이브리드 X-Line": {
+      "identity_level": "trim",
       "trim_row_key": "mf-002.md-036.sm-ka4-pe-xline-2026__carnival-x-line::v02::t02",
       "master_id": "mf-002.md-036.sm-ka4-pe-xline-2026__carnival-x-line",
+      "powertrain_seq": 2,
       "maker": "기아",
       "model": "카니발",
       "sub_model": "더 뉴 카니발 KA4",
@@ -5093,8 +6042,10 @@
       "match": "exact"
     },
     "G70 2.5 가솔린 터보 2WD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-003.sm-ik-2023__g70::v01::t02",
       "master_id": "mf-007.md-003.sm-ik-2023__g70",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "G70",
       "sub_model": "G70 IK",
@@ -5111,8 +6062,10 @@
       "match": "exact"
     },
     "G70 2.5 가솔린 터보 AWD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-003.sm-ik-2023__g70::v02::t02",
       "master_id": "mf-007.md-003.sm-ik-2023__g70",
+      "powertrain_seq": 2,
       "maker": "제네시스",
       "model": "G70",
       "sub_model": "G70 IK",
@@ -5129,8 +6082,10 @@
       "match": "exact"
     },
     "G70 3.3 가솔린 터보 2WD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-003.sm-ik-2023__g70::v03::t02",
       "master_id": "mf-007.md-003.sm-ik-2023__g70",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "G70",
       "sub_model": "G70 IK",
@@ -5147,8 +6102,10 @@
       "match": "exact"
     },
     "G70 3.3 가솔린 터보 AWD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-003.sm-ik-2023__g70::v04::t02",
       "master_id": "mf-007.md-003.sm-ik-2023__g70",
+      "powertrain_seq": 4,
       "maker": "제네시스",
       "model": "G70",
       "sub_model": "G70 IK",
@@ -5164,9 +6121,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "G80 2.5 가솔린 터보 2WD 기본 모델": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-007.md-002.sm-rg3-pe__g80-facelift",
+      "powertrain_seq": 1,
+      "maker": "제네시스",
+      "model": "G80",
+      "sub_model": "G80 RG3 FL",
+      "powertrain": "가솔린 2.5T RWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "RWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "기본 모델",
+      "match": "powertrain_product_config"
+    },
     "G80 2.5 가솔린 터보 2WD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-002.sm-rg3-pe__g80-facelift::v01::t02",
       "master_id": "mf-007.md-002.sm-rg3-pe__g80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "G80",
       "sub_model": "G80 RG3 FL",
@@ -5183,8 +6163,10 @@
       "match": "exact"
     },
     "G80 2.5 가솔린 터보 AWD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-002.sm-rg3-pe__g80-facelift::v02::t02",
       "master_id": "mf-007.md-002.sm-rg3-pe__g80-facelift",
+      "powertrain_seq": 2,
       "maker": "제네시스",
       "model": "G80",
       "sub_model": "G80 RG3 FL",
@@ -5200,9 +6182,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "G80 3.5 가솔린 터보 2WD 기본 모델": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-007.md-002.sm-rg3-pe__g80-facelift",
+      "powertrain_seq": 3,
+      "maker": "제네시스",
+      "model": "G80",
+      "sub_model": "G80 RG3 FL",
+      "powertrain": "가솔린 3.5T RWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 3470,
+      "displacement_l": 3.5,
+      "turbo": true,
+      "drivetrain": "RWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "기본 모델",
+      "match": "powertrain_product_config"
+    },
     "G80 3.5 가솔린 터보 2WD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-002.sm-rg3-pe__g80-facelift::v03::t02",
       "master_id": "mf-007.md-002.sm-rg3-pe__g80-facelift",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "G80",
       "sub_model": "G80 RG3 FL",
@@ -5219,8 +6224,10 @@
       "match": "exact"
     },
     "G80 3.5 가솔린 터보 AWD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-002.sm-rg3-pe__g80-facelift::v04::t02",
       "master_id": "mf-007.md-002.sm-rg3-pe__g80-facelift",
+      "powertrain_seq": 4,
       "maker": "제네시스",
       "model": "G80",
       "sub_model": "G80 RG3 FL",
@@ -5237,44 +6244,73 @@
       "match": "exact"
     },
     "G90 3.5 가솔린 터보 2WD (5인승)": {
-      "trim_row_key": "mf-007.md-004.sm-rs4::v02::t01",
-      "master_id": "mf-007.md-004.sm-rs4",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-007.md-004.sm-rs4__g90-current",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "G90",
       "sub_model": "G90 RS4",
-      "powertrain": "가솔린 3.5T RWD",
-      "trim": "기본형",
+      "powertrain": "가솔린 RWD",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 3470,
-      "displacement_l": 3.5,
+      "displacement_l": null,
+      "turbo": false,
+      "drivetrain": "RWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "기본형",
+      "match": "powertrain_product_config"
+    },
+    "G90 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 2WD (5인승)": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-007.md-004.sm-rs4__g90-current",
+      "powertrain_seq": 3,
+      "maker": "제네시스",
+      "model": "G90",
+      "sub_model": "G90 RS4",
+      "powertrain": "가솔린 RWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 3470,
+      "displacement_l": null,
+      "turbo": false,
+      "drivetrain": "RWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "48V 일렉트릭 슈퍼차저",
+      "match": "powertrain_product_config"
+    },
+    "New GV70 2.5 가솔린 터보 2WD 기본모델": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-007.md-006.sm-jk1-pe__gv70-facelift",
+      "powertrain_seq": 1,
+      "maker": "제네시스",
+      "model": "GV70",
+      "sub_model": "GV70 JK1 FL",
+      "powertrain": "가솔린 2.5T RWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
       "turbo": true,
       "drivetrain": "RWD",
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "exact"
-    },
-    "G90 3.5 가솔린 터보 AWD (5인승)": {
-      "trim_row_key": "mf-007.md-004.sm-rs4::v01::t02",
-      "master_id": "mf-007.md-004.sm-rs4",
-      "maker": "제네시스",
-      "model": "G90",
-      "sub_model": "G90 RS4",
-      "powertrain": "가솔린 3.5T AWD",
-      "trim": "기본형",
-      "fuel": "가솔린",
-      "engine_cc": 3470,
-      "displacement_l": 3.5,
-      "turbo": true,
-      "drivetrain": "AWD",
-      "seats": 5,
-      "body_configuration": null,
-      "usage_tier": "automatic",
-      "match": "exact"
+      "product_configuration": "기본모델",
+      "match": "powertrain_product_config"
     },
     "New GV70 2.5 가솔린 터보 2WD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-006.sm-jk1-pe__gv70-facelift::v01::t02",
       "master_id": "mf-007.md-006.sm-jk1-pe__gv70-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV70",
       "sub_model": "GV70 JK1 FL",
@@ -5290,9 +6326,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "New GV70 2.5 가솔린 터보 AWD 기본모델": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-007.md-006.sm-jk1-pe__gv70-facelift",
+      "powertrain_seq": 2,
+      "maker": "제네시스",
+      "model": "GV70",
+      "sub_model": "GV70 JK1 FL",
+      "powertrain": "가솔린 2.5T AWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "AWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "기본모델",
+      "match": "powertrain_product_config"
+    },
     "New GV70 2.5 가솔린 터보 AWD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-006.sm-jk1-pe__gv70-facelift::v02::t02",
       "master_id": "mf-007.md-006.sm-jk1-pe__gv70-facelift",
+      "powertrain_seq": 2,
       "maker": "제네시스",
       "model": "GV70",
       "sub_model": "GV70 JK1 FL",
@@ -5308,9 +6367,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "New GV70 3.5 가솔린 터보 2WD 기본모델": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-007.md-006.sm-jk1-pe__gv70-facelift",
+      "powertrain_seq": 3,
+      "maker": "제네시스",
+      "model": "GV70",
+      "sub_model": "GV70 JK1 FL",
+      "powertrain": "가솔린 3.5T RWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 3470,
+      "displacement_l": 3.5,
+      "turbo": true,
+      "drivetrain": "RWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "기본모델",
+      "match": "powertrain_product_config"
+    },
     "New GV70 3.5 가솔린 터보 2WD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-006.sm-jk1-pe__gv70-facelift::v03::t02",
       "master_id": "mf-007.md-006.sm-jk1-pe__gv70-facelift",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "GV70",
       "sub_model": "GV70 JK1 FL",
@@ -5326,9 +6408,32 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "New GV70 3.5 가솔린 터보 AWD 기본모델": {
+      "identity_level": "powertrain",
+      "trim_row_key": null,
+      "master_id": "mf-007.md-006.sm-jk1-pe__gv70-facelift",
+      "powertrain_seq": 4,
+      "maker": "제네시스",
+      "model": "GV70",
+      "sub_model": "GV70 JK1 FL",
+      "powertrain": "가솔린 3.5T AWD",
+      "trim": null,
+      "fuel": "가솔린",
+      "engine_cc": 3470,
+      "displacement_l": 3.5,
+      "turbo": true,
+      "drivetrain": "AWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "product_configuration": "기본모델",
+      "match": "powertrain_product_config"
+    },
     "New GV70 3.5 가솔린 터보 AWD 스포츠 패키지": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-006.sm-jk1-pe__gv70-facelift::v04::t02",
       "master_id": "mf-007.md-006.sm-jk1-pe__gv70-facelift",
+      "powertrain_seq": 4,
       "maker": "제네시스",
       "model": "GV70",
       "sub_model": "GV70 JK1 FL",
@@ -5345,13 +6450,15 @@
       "match": "exact"
     },
     "GV80 2.5 가솔린 터보 2WD 19인치휠 5인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5360,16 +6467,19 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "19인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 2.5 가솔린 터보 2WD 20인치휠 5인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5378,16 +6488,19 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "20인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 2.5 가솔린 터보 2WD 22인치휠 5인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5396,16 +6509,39 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "22인치휠",
+      "match": "powertrain_product_config"
+    },
+    "GV80 2.5 가솔린 터보 AWD Black 5인승": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v01::t01",
+      "master_id": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black",
+      "powertrain_seq": 1,
+      "maker": "제네시스",
+      "model": "GV80",
+      "sub_model": "GV80 JX1 FL",
+      "powertrain": "가솔린 2.5T AWD",
+      "trim": "Black",
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "AWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
     },
     "GV80 2.5 가솔린 터보 2WD 19인치휠 6인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t02",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5414,16 +6550,19 @@
       "seats": 6,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "19인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 2.5 가솔린 터보 2WD 20인치휠 6인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t02",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5432,16 +6571,19 @@
       "seats": 6,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "20인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 2.5 가솔린 터보 2WD 22인치휠 6인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t02",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5450,11 +6592,14 @@
       "seats": 6,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "22인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 2.5 가솔린 터보 AWD Black 6인승": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v01::t02",
       "master_id": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
@@ -5471,13 +6616,15 @@
       "match": "exact"
     },
     "GV80 2.5 가솔린 터보 2WD 19인치휠 7인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t03",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5486,16 +6633,19 @@
       "seats": 7,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "19인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 2.5 가솔린 터보 2WD 20인치휠 7인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t03",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5504,16 +6654,19 @@
       "seats": 7,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "20인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 2.5 가솔린 터보 2WD 22인치휠 7인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v01::t03",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 2.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 2497,
       "displacement_l": 2.5,
@@ -5522,11 +6675,14 @@
       "seats": 7,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "22인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 2.5 가솔린 터보 AWD Black 7인승": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v01::t03",
       "master_id": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black",
+      "powertrain_seq": 1,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
@@ -5542,14 +6698,36 @@
       "usage_tier": "automatic",
       "match": "exact"
     },
+    "GV80 COUPE 2.5 가솔린 터보 AWD Black": {
+      "identity_level": "trim",
+      "trim_row_key": "mf-007.md-005.sm-jx1c-black-2024__gv80-coupe-black::v01::t01",
+      "master_id": "mf-007.md-005.sm-jx1c-black-2024__gv80-coupe-black",
+      "powertrain_seq": 1,
+      "maker": "제네시스",
+      "model": "GV80",
+      "sub_model": "GV80 쿠페 JX1",
+      "powertrain": "가솔린 2.5T AWD",
+      "trim": "Black",
+      "fuel": "가솔린",
+      "engine_cc": 2497,
+      "displacement_l": 2.5,
+      "turbo": true,
+      "drivetrain": "AWD",
+      "seats": 5,
+      "body_configuration": null,
+      "usage_tier": "automatic",
+      "match": "exact"
+    },
     "GV80 3.5 가솔린 터보 2WD 20인치휠 5인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v03::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 3.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 3470,
       "displacement_l": 3.5,
@@ -5558,16 +6736,19 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "20인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 3.5 가솔린 터보 2WD 22인치휠 5인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v03::t01",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 3.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 3470,
       "displacement_l": 3.5,
@@ -5576,11 +6757,14 @@
       "seats": 5,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "22인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 3.5 가솔린 터보 AWD Black 5인승": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v02::t01",
       "master_id": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black",
+      "powertrain_seq": 2,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
@@ -5597,13 +6781,15 @@
       "match": "exact"
     },
     "GV80 3.5 가솔린 터보 2WD 20인치휠 6인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v03::t02",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 3.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 3470,
       "displacement_l": 3.5,
@@ -5612,16 +6798,19 @@
       "seats": 6,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "20인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 3.5 가솔린 터보 2WD 22인치휠 6인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v03::t02",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 3.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 3470,
       "displacement_l": 3.5,
@@ -5630,11 +6819,14 @@
       "seats": 6,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "22인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 3.5 가솔린 터보 AWD Black 6인승": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v02::t02",
       "master_id": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black",
+      "powertrain_seq": 2,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
@@ -5651,13 +6843,15 @@
       "match": "exact"
     },
     "GV80 3.5 가솔린 터보 2WD 20인치휠 7인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v03::t03",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 3.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 3470,
       "displacement_l": 3.5,
@@ -5666,16 +6860,19 @@
       "seats": 7,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "20인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 3.5 가솔린 터보 2WD 22인치휠 7인승": {
-      "trim_row_key": "mf-007.md-005.sm-jx1-pe__gv80-facelift::v03::t03",
+      "identity_level": "powertrain",
+      "trim_row_key": null,
       "master_id": "mf-007.md-005.sm-jx1-pe__gv80-facelift",
+      "powertrain_seq": 3,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
       "powertrain": "가솔린 3.5T RWD",
-      "trim": "기본형",
+      "trim": null,
       "fuel": "가솔린",
       "engine_cc": 3470,
       "displacement_l": 3.5,
@@ -5684,11 +6881,14 @@
       "seats": 7,
       "body_configuration": null,
       "usage_tier": "automatic",
-      "match": "alias_or_axis"
+      "product_configuration": "22인치휠",
+      "match": "powertrain_product_config"
     },
     "GV80 3.5 가솔린 터보 AWD Black 7인승": {
+      "identity_level": "trim",
       "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v02::t03",
       "master_id": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black",
+      "powertrain_seq": 2,
       "maker": "제네시스",
       "model": "GV80",
       "sub_model": "GV80 JX1 FL",
@@ -5706,187 +6906,6 @@
     }
   },
   "unresolved": [
-    {
-      "trim_id": "캐스퍼 1.0 가솔린 스마트",
-      "maker": "현대",
-      "model": "캐스퍼",
-      "variant": "가솔린 1.0",
-      "group": "일반",
-      "trim": "스마트",
-      "candidate_count": 4,
-      "candidates": [
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v01::t01",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "스마트",
-          "drivetrain": "FWD",
-          "seats": 4,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v02::t01",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0T FWD",
-          "trim": "스마트",
-          "drivetrain": "FWD",
-          "seats": 4,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v03::t01",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "스마트",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v04::t01",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0T FWD",
-          "trim": "스마트",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "캐스퍼 1.0 가솔린 디 에센셜",
-      "maker": "현대",
-      "model": "캐스퍼",
-      "variant": "가솔린 1.0",
-      "group": "일반",
-      "trim": "디 에센셜",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v01::t02",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "디 에센셜",
-          "drivetrain": "FWD",
-          "seats": 4,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v02::t02",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0T FWD",
-          "trim": "디 에센셜",
-          "drivetrain": "FWD",
-          "seats": 4,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "캐스퍼 1.0 가솔린 인스퍼레이션",
-      "maker": "현대",
-      "model": "캐스퍼",
-      "variant": "가솔린 1.0",
-      "group": "일반",
-      "trim": "인스퍼레이션",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v01::t03",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "인스퍼레이션",
-          "drivetrain": "FWD",
-          "seats": 4,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v02::t03",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0T FWD",
-          "trim": "인스퍼레이션",
-          "drivetrain": "FWD",
-          "seats": 4,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "캐스퍼 밴 1.0 가솔린 스마트",
-      "maker": "현대",
-      "model": "캐스퍼",
-      "variant": "가솔린 1.0",
-      "group": "밴",
-      "trim": "스마트",
-      "candidate_count": 4,
-      "candidates": [
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v01::t01",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "스마트",
-          "drivetrain": "FWD",
-          "seats": 4,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v02::t01",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0T FWD",
-          "trim": "스마트",
-          "drivetrain": "FWD",
-          "seats": 4,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v03::t01",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "스마트",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v04::t01",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0T FWD",
-          "trim": "스마트",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "캐스퍼 밴 1.0 가솔린 스마트 초이스",
-      "maker": "현대",
-      "model": "캐스퍼",
-      "variant": "가솔린 1.0",
-      "group": "밴",
-      "trim": "스마트 초이스",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v03::t02",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "스마트 초이스",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-001.md-062.sm-ax1-my2027__casper-2027::v04::t02",
-          "sub_model": "더 뉴 캐스퍼 AX1",
-          "powertrain": "가솔린 1.0T FWD",
-          "trim": "스마트 초이스",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        }
-      ]
-    },
     {
       "trim_id": "디 올 뉴 아반떼 1.6 하이브리드 Premium",
       "maker": "현대",
@@ -6188,26 +7207,6 @@
       "candidates": []
     },
     {
-      "trim_id": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD H-Pick",
-      "maker": "현대",
-      "model": "팰리세이드",
-      "variant": "가솔린 2.5 터보",
-      "group": "9인승 2WD",
-      "trim": "H-Pick",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD XRT",
-      "maker": "현대",
-      "model": "팰리세이드",
-      "variant": "가솔린 2.5 터보",
-      "group": "9인승 2WD",
-      "trim": "XRT",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
       "trim_id": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD H-Pick",
       "maker": "현대",
       "model": "팰리세이드",
@@ -6224,36 +7223,6 @@
       "variant": "가솔린 2.5 터보",
       "group": "9인승 4WD",
       "trim": "XRT",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD H-Pick",
-      "maker": "현대",
-      "model": "팰리세이드",
-      "variant": "하이브리드 2.5 터보",
-      "group": "7인승 2WD",
-      "trim": "H-Pick",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick",
-      "maker": "현대",
-      "model": "팰리세이드",
-      "variant": "하이브리드 2.5 터보",
-      "group": "7인승 4WD",
-      "trim": "H-Pick",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD H-Pick",
-      "maker": "현대",
-      "model": "팰리세이드",
-      "variant": "하이브리드 2.5 터보",
-      "group": "9인승 2WD",
-      "trim": "H-Pick",
       "candidate_count": 0,
       "candidates": []
     },
@@ -6306,198 +7275,6 @@
       "trim": "초장축 더블캡 오토 Modern",
       "candidate_count": 0,
       "candidates": []
-    },
-    {
-      "trim_id": "모닝 해치백 1.0 가솔린 트렌디",
-      "maker": "기아",
-      "model": "모닝",
-      "variant": "가솔린 1.0",
-      "group": "해치백",
-      "trim": "트렌디",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v01::t01",
-          "sub_model": "더 뉴 모닝 JA",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "트렌디",
-          "drivetrain": "FWD",
-          "seats": 5,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v02::t01",
-          "sub_model": "더 뉴 모닝 JA",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "트렌디",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "모닝 해치백 1.0 가솔린 프레스티지",
-      "maker": "기아",
-      "model": "모닝",
-      "variant": "가솔린 1.0",
-      "group": "해치백",
-      "trim": "프레스티지",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v01::t02",
-          "sub_model": "더 뉴 모닝 JA",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "프레스티지",
-          "drivetrain": "FWD",
-          "seats": 5,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v02::t02",
-          "sub_model": "더 뉴 모닝 JA",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "프레스티지",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "모닝 밴 1.0 가솔린 트렌디",
-      "maker": "기아",
-      "model": "모닝",
-      "variant": "가솔린 1.0",
-      "group": "밴",
-      "trim": "트렌디",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v01::t01",
-          "sub_model": "더 뉴 모닝 JA",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "트렌디",
-          "drivetrain": "FWD",
-          "seats": 5,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v02::t01",
-          "sub_model": "더 뉴 모닝 JA",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "트렌디",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "모닝 밴 1.0 가솔린 프레스티지",
-      "maker": "기아",
-      "model": "모닝",
-      "variant": "가솔린 1.0",
-      "group": "밴",
-      "trim": "프레스티지",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v01::t02",
-          "sub_model": "더 뉴 모닝 JA",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "프레스티지",
-          "drivetrain": "FWD",
-          "seats": 5,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-002.md-013.sm-ja-morning-2027-korea__the-2027-morning::v02::t02",
-          "sub_model": "더 뉴 모닝 JA",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "프레스티지",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "레이 해치백 1.0 가솔린 트렌디",
-      "maker": "기아",
-      "model": "레이",
-      "variant": "가솔린 1.0",
-      "group": "해치백",
-      "trim": "트렌디",
-      "candidate_count": 3,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v01::t01",
-          "sub_model": "더 뉴 기아 레이",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "트렌디",
-          "drivetrain": "FWD",
-          "seats": 5,
-          "body_configuration": "승용"
-        },
-        {
-          "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v02::t01",
-          "sub_model": "더 뉴 기아 레이",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "트렌디",
-          "drivetrain": "FWD",
-          "seats": 1,
-          "body_configuration": "1인승 밴"
-        },
-        {
-          "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v03::t01",
-          "sub_model": "더 뉴 기아 레이",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "트렌디",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": "2인승 밴"
-        }
-      ]
-    },
-    {
-      "trim_id": "레이 해치백 1.0 가솔린 프레스티지",
-      "maker": "기아",
-      "model": "레이",
-      "variant": "가솔린 1.0",
-      "group": "해치백",
-      "trim": "프레스티지",
-      "candidate_count": 3,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v01::t02",
-          "sub_model": "더 뉴 기아 레이",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "프레스티지",
-          "drivetrain": "FWD",
-          "seats": 5,
-          "body_configuration": "승용"
-        },
-        {
-          "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v02::t02",
-          "sub_model": "더 뉴 기아 레이",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "프레스티지",
-          "drivetrain": "FWD",
-          "seats": 1,
-          "body_configuration": "1인승 밴"
-        },
-        {
-          "trim_row_key": "mf-002.md-058.sm-tam-ray-gas-2027-korea__the-2027-ray::v03::t02",
-          "sub_model": "더 뉴 기아 레이",
-          "powertrain": "가솔린 1.0 FWD",
-          "trim": "프레스티지",
-          "drivetrain": "FWD",
-          "seats": 2,
-          "body_configuration": "2인승 밴"
-        }
-      ]
     },
     {
       "trim_id": "레이 밴 1.0 가솔린 트렌디",
@@ -6617,46 +7394,6 @@
       "candidates": []
     },
     {
-      "trim_id": "K9 3.3 가솔린 터보 AWD 플래티넘+베스트셀렉션1",
-      "maker": "기아",
-      "model": "K9",
-      "variant": "가솔린 3.3 터보",
-      "group": "4WD",
-      "trim": "플래티넘+베스트셀렉션1",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "K9 3.3 가솔린 터보 AWD 마스터즈+베스트셀렉션2",
-      "maker": "기아",
-      "model": "K9",
-      "variant": "가솔린 3.3 터보",
-      "group": "4WD",
-      "trim": "마스터즈+베스트셀렉션2",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "K9 3.8 가솔린 터보 AWD 플래티넘+베스트셀렉션1",
-      "maker": "기아",
-      "model": "K9",
-      "variant": "가솔린 3.8 터보",
-      "group": "4WD",
-      "trim": "플래티넘+베스트셀렉션1",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "K9 3.8 가솔린 터보 AWD 마스터즈+베스트셀렉션2",
-      "maker": "기아",
-      "model": "K9",
-      "variant": "가솔린 3.8 터보",
-      "group": "4WD",
-      "trim": "마스터즈+베스트셀렉션2",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
       "trim_id": "스포티지 1.6 가솔린 터보 2WD 블랙 에디션",
       "maker": "기아",
       "model": "스포티지",
@@ -6677,21 +7414,81 @@
       "candidates": []
     },
     {
-      "trim_id": "쏘렌토 5인승 2.5 가솔린 터보 2WD 블랙 에디션",
+      "trim_id": "쏘렌토 5인승 2.5 가솔린 터보 4WD X-Line",
       "maker": "기아",
       "model": "쏘렌토",
       "variant": "가솔린 2.5 터보",
-      "group": "5인승 2WD",
+      "group": "5인승 4WD",
+      "trim": "X-Line",
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "trim_id": "쏘렌토 5인승 2.5 가솔린 터보 4WD 블랙 에디션",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "group": "5인승 4WD",
       "trim": "블랙 에디션",
       "candidate_count": 0,
       "candidates": []
     },
     {
-      "trim_id": "쏘렌토 7인승 2.5 가솔린 터보 4WD 블랙 에디션",
+      "trim_id": "쏘렌토 6인승 2.5 가솔린 터보 2WD X-Line",
       "maker": "기아",
       "model": "쏘렌토",
       "variant": "가솔린 2.5 터보",
-      "group": "7인승 4WD",
+      "group": "6인승 2WD",
+      "trim": "X-Line",
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "trim_id": "쏘렌토 6인승 2.5 가솔린 터보 2WD 블랙 에디션",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "group": "6인승 2WD",
+      "trim": "블랙 에디션",
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "trim_id": "쏘렌토 6인승 2.5 가솔린 터보 4WD X-Line",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "group": "6인승 4WD",
+      "trim": "X-Line",
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "trim_id": "쏘렌토 6인승 2.5 가솔린 터보 4WD 블랙 에디션",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "group": "6인승 4WD",
+      "trim": "블랙 에디션",
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "trim_id": "쏘렌토 7인승 2.5 가솔린 터보 2WD X-Line",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "group": "7인승 2WD",
+      "trim": "X-Line",
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "trim_id": "쏘렌토 7인승 2.5 가솔린 터보 2WD 블랙 에디션",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "group": "7인승 2WD",
       "trim": "블랙 에디션",
       "candidate_count": 0,
       "candidates": []
@@ -6737,64 +7534,6 @@
       "candidates": []
     },
     {
-      "trim_id": "카니발 9인승 3.5 가솔린 노블레스",
-      "maker": "기아",
-      "model": "카니발",
-      "variant": "가솔린 3.5",
-      "group": "9인승",
-      "trim": "노블레스",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-036.sm-ka4-high-roof-2026__carnival-high-roof::v01::t01",
-          "sub_model": "더 뉴 카니발 하이루프 KA4",
-          "powertrain": "가솔린 3.5 FWD",
-          "trim": "하이루프 노블레스",
-          "drivetrain": "FWD",
-          "seats": 9,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-002.md-036.sm-ka4::v03::t02",
-          "sub_model": "더 뉴 카니발 KA4",
-          "powertrain": "가솔린 3.5 FWD",
-          "trim": "노블레스",
-          "drivetrain": "FWD",
-          "seats": 9,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "카니발 9인승 3.5 가솔린 시그니처",
-      "maker": "기아",
-      "model": "카니발",
-      "variant": "가솔린 3.5",
-      "group": "9인승",
-      "trim": "시그니처",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-036.sm-ka4-high-roof-2026__carnival-high-roof::v01::t02",
-          "sub_model": "더 뉴 카니발 하이루프 KA4",
-          "powertrain": "가솔린 3.5 FWD",
-          "trim": "하이루프 시그니처",
-          "drivetrain": "FWD",
-          "seats": 9,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-002.md-036.sm-ka4::v03::t03",
-          "sub_model": "더 뉴 카니발 KA4",
-          "powertrain": "가솔린 3.5 FWD",
-          "trim": "시그니처",
-          "drivetrain": "FWD",
-          "seats": 9,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
       "trim_id": "카니발 9인승 3.5 가솔린 블랙 에디션",
       "maker": "기아",
       "model": "카니발",
@@ -6823,64 +7562,6 @@
       "trim": "블랙 에디션",
       "candidate_count": 0,
       "candidates": []
-    },
-    {
-      "trim_id": "카니발 9인승 1.6 하이브리드 노블레스",
-      "maker": "기아",
-      "model": "카니발",
-      "variant": "하이브리드 1.6",
-      "group": "9인승",
-      "trim": "노블레스",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-036.sm-ka4-high-roof-2026__carnival-high-roof::v02::t01",
-          "sub_model": "더 뉴 카니발 하이루프 KA4",
-          "powertrain": "하이브리드 1.6T FWD",
-          "trim": "하이루프 노블레스",
-          "drivetrain": "FWD",
-          "seats": 9,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-002.md-036.sm-ka4::v06::t02",
-          "sub_model": "더 뉴 카니발 KA4",
-          "powertrain": "하이브리드 1.6T FWD",
-          "trim": "노블레스",
-          "drivetrain": "FWD",
-          "seats": 9,
-          "body_configuration": null
-        }
-      ]
-    },
-    {
-      "trim_id": "카니발 9인승 1.6 하이브리드 시그니처",
-      "maker": "기아",
-      "model": "카니발",
-      "variant": "하이브리드 1.6",
-      "group": "9인승",
-      "trim": "시그니처",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-002.md-036.sm-ka4-high-roof-2026__carnival-high-roof::v02::t02",
-          "sub_model": "더 뉴 카니발 하이루프 KA4",
-          "powertrain": "하이브리드 1.6T FWD",
-          "trim": "하이루프 시그니처",
-          "drivetrain": "FWD",
-          "seats": 9,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-002.md-036.sm-ka4::v06::t03",
-          "sub_model": "더 뉴 카니발 KA4",
-          "powertrain": "하이브리드 1.6T FWD",
-          "trim": "시그니처",
-          "drivetrain": "FWD",
-          "seats": 9,
-          "body_configuration": null
-        }
-      ]
     },
     {
       "trim_id": "카니발 9인승 1.6 하이브리드 블랙 에디션",
@@ -6943,16 +7624,6 @@
       "candidates": []
     },
     {
-      "trim_id": "G80 2.5 가솔린 터보 2WD 기본 모델",
-      "maker": "제네시스",
-      "model": "G80",
-      "variant": "가솔린 2.5 터보",
-      "group": "2WD",
-      "trim": "기본 모델",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
       "trim_id": "G80 2.5 가솔린 터보 AWD 기본 모델",
       "maker": "제네시스",
       "model": "G80",
@@ -6969,16 +7640,6 @@
       "variant": "가솔린 3.5 터보",
       "group": "",
       "trim": "BLACK AWB",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "G80 3.5 가솔린 터보 2WD 기본 모델",
-      "maker": "제네시스",
-      "model": "G80",
-      "variant": "가솔린 3.5 터보",
-      "group": "2WD",
-      "trim": "기본 모델",
       "candidate_count": 0,
       "candidates": []
     },
@@ -7053,12 +7714,12 @@
       "candidates": []
     },
     {
-      "trim_id": "G90 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 2WD (5인승)",
+      "trim_id": "G90 3.5 가솔린 터보 AWD (5인승)",
       "maker": "제네시스",
       "model": "G90",
       "variant": "가솔린 3.5 터보",
-      "group": "5인승 2WD",
-      "trim": "48V 일렉트릭 슈퍼차저",
+      "group": "5인승 4WD",
+      "trim": "기본형",
       "candidate_count": 0,
       "candidates": []
     },
@@ -7093,46 +7754,6 @@
       "candidates": []
     },
     {
-      "trim_id": "New GV70 2.5 가솔린 터보 2WD 기본모델",
-      "maker": "제네시스",
-      "model": "GV70",
-      "variant": "가솔린 2.5 터보",
-      "group": "2WD",
-      "trim": "기본모델",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "New GV70 2.5 가솔린 터보 AWD 기본모델",
-      "maker": "제네시스",
-      "model": "GV70",
-      "variant": "가솔린 2.5 터보",
-      "group": "4WD",
-      "trim": "기본모델",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "New GV70 3.5 가솔린 터보 2WD 기본모델",
-      "maker": "제네시스",
-      "model": "GV70",
-      "variant": "가솔린 3.5 터보",
-      "group": "2WD",
-      "trim": "기본모델",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
-      "trim_id": "New GV70 3.5 가솔린 터보 AWD 기본모델",
-      "maker": "제네시스",
-      "model": "GV70",
-      "variant": "가솔린 3.5 터보",
-      "group": "4WD",
-      "trim": "기본모델",
-      "candidate_count": 0,
-      "candidates": []
-    },
-    {
       "trim_id": "GV80 2.5 가솔린 터보 AWD with E-LSD 19인치휠 5인승",
       "maker": "제네시스",
       "model": "GV80",
@@ -7161,35 +7782,6 @@
       "trim": "with E-LSD 22인치휠",
       "candidate_count": 0,
       "candidates": []
-    },
-    {
-      "trim_id": "GV80 2.5 가솔린 터보 AWD Black 5인승",
-      "maker": "제네시스",
-      "model": "GV80",
-      "variant": "가솔린 2.5 터보",
-      "group": "5인승 4WD",
-      "trim": "Black",
-      "candidate_count": 2,
-      "candidates": [
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v01::t01",
-          "sub_model": "GV80 JX1 FL",
-          "powertrain": "가솔린 2.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 5,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1c-black-2024__gv80-coupe-black::v01::t01",
-          "sub_model": "GV80 쿠페 JX1",
-          "powertrain": "가솔린 2.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 5,
-          "body_configuration": null
-        }
-      ]
     },
     {
       "trim_id": "GV80 2.5 가솔린 터보 AWD with E-LSD 19인치휠 6인승",
@@ -7270,53 +7862,6 @@
       "trim": "with E-LSD 22인치휠",
       "candidate_count": 0,
       "candidates": []
-    },
-    {
-      "trim_id": "GV80 COUPE 2.5 가솔린 터보 AWD Black",
-      "maker": "제네시스",
-      "model": "GV80",
-      "variant": "가솔린 2.5 터보",
-      "group": "쿠페 4WD",
-      "trim": "Black",
-      "candidate_count": 4,
-      "candidates": [
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v01::t01",
-          "sub_model": "GV80 JX1 FL",
-          "powertrain": "가솔린 2.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 5,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v01::t02",
-          "sub_model": "GV80 JX1 FL",
-          "powertrain": "가솔린 2.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 6,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v01::t03",
-          "sub_model": "GV80 JX1 FL",
-          "powertrain": "가솔린 2.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 7,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1c-black-2024__gv80-coupe-black::v01::t01",
-          "sub_model": "GV80 쿠페 JX1",
-          "powertrain": "가솔린 2.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 5,
-          "body_configuration": null
-        }
-      ]
     },
     {
       "trim_id": "GV80 3.5 가솔린 터보 AWD with E-LSD 20인치휠 5인승",
@@ -7415,36 +7960,8 @@
       "variant": "가솔린 3.5 터보",
       "group": "쿠페 4WD",
       "trim": "Black",
-      "candidate_count": 3,
-      "candidates": [
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v02::t01",
-          "sub_model": "GV80 JX1 FL",
-          "powertrain": "가솔린 3.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 5,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v02::t02",
-          "sub_model": "GV80 JX1 FL",
-          "powertrain": "가솔린 3.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 6,
-          "body_configuration": null
-        },
-        {
-          "trim_row_key": "mf-007.md-005.sm-jx1-pe-black-2024__gv80-black::v02::t03",
-          "sub_model": "GV80 JX1 FL",
-          "powertrain": "가솔린 3.5T AWD",
-          "trim": "Black",
-          "drivetrain": "AWD",
-          "seats": 7,
-          "body_configuration": null
-        }
-      ]
+      "candidate_count": 0,
+      "candidates": []
     },
     {
       "trim_id": "GV80 COUPE 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 AWD Black",
