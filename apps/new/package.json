@@ -13,7 +13,8 @@
     "check:runtime": "node scripts/check-quote-execution-contract.mjs",
     "check:release": "node scripts/check-release-proof.mjs",
     "check:snapshot": "node scripts/check-share-snapshot-contract.mjs",
-    "verify": "node scripts/check-action-placement.mjs && node scripts/check-mobile-navigation-contract.mjs && node scripts/check-freepass-visual-grammar.mjs && node scripts/check-accessibility-baseline.mjs && node scripts/check-newcar-configurations.mjs && node scripts/check-standard-engine.mjs && npm run check:provider && node scripts/test-provider-routing.mjs && npm run check:runtime && npm run check:snapshot && npm run check:release && npm run check && npm run build"
+    "verify": "node scripts/check-action-placement.mjs && node scripts/check-mobile-navigation-contract.mjs && node scripts/check-freepass-visual-grammar.mjs && node scripts/check-accessibility-baseline.mjs && node scripts/check-newcar-configurations.mjs && node scripts/check-standard-engine.mjs && npm run check:provider && node scripts/test-provider-routing.mjs && npm run check:runtime && npm run check:snapshot && npm run check:release && npm run check:verification && npm run check && npm run build",
+    "check:verification": "node scripts/check-verification-manifest.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"
