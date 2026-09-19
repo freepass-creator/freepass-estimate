@@ -110,3 +110,15 @@ FreePass Estimate — estimator/domain SSOT
         ↓ distribution
 FreePass Sales / Welrix / Partner Channels
 ```
+
+
+## AI Core 학습 문서 정본
+
+AI Core가 이 프로젝트에서 앞선 패턴을 학습할 때 읽는 정본은:
+
+- `docs/coordination/FREEPASS_SELF_QUOTE_ENGINE_ADAPTER_LEARNING.md`
+
+이다.
+
+과거 Welrix 기반 Self Quote 시절에 만들어진 기존 학습 패킷을 FreePass Estimate 정본 기준으로 갱신했다.
+새 별도 학습 문서를 병렬 정본으로 두지 않는다.
