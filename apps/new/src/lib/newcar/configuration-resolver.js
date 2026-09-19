@@ -100,12 +100,23 @@ export function resolveCanonicalIdentity(trim, optionsMaster, selectedOptionIds)
 export function resolveProviderCandidate(providerCandidates, axes) {
   let candidates = [...(providerCandidates || [])];
   if (axes?.seats != null) {
-    const exact = candidates.filter((c) => c.seats == null || Number(c.seats) === Number(axes.seats));
+    const exact = candidates.filter((c) => c.seats != null && Number(c.seats) === Number(axes.seats));
     if (exact.length) candidates = exact;
+    else {
+      const generic = candidates.filter((c) => c.seats == null);
+      if (generic.length) candidates = generic;
+    }
   }
   if (axes?.drivetrain) {
-    const exact = candidates.filter((c) => candidateDriveMatches(c, axes.drivetrain));
+    const exact = candidates.filter((c) => {
+      const got = driveClass(c?.drivetrain || c?.group || '');
+      return got && candidateDriveMatches(c, axes.drivetrain);
+    });
     if (exact.length) candidates = exact;
+    else {
+      const generic = candidates.filter((c) => !driveClass(c?.drivetrain || c?.group || ''));
+      if (generic.length) candidates = generic;
+    }
   }
 
   const trimExact = candidates.filter((c) => c.trim_match === true);
