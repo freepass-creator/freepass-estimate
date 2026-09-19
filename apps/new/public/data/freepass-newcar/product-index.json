@@ -21376,7 +21376,6 @@
         "o_e51312558954",
         "o_586db2116f58",
         "o_82d1d392e140",
-        "o_33458b18edc5",
         "o_adba6d799b5f",
         "o_c2cc041ff743",
         "o_f4741aba0f76",
@@ -21388,9 +21387,7 @@
         "o_0fc4006a6c26",
         "o_01366d8e0ae0"
       ],
-      "axisOptionIds": [
-        "o_33458b18edc5"
-      ]
+      "axisOptionIds": []
     },
     "genesis_g80__가솔린_3.5_터보_2WD__스탠다드": {
       "maker": "제네시스",
@@ -21503,7 +21500,6 @@
         "o_48281133dec3",
         "o_0c02ff513bcf",
         "o_17acf5d151e4",
-        "o_645945f54527",
         "o_9ae61400d785",
         "o_47b02d86c980",
         "o_7fe5f9709806",
@@ -21627,8 +21623,6 @@
         "o_8d02c650a098",
         "o_74b1013a4d0a",
         "o_da321e4552df",
-        "o_03b42131d1c3",
-        "o_deba0e5d2026",
         "o_20277fae56d5",
         "o_831e4cb7fa78",
         "o_557c4b26b548",
@@ -21638,9 +21632,7 @@
         "o_31f7195990ea",
         "o_0a1dc307f9ce"
       ],
-      "axisOptionIds": [
-        "o_03b42131d1c3"
-      ]
+      "axisOptionIds": []
     },
     "genesis_g80-ev": {
       "maker": "제네시스",
@@ -21818,7 +21810,6 @@
         "o_bf7271d84eb6",
         "o_6b45440f5c1b",
         "o_bd16a46c1e10",
-        "o_878f63c7f582",
         "o_77323f488935",
         "o_8153996aea89",
         "o_69f32ecf3314",
@@ -21830,9 +21821,7 @@
         "o_0977e9e916f1",
         "o_6b7237801a09"
       ],
-      "axisOptionIds": [
-        "o_878f63c7f582"
-      ]
+      "axisOptionIds": []
     },
     "genesis_gv60": {
       "maker": "제네시스",
@@ -22077,16 +22066,13 @@
         "o_410ec49425f0",
         "o_ccacb406c60f",
         "o_28b602fd8c71",
-        "o_8d40bbdfc410",
         "o_8dd4784d919b",
         "o_537cd4983bd7",
         "o_15f9e37f388d",
         "o_68ae33654550",
         "o_896409ef4982"
       ],
-      "axisOptionIds": [
-        "o_8d40bbdfc410"
-      ]
+      "axisOptionIds": []
     },
     "genesis_gv70-ev": {
       "maker": "제네시스",
@@ -22390,23 +22376,15 @@
       ],
       "availableOptions": [
         "o_482667ee53b0",
-        "o_fa2436b95c6a",
         "o_53edb8d22876",
         "o_cfaae1b7b6fe",
         "o_e4d7f721a863",
-        "o_fab279bfdd74",
-        "o_0efa78cf27c0",
         "o_d6909e1c0ba9",
-        "o_65d1e2210894",
-        "o_78f0b9b77ff8",
-        "o_272877fe94d5",
-        "o_dc306c550bce",
         "o_eb1a21710016"
       ],
       "axisOptionIds": [
         "o_482667ee53b0",
-        "o_53edb8d22876",
-        "o_78f0b9b77ff8"
+        "o_53edb8d22876"
       ]
     },
     "genesis_gv80__가솔린_2.5_터보_2WD_후륜___스탠다드": {
@@ -22864,15 +22842,13 @@
         "o_44ac33dfce54",
         "o_0f7c6fde410a",
         "o_6f68afc122b6",
-        "o_24ff66377e6a",
         "o_ab8b7058201b",
         "o_0194a1525773",
         "o_0c300671d71a"
       ],
       "axisOptionIds": [
         "o_ec4c639442ae",
-        "o_b8b84f49348e",
-        "o_24ff66377e6a"
+        "o_b8b84f49348e"
       ]
     },
     "genesis_gv80__가솔린_3.5_터보__블랙": {
@@ -23126,23 +23102,15 @@
       ],
       "availableOptions": [
         "o_c353e94a9e74",
-        "o_e7f9cd0d1ce7",
         "o_d185ef7cb4a5",
         "o_b64e7671d8e2",
         "o_58215a8e131f",
-        "o_06be3f66e08a",
-        "o_4eb4f434c2d1",
         "o_9458e9535be1",
-        "o_92b9edb0c5c6",
-        "o_cfd7fbfea3b9",
-        "o_024464b97bf3",
-        "o_4f64e82a9605",
         "o_47c290f9f4ab"
       ],
       "axisOptionIds": [
         "o_c353e94a9e74",
-        "o_d185ef7cb4a5",
-        "o_cfd7fbfea3b9"
+        "o_d185ef7cb4a5"
       ]
     },
     "genesis_gv80__가솔린_3.5_터보_2WD_후륜___스탠다드": {
@@ -23600,15 +23568,13 @@
         "o_948ac0c34bb2",
         "o_9a3c5d44322a",
         "o_983dbbb951ef",
-        "o_d00768c5bd2b",
         "o_97348257f7e2",
         "o_611656de7353",
         "o_c703b3343da8"
       ],
       "axisOptionIds": [
         "o_8511911b710f",
-        "o_970e0b6f06b5",
-        "o_d00768c5bd2b"
+        "o_970e0b6f06b5"
       ]
     },
     "HEJJ5HDT2": {
