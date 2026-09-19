@@ -37,6 +37,9 @@ jobs:
       - name: Action placement standard
         working-directory: apps/new
         run: node scripts/check-action-placement.mjs
+      - name: Mobile navigation contract
+        working-directory: apps/new
+        run: node scripts/check-mobile-navigation-contract.mjs
       - name: FreePass visual grammar
         working-directory: apps/new
         run: node scripts/check-freepass-visual-grammar.mjs
