@@ -1,6 +1,7 @@
 // wel2 견적 모듈 — wel 의 데이터/로직 활용 + estimator_4 톤
-import { calcQuote, setCompanyConfig } from './src/lib/calc.js';
-import { buildCalcInput } from './src/lib/build-calc-input.js';
+import { setCompanyConfig } from './src/lib/calc.js';
+import { 요청만들기 } from './src/lib/quote/build-request.js';
+import { 견적계산 } from './src/lib/quote/calculate.js';
 // 룩업 데이터 SSOT — Vue 컴포넌트와 공유 (이전에는 quote.js 에 박혀있고 window.__welrix_data 로 노출,
 // 모듈 로드 순서로 컴포넌트가 빈 옵션 보던 문제 → 직접 import 으로 해결)
 import {
@@ -183,47 +184,87 @@ window.__welrix_onPriceChange = (data) => {
 function renderSummary() { /* Vue가 처리 */ }
 
 
+let __quoteSeq = 0;
+let __quoteTimer = null;
+
+function 결과를화면형식으로(답, 안들) {
+  return 안들.map((sc, idx) => {
+    const g = 답.결과[idx];
+    return {
+      idx,
+      term: sc.기간,
+      dep: sc.보증금,
+      pre: sc.선납,
+      monthly: g?.월대여료 ?? null,
+      residualAmt: g?.인수가 ?? null,
+      residualPct: (g?.인수가 != null && g?.총차량가) ? g.인수가 / g.총차량가 : null,
+      depAmt: g?.보증금 ?? null,
+      preAmt: g?.선납금 ?? null,
+    };
+  });
+}
+
 function recompute() {
-  // 부분 선택이어도 요약은 즉시 반영
   renderSummary();
+  clearTimeout(__quoteTimer);
+  const 내순번 = ++__quoteSeq;
+
   if (!state.vehicle || !state.vehicle.total_manwon) {
     renderEmpty();
     return;
   }
+
+  // 연속 입력은 마지막 값만 provider에 보낸다. UI 반응은 즉시 유지한다.
+  __quoteTimer = setTimeout(() => recomputeProvider(내순번), 150);
+}
+
+async function recomputeProvider(내순번) {
+  const 요청 = 요청만들기();
+  if (!요청) { renderEmpty(); return; }
+
   const v = state.vehicle;
-  // 표시용 비용 (견적서 렌더링) — calc 입력 조립은 buildCalcInput(SSOT) 가 담당
   const tintPrice = TINT_PRICES[state.tint.product] || {};
-  const tintFee = [...state.tint.areas].reduce((s, k) => s + (tintPrice[k] || 0), 0);
+  const tintFee = [...state.tint.areas].reduce((sum, k) => sum + (tintPrice[k] || 0), 0);
   const deliveryFee = FLAT_DELIVERY[state.cond.deliveryCity] || 0;
   const blackboxFee = ACCESSORIES.blackbox[state.extras.blackbox] || 0;
   const naviFee = ACCESSORIES.navi[state.extras.navi] || 0;
   const hipassFee = ACCESSORIES.hipass[state.extras.hipass] || 0;
-  const itemsFee = tintFee + blackboxFee + naviFee + hipassFee;  // 견적서 표시용(내비/하이패스 포함)
+  const itemsFee = tintFee + blackboxFee + naviFee + hipassFee;
   const totalKrw = v.total_manwon * 10000 + state.cond.colorIntPrice;
 
-  function runScenario(sc) {
-    // 모바일·홈과 100% 동일한 입력 조립 (strategic 전달, 내비/하이패스 calc 제외 등 전부 SSOT 일원화)
-    const r = calcQuote(buildCalcInput(state, sc, VEHICLES));
-    return { term: sc.term, dep: sc.dep, pre: sc.pre,
-             monthly: r.monthly, residualAmt: r.residualAmt, residualPct: r.residualPct,
-             depAmt: r.depositAmt, preAmt: r.prePayAmt };
-  }
-
-  const monthly = state.scenarios.map((sc, idx) => ({ idx, ...runScenario(sc) }));
-  // 기본 견적 — 60/48/36 × 현재 cond.dep/pre (위쪽 조건 폼 따라 일괄 변경)
   const refDep = +state.cond.dep || 0;
   const refPre = +state.cond.pre || 0;
   const REF_SCENARIOS = [
-    { term: 60, dep: refDep, pre: refPre },
-    { term: 48, dep: refDep, pre: refPre },
-    { term: 36, dep: refDep, pre: refPre },
+    { 기간: 60, 보증금: refDep, 선납: refPre },
+    { 기간: 48, 보증금: refDep, 선납: refPre },
+    { 기간: 36, 보증금: refDep, 선납: refPre },
   ];
-  const referenceMonthly = REF_SCENARIOS.map((sc, idx) => ({ idx, ...runScenario(sc) }));
+  const referenceRequest = { ...요청, 안들: REF_SCENARIOS };
 
-  // Vue TermsGrid / ReferenceGrid 가 reactive 읽음
-  state.monthly = monthly;
-  state.referenceMonthly = referenceMonthly;
-  renderQuoteDoc(monthly, totalKrw, tintFee, deliveryFee, itemsFee - tintFee);
+  try {
+    const [답, 기준답] = await Promise.all([
+      견적계산(요청),
+      견적계산(referenceRequest),
+    ]);
+    if (내순번 !== __quoteSeq) return;
+
+    const monthly = 결과를화면형식으로(답, 요청.안들);
+    const referenceMonthly = 결과를화면형식으로(기준답, REF_SCENARIOS);
+
+    state.monthly = monthly;
+    state.referenceMonthly = referenceMonthly;
+    state.quoteProvider = 답.공급자;
+    state.quoteEngine = 답.계산기;
+    renderQuoteDoc(monthly, totalKrw, tintFee, deliveryFee, itemsFee - tintFee);
+  } catch (e) {
+    if (내순번 !== __quoteSeq) return;
+    console.error('[quote-provider]', e);
+    state.monthly = [];
+    state.referenceMonthly = [];
+    const doc = $('quote-doc');
+    if (doc) doc.innerHTML = '<div class="quote-doc__empty">지금은 견적을 계산할 수 없습니다.<br><small>' +
+      String(e?.message || e) + '</small></div>';
+  }
 }
 
 // 외부(Vue 컴포넌트)에서 호출 가능하도록 노출
@@ -936,14 +977,10 @@ ${url}
     if (!state.vehicle) return alert('차량을 먼저 선택하세요');
     const v = state.vehicle;
     const totalKrw = v.total_manwon * 10000 + state.cond.colorIntPrice;
-    const monthly = [];  // 텍스트만 위한 재계산은 생략 (기존 결과 활용)
-    // 단순화 — recompute() 결과 활용 위해 quote-doc 의 데이터 추출 또는 재호출
-    // 빠른 fix — 텍스트 다시 계산
-    state.scenarios.forEach((sc, idx) => {
-      // 화면 견적(recompute)과 동일 로직 — 과거엔 itemsFee=tintFee(블박/strategic 누락)라 텍스트가 화면과 달랐음(버그 교정)
-      const r = calcQuote(buildCalcInput(state, sc, VEHICLES));
-      monthly.push({ idx, term: sc.term, dep: sc.dep, pre: sc.pre, monthly: r.monthly, residualAmt: r.residualAmt });
-    });
+    // 화면에 확정된 provider 결과를 그대로 쓴다.
+    // 텍스트 복사 때 다시 계산하면 Excel/ERP 응답과 화면 금액이 달라질 수 있다.
+    const monthly = (state.monthly || []).map((m) => ({ ...m }));
+    if (!monthly.length) return alert('견적 계산이 완료된 후 복사해 주세요.');
     const text = buildPlainText(monthly, totalKrw);
     try { await navigator.clipboard.writeText(text); alert('견적 텍스트가 복사되었습니다.'); }
     catch { alert('복사 실패'); }
