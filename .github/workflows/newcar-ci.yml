@@ -24,6 +24,22 @@ jobs:
         working-directory: apps/new
     steps:
       - uses: actions/checkout@v4
+      - name: Checkout pinned Welrix UI reference
+        uses: actions/checkout@v4
+        with:
+          repository: freepass-creator/welrixtable
+          ref: 707a57f8f97aed28eaab7f1fa7e42cd0bff9ee2d
+          path: .ui-reference
+          persist-credentials: false
+      - name: UI parity — web/mobile structure must match pinned Welrix
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          diff -u .ui-reference/index.html apps/new/index.html
+          diff -u .ui-reference/mobile.html apps/new/mobile.html
+          diff -qr .ui-reference/src/components apps/new/src/components
+          diff -qr .ui-reference/src/styles apps/new/src/styles
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
