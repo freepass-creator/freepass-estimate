@@ -1,3 +1,5 @@
+import { SHARE_SNAPSHOT_CONTRACT, CURRENT_SHARE_SNAPSHOT_VERSION, LEGACY_SHARE_SNAPSHOT_VERSION, QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_EXECUTION_CONTRACT } from './quote/contracts.js';
+
 // ============================================================================
 //  공유 링크 — «고른 것 + 확정 견적 Snapshot» 을 주소에 담는다
 // ----------------------------------------------------------------------------
@@ -40,7 +42,9 @@ function 디코드(글) {
 }
 
 function 안전한스냅샷(값) {
-  if (!값 || 값.v !== 1 || !Array.isArray(값.terms) || !값.terms.length) return null;
+  const legacy = 값?.v === LEGACY_SHARE_SNAPSHOT_VERSION && !값?.contract;
+  const current = 값?.v === CURRENT_SHARE_SNAPSHOT_VERSION && 값?.contract === SHARE_SNAPSHOT_CONTRACT;
+  if (!값 || (!legacy && !current) || !Array.isArray(값.terms) || !값.terms.length) return null;
   const terms = 값.terms
     .filter((x) => x && Number.isFinite(+x.term))
     .map((x) => ({
@@ -58,7 +62,13 @@ function 안전한스냅샷(값) {
   const c = 값.conditions || {};
   const car = 값.vehicle || {};
   return {
-    v: 1,
+    v: current ? CURRENT_SHARE_SNAPSHOT_VERSION : LEGACY_SHARE_SNAPSHOT_VERSION,
+    contract: current ? SHARE_SNAPSHOT_CONTRACT : null,
+    quoteContract: current && typeof 값.quoteContract === 'string' ? 값.quoteContract : null,
+    resultContract: current && typeof 값.resultContract === 'string' ? 값.resultContract : null,
+    executionContract: current && typeof 값.executionContract === 'string' ? 값.executionContract : null,
+    sourceRevision: current && /^[0-9a-f]{40}$/i.test(값.sourceRevision || '') ? 값.sourceRevision : null,
+    providerMode: current && ['standard','external','forced'].includes(값.providerMode) ? 값.providerMode : null,
     at: typeof 값.at === 'string' ? 값.at : null,
     engine: typeof 값.engine === 'string' ? 값.engine : '웰릭스',
     vehiclePrice: 값.vehiclePrice != null && Number.isFinite(+값.vehiclePrice) ? +값.vehiclePrice : null,
@@ -106,8 +116,18 @@ function 스냅샷만들기(quoteState, 견적상태) {
 
   const c = quoteState?.cond || {};
   const car = quoteState?.vehicle || {};
+  const providerKey = String(견적상태.공급자 || '');
+  const providerMode = providerKey.startsWith('external:') ? 'external'
+    : providerKey.startsWith('forced:') ? 'forced'
+      : providerKey === 'standard' ? 'standard' : null;
   return {
-    v: 1,
+    v: CURRENT_SHARE_SNAPSHOT_VERSION,
+    contract: SHARE_SNAPSHOT_CONTRACT,
+    quoteContract: 견적상태.계약?.request || QUOTE_REQUEST_CONTRACT,
+    resultContract: 견적상태.계약?.result || QUOTE_RESULT_CONTRACT,
+    executionContract: 견적상태.계약?.execution || QUOTE_EXECUTION_CONTRACT,
+    sourceRevision: 견적상태.실행?.subject_revision || null,
+    providerMode,
     at: new Date().toISOString(),
     engine: 견적상태.계산기 || '웰릭스',
     vehiclePrice: 견적상태.차량가 ?? null,
