@@ -40,6 +40,8 @@ jobs:
           node --check src/lib/quote/engines/external.js
           node --check api/external-quote.js
           node --check quote.js
+      - name: Provider contract
+        run: npm run check:provider
       - name: Existing sync checks
         run: npm run check
       - name: Production build
