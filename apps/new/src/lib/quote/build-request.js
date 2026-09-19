@@ -60,6 +60,9 @@ export function 요청만들기() {
         내장색,
         할인,
         표준계산차량가,
+        기준전: Number(v._price_before_won ?? v._trim_meta?._price_before_won ?? 0),
+        기준후: Number(v._price_after_won ?? v._trim_meta?._price_after_won ?? 0),
+        기준명: v._price_basis ?? v._trim_meta?._price_basis ?? '',
       },
       구성: {
         기본축: v._base_axes || {},
