@@ -3,6 +3,7 @@ import { setCompanyConfig } from './src/lib/calc.js';
 import { 요청만들기 } from './src/lib/quote/build-request.js';
 import { applyProductTheme } from './src/lib/brand-theme.js';
 import { 견적계산 } from './src/lib/quote/calculate.js';
+import { resolveCanonicalIdentity } from './src/lib/newcar/configuration-resolver.js';
 // 룩업 데이터 SSOT — Vue 컴포넌트와 공유 (이전에는 quote.js 에 박혀있고 window.__welrix_data 로 노출,
 // 모듈 로드 순서로 컴포넌트가 빈 옵션 보던 문제 → 직접 import 으로 해결)
 import {
@@ -175,7 +176,22 @@ function renderTintChips() {
 
 // ============ estimator_4 가격 변경 hook ============
 window.__welrix_onPriceChange = (data) => {
-  state.vehicle = data;
+  const canonical = data?._trim_meta
+    ? resolveCanonicalIdentity(data._trim_meta, data._options_master || {}, data._selected_option_ids || [])
+    : null;
+  const can = canonical?.candidate || null;
+  state.vehicle = {
+    ...data,
+    _canonical: canonical,
+    _src: can ? {
+      brand: data.brand,
+      model: data.model,
+      trim: can.trim || data.trim_name,
+      disp: can.engine_cc || data.displacement_cc,
+      fuel: can.fuel || data.fuel,
+      multi_seat: can.seats && Number(can.seats) > 5 ? '다인승' : undefined,
+    } : null,
+  };
   recompute();
 };
 
