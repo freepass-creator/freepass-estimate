@@ -269,24 +269,10 @@ async function shareSignLink() {
 
 <template>
   <div class="m-shell">
-    <!-- 헤더 — 좌측: CI + 페이지 타이틀, 우측: 발송 -->
+    <!-- 상단은 표시 전용: 브랜드/제목/상태만. CTA는 하단 액션 영역만 사용. -->
     <header class="m-header">
       <div class="m-header__brand">
-        <button type="button" class="m-brand" @click="goHome" title="처음으로">
-          {{ 헤더브랜드 }}
-        </button>
-      </div>
-      <div class="m-header__actions">
-        <button class="m-act" :disabled="!견적준비됨" @click="공유하기"
-                :title="견적준비됨 ? '이 견적 링크 공유' : '견적 계산이 끝나면 공유할 수 있습니다'">
-          <i class="ph" :class="공유됨 ? 'ph-check-circle' : 'ph-share-network'"></i>
-          <span>{{ 공유됨 ? '복사됨' : '공유' }}</span>
-        </button>
-        <!-- 견적 발송은 담당자만 — 손님에게는 공유가 그 자리다 -->
-        <button v-if="담당자" class="m-act m-act--primary" :disabled="!견적준비됨" @click="openSend">
-          <i class="ph ph-paper-plane-tilt"></i>
-          <span>견적발송</span>
-        </button>
+        <span class="m-brand">{{ 헤더브랜드 }}</span>
       </div>
     </header>
 
@@ -326,18 +312,19 @@ async function shareSignLink() {
           :disabled="!canProceed"
           @click="next"
         >{{ STEPS[stepIdx + 1]?.key === 'result' ? '견적 보기' : '다음' }}<i class="ph ph-arrow-right"></i></button>
-        <button
-          v-else-if="stepIdx === STEPS.length - 1 && 담당자"
-          class="m-btn m-btn--primary"
-          :disabled="!견적준비됨"
-          @click="openSend"
-        ><i class="ph ph-paper-plane-tilt"></i>견적 발송</button>
-        <button
-          v-else-if="stepIdx === STEPS.length - 1"
-          class="m-btn m-btn--primary"
-          :disabled="!견적준비됨 || 공유중"
-          @click="공유하기"
-        ><i class="ph ph-share-network"></i>{{ 공유중 ? '준비 중…' : (공유됨 ? '공유됨' : '이 견적 공유하기') }}</button>
+        <template v-else-if="stepIdx === STEPS.length - 1">
+          <button
+            class="m-btn m-btn--soft"
+            :disabled="!견적준비됨 || 공유중"
+            @click="공유하기"
+          ><i class="ph ph-share-network"></i>{{ 공유중 ? '준비 중…' : (공유됨 ? '공유됨' : '공유') }}</button>
+          <button
+            v-if="담당자"
+            class="m-btn m-btn--primary"
+            :disabled="!견적준비됨"
+            @click="openSend"
+          ><i class="ph ph-paper-plane-tilt"></i>견적 발송</button>
+        </template>
       </template>
     </footer>
 
@@ -348,7 +335,7 @@ async function shareSignLink() {
 <style scoped>
 /* 상단 브랜드 한 줄 — 로고 대신 글자로 (대표 2026-09-17) */
 .m-brand {
-  border: 0; background: none; padding: 0; cursor: pointer;
+  display: inline-flex; align-items: center;
   font: inherit; font-size: var(--fs-md); font-weight: 700; letter-spacing: -0.3px;
   color: var(--brand); white-space: nowrap;
 }
@@ -390,25 +377,6 @@ async function shareSignLink() {
   letter-spacing: -0.3px; white-space: nowrap;
   overflow: hidden; text-overflow: ellipsis;
 }
-.m-header__actions {
-  display: flex; gap: 6px; flex-shrink: 0;
-}
-.m-act {
-  display: inline-flex; align-items: center; gap: 5px;
-  height: var(--h-chip); padding: 0 6px;
-  background: transparent;
-  color: var(--brand);
-  border: 0;
-  font-family: inherit; font-size: var(--fs-md); font-weight: var(--fw-semi);
-  cursor: pointer; transition: opacity .12s;
-  letter-spacing: -0.2px;
-}
-.m-act i { font-size: var(--fs-lg); }
-.m-act:disabled {
-  color: var(--ink-4);
-  cursor: not-allowed;
-}
-.m-act:not(:disabled):active { opacity: 0.6; }
 
 .m-progress {
   display: flex; gap: 4px;
