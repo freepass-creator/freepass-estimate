@@ -35,6 +35,9 @@ jobs:
 
           cp .upstream-welrix/index.html apps/new/index.html
           cp .upstream-welrix/mobile.html apps/new/mobile.html
+          cp .upstream-welrix/home.html apps/new/home.html
+          cp .upstream-welrix/vehicles.html apps/new/vehicles.html
+          cp .upstream-welrix/guide.html apps/new/guide.html
           cp .upstream-welrix/quote.js apps/new/quote.js
           cp .upstream-welrix/package.json apps/new/package.json
           cp .upstream-welrix/package-lock.json apps/new/package-lock.json
