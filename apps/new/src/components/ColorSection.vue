@@ -21,11 +21,18 @@ function guessColor(name) {
 // 외장 색상 옵션은 store에서 (모델 변경시 자동 갱신)
 const extOptions = computed(() => vehicleState.exteriorColorOptions || []);
 
-// 내장 색상 옵션은 고정 + swatch 자동 계산
-const intOptions = computed(() => COLOR_INT.map((c) => {
-  const name = c.label.split(/[\s(]/)[0].trim();
-  return { ...c, swatch: c.value.startsWith('|') ? null : guessColor(name) };
-}));
+// 내장 색상 — FreePass 신차 상품마스터의 트림별 제조사 색상이 우선.
+const intOptions = computed(() => {
+  const dynamic = vehicleState.interiorColorOptions || [];
+  if (dynamic.length) return [
+    { value: '|0', label: '내장 선택', swatch: null },
+    ...dynamic,
+  ];
+  return COLOR_INT.map((c) => {
+    const name = c.label.split(/[\s(]/)[0].trim();
+    return { ...c, swatch: c.value.startsWith('|') ? null : guessColor(name) };
+  });
+});
 
 const extValue = computed({
   get: () => vehicleState.color != null ? String(vehicleState.color) : '',
@@ -36,7 +43,7 @@ const intCurrentValue = computed(() => {
   // 현재 선택 매칭: state.cond.colorInt만 보고 value 찾음
   const name = quoteState.cond.colorInt;
   if (!name) return '';
-  return COLOR_INT.find((c) => c.value.startsWith(name + '|'))?.value || '';
+  return intOptions.value.find((c) => c.value.startsWith(name + '|'))?.value || '';
 });
 
 function onIntChange(value) {
