@@ -1,0 +1,46 @@
+name: New-car baseline CI
+
+on:
+  push:
+    branches:
+      - work/ui-baseline
+    paths:
+      - 'apps/new/**'
+      - '.github/workflows/newcar-ci.yml'
+  pull_request:
+    paths:
+      - 'apps/new/**'
+      - '.github/workflows/newcar-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/new
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/new/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Syntax check provider files
+        run: |
+          node --check src/lib/quote/provider-config.js
+          node --check src/lib/quote/calculate.js
+          node --check src/lib/quote/build-request.js
+          node --check src/lib/quote/engines/freepass-standard.js
+          node --check src/lib/quote/engines/external.js
+          node --check api/external-quote.js
+          node --check quote.js
+      - name: Existing sync checks
+        run: npm run check
+      - name: Production build
+        run: npm run build
