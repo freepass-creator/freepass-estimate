@@ -50,6 +50,8 @@ jobs:
           node --check src/lib/quote/engines/external.js
           node --check api/external-quote.js
           node --check quote.js
+      - name: Representative vehicle configuration
+        run: node scripts/check-newcar-configurations.mjs
       - name: Provider contract
         run: npm run check:provider
       - name: Existing sync checks
