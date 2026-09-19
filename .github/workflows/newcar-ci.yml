@@ -43,6 +43,9 @@ jobs:
       - name: FreePass visual grammar
         working-directory: apps/new
         run: node scripts/check-freepass-visual-grammar.mjs
+      - name: Accessibility baseline
+        working-directory: apps/new
+        run: node scripts/check-accessibility-baseline.mjs
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
