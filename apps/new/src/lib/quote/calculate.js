@@ -1,6 +1,7 @@
 import { 요청검사, 결과검사 } from './spec.js';
 import { 공급자설정, 공급자키 } from './provider-config.js';
 import { createQuoteExecution, attachQuoteExecution } from './execution-result.js';
+import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT, QUOTE_EXECUTION_CONTRACT, buildRevision } from './contracts.js';
 import * as 표준 from './engines/freepass-standard.js';
 import * as 외부 from './engines/external.js';
 
@@ -49,13 +50,19 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
       ...답,
       계산기: 계산기.이름,
       공급자: providerKey,
+      계약: {
+        request: 요청?.계약 || QUOTE_REQUEST_CONTRACT,
+        result: 답?.결과계약 || QUOTE_RESULT_CONTRACT,
+        provider: 답?.공급자계약 || QUOTE_PROVIDER_CONTRACT,
+        execution: QUOTE_EXECUTION_CONTRACT,
+      },
       실행: createQuoteExecution({
         status: 'SUCCEEDED',
         provider: providerKey,
         engine: 계산기.이름,
         startedAt,
         endedAt: new Date().toISOString(),
-        revision: globalThis.__FREEPASS_REVISION__ || null,
+        revision: buildRevision(),
         evidence: [`QUOTE_PROVIDER:${providerKey}`],
         checks: [
           { name: 'quote-request-contract', status: 'PASS' },
@@ -74,7 +81,7 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
         engine: 이름 ? 계산기들[이름]?.이름 || 이름 : null,
         startedAt,
         endedAt: new Date().toISOString(),
-        revision: globalThis.__FREEPASS_REVISION__ || null,
+        revision: buildRevision(),
         evidence: providerKey ? [`QUOTE_PROVIDER:${providerKey}`] : [],
         checks: [
           { name: 'quote-request-contract', status: error.code === 'QUOTE_REQUEST_INVALID' ? 'FAIL' : 'PASS' },
