@@ -34,6 +34,9 @@ jobs:
       - name: UI parity — visible structure/style must match pinned Welrix
         working-directory: apps/new
         run: node scripts/check-ui-parity.mjs
+      - name: Action placement standard
+        working-directory: apps/new
+        run: node scripts/check-action-placement.mjs
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
