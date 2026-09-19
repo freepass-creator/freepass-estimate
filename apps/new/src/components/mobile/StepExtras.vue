@@ -189,7 +189,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   display: flex; flex-direction: column; gap: 4px;
   padding: 14px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: var(--r-card);
   text-align: left;
   font-family: inherit; cursor: pointer;
@@ -198,21 +198,21 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
 .se-card__sub { font-size: var(--fs-sm); color: var(--ink-3); }
 .se-card:active { background: var(--brand-50); }
 .se-card.is-selected { background: var(--brand-50); }
-.se-card.is-selected .se-card__label { color: var(--brand); }
+.se-card.is-selected .se-card__label { color: var(--brand); font-weight: var(--fw-bold); }
 
 /* chip (보험/운전자) */
 .se-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .se-chip {
   padding: 10px 14px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: var(--r-chip);
   font-family: inherit; font-size: var(--fs-base); font-weight: var(--fw-medium);
   color: var(--ink-2); cursor: pointer;
 }
 .se-chip:active { background: var(--brand-50); }
 .se-chip.is-selected {
-  background: var(--brand); border-color: transparent; color: #fff;
+  background: var(--brand-50); color: var(--brand); font-weight: var(--fw-bold);
 }
 
 /* native select — 모바일 친화 (iOS/Android picker) */
@@ -273,7 +273,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
   padding: 10px 12px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: 10px;
   font-family: inherit; cursor: pointer;
 }
@@ -286,5 +286,5 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
 .se-tint-area.is-selected {
   background: var(--brand-50);
 }
-.se-tint-area.is-selected .se-tint-area__label { color: var(--brand); }
+.se-tint-area.is-selected .se-tint-area__label { color: var(--brand); font-weight: var(--fw-bold); }
 </style>
