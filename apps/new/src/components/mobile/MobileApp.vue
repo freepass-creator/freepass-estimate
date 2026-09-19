@@ -322,14 +322,16 @@ async function shareSignLink() {
           <i class="ph ph-arrow-left"></i><span v-if="!견적보기보임">이전</span>
         </button>
         <button v-if="견적보기보임" class="m-btn m-btn--soft" @click="견적보기">견적 보기</button>
-        <button
-          v-show="하단내비.showNext"
-          class="m-btn m-btn--primary"
-          :disabled="!canProceed"
-          @click="next"
-          :data-nav-mode="하단내비.mode"
-        >{{ 하단내비.nextLabel }}<i class="ph ph-arrow-right"></i></button>
-        <template v-else-if="stepIdx === STEPS.length - 1">
+        <template v-if="stepIdx < STEPS.length - 1">
+          <button
+            v-show="하단내비.showNext"
+            class="m-btn m-btn--primary"
+            :disabled="!canProceed"
+            @click="next"
+            :data-nav-mode="하단내비.mode"
+          >{{ 하단내비.nextLabel }}<i class="ph ph-arrow-right"></i></button>
+        </template>
+        <template v-else>
           <button
             class="m-btn m-btn--soft"
             :disabled="!견적준비됨 || 공유중"
