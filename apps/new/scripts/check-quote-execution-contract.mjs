@@ -40,6 +40,7 @@ need(success.계약?.request === QUOTE_REQUEST_CONTRACT, 'request contract prove
 need(success.계약?.result === QUOTE_RESULT_CONTRACT, 'result contract provenance missing');
 need(success.계약?.provider === QUOTE_PROVIDER_CONTRACT, 'provider contract provenance missing');
 need(success.실행?.status === 'SUCCEEDED', 'success status missing');
+need(success.실행?.request_id?.startsWith('quote-'), 'success request id missing');
 need(success.실행?.provider === 'standard', 'provider proof missing');
 need(success.실행?.checks?.some((x) => x.name === 'quote-result-contract' && x.status === 'PASS'), 'result check proof missing');
 
@@ -58,6 +59,7 @@ try {
 need(failed, 'provider failure must throw');
 need(failed.code === 'PROVIDER_UNAVAILABLE', 'provider error code not preserved');
 need(failed.quoteExecution?.status === 'FAILED', 'failure execution proof missing');
+need(failed.quoteExecution?.request_id?.startsWith('quote-'), 'failure request id missing');
 need(failed.quoteExecution?.blockers?.includes('PROVIDER_UNAVAILABLE'), 'failure blocker missing');
 
 console.log('quote execution contract: PASS');
