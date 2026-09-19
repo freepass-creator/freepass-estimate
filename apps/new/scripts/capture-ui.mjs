@@ -12,7 +12,9 @@ async function snap(page,name){
   console.log('CAPTURE',name,page.url());
 }
 async function assertNoVehicleNext(page,label){
+  const all=page.locator('footer.m-footer .m-btn--primary');
   const visible=page.locator('footer.m-footer .m-btn--primary:visible');
+  if(!(await all.count())) throw new Error(label+': Next must remain mounted/prepared in the footer contract');
   if(await visible.count()) throw new Error(label+': single-choice screen must not show a visible Next primary button');
 }
 
