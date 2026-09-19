@@ -284,8 +284,8 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
-        "body_configuration": ""
+        "seats": 5,
+        "body_configuration": "승용"
       },
       "canonicalCandidates": [
         {
@@ -494,8 +494,8 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
-        "body_configuration": ""
+        "seats": 5,
+        "body_configuration": "승용"
       },
       "canonicalCandidates": [
         {
@@ -1186,8 +1186,8 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
-        "body_configuration": ""
+        "seats": 5,
+        "body_configuration": "승용"
       },
       "canonicalCandidates": [
         {
@@ -2324,8 +2324,8 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
-        "body_configuration": ""
+        "seats": 5,
+        "body_configuration": "승용"
       },
       "canonicalCandidates": [
         {
@@ -2534,7 +2534,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -2672,7 +2672,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -2972,7 +2972,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -3270,7 +3270,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -22240,7 +22240,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -22502,7 +22502,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -22735,7 +22735,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -22966,7 +22966,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -23228,7 +23228,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -23461,7 +23461,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -37350,7 +37350,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -37978,7 +37978,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -38601,7 +38601,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -39229,7 +39229,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -39854,7 +39854,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -40482,7 +40482,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -41105,7 +41105,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -41733,7 +41733,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -42358,7 +42358,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -42986,7 +42986,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -43609,7 +43609,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -44237,7 +44237,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -44862,7 +44862,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -45490,7 +45490,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -46113,7 +46113,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -46741,7 +46741,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -47366,7 +47366,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -47994,7 +47994,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -48617,7 +48617,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -49245,7 +49245,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -49870,7 +49870,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -50498,7 +50498,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -51121,7 +51121,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -51749,7 +51749,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -52374,7 +52374,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -53002,7 +53002,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -53625,7 +53625,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -54253,7 +54253,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -54878,7 +54878,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -55506,7 +55506,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -56129,7 +56129,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -56757,7 +56757,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -57382,7 +57382,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -58010,7 +58010,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -58633,7 +58633,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -59261,7 +59261,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -59886,7 +59886,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -60514,7 +60514,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -61137,7 +61137,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -61765,7 +61765,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -62390,7 +62390,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -63018,7 +63018,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -63641,7 +63641,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -64269,7 +64269,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -64894,7 +64894,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -65522,7 +65522,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -66145,7 +66145,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -66773,7 +66773,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -94876,7 +94876,7 @@
       "group": "2WD",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -95055,7 +95055,7 @@
       "group": "2WD",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -95234,7 +95234,7 @@
       "group": "2WD",
       "baseAxes": {
         "drivetrain": "two",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -95413,7 +95413,7 @@
       "group": "AWD",
       "baseAxes": {
         "drivetrain": "all",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -95592,7 +95592,7 @@
       "group": "AWD",
       "baseAxes": {
         "drivetrain": "all",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -95771,7 +95771,7 @@
       "group": "AWD",
       "baseAxes": {
         "drivetrain": "all",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -96700,7 +96700,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -96771,7 +96771,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -96842,7 +96842,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
@@ -96913,7 +96913,7 @@
       "group": "",
       "baseAxes": {
         "drivetrain": "",
-        "seats": null,
+        "seats": 5,
         "body_configuration": ""
       },
       "canonicalCandidates": [
