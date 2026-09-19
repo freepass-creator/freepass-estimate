@@ -4,6 +4,7 @@ import { vehicleState, quoteState } from '../../store.js';
 import { 담당자인가 } from '../../lib/role.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
+import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
 
 const props = defineProps({
   vehicles: { type: Array, default: () => [] },
@@ -19,9 +20,16 @@ const BRAND_LOGOS = {
 /* ★내장 색상 — «웰릭스 표»를 쓴다(차종별 이름 목록, 값은 0).
    우리 옛 표에는 「투톤 +50만」이 있었는데 웰릭스 견적기는 내장색에 값을 매기지 않는다
    (그쪽 commonInput 의 colorFee 는 «외장»만 본다). 값이 붙으면 조건이 어긋난다. */
-const 내장색들 = computed(() => (selectedModel.value?._interior || []).map((n) => ({
-  value: n, label: n, price: 0, swatch: guessColor(n),
-})));
+const 내장색들 = computed(() => {
+  const src = selectedTrim.value?._interior_colors?.length
+    ? selectedTrim.value._interior_colors
+    : (selectedModel.value?._interior || []);
+  return src.map((c) => {
+    const name = typeof c === 'string' ? c : (c?.name || c?.label || '');
+    const price = typeof c === 'string' ? 0 : Number(c?._price_won ?? c?.price ?? 0);
+    return { value: name, label: name, price, swatch: c?.hex || guessColor(name) };
+  }).filter((c) => c.value);
+});
 
 const COLOR_INT_OLD = [
   { value: '블랙',   price: 0,      label: '블랙' },
@@ -156,8 +164,10 @@ const availableOptions = computed(() => {
     .filter(o => o.name);
 });
 
-// 외장 색상 (model 레벨)
-const exteriorColors = computed(() => selectedModel.value?.exterior_colors || []);
+// 외장 색상 — FreePass 신차 상품마스터는 트림별 실제 색상 목록이 정본.
+const exteriorColors = computed(() => selectedTrim.value?._exterior_colors?.length
+  ? selectedTrim.value._exterior_colors
+  : (selectedModel.value?.exterior_colors || []));
 
 // 옵션 토글
 function toggleOption(optId) {
@@ -192,10 +202,18 @@ const optionsPriceManwon = computed(() => {
   });
   return p;
 });
+const exteriorColorPriceManwon = computed(() => {
+  const c = vehicleState.color != null ? exteriorColors.value[vehicleState.color] : null;
+  return Number(c?.price || 0);
+});
+const interiorColorPriceManwon = computed(() => Number(quoteState.cond.colorIntPrice || 0) / 10000);
 const totalManwon = computed(() => {
   if (!selectedTrim.value) return 0;
   const taxRate = vehicleState.tax_rate || '5';
-  return trimPrice(selectedTrim.value, taxRate) + optionsPriceManwon.value;
+  return trimPrice(selectedTrim.value, taxRate)
+    + optionsPriceManwon.value
+    + exteriorColorPriceManwon.value
+    + interiorColorPriceManwon.value;
 });
 
 
@@ -237,6 +255,22 @@ function syncVehicle() {
     match = vehicles.find(v => v.brand === brandName && v.model.includes(modelName));
   }
 
+  const selectedOptionIds = [...vehicleState.options];
+  const canonical = resolveCanonicalIdentity(t, optionsMaster.value, selectedOptionIds);
+  const can = canonical?.candidate || null;
+  const canonicalSrc = can ? {
+    brand: can.maker || brandName,
+    model: can.model || modelName,
+    trim: can.trim || t.name,
+    disp: can.engine_cc || match?.disp,
+    fuel: can.fuel || selectedVariant.value?.fuel || match?.fuel,
+    multi_seat: can.seats && Number(can.seats) > 5 ? '다인승' : match?.multi_seat,
+    r24: match?.r24, r36: match?.r36, r48: match?.r48, r60: match?.r60,
+    strategic: match?.strategic,
+    tax_exempt: match?.tax_exempt,
+    group: match?.group,
+  } : match;
+
   quoteState.vehicle = {
     brand: brandName,
     model: modelName,
@@ -249,9 +283,17 @@ function syncVehicle() {
     options: optNames,
     colorExt: colorExtName,
     colorInt: quoteState.cond.colorInt || null,
-    fuel: selectedVariant.value?.fuel,
-    displacement_cc: selectedVariant.value?.displacement_cc || match?.disp,
-    _src: match,
+    fuel: can?.fuel || selectedVariant.value?.fuel,
+    displacement_cc: can?.engine_cc || selectedVariant.value?.displacement_cc || match?.disp,
+    _product_id: t._product_id || t.trim_id,
+    _base_axes: t._base_axes || {},
+    _canonical: canonical,
+    _selected_options: selectedOptionIds.map(id => ({
+      id,
+      name: optionsMaster.value[id]?.name || id,
+      price_won: Math.round(Number(optionsMaster.value[id]?.price || 0) * 10000),
+    })),
+    _src: canonicalSrc,
   };
 }
 
