@@ -1,4 +1,4 @@
-import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
+import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT, QUOTE_EXECUTION_CONTRACT } from '../src/lib/quote/contracts.js';
 import { 견적계산 } from '../src/lib/quote/calculate.js';
 import { QUOTE_EXECUTION_SCHEMA } from '../src/lib/quote/execution-result.js';
 
@@ -35,6 +35,7 @@ globalThis.fetch = async () => ({
 
 const success = await 견적계산(request);
 need(success.실행?.schema === QUOTE_EXECUTION_SCHEMA, 'execution schema missing');
+need(success.실행?.schema === QUOTE_EXECUTION_CONTRACT, 'execution contract id mismatch');
 need(success.계약?.request === QUOTE_REQUEST_CONTRACT, 'request contract provenance missing');
 need(success.계약?.result === QUOTE_RESULT_CONTRACT, 'result contract provenance missing');
 need(success.계약?.provider === QUOTE_PROVIDER_CONTRACT, 'provider contract provenance missing');
