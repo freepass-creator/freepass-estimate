@@ -20,6 +20,9 @@ async function assertNoVehicleNext(page,label){
   const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
   await page.goto(base+'/index.html',{waitUntil:'networkidle'});
   await page.waitForTimeout(500);
+  if(await page.locator('.global-topbar button').count()) throw new Error('desktop topbar must contain no buttons');
+  if((await page.locator('.desktop-action-bar button').count()) < 6) throw new Error('desktop bottom action bar is incomplete');
+  if(await page.locator('.quote-modal__head button').count()) throw new Error('quote modal header must contain no buttons');
   await snap(page,'new-web-initial');
   await page.close();
 }
@@ -35,6 +38,7 @@ async function assertNoVehicleNext(page,label){
   await page.waitForSelector('.sv-brand-card',{timeout:15000});
   await page.waitForTimeout(300);
 
+  if(await page.locator('.m-header button').count()) throw new Error('mobile header must contain no buttons');
   const brandText=(await page.locator('.m-brand').innerText()).trim();
   if(!/프리패스모빌리티/.test(brandText)) throw new Error('FreePass mobile header branding not applied: '+brandText);
   await assertNoVehicleNext(page,'brand');
