@@ -52,11 +52,16 @@ export function configurationAxes(trim, optionsMaster, selectedOptionIds) {
   return { ...out, axisOptionIds };
 }
 
+function candidateDriveClass(candidate) {
+  const raw = S(candidate?.drivetrain);
+  if (['all','two','front','rear'].includes(raw)) return raw;
+  return driveClass(raw || candidate?.group || '');
+}
 function candidateDriveMatches(candidate, wanted) {
   if (!wanted) return true;
-  const got = driveClass(candidate?.drivetrain || candidate?.group || '');
+  const got = candidateDriveClass(candidate);
   if (wanted === 'all') return got === 'all';
-  if (wanted === 'two') return got !== 'all';
+  if (wanted === 'two') return got === 'two' || got === 'front' || got === 'rear' || got === '';
   return got === wanted;
 }
 
@@ -109,12 +114,12 @@ export function resolveProviderCandidate(providerCandidates, axes) {
   }
   if (axes?.drivetrain) {
     const exact = candidates.filter((c) => {
-      const got = driveClass(c?.drivetrain || c?.group || '');
+      const got = candidateDriveClass(c);
       return got && candidateDriveMatches(c, axes.drivetrain);
     });
     if (exact.length) candidates = exact;
     else {
-      const generic = candidates.filter((c) => !driveClass(c?.drivetrain || c?.group || ''));
+      const generic = candidates.filter((c) => !candidateDriveClass(c));
       if (generic.length) candidates = generic;
     }
   }
@@ -131,7 +136,7 @@ export function absorbedAxisOptionIds(trim, optionsMaster, selectedOptionIds, pr
   return axisOptionIds.filter((id) => {
     const effect = optionAxisEffect(optionsMaster?.[id]);
     if (!effect) return false;
-    if (effect.axis === 'drivetrain') return driveClass(providerCandidate.group || providerCandidate.drivetrain) === effect.value;
+    if (effect.axis === 'drivetrain') return candidateDriveMatches(providerCandidate, effect.value);
     if (effect.axis === 'seats') return Number(providerCandidate.seats) === Number(effect.value);
     return false;
   });
