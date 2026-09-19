@@ -43,6 +43,8 @@
 
   /* ── 터치 높이 + 굵기 ─────────────────────────────────────── */
   --h-chip: 36px; --h-input: 46px; --h-cta: 54px;
+  --h-touch-min: 44px;
+  --focus-ring: #1d4ed8;
   --fw-regular: 400; --fw-medium: 500; --fw-semi: 600; --fw-bold: 700;
 
   /* ── 레거시 별칭 (웰릭스 기존 CSS 무손실 이관용 — 새 코드는 위 정본 사용) ── */
@@ -53,4 +55,23 @@
   --radius-sm: var(--r-sm);  --radius: var(--r);  --radius-md: var(--r-md);  --radius-lg: var(--r-lg);  --radius-pill: var(--r-pill);
   --space-1: var(--sp-1);  --space-2: var(--sp-2);  --space-3: var(--sp-3);  --space-4: var(--sp-4);
   --space-5: var(--sp-5);  --space-6: var(--sp-6);  --space-8: var(--sp-8);
+}
+
+
+/* ── Accessibility baseline (AI Core Screen Design Standard) ─────────────
+ * Approved density is preserved; focus and motion behavior are hardened first.
+ * Individual 36px visual chips must provide/verify a >=44px effective hit target
+ * before WCAG touch-target adoption is considered complete. */
+:where(button, a[href], input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
