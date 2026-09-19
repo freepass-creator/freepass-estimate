@@ -13,7 +13,9 @@ export async function 계산(요청, { 신호 } = {}) {
   });
   const j = await r.json().catch(() => null);
   if (!r.ok || !j?.ok || !Array.isArray(j.결과)) {
-    throw new Error(j?.error || `표준 견적 서버 응답 ${r.status}`);
+    const error = new Error(j?.error || `표준 견적 서버 응답 ${r.status}`);
+    error.code = j?.code || (r.status >= 500 ? 'PROVIDER_ERROR' : 'STANDARD_QUOTE_INVALID');
+    throw error;
   }
   return {
     차량가: j.차량가 ?? null,
