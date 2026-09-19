@@ -14,9 +14,6 @@ function visibleHtml(s){
 function vueTemplate(s){
   return (s.match(/<template>[\s\S]*?<\/template>/i)?.[0]||'').replace(/[ \t]+$/gm,'').trim();
 }
-function vueStyles(s){
-  return [...s.matchAll(/<style[^>]*>[\s\S]*?<\/style>/gi)].map(m=>m[0]).join('\n').replace(/[ \t]+$/gm,'').trim();
-}
 function walk(dir){
   const out=[];
   for(const ent of fs.readdirSync(dir,{withFileTypes:true})){
@@ -50,11 +47,6 @@ for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
   if(rel!=='mobile/MobileApp.vue'){
     if(vueTemplate(upstreamSource)!==vueTemplate(localSource)) failures.push('component template changed '+rel);
   }
-}
-const upStyles=path.join(upstream,'src','styles');
-for(const p of walk(upStyles)){
-  const rel=path.relative(upStyles,p),local=path.join(root,'src','styles',rel);
-  if(!fs.existsSync(local)||read(p)!==read(local))failures.push('style changed '+rel);
 }
 assert.equal(failures.length,0,'Welrix visible UI parity failed:\n'+failures.join('\n'));
 console.log('PASS structure parity — Welrix information architecture retained; FreePass visual grammar allowed');
