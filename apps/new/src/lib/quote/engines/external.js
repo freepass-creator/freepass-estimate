@@ -4,7 +4,6 @@
 
 import { 공급자설정 } from '../provider-config.js';
 import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../contracts.js';
-import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../contracts.js';
 
 export const 이름 = '외부 연동';
 export const 다루는차 = ['신차'];
