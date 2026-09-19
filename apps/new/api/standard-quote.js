@@ -1,4 +1,5 @@
 import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
+import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 import { calculateStandardQuote } from './_standard/standard-service.js';
 
 function bad(res,status,error,code=null){
