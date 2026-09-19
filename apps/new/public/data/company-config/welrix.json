@@ -25,10 +25,8 @@
     "deposit_buckets_step": "보증금 단위 (50만원)",
     "deposit_buckets_max": "보증금 상한 (1,000만원)"
   },
-
   "excel_version": "v6.1",
   "excel_version_date": "2026-06-30",
-
   "company_id": "welrix",
   "name": "웰릭스 모빌리티",
   "logo_url": "/welrix-logo.png",
@@ -36,7 +34,6 @@
   "brand_color_logo": "#e1141e",
   "accent_color": "#2d6cdf",
   "signature_link": "https://app.modusign.co.kr/magic-link/link/665f4cd0-fb5c-11f0-8c47-897ef2e93d12/authentication?shareType=URL",
-
   "company_info": {
     "full_name": "웰릭스모빌리티 주식회사",
     "biz_no": "000-00-00000",
@@ -47,14 +44,33 @@
     "email": "contact@welrix.co.kr",
     "homepage": "welrix.co.kr"
   },
-
   "financial": {
     "credit_lookup": {
-      "신용":   { "interest": 0.064, "profit": 0.019, "deposit": 0.05 },
-      "고신용": { "interest": 0.064, "profit": 0.019, "deposit": 0.05 },
-      "중신용": { "interest": 0.064, "profit": 0.043, "deposit": 0.20 },
-      "저신용": { "interest": 0.064, "profit": 0.084, "deposit": 0.30 },
-      "무신용": { "interest": 0.064, "profit": 0.084, "deposit": 0.30 }
+      "신용": {
+        "interest": 0.064,
+        "profit": 0.019,
+        "deposit": 0.05
+      },
+      "고신용": {
+        "interest": 0.064,
+        "profit": 0.019,
+        "deposit": 0.05
+      },
+      "중신용": {
+        "interest": 0.064,
+        "profit": 0.043,
+        "deposit": 0.2
+      },
+      "저신용": {
+        "interest": 0.064,
+        "profit": 0.084,
+        "deposit": 0.3
+      },
+      "무신용": {
+        "interest": 0.064,
+        "profit": 0.084,
+        "deposit": 0.3
+      }
     },
     "costs": {
       "registration_fee": 200000,
@@ -65,19 +81,52 @@
     },
     "fees": {
       "deposit_discount_rate": 0.03,
-      "default_fee_rate_pct": 5.0,
+      "default_fee_rate_pct": 5,
       "payback_table": [
-        { "rate": 0,   "payback": 700000 },
-        { "rate": 0.5, "payback": 630000 },
-        { "rate": 1.0, "payback": 560000 },
-        { "rate": 1.5, "payback": 490000 },
-        { "rate": 2.0, "payback": 420000 },
-        { "rate": 2.5, "payback": 350000 },
-        { "rate": 3.0, "payback": 280000 },
-        { "rate": 3.5, "payback": 210000 },
-        { "rate": 4.0, "payback": 140000 },
-        { "rate": 4.5, "payback":  70000 },
-        { "rate": 5.0, "payback":      0 }
+        {
+          "rate": 0,
+          "payback": 700000
+        },
+        {
+          "rate": 0.5,
+          "payback": 630000
+        },
+        {
+          "rate": 1,
+          "payback": 560000
+        },
+        {
+          "rate": 1.5,
+          "payback": 490000
+        },
+        {
+          "rate": 2,
+          "payback": 420000
+        },
+        {
+          "rate": 2.5,
+          "payback": 350000
+        },
+        {
+          "rate": 3,
+          "payback": 280000
+        },
+        {
+          "rate": 3.5,
+          "payback": 210000
+        },
+        {
+          "rate": 4,
+          "payback": 140000
+        },
+        {
+          "rate": 4.5,
+          "payback": 70000
+        },
+        {
+          "rate": 5,
+          "payback": 0
+        }
       ],
       "commission": {
         "low_credit_cap": 3000000
@@ -94,12 +143,19 @@
         "1만km": 0.02,
         "2만km": 0,
         "3만km": -0.04,
-        "4만km": -0.10
+        "4만km": -0.1
       },
       "term_surcharge": {
         "_doc": "Excel I22 의 제외 조건은 AW10/AW11 cell ref 오류로 사실상 항상 false → 모든 차에 기간가산 적용. calc.js 도 동일 동작 위해 exclude 비움.",
-        "exclude": { "brands": [], "models": [] },
-        "by_term_code": { "3": 0.05, "4": -0.005, "5": -0.03 }
+        "exclude": {
+          "brands": [],
+          "models": []
+        },
+        "by_term_code": {
+          "3": 0.05,
+          "4": -0.005,
+          "5": -0.03
+        }
       },
       "brand_adjustment": {
         "제네시스": -0.18,
@@ -108,9 +164,20 @@
       },
       "buyback_rate_add": {
         "_doc": "Excel I6: IF(C3=\"고신용\",0%, IF(C3=\"중신용\",2%, 4%)) — 신용/저신용/무신용은 cascade default 4%",
-        "by_credit": { "신용": 0.04, "고신용": 0, "중신용": 0.02, "저신용": 0.04, "무신용": 0.04 },
-        "by_brand": { "제네시스": 0.23 },
-        "by_model": { "K9": 0.20, "하이리무진": 0.20 }
+        "by_credit": {
+          "신용": 0.04,
+          "고신용": 0,
+          "중신용": 0.02,
+          "저신용": 0.04,
+          "무신용": 0.04
+        },
+        "by_brand": {
+          "제네시스": 0.23
+        },
+        "by_model": {
+          "K9": 0.2,
+          "하이리무진": 0.2
+        }
       },
       "credit_premium": {
         "신용": 0,
@@ -139,5 +206,10 @@
     },
     "deposit_buckets_step": 500000,
     "deposit_buckets_max": 10000000
+  },
+  "quote_provider": {
+    "mode": "external",
+    "kind": "excel",
+    "adapter_id": "welrix"
   }
 }
