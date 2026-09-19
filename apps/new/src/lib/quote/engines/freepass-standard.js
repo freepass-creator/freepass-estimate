@@ -1,5 +1,7 @@
 import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../contracts.js';
 
+import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../contracts.js';
+
 // FreePass standard new-car quote engine client.
 // Proprietary cost logic stays server-side in /api/standard-quote.
 
