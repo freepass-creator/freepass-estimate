@@ -65,3 +65,10 @@ jobs:
         run: npm run check
       - name: Production build
         run: npm run build
+      - name: Upload preview build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: newcar-preview-dist
+          path: apps/new/dist
+          retention-days: 3
+          if-no-files-found: error
