@@ -7,14 +7,18 @@ import { quoteState } from './store.js';
 import { 담당자인가, 담당자로, 담당자로들어왔나 } from './lib/role.js';
 import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
+import { applyProductTheme } from './lib/brand-theme.js';
 
 // 회사 config 로드 (welrix.json) — calc.js 에 주입
 async function loadCompanyConfig() {
   try {
-    const res = await fetch('/data/company-config/welrix.json');
+    const params = new URLSearchParams(location.search);
+    const id = params.get('c') || 'freepass';
+    const res = await fetch(`/data/company-config/${id}.json`);
     const cfg = await res.json();
     setCompanyConfig(cfg);
     window.__welrix_companyConfig = cfg;
+    applyProductTheme(cfg);
   } catch (e) {
     console.warn('[mobile] company config 로드 실패:', e);
   }
