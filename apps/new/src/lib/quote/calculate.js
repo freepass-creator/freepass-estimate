@@ -25,8 +25,15 @@ function codedError(message, code) {
   return error;
 }
 
+function executionRequestId() {
+  const uuid = globalThis.crypto?.randomUUID?.();
+  if (uuid) return `quote-${uuid}`;
+  return `quote-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
+}
+
 export async function 견적계산(요청, { 신호, 강제계산기 = null } = {}) {
   const startedAt = new Date().toISOString();
+  const requestId = executionRequestId();
   let 이름 = null;
   let providerKey = null;
 
@@ -63,6 +70,7 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
         startedAt,
         endedAt: new Date().toISOString(),
         revision: buildRevision(),
+        requestId,
         evidence: [`QUOTE_PROVIDER:${providerKey}`],
         checks: [
           { name: 'quote-request-contract', status: 'PASS' },
@@ -82,6 +90,7 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
         startedAt,
         endedAt: new Date().toISOString(),
         revision: buildRevision(),
+        requestId,
         evidence: providerKey ? [`QUOTE_PROVIDER:${providerKey}`] : [],
         checks: [
           { name: 'quote-request-contract', status: error.code === 'QUOTE_REQUEST_INVALID' ? 'FAIL' : 'PASS' },
