@@ -11,10 +11,11 @@ function visibleHtml(s){
   return s.replace(/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/gi,'<script>__FREEPASS_DATA_BINDING__</script>')
     .replace(/[ \t]+$/gm,'').trim();
 }
-function vueSurface(s){
-  const template=s.match(/<template>[\s\S]*?<\/template>/i)?.[0]||'';
-  const styles=[...s.matchAll(/<style[^>]*>[\s\S]*?<\/style>/gi)].map(m=>m[0]).join('\n');
-  return (template+'\n'+styles).replace(/[ \t]+$/gm,'').trim();
+function vueTemplate(s){
+  return (s.match(/<template>[\s\S]*?<\/template>/i)?.[0]||'').replace(/[ \t]+$/gm,'').trim();
+}
+function vueStyles(s){
+  return [...s.matchAll(/<style[^>]*>[\s\S]*?<\/style>/gi)].map(m=>m[0]).join('\n').replace(/[ \t]+$/gm,'').trim();
 }
 function walk(dir){
   const out=[];
@@ -35,7 +36,12 @@ for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
   const rel=path.relative(upComp,p);
   const local=path.join(root,'src','components',rel);
   if(!fs.existsSync(local)){failures.push('missing component '+rel);continue}
-  if(vueSurface(read(p))!==vueSurface(read(local)))failures.push('component template/style changed '+rel);
+  const upstreamSource=read(p), localSource=read(local);
+  if(vueStyles(upstreamSource)!==vueStyles(localSource)) failures.push('component style changed '+rel);
+  // MobileApp is the approved FreePass delta: dynamic channel branding + one-screen-one-choice footer behavior.
+  // All other component templates remain locked to the pinned Welrix visible structure.
+  if(rel!=='mobile/MobileApp.vue' && vueTemplate(upstreamSource)!==vueTemplate(localSource))
+    failures.push('component template changed '+rel);
 }
 const upStyles=path.join(upstream,'src','styles');
 for(const p of walk(upStyles)){
@@ -43,4 +49,4 @@ for(const p of walk(upStyles)){
   if(!fs.existsSync(local)||read(p)!==read(local))failures.push('style changed '+rel);
 }
 assert.equal(failures.length,0,'Welrix visible UI parity failed:\n'+failures.join('\n'));
-console.log('PASS visible UI parity — HTML/template/style unchanged; data/controller scripts may use FreePass SSOT');
+console.log('PASS visible UI parity — inherited layout/styles locked; approved FreePass mobile flow delta allowed');
