@@ -44,6 +44,10 @@ async function assertNoVehicleNext(page,label){
   await page.waitForSelector('.sv-row',{timeout:10000});
   await page.waitForTimeout(200);
   await assertNoVehicleNext(page,'model');
+  // MODEL_AXIS_ASSERTION_V2 — Hybrid/Electric belong to powertrain, not model rows.
+  const modelLabels=await page.locator('.sv-row__label').allInnerTexts();
+  const badModel=modelLabels.find((x)=>/\s(?:Hybrid|Electric|HEV|EV)$/i.test(x.trim()));
+  if(badModel) throw new Error('Hybrid/Electric leaked into model axis: '+badModel);
   await snap(page,'new-mobile-02-model');
 
   await page.locator('.sv-row').first().click();
