@@ -94,7 +94,9 @@ for(const mf of db.manufacturers||[]) for(const md of mf.models||[]) for(const v
   total++;
   const key=S(t.trim_id);
   duplicateTrimIds.set(key,(duplicateTrimIds.get(key)||0)+1);
-  const rows=(byMakerModel.get(S(mf.manufacturer_name)+'|'+S(md.model_name))||[]).filter(r=>{
+  const fullLabel=[t.trim_id,v.variant_name,t.group,t.name].filter(Boolean).join(' ');
+  const ax=groupAxes(t.group,fullLabel);
+  let rows=(byMakerModel.get(S(mf.manufacturer_name)+'|'+S(md.model_name))||[]).filter(r=>{
     const a=axesKey(r);
     const vf=fuelWord(v.variant_name||v.fuel);
     const vl=liter(v.variant_name)||(v.displacement_cc?(Math.round(Number(v.displacement_cc)/100)/10).toFixed(1):'');
@@ -102,10 +104,19 @@ for(const mf of db.manufacturers||[]) for(const md of mf.models||[]) for(const v
     if(vl&&a.liter&&vl!==a.liter)return false;
     return true;
   });
+  // 세부모델 변형축 — 쿠페/하이루프/롱휠은 이름에 명시될 때만 그 갈래로 간다.
+  if(ax.coupe) rows=rows.filter(r=>/쿠페|coupe/i.test(S(r.sub_model)+' '+S(r.generation_name)));
+  else if(rows.some(r=>/쿠페|coupe/i.test(S(r.sub_model)))) rows=rows.filter(r=>!/쿠페|coupe/i.test(S(r.sub_model)));
+  if(ax.highroof) rows=rows.filter(r=>/하이루프|high\\s*roof/i.test(S(r.sub_model)+' '+S(r.generation_name)));
+  else if(rows.some(r=>/하이루프|high\\s*roof/i.test(S(r.sub_model)))) rows=rows.filter(r=>!/하이루프|high\\s*roof/i.test(S(r.sub_model)));
+  if(ax.longwheel) rows=rows.filter(r=>/롱휠|long\\s*wheel/i.test(S(r.sub_model)+' '+S(r.generation_name)+' '+S(r.source_aliases)));
+  // 터보가 명시되면 반드시 터보. 명시가 없고 같은 축에 non-turbo가 존재하면 non-turbo를 우선한다.
+  if(ax.turbo) rows=rows.filter(r=>r.turbo===true);
+  else if(rows.some(r=>r.turbo===false)) rows=rows.filter(r=>r.turbo!==true);
+
   const forms=trimForms(t.name);
   let cand=rows.filter(r=>[...forms].some(x=>rowForms(r).has(x)));
   const beforeAxis=[...cand];
-  const ax=groupAxes(t.group);
   if(ax.seats!=null){
     const f=cand.filter(r=>Number(r.seats)===ax.seats);
     if(f.length)cand=f;
@@ -118,7 +129,10 @@ for(const mf of db.manufacturers||[]) for(const md of mf.models||[]) for(const v
     if(f.length)cand=f;
   }
   if(ax.van){
-    const f=cand.filter(r=>/밴/.test(S(r.body_configuration))||(r.source_aliases||[]).some(x=>/밴/.test(x))||/밴/.test(S(r.trim)));
+    const f=cand.filter(r=>/밴/.test(S(r.body_configuration))||(r.source_aliases||[]).some(x=>/밴/.test(x))||Number(r.seats)<=2);
+    if(f.length)cand=f;
+  } else if(/일반|해치백/.test(S(t.group))) {
+    const f=cand.filter(r=>Number(r.seats)>2 || !r.seats);
     if(f.length)cand=f;
   }
   if(ax.rental){
@@ -126,22 +140,25 @@ for(const mf of db.manufacturers||[]) for(const md of mf.models||[]) for(const v
     if(f.length)cand=f;
   }
 
-  // If trim naming is the only problem but model/engine/axes identify exactly one row, accept as axis-unique.
-  if(!cand.length){
-    let axisRows=rows;
-    if(ax.seats!=null)axisRows=axisRows.filter(r=>Number(r.seats)===ax.seats);
-    if(ax.drive==='all')axisRows=axisRows.filter(r=>driveClass(r.drivetrain)==='all');
-    else if(ax.drive==='two')axisRows=axisRows.filter(r=>driveClass(r.drivetrain)!=='all');
-    if(axisRows.length===1){cand=axisRows;uniqueAxis++;}
+  let axisRows=rows;
+  if(ax.seats!=null)axisRows=axisRows.filter(r=>Number(r.seats)===ax.seats);
+  if(ax.drive==='all')axisRows=axisRows.filter(r=>driveClass(r.drivetrain)==='all');
+  else if(ax.drive==='two')axisRows=axisRows.filter(r=>driveClass(r.drivetrain)!=='all');
+  if(ax.van){
+    const f=axisRows.filter(r=>/밴/.test(S(r.body_configuration))||(r.source_aliases||[]).some(x=>/밴/.test(x))||Number(r.seats)<=2);
+    if(f.length)axisRows=f;
   }
 
+  // 1) 표준 세부트림까지 유일하면 trim_row_key를 박는다.
   if(cand.length===1){
     const r=cand[0];
     const rawExact=clean(r.trim)===clean(t.name);
     if(rawExact)exact++;else alias++;
     by_trim_id[key]={
+      identity_level:'trim',
       trim_row_key:r.trim_row_key,
       master_id:r.master_id,
+      powertrain_seq:r.powertrain_seq,
       maker:r.maker,model:r.model,sub_model:r.sub_model,
       powertrain:r.powertrain,trim:r.trim,
       fuel:r.fuel,engine_cc:r.engine_cc,displacement_l:r.displacement_l,
@@ -151,7 +168,33 @@ for(const mf of db.manufacturers||[]) for(const md of mf.models||[]) for(const v
       match:rawExact?'exact':'alias_or_axis'
     };
   }else{
-    unresolved.push({
+    // 2) H-Pick/Black/E-LSD 같은 «판매구성»은 세부트림이 아니다.
+    //    같은 세부모델+파워트레인으로 유일하면 차량 신원은 powertrain까지 고정하고
+    //    판매구성 이름/가격은 신차 상품마스터가 계속 가진다.
+    const groups=new Map();
+    for(const r of axisRows){
+      const g=[r.master_id,r.powertrain_seq,r.sub_model,r.powertrain,r.drivetrain,r.seats,r.body_configuration||''].join('|');
+      if(!groups.has(g))groups.set(g,[]);
+      groups.get(g).push(r);
+    }
+    if(groups.size===1 && axisRows.length){
+      const r=axisRows[0];
+      uniqueAxis++;
+      by_trim_id[key]={
+        identity_level:'powertrain',
+        trim_row_key:null,
+        master_id:r.master_id,
+        powertrain_seq:r.powertrain_seq,
+        maker:r.maker,model:r.model,sub_model:r.sub_model,
+        powertrain:r.powertrain,trim:null,
+        fuel:r.fuel,engine_cc:r.engine_cc,displacement_l:r.displacement_l,
+        turbo:r.turbo,drivetrain:r.drivetrain,seats:r.seats,
+        body_configuration:r.body_configuration||null,
+        usage_tier:r.usage_tier,
+        product_configuration:t.name,
+        match:'powertrain_product_config'
+      };
+    }else unresolved.push({
       trim_id:key,maker:mf.manufacturer_name,model:md.model_name,
       variant:v.variant_name,group:t.group||'',trim:t.name,
       candidate_count:cand.length,
@@ -165,12 +208,13 @@ for(const mf of db.manufacturers||[]) for(const md of mf.models||[]) for(const v
 const dup=[...duplicateTrimIds.entries()].filter(([,n])=>n>1);
 if(dup.length) throw new Error('welrix trim_id 중복: '+dup.slice(0,20).map(([k,n])=>k+'='+n).join(', '));
 
+const levelCounts=Object.values(by_trim_id).reduce((a,x)=>{a[x.identity_level]=(a[x.identity_level]||0)+1;return a;},{});
 const out={
   schema_version:1,
   generated_at:new Date().toISOString(),
   master_data_as_of:master.data_as_of||null,
   master_source:master.source||null,
-  stats:{total,mapped:Object.keys(by_trim_id).length,unresolved:unresolved.length,exact,alias_or_axis:alias,unique_axis_fallback:uniqueAxis},
+  stats:{total,mapped:Object.keys(by_trim_id).length,unresolved:unresolved.length,exact,alias_or_axis:alias,unique_axis_fallback:uniqueAxis,identity_levels:levelCounts},
   by_trim_id,
   unresolved
 };
