@@ -8,13 +8,15 @@ const files={
 };
 
 function block(src,selector){
-  const i=src.indexOf(selector);
+  const css = src.includes('<style') ? src.slice(src.lastIndexOf('<style')) : src;
+  const needle = selector + ' {';
+  const i=css.indexOf(needle);
   assert.ok(i>=0,selector+' block missing');
-  const a=src.indexOf('{',i);
+  const a=css.indexOf('{',i);
   let depth=0;
-  for(let p=a;p<src.length;p++){
-    if(src[p]==='{') depth++;
-    else if(src[p]==='}') { depth--; if(depth===0) return src.slice(a+1,p); }
+  for(let p=a;p<css.length;p++){
+    if(css[p]==='{') depth++;
+    else if(css[p]==='}') { depth--; if(depth===0) return css.slice(a+1,p); }
   }
   throw new Error(selector+' block not closed');
 }
