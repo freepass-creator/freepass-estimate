@@ -60,6 +60,8 @@ jobs:
           node --check src/lib/quote/provider-config.js
           node --check src/lib/quote/calculate.js
           node --check src/lib/quote/execution-result.js
+          node --check src/lib/quote/core-contract-shadow.js
+          node --check scripts/check-ai-core-contract-shadow.mjs
           node --check src/lib/quote/build-request.js
           node --check src/lib/quote/engines/freepass-standard.js
           node --check src/lib/quote/engines/external.js
@@ -84,6 +86,8 @@ jobs:
         run: npm run check:provider-policy
       - name: Quote runtime proof contract
         run: npm run check:runtime
+      - name: AI Core adapter-result shadow contract
+        run: npm run check:core-contract-shadow
       - name: Share snapshot provenance contract
         run: npm run check:snapshot
       - name: Verification manifest freshness
