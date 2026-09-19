@@ -288,12 +288,12 @@
     #btn-open-cart { font-size: 10.5px; gap: 2px; }
     #btn-open-cart i { font-size: 17px; }
     /* 터치 타겟 — 인풋/드롭다운 38px (PC 32px 대비 키움) */
-    .cdd .cdd__btn { height: 38px; font-size: 14px; }
-    .step-dd { height: 38px; font-size: 14px; }
+    .cdd .cdd__btn { height: 44px; font-size: 14px; }
+    .step-dd { height: 44px; font-size: 14px; }
     /* qc-field, cs-field input — 모바일에서 36px */
-    .qc-field > input, .qc-field > select, .cs-field input { height: 36px; font-size: 14px; }
-    .qc-pct { min-height: 36px; }
-    .qc-pct input { height: 36px; }
+    .qc-field > input, .qc-field > select, .cs-field input { height: 44px; font-size: 14px; }
+    .qc-pct { min-height: 44px; }
+    .qc-pct input { height: 44px; }
     /* dropdown 메뉴 항목 패딩 키움 — 터치 친화 */
     .cdd__opt { padding: 9px 8px; font-size: 14px; }
   }
@@ -312,12 +312,11 @@
   .step-dd {
     display: none;
     width: 100%;
-    height: 32px;
-    padding: 0 0 0 2px;
-    border: none;
-    border-bottom: 1px solid var(--line-2);
-    border-radius: 0;
-    background: transparent;
+    height: 40px;
+    padding: 0 32px 0 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 6px;
+    background: var(--bg);
     font-size: 13px;
     font-weight: 500;
     color: var(--ink-1);
@@ -328,14 +327,13 @@
     -webkit-appearance: none;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23a3a3a3' stroke-width='1.5' stroke-linecap='round'><polyline points='3 5 6 8 9 5'/></svg>");
     background-repeat: no-repeat;
-    background-position: right 4px center;
+    background-position: right 11px center;
     background-size: 11px 11px;
-    padding-right: 22px;
-    transition: border-color .12s;
+    transition: border-color .12s, box-shadow .12s;
   }
-  .step-dd:hover { border-bottom-color: var(--ink-3); }
-  .step-dd:focus { border-bottom-color: var(--ink-1); }
-  .step-dd:disabled { color: var(--ink-4); cursor: not-allowed; border-bottom-style: dashed; }
+  .step-dd:hover { border-color: var(--ink-3); }
+  .step-dd:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-50); }
+  .step-dd:disabled { color: var(--ink-4); cursor: not-allowed; background-color: var(--bg-muted); border-color: transparent; }
   @media (min-width: 1025px) {
     /* 좌:차량 / 중:견적 / 우:계약+채팅 — 미니멀 톤 (canvas만) */
     body { background: var(--bg); }
@@ -395,8 +393,8 @@
     }
     .group-title { display: none; }
 
-    /* dropdown 컴팩트 */
-    .step-dd { display: block; height: 32px; font-size: 12.5px; padding: 0 10px; padding-right: 28px; }
+    /* 입력/드롭다운은 FreePass 공통 control 규격 */
+    .step-dd { display: block; height: 40px; font-size: 13px; padding: 0 32px 0 12px; }
 
     /* 모든 섹션 padding 12px 0 으로 통일 (위 section 규칙으로 일괄) */
     .colors { gap: 5px !important; }
@@ -2136,18 +2134,18 @@ render();
   /* ===== Custom Dropdown — 옵션 안 아이콘/색칩 + 텍스트 ===== */
   .cdd { position: relative; width: 100%; font-family: inherit; }
   .cdd__btn {
-    width: 100%; height: 32px;
-    padding: 0 22px 0 6px;
-    border: 0; border-bottom: 1px solid var(--line-2);
-    border-radius: 0; background: transparent;
-    display: flex; align-items: center; gap: 6px;
+    width: 100%; height: 40px;
+    padding: 0 34px 0 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 6px; background: var(--bg);
+    display: flex; align-items: center; gap: 7px;
     font-size: 13px; color: var(--ink-1);
     font-family: inherit; cursor: pointer;
     text-align: left;
-    transition: border-color .12s;
+    transition: border-color .12s, box-shadow .12s;
   }
-  .cdd__btn:hover { border-bottom-color: var(--ink-3); }
-  .cdd--open .cdd__btn { border-bottom-color: var(--ink-1); }
+  .cdd__btn:hover { border-color: var(--ink-3); }
+  .cdd--open .cdd__btn { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-50); }
   .cdd__current { flex: 1; min-width: 0; display: inline-flex; align-items: center; gap: 6px; }
   .cdd__icon {
     width: 16px; height: 16px; border-radius: 50%;
@@ -2172,7 +2170,7 @@ render();
     letter-spacing: -0.1px;
   }
   .cdd__chev {
-    position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
     width: 11px; height: 11px;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23a3a3a3' stroke-width='1.5' stroke-linecap='round'><polyline points='3 5 6 8 9 5'/></svg>");
     background-repeat: no-repeat; background-position: center; background-size: 11px 11px;
@@ -4742,3 +4740,29 @@ render();
 </script>
 </body>
 </html>
+
+<style id="freepass-control-grammar">
+  /* FreePass input grammar: only value-entry controls own a visible boundary. */
+  .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select),
+  .qc-field > input, .qc-field > select, .cs-field input,
+  .qc-pct {
+    min-height: 40px;
+    border: 1px solid var(--line-2) !important;
+    border-radius: 6px !important;
+    background: var(--bg) !important;
+    box-shadow: none !important;
+  }
+  .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select):focus,
+  .qc-field > input:focus, .qc-field > select:focus, .cs-field input:focus,
+  .qc-pct:focus-within {
+    outline: none;
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 0 3px var(--brand-50) !important;
+  }
+  .quote-panel :is(input, select):disabled,
+  .qc-field > input:disabled, .qc-field > select:disabled, .cs-field input:disabled {
+    background: var(--bg-muted) !important;
+    border-color: transparent !important;
+    color: var(--ink-4) !important;
+  }
+</style>
