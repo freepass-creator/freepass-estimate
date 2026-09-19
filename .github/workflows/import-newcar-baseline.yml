@@ -1,11 +1,6 @@
 name: Import pinned Welrix new-car baseline
 
 on:
-  push:
-    branches:
-      - work/ui-baseline
-    paths:
-      - .github/workflows/import-newcar-baseline.yml
   workflow_dispatch:
 
 permissions:
