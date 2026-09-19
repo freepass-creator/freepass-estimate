@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>웰릭스 모빌리티 · 소득만으로 심사하는 신차 장기렌터카</title>
+  <meta name="description" content="신용점수 보지 않습니다. 월 소득만 확인하고 출고하는 신차 장기렌터카. 36/48/60개월 자유 선택 · 무보증." />
+  <meta name="theme-color" content="#0D4E8B" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="웰릭스 모빌리티 · 소득만으로 심사하는 신차 장기렌터카" />
+  <meta property="og:description" content="신용점수 보지 않습니다. 월 소득만 확인하고 출고합니다." />
+  <meta property="og:image" content="/og-image.png" />
+  <meta property="og:site_name" content="웰릭스 모빌리티" />
+  <link rel="icon" type="image/png" href="/welrix-ci.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="/welrix-icon-192.png" />
+
+  <!-- Fonts + Icons (Pretendard Variable + 영문 보조 Inter) -->
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+
+  <!-- Vehicle DB SSOT (PC/모바일/홈 공유) -->
+  <script src="/vehicle-db.js"></script>
+
+  <style>
+    :root {
+      /* 웰릭스 모빌리티 브랜드 — 레드 (CI 색상) */
+      --brand: #e1141e;
+      --brand-700: #b50f17;
+      --brand-100: #f7d4d6;
+      --brand-50: #fef0f1;
+      --navy: #0D4E8B;
+      --ink-1: #0a0a0a;
+      --ink-2: #404040;
+      --ink-3: #737373;
+      --ink-4: #a3a3a3;
+      --ink-5: #d4d4d4;
+      --line: #f0f0f0;
+      --line-2: #e5e5e5;
+      --bg: #ffffff;
+      --bg-soft: #fafafa;
+      --bg-grey: #f5f5f5;
+      --accent-soft: #f5f5f5;
+      --radius-sm: 4px;
+      --radius: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-pill: 999px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.10);
+      --t-fast: .12s;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: 'Pretendard Variable', 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+      color: var(--ink-1); background: var(--bg);
+      font-size: 15px; line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.01em;
+      text-rendering: optimizeLegibility;
+    }
+    /* 숫자는 Inter 로 (영문 + 숫자 미세 차이) */
+    .tabular, .num {
+      font-family: 'Inter', 'Pretendard Variable', sans-serif;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: 'tnum' 1;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    img { max-width: 100%; display: block; }
+
+    /* === Container === */
+    .container {
+      width: 100%; max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 18px; }
+      html, body { font-size: 14.5px; }
+    }
+
+    /* === Top Nav === */
+    .topnav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topnav__wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .topnav__brand {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14.5px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .topnav__brand img { height: 22px; width: auto; }
+    .topnav__partner {
+      display: inline-flex; align-items: center;
+      padding: 4px 11px;
+      background: var(--ink-1); color: #fff;
+      border-radius: 5px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
+    }
+    .topnav__x {
+      color: var(--ink-4); font-weight: 300; font-size: 14px;
+    }
+    .topnav__menu {
+      display: flex; align-items: center; gap: 28px;
+    }
+    .topnav__menu a {
+      font-size: 13.5px; color: var(--ink-2); font-weight: 500;
+      letter-spacing: -0.01em;
+      transition: color var(--t-fast);
+    }
+    .topnav__menu a:hover { color: var(--ink-1); }
+    .topnav__cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--ink-1); color: #fff;
+      border: 0; border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      font-size: 13px; font-weight: 600;
+      transition: background var(--t-fast);
+    }
+    .topnav__cta:hover { background: var(--brand); }
+    @media (max-width: 768px) {
+      .topnav__menu { display: none; }
+    }
+
+    /* === Hero === 모노톤 + 빨강은 포인트만 === */
+    .hero {
+      padding: 80px 0 100px;
+      background: #fafafa;
+      color: var(--ink-1);
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero__bg-grid { display: none; }
+    .hero__inner {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: 44px;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    @media (max-width: 1100px) {
+      .hero__inner { gap: 32px; }
+    }
+    @media (max-width: 980px) {
+      .hero__inner { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 56px 0 64px; }
+    }
+    .hero__left {
+      text-align: left;
+      max-width: 540px;
+    }
+    @media (max-width: 980px) {
+      .hero__left { text-align: center; max-width: 720px; margin: 0 auto; }
+    }
+    .hero__interact { width: 100%; }
+
+    /* === 좌측: 통계 행 (5분 / 7일 / 25종) === */
+    .hero__stats {
+      display: flex; align-items: center;
+      gap: 18px;
+      margin: 24px 0 28px;
+      padding: 20px 22px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+    .hero__stat {
+      flex: 1;
+      display: flex; flex-direction: column;
+    }
+    .hero__stat-num {
+      font-family: 'Inter', 'Pretendard Variable', sans-serif;
+      font-size: 32px; font-weight: 800;
+      color: var(--ink-1);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .hero__stat-num small {
+      font-size: 14px; font-weight: 600; color: var(--ink-3);
+      margin-left: 2px; letter-spacing: -0.02em;
+    }
+    .hero__stat-label {
+      margin-top: 4px;
+      font-size: 11.5px; color: var(--ink-4);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .hero__stat-divider {
+      width: 1px; height: 32px;
+      background: var(--line);
+    }
+    @media (max-width: 540px) {
+      .hero__stats { padding: 16px 18px; gap: 12px; }
+      .hero__stat-num { font-size: 26px; }
+      .hero__stat-num small { font-size: 12px; }
+      .hero__stat-label { font-size: 10.5px; }
+    }
+
+    /* hero__title 안의 X / O 강조 */
+    .hero__title-x {
+      display: inline-block;
+      width: 0.85em; height: 0.85em;
+      vertical-align: -0.1em;
+      border-radius: 50%;
+      background: var(--ink-1); color: #fff;
+      font-style: normal;
+      font-size: 0.6em; font-weight: 800;
+      line-height: 0.85em;
+      text-align: center;
+      margin-left: 8px;
+      letter-spacing: 0;
+    }
+    .hero__title-o {
+      display: inline-block;
+      width: 0.85em; height: 0.85em;
+      vertical-align: -0.1em;
+      border-radius: 50%;
+      background: var(--brand); color: #fff;
+      font-style: normal;
+      font-size: 0.6em; font-weight: 800;
+      line-height: 0.85em;
+      text-align: center;
+      margin-left: 8px;
+      letter-spacing: 0;
+    }
+
+    /* === 좌측: CTA === */
+    .hero__cta {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .hero__btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      height: 46px; padding: 0 18px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+    }
+    @media (max-width: 540px) {
+      .hero__btn { flex: 1 1 calc(50% - 3px); padding: 0 12px; font-size: 12.5px; }
+    }
+    .hero__btn:hover { transform: translateY(-1px); }
+    .hero__btn i { font-size: 15px; }
+    .hero__btn--primary {
+      background: var(--brand); color: #fff;
+      border: 0;
+    }
+    .hero__btn--primary:hover { background: var(--brand-700); }
+    .hero__btn--ghost {
+      background: var(--bg); color: var(--ink-2);
+      border: 1.5px solid var(--line-2);
+    }
+    .hero__btn--ghost:hover { border-color: var(--ink-1); color: var(--ink-1); }
+
+    /* === 우측: BEST 차종 카드 (HeroBest Vue mount) === */
+    .hero-product {
+      background: var(--bg);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.07),
+        0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--line);
+    }
+    @media (max-width: 540px) {
+      .hero-product { padding: 18px; border-radius: 14px; }
+    }
+    .hero-product__head { margin-bottom: 18px; }
+    .hero-product__eyebrow {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--brand); color: #fff;
+      padding: 5px 12px; border-radius: 999px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
+      margin-bottom: 10px;
+    }
+    .hero-product__eyebrow i { font-size: 12px; }
+    .hero-product__title {
+      font-size: 19px; font-weight: 800; color: var(--ink-1);
+      letter-spacing: -0.025em; line-height: 1.3;
+    }
+    .hero-product__grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 380px) {
+      .hero-product__grid { grid-template-columns: 1fr; }
+    }
+    .hp-card {
+      padding: 14px 14px;
+      background: var(--bg-soft);
+      border-radius: 10px;
+      transition: background var(--t-fast);
+    }
+    .hp-card:hover { background: var(--bg-soft-2); }
+    .hp-card__icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 8px;
+    }
+    .hp-card__icon i { font-size: 16px; color: #fff; }
+    .hp-card__title {
+      font-size: 13px; font-weight: 800; color: var(--ink-1);
+      letter-spacing: -0.02em; line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .hp-card__title em {
+      font-style: normal; color: var(--brand);
+    }
+    .hp-card__desc {
+      font-size: 11.5px; color: var(--ink-3);
+      line-height: 1.55; letter-spacing: -0.01em;
+    }
+    .hero-product__cta {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+    }
+    .hero-product__btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      height: 44px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+    }
+    .hero-product__btn i { font-size: 14px; }
+    .hero-product__btn--primary {
+      background: var(--brand); color: #fff;
+      border: 0;
+    }
+    .hero-product__btn--primary:hover { background: var(--brand-700); }
+    .hero-product__btn--ghost {
+      background: var(--bg); color: var(--ink-2);
+      border: 1.5px solid var(--line-2);
+    }
+    .hero-product__btn--ghost:hover {
+      border-color: var(--ink-1); color: var(--ink-1);
+    }
+    /* bg-soft-2 fallback */
+    :root { --bg-soft-2: #ebeef3; }
+
+    /* 단일 eyebrow — 트러스트 + 컨텍스트 한 줄 */
+    .hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 600; color: var(--ink-2);
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+      padding: 7px 14px;
+      background: var(--bg);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-pill);
+    }
+    .hero__eyebrow i { font-size: 14px; color: var(--brand); }
+
+    .hero__title {
+      font-size: 60px; font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.045em;
+      color: var(--ink-1);
+      margin: 0 0 20px;
+    }
+    .hero__title em {
+      font-style: normal; font-weight: 800;
+      color: var(--brand);
+    }
+    .hero__sub {
+      font-size: 15.5px; font-weight: 400;
+      color: var(--ink-3);
+      line-height: 1.75;
+      max-width: 540px;
+      margin: 0 0 24px;
+      letter-spacing: -0.015em;
+    }
+    @media (max-width: 980px) {
+      .hero__sub { margin-left: auto; margin-right: auto; }
+    }
+    .hero__sub b { color: var(--ink-1); font-weight: 700; }
+
+    /* 좌측 본문 — 3 bullets */
+    .hero__bullets {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 24px;
+      padding: 18px 20px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .hero__bullet {
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .hero__bullet i {
+      font-size: 18px; color: var(--brand);
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .hero__bullet b {
+      display: block;
+      font-size: 13.5px; font-weight: 700; color: var(--ink-1);
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
+    }
+    .hero__bullet span {
+      font-size: 12px; color: var(--ink-3); line-height: 1.55;
+    }
+
+    @media (max-width: 980px) {
+      .hero__bullets { padding: 16px; }
+    }
+
+    .hero__cta {
+      display: inline-flex; gap: 10px; flex-wrap: wrap;
+    }
+
+    .hero__pills {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 28px;
+    }
+    .hero__pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--bg);
+      border: 1px solid var(--line-2);
+      padding: 7px 13px; border-radius: var(--radius-pill);
+      font-size: 12.5px; font-weight: 500; color: var(--ink-2);
+      letter-spacing: -0.01em;
+    }
+    .hero__pill i { font-size: 13px; color: var(--brand); }
+
+    /* === 히어로 featured: 차 SVG + 스펙 블록 (CARTWO 톤) === */
+    .hero__feature {
+      position: relative;
+      display: flex; flex-direction: column; gap: 24px;
+      align-items: center;
+    }
+    .hero__car {
+      position: relative;
+      width: 100%; max-width: 460px;
+      padding: 20px 0 30px;
+    }
+    .hero__car::before {
+      content: '';
+      position: absolute; inset: 10% -5% 15% -5%;
+      background: radial-gradient(ellipse at center, var(--brand) 0%, transparent 70%);
+      opacity: 0.18;
+      filter: blur(20px);
+      z-index: 0;
+    }
+    .hero__car-svg, .hero__car-img {
+      position: relative; z-index: 1;
+      width: 100%; height: auto;
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,0.22));
+    }
+    .hero__car-img { max-height: 280px; object-fit: contain; }
+    .hero__car-shadow {
+      position: absolute; bottom: 18px; left: 8%; right: 8%;
+      height: 16px;
+      background: radial-gradient(ellipse, rgba(0,0,0,0.25) 0%, transparent 70%);
+      filter: blur(6px);
+    }
+
+    /* 스펙 블록 */
+    .hero__spec {
+      width: 100%; max-width: 480px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 26px 26px 22px;
+      box-shadow: 0 20px 50px rgba(225, 20, 30, 0.08), 0 4px 14px rgba(0,0,0,0.05);
+      border: 1px solid var(--line);
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .hero__spec-meta {
+      display: flex; align-items: baseline; gap: 8px;
+      font-size: 12px;
+    }
+    .hero__spec-brand {
+      color: var(--ink-4); font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .hero__spec-name {
+      color: var(--ink-1); font-weight: 800;
+      font-size: 15px; letter-spacing: -0.2px;
+    }
+    .hero__spec-headline {
+      margin: 0; font-size: 22px; font-weight: 800;
+      letter-spacing: -0.4px; line-height: 1.3;
+      color: var(--ink-1);
+    }
+    .hero__spec-blurb {
+      margin: 0; font-size: 13.5px; color: var(--ink-3); line-height: 1.65;
+    }
+    .hero__spec-blurb b { color: var(--ink-1); font-weight: 700; }
+
+    .hero__spec-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+    }
+    .hero__spec-cell {
+      background: var(--bg-soft);
+      border-radius: var(--radius-sm);
+      padding: 12px 10px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .hero__spec-cell--brand {
+      background: linear-gradient(135deg, var(--brand) 0%, #ff5862 100%);
+      color: #fff;
+    }
+    .hero__spec-label {
+      font-size: 10px; color: var(--ink-4); font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .hero__spec-cell--brand .hero__spec-label { color: rgba(255,255,255,0.85); }
+    .hero__spec-val {
+      font-size: 14.5px; font-weight: 800; color: var(--ink-1);
+      letter-spacing: -0.3px; font-variant-numeric: tabular-nums;
+    }
+    .hero__spec-cell--brand .hero__spec-val { color: #fff; }
+    .hero__spec-val small {
+      font-size: 10px; font-weight: 500; color: var(--ink-4);
+    }
+    .hero__spec-cell--brand .hero__spec-val small { color: rgba(255,255,255,0.85); }
+
+    .hero__spec-note {
+      font-size: 10.5px; color: var(--ink-4); line-height: 1.5;
+      padding: 8px 0 0;
+      border-top: 1px dashed var(--line);
+    }
+
+    .hero__card-cta {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      background: var(--ink-1); color: #fff;
+      border: 0; border-radius: var(--radius-pill);
+      padding: 13px 0;
+      font-family: inherit; font-size: 14px; font-weight: 700;
+      cursor: pointer;
+      transition: background var(--t-fast);
+      text-decoration: none;
+    }
+    .hero__card-cta:hover { background: var(--brand); }
+    .hero__card-cta i { font-size: 16px; }
+    @media (max-width: 480px) {
+      .hero__spec-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 26px;
+      border-radius: var(--radius-pill);
+      font-size: 15px; font-weight: 600;
+      border: 0; cursor: pointer;
+      transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+      letter-spacing: -0.2px;
+    }
+    .btn--primary {
+      background: var(--brand); color: #fff;
+      box-shadow: 0 4px 14px rgba(225, 20, 30, 0.25);
+    }
+    .btn--primary:hover { background: var(--brand-700); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(225, 20, 30, 0.32); }
+    .btn--outline {
+      background: rgba(255,255,255,0.85); color: var(--ink-1);
+      border: 1.5px solid var(--ink-1);
+    }
+    .btn--outline:hover { background: #fff; transform: translateY(-1px); }
+    @media (max-width: 768px) {
+      .hero { padding: 56px 0 64px; }
+      .hero__title { font-size: 42px; line-height: 1.12; }
+      .hero__sub { font-size: 15px; margin-bottom: 24px; }
+      .hero__eyebrow { font-size: 12px; padding: 6px 12px; margin-bottom: 20px; }
+      .hero__pills { margin-top: 20px; gap: 6px; }
+      .hero__pill { padding: 6px 11px; font-size: 11.5px; }
+      .btn { padding: 12px 22px; font-size: 14px; }
+    }
+
+    /* AI 결과 섹션 — 히어로 아래, 비어있으면 padding 작게 */
+    .ai-result-section {
+      padding: 32px 0 60px;
+      background: var(--bg-soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* === Sections === */
+    .section { padding: 90px 0; }
+    .section--soft { background: var(--bg-soft); }
+    .section--dark {
+      background: #0e0e10; color: #fff;
+      position: relative;
+    }
+    .section--dark::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(225,20,30,0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(225,20,30,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .section--dark .container { position: relative; z-index: 1; }
+    .section__title {
+      font-size: 32px; font-weight: 700;
+      letter-spacing: -0.03em; line-height: 1.3;
+      color: var(--ink-1);
+      margin: 0 0 14px;
+      text-align: center;
+    }
+    .section__sub {
+      font-size: 15.5px; color: var(--ink-3); font-weight: 400;
+      max-width: 580px; margin: 0 auto 56px;
+      text-align: center; line-height: 1.7;
+      letter-spacing: -0.01em;
+    }
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .section__title { font-size: 26px; }
+      .section__sub { font-size: 14.5px; margin-bottom: 36px; }
+    }
+
+    /* === Lineup → 전체 차종 가이드 보기 CTA === */
+    .lineup-more {
+      margin-top: 36px;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .lineup-more__btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 26px;
+      background: var(--ink-1); color: #fff;
+      border-radius: var(--radius-pill);
+      font-size: 14.5px; font-weight: 700;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: background var(--t-fast), transform var(--t-fast);
+    }
+    .lineup-more__btn:hover { background: var(--brand); transform: translateY(-1px); }
+    .lineup-more__btn i { font-size: 16px; }
+    .lineup-more__btn i:last-child { font-size: 14px; opacity: 0.7; }
+    .lineup-more__sub {
+      margin: 0;
+      font-size: 12.5px; color: var(--ink-4);
+      letter-spacing: -0.01em;
+    }
+
+    /* === Why grid === */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    }
+    .why-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: border-color var(--t-fast), transform var(--t-fast);
+    }
+    .why-card:hover { border-color: var(--ink-4); transform: translateY(-2px); }
+    .why-card__icon {
+      width: 48px; height: 48px;
+      background: var(--brand-50); color: var(--brand);
+      border-radius: var(--radius-md);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+    .why-card__title {
+      font-size: 18px; font-weight: 700;
+      letter-spacing: -0.2px; margin: 0 0 8px;
+    }
+    .why-card__desc {
+      font-size: 14px; color: var(--ink-3); line-height: 1.7;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .why-grid { grid-template-columns: 1fr; gap: 12px; }
+      .why-card { padding: 24px 20px; }
+    }
+
+    /* === 약속 섹션 (라이트, 정직 톤) === */
+    .promises__head {
+      text-align: center; max-width: 720px; margin: 0 auto 56px;
+    }
+    .promises__eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 700; color: var(--brand);
+      letter-spacing: 0.3px; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .promises__title {
+      font-size: 36px; font-weight: 700;
+      line-height: 1.25; letter-spacing: -0.035em;
+      color: var(--ink-1);
+      margin: 0 0 16px;
+    }
+    .promises__title em {
+      font-style: normal; color: var(--brand); font-weight: 800;
+    }
+    .promises__sub {
+      font-size: 15.5px; font-weight: 400;
+      color: var(--ink-3);
+      line-height: 1.7; letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .promises__grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    @media (max-width: 980px) {
+      .promises__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .promises__grid { grid-template-columns: 1fr; }
+    }
+
+    .promise {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 24px 26px;
+      position: relative;
+      transition: border-color var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+    }
+    .promise:hover {
+      border-color: var(--ink-4);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+    }
+    .promise__num {
+      position: absolute; top: 22px; right: 24px;
+      font-size: 12px; font-weight: 800; color: var(--ink-5);
+      letter-spacing: 0.4px;
+      font-family: 'Inter', sans-serif;
+    }
+    .promise__icon {
+      width: 44px; height: 44px;
+      background: var(--bg-soft);
+      border-radius: 12px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 22px; color: var(--brand);
+      margin-bottom: 18px;
+    }
+    .promise__title {
+      margin: 0 0 8px;
+      font-size: 16px; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--ink-1);
+    }
+    .promise__desc {
+      margin: 0;
+      font-size: 13px; font-weight: 400;
+      color: var(--ink-3); line-height: 1.65;
+      letter-spacing: -0.005em;
+    }
+
+    /* === 계약 절차 4단계 === */
+    .steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 820px) {
+      .steps { grid-template-columns: repeat(2, 1fr); }
+    }
+    .step {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      text-align: left;
+      position: relative;
+    }
+    .step__num {
+      position: absolute; top: 18px; right: 20px;
+      font-size: 13px; font-weight: 800; color: var(--ink-5);
+      letter-spacing: 0.5px;
+    }
+    .step__icon {
+      width: 44px; height: 44px;
+      background: var(--brand-50); color: var(--brand);
+      border-radius: 10px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+    .step__title {
+      font-size: 15px; font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 6px;
+    }
+    .step__desc {
+      font-size: 12.5px; color: var(--ink-3);
+      line-height: 1.65;
+    }
+
+    /* === 안심 보장 === */
+    .assure {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .assure__item {
+      display: flex; gap: 14px; align-items: flex-start;
+      font-size: 13.5px; color: var(--ink-2); line-height: 1.6;
+    }
+    .assure__item i {
+      font-size: 22px; color: var(--brand);
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .assure__item b {
+      display: block; color: var(--ink-1); font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .assure__item u { text-decoration: underline; color: var(--ink-1); font-weight: 500; }
+    @media (max-width: 640px) {
+      .assure { padding: 20px; }
+    }
+
+    /* === 모바일 하단 고정 CTA === */
+    .mcta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    }
+    .mcta__inner {
+      display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 6px;
+    }
+    .mcta__btn {
+      display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px;
+      height: 48px;
+      background: var(--bg); color: var(--ink-2);
+      border: 1.5px solid var(--line-2);
+      border-radius: var(--radius-sm);
+      font-family: inherit; font-size: 11px; font-weight: 600;
+      letter-spacing: -0.1px;
+      text-decoration: none;
+    }
+    .mcta__btn i { font-size: 17px; }
+    .mcta__btn--primary {
+      background: var(--ink-1); color: #fff; border-color: var(--ink-1);
+    }
+    @media (max-width: 768px) {
+      .mcta { display: block; }
+      body { padding-bottom: 72px; }
+    }
+
+    /* === 모바일 햄버거 === */
+    .topnav__burger {
+      display: none;
+      width: 36px; height: 36px;
+      background: transparent; border: 0;
+      align-items: center; justify-content: center;
+      font-size: 22px; color: var(--ink-1);
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .topnav__cta { display: none; }
+      .topnav__burger { display: inline-flex; }
+    }
+    .mobile-menu {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(8px);
+      z-index: 60;
+      display: flex; flex-direction: column;
+      padding: 80px 28px 28px;
+      transform: translateY(-100%);
+      transition: transform .25s ease-out;
+    }
+    .mobile-menu.is-open { transform: translateY(0); }
+    .mobile-menu__close {
+      position: absolute; top: 18px; right: 18px;
+      width: 40px; height: 40px;
+      background: transparent; border: 0;
+      font-size: 24px; color: var(--ink-1);
+      cursor: pointer;
+    }
+    .mobile-menu a {
+      font-size: 18px; font-weight: 600; color: var(--ink-1);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* === Footer === */
+    .footer {
+      background: var(--ink-1); color: var(--ink-4);
+      padding: 48px 0 32px;
+      font-size: 13px;
+    }
+    .footer__group {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer__brand-block { display: flex; flex-direction: column; gap: 6px; }
+    .footer__brand {
+      font-size: 17px; font-weight: 700; color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .footer__brand-tagline {
+      font-size: 11.5px; color: var(--ink-4); font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .footer__partners {
+      display: flex; align-items: center; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .footer__partners-label {
+      color: rgba(255,255,255,0.35); font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.4px; text-transform: uppercase;
+    }
+    .footer__partners a {
+      color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 500;
+      text-decoration: none;
+      transition: color var(--t-fast);
+    }
+    .footer__partners a:hover { color: #fff; }
+    .footer__info {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      line-height: 1.85;
+      font-size: 12px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 720px) {
+      .footer__info { grid-template-columns: 1fr; gap: 22px; }
+    }
+    .footer__info-col {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .footer__info-title {
+      font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.5px; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .footer__agent-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 9px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      transition: background var(--t-fast), color var(--t-fast);
+    }
+    .footer__agent-link:hover {
+      background: var(--brand); color: #fff !important;
+    }
+    .footer__agent-link i { font-size: 11px; }
+    .footer__warn {
+      color: #ff8b91; font-weight: 500;
+      margin-top: 4px;
+    }
+    .footer__info b { color: #e5e5e5; font-weight: 500; margin-right: 4px; }
+    .footer__bottom {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 11.5px; color: var(--ink-4); font-weight: 400;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer__links a { color: var(--ink-4); margin-left: 14px; }
+    .footer__links a:hover { color: #e5e5e5; }
+  </style>
+</head>
+<body>
+  <!-- Top Nav -->
+  <nav class="topnav">
+    <div class="container topnav__wrap">
+      <a class="topnav__brand" href="/home.html">
+        <span class="topnav__partner">브랜드명</span>
+        <span class="topnav__x">×</span>
+        <img src="/welrix-ci.png" alt="웰릭스 모빌리티" />
+      </a>
+      <div class="topnav__menu">
+        <a href="#lineup">인기 차종</a>
+        <a href="/vehicles.html">차량 가이드</a>
+        <a href="#quote">즉시 견적</a>
+        <a href="#steps">이용 안내</a>
+        <a href="#contact">상담 신청</a>
+      </div>
+      <a class="topnav__cta" href="#contact">
+        <i class="ph ph-chat-circle-dots"></i> 상담 신청
+      </a>
+      <button class="topnav__burger" aria-label="메뉴 열기" onclick="document.getElementById('mobile-menu').classList.add('is-open')">
+        <i class="ph ph-list"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__bg-grid" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__left">
+        <div class="hero__eyebrow">
+          <i class="ph ph-shield-check"></i>
+          웰컴저축은행 계열 · 신차 장기렌터카
+        </div>
+        <h1 class="hero__title">
+          신용 점수 <span class="hero__title-x">X</span><br>
+          <em>월 소득 <span class="hero__title-o">O</span></em>
+        </h1>
+        <p class="hero__sub">
+          직장인 · 자영업자 · 프리랜서 — 같은 기준으로<br>
+          신차 장기렌터카를 출고해드립니다.
+        </p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <div class="hero__stat-num">5<small>분</small></div>
+            <div class="hero__stat-label">간편 심사</div>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">7<small>일</small></div>
+            <div class="hero__stat-label">평균 출고</div>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">25<small>종</small></div>
+            <div class="hero__stat-label">신차 라인업</div>
+          </div>
+        </div>
+
+        <div class="hero__cta">
+          <a class="hero__btn hero__btn--primary" href="#lineup">
+            <i class="ph ph-fire"></i> 인기 차종 보기
+          </a>
+          <a class="hero__btn hero__btn--ghost" href="#quote">
+            <i class="ph ph-calculator"></i> 직접 견적
+          </a>
+          <a class="hero__btn hero__btn--ghost" href="#ai-recommender">
+            <i class="ph ph-sparkle"></i> AI 추천 받기
+          </a>
+        </div>
+      </div>
+
+      <!-- 우: BEST 차종 1대 + 월 가격 (즉시 증명) -->
+      <div class="hero__interact">
+        <div id="hero-best-root"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI 추천 (히어로 아래 독립 섹션) -->
+  <section class="section section--soft" id="ai-recommender">
+    <div class="container">
+      <div id="ai-recommender-root"></div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="section" id="why">
+    <div class="container">
+      <h2 class="section__title">왜 웰릭스 모빌리티인가요?</h2>
+      <p class="section__sub">안정적인 월 소득만 있다면 누구나 가능합니다.<br>직장인·자영업자·프리랜서 모두 환영.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-card__icon"><i class="ph ph-receipt"></i></div>
+          <h3 class="why-card__title">소득 기준 심사</h3>
+          <p class="why-card__desc">월 소득 증빙 서류만 있으면 됩니다. 직장인의 재직증명·자영업자의 사업자등록 + 소득금액증명으로 빠르게 심사합니다.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><i class="ph ph-car"></i></div>
+          <h3 class="why-card__title">신차 출고 · 보증금 옵션</h3>
+          <p class="why-card__desc">현대·기아·제네시스 전 차종 신차 출고. 무보증 옵션 가능, 일반 영업번호판으로 등록되어 운전 이력에 부담 없습니다.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon"><i class="ph ph-calendar-check"></i></div>
+          <h3 class="why-card__title">36·48·60개월 자유</h3>
+          <p class="why-card__desc">월 부담을 줄이는 60개월, 짧고 부담 없는 36개월. <b>자동차 보험료 + 자동차세 포함</b>으로 월 1회만 납부하면 끝.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 약속 (포지셔닝) — 정직한 약속 4가지 -->
+  <section class="section section--soft" id="why-us">
+    <div class="container">
+      <div class="promises__head">
+        <span class="promises__eyebrow">정직한 약속</span>
+        <h2 class="promises__title">
+          소득이 있다면, <em>더 합리적인 길</em>이 있습니다.
+        </h2>
+        <p class="promises__sub">
+          웰컴저축은행 계열의 검증된 시스템을 그대로.<br>
+          숨은 비용 없는 표준 약관 — 신차 장기렌터카가 처음이어도 부담 없이.
+        </p>
+      </div>
+
+      <div class="promises__grid">
+        <div class="promise">
+          <div class="promise__icon"><i class="ph ph-shield-check"></i></div>
+          <div class="promise__num">01</div>
+          <h3 class="promise__title">검증된 금융 계열</h3>
+          <p class="promise__desc">
+            웰컴저축은행 계열 시스템·표준 절차를 그대로 적용.
+            정식 등록된 상담사가 처음부터 끝까지 안내합니다.
+          </p>
+        </div>
+
+        <div class="promise">
+          <div class="promise__icon"><i class="ph ph-receipt"></i></div>
+          <div class="promise__num">02</div>
+          <h3 class="promise__title">소득 기준 심사</h3>
+          <p class="promise__desc">
+            복잡한 신용 점수 대신 안정적인 월 소득으로 심사.
+            직장인·자영업자·프리랜서 모두 동일한 기준으로.
+          </p>
+        </div>
+
+        <div class="promise">
+          <div class="promise__icon"><i class="ph ph-currency-krw"></i></div>
+          <div class="promise__num">03</div>
+          <h3 class="promise__title">숨은 비용 없는 월 1회</h3>
+          <p class="promise__desc">
+            자동차 보험료·자동차세 포함된 월 1회 통합 납부.
+            출고 후 추가 청구되는 항목이 없습니다.
+          </p>
+        </div>
+
+        <div class="promise">
+          <div class="promise__icon"><i class="ph ph-lock-key"></i></div>
+          <div class="promise__num">04</div>
+          <h3 class="promise__title">법인 계좌 한정 결제</h3>
+          <p class="promise__desc">
+            모든 결제는 법인 계좌로만. 영업사원 개인 계좌 입금은 절대 금지.
+            표준 약관 외 별도 조항 없음.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 인기 차종 (Vue mounted) -->
+  <section class="section section--soft" id="lineup">
+    <div class="container">
+      <h2 class="section__title">지금 인기 있는 차종</h2>
+      <p class="section__sub">월 부담을 한눈에. 표시 가격은 표준 조건(중신용·보증금 10%·60개월) 기준 — 탁송·옵션·할인은 상담 시 별도 안내됩니다.</p>
+      <div id="lineup-root"></div>
+
+      <!-- 전체 차종 보기 (vehicles.html 로 이동) -->
+      <div class="lineup-more">
+        <a class="lineup-more__btn" href="/vehicles.html">
+          <i class="ph ph-list-magnifying-glass"></i>
+          전체 25종 차량 가이드 보기
+          <i class="ph ph-arrow-right"></i>
+        </a>
+        <p class="lineup-more__sub">트림별 견적, 연비·세금·보험료, 디자인 평가, 유튜브 리뷰까지 한 번에.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Quote (Vue mounted) -->
+  <section class="section section--soft" id="quote">
+    <div class="container">
+      <h2 class="section__title">1분 견적</h2>
+      <p class="section__sub">차종과 기간만 선택하면 즉시 월 대여료를 확인할 수 있습니다.</p>
+      <div id="quote-widget-root"></div>
+    </div>
+  </section>
+
+  <!-- 신뢰감 — 계약 절차 + 안심 보장 -->
+  <section class="section section--soft" id="steps">
+    <div class="container">
+      <h2 class="section__title">상담부터 출고까지</h2>
+      <p class="section__sub">전문 상담사가 처음부터 끝까지 도와드립니다. 평균 출고 7일 이내.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">01</div>
+          <div class="step__icon"><i class="ph ph-chat-circle-dots"></i></div>
+          <div class="step__title">상담 신청</div>
+          <div class="step__desc">관심 차종·예산을 알려주시면<br>맞춤 견적을 드립니다</div>
+        </div>
+        <div class="step">
+          <div class="step__num">02</div>
+          <div class="step__icon"><i class="ph ph-file-text"></i></div>
+          <div class="step__title">서류 심사</div>
+          <div class="step__desc">소득 증빙 서류로<br>심사를 진행합니다</div>
+        </div>
+        <div class="step">
+          <div class="step__num">03</div>
+          <div class="step__icon"><i class="ph ph-handshake"></i></div>
+          <div class="step__title">계약 체결</div>
+          <div class="step__desc">표준 약관 기반<br>전자 계약으로 간편하게</div>
+        </div>
+        <div class="step">
+          <div class="step__num">04</div>
+          <div class="step__icon"><i class="ph ph-car"></i></div>
+          <div class="step__title">신차 출고</div>
+          <div class="step__desc">계약일 기준 7일 이내<br>지정 장소로 탁송</div>
+        </div>
+      </div>
+
+      <div class="assure">
+        <div class="assure__item">
+          <i class="ph ph-shield-check"></i>
+          <div>
+            <b>안심 결제</b>
+            법인 계좌로만 입금되며, <u>영업사원 개인 계좌 입금은 절대 금지</u>입니다.
+          </div>
+        </div>
+        <div class="assure__item">
+          <i class="ph ph-lock"></i>
+          <div>
+            <b>개인정보 보호</b>
+            상담 목적 외 마케팅 활용 X. 약관 동의 후 30일 내 파기 가능합니다.
+          </div>
+        </div>
+        <div class="assure__item">
+          <i class="ph ph-receipt"></i>
+          <div>
+            <b>표준 약관 기반</b>
+            한국소비자원 권고 표준 약관 사용. 출고 전 약관 전문 제공.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead form (Vue mounted) -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section__title">무료 상담 신청</h2>
+      <p class="section__sub">전문 상담사가 1영업일 이내 연락드립니다.<br>관심 차종을 알려주시면 맞춤 견적과 함께 안내해 드립니다.</p>
+      <div id="lead-form-root"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__group">
+        <div class="footer__brand-block">
+          <div class="footer__brand">[브랜드명]</div>
+          <div class="footer__brand-tagline">신차 장기렌터카 전문 상담 · 웰릭스 모빌리티 협력사</div>
+        </div>
+        <div class="footer__partners">
+          <span class="footer__partners-label">금융·렌탈 파트너</span>
+          <a href="https://www.welrix.com/" target="_blank" rel="noopener">웰릭스 모빌리티</a>
+          <a href="https://welcomesb.co.kr/" target="_blank" rel="noopener">웰컴저축은행</a>
+          <a href="#" target="_blank" rel="noopener">웰컴금융그룹</a>
+        </div>
+      </div>
+
+      <div class="footer__info">
+        <div class="footer__info-col">
+          <div class="footer__info-title">사업자 정보</div>
+          <div><b>상호</b>—</div>
+          <div><b>대표</b>—</div>
+          <div><b>사업자번호</b>—</div>
+          <div><b>주소</b>—</div>
+        </div>
+        <div class="footer__info-col">
+          <div class="footer__info-title">고객 상담</div>
+          <div><b>대표전화</b>1544-0000</div>
+          <div><b>운영시간</b>평일 09:00 – 18:00</div>
+          <div><b>점심시간</b>12:00 – 13:00 제외</div>
+          <div><b>휴일</b>주말 · 공휴일 휴무</div>
+        </div>
+        <div class="footer__info-col">
+          <div class="footer__info-title">안내</div>
+          <div class="footer__warn">⚠ 영업사원 개인 계좌 입금은 절대 금지입니다.</div>
+          <div>모든 결제는 법인 계좌로만 진행됩니다.</div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 [브랜드명]. All rights reserved.</span>
+        <span class="footer__links">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <a href="#">상담사 등록 정보</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 모바일 햄버거 메뉴 오버레이 -->
+  <div id="mobile-menu" class="mobile-menu">
+    <button class="mobile-menu__close" aria-label="메뉴 닫기"
+            onclick="document.getElementById('mobile-menu').classList.remove('is-open')">
+      <i class="ph ph-x"></i>
+    </button>
+    <a href="#lineup" onclick="document.getElementById('mobile-menu').classList.remove('is-open')">인기 차종</a>
+    <a href="/vehicles.html">차량 가이드</a>
+    <a href="#quote" onclick="document.getElementById('mobile-menu').classList.remove('is-open')">즉시 견적</a>
+    <a href="#steps" onclick="document.getElementById('mobile-menu').classList.remove('is-open')">이용 안내</a>
+    <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('is-open')">상담 신청</a>
+  </div>
+
+  <!-- 모바일 하단 고정 CTA — 전화 / 카톡 / 견적 -->
+  <div class="mcta">
+    <div class="mcta__inner">
+      <a href="tel:1544-0000" class="mcta__btn">
+        <i class="ph ph-phone"></i> 전화
+      </a>
+      <a href="#" class="mcta__btn" onclick="alert('카카오톡 채널 연결 예정'); return false;">
+        <i class="ph ph-chat-circle-dots"></i> 카톡
+      </a>
+      <a href="#contact" class="mcta__btn mcta__btn--primary">
+        <i class="ph ph-paper-plane-tilt"></i> 무료 상담
+      </a>
+    </div>
+  </div>
+
+  <script type="module" src="/src/home.js"></script>
+</body>
+</html>
