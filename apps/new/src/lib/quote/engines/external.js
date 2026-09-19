@@ -31,6 +31,7 @@ export async function 계산(요청, { 신호 } = {}) {
   if (!r.ok || !j?.ok || !Array.isArray(j.results) || j.contract !== QUOTE_RESULT_CONTRACT || j.providerContract !== QUOTE_PROVIDER_CONTRACT) {
     const error = new Error(j?.error || `외부 계산 서버 응답 ${r.status}`);
     error.code = j?.code || (r.status >= 500 ? 'PROVIDER_ERROR' : 'PROVIDER_RESPONSE_INVALID');
+    error.retryable = j?.retryable === true;
     throw error;
   }
 
@@ -38,6 +39,7 @@ export async function 계산(요청, { 신호 } = {}) {
     차량가: j.vehiclePrice ?? null,
     결과계약: j.contract,
     공급자계약: j.providerContract,
+    정책: j.providerPolicy || null,
     결과: j.results.map((g) => (g == null ? null : {
       월대여료: g.monthlyRent,
       보증금: g.deposit,
