@@ -95,7 +95,7 @@
       "maker": "KG모빌리티",
       "model_contains": "티볼리",
       "fuel": "gasoline",
-      "trim_regex": "^(?:V1|V3)\\b",
+      "trim_regex": "(?:^|\\s)(?:V1|V3)\\b",
       "cc": 1597,
       "source": "https://www.kg-mobility.com/attached/contents/display/file/2000001000100070004/20260530222042959_JzT5Eu.pdf",
       "note": "The New Tivoli gasoline 1.6"
@@ -104,7 +104,7 @@
       "maker": "KG모빌리티",
       "model_contains": "티볼리",
       "fuel": "gasoline",
-      "trim_regex": "^(?:V5|V7)\\b",
+      "trim_regex": "(?:^|\\s)(?:V5|V7)\\b",
       "cc": 1497,
       "source": "https://www.kg-mobility.com/attached/contents/display/file/2000001000100070004/20260530222042959_JzT5Eu.pdf",
       "note": "The New Tivoli gasoline 1.5 T-GDI"
