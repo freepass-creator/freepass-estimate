@@ -8,6 +8,7 @@ export const QUOTE_PROVIDER_CONTRACT = 'freepass-quote-provider/v1';
 export const QUOTE_EXECUTION_CONTRACT = 'freepass-quote-execution/v1';
 export const SHARE_SNAPSHOT_CONTRACT = 'freepass-quote-snapshot/v2';
 export const MOBILE_NAVIGATION_CONTRACT = 'freepass-estimate-mobile-navigation/v1';
+export const PROVIDER_HEALTH_CONTRACT = 'freepass-provider-health/v1';
 
 export const LEGACY_QUOTE_VERSION = 1;
 export const LEGACY_SHARE_SNAPSHOT_VERSION = 1;
