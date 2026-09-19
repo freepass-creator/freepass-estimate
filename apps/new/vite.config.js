@@ -15,8 +15,13 @@ function injectGatePins() {
   };
 }
 
+const BUILD_REVISION = process.env.VERCEL_GIT_COMMIT_SHA || process.env.GITHUB_SHA || process.env.COMMIT_SHA || null;
+
 export default defineConfig({
   root: '.',
+  define: {
+    __FREEPASS_BUILD_REVISION__: JSON.stringify(BUILD_REVISION),
+  },
   publicDir: 'public',
   plugins: [vue(), injectGatePins()],
   server: {
