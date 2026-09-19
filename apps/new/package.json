@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "node scripts/check-sync.mjs",
-    "test:ui": "node scripts/e2e-mobile-ux.mjs"
+    "test:ui": "node scripts/e2e-mobile-ux.mjs",
+    "check:provider": "node scripts/check-provider-contract.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"
