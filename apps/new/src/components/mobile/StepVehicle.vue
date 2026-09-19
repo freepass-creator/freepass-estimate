@@ -289,6 +289,10 @@ function syncVehicle() {
     fuel: can?.fuel || selectedVariant.value?.fuel,
     displacement_cc: can?.engine_cc || selectedVariant.value?.displacement_cc || match?.disp,
     _product_id: t._product_id || t.trim_id,
+    _trim_meta: t,
+    _price_before_won: Number(t._price_before_won || 0),
+    _price_after_won: Number(t._price_after_won || 0),
+    _price_basis: t._price_basis || '',
     _base_axes: t._base_axes || {},
     _canonical: canonical,
     _selected_options: selectedOptionIds.map(id => ({
