@@ -122,3 +122,34 @@ AI Core가 이 프로젝트에서 앞선 패턴을 학습할 때 읽는 정본�
 
 과거 Welrix 기반 Self Quote 시절에 만들어진 기존 학습 패킷을 FreePass Estimate 정본 기준으로 갱신했다.
 새 별도 학습 문서를 병렬 정본으로 두지 않는다.
+
+
+## 추가 정렬 — semantic contract / verification freshness
+
+AI Core의 revision/evidence 원칙을 더 적용해 다음을 고도화했다.
+
+- Quote 계약을 숫자 `v1`만 쓰지 않고 semantic contract id로 고정
+  - `freepass-quote-request/v1`
+  - `freepass-quote-result/v1`
+  - `freepass-quote-provider/v1`
+  - `freepass-quote-execution/v1`
+  - `freepass-quote-snapshot/v2`
+  - `freepass-estimate-mobile-navigation/v1`
+- Vite build revision을 Quote execution proof의 subject revision으로 연결
+- 공유 Snapshot v2에 quote/result/execution contract + source revision을 기록
+- 기존 Snapshot v1은 계속 읽고, 알 수 없는 미래 contract는 fail-closed
+- adapter id 같은 내부 연결 상세는 고객 공유 Snapshot에 노출하지 않음
+- `npm --prefix apps/new run verify` 단일 검증 entrypoint 추가
+- `verification-manifest.json`으로 contract ↔ checker 연결을 명시
+- E2E가 폐기된 header selector를 다시 사용하면 static CI에서 즉시 실패
+
+최신 검증:
+- revision: `b04af7302406f606b93f3ec45dca64bd625c6c68`
+- GitHub Actions run: `35438072361`
+- result: SUCCESS
+
+AI Core 쪽 반영:
+- Project Registry에 `freepass-estimate` 등록
+- Work Map `estimator` target을 `freepass-estimate`로 변경
+- capability `sales.vehicle-estimator` owner project를 `freepass-estimate`로 변경
+- main 미승격/production proof 미관측 때문에 현재 상태는 의도적으로 HOLD 유지
