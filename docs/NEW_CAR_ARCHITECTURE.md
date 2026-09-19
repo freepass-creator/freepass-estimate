@@ -1,20 +1,37 @@
 # New-car Quote Architecture
 
-Status: ACTIVE DESIGN
+Status: ACTIVE / CANONICAL
 Date: 2026-09-19
 
 ## 1. Ownership
 
-**FreePass Estimate owns the new-car estimator UI/UX and quote contract.**
+**FreePass Estimate owns the canonical new-car estimator UI/UX, interaction rules, quote contract, and quote-provider contract.**
 
-Welrix is no longer the long-term architectural owner. Its current app is the migration baseline because that UI/UX is already verified. After parity is proven, partner/channel apps should consume FreePass Estimate rather than fork its UI.
+This repository is the estimator upstream / SSOT.
+
+Welrix and FreePass Sales are not estimator owners.
+
+- Welrix supplied a previously verified estimator structure during migration.
+- FreePass Sales supplied current FreePass mobile interaction/design language.
+- Those inputs have now been absorbed into FreePass Estimate.
+- From this point forward, canonical estimator changes originate here and propagate outward.
+
+```
+FreePass Estimate (canonical upstream)
+      │
+      ├──> FreePass Sales
+      ├──> Welrix
+      └──> Partner / Channel surfaces
+```
+
+A downstream implementation must not become the long-term source of truth by accident.
 
 ## 2. One UI, configurable calculation provider
 
 The customer/staff screen does not change by provider.
 
 ```
-New-car UI
+Canonical New-car UI
   │
   ├─ vehicle selection
   ├─ conditions
@@ -40,15 +57,17 @@ There are two business modes:
 1. **FreePass Standard**
    - FreePass owns cost policy and calculation rules.
    - Uses the FreePass standard engine.
-   - Requires its own regression and policy approval before becoming production default.
+   - Requires regression and policy approval before production changes.
 
 2. **External**
-   - The external company owns the calculation truth.
+   - The external company owns the calculation truth for that configured channel.
    - FreePass sends the normalized quote request to an adapter.
    - Adapter kinds:
      - Excel
      - ERP/API
    - No silent fallback to FreePass Standard. If the authoritative external calculator is unavailable, the quote fails visibly.
+
+An external provider may own its **calculation truth**, but it does not own the shared estimator UI/UX or quote contract.
 
 ## 4. Current Welrix mapping
 
@@ -63,6 +82,8 @@ There are two business modes:
 ```
 
 Welrix external adapter currently calls the existing authoritative Welrix estimate API and normalizes the response into the FreePass result contract.
+
+This is a provider integration, not UI ownership.
 
 ## 5. Security boundary
 
@@ -90,13 +111,37 @@ Changing quote provider must not require changes to:
 
 If a provider needs extra private parameters, those belong to its server adapter/config, not a provider-specific customer UI unless the user explicitly approves a new shared quote field.
 
-## 7. Migration order
+## 7. Canonical change flow
 
-1. Import current verified Welrix UI/UX as pinned baseline.
-2. Make both web and mobile use the same Quote Provider Contract.
-3. Keep Welrix mapped to external Excel so existing outputs remain authoritative.
-4. Verify UI parity and Welrix output parity.
-5. Harden FreePass Standard with regression coverage.
-6. Add partner Excel/ERP adapters as needed.
-7. Make FreePass Estimate authoritative.
-8. Change Welrix/partner surfaces to consume FreePass Estimate instead of maintaining cloned UI code.
+All estimator-specific structural changes follow this order:
+
+1. Implement in FreePass Estimate.
+2. Run contract/regression/UI verification.
+3. Establish the new canonical baseline.
+4. Propagate to FreePass Sales, Welrix, and other consumers.
+
+If an emergency downstream hotfix is unavoidable:
+1. patch operationally,
+2. immediately back-port the intended behavior here,
+3. validate here,
+4. reconcile the downstream implementation to this canonical source.
+
+## 8. Historical migration lineage
+
+The canonical implementation was built using:
+- verified Welrix web/mobile estimator structure,
+- FreePass Sales mobile UI conventions,
+- FreePass Admin web density/hierarchy conventions,
+- AI Core technical design/accessibility standards,
+- existing FreePass/ERP calculation regression assets.
+
+These are lineage/reference sources. They are not competing canonical owners.
+
+## 9. Migration completion direction
+
+The architectural end state is:
+
+1. FreePass Estimate remains authoritative.
+2. FreePass Sales consumes the estimator capability instead of maintaining a divergent copy.
+3. Welrix consumes the estimator capability while retaining its configured external calculation provider where required.
+4. New partner/channel surfaces consume the same canonical contracts and interaction rules.
