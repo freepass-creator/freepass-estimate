@@ -56,6 +56,7 @@ jobs:
       - name: Syntax check provider files
         run: |
           node --check src/lib/quote/contracts.js
+          node --check scripts/check-verification-manifest.mjs
           node --check src/lib/quote/provider-config.js
           node --check src/lib/quote/calculate.js
           node --check src/lib/quote/execution-result.js
@@ -81,6 +82,8 @@ jobs:
         run: npm run check:runtime
       - name: Share snapshot provenance contract
         run: npm run check:snapshot
+      - name: Verification manifest freshness
+        run: npm run check:verification
       - name: Release revision proof contract
         run: npm run check:release
       - name: Existing sync checks
