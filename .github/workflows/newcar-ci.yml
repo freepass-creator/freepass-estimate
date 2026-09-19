@@ -59,6 +59,8 @@ jobs:
         run: node scripts/check-standard-engine.mjs
       - name: Provider contract
         run: npm run check:provider
+      - name: Provider routing
+        run: node scripts/test-provider-routing.mjs
       - name: Existing sync checks
         run: npm run check
       - name: Production build
