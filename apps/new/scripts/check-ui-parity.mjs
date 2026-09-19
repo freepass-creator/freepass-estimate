@@ -42,11 +42,15 @@ for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
   const local=path.join(root,'src','components',rel);
   if(!fs.existsSync(local)){failures.push('missing component '+rel);continue}
   const upstreamSource=read(p), localSource=read(local);
-  if(vueStyles(upstreamSource)!==vueStyles(localSource)) failures.push('component style changed '+rel);
-  // MobileApp is the approved FreePass delta: dynamic channel branding + one-screen-one-choice footer behavior.
-  // All other component templates remain locked to the pinned Welrix visible structure.
-  if(rel!=='mobile/MobileApp.vue' && vueTemplate(upstreamSource)!==vueTemplate(localSource))
-    failures.push('component template changed '+rel);
+  // MobileApp is the approved FreePass shell delta:
+  // - dynamic channel branding
+  // - one-screen-one-choice auto advance
+  // - top is informational / bottom is actionable
+  // Its action placement is enforced by check-action-placement.mjs + Playwright.
+  if(rel!=='mobile/MobileApp.vue'){
+    if(vueStyles(upstreamSource)!==vueStyles(localSource)) failures.push('component style changed '+rel);
+    if(vueTemplate(upstreamSource)!==vueTemplate(localSource)) failures.push('component template changed '+rel);
+  }
 }
 const upStyles=path.join(upstream,'src','styles');
 for(const p of walk(upStyles)){
