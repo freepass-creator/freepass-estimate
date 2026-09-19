@@ -65,30 +65,30 @@
   :root {
     /* Brand UI 색 — 인터랙티브/액센트는 네이비 톤 (텍스트·호버·선택).
        welrix CI 로고는 PNG 빨강 그대로, CSS 액센트만 분리. */
-    --brand: #e1141e;        /* welrix CI 레드 — UI 액센트 (CI 통일) */
-    --brand-700: #b30f18;    /* 진한 레드 — 호버 강조 */
-    --brand-100: #f6c4c7;    /* 옅은 레드 — 보조 보더 */
-    --brand-50:  #fdecee;    /* 가장 옅은 — 선택 bg */
+    --brand: #1b2a4a;
+    --brand-700: #0f1b35;
+    --brand-100: #c8d4e4;
+    --brand-50:  #e6ecf5;
     /* 원본 빨강 (필요 시 사용) — welrix-ci.png 와 매칭 */
     --welrix-red: #e1141e;
 
     /* Ink scale (텍스트 위계) */
-    --ink-1: #0a0a0a;   /* primary 텍스트 */
-    --ink-2: #404040;   /* secondary 텍스트 */
-    --ink-3: #737373;   /* 보조 텍스트 / 라벨 */
-    --ink-4: #a3a3a3;   /* placeholder / hint */
-    --ink-5: #d4d4d4;   /* disabled */
+    --ink-1: #212529;
+    --ink-2: #5c6268;
+    --ink-3: #737980;
+    --ink-4: #9aa1a8;
+    --ink-5: #c9ced3;
 
     /* Line (구분선 / 보더) */
-    --line:   #f0f0f0;  /* 가장 옅은 — 섹션 내 미세 구분 */
-    --line-2: #e5e5e5;  /* 일반 보더 — 카드/표 */
-    --line-3: #d8d8d8;  /* 진한 보더 — 격자 표 */
+    --line:   #eceef0;
+    --line-2: #d9dde1;
+    --line-3: #c8cdd2;
 
     /* Background */
     --bg:        #ffffff;
-    --bg-soft:   #fafafa;   /* 카드 보조 / hover */
-    --bg-muted:  #f5f5f5;   /* 모달 배경 / disabled */
-    --bg-grey:   #f4f5f7;   /* 데스크탑 캔버스 */
+    --bg-soft:   #f7f8fa;
+    --bg-muted:  #f2f3f5;
+    --bg-grey:   #f7f8fa;
 
     /* Accent (legacy) */
     --accent: #0a0a0a;
@@ -216,7 +216,8 @@
     cursor: pointer;
     white-space: nowrap;
   }
-  .bottom-action.secondary { background: var(--bg-soft); color: var(--ink-2); }
+  .bottom-action.secondary { background: transparent; color: var(--ink-2); }
+  .bottom-action.secondary:hover { background: var(--bg-muted); color: var(--ink-1); }
   .bottom-action.primary { background: var(--brand); color: #fff; font-weight: 600; }
   .bottom-action:disabled { opacity: .38; cursor: not-allowed; }
   @media (max-width: 1024px) {
@@ -578,7 +579,8 @@
     align-items: center;
     gap: 5px;
   }
-  .quote-modal__foot button.outline { background: var(--bg-soft); color: var(--ink-2); }
+  .quote-modal__foot button.outline { background: transparent; color: var(--ink-2); }
+  .quote-modal__foot button.outline:hover { background: var(--bg-muted); color: var(--ink-1); }
   .quote-modal__foot button.primary { background: var(--brand); color: #fff; font-weight: 600; }
   @media (max-width: 1024px) {
     .quote-modal__foot { overflow-x: auto; }
