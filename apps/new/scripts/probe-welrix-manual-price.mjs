@@ -1,4 +1,12 @@
+import fs from 'node:fs';
+
 const URL='https://welrixmobility.netlify.app/api/estimate';
+const idx=JSON.parse(fs.readFileSync('public/data/freepass-newcar/product-index.json','utf8'));
+const first=Object.entries(idx.products||{}).find(([,p])=>Array.isArray(p.providerCandidates)&&p.providerCandidates.length);
+if(!first)throw new Error('provider candidate가 하나도 없습니다');
+const [productId,p]=first;
+const knownModel=p.providerCandidates[0].api_model;
+
 const baseInput={
   credit:'중신용',termMonths:60,mileage:'2만km',
   optionPrice:0,stockDiscount:0,deliveryFee:0,tintFee:0,dashcamFee:0,
@@ -12,13 +20,18 @@ async function call(name,body){
  console.log(name,JSON.stringify({status:r.status,ok:r.ok,body:j||text.slice(0,500)}));
  return {r,j,text};
 }
+
+console.log('KNOWN_PRODUCT',JSON.stringify({productId,knownModel}));
 const known=await call('KNOWN',{
- model:'K5 2.0 HEV 노블레스',old:false,manualPrice:0,inputs:[baseInput]
+ model:knownModel,old:false,manualPrice:0,inputs:[baseInput]
 });
+if(!known.r.ok||!known.j?.ok||!known.j?.results?.[0]?.monthlyRent){
+ throw new Error('known provider model probe failed');
+}
+
 const manual=await call('MANUAL_UNKNOWN',{
  model:'__FREEPASS_MANUAL_PRICE_PROBE__',old:false,manualPrice:40000000,inputs:[baseInput]
 });
-if(!known.r.ok)throw new Error('known model probe failed');
 if(manual.r.ok&&manual.j?.ok&&manual.j?.results?.[0]?.monthlyRent){
  console.log('MANUAL_PRICE_CAPABILITY=SUPPORTED');
 }else{
