@@ -77,9 +77,10 @@ for(const p of feed.rows||[]){
   const pForms=trimForms(p.trim);
 
   let rows=(byMaker.get(maker)||[]).filter(r=>{
-    const names=[r.model,r.sub_model,r.generation_name,r.development_code,...(r.source_aliases||[])].map(N);
+    const names=[r.model,r.sub_model,r.generation_name,r.development_code,...(r.source_aliases||[])].map(N).filter(Boolean);
     const want=N(productModel);
-    return names.some(x=>x===want||x.includes(want)||want.includes(x));
+    if(!want) return false;
+    return names.some(x=>x===want||(x.length>=2&&x.includes(want))||(x.length>=2&&want.includes(x)));
   });
   if(f) rows=rows.filter(r=>!fuelOf(r.fuel||r.powertrain)||fuelOf(r.fuel||r.powertrain)===f);
   if(l){
