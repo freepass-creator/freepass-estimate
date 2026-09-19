@@ -33,3 +33,14 @@ console.log(JSON.stringify({
   colors:{prices:stat(colorPrices)},
   samples
 },null,2));
+
+const configAxis=[];
+for(const r of rows){
+  const opts=Object.entries(r.optionsMaster||{}).map(([id,o])=>({id,...o}));
+  const hits=opts.filter(o=>/(AWD|4WD|2WD|HTRAC|사륜|인승|하이루프|밴)/i.test(String(o.name||'')+' '+String(o.sub||'')));
+  if(hits.length) configAxis.push({id:r.id,maker:r.maker,model:r.sub_model,fuel:r.fuel,trim:r.trim,
+    axes:hits.map(o=>({id:o.id,name:o.name,price:o.price,sub:o.sub||'',available:(r.availableOptions||[]).includes(o.id),implied:(r.impliedOptions||[]).includes(o.id)})),
+    implied:r.impliedOptions||[]});
+}
+console.log('CONFIG_AXIS_ROWS='+configAxis.length);
+for(const x of configAxis.slice(0,80)) console.log('AXIS '+JSON.stringify(x));
