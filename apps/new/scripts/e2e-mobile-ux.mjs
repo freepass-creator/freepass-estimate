@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 
-const BASE = process.env.BASE_URL || 'http://127.0.0.1:5173/mobile.html?force=mobile';
+const BASE = process.env.BASE_URL || 'http://127.0.0.1:5173/mobile.html?force=mobile&c=welrix';
 const out = process.env.ARTIFACT_DIR || 'artifacts/mobile-ux';
 fs.mkdirSync(out, { recursive: true });
 
@@ -44,23 +44,23 @@ try {
   await page.waitForSelector('.sv-brand-card');
   await noHorizontalOverflow(page, '제조사');
 
-  // UI hierarchy / touch sizes
+  // UI hierarchy / action placement / prepared navigation
   const ui = await page.evaluate(() => {
     const css = (sel) => getComputedStyle(document.querySelector(sel));
-    const rect = (sel) => document.querySelector(sel).getBoundingClientRect();
+    const root = getComputedStyle(document.documentElement);
     return {
       title: css('.sv-title').fontSize,
       titleWeight: css('.sv-title').fontWeight,
-      footerH: rect('.m-footer .m-btn--primary').height,
-      headerShareH: rect('.m-header .m-act').height,
-      shareDisabled: document.querySelector('.m-header .m-act').disabled,
+      ctaToken: root.getPropertyValue('--h-cta').trim(),
+      headerActionCount: document.querySelectorAll('.m-header button, .m-header a[href]').length,
+      preparedNextCount: document.querySelectorAll('.m-footer .m-btn--primary').length,
     };
   });
   ok(ui.title === '22px', '페이지 타이틀 규격이 22px 아님: ' + ui.title);
   ok(+ui.titleWeight >= 700, '페이지 타이틀 굵기 부족');
-  ok(ui.footerH >= 54, '하단 CTA 터치 높이 부족: ' + ui.footerH);
-  ok(ui.headerShareH >= 36, '상단 액션 높이 부족: ' + ui.headerShareH);
-  ok(ui.shareDisabled, '견적 전 공유 버튼이 활성화되어 있음');
+  ok(ui.ctaToken === '54px', '하단 CTA 토큰이 54px 아님: ' + ui.ctaToken);
+  ok(ui.headerActionCount === 0, '상단 헤더에 업무 CTA가 남아 있음: ' + ui.headerActionCount);
+  ok(ui.preparedNextCount >= 1, '자동전진 단계에서도 Next 인프라가 준비되어 있어야 함');
 
   // 제조사 → 모델 → 파워트레인 → (있으면 인승/구동) → 트림
   await page.locator('.sv-brand-card').filter({ hasText: '현대' }).click();
@@ -78,19 +78,22 @@ try {
   await page.waitForSelector('.sv-trim-card');
   await clickFirst(page.locator('.sv-trim-card'), '트림');
 
-  // 트림 선택 뒤 공유는 계산 완료 전에는 아직 막혀 있어야 함
-  const shareDuringCalc = await page.locator('.m-header .m-act').first().isDisabled();
-  ok(shareDuringCalc, '계산 완료 전 공유가 열림');
+  // 단일선택 트림은 즉시 다음 구성 단계로 이동한다.
+  // 색상이 있으면 색상, 없으면 옵션으로 이동하며 계산 완료 전 공유 CTA는 노출하지 않는다.
+  await page.waitForFunction(() => {
+    const t = document.querySelector('.sv-title')?.textContent || '';
+    return t.includes('색상') || t.includes('옵션');
+  });
+  const shareDuringCalc = await page.locator('.m-footer button').filter({ hasText: '공유' }).count();
+  ok(shareDuringCalc === 0, '계산 완료 전 공유 CTA가 노출됨');
 
-  // 다음 → 색상
-  await page.locator('.m-footer .m-btn--primary').click();
-  await page.waitForFunction(() => document.querySelector('.sv-title')?.textContent?.includes('색상'));
-  if (await page.locator('.sv-color-card').count()) await page.locator('.sv-color-card').first().click();
-  await noHorizontalOverflow(page, '색상');
-
-  // 다음 → 옵션
-  await page.locator('.m-footer .m-btn--primary').click();
-  await page.waitForFunction(() => document.querySelector('.sv-title')?.textContent?.includes('옵션'));
+  const afterTrimTitle = await page.locator('.sv-title').first().textContent();
+  if ((afterTrimTitle || '').includes('색상')) {
+    if (await page.locator('.sv-color-card').count()) await page.locator('.sv-color-card').first().click();
+    await noHorizontalOverflow(page, '색상');
+    await page.locator('.m-footer .m-btn--primary:visible').click();
+    await page.waitForFunction(() => document.querySelector('.sv-title')?.textContent?.includes('옵션'));
+  }
   if (await page.locator('.sv-opt:not(.is-disabled)').count()) {
     await page.locator('.sv-opt:not(.is-disabled)').first().click();
   }
@@ -156,16 +159,17 @@ try {
   await page.waitForTimeout(100);
 
   await page.waitForFunction(() => {
-    const b = document.querySelector('.m-header .m-act');
+    const buttons = [...document.querySelectorAll('.m-footer button')];
+    const b = buttons.find((x) => (x.textContent || '').includes('공유'));
     return b && !b.disabled;
   }, null, { timeout: 5000 });
-  const shareReady = !(await page.locator('.m-header .m-act').first().isDisabled());
-  ok(shareReady, '계산 완료 후 공유 버튼이 활성화되지 않음');
+  const shareButton = page.locator('.m-footer button').filter({ hasText: '공유' }).first();
+  ok(await shareButton.isEnabled(), '계산 완료 후 하단 공유 버튼이 활성화되지 않음');
   await noHorizontalOverflow(page, '견적결과');
   await page.screenshot({ path: `${out}/01-result-390.png`, fullPage: true });
 
-  // 공유 URL 생성
-  await page.locator('.m-header .m-act').first().click();
+  // 공유 URL 생성 — 업무 액션은 하단에서 실행
+  await shareButton.click();
   await page.waitForTimeout(200);
   const sharedUrl = await page.evaluate(() => navigator.clipboard.readText());
   ok(sharedUrl.includes('qs='), '공유 URL에 Snapshot(qs) 없음');
@@ -176,7 +180,8 @@ try {
   // 받은 사람이 열었을 때 API 재계산 없이 같은 금액
   const page2 = await context.newPage();
   let estimateCalls = 0;
-  page2.on('request', (r) => { if (r.url().includes('/api/estimate')) estimateCalls++; });
+  const isQuoteApi = (url) => /\/api\/(?:estimate|standard-quote|external-quote)(?:[/?]|$)/.test(url);
+  page2.on('request', (r) => { if (isQuoteApi(r.url())) estimateCalls++; });
   await page2.goto(sharedUrl, { waitUntil: 'networkidle' });
   await page2.waitForSelector('.sr-snapshot');
   await page2.waitForTimeout(500);
@@ -200,8 +205,8 @@ try {
   await page2.waitForTimeout(100);
   await page2.screenshot({ path: `${out}/02-shared-snapshot.png`, fullPage: true });
 
-  // 공유받은 것을 다시 공유해도 Snapshot 유지
-  await page2.locator('.m-header .m-act').first().click();
+  // 공유받은 것을 다시 공유해도 Snapshot 유지 — 공유 CTA도 하단
+  await page2.locator('.m-footer button').filter({ hasText: '공유' }).first().click();
   await page2.waitForTimeout(150);
   const reShared = await page2.evaluate(() => navigator.clipboard.readText());
   ok(reShared.includes('qs='), '재공유 시 Snapshot 유실');
@@ -209,8 +214,9 @@ try {
   // 조건 변경을 누른 뒤에만 새 계산
   await page2.locator('.m-footer .m-btn--soft').filter({ hasText: '조건 변경' }).click();
   await page2.waitForFunction(() => document.querySelector('.sv-title')?.textContent?.includes('옵션'));
-  await page2.waitForFunction(() => performance.getEntriesByType('resource').some((x) => x.name.includes('/api/estimate')),
-    null, { timeout: 10000 });
+  await page2.waitForFunction(() => performance.getEntriesByType('resource').some((x) =>
+    /\/api\/(?:estimate|standard-quote|external-quote)(?:[/?]|$)/.test(x.name)
+  ), null, { timeout: 10000 });
   ok(estimateCalls >= 1, '조건 변경 후 새 견적 API가 호출되지 않음');
 
   // 320px 폭 — 헤더/카드/가로 overflow 확인
