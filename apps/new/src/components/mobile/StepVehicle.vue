@@ -277,7 +277,9 @@ function syncVehicle() {
     variant: selectedVariant.value?.variant_name || '',
     /* ★소제목(인승·구동·용도)을 트림 이름 앞에 붙인다 — 「익스클루시브」만으론 5인승인지 7인승인지 모른다 */
     trim_name: [t.group, t.name].filter(Boolean).join(' '),
-    total_manwon: totalManwon.value,
+    // 공통 quoteState 계약: total_manwon = 트림 + 옵션 + 외장색.
+    // 내장색은 quoteState.cond.colorIntPrice 로 별도 보관한다(웹과 동일, 이중계상 방지).
+    total_manwon: totalManwon.value - interiorColorPriceManwon.value,
     trim_price_manwon: trimPriceManwon,
     options_price_manwon: optionsPriceManwon.value,
     color_price_manwon: exteriorColorPriceManwon.value,
