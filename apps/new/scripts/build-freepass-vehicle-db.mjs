@@ -166,7 +166,10 @@ const displayTrim=(r,g)=>{
  }
  return s;
 };
-const modelName=r=>ko(r.carType||r.sub_model);
+const modelName=r=>ko(r.carType||r.sub_model)
+  // Hybrid/Electric은 모델명이 아니라 파워트레인 축이다.
+  .replace(/\s+(?:Hybrid|Electric|HEV|EV)$/i,'')
+  .trim();
 const modelCandidates=(r,name)=>{
  const want=N(name), sm=N(ko(r.sub_model));
  return master.records.filter(x=>x.market_status==='신차'&&x.usage_tier!=='blocked'&&S(x.maker)===S(r.maker)
