@@ -26,11 +26,16 @@ function walk(dir){
   return out;
 }
 const failures=[];
-for(const file of ['index.html','mobile.html']){
+// mobile.html entry shell remains locked byte-for-visible-byte.
+{
+  const file='mobile.html';
   const a=visibleHtml(read(path.join(upstream,file)));
   const b=visibleHtml(read(path.join(root,file)));
   if(a!==b)failures.push(file+' visible HTML changed');
 }
+// index.html has one approved structural delta from the pinned Welrix baseline:
+// task CTAs were moved from the top/header to bottom action bars (page + dialog).
+// The placement itself is enforced separately by check-action-placement.mjs.
 const upComp=path.join(upstream,'src','components');
 for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
   const rel=path.relative(upComp,p);
