@@ -18,7 +18,7 @@ function productIndex() {
 function welrixProviderResolution(request) {
   const productId = request?.차?.상품키 || request?.차?.키;
   const p = productIndex()?.products?.[productId];
-  if (!p) throw new Error('신차 상품ID가 provider map에 없습니다');
+  if (!p) throw new ProviderUnsupportedError('이 신차 상품은 현재 계산 공급자 매핑이 없습니다');
 
   const selected = Array.isArray(request?.차?.구성?.선택옵션) ? request.차.구성.선택옵션 : [];
   const optionsMaster = Object.fromEntries(selected.map((o) => [
@@ -30,7 +30,7 @@ function welrixProviderResolution(request) {
   const axes = configurationAxes(trim, optionsMaster, selectedIds);
   const candidate = resolveProviderCandidate(p.providerCandidates || [], axes);
   if (!candidate) {
-    throw new Error('선택한 차량 구성은 현재 Welrix 계산 공급자에서 지원하지 않습니다');
+    throw new ProviderUnsupportedError('선택한 차량 구성은 현재 Welrix 계산 공급자에서 지원하지 않습니다');
   }
   const absorbed = new Set(absorbedAxisOptionIds(trim, optionsMaster, selectedIds, candidate));
   const absorbedWon = selected
@@ -40,8 +40,16 @@ function welrixProviderResolution(request) {
   return { productId, candidate, absorbedWon, axes };
 }
 
-function bad(res, status, error) {
-  res.status(status).json({ ok: false, error });
+function bad(res, status, error, code = null) {
+  res.status(status).json({ ok: false, error, ...(code ? { code } : {}) });
+}
+
+class ProviderUnsupportedError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'ProviderUnsupportedError';
+    this.code = 'PROVIDER_UNSUPPORTED';
+  }
 }
 
 function welrixBody(request) {
@@ -131,9 +139,13 @@ export default async function handler(req, res) {
 
     res.status(200).json({ ok: true, ...out });
   } catch (e) {
+    if (e?.code === 'PROVIDER_UNSUPPORTED') {
+      return bad(res, 422, e?.message || '현재 계산 공급자에서 지원하지 않는 차량입니다', 'PROVIDER_UNSUPPORTED');
+    }
     res.status(502).json({
       ok: false,
       error: e?.message || '외부 견적 공급자에 연결할 수 없습니다',
+      code: 'PROVIDER_ERROR',
     });
   }
 }
