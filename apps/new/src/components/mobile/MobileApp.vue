@@ -12,6 +12,10 @@ import StickyQuote from './StickyQuote.vue';
 import SendSheet from './SendSheet.vue';
 
 const cfg = computed(() => window.__welrix_companyConfig || {});
+const 헤더브랜드 = computed(() => cfg.value.company_id === 'welrix'
+  ? '웰컴저축은행 × 웰릭스모빌리티'
+  : (cfg.value.name || '프리패스모빌리티'));
+const 공유제목 = computed(() => (cfg.value.name || '프리패스모빌리티') + ' 견적');
 
 // 발송은 헤더 상단 아이콘으로 — step 으로 안 둠 (사용자 의도)
 const STEPS = [
@@ -76,7 +80,7 @@ async function 공유하기() {
 
     if (navigator.share) {
       try {
-        await navigator.share({ title: '웰릭스모빌리티 견적', text: 글, url: 주소 });
+        await navigator.share({ title: 공유제목.value, text: 글, url: 주소 });
         공유됨.value = true;
         setTimeout(() => { 공유됨.value = false; }, 1600);
         return;
@@ -175,6 +179,9 @@ const 견적보기보임 = computed(() => {
   return true;
 });
 
+const 자동전진단계 = computed(() => currentStep.value.key === 'vehicle'
+  && ['brand', 'model', 'variant', 'spec', 'trim'].includes(vehicleState.subStep || 'brand'));
+
 const canProceed = computed(() => {
   if (currentStep.value.key !== 'vehicle') return true;
   const sub = vehicleState.subStep || 'brand';
@@ -244,7 +251,7 @@ const signCopied = ref(false);
 async function shareSignLink() {
   const url = cfg.value.signature_link;
   if (!url) { alert('이 회사는 조회동의 링크가 설정되어 있지 않습니다.'); return; }
-  const text = '[웰릭스모빌리티] 조회 동의 부탁드립니다. 아래 링크에서 진행해 주세요.';
+  const text = '[' + (cfg.value.name || '프리패스모빌리티') + '] 조회 동의 부탁드립니다. 아래 링크에서 진행해 주세요.';
   if (navigator.share) {
     try { await navigator.share({ title: '조회 동의', text, url }); return; }   // OS 공유시트
     catch (e) { if (e && e.name === 'AbortError') return; }
@@ -264,11 +271,9 @@ async function shareSignLink() {
   <div class="m-shell">
     <!-- 헤더 — 좌측: CI + 페이지 타이틀, 우측: 발송 -->
     <header class="m-header">
-      <!-- ★상단은 «웰컴저축은행 × 웰릭스모빌리티» 한 줄만 (대표 2026-09-17).
-           welrix 로고·엑셀 버전 배지·조회동의 링크는 뺐다 — 손님이 볼 것이 아니다. -->
       <div class="m-header__brand">
         <button type="button" class="m-brand" @click="goHome" title="처음으로">
-          웰컴저축은행 <span class="m-brand__x">×</span> 웰릭스모빌리티
+          {{ 헤더브랜드 }}
         </button>
       </div>
       <div class="m-header__actions">
@@ -299,7 +304,7 @@ async function shareSignLink() {
 
     <StickyQuote v-if="금액바보임" />
 
-    <footer class="m-footer">
+    <footer class="m-footer" v-if="!자동전진단계 || canGoBack || (공유견적 && currentStep.key === 'result')">
       <!-- 공유받은 확정견적은 먼저 «그대로» 보여 준다. 수정 버튼을 눌러야 새 계산이 시작된다. -->
       <template v-if="공유견적 && currentStep.key === 'result'">
         <button class="m-btn m-btn--soft" @click="수정하기">
@@ -316,7 +321,7 @@ async function shareSignLink() {
         </button>
         <button v-if="견적보기보임" class="m-btn m-btn--soft" @click="견적보기">견적 보기</button>
         <button
-          v-if="stepIdx < STEPS.length - 1"
+          v-if="stepIdx < STEPS.length - 1 && !자동전진단계"
           class="m-btn m-btn--primary"
           :disabled="!canProceed"
           @click="next"
