@@ -9,7 +9,11 @@ export const 다루는차 = ['신차'];
 
 export async function 계산(요청, { 신호 } = {}) {
   const provider = 공급자설정();
-  if (provider.mode !== 'external') throw new Error('외부 견적 공급자가 아닙니다');
+  if (provider.mode !== 'external') {
+    const error = new Error('외부 견적 공급자가 아닙니다');
+    error.code = 'PROVIDER_MODE_MISMATCH';
+    throw error;
+  }
 
   const r = await fetch('/api/external-quote', {
     method: 'POST',
@@ -24,7 +28,9 @@ export async function 계산(요청, { 신호 } = {}) {
 
   const j = await r.json().catch(() => null);
   if (!r.ok || !j?.ok || !Array.isArray(j.results)) {
-    throw new Error(j?.error || `외부 계산 서버 응답 ${r.status}`);
+    const error = new Error(j?.error || `외부 계산 서버 응답 ${r.status}`);
+    error.code = j?.code || (r.status >= 500 ? 'PROVIDER_ERROR' : 'PROVIDER_RESPONSE_INVALID');
+    throw error;
   }
 
   return {
