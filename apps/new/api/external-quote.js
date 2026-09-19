@@ -128,6 +128,8 @@ async function welrixExcel(request) {
         : undefined,
     });
   } catch (error) {
+    // Mapping/unsupported failures are domain/provider decisions, not network failures.
+    if (error instanceof ProviderRuntimeError) throw error;
     const name = error?.name || null;
     if (name === 'TimeoutError' || name === 'AbortError') {
       throw new ProviderRuntimeError('PROVIDER_TIMEOUT', {
