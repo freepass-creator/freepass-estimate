@@ -12,8 +12,8 @@ async function snap(page,name){
   console.log('CAPTURE',name,page.url());
 }
 async function assertNoVehicleNext(page,label){
-  const buttons=page.locator('footer.m-footer .m-btn--primary');
-  if(await buttons.count()) throw new Error(label+': single-choice screen must not show a Next primary button');
+  const visible=page.locator('footer.m-footer .m-btn--primary:visible');
+  if(await visible.count()) throw new Error(label+': single-choice screen must not show a visible Next primary button');
 }
 
 {
