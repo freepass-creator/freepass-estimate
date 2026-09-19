@@ -1,7 +1,44 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { configurationAxes, resolveProviderCandidate, absorbedAxisOptionIds } from '../src/lib/newcar/configuration-resolver.js';
+
 // Server-side external quote adapter router.
 // Never exposes partner Excel files, ERP credentials or upstream auth to the browser.
 
 const WELRIX_URL = 'https://welrixmobility.netlify.app/api/estimate';
+
+let PRODUCT_INDEX = null;
+function productIndex() {
+  if (PRODUCT_INDEX) return PRODUCT_INDEX;
+  const path = join(process.cwd(), 'public', 'data', 'freepass-newcar', 'product-index.json');
+  PRODUCT_INDEX = JSON.parse(readFileSync(path, 'utf8'));
+  return PRODUCT_INDEX;
+}
+
+function welrixProviderResolution(request) {
+  const productId = request?.차?.상품키 || request?.차?.키;
+  const p = productIndex()?.products?.[productId];
+  if (!p) throw new Error('신차 상품ID가 provider map에 없습니다');
+
+  const selected = Array.isArray(request?.차?.구성?.선택옵션) ? request.차.구성.선택옵션 : [];
+  const optionsMaster = Object.fromEntries(selected.map((o) => [
+    o.id,
+    { name: o.name, price: Number(o.price_won || 0) / 10000 },
+  ]));
+  const selectedIds = selected.map((o) => o.id);
+  const trim = { _base_axes: p.baseAxes || request?.차?.구성?.기본축 || {} };
+  const axes = configurationAxes(trim, optionsMaster, selectedIds);
+  const candidate = resolveProviderCandidate(p.providerCandidates || [], axes);
+  if (!candidate) {
+    throw new Error('선택한 차량 구성은 현재 Welrix 계산 공급자에서 지원하지 않습니다');
+  }
+  const absorbed = new Set(absorbedAxisOptionIds(trim, optionsMaster, selectedIds, candidate));
+  const absorbedWon = selected
+    .filter((o) => absorbed.has(o.id))
+    .reduce((sum, o) => sum + Number(o.price_won || 0), 0);
+
+  return { productId, candidate, absorbedWon, axes };
+}
 
 function bad(res, status, error) {
   res.status(status).json({ ok: false, error });
@@ -12,16 +49,21 @@ function welrixBody(request) {
   const 가격 = 차.가격 || {};
   const 조건 = request?.조건 || {};
   const 안들 = request?.안들 || [];
+  const resolved = welrixProviderResolution(request);
 
   return {
-    model: 차.키,
+    model: resolved.candidate.api_model,
     old: false,
-    manualPrice: 차.차량가 || 0,
+    manualPrice: 0,
     inputs: 안들.map((a) => ({
       credit: 조건.신용,
       termMonths: a.기간,
       mileage: 조건.주행,
-      optionPrice: (가격.옵션 || 차.옵션가 || 0) + (가격.외장색 || 차.색추가금 || 0),
+      // AWD/인승처럼 provider의 완성차 row에 이미 포함된 구성 옵션은 다시 더하지 않는다.
+      optionPrice: Math.max(0,
+        (가격.옵션 || 차.옵션가 || 0) - resolved.absorbedWon
+        + (가격.외장색 || 차.색추가금 || 0)
+      ),
       stockDiscount: 가격.할인 || 차.할인 || 0,
       deliveryFee: 조건.탁송비,
       tintFee: 조건.썬팅비,
