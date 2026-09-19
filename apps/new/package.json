@@ -11,7 +11,8 @@
     "test:ui": "node scripts/e2e-mobile-ux.mjs",
     "check:provider": "node scripts/check-provider-contract.mjs",
     "check:runtime": "node scripts/check-quote-execution-contract.mjs",
-    "check:release": "node scripts/check-release-proof.mjs"
+    "check:release": "node scripts/check-release-proof.mjs",
+    "check:snapshot": "node scripts/check-share-snapshot-contract.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"
