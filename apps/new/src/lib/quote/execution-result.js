@@ -1,4 +1,6 @@
-export const QUOTE_EXECUTION_SCHEMA = 'freepass-quote-execution/v1';
+import { QUOTE_EXECUTION_CONTRACT } from './contracts.js';
+
+export const QUOTE_EXECUTION_SCHEMA = QUOTE_EXECUTION_CONTRACT;
 export const QUOTE_EXECUTION_STATUS = Object.freeze({
   SUCCEEDED: 'SUCCEEDED',
   HOLD: 'HOLD',
