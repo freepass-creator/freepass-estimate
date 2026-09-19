@@ -1,0 +1,22 @@
+{
+  "name": "@freepass/estimate-new",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "node scripts/check-sync.mjs",
+    "test:ui": "node scripts/e2e-mobile-ux.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.0.4"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^6.0.7",
+    "firebase": "^12.12.0",
+    "vue": "^3.5.34"
+  },
+  "description": "FreePass Estimate new-car app — UI baseline imported from pinned Welrix reference"
+}

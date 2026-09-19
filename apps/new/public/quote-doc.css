@@ -1,0 +1,771 @@
+  .quote-doc {
+    width: 540px;
+    margin: 0 auto;
+    padding: 0;
+    background: #fff;
+    color: #1a1a1a;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+  }
+
+  /* --- 헤더 --- */
+  .qd-hero {
+    padding: 32px 28px 24px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .qd-hero__brand {
+    font-size: 12px; font-weight: 600;
+    color: var(--brand); letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .qd-hero__logo {
+    height: 28px; width: auto;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .qd-hero__title {
+    font-size: 22px; font-weight: 700;
+    color: #1a1a1a; letter-spacing: -0.5px;
+    line-height: 1.3;
+  }
+  .qd-hero__meta {
+    margin-top: 14px;
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: #999;
+    font-variant-numeric: tabular-nums;
+  }
+  .qd-hero__meta b { color: #555; font-weight: 500; }
+
+  /* --- 섹션 공통 --- */
+  .qd-section {
+    padding: 22px 28px;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .qd-section:last-child { border-bottom: 0; }
+  .qd-section__label {
+    font-size: 10px; font-weight: 600;
+    color: #b0b0b0; letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  /* --- 손님 / 담당자 --- */
+  .qd-people {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .qd-people__col h4 {
+    font-size: 10px; font-weight: 600;
+    color: #b0b0b0; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+  .qd-people__col .name {
+    font-size: 16px; font-weight: 600; color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  .qd-people__col .tel {
+    font-size: 12px; color: #888;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --- 차량 카드 --- */
+  .qd-vehicle {
+    background: var(--bg-soft); border-radius: var(--radius-md);
+    padding: 18px 20px;
+  }
+  .qd-vehicle__top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 12px; margin-bottom: 14px;
+  }
+  .qd-vehicle__title {
+    font-size: 11px; color: #999; font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .qd-vehicle__name {
+    font-size: 17px; font-weight: 700; color: #1a1a1a;
+    letter-spacing: -0.3px; line-height: 1.3;
+  }
+  .qd-vehicle__sub {
+    font-size: 11.5px; color: #777; margin-top: 3px;
+  }
+  .qd-vehicle__price {
+    text-align: right; white-space: nowrap;
+  }
+  .qd-vehicle__price .label {
+    font-size: 10px; color: #999; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 2px;
+  }
+  .qd-vehicle__price .value {
+    font-size: 18px; font-weight: 700; color: #1a1a1a;
+    font-variant-numeric: tabular-nums;
+  }
+  .qd-vehicle__rows {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+  }
+  .qd-vehicle__row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px;
+  }
+  .qd-vehicle__row .k { color: #999; }
+  .qd-vehicle__row .v { color: #1a1a1a; font-weight: 500; }
+  .qd-vehicle__row .v.color { display: inline-flex; align-items: center; gap: 5px; }
+  .qd-vehicle__row .swatch {
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1); flex-shrink: 0;
+  }
+  .qd-vehicle__opts {
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee;
+    display: flex; flex-wrap: wrap; gap: 4px;
+  }
+  .qd-vehicle__opts .opt-chip {
+    font-size: 10.5px; padding: 3px 7px;
+    background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--radius-sm);
+    color: var(--ink-2);
+  }
+  .qd-vehicle__opts-label {
+    width: 100%; font-size: 10px; color: #b0b0b0;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  /* 차량 카드 하단 부가 (선팅/탁송/용품) — 작게 */
+  .qd-vehicle__side {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 10.5px; color: #888;
+    line-height: 1.5;
+  }
+  .qd-vehicle__side span { display: inline; }
+
+  /* --- 월 대여료 (강조) --- */
+  .qd-monthly {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .qd-monthly__row {
+    display: grid; grid-template-columns: 60px 1fr auto;
+    align-items: center; gap: 16px;
+    padding: 14px 18px;
+    background: var(--bg-soft); border-radius: var(--radius-md);
+    transition: background .15s;
+  }
+  .qd-monthly__row.best {
+    background: var(--brand-50); border: 1px solid var(--brand);
+  }
+  .qd-monthly__term {
+    font-size: 15px; font-weight: 700; color: #1a1a1a;
+    font-variant-numeric: tabular-nums;
+  }
+  .qd-monthly__term em {
+    font-style: normal; font-size: 11px; font-weight: 500; color: #999;
+    display: block; margin-top: 1px;
+  }
+  .qd-monthly__cond {
+    font-size: 11px; color: #777; line-height: 1.4;
+  }
+  .qd-monthly__cond b { color: #555; font-weight: 500; }
+  .qd-monthly__price {
+    text-align: right;
+  }
+  .qd-monthly__price .price {
+    font-size: 19px; font-weight: 700; color: var(--brand);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.5px;
+  }
+  .qd-monthly__price .unit { font-size: 12px; font-weight: 500; color: #999; }
+  .qd-monthly__price .residual {
+    font-size: 10.5px; color: #999; margin-top: 1px;
+    font-variant-numeric: tabular-nums;
+  }
+  .qd-monthly__badge {
+    position: absolute; top: -7px; right: 14px;
+    background: var(--brand); color: #fff;
+    font-size: 9.5px; font-weight: 600; letter-spacing: 0.5px;
+    padding: 2px 7px; border-radius: var(--radius-sm);
+  }
+  .qd-monthly__row.best { position: relative; }
+
+  /* --- 보험·정비 (압축 카드 2단) --- */
+  .qd-info-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .qd-info-card {
+    background: var(--bg-soft); border-radius: var(--radius-md); padding: 14px 16px;
+  }
+  .qd-info-card h5 {
+    font-size: 10px; font-weight: 600; color: #b0b0b0;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .qd-info-card .kv {
+    display: flex; justify-content: space-between;
+    font-size: 11.5px; padding: 3px 0;
+  }
+  .qd-info-card .kv .k { color: #999; }
+  .qd-info-card .kv .v { color: #1a1a1a; font-weight: 500; }
+
+  /* --- 노트(주요 계약사항) / 제출서류 --- */
+  .qd-notes {
+    margin: 0; padding: 0; list-style: none;
+  }
+  .qd-notes li {
+    font-size: 10.5px; color: #888; line-height: 1.6;
+    padding-left: 12px; position: relative;
+    margin-bottom: 3px;
+  }
+  .qd-notes li::before {
+    content: ''; position: absolute; left: 0; top: 7px;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: #ddd;
+  }
+  .qd-docs {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .qd-docs__item {
+    font-size: 11px; color: #555; line-height: 1.5;
+  }
+  .qd-docs__item b {
+    display: inline-block; color: var(--brand); font-weight: 600;
+    margin-right: 6px; font-size: 10.5px;
+  }
+
+  /* --- 푸터 --- */
+  .qd-footer {
+    padding: 20px 28px 28px;
+    background: #fafafa;
+    border-top: 1px solid #f0f0f0;
+  }
+  .qd-footer__bank {
+    font-size: 11px; color: var(--ink-2); margin-bottom: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+  .qd-footer__bank .label {
+    color: #999; margin-right: 4px; font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .qd-footer__bank b { color: #1a1a1a; font-weight: 600; }
+  .qd-footer__sign {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 10px; border-top: 1px solid #ececec;
+    font-size: 11px;
+  }
+  .qd-footer__sign .staff { color: #555; }
+  .qd-footer__sign .staff b { color: #1a1a1a; font-weight: 600; }
+  .qd-footer__sign .tel {
+    color: #888; font-variant-numeric: tabular-nums;
+  }
+
+  .quote-doc__empty {
+    text-align: center; padding: 80px 20px;
+    color: #bbb; font-size: 13px;
+  }
+
+  /* 다중 차종 카드 — 제외 버튼 */
+  .qd-section--card { position: relative; }
+  .qd-vehicle { position: relative; }
+  .qd-vehicle__remove {
+    position: absolute; top: 10px; right: 10px;
+    width: 22px; height: 22px;
+    border: 0; border-radius: 50%;
+    background: rgba(0,0,0,0.06); color: #888;
+    cursor: pointer; font-size: 12px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .12s, color .12s;
+    z-index: 1;
+  }
+  .qd-vehicle__remove:hover { background: var(--brand); color: #fff; }
+
+  /* ============================================================
+   * 정식 견적서 (웹 캡쳐용) — 엑셀 견적서_고객 시트와 동일 양식
+   * 영업이 모달에서 보고, 이미지로 캡쳐해 손님에게 보냄.
+   * ============================================================ */
+  .quote-doc.official {
+    /* A4 (210×297mm). flex column 으로 푸터를 하단에 붙임 — 빈 공간 자동 채움. */
+    width: 210mm;
+    min-height: 297mm;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8mm 12mm 8mm;
+    background: #fff;
+    color: #1a1a1a;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+    display: flex;
+    flex-direction: column;
+  }
+  .quote-doc.official .ofq-spacer { flex: 1 1 auto; min-height: 0; }
+  .quote-doc.official .ofq-footer { margin-top: 0; }
+  /* 출력 (print) — print-mode 클래스 시 #print-target 만 표시 */
+  @media print {
+    @page { size: A4; margin: 0; }
+    html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+    body.print-mode > *:not(#print-target) { display: none !important; }
+    body.print-mode #print-target {
+      display: block !important;
+      position: static !important;
+      width: 210mm !important; min-height: 297mm !important;
+      margin: 0 !important; padding: 8mm 12mm !important;
+      box-shadow: none !important;
+    }
+  }
+  /* 헤더 — 더 짜부 */
+  .ofq-hero {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding-bottom: 5px; margin-bottom: 7px;
+    border-bottom: 1px solid var(--line-2);
+  }
+  .ofq-hero__logo {
+    height: 18px; width: auto; display: block;
+    margin-bottom: 2px;
+  }
+  .ofq-hero__left { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .ofq-hero__left .title {
+    font-size: 16px; font-weight: 600; color: #1a1a1a;
+    letter-spacing: -0.5px; line-height: 1.1;
+  }
+  .ofq-hero__badge {
+    display: inline-block;
+    font-size: 9.5px; font-weight: 600; color: var(--brand);
+    border: 1px solid var(--brand);
+    padding: 1px 6px; border-radius: 2px;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+  }
+  .ofq-hero__right {
+    text-align: right; font-size: 11px; color: #666;
+    line-height: 1.7; font-variant-numeric: tabular-nums;
+  }
+  .ofq-hero__right b { color: #1a1a1a; font-weight: 600; }
+  .ofq-hero__right .ofq-hero__badge { margin-bottom: 3px; }
+
+  /* 섹션 공통 — 1페이지 짜부 */
+  .ofq-section { margin-bottom: 6px; }
+  .ofq-section__title {
+    font-size: 10px; font-weight: 600;
+    color: var(--ink-2); letter-spacing: 1.5px;
+    margin-bottom: 3px; padding-bottom: 2px;
+    border-bottom: 1px solid var(--line);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .ofq-section__title > i.ph {
+    font-size: 12px; color: var(--brand);
+    line-height: 1;
+  }
+  .ofq-section__title .unit {
+    font-size: 10px; color: #999; font-weight: 400;
+    letter-spacing: 0; margin-left: auto;
+  }
+
+  /* 표 wrapper — 차량 카드와 동일한 직각 외곽 */
+  .ofq-table-wrap {
+    border: 1px solid var(--line-2);
+    /* 견적서 톤 = 직각 */
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  /* 격자 테이블 — 내부 격자만 (외곽은 wrapper 또는 자체 보더가 담당) */
+  .ofq-table {
+    width: 100%;
+    border-collapse: separate; border-spacing: 0;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+  .ofq-table th, .ofq-table td {
+    border-right: 1px solid var(--line-2);
+    border-bottom: 1px solid var(--line-2);
+    padding: 4px 8px;
+    vertical-align: middle;
+    line-height: 1.3;
+  }
+  .ofq-table th:last-child, .ofq-table td:last-child { border-right: 0; }
+  .ofq-table tr:last-child th, .ofq-table tr:last-child td { border-bottom: 0; }
+  .ofq-table th {
+    background: var(--bg-soft);
+    color: var(--ink-3); font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 10.5px;
+  }
+  .ofq-table td {
+    background: var(--bg); color: var(--ink-1);
+    text-align: left;
+  }
+  .ofq-table td.center { text-align: center; }
+  .ofq-table td.right { text-align: right; }
+  .ofq-table td.price { color: #1a1a1a; font-weight: 600; }
+  .ofq-table td.price-brand { color: var(--brand); font-weight: 700; }
+  .ofq-table td.muted { color: #999; }
+  .ofq-table td.highlight { background: #fff7f7; }
+
+  /* 2단 정보 (legacy — 견적 정보 + 고객 정보, 이제 미사용) */
+  .ofq-row2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+
+  /* 수신·담당 한 줄 정보 바 — 짜부 */
+  .ofq-infobar {
+    display: flex; align-items: baseline;
+    gap: var(--space-4);
+    padding: 6px 12px;
+    margin-bottom: 8px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line-2);
+    border-left: 3px solid var(--brand);
+  }
+  .ofq-infobar__item {
+    display: flex; align-items: baseline; gap: 10px;
+    flex: 1; min-width: 0;
+  }
+  .ofq-infobar__label {
+    font-size: 10px; font-weight: 600;
+    color: var(--brand); letter-spacing: 1.5px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .ofq-infobar__value {
+    font-size: 13px; color: var(--ink-1);
+    letter-spacing: -0.2px;
+  }
+  .ofq-infobar__value b { font-weight: 700; }
+  .ofq-infobar__divider {
+    width: 1px; height: 16px;
+    background: var(--line-2);
+    flex-shrink: 0;
+  }
+
+  /* === 차량 카드 (직각/정제 톤, 견적서 정통 양식) === */
+  .ofq-vcard {
+    border: 1px solid var(--line-2);
+    padding: 10px 14px;
+    background: var(--bg);
+  }
+  .ofq-vcard__head {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px;
+    padding-bottom: 8px; margin-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .ofq-vcard__title {
+    display: flex; align-items: center; gap: 10px;
+    flex: 1; min-width: 0;
+  }
+  .ofq-vcard__title .vlogo {
+    height: 22px; width: auto; max-width: 56px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .ofq-vcard__title .vname {
+    font-size: 14px; font-weight: 600;
+    color: var(--ink-1); letter-spacing: -0.3px;
+    line-height: 1.25;
+  }
+  .ofq-vcard__title .vmeta {
+    margin-top: 2px;
+    font-size: 10.5px; color: var(--ink-4);
+    font-weight: 400; letter-spacing: 0;
+  }
+  /* 차량 정보 메타 grid — 외장/내장/탁송/선팅 4분할 */
+  .ofq-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+  .ofq-meta-grid .meta-item {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 7px 12px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    min-width: 0;
+    min-height: 40px;
+  }
+  .ofq-meta-grid .meta-item:nth-child(4n) { border-right: none; }
+  .ofq-meta-grid .meta-item:nth-last-child(-n+4) { border-bottom: none; }
+  .ofq-meta-grid .meta-key {
+    font-size: 9.5px; color: var(--ink-4);
+    letter-spacing: 0.5px;
+    font-weight: 500; margin-bottom: 3px;
+  }
+  .ofq-meta-grid .meta-val {
+    font-size: 12px; color: var(--ink-1);
+    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    line-height: 1.2;
+  }
+  .ofq-meta-grid .swatch-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.18);
+    display: inline-block; flex-shrink: 0;
+  }
+  .ofq-meta-grid .meta-empty {
+    color: var(--ink-4); font-weight: 400; font-style: normal;
+  }
+  .ofq-vcard__total {
+    text-align: right; white-space: nowrap;
+  }
+  .ofq-vcard__total .label {
+    font-size: 10px; color: #999;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ofq-vcard__total .value {
+    font-size: 22px; font-weight: 700;
+    color: var(--brand);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.5px;
+  }
+  .ofq-vcard__total .breakdown {
+    margin-top: 4px;
+    font-size: 11px; color: #999;
+    font-variant-numeric: tabular-nums;
+  }
+  .ofq-vcard__total .breakdown b {
+    color: #555; font-weight: 600;
+  }
+  .ofq-vcard__row {
+    display: grid; grid-template-columns: 70px 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .ofq-vcard__row:last-child { border-bottom: 0; }
+  .ofq-vcard__row .row-key {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; color: #999;
+    font-weight: 500; letter-spacing: 0.3px;
+  }
+  .ofq-vcard__row .row-key i {
+    font-size: 13px; color: #bbb;
+  }
+  .ofq-vcard__row--side {
+    font-size: 11.5px; color: #777;
+  }
+  .ofq-vcard__row--side i {
+    /* 부가 안의 (가격) — 살짝 작게 회색 */
+    font-style: normal; font-size: 10.5px; color: #aaa;
+  }
+  .ofq-vcard__colors {
+    display: flex; gap: 18px; flex-wrap: wrap;
+    font-size: 12px;
+  }
+  /* 색상 인라인 스왓치 */
+  .color-inline {
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .color-inline .swatch-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1); display: inline-block;
+  }
+  /* 옵션 뱃지 - 차량 카드 안에서 자연스럽게 wrap */
+  .ofq-vcard .qp-opt-chips {
+    display: flex; flex-wrap: wrap; gap: 5px;
+    min-width: 0;
+  }
+  .ofq-vcard .qp-opt-chips .badge {
+    font-size: 10.5px; padding: 3px 8px;
+    border-radius: var(--radius-sm);
+  }
+  .ofq-table .sep { color: #ccc; margin: 0 8px; }
+
+  /* 월 대여료 산출 — 견적1/2/3 가로 비교 (엑셀 핵심) */
+  .ofq-terms-table th.row-label, .ofq-terms-table td.row-label {
+    background: var(--bg-soft); text-align: left;
+    color: var(--ink-3); font-weight: 500;
+    width: 92px;
+    font-size: 11.5px;
+  }
+  .ofq-terms-table thead th {
+    background: var(--bg-soft); color: var(--ink-1);
+    font-weight: 600; padding: 6px 9px;
+    font-size: 11.5px;
+    border-right: 1px solid var(--line-2);
+    border-bottom: 1.5px solid var(--brand);  /* 헤더 ↔ body 구분선 — brand 강조 */
+  }
+  .ofq-terms-table td {
+    text-align: center;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);  /* row 구분선 */
+  }
+  .ofq-terms-table tr:last-child td { border-bottom: none; }
+  .ofq-terms-table tr.monthly td {
+    background: var(--bg-soft); font-weight: 700;
+    color: var(--ink-1); font-size: 14px;
+    padding: 8px 6px;
+  }
+  .ofq-terms-table tr.monthly th.row-label {
+    background: var(--bg-soft); color: var(--ink-1); font-weight: 600;
+  }
+  .ofq-terms-table td.col-off { opacity: 0.35; background: var(--bg-muted); }
+  .ofq-terms-table td.best {
+    background: var(--brand-50);  /* 옅은 네이비 — 분홍 X */
+    position: relative;
+  }
+  .ofq-terms-table td.best::after {
+    content: 'BEST';
+    position: absolute; top: 2px; right: 4px;
+    font-size: 8px; font-weight: 700; color: var(--brand);
+    letter-spacing: 0.5px;
+  }
+
+  /* 보험 가입 내역 — 8셀 그리드 (라벨-값 4쌍 × 2행) */
+  .ofq-ins-table th { width: 88px; }
+  .ofq-ins-table td.full { text-align: left; }
+
+  /* 정비상품 — 표 (헤더 + 2행) */
+  .ofq-svc-table th, .ofq-svc-table td {
+    text-align: center; font-size: 11px;
+    padding: 6px 4px;
+  }
+  .ofq-svc-table thead th {
+    background: #fafafa; color: var(--brand); font-weight: 600;
+  }
+  .ofq-svc-table tbody th {
+    background: #f6f6f6; font-weight: 600; color: #333;
+  }
+
+  /* 노트(주요 계약사항) — 번호 리스트 */
+  .ofq-notes {
+    margin: 0; padding-left: 20px;
+    font-size: 11.5px; color: #555; line-height: 1.7;
+  }
+  .ofq-notes li { margin-bottom: 1px; }
+
+  /* 제출서류 표 */
+  .ofq-docs-table th {
+    width: 80px; background: #f6f6f6; vertical-align: middle;
+    text-align: center; font-weight: 600;
+  }
+  .ofq-docs-table td { font-size: 11px; line-height: 1.6; }
+  .ofq-docs-table td small { color: #888; font-size: 10px; }
+
+  /* 푸터 — 회사정보만 (밑줄 아래) */
+  .ofq-footer {
+    padding-top: 6px;
+    border-top: 1.5px solid var(--brand);
+  }
+  /* 입금계좌 — 주요 계약사항 섹션 내부 */
+  .ofq-footer__bank {
+    background: var(--bg-soft); padding: 6px 10px;
+    border: 1px solid var(--line-2);
+    font-size: 11px; color: var(--ink-1); font-weight: 500;
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .ofq-footer__bank b { color: var(--brand); }
+  .ofq-footer__company {
+    font-size: 9.5px; color: var(--ink-3); line-height: 1.5;
+    padding: 0 4px;
+    letter-spacing: 0;
+    word-spacing: 1px;
+  }
+  .ofq-footer__company b { color: var(--ink-2); font-weight: 600; }
+
+  /* 차종 구분 헤더 (다중 차종) — 정제 톤 */
+  .ofq-vehicle-head {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-bottom: 8px; padding: 6px 10px;
+    background: var(--brand-50);
+    border-left: 3px solid var(--brand);
+    font-size: 12px;
+  }
+  .ofq-vehicle-head b {
+    font-size: 13px; color: var(--brand); font-weight: 700;
+  }
+  .ofq-vehicle-head .sep { color: #ccc; }
+
+  /* === 비교표 (가로 비교, N차종) === */
+  .qd-compare {
+    overflow-x: auto;
+    background: var(--bg-soft); border-radius: var(--radius-md);
+    padding: 10px 0;
+  }
+  .qd-compare table {
+    width: 100%;
+    border-collapse: separate; border-spacing: 0;
+    font-size: 11.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .qd-compare thead th {
+    padding: 10px 6px 12px;
+    font-size: 11px; font-weight: 600;
+    color: #1a1a1a; letter-spacing: -0.3px;
+    text-align: center;
+    border-bottom: 2px solid #e0e0e0;
+    line-height: 1.25;
+  }
+  .qd-compare thead th .brand-tiny {
+    display: block; font-size: 9px; color: #999;
+    font-weight: 500; letter-spacing: 0.5px;
+    margin-bottom: 1px;
+  }
+  .qd-compare thead th.row-label {
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  .qd-compare tbody th {
+    text-align: left; padding: 8px 8px 8px 10px;
+    color: #999; font-weight: 500;
+    font-size: 10.5px; letter-spacing: 0.5px;
+    width: 62px;
+    background: transparent;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .qd-compare tbody td {
+    padding: 8px 4px;
+    text-align: center;
+    color: #1a1a1a;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 11.5px;
+  }
+  .qd-compare tr.term td {
+    font-weight: 500; color: #555;
+  }
+  .qd-compare tr.term td .best-mark {
+    color: var(--brand); font-weight: 700;
+  }
+  .qd-compare tr.term td .best-tag {
+    display: inline-block; font-size: 8.5px;
+    background: var(--brand); color: #fff;
+    padding: 1px 4px; border-radius: var(--radius-sm);
+    margin-left: 3px; letter-spacing: 0.3px;
+    vertical-align: 2px;
+  }
+  .qd-compare tr.price td { font-weight: 600; }
+  .qd-compare tr:last-child td, .qd-compare tr:last-child th { border-bottom: 0; }
+  .qd-compare td.cell-best {
+    background: #fff7f7;
+  }
+  /* 컬럼 사이 가벼운 구분 */
+  .qd-compare tbody td:not(:last-child),
+  .qd-compare thead th:not(:last-child) {
+    border-right: 1px solid #f0f0f0;
+  }
+
+  /* ================================================================
+   * DESIGN SYSTEM — 공통 유틸 클래스 (.ds-*)
+   * 견적서 official 톤 기준 — 모든 화면에서 동일하게 사용 가능
+   * ================================================================ */
+
+  /* 카드 — 흰 배경 + 옅은 보더 + 라운드 */
+  .ds-card {
+    background: var(--bg);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .ds-card--soft { background: var(--bg-soft); }
+  .ds-card--accent {
+    background: var(--brand-50);
+    border-color: var(--brand-100);
+  }
+
+  /* 섹션 타이틀 — 견적서 official 의 letter-spaced 빨간 라벨 */
