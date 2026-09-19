@@ -631,23 +631,25 @@
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .grid-1 { display: flex; flex-direction: column; gap: 6px; }
   .card {
-    border: 1px solid var(--line-2); border-radius: 8px;
-    padding: 14px 12px; cursor: pointer; background: #fff;
-    transition: border-color .15s, background .15s;
+    border: 0; border-radius: 8px;
+    padding: 14px 12px; cursor: pointer; background: var(--bg-soft);
+    transition: background .15s;
     text-align: left; font-family: inherit; width: 100%;
   }
-  .card.active { border-color: var(--brand); background: var(--brand-50); }
+  .card.active { background: var(--brand-50); }
+  .card.active .name { color: var(--brand); font-weight: 600; }
   .card.disabled { opacity: 0.4; cursor: not-allowed; background: var(--bg-soft); }
   .card .name { font-weight: 400; font-size: 13px; }
   .card .sub { font-size: 11px; color: var(--ink-3); margin-top: 3px; line-height: 1.5; }
   .card .price { font-size: 12.5px; color: var(--brand); font-weight: 600; margin-top: 6px; }
   .trim-row {
     display: flex; justify-content: space-between; align-items: center;
-    border: 1px solid var(--line-2); border-radius: 8px;
-    padding: 14px; cursor: pointer; background: #fff;
-    transition: border-color .15s, background .15s;
+    border: 0; border-radius: 8px;
+    padding: 14px; cursor: pointer; background: var(--bg-soft);
+    transition: background .15s;
   }
-  .trim-row.active { border-color: var(--brand); background: var(--brand-50); }
+  .trim-row.active { background: var(--brand-50); }
+  .trim-row.active .info .name { color: var(--brand); font-weight: 600; }
   .trim-row .info { flex: 1; }
   .trim-row .info .name { font-weight: 400; font-size: 14px; }
   .trim-row .info .meta { font-size: 11px; color: var(--ink-3); margin-top: 3px; }
@@ -663,15 +665,14 @@
   .features .label { font-weight: 400; color: var(--ink-2); margin-bottom: 4px; display: block; }
   .option-row {
     display: flex; align-items: flex-start; gap: 10px;
-    border: 0; border-bottom: 1px solid var(--line);
-    border-radius: 0;
-    padding: 9px 2px; cursor: pointer; background: transparent;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 8px; cursor: pointer; background: transparent;
     transition: background .12s;
   }
-  .option-row:last-child { border-bottom: 0; }
   .option-row:hover { background: var(--accent-soft); }
   .option-row.active { background: var(--brand-50); }
-  .option-row.active .o-name { color: var(--brand); }
+  .option-row.active .o-name { color: var(--brand); font-weight: 600; }
   .option-row.disabled { opacity: 0.4; cursor: not-allowed; }
   .option-row input[type="checkbox"] {
     margin-top: 2px; width: 14px; height: 14px;
@@ -684,11 +685,12 @@
   .colors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .color-card {
     display: flex; align-items: center; gap: 10px;
-    border: 1px solid var(--line-2); border-radius: 8px;
-    padding: 10px 12px; cursor: pointer; background: #fff;
-    transition: border-color .15s, background .15s;
+    border: 0; border-radius: 8px;
+    padding: 10px 12px; cursor: pointer; background: var(--bg-soft);
+    transition: background .15s;
   }
-  .color-card.active { border-color: var(--brand); background: var(--brand-50); }
+  .color-card.active { background: var(--brand-50); }
+  .color-card.active .c-name { color: var(--brand); font-weight: 600; }
   .color-swatch { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #ddd; flex-shrink: 0; }
   .color-card .c-name { font-size: 12.5px; font-weight: 500; flex: 1; }
   .color-card .c-price { font-size: 11px; color: var(--brand); font-weight: 600; }
@@ -2238,11 +2240,11 @@ render();
   .tax-pill {
     display: inline-flex; align-items: center; gap: 2px;
     padding: 1px 6px;
-    border: 1px solid var(--line-2); border-radius: 4px;
-    background: transparent; color: var(--ink-3);
+    border: 0; border-radius: 4px;
+    background: var(--bg-soft); color: var(--ink-3);
     font-size: 10px; font-family: inherit;
     cursor: pointer;
-    transition: background .12s, border-color .12s, color .12s;
+    transition: background .12s, color .12s;
     vertical-align: 1px;
   }
   .tax-pill:hover { background: var(--accent-soft); border-color: var(--ink-4); color: var(--ink-1); }
