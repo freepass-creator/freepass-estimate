@@ -1,12 +1,15 @@
 // ============================================================================
-// 화면 상태 → provider-neutral 견적 요청
-// UI는 계산 공급자를 모른다. 차량/조건의 사실만 싣고 provider가 자기 방식으로 해석한다.
+//  화면 상태 → 견적 요청   (계산기와 무관한 «뼈대» 몫)
+// ----------------------------------------------------------------------------
+//  여기서는 «어디 탁송인지»·«무슨 썬팅인지» 같은 고름을 금액으로 다 풀어 놓는다.
+//  계산기는 금액만 받는다 — 그래야 계산기가 우리 요율표를 몰라도 된다.
 // ============================================================================
 import { quoteState, vehicleState } from '../../store.js';
 import * as Fees from '../compute-fees.js';
 import { 탁송, 썬팅값, 블박값 } from '../welrix-rates.js';
 import { 담당자인가 } from '../role.js';
 
+/** 고른 외장색의 추가금 (원) */
 function 색추가금() {
   try {
     const DB = window.VEHICLE_DB;
@@ -16,59 +19,21 @@ function 색추가금() {
   } catch { return 0; }
 }
 
-/** @returns {object|null} provider-neutral quote request */
+/** @returns {object|null} 규격(spec.js)에 맞는 요청. 차를 안 골랐으면 null */
 export function 요청만들기() {
   const c = quoteState.cond || {};
-  const v = quoteState.vehicle || {};
-  const src = v._src || {};
-  const 키 = vehicleState.trim;
+  const 키 = vehicleState.trim;      // ★welrix-db 의 trim_id = 웰릭스 model 문자열
   if (!키) return null;
 
-  const 옵션 = Fees.optPrice(quoteState);
-  const 외장색 = 색추가금();
-  const 내장색 = c.colorIntPrice || 0;
-  const 할인 = 담당자인가() ? (c.discount || 0) * 10000 : 0;
-  const 트림가 = (v.trim_price_manwon || 0) * 10000;
-
-  // 현재 FreePass 표준 calc 후보가 historically 사용하던 가격 기준을 그대로 보존한다.
-  // UI/Provider 구조 정리 단계에서 계산 기준까지 동시에 바꾸지 않는다.
-  const 표준계산차량가 = (v.total_manwon || 0) * 10000 + 내장색;
-
   return {
-    버전: 1,
     차: {
-      종류: '신차',
-      키,                              // 외부 adapter가 차량을 식별할 때 쓰는 canonical key
-      브랜드: v.brand || src.brand || '',
-      모델: v.model || src.model || '',
-      파워트레인: v.variant || '',
-      트림: v.trim_name || src.trim || '',
-      배기량: src.disp || v.displacement_cc || 0,
-      연료: src.fuel || v.fuel || '',
-      과세구분: src.tax_exempt || '과세',
-      그룹: src.group || 'A군',
-      다인승: src.multi_seat,
-      전략차종: src.strategic ?? 0,
-      잔가: {
-        24: src.r24,
-        36: src.r36,
-        48: src.r48,
-        60: src.r60,
-      },
-      가격: {
-        트림: 트림가,
-        옵션,
-        외장색,
-        내장색,
-        할인,
-        표준계산차량가,
-      },
-
-      // v1 compatibility aliases — 기존 Welrix adapter와 과거 검사기를 깨지 않는다.
-      차량가: 0,
-      옵션가: 옵션,
-      색추가금: 외장색,
-      할인,
+      종류: '신차',                   // 중고차 뼈대가 붙으면 여기서 갈린다
+      키,
+      차량가: 0,                      // ★신차는 계산기(웰릭스)가 키로 값을 안다. 중고차는 여기에 실린다
+      옵션가: Fees.optPrice(quoteState),
+      색추가금: 색추가금(),
+      /* ★손님은 할인을 못 넣는다 — 칸이 없어도 예전 값이 남아 있을 수 있어 여기서 한 번 더 막는다 */
+      할인: 담당자인가() ? (c.discount || 0) * 10000 : 0,
     },
     조건: {
       신용: c.credit || '중신용',
