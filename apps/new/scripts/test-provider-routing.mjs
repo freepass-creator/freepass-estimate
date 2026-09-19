@@ -1,3 +1,4 @@
+import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 
@@ -22,6 +23,7 @@ function makeReq(productId){
       kind:'excel',
       adapterId:'welrix',
       request:{
+        계약:QUOTE_REQUEST_CONTRACT,
         버전:1,
         차:{
           종류:'신차',
@@ -68,6 +70,8 @@ try{
   await handler(makeReq(supportedId),res1);
   assert.equal(res1.state.statusCode,200);
   assert.equal(res1.state.body?.ok,true);
+  assert.equal(res1.state.body?.contract,QUOTE_RESULT_CONTRACT);
+  assert.equal(res1.state.body?.providerContract,QUOTE_PROVIDER_CONTRACT);
   assert.ok(outbound?.model,'Welrix API model must be translated');
   assert.notEqual(outbound.model,supportedId,'FreePass product id must not leak as Welrix model key');
   assert.ok((supportedMeta.providerCandidates||[]).some(c=>c.api_model===outbound.model),
