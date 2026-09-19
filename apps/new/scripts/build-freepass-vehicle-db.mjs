@@ -111,6 +111,35 @@ const fixedAxes=r=>{
  }
  return{drivetrain,seats,body_configuration,hasDriveOption,hasSeatOption};
 };
+function refineBaseAxes(r,axes,candidates){
+ const out={...axes};
+ const effects=availableAxisEffects(r);
+ const optionSeatValues=new Set(effects.filter(x=>x.axis==='seats').map(x=>Number(x.value)));
+ const candidateSeats=[...new Set(candidates.map(c=>Number(c.seats)).filter(n=>Number.isFinite(n)&&n>0))];
+ const full=[r.id,r.trim,r.body,r.sourceName,r.fuel].filter(Boolean).join(' ');
+
+ // If seats are selectable options, the base seat count is the one candidate
+ // not represented by any seat option (Sorento 5 base + 6/7 options, EV9 7 base + 6 option).
+ if(out.seats==null&&axes.hasSeatOption&&candidateSeats.length){
+   const remain=candidateSeats.filter(n=>!optionSeatValues.has(n));
+   if(remain.length===1)out.seats=remain[0];
+ }
+
+ // Passenger vs van: no "밴" marker means the passenger configuration when
+ // the same trim name exists in both passenger and 1/2-seat van families.
+ if(!/밴/.test(full)){
+   const bodies=[...new Set(candidates.map(c=>S(c.body_configuration)).filter(Boolean))];
+   if(bodies.some(b=>/승용/.test(b))&&bodies.some(b=>/밴/.test(b)))out.body_configuration='승용';
+   if(out.seats==null&&!axes.hasSeatOption){
+     const low=candidateSeats.filter(n=>n<=2);
+     const passenger=candidateSeats.filter(n=>n>2);
+     if(low.length&&passenger.length===1)out.seats=passenger[0];
+   }
+ }
+
+ return out;
+}
+
 const groupLabel=(r,axes)=>{
  const fixed=[];
  if(!axes.hasSeatOption){
@@ -305,14 +334,17 @@ for(const r of feed.rows||[]){
  const model=ensureModel(mfr,name);
  const engine=supplementEngine(r,name,r.fuel||r.fuelRaw);
  const variant=ensureVariant(model,engine,r);
- const axes=fixedAxes(r);
- const group=groupLabel(r,axes);
- const trimName=displayTrim(r,group);
+ const axes0=fixedAxes(r);
+ const group0=groupLabel(r,axes0);
+ const trimName0=displayTrim(r,group0);
  const opt=mergeOptionRow(variant,r,S(r.id));
  const ext=uniqColors(r.extColors||[]),intc=uniqColors(r.intColors||[]);
  model.exterior_colors=uniqColors([...model.exterior_colors,...ext]);
  model._interior=[...new Set([...model._interior,...intc.map(x=>x.name)])];
- const ccands=masterCandidates(r,name,engine,trimName);
+ const ccands=masterCandidates(r,name,engine,trimName0);
+ const axes=refineBaseAxes(r,axes0,ccands);
+ const group=groupLabel(r,axes);
+ const trimName=displayTrim(r,group);
  const pcands=providerCandidates(r,name,engine,trimName);
  const before=Number(r.priceBefore||0),after=Number(r.priceAfter||0);
  const current=before||after;
