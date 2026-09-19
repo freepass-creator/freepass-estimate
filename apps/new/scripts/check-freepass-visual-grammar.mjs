@@ -8,7 +8,9 @@ const files={
 };
 
 function block(src,selector){
-  const css = src.includes('<style') ? src.slice(src.lastIndexOf('<style')) : src;
+  const css = src.includes('<template>') && src.includes('<style')
+    ? src.slice(src.lastIndexOf('<style'))
+    : src;
   const needle = selector + ' {';
   const i=css.indexOf(needle);
   assert.ok(i>=0,selector+' block missing');
