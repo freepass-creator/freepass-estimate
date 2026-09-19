@@ -182,6 +182,22 @@ const 견적보기보임 = computed(() => {
 const 자동전진단계 = computed(() => currentStep.value.key === 'vehicle'
   && ['brand', 'model', 'variant', 'spec', 'trim'].includes(vehicleState.subStep || 'brand'));
 
+/* FreePass 하단 내비게이션 계약
+ * - 이전/다음 기능은 항상 공통 뼈대에 존재한다.
+ * - 단일선택(auto) 단계는 선택 즉시 전진하므로 Next 를 숨긴다.
+ * - colors/options/conditions/extras 처럼 완료 의사가 필요한 단계만 Next 를 노출한다.
+ * - 나중에 어떤 단계를 수동진행으로 바꿔도 이 계약에서 showNext 만 바뀌면 된다. */
+const 하단내비 = computed(() => {
+  const 마지막 = stepIdx.value >= STEPS.length - 1;
+  return {
+    mode: 자동전진단계.value ? 'auto' : 'manual',
+    hasPrev: canGoBack.value,
+    hasNext: !마지막,
+    showNext: !마지막 && !자동전진단계.value,
+    nextLabel: STEPS[stepIdx.value + 1]?.key === 'result' ? '견적 보기' : '다음',
+  };
+});
+
 const canProceed = computed(() => {
   if (currentStep.value.key !== 'vehicle') return true;
   const sub = vehicleState.subStep || 'brand';
@@ -290,7 +306,7 @@ async function shareSignLink() {
 
     <StickyQuote v-if="금액바보임" />
 
-    <footer class="m-footer" v-if="!자동전진단계 || canGoBack || (공유견적 && currentStep.key === 'result')">
+    <footer class="m-footer" v-if="!자동전진단계 || 하단내비.hasPrev || (공유견적 && currentStep.key === 'result')">
       <!-- 공유받은 확정견적은 먼저 «그대로» 보여 준다. 수정 버튼을 눌러야 새 계산이 시작된다. -->
       <template v-if="공유견적 && currentStep.key === 'result'">
         <button class="m-btn m-btn--soft" @click="수정하기">
@@ -301,17 +317,18 @@ async function shareSignLink() {
         </button>
       </template>
       <template v-else>
-        <button v-if="canGoBack" class="m-btn m-btn--ghost" :class="{ 'm-btn--icon': 견적보기보임 }"
+        <button v-if="하단내비.hasPrev" class="m-btn m-btn--ghost" :class="{ 'm-btn--icon': 견적보기보임 }"
                 @click="prev" aria-label="이전">
           <i class="ph ph-arrow-left"></i><span v-if="!견적보기보임">이전</span>
         </button>
         <button v-if="견적보기보임" class="m-btn m-btn--soft" @click="견적보기">견적 보기</button>
         <button
-          v-if="stepIdx < STEPS.length - 1 && !자동전진단계"
+          v-show="하단내비.showNext"
           class="m-btn m-btn--primary"
           :disabled="!canProceed"
           @click="next"
-        >{{ STEPS[stepIdx + 1]?.key === 'result' ? '견적 보기' : '다음' }}<i class="ph ph-arrow-right"></i></button>
+          :data-nav-mode="하단내비.mode"
+        >{{ 하단내비.nextLabel }}<i class="ph ph-arrow-right"></i></button>
         <template v-else-if="stepIdx === STEPS.length - 1">
           <button
             class="m-btn m-btn--soft"
