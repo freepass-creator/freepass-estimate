@@ -1,6 +1,7 @@
 // wel2 견적 모듈 — wel 의 데이터/로직 활용 + estimator_4 톤
 import { setCompanyConfig } from './src/lib/calc.js';
 import { 요청만들기 } from './src/lib/quote/build-request.js';
+import { applyProductTheme } from './src/lib/brand-theme.js';
 import { 견적계산 } from './src/lib/quote/calculate.js';
 // 룩업 데이터 SSOT — Vue 컴포넌트와 공유 (이전에는 quote.js 에 박혀있고 window.__welrix_data 로 노출,
 // 모듈 로드 순서로 컴포넌트가 빈 옵션 보던 문제 → 직접 import 으로 해결)
@@ -50,14 +51,14 @@ let __embedDealCode = null;
 // ============ 초기 로드 ============
 async function loadCompanyConfig() {
   const params = new URLSearchParams(location.search);
-  const id = params.get('c') || 'welrix';
+  const id = params.get('c') || 'freepass';
   try {
     const r = await fetch(`./data/company-config/${id}.json?t=${Date.now()}`, { cache: 'no-store' });
     if (r.ok) {
       const cfg = await r.json();
       setCompanyConfig(cfg);
       window.__welrix_companyConfig = cfg;
-      applyCompanyTheme(cfg);
+      applyProductTheme(cfg);
       applyExcelVersion(cfg);
       return cfg;
     }
