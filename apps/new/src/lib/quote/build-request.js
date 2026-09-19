@@ -6,6 +6,7 @@ import { quoteState, vehicleState } from '../../store.js';
 import * as Fees from '../compute-fees.js';
 import { 탁송, 썬팅값, 블박값 } from '../welrix-rates.js';
 import { 담당자인가 } from '../role.js';
+import { QUOTE_REQUEST_CONTRACT, LEGACY_QUOTE_VERSION } from './contracts.js';
 
 function 색추가금() {
   const v = quoteState.vehicle || {};
@@ -32,7 +33,8 @@ export function 요청만들기() {
   const 표준계산차량가 = Math.max(0, 트림가 + 옵션 + 외장색 - 할인);
 
   return {
-    버전: 1,
+    계약: QUOTE_REQUEST_CONTRACT,
+    버전: LEGACY_QUOTE_VERSION,
     차: {
       종류: '신차',
       키,                              // FreePass product id. 외부 adapter가 자기 key로 번역한다.
