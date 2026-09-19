@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-19T08:12:16.780Z",
+  "generated_at": "2026-09-19T08:30:03.855Z",
   "data_as_of": "2026-09-18",
   "total": 535,
   "canonical": {
@@ -872,7 +872,7 @@
       {
         "id": "kgm_OP5_OP9BC_OP5AB02",
         "maker": "KG모빌리티",
-        "model": "무쏘 EV",
+        "model": "무쏘",
         "engine": "전기",
         "trim": "블랙엣지",
         "group": "2WD",
@@ -881,7 +881,7 @@
       {
         "id": "kgm_OP5_OP9AC_OP5AB01",
         "maker": "KG모빌리티",
-        "model": "무쏘 EV",
+        "model": "무쏘",
         "engine": "전기",
         "trim": "MX",
         "group": "2WD",
@@ -890,7 +890,7 @@
       {
         "id": "kgm_OP5_OP9BD_OP5AB02",
         "maker": "KG모빌리티",
-        "model": "무쏘 EV",
+        "model": "무쏘",
         "engine": "전기",
         "trim": "블랙엣지",
         "group": "AWD",
@@ -899,7 +899,7 @@
       {
         "id": "kgm_OP5_OP9AD_OP5AB01",
         "maker": "KG모빌리티",
-        "model": "무쏘 EV",
+        "model": "무쏘",
         "engine": "전기",
         "trim": "MX",
         "group": "AWD",
@@ -2227,7 +2227,7 @@
       {
         "id": "GNJS4ZBT4",
         "maker": "현대",
-        "model": "더 뉴 그랜저 Hybrid",
+        "model": "더 뉴 그랜저",
         "engine": "하이브리드 1.6 터보",
         "trim": "익스클루시브",
         "group": "2WD",
@@ -2236,7 +2236,7 @@
       {
         "id": "GNJS4ZCT4",
         "maker": "현대",
-        "model": "더 뉴 그랜저 Hybrid",
+        "model": "더 뉴 그랜저",
         "engine": "하이브리드 1.6 터보",
         "trim": "캘리그래피",
         "group": "2WD",
@@ -2245,7 +2245,7 @@
       {
         "id": "GNJS4ZAT4",
         "maker": "현대",
-        "model": "더 뉴 그랜저 Hybrid",
+        "model": "더 뉴 그랜저",
         "engine": "하이브리드 1.6 터보",
         "trim": "프리미엄",
         "group": "2WD",
@@ -2263,7 +2263,7 @@
       {
         "id": "USJC3VMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Electric",
+        "model": "더 뉴 스타리아",
         "engine": "전기",
         "trim": "모던",
         "group": "2WD",
@@ -2272,7 +2272,7 @@
       {
         "id": "USJC5VMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Electric",
+        "model": "더 뉴 스타리아",
         "engine": "전기",
         "trim": "모던",
         "group": "2WD",
@@ -2281,7 +2281,7 @@
       {
         "id": "USJTBVMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Electric",
+        "model": "더 뉴 스타리아",
         "engine": "전기",
         "trim": "모던",
         "group": "2WD",
@@ -2290,7 +2290,7 @@
       {
         "id": "USJC2ZMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Hybrid",
+        "model": "더 뉴 스타리아",
         "engine": "하이브리드 1.6 터보",
         "trim": "모던",
         "group": "2WD",
@@ -2299,7 +2299,7 @@
       {
         "id": "USJC5ZMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Hybrid",
+        "model": "더 뉴 스타리아",
         "engine": "하이브리드 1.6 터보",
         "trim": "모던",
         "group": "2WD",
@@ -2308,7 +2308,7 @@
       {
         "id": "USJT9ZMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Hybrid",
+        "model": "더 뉴 스타리아",
         "engine": "하이브리드 1.6 터보",
         "trim": "모던",
         "group": "2WD",
@@ -2317,7 +2317,7 @@
       {
         "id": "USJTBZMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Hybrid",
+        "model": "더 뉴 스타리아",
         "engine": "하이브리드 1.6 터보",
         "trim": "모던",
         "group": "2WD",
@@ -2326,7 +2326,7 @@
       {
         "id": "USJT9ZST4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Hybrid",
+        "model": "더 뉴 스타리아",
         "engine": "하이브리드 1.6 터보",
         "trim": "스마트",
         "group": "2WD",
@@ -2335,7 +2335,7 @@
       {
         "id": "USJTBZST4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Hybrid",
+        "model": "더 뉴 스타리아",
         "engine": "하이브리드 1.6 터보",
         "trim": "스마트",
         "group": "2WD",
@@ -2344,7 +2344,7 @@
       {
         "id": "USJC2ZCT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Hybrid",
+        "model": "더 뉴 스타리아",
         "engine": "하이브리드 1.6 터보",
         "trim": "스마트(센터콘솔)",
         "group": "2WD",
@@ -2353,7 +2353,7 @@
       {
         "id": "USJC5ZCT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 Hybrid",
+        "model": "더 뉴 스타리아",
         "engine": "하이브리드 1.6 터보",
         "trim": "스마트(센터콘솔)",
         "group": "2WD",
@@ -2416,7 +2416,7 @@
       {
         "id": "USJL7VET4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 라운지 Electric",
+        "model": "더 뉴 스타리아 라운지",
         "engine": "전기",
         "trim": "인스퍼레이션",
         "group": "2WD",
@@ -2425,7 +2425,7 @@
       {
         "id": "USJL7VPT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 라운지 Electric",
+        "model": "더 뉴 스타리아 라운지",
         "engine": "전기",
         "trim": "프레스티지",
         "group": "2WD",
@@ -2434,7 +2434,7 @@
       {
         "id": "USJLBVPT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 라운지 Electric",
+        "model": "더 뉴 스타리아 라운지",
         "engine": "전기",
         "trim": "프레스티지",
         "group": "2WD",
@@ -2443,7 +2443,7 @@
       {
         "id": "USJL7ZET4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 라운지 Hybrid",
+        "model": "더 뉴 스타리아 라운지",
         "engine": "하이브리드 1.6 터보",
         "trim": "인스퍼레이션",
         "group": "2WD",
@@ -2452,7 +2452,7 @@
       {
         "id": "USJL9ZET4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 라운지 Hybrid",
+        "model": "더 뉴 스타리아 라운지",
         "engine": "하이브리드 1.6 터보",
         "trim": "인스퍼레이션",
         "group": "2WD",
@@ -2461,7 +2461,7 @@
       {
         "id": "USJL9ZPT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 라운지 Hybrid",
+        "model": "더 뉴 스타리아 라운지",
         "engine": "하이브리드 1.6 터보",
         "trim": "프레스티지",
         "group": "2WD",
@@ -2479,7 +2479,7 @@
       {
         "id": "USTL7ZBT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 라운지 모빌리티 Hybrid",
+        "model": "더 뉴 스타리아 라운지 모빌리티",
         "engine": "하이브리드 1.6 터보",
         "trim": "모빌리티",
         "group": "2WD",
@@ -2488,7 +2488,7 @@
       {
         "id": "USTL9ZBT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 라운지 모빌리티 Hybrid",
+        "model": "더 뉴 스타리아 라운지 모빌리티",
         "engine": "하이브리드 1.6 터보",
         "trim": "모빌리티",
         "group": "2WD",
@@ -2506,7 +2506,7 @@
       {
         "id": "USJV6VET4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 리무진 Electric",
+        "model": "더 뉴 스타리아 리무진",
         "engine": "전기",
         "trim": "인스퍼레이션",
         "group": "2WD",
@@ -2515,7 +2515,7 @@
       {
         "id": "USJV6ZET4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 리무진 Hybrid",
+        "model": "더 뉴 스타리아 리무진",
         "engine": "하이브리드 1.6 터보",
         "trim": "인스퍼레이션",
         "group": "2WD",
@@ -2524,7 +2524,7 @@
       {
         "id": "USJV9ZET4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 리무진 Hybrid",
+        "model": "더 뉴 스타리아 리무진",
         "engine": "하이브리드 1.6 터보",
         "trim": "인스퍼레이션",
         "group": "2WD",
@@ -2533,7 +2533,7 @@
       {
         "id": "USCTBZMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 킨더 Hybrid",
+        "model": "더 뉴 스타리아 킨더",
         "engine": "하이브리드 1.6 터보",
         "trim": "모던",
         "group": "2WD",
@@ -2542,7 +2542,7 @@
       {
         "id": "USCTFZMT4",
         "maker": "현대",
-        "model": "더 뉴 스타리아 킨더 Hybrid",
+        "model": "더 뉴 스타리아 킨더",
         "engine": "하이브리드 1.6 터보",
         "trim": "모던",
         "group": "2WD",
@@ -3361,7 +3361,7 @@
       {
         "id": "SXJJ5VES3",
         "maker": "현대",
-        "model": "코나 Electric",
+        "model": "코나",
         "engine": "전기",
         "trim": "E-Value +",
         "group": "",
@@ -3370,7 +3370,7 @@
       {
         "id": "SXJJ5VCR3",
         "maker": "현대",
-        "model": "코나 Electric",
+        "model": "코나",
         "engine": "전기",
         "trim": "인스퍼레이션",
         "group": "",
@@ -3379,7 +3379,7 @@
       {
         "id": "SXJJ5VPR3",
         "maker": "현대",
-        "model": "코나 Electric",
+        "model": "코나",
         "engine": "전기",
         "trim": "모던 plus",
         "group": "",
@@ -3388,7 +3388,7 @@
       {
         "id": "SXJJ5VMR3",
         "maker": "현대",
-        "model": "코나 Electric",
+        "model": "코나",
         "engine": "전기",
         "trim": "N Line 인스퍼레이션",
         "group": "",
@@ -3397,7 +3397,7 @@
       {
         "id": "SXJJ5VBR3",
         "maker": "현대",
-        "model": "코나 Electric",
+        "model": "코나",
         "engine": "전기",
         "trim": "프리미엄",
         "group": "",
@@ -3406,7 +3406,7 @@
       {
         "id": "SXJJ5VBS3",
         "maker": "현대",
-        "model": "코나 Electric",
+        "model": "코나",
         "engine": "전기",
         "trim": "프리미엄",
         "group": "",
@@ -3415,7 +3415,7 @@
       {
         "id": "SXJJ5ZMD4",
         "maker": "현대",
-        "model": "코나 Hybrid",
+        "model": "코나",
         "engine": "하이브리드 1.6",
         "trim": "N Line 인스퍼레이션",
         "group": "2WD",
@@ -3442,7 +3442,7 @@
       {
         "id": "NXJJ5ZMT5",
         "maker": "현대",
-        "model": "투싼 Hybrid",
+        "model": "투싼",
         "engine": "하이브리드 1.6 터보",
         "trim": "N Line",
         "group": "",
@@ -3451,7 +3451,7 @@
       {
         "id": "NXJJ5ZMA5",
         "maker": "현대",
-        "model": "투싼 Hybrid",
+        "model": "투싼",
         "engine": "하이브리드 1.6 터보",
         "trim": "N Line",
         "group": "",
@@ -3640,7 +3640,7 @@
       {
         "id": "FXJJ7ZAT2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "익스클루시브",
         "group": "7인승",
@@ -3649,7 +3649,7 @@
       {
         "id": "FXJJ7ZCT2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "캘리그래피",
         "group": "7인승",
@@ -3658,7 +3658,7 @@
       {
         "id": "FXJJ7ZET2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "하이루프",
         "group": "하이루프 7인승",
@@ -3667,7 +3667,7 @@
       {
         "id": "FXJJ7ZHT2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "H-Pick",
         "group": "7인승",
@@ -3676,7 +3676,7 @@
       {
         "id": "FXJJ7ZAA2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "익스클루시브",
         "group": "7인승",
@@ -3685,7 +3685,7 @@
       {
         "id": "FXJJ7ZCA2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "캘리그래피",
         "group": "7인승",
@@ -3694,7 +3694,7 @@
       {
         "id": "FXJJ7ZEA2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "하이루프",
         "group": "하이루프 7인승",
@@ -3703,7 +3703,7 @@
       {
         "id": "FXJJ7ZHA2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "H-Pick",
         "group": "7인승",
@@ -3712,7 +3712,7 @@
       {
         "id": "FXJJ9ZAT2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "익스클루시브",
         "group": "9인승",
@@ -3721,7 +3721,7 @@
       {
         "id": "FXJJ9ZCT2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "캘리그래피",
         "group": "9인승",
@@ -3730,7 +3730,7 @@
       {
         "id": "FXJJ9ZET2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "하이루프",
         "group": "하이루프 9인승",
@@ -3739,7 +3739,7 @@
       {
         "id": "FXJJ9ZHT2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "H-Pick",
         "group": "9인승",
@@ -3748,7 +3748,7 @@
       {
         "id": "FXJJ9ZAA2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "익스클루시브",
         "group": "9인승",
@@ -3757,7 +3757,7 @@
       {
         "id": "FXJJ9ZCA2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "캘리그래피",
         "group": "9인승",
@@ -3766,7 +3766,7 @@
       {
         "id": "FXJJ9ZEA2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "하이루프",
         "group": "하이루프 9인승",
@@ -3775,7 +3775,7 @@
       {
         "id": "FXJJ9ZHA2",
         "maker": "현대",
-        "model": "팰리세이드 Hybrid",
+        "model": "팰리세이드",
         "engine": "하이브리드 2.5",
         "trim": "H-Pick",
         "group": "9인승",
@@ -3856,7 +3856,7 @@
       {
         "id": "kgm_OP5_OP9BC_OP5AB02",
         "maker": "KG모빌리티",
-        "model": "무쏘 EV",
+        "model": "무쏘",
         "engine": "전기",
         "trim": "블랙엣지",
         "group": "2WD",
@@ -3865,7 +3865,7 @@
       {
         "id": "kgm_OP5_OP9AC_OP5AB01",
         "maker": "KG모빌리티",
-        "model": "무쏘 EV",
+        "model": "무쏘",
         "engine": "전기",
         "trim": "MX",
         "group": "2WD",
@@ -3874,7 +3874,7 @@
       {
         "id": "kgm_OP5_OP9BD_OP5AB02",
         "maker": "KG모빌리티",
-        "model": "무쏘 EV",
+        "model": "무쏘",
         "engine": "전기",
         "trim": "블랙엣지",
         "group": "AWD",
@@ -3883,7 +3883,7 @@
       {
         "id": "kgm_OP5_OP9AD_OP5AB01",
         "maker": "KG모빌리티",
-        "model": "무쏘 EV",
+        "model": "무쏘",
         "engine": "전기",
         "trim": "MX",
         "group": "AWD",
