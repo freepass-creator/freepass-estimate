@@ -11,6 +11,11 @@ on:
       - '.github/workflows/build-freepass-newcar-db.yml'
   workflow_dispatch:
 
+
+concurrency:
+  group: freepass-newcar-data-writer
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -54,4 +59,6 @@ jobs:
           git add apps/new/public/vehicle-db.js apps/new/public/welrix-db.js apps/new/public/data/freepass-newcar/product-index.json apps/new/public/data/freepass-newcar/readiness-gaps.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "data(new): rebuild UI DB from FreePass product master"
+          git fetch origin work/ui-baseline
+          git rebase -X theirs origin/work/ui-baseline
           git push origin HEAD:work/ui-baseline
