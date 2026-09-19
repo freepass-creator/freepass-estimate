@@ -1,3 +1,4 @@
+import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 import { calculateStandardQuote } from './_standard/standard-service.js';
 
 function bad(res,status,error,code=null){
@@ -13,7 +14,7 @@ export default async function handler(req,res){
 
   try{
     const answer=await calculateStandardQuote(req.body);
-    res.status(200).json({ok:true,...answer});
+    res.status(200).json({ok:true,contract:QUOTE_RESULT_CONTRACT,providerContract:QUOTE_PROVIDER_CONTRACT,...answer});
   }catch(e){
     res.status(422).json({
       ok:false,
