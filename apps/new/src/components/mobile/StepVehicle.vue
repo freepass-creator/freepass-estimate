@@ -280,6 +280,7 @@ function syncVehicle() {
     total_manwon: totalManwon.value,
     trim_price_manwon: trimPriceManwon,
     options_price_manwon: optionsPriceManwon.value,
+    color_price_manwon: exteriorColorPriceManwon.value,
     options: optNames,
     colorExt: colorExtName,
     colorInt: quoteState.cond.colorInt || null,
