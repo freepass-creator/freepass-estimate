@@ -206,7 +206,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   padding: 10px 14px;
   background: var(--bg-soft);
   border: 0;
-  border-radius: var(--r-chip);
+  border-radius: var(--r-md);
   font-family: inherit; font-size: var(--fs-base); font-weight: var(--fw-medium);
   color: var(--ink-2); cursor: pointer;
 }
@@ -223,8 +223,8 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   height: var(--h-input);
   padding: 0 32px 0 14px;
   background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: 10px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
   font-family: inherit; font-size: var(--fs-lg);
   color: var(--ink-1);
   cursor: pointer;
@@ -243,8 +243,8 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   height: var(--h-input);
   padding: 0 14px;
   background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-chip);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-md);
 }
 .se-discount:focus-within { border-color: var(--brand); }
 .se-discount__input {
@@ -274,7 +274,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   padding: 10px 12px;
   background: var(--bg-soft);
   border: 0;
-  border-radius: 10px;
+  border-radius: var(--r-md);
   font-family: inherit; cursor: pointer;
 }
 .se-tint-area__label { font-size: var(--fs-md); font-weight: var(--fw-medium); color: var(--ink-1); }
