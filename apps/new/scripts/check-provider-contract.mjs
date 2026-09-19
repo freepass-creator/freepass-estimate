@@ -1,3 +1,4 @@
+import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 import assert from 'node:assert/strict';
 import { 공급자설정, 공급자키 } from '../src/lib/quote/provider-config.js';
 import { 결과검사, 요청검사 } from '../src/lib/quote/spec.js';
@@ -18,12 +19,14 @@ const erpCfg = { quote_provider: { mode: 'external', kind: 'erp', adapter_id: 'p
 assert.equal(공급자키(erpCfg), 'external:erp:partner-erp');
 
 const request = {
+  계약: QUOTE_REQUEST_CONTRACT,
   버전: 1,
   차: { 종류: '신차', 키: 'TEST-TRIM' },
   조건: {},
   안들: [{ 기간: 36, 보증금: 0, 선납: 0 }],
 };
 assert.equal(요청검사(request), null);
+assert.match(요청검사({ ...request, 계약: 'freepass-quote-request/v999' }), /지원하지 않는 견적 요청 계약/);
 assert.equal(결과검사([{ 월대여료: 1 }], request.안들), null);
 
 // Calculation implementations are tested separately:
