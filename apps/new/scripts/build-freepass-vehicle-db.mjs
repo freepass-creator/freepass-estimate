@@ -316,7 +316,14 @@ for(const r of feed.rows||[]){
    _source:{maker,sub_model:S(r.sub_model),carType:S(r.carType),fuel:S(r.fuel),body:S(r.body),sourceName:S(r.sourceName),trim:S(r.trim)}
  };
  variant.trims.push(t);
- productIndex[t.trim_id]={maker,model:name,engine,trim:trimName,group,canonicalCandidates:ccands.length,providerCandidates:pcands.length};
+ productIndex[t.trim_id]={
+   maker,model:name,engine,trim:trimName,group,
+   baseAxes:t._base_axes,
+   canonicalCandidates:ccands,
+   providerCandidates:pcands,
+   availableOptions:t.available_options,
+   axisOptionIds:t._axis_option_ids
+ };
 }
 for(const mf of manufacturers.values())for(const md of mf.models.values())for(const v of md.variants.values()){
  const gm=new Map();for(const g of v.exclusive_groups){const k=g.id;if(!gm.has(k))gm.set(k,g)}
@@ -342,6 +349,6 @@ fs.writeFileSync('public/data/freepass-newcar/product-index.json',JSON.stringify
 const models=out.manufacturers.reduce((n,m)=>n+m.models.length,0);
 const variants=out.manufacturers.flatMap(m=>m.models).reduce((n,m)=>n+m.variants.length,0);
 const trims=out.manufacturers.flatMap(m=>m.models).flatMap(m=>m.variants).reduce((n,v)=>n+v.trims.length,0);
-const providerReady=Object.values(productIndex).filter(x=>x.providerCandidates>0).length;
-const canonicalReady=Object.values(productIndex).filter(x=>x.canonicalCandidates>0).length;
+const providerReady=Object.values(productIndex).filter(x=>x.providerCandidates.length>0).length;
+const canonicalReady=Object.values(productIndex).filter(x=>x.canonicalCandidates.length>0).length;
 console.log(JSON.stringify({manufacturers:out.manufacturers.length,models,variants,trims,canonicalCandidateCoverage:canonicalReady,providerCandidateCoverage:providerReady}));
