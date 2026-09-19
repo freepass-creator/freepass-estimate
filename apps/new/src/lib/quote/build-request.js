@@ -8,12 +8,8 @@ import { 탁송, 썬팅값, 블박값 } from '../welrix-rates.js';
 import { 담당자인가 } from '../role.js';
 
 function 색추가금() {
-  try {
-    const DB = window.VEHICLE_DB;
-    const b = DB?.manufacturers?.find((m) => m.manufacturer_id === vehicleState.manufacturer);
-    const md = b?.models?.find((m) => m.model_id === vehicleState.model);
-    return (md?.exterior_colors?.[vehicleState.color]?.price || 0) * 10000;
-  } catch { return 0; }
+  const v = quoteState.vehicle || {};
+  return Math.round((Number(v.color_price_manwon) || 0) * 10000);
 }
 
 /** @returns {object|null} provider-neutral quote request */
@@ -30,15 +26,17 @@ export function 요청만들기() {
   const 할인 = 담당자인가() ? (c.discount || 0) * 10000 : 0;
   const 트림가 = (v.trim_price_manwon || 0) * 10000;
 
-  // 현재 FreePass 표준 calc 후보가 historically 사용하던 가격 기준을 그대로 보존한다.
-  // UI/Provider 구조 정리 단계에서 계산 기준까지 동시에 바꾸지 않는다.
-  const 표준계산차량가 = (v.total_manwon || 0) * 10000 + 내장색;
+  // 차량가 기준은 상품마스터 한 기준으로 다시 조립한다.
+  // 트림 + 일반옵션 + 외/내장색 - 할인. 구성축(AWD/인승)이 외부 provider 완성차에
+  // 이미 흡수되는지는 adapter가 별도로 처리한다.
+  const 표준계산차량가 = Math.max(0, 트림가 + 옵션 + 외장색 - 할인);
 
   return {
     버전: 1,
     차: {
       종류: '신차',
-      키,                              // 외부 adapter가 차량을 식별할 때 쓰는 canonical key
+      키,                              // FreePass product id. 외부 adapter가 자기 key로 번역한다.
+      상품키: v._product_id || 키,
       브랜드: v.brand || src.brand || '',
       모델: v.model || src.model || '',
       파워트레인: v.variant || '',
@@ -62,6 +60,11 @@ export function 요청만들기() {
         내장색,
         할인,
         표준계산차량가,
+      },
+      구성: {
+        기본축: v._base_axes || {},
+        canonical: v._canonical || null,
+        선택옵션: Array.isArray(v._selected_options) ? v._selected_options : [],
       },
 
       // v1 compatibility aliases — 기존 Welrix adapter와 과거 검사기를 깨지 않는다.
