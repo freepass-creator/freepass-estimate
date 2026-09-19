@@ -316,9 +316,8 @@ function selectModel(m) {
   vehicleState.variant = null; vehicleState.trim = null;
   vehicleState.options.clear(); vehicleState.color = null;
   quoteState.vehicle = null;
-  /* ★파워트레인이 하나뿐이어도 그 걸음을 건너뛰지 않는다 — 제조사 → 모델 → 파워트레인 → 세부트림 (대표 2026-09-18).
-     하나면 미리 골라 둔 채로 보여 주고, 손님은 「다음」만 누르면 된다. */
-  if ((m.variants || []).length === 1) vehicleState.variant = m.variants[0].variant_id;
+  // 한 화면 한 선택: 모델을 고르면 파워트레인 화면으로 즉시 이동한다.
+  // 파워트레인이 하나여도 사용자가 그 화면에서 직접 고른다.
   subStep.value = 'variant';
 }
 function selectVariant(v) {
@@ -349,6 +348,12 @@ function selectTrim(t) {
   quoteState.cond.colorInt = '';
   quoteState.cond.colorIntPrice = 0;
   syncVehicle();
+
+  // 한 화면 한 선택: 트림 선택 즉시 다음 구성 화면으로 이동한다.
+  // 실제 제조사 색상이 있으면 색상 → 옵션 순서를 유지하고,
+  // 색상 정보가 없는 상품만 옵션 화면으로 바로 간다.
+  const 색상있음 = (t._exterior_colors?.length || t._interior_colors?.length);
+  subStep.value = 색상있음 ? 'colors' : 'options';
 }
 
 function goBack(target) { subStep.value = target; }
