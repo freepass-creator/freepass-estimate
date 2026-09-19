@@ -964,6 +964,7 @@ function onFeeChange() {
 .sv-opt.is-selected {
   background: var(--brand-50);
 }
+.sv-opt.is-selected .sv-opt__name { color: var(--brand); font-weight: var(--fw-bold); }
 .sv-opt.is-disabled {
   opacity: 0.55; cursor: not-allowed;
 }
