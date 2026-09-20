@@ -8,6 +8,8 @@ FreePass Estimate는 견적 기능의 canonical upstream이다. GitHub Actions�
 
 - 신차 앱 배포 루트: `apps/new`
 - canonical repo: `freepass-creator/freepass-estimate`
+- Sales Self Quote UI authority: FreePass Estimate
+- Sales Self Quote calculation/catalog authority: Welrix 443-trim provider catalog
 - downstream: FreePass Sales / Promotion / Welrix / Partner channels
 
 ## 로컬 검증
@@ -40,9 +42,10 @@ npm run preview -- --host 127.0.0.1 --port 4173
 1. production deployment URL과 배포 revision을 기록한다.
 2. `/mobile.html?force=mobile`을 직접 연다.
 3. 대표 차종 3개 이상에서 견적을 끝까지 계산한다.
-4. Promotion에서 넘어오는 `b/m/t` 딥링크를 확인한다.
-5. 공유 링크를 새 세션에서 열어 snapshot 금액을 확인한다.
-6. API/provider 오류 시 사용자에게 실패 상태가 노출되고 잘못된 금액을 확정하지 않는지 확인한다.
+4. Sales profile에서 `sales-welrix-db.js` 443-trim catalog가 로드되는지 확인한다.
+5. Promotion에서 넘어오는 `b/m/t` 딥링크를 확인한다.
+6. 공유 링크를 새 세션에서 열어 snapshot 금액을 확인한다.
+7. API/provider 오류 시 사용자에게 실패 상태가 노출되고 잘못된 금액을 확정하지 않는지 확인한다.
 
 ## Sales Promotion cutover
 
