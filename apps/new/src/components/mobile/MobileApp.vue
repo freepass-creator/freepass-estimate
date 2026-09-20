@@ -393,7 +393,7 @@ async function shareSignLink() {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 20;
   display: flex; align-items: center; justify-content: space-between;
-  padding: calc(var(--safe-top) + 10px) 14px 10px;
+  padding: calc(var(--safe-top) + 10px) 16px 10px;
   background: var(--bg);
   gap: 8px;
 }
@@ -422,7 +422,7 @@ async function shareSignLink() {
 .m-progress {
   display: flex; gap: 4px;
   position: fixed; top: calc(var(--safe-top) + 56px); left: 0; right: 0;
-  padding: 0 14px 6px;
+  padding: 0 16px 6px;
   background: var(--bg);
   z-index: 19;
 }
@@ -447,7 +447,7 @@ async function shareSignLink() {
   touch-action: pan-y;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
-  padding: calc(var(--safe-top) + 80px) var(--sp-5) calc(var(--safe-bottom) + 92px);
+  padding: calc(var(--safe-top) + 80px) var(--sp-4) calc(var(--safe-bottom) + 92px);
 }
 .m-main--quote {
   /* 접힌 실시간 견적바 + footer가 함께 떠 있는 화면만 충분한 하단 여백을 둔다. */
@@ -469,7 +469,7 @@ async function shareSignLink() {
   z-index: 30;
 }
 .m-btn {
-  height: var(--h-cta);
+  height: 52px;
   border: 0; border-radius: var(--r-card);
   font-family: inherit; font-weight: 600;
   cursor: pointer;
