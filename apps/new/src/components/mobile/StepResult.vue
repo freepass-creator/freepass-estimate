@@ -65,7 +65,7 @@ const 총차량가 = computed(() => {
   return (견적상태.결과 || []).find((g) => g?.총차량가)?.총차량가 ?? ((v.value.total_manwon || 0) * 10000);
 });
 
-const 신용글 = computed(() => (담당자 && !공유견적.value ? (c.value.credit || '중신용') : '신용점수 무관'));
+const 신용글 = computed(() => (담당자 && !공유견적.value ? (c.value.credit || '중신용') : '소득 확인 시 신청 가능'));
 const 조건들 = computed(() => {
   const sc = snapshot.value?.conditions || {};
   const km = 공유견적.value ? sc.km : c.value.km;
