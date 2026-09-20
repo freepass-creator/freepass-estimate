@@ -300,14 +300,14 @@ async function shareSignLink() {
 <template>
   <div class="m-shell">
     <!-- 상단은 표시 전용: 브랜드/제목/상태만. CTA는 하단 액션 영역만 사용. -->
-    <header class="m-header">
+    <header class="m-header ui-header">
       <div class="m-header__brand">
         <span class="m-brand">{{ 헤더브랜드 }}</span>
       </div>
     </header>
 
     <!-- 페이지별 progress segment — 전체 페이지 수 만큼 -->
-    <div class="m-progress">
+    <div class="m-progress ui-stepper">
       <div v-for="i in TOTAL_PAGES" :key="i"
            class="m-progress__seg"
            :class="{ 'is-done': (i - 1) <= currentPageIdx }"></div>
@@ -321,21 +321,21 @@ async function shareSignLink() {
     <StickyQuote v-if="금액바보임" />
 
     <footer
-      class="m-footer"
+      class="m-footer ui-bottom-action"
       v-show="!자동전진단계 || 하단내비.hasPrev || (공유견적 && currentStep.key === 'result')"
       :data-nav-mode="하단내비.mode"
     >
       <!-- 공유받은 확정견적은 먼저 «그대로» 보여 준다. 수정 버튼을 눌러야 새 계산이 시작된다. -->
       <template v-if="공유견적 && currentStep.key === 'result'">
-        <button class="m-btn m-btn--soft" @click="수정하기">
+        <button class="m-btn m-btn--soft ui-button secondary" @click="수정하기">
           <i class="ph ph-pencil-simple"></i>조건 변경
         </button>
-        <button class="m-btn m-btn--primary" :disabled="공유중" @click="공유하기">
+        <button class="m-btn m-btn--primary ui-button primary" :disabled="공유중" @click="공유하기">
           <i class="ph ph-share-network"></i>{{ 공유중 ? '준비 중…' : (공유됨 ? '공유됨' : '이 견적 공유') }}
         </button>
       </template>
       <template v-else>
-        <button v-if="하단내비.hasPrev" class="m-btn m-btn--ghost" :class="{ 'm-btn--icon': 견적보기보임 }"
+        <button v-if="하단내비.hasPrev" class="m-btn m-btn--ghost ui-button secondary" :class="{ 'm-btn--icon': 견적보기보임 }"
                 @click="prev" aria-label="이전">
           <i class="ph ph-arrow-left"></i><span v-if="!견적보기보임">이전</span>
         </button>
