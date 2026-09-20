@@ -54,6 +54,5 @@
     "locales": [
       "ko-KR"
     ]
-  },
-  "brand_theme_source": "company-config/ui_theme"
+  }
 }
