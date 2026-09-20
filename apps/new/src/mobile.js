@@ -3,7 +3,7 @@
 import { createApp } from 'vue';
 import MobileApp from './components/mobile/MobileApp.vue';
 import { setCompanyConfig } from './lib/calc.js';
-import { quoteState } from './store.js';
+import { quoteState, 역할기본조건동기화 } from './store.js';
 import { 담당자인가, 담당자로, 담당자로들어왔나 } from './lib/role.js';
 import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
@@ -120,7 +120,10 @@ function 담당자문(){
 }
 
 async function boot() {
-  if (담당자로들어왔나() && !담당자인가()) await 담당자문();
+  if (담당자로들어왔나() && !담당자인가()) {
+    await 담당자문();
+    역할기본조건동기화();
+  }
   await loadVehicleDb();
   await waitForVehicleDb();
   await Promise.all([loadCompanyConfig(), loadVehicles()]);
