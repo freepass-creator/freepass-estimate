@@ -158,5 +158,16 @@
       "co-brand-label"
     ],
     "rule": "Brand color is a limited emphasis resource. Unselected monetary values stay neutral; selected/key-result values may use brand primary."
+  },
+  "publicShellPolicy": {
+    "customerSurfaces": [
+      "promotion",
+      "self-quote"
+    ],
+    "horizontalGutterPx": 16,
+    "primaryActionHeightPx": 52,
+    "cardRadiusPx": 12,
+    "controlRadiusPx": 10,
+    "rule": "Promotion and Self Quote share edge rhythm, control height and card geometry; internal Sales App may use denser operational metrics."
   }
 }
