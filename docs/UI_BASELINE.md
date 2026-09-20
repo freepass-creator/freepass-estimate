@@ -144,3 +144,15 @@ Binding:
 `npm run check:freepass-suite-ui`
 
 Welrix는 계산 provider/calc authority이며 FreePass Sales Self Quote의 UI authority를 소유하지 않는다.
+
+
+### 고객 기본 색상 — welrix-trust
+
+Welrix 계산 provider를 사용하더라도 고객용 Self Quote의 기본 visual theme는 `welrix-trust`다.
+
+- primary / selected / CTA: `#1B2A4A`
+- strong: `#0F1B35`
+- soft: `#E6ECF5`
+- partner accent: `#C81E2A`
+
+Welrix red는 partner identity를 보여 주되 금액 판단과 주요 실행의 주색으로 사용하지 않는다.
