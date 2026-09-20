@@ -29,7 +29,8 @@ for(const marker of [
 ]) assert.ok(tokens.includes(marker),'Self Quote default token drift: '+marker);
 
 assert.equal(profile.visual.defaultTheme.primary,'#1b2a4a');
-assert.equal(profile.themePolicy.themes.welrix.primary,'#c81e2a');
+assert.equal(profile.themePolicy.themes['welrix-trust'].primary,'#1b2a4a');
+assert.equal(profile.themePolicy.themes['welrix-trust'].partnerAccent,'#c81e2a');
 assert.ok(profile.themePolicy.modes.includes('cobrand'));
 assert.ok(profile.themePolicy.modes.includes('white-label'));
 assert.ok(profile.alignmentPolicy.start.includes('choice-row'));
@@ -52,10 +53,11 @@ assert.ok(brandTheme.includes('cfg.ui_theme||{}'),'Self Quote theme runtime must
 assert.ok(brandTheme.includes('root.dataset.brandTheme'),'Self Quote theme runtime must expose active theme');
 assert.equal(freepassConfig.ui_theme.id,'freepass');
 assert.equal(freepassConfig.ui_theme.primary_color,'#1B2A4A');
-assert.equal(welrixConfig.ui_theme.id,'welrix');
+assert.equal(welrixConfig.ui_theme.id,'welrix-trust');
 assert.equal(welrixConfig.ui_theme.mode,'cobrand');
-assert.equal(welrixConfig.ui_theme.primary_color,'#C81E2A');
-assert.equal(welrixConfig.ui_theme.soft_color,'#FDECEE');
+assert.equal(welrixConfig.ui_theme.primary_color,'#1B2A4A');
+assert.equal(welrixConfig.ui_theme.soft_color,'#E6ECF5');
+assert.equal(welrixConfig.ui_theme.partner_accent,'#C81E2A');
 
 for (const marker of ['ui-header','ui-stepper','ui-bottom-action','ui-button primary','ui-button secondary']) {
   assert.ok(app.includes(marker),'Self Quote AI Core shell semantic missing: ' + marker);
