@@ -20,7 +20,11 @@ assert.ok(app.includes("document.querySelector('.m-main')"), 'step changes must 
 
 assert.ok(mobile.includes('installMobileHaptics(document)'), 'mobile haptics are not installed');
 assert.ok(haptics.includes('navigator.vibrate'), 'Android vibration integration missing');
-assert.ok(haptics.includes('MEDIUM_MS = 14'), 'selection haptic strength drift');
+assert.ok(haptics.includes('selection: 12'), 'selection haptic strength drift');
+assert.ok(haptics.includes('primary: 18'), 'primary CTA haptic strength drift');
+assert.ok(haptics.includes("addEventListener('pointerdown'"), 'haptic must fire on pointerdown for immediate response');
+assert.ok(haptics.includes("classList.add('fp-pressed')"), 'manual pressed-state feedback missing');
+assert.ok(haptics.includes('72 - elapsed'), 'pressed state minimum hold drift');
 
 assert.ok(tokens.includes(':active'), 'press feedback missing');
 assert.ok(tokens.includes('scale(.975)'), 'press scale feedback drift');
@@ -34,7 +38,7 @@ console.log(JSON.stringify({
   scrollOwner: '.m-main',
   viewport: '100dvh',
   touchAction: 'pan-y',
-  haptics: 'navigator.vibrate 8/14ms when supported',
+  haptics: 'navigator.vibrate 7/12/18ms by action weight',
   pressScale: 0.975,
   stepMotionMs: 120,
 }, null, 2));
