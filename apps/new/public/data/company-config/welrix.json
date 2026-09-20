@@ -211,5 +211,14 @@
     "mode": "external",
     "kind": "excel",
     "adapter_id": "welrix"
+  },
+  "ui_theme": {
+    "id": "welrix",
+    "mode": "cobrand",
+    "primary_color": "#C81E2A",
+    "strong_color": "#A3131D",
+    "strongest_color": "#7F1018",
+    "soft_color": "#FDECEE",
+    "soft_border_color": "#F6C4C7"
   }
 }
