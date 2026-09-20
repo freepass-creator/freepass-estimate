@@ -1084,4 +1084,52 @@ function onFeeChange() {
 .sv-trim-card:disabled:not(.is-committing) {
   opacity: .72;
 }
+
+
+/* Canonical card headline alignment — model / powertrain / trim.
+   Headline text owns the left/start edge; only affordances and numeric values go right. */
+.sv-row {
+  justify-content: flex-start;
+  text-align: left;
+}
+.sv-row__label {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-right: auto;
+  text-align: left;
+  font-weight: var(--fw-semi);
+}
+.sv-row__hint {
+  width: 100%;
+  text-align: left;
+}
+.sv-row__chev {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+.sv-trim-card {
+  align-items: stretch;
+  text-align: left;
+}
+.sv-trim-card__top {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+}
+.sv-trim-card__name {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-right: auto;
+  text-align: left;
+}
+.sv-trim-card__check {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+.sv-trim-card__price {
+  align-self: stretch;
+  text-align: right;
+}
 </style>
