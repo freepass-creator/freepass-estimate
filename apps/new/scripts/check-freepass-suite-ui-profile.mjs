@@ -43,7 +43,17 @@ assert.equal(profile.publicShellPolicy.horizontalGutterPx,16);
 assert.equal(profile.publicShellPolicy.primaryActionHeightPx,52);
 assert.equal(profile.publicShellPolicy.cardRadiusPx,12);
 assert.equal(profile.vehicleSelectionPolicy.separatePassengerDriveStep,false);
-assert.deepEqual(profile.vehicleSelectionPolicy.flow,['manufacturer','model','powertrain(engine+seat/drive)','trim','colors','options']);
+assert.deepEqual(profile.vehicleSelectionPolicy.flow,[
+  'manufacturer',
+  'model',
+  'powertrain(engine + true base-configuration axes only)',
+  'trim',
+  'colors',
+  'options(configuration axes included)'
+]);
+assert.equal(profile.vehicleSelectionPolicy.fixedAxesVisible,false);
+assert.equal(profile.vehicleSelectionPolicy.optionAxesVisibleAt,'options');
+assert.equal(profile.vehicleSelectionPolicy.providerGroupIsUiAuthority,false);
 
 assert.ok(step.includes("? 0 : 160"),'Single-choice commit must be 160ms');
 assert.ok(step.includes('const powertrainChoices = computed'),'Combined powertrain choice builder missing');
