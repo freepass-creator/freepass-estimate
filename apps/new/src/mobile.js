@@ -9,6 +9,7 @@ import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
 import { applyProductTheme } from './lib/brand-theme.js';
 import { installMobileHaptics } from './lib/haptics.js';
+import { loadAndApplySalesMainAxisBridge } from './lib/sales-main-axis-bridge.js';
 
 function companyProfileId() {
   const params = new URLSearchParams(location.search);
@@ -128,6 +129,9 @@ async function boot() {
   await loadVehicleDb();
   await waitForVehicleDb();
   await Promise.all([loadCompanyConfig(), loadVehicles()]);
+  // 메인 견적기의 기본축/옵션축 정책을 provider-native Sales catalog에 투영한다.
+  try { await loadAndApplySalesMainAxisBridge(window.VEHICLE_DB); }
+  catch (e) { console.warn('[mobile] main axis bridge 적용 실패:', e); }
   // 재고는 비동기 — mount 후에도 늦게 도착해도 OK
   loadStock();
   /* ★공유 링크로 들어왔으면 고른 것을 먼저 풀어 놓고 그린다.
