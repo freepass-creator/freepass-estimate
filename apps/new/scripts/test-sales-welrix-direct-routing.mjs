@@ -45,7 +45,7 @@ const req = {
         종류: '신차',
         키: model,
         상품키: model,
-        가격: { 옵션: 0, 외장색: 0, 할인: 0 },
+        가격: { 옵션: 1200000, 외장색: 100000, 할인: 500000 },
         구성: { 기본축: {}, 선택옵션: [] },
       },
       조건: {
@@ -53,13 +53,13 @@ const req = {
         주행: '2만km',
         정비: '웰스 Basic',
         대물: '1억',
-        추가운전자: '없음',
-        탁송비: 0,
-        썬팅비: 0,
-        블박비: 0,
-        수수료율: 5,
+        추가운전자: '배우자',
+        탁송비: 120000,
+        썬팅비: 300000,
+        블박비: 100000,
+        수수료율: 7,
       },
-      안들: [{ 기간: 60, 보증금: 0, 선납: 0 }],
+      안들: [{ 기간: 60, 보증금: 10, 선납: 5 }],
     },
   },
 };
@@ -77,13 +77,33 @@ try {
   assert.equal(state.body?.ok, true);
   assert.equal(state.body?.contract, QUOTE_RESULT_CONTRACT);
   assert.equal(outbound?.model, model, 'Sales provider-native trim id must reach Welrix unchanged');
-  assert.equal(outbound?.optionPrice, 0);
+  assert.equal(outbound?.old, false);
+  assert.equal(outbound?.manualPrice, 0);
+  assert.equal(outbound?.inputs?.length, 1);
+  const input = outbound.inputs[0];
+  assert.deepEqual(input, {
+    credit: '중신용',
+    termMonths: 60,
+    mileage: '2만km',
+    optionPrice: 1300000,
+    stockDiscount: 500000,
+    deliveryFee: 120000,
+    tintFee: 300000,
+    dashcamFee: 100000,
+    deposit_pct: 0.1,
+    prepay_pct: 0.05,
+    liability: '1억',
+    extraDriver: '배우자',
+    maintenance: '웰스 Basic',
+    feeRate: 0.07,
+  });
   console.log(JSON.stringify({
     status: 'PASS',
     catalog: 'welrix-sales-443',
     model,
     directProviderRouting: true,
     remapping: false,
+    requestBodyParity: true,
   }, null, 2));
 } finally {
   globalThis.fetch = originalFetch;
