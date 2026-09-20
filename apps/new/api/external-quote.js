@@ -11,6 +11,7 @@ const WELRIX_URL = 'https://welrixmobility.netlify.app/api/estimate';
 
 let PRODUCT_INDEX = null;
 let SALES_WELRIX_TRIM_IDS = null;
+let SALES_MAIN_AXIS_BRIDGE = null;
 function salesWelrixTrimIds() {
   if (SALES_WELRIX_TRIM_IDS) return SALES_WELRIX_TRIM_IDS;
   const path = join(process.cwd(), 'public', 'data', 'freepass-newcar', 'sales-welrix-trim-ids.json');
@@ -24,6 +25,13 @@ function productIndex() {
   const path = join(process.cwd(), 'public', 'data', 'freepass-newcar', 'product-index.json');
   PRODUCT_INDEX = JSON.parse(readFileSync(path, 'utf8'));
   return PRODUCT_INDEX;
+}
+
+function salesMainAxisBridge() {
+  if (SALES_MAIN_AXIS_BRIDGE) return SALES_MAIN_AXIS_BRIDGE;
+  const path = join(process.cwd(), 'public', 'data', 'freepass-newcar', 'sales-main-axis-bridge.json');
+  SALES_MAIN_AXIS_BRIDGE = JSON.parse(readFileSync(path, 'utf8'));
+  return SALES_MAIN_AXIS_BRIDGE;
 }
 
 class ProviderRuntimeError extends Error {
@@ -68,9 +76,20 @@ function welrixProviderResolution(request) {
     { name: o.name, price: Number(o.price_won || 0) / 10000 },
   ]));
   const selectedIds = selected.map((o) => o.id);
-  const trim = { _base_axes: p.baseAxes || request?.차?.구성?.기본축 || {} };
+
+  // Sales Self Quote의 provider-native catalog는 메인 견적기의 canonical 축 정책을 따라야 한다.
+  // canonical product index의 후보가 비었거나 일부인 경우 bridge 후보를 합쳐 같은 resolver로 판정한다.
+  const bridgeEntry = salesMainAxisBridge()?.by_canonical_product_id?.[productId] || null;
+  const trim = {
+    _base_axes: p.baseAxes || bridgeEntry?.base_axes || request?.차?.구성?.기본축 || {},
+  };
   const axes = configurationAxes(trim, optionsMaster, selectedIds);
-  const candidate = resolveProviderCandidate(p.providerCandidates || [], axes);
+  const candidateMap = new Map();
+  for (const x of [...(p.providerCandidates || []), ...(bridgeEntry?.provider_candidates || [])]) {
+    if (x?.api_model) candidateMap.set(x.api_model, x);
+  }
+  const candidates = [...candidateMap.values()];
+  const candidate = resolveProviderCandidate(candidates, axes);
   if (!candidate) throw new ProviderUnsupportedError();
 
   const absorbed = new Set(absorbedAxisOptionIds(trim, optionsMaster, selectedIds, candidate));
