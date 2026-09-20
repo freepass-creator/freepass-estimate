@@ -9,11 +9,37 @@ import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
 import { applyProductTheme } from './lib/brand-theme.js';
 
-// 회사 config 로드 (welrix.json) — calc.js 에 주입
+function companyProfileId() {
+  const params = new URLSearchParams(location.search);
+  return params.get('c') || 'freepass';
+}
+
+function vehicleCatalogUrl() {
+  const params = new URLSearchParams(location.search);
+  const explicit = params.get('catalog');
+  if (explicit === 'freepass') return '/vehicle-db.js';
+  if (explicit === 'welrix-sales') return '/sales-welrix-db.js';
+  return companyProfileId() === 'freepass' ? '/sales-welrix-db.js' : '/vehicle-db.js';
+}
+
+async function loadVehicleDb() {
+  if (window.VEHICLE_DB) return;
+  const src = vehicleCatalogUrl();
+  await new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = false;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error(`차량 DB 로드 실패: ${src}`));
+    document.head.appendChild(script);
+  });
+  window.__FREEPASS_ACTIVE_CATALOG = src;
+}
+
+// 회사 config 로드 — calc/provider 설정과 FreePass theme 주입
 async function loadCompanyConfig() {
   try {
-    const params = new URLSearchParams(location.search);
-    const id = params.get('c') || 'freepass';
+    const id = companyProfileId();
     const res = await fetch(`/data/company-config/${id}.json`);
     const cfg = await res.json();
     setCompanyConfig(cfg);
@@ -48,8 +74,7 @@ async function loadStock() {
   }
 }
 
-// window.VEHICLE_DB 가 sync script 로 head 에 로드되지만 — 모바일 브라우저 캐시/로딩
-// 타이밍 등으로 setup 시점에 undefined 인 경우 방어
+// profile에 맞는 catalog script 로드 뒤 VEHICLE_DB 준비 상태 확인
 async function waitForVehicleDb(timeoutMs = 5000) {
   if (window.VEHICLE_DB) return;
   const start = Date.now();
@@ -96,6 +121,7 @@ function 담당자문(){
 
 async function boot() {
   if (담당자로들어왔나() && !담당자인가()) await 담당자문();
+  await loadVehicleDb();
   await waitForVehicleDb();
   await Promise.all([loadCompanyConfig(), loadVehicles()]);
   // 재고는 비동기 — mount 후에도 늦게 도착해도 OK
