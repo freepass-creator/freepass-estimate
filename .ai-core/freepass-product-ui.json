@@ -105,7 +105,7 @@
   },
   "brandThemeRegistry": {
     "repository": "freepass-creator/ai-core",
-    "revision": "cc90b7e2886297567a1e5c454c36c09821055647",
+    "revision": "0cabfb86f11f380f9143076927f838c61abdbd7f",
     "branch": "feat/freepass-suite-ui-consumers-20260921",
     "path": "design-system/brand-themes.registry.json",
     "status": "CANDIDATE"
