@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, nextTick } from 'vue';
 import { quoteState, vehicleState } from '../../store.js';
 import { 담당자인가, 손님링크 } from '../../lib/role.js';
 import { 지금주소 } from '../../lib/share-link.js';
@@ -127,6 +127,20 @@ function 견적보기() {
   if (typeof window !== 'undefined') window.scrollTo({ top: 0 });
 }
 const currentStep = computed(() => STEPS[stepIdx.value]);
+
+function scrollMainTop(behavior = 'auto') {
+  nextTick(() => {
+    const main = document.querySelector('.m-main');
+    if (main?.scrollTo) main.scrollTo({ top: 0, behavior });
+    else if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior });
+  });
+}
+
+watch(
+  () => [stepIdx.value, vehicleState.subStep].join('|'),
+  () => scrollMainTop('auto'),
+);
+
 
 /* ★순서는 제조사 «내 차 만들기»와 같게 — 파워트레인 → (갈리면) 인승·구동 → 세부트림 → 색상 → 옵션.
      현대 hyundai.com/kr/ko/e/vehicles/estimation: 01 모델(엔진·구동·트림) → 02 색상 → 옵션 → 완료.
@@ -365,8 +379,12 @@ async function shareSignLink() {
 .m-brand__x { opacity: .55; margin: 0 1px; font-weight: 600; }
 
 .m-shell {
-  display: flex; flex-direction: column;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
   background: var(--bg);
 }
 
@@ -419,15 +437,17 @@ async function shareSignLink() {
 }
 
 .m-main {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   padding: calc(var(--safe-top) + 80px) var(--sp-5) calc(var(--safe-bottom) + 92px);
-  /* ★여기서 overflow-y:auto 를 «쓰지 않는다» — 2026-09-18.
-     #m-app 은 min-height 만 있고 max-height 가 없어 콘텐츠만큼 늘어난다.
-     즉 .m-main 이 실제로 넘쳐서 «따로» 스크롤되는 일은 없고(항상 clientHeight===scrollHeight),
-     페이지(html/body)가 스크롤한다. 그런데도 여기에 overflow-y:auto 를 켜 두면
-     아이폰 사파리에서 «넘치지 않는 스크롤 영역» 이 손가락 스크롤 제스처를 가로채
-     바깥 페이지로 못 넘기는 경우가 있다(안드로이드·데스크톱 크롬에서는 안 보이는 버그라 놓치기 쉽다).
-     대표 「스크롤 되게 해주고」 — 트림이 많은 차(싼타페 36개 등)에서 이 증상이 났을 것이다. */
 }
 .m-main--quote {
   /* 접힌 실시간 견적바 + footer가 함께 떠 있는 화면만 충분한 하단 여백을 둔다. */
@@ -454,9 +474,10 @@ async function shareSignLink() {
   font-family: inherit; font-weight: 600;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center; gap: 6px;
-  transition: background .12s, opacity .12s;
+  transition: transform .08s cubic-bezier(.2,.8,.2,1), background .12s, opacity .12s;
 }
 .m-btn i { font-size: 18px; }
+.m-btn:not(:disabled):active { transform: scale(.975); }
 .m-btn--ghost {
   flex: 0 0 96px;
   background: var(--bg-soft);
