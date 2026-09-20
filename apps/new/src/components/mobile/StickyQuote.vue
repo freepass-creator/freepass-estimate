@@ -164,7 +164,7 @@ const cards = computed(() => {
               <template v-else>—</template>
             </td>
           </tr>
-          <tr v-if="quoteState.cond.discount">
+          <tr v-if="담당자 && quoteState.cond.discount">
             <th class="sq-table__rowlabel">추가 할인</th>
             <td v-for="c in cards" :key="c.idx" class="sq-table__discount">
               −{{ fmt(quoteState.cond.discount) }}만원
@@ -237,7 +237,7 @@ const cards = computed(() => {
         <div class="sq-meta__row">
           <span class="sq-meta__key">신용</span>
           <!-- 손님에게는 등급 이름 대신 「신용점수 무관」 (대표 2026-09-18) -->
-          <span class="sq-meta__val">{{ 담당자 ? (quoteState.cond.credit || '중신용') : '신용점수 무관' }}</span>
+          <span class="sq-meta__val">{{ 담당자 ? (quoteState.cond.credit || '중신용') : '소득 확인 시 신청 가능' }}</span>
         </div>
       </div>
     </div>
