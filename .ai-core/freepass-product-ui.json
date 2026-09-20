@@ -1,0 +1,55 @@
+{
+  "contract": "freepass-product-ui-profile-binding/v1",
+  "version": "1.0.0",
+  "ai_core": {
+    "repository": "freepass-creator/ai-core",
+    "revision": "01e6bb7e0cd08e6390b452892516fd204ed64090",
+    "authorities": [
+      "docs/SCREEN_DESIGN_STANDARD.md",
+      "docs/FREEPASS_PRODUCT_UI_PROFILE.md",
+      "docs/UI_UX_CONSTITUTION.md",
+      "design-system/interaction.contract.json"
+    ]
+  },
+  "product": "FreePass",
+  "surfaces": [
+    "sales-app",
+    "promotion",
+    "self-quote"
+  ],
+  "visual": {
+    "font": "Pretendard Variable",
+    "brand": "#1b2a4a",
+    "brandStrong": "#0f1b35",
+    "brandSoft": "#e6ecf5",
+    "background": "#f7f8fa",
+    "surface": "#ffffff",
+    "text": "#212529",
+    "textSecondary": "#5c6268",
+    "line": "#eceef0",
+    "lineStrong": "#d9dde1",
+    "cardRadiusPx": 12,
+    "controlRadiusPx": 10,
+    "minTouchPx": 44
+  },
+  "interaction": {
+    "topIsInformationBottomIsAction": true,
+    "singleChoiceAutoAdvance": true,
+    "choiceCommitMs": 160,
+    "stepEntryMs": 160,
+    "pressedMinHoldMs": 72,
+    "pressScale": 0.965,
+    "hapticsMs": {
+      "subtle": 7,
+      "selection": 12,
+      "primary": 18
+    },
+    "reducedMotion": true,
+    "scrollOwner": "single bounded content region",
+    "selectedState": "soft-surface + text-weight, not color-only"
+  },
+  "exceptions": {
+    "partnerAccent": "Co-brand/partner identity may use a secondary accent, but it must not replace the FreePass primary action/selection grammar."
+  },
+  "adoption_status": "MAPPED_PENDING_RENDERED_RECEIPT"
+}
