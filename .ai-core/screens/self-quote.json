@@ -1,0 +1,58 @@
+{
+  "contract": "ai-core-ui-screen-manifest/v1",
+  "version": "1.0.0",
+  "screen_id": "freepass-estimate.self-quote",
+  "product_profile": "freepass-product-ui/v1",
+  "feature_ids": [
+    "navigation.header",
+    "navigation.stepper",
+    "navigation.bottom-action",
+    "data.card",
+    "form.select",
+    "form.radio",
+    "integration.external-action",
+    "feedback.inline-error",
+    "system.responsive",
+    "system.focus",
+    "system.safe-area-keyboard",
+    "system.motion-preference",
+    "system.input-method"
+  ],
+  "contracts": {
+    "data_api": [
+      "C:freepass-estimate/welrix-provider"
+    ],
+    "workflow": [
+      "D:freepass-estimate/self-quote-flow"
+    ]
+  },
+  "verification": {
+    "viewports": [
+      360,
+      390,
+      412,
+      1280,
+      1440
+    ],
+    "states": [
+      "brand",
+      "model",
+      "variant",
+      "spec",
+      "trim",
+      "colors",
+      "options",
+      "conditions",
+      "result",
+      "error"
+    ],
+    "input_modes": [
+      "touch",
+      "pointer",
+      "keyboard"
+    ],
+    "locales": [
+      "ko-KR"
+    ]
+  }
+}
