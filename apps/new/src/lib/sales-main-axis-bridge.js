@@ -111,6 +111,8 @@ export function computeUiPowertrainGroups(variant){
 
 export function applySalesMainAxisBridge(db, bridge=salesMainAxisBridge()){
   if (!db || !bridge) return db;
+  bridgeCache=bridge;
+  if (globalThis.window) window.__FREEPASS_SALES_MAIN_AXIS_BRIDGE=bridge;
   const bases=new Set(Object.keys(bridge.by_provider_trim_id || {}));
   const suppressed=new Set(bridge.suppressed_provider_trim_ids || []);
 
