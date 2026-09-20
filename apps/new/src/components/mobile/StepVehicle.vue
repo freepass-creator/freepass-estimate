@@ -755,6 +755,7 @@ function onFeeChange() {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
   color: var(--ink-1); margin: 0 0 24px;
   line-height: 1.35; letter-spacing: -0.5px;
+  text-align: left;
 }
 
 /* breadcrumb */
@@ -840,15 +841,22 @@ function onFeeChange() {
 .sv-list { display: flex; flex-direction: column; gap: 8px; }
 .sv-row {
   display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  width: 100%;
   padding: var(--sp-4);
   background: var(--bg-soft);
   border: 0;
   border-radius: var(--r-card);
   font-family: inherit; cursor: pointer;
+  text-align: left;
   transition: background .12s;
 }
-.sv-row__label { font-size: var(--fs-lg); font-weight: var(--fw-medium); color: var(--ink-1); letter-spacing: -0.3px; }
-.sv-row__hint { display: block; margin-top: 3px; font-size: var(--fs-sm); font-weight: var(--fw-regular); color: var(--ink-4); }
+.sv-row__label {
+  flex: 1; min-width: 0;
+  font-size: var(--fs-lg); font-weight: var(--fw-medium); color: var(--ink-1); letter-spacing: -0.3px;
+  text-align: left;
+}
+.sv-row__hint { display: block; margin-top: 3px; font-size: var(--fs-sm); font-weight: var(--fw-regular); color: var(--ink-4); text-align: left; }
 .sv-row__chev { font-size: 18px; color: var(--ink-4); }
 .sv-row:active { background: var(--brand-50); }
 .sv-row.is-selected { background: var(--brand-50); }
@@ -870,6 +878,7 @@ function onFeeChange() {
 .sv-trim-card__price {
   font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--brand);
   font-variant-numeric: tabular-nums;
+  text-align: right;
 }
 .sv-trim-card:active { background: var(--brand-50); }
 .sv-trim-card.is-selected { background: var(--brand-50); }
@@ -878,6 +887,7 @@ function onFeeChange() {
 .sv-group {
   margin: 14px 2px 2px; font-size: var(--fs-md); font-weight: var(--fw-bold);
   color: var(--ink-3); letter-spacing: -0.2px;
+  text-align: left;
 }
 .sv-group:first-child { margin-top: 0; }
 
@@ -1010,6 +1020,7 @@ function onFeeChange() {
 .sv-opt__price {
   font-size: var(--fs-md); font-weight: var(--fw-bold); color: var(--brand);
   font-variant-numeric: tabular-nums; flex-shrink: 0;
+  text-align: right;
 }
 .sv-opt__sub { font-size: var(--fs-sm); color: var(--ink-3); line-height: 1.4; }
 .sv-opt__group {
