@@ -876,13 +876,14 @@ function onFeeChange() {
 .sv-trim-card__name { font-size: var(--fs-lg); font-weight: var(--fw-semi); color: var(--ink-1); letter-spacing: -0.3px; }
 .sv-trim-card__check { font-size: 20px; color: var(--brand); font-weight: 700; }
 .sv-trim-card__price {
-  font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--brand);
+  font-size: var(--fs-lg); font-weight: var(--fw-semi); color: var(--ink-2);
   font-variant-numeric: tabular-nums;
   text-align: right;
 }
 .sv-trim-card:active { background: var(--brand-50); }
 .sv-trim-card.is-selected { background: var(--brand-50); }
 .sv-trim-card.is-selected .sv-trim-card__name { color: var(--brand); font-weight: var(--fw-bold); }
+.sv-trim-card.is-selected .sv-trim-card__price { color: var(--brand); font-weight: var(--fw-bold); }
 /* 트림 소제목 — 인승·구동·용도 (예: 5인승 2WD) */
 .sv-group {
   margin: 14px 2px 2px; font-size: var(--fs-md); font-weight: var(--fw-bold);
@@ -1018,7 +1019,7 @@ function onFeeChange() {
 .sv-opt__top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .sv-opt__name { font-size: var(--fs-base); font-weight: var(--fw-semi); color: var(--ink-1); }
 .sv-opt__price {
-  font-size: var(--fs-md); font-weight: var(--fw-bold); color: var(--brand);
+  font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
   font-variant-numeric: tabular-nums; flex-shrink: 0;
   text-align: right;
 }
@@ -1041,6 +1042,7 @@ function onFeeChange() {
   background: var(--brand-50);
 }
 .sv-opt.is-selected .sv-opt__name { color: var(--brand); font-weight: var(--fw-bold); }
+.sv-opt.is-selected .sv-opt__price { color: var(--brand); font-weight: var(--fw-bold); }
 .sv-opt.is-disabled {
   opacity: 0.55; cursor: not-allowed;
 }
