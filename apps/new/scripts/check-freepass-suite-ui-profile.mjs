@@ -32,8 +32,14 @@ assert.equal(profile.visual.defaultTheme.primary,'#1b2a4a');
 assert.equal(profile.themePolicy.themes.welrix.primary,'#c81e2a');
 assert.ok(profile.themePolicy.modes.includes('cobrand'));
 assert.ok(profile.themePolicy.modes.includes('white-label'));
+assert.ok(profile.alignmentPolicy.start.includes('choice-row'));
+assert.ok(profile.alignmentPolicy.center.includes('manufacturer-grid'));
+assert.ok(profile.alignmentPolicy.end.includes('money'));
 
 assert.ok(step.includes("? 0 : 160"),'Single-choice commit must be 160ms');
+assert.ok(step.includes('text-align: left'),'Choice rows/titles must use start alignment');
+assert.ok(step.includes('flex: 1; min-width: 0;'),'Choice label must own the readable start edge');
+assert.ok(step.includes('text-align: right'),'Money/number values must expose an end alignment');
 assert.ok(tokens.includes('fp-step-in 160ms'),'Step entry must be 160ms');
 assert.ok(tokens.includes('scale(.965)'),'Pressed depth must match FreePass profile');
 for(const marker of ['subtle: 7','selection: 12','primary: 18','72 - elapsed',"addEventListener('pointerdown'"]){
