@@ -153,6 +153,11 @@ export function applySalesMainAxisBridge(db, bridge=salesMainAxisBridge()){
             }
           }
 
+          // 차량 구성축 옵션은 일반 편의옵션보다 먼저 보여 준다.
+          const axisIds=[...trim._main_axis_option_ids];
+          const ordinary=(trim.available_options || []).filter(id=>!axisIds.includes(id));
+          trim.available_options=[...axisIds, ...ordinary];
+
           for(const [axis,members] of byAxis){
             if(members.length < 2) continue;
             const gid='main-axis:'+axis+':'+entry.canonical_product_id;
