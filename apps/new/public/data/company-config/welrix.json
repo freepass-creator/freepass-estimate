@@ -213,12 +213,13 @@
     "adapter_id": "welrix"
   },
   "ui_theme": {
-    "id": "welrix",
+    "id": "welrix-trust",
     "mode": "cobrand",
-    "primary_color": "#C81E2A",
-    "strong_color": "#A3131D",
-    "strongest_color": "#7F1018",
-    "soft_color": "#FDECEE",
-    "soft_border_color": "#F6C4C7"
+    "primary_color": "#1B2A4A",
+    "strong_color": "#0F1B35",
+    "strongest_color": "#07111F",
+    "soft_color": "#E6ECF5",
+    "soft_border_color": "#C8D4E4",
+    "partner_accent": "#C81E2A"
   }
 }
