@@ -26,6 +26,8 @@ const tokens = read('src/styles/tokens.css');
 const store = read('src/store.js');
 const rates = read('src/lib/welrix-rates.js');
 const conditions = read('src/components/mobile/StepConditions.vue');
+const resultView = read('src/components/mobile/StepResult.vue');
+const stickyQuote = read('src/components/mobile/StickyQuote.vue');
 
 const expectedProvider = { mode: 'external', kind: 'excel', adapter_id: 'welrix' };
 assert.deepEqual(freepass.quote_provider, expectedProvider, 'FreePass Sales self quote must use Welrix external provider');
@@ -42,6 +44,9 @@ assert.ok(rates.includes("deliveryRegion: '서울'"), 'Sales public delivery bas
 assert.ok(rates.includes("tint: '루마 일반'"), 'Sales public tint baseline drift');
 assert.ok(rates.includes("blackbox: '파인뷰 SF500'"), 'Sales public blackbox baseline drift');
 assert.ok(conditions.includes('dep: quoteState.cond.dep ?? 0'), 'Adding a term must preserve guest 0% deposit');
+assert.ok(!resultView.includes('신용점수 무관'), 'Customer result must not use direct no-credit-score wording');
+assert.ok(!stickyQuote.includes('신용점수 무관'), 'Customer sticky quote must not use direct no-credit-score wording');
+assert.ok(stickyQuote.includes('담당자 && quoteState.cond.discount'), 'Internal discount row must remain staff-only');
 
 assert.equal(catalogMeta.schema, 'freepass-sales-welrix-catalog/v1');
 assert.equal(catalogMeta.source_repository, 'freepass-creator/welrixtable');
