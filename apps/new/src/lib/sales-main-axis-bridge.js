@@ -25,9 +25,9 @@ function driveToken(v){
 }
 function structuralGroup(v){
   return S(v)
-    .replace(/\b\d{1,2}\s*인승\b/gi,' ')
-    .replace(/\b(?:2WD|4WD|AWD|FWD|RWD|HTRAC)\b/gi,' ')
-    .replace(/\b(?:일반|선구매|렌터카)\b/gi,' ')
+    .replace(/\d{1,2}\s*인승/gi,' ')
+    .replace(/(?:2WD|4WD|AWD|FWD|RWD|HTRAC)/gi,' ')
+    .replace(/(?:일반|선구매|렌터카)/gi,' ')
     .replace(/\s+/g,' ')
     .trim();
 }
