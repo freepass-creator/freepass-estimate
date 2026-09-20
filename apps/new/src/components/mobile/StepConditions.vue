@@ -95,12 +95,14 @@ function toggleTerm(t) {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
   color: var(--ink-1); margin: 0 0 24px;
   line-height: 1.35; letter-spacing: -0.5px;
+  text-align: left;
 }
 .sc-field { margin-bottom: 22px; }
 .sc-label {
   display: flex; align-items: baseline; justify-content: space-between;
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
   margin-bottom: 10px; letter-spacing: -0.2px;
+  text-align: left;
 }
 .sc-label__hint {
   font-size: var(--fs-xs); color: var(--ink-4); font-weight: var(--fw-regular);
