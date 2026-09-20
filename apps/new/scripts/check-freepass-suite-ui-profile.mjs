@@ -39,6 +39,9 @@ assert.ok(profile.alignmentPolicy.end.includes('money'));
 assert.ok(profile.trustEmphasisPolicy.neutral.includes('list-price'));
 assert.ok(profile.trustEmphasisPolicy.brandPrimary.includes('key-result'));
 assert.ok(profile.trustEmphasisPolicy.partnerAccent.includes('partner-name'));
+assert.equal(profile.publicShellPolicy.horizontalGutterPx,16);
+assert.equal(profile.publicShellPolicy.primaryActionHeightPx,52);
+assert.equal(profile.publicShellPolicy.cardRadiusPx,12);
 
 assert.ok(step.includes("? 0 : 160"),'Single-choice commit must be 160ms');
 assert.ok(step.includes('text-align: left'),'Choice rows/titles must use start alignment');
@@ -53,6 +56,10 @@ for(const marker of ['subtle: 7','selection: 12','primary: 18','72 - elapsed',"a
 }
 assert.ok(app.includes('overflow-y: auto'),'Self Quote must keep one bounded vertical scroll owner');
 assert.ok(app.includes('touch-action: pan-y'),'Self Quote touch scroll contract missing');
+assert.ok(app.includes('padding: calc(var(--safe-top) + 10px) 16px 10px'),'Self Quote header gutter drift');
+assert.ok(app.includes('padding: 0 16px 6px'),'Self Quote progress gutter drift');
+assert.ok(app.includes('padding: calc(var(--safe-top) + 80px) var(--sp-4)'),'Self Quote content gutter drift');
+assert.ok(app.includes('height: 52px'),'Self Quote primary action height drift');
 assert.ok(html.includes('height: 100dvh'),'Self Quote dynamic viewport contract missing');
 assert.ok(brandTheme.includes('cfg.ui_theme||{}'),'Self Quote theme runtime must read ui_theme');
 assert.ok(brandTheme.includes('root.dataset.brandTheme'),'Self Quote theme runtime must expose active theme');
