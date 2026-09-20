@@ -22,13 +22,23 @@ export function applyProductTheme(cfg={}){
   const meta=document.querySelector('meta[name="theme-color"]');
   if(meta) meta.setAttribute('content',brand);
 
-  if(freepass){
-    document.title=document.title.replace(/웰릭스\s*모빌리티|웰릭스/g,'FreePass');
-    const brandName=document.getElementById('brand-name-top');
-    if(brandName) brandName.textContent='프리패스모빌리티';
-    document.querySelectorAll('img.ci, img.gate-ci').forEach((img)=>{
-      img.setAttribute('src','/freepass-wordmark.svg');
-      img.setAttribute('alt','freepassmobility');
-    });
-  }
+  const displayName=freepass?'프리패스모빌리티':(cfg.name||'웰릭스 모빌리티');
+  document.title=displayName+' · 신차 장기렌터카 견적';
+  const description=document.querySelector('meta[name="description"]');
+  if(description) description.setAttribute('content',displayName+' 신차 장기렌터카 셀프견적');
+  const ogTitle=document.querySelector('meta[property="og:title"]');
+  if(ogTitle) ogTitle.setAttribute('content',displayName+' · 신차 장기렌터카 견적');
+  const ogSite=document.querySelector('meta[property="og:site_name"]');
+  if(ogSite) ogSite.setAttribute('content',displayName);
+  const appleTitle=document.querySelector('meta[name="apple-mobile-web-app-title"]');
+  if(appleTitle) appleTitle.setAttribute('content',freepass?'프리패스 견적':'웰릭스 견적');
+  const manifest=document.querySelector('link[rel="manifest"]');
+  if(manifest) manifest.setAttribute('href',freepass?'/freepass-manifest.webmanifest':'/manifest.webmanifest');
+
+  const brandName=document.getElementById('brand-name-top');
+  if(brandName) brandName.textContent=displayName;
+  document.querySelectorAll('img.ci, img.gate-ci').forEach((img)=>{
+    img.setAttribute('src',freepass?'/freepass-wordmark.svg':'/welrix-ci.png');
+    img.setAttribute('alt',freepass?'freepassmobility':'웰릭스 모빌리티');
+  });
 }
