@@ -5,6 +5,7 @@ import { 담당자인가 } from '../../lib/role.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
+import { 브랜드공급가능, 모델공급가능, 변형공급가능, 트림공급가능 } from '../../lib/quote/provider-availability.js';
 
 const props = defineProps({
   vehicles: { type: Array, default: () => [] },
@@ -47,7 +48,18 @@ onMounted(() => {
   /* ★공유 링크로 들어온 경우 — 트림은 이미 정해져 있는데 «트림을 고를 때 도는 뒷일»
      (syncVehicle)이 안 돌아서 월 대여료가 «—» 로 남는다. 여기서 한 번 돌려 준다.
      손으로 고른 경우엔 selectTrim 이 이미 돌렸으므로 다시 돌아도 값이 같다. */
-  if (vehicleState.trim) syncVehicle();
+  if (vehicleState.trim) {
+    if (!트림공급가능(selectedTrim.value)) {
+      vehicleState.trim = null;
+      vehicleState.trimGroup = null;
+      vehicleState.options.clear();
+      vehicleState.color = null;
+      quoteState.vehicle = null;
+      subStep.value = 변형공급가능(selectedVariant.value) ? 'trim' : 'variant';
+    } else {
+      syncVehicle();
+    }
+  }
 });
 
 // sub-step — vehicleState.subStep 에 저장 (MobileApp next() 와 통합)
@@ -59,7 +71,7 @@ const subStep = computed({
 // 제조사 — 판매량순
 const brands = computed(() => {
   if (!db.value) return [];
-  return sortByRank(db.value.manufacturers, (m) => m.manufacturer_name, POPULAR_BRAND);
+  return sortByRank(db.value.manufacturers.filter((m) => 브랜드공급가능(m)), (m) => m.manufacturer_name, POPULAR_BRAND);
 });
 
 const selectedBrand = computed(() => {
@@ -71,7 +83,7 @@ const selectedBrand = computed(() => {
 const models = computed(() => {
   if (!selectedBrand.value) return [];
   return sortByRank(
-    selectedBrand.value.models, (m) => m.model_name,
+    selectedBrand.value.models.filter((m) => 모델공급가능(m)), (m) => m.model_name,
     POPULAR_MODELS[selectedBrand.value.manufacturer_name] || [],
   );
 });
@@ -85,7 +97,7 @@ const selectedModel = computed(() => {
 // (vehicle-db.js 카탈로그는 PDF 전체, 실제 노출 차종은 trims 의 operating 플래그 + 엑셀 차량DB 매칭으로 결정)
 const variants = computed(() => {
   const all = selectedModel.value?.variants || [];
-  return all.filter(v => (v.trims || []).some(t => t.operating !== false));
+  return all.filter((v) => 변형공급가능(v));
 });
 
 const selectedVariant = computed(() => {
@@ -102,7 +114,7 @@ const specGroups = computed(() => {
   const taxRate = vehicleState.tax_rate || '5';
   const 표 = new Map();
   for (const t of selectedVariant.value.trims || []) {
-    if (t.operating === false || !t.group) continue;
+    if (!트림공급가능(t) || !t.group) continue;
     if (!표.has(t.group)) 표.set(t.group, { label: t.group, order: t._groupOrder ?? 0, count: 0, minPrice: Infinity });
     const g = 표.get(t.group);
     g.count++;
@@ -115,7 +127,7 @@ const specGroups = computed(() => {
 const trims = computed(() => {
   if (!selectedVariant.value) return [];
   const taxRate = vehicleState.tax_rate || '5';
-  let list = [...(selectedVariant.value.trims || [])].filter(t => t.operating !== false);
+  let list = [...(selectedVariant.value.trims || [])].filter((t) => 트림공급가능(t));
   if (vehicleState.trimGroup) list = list.filter(t => t.group === vehicleState.trimGroup);
   return list.sort((a, b) => (a._groupOrder ?? 0) - (b._groupOrder ?? 0) || trimPrice(a, taxRate) - trimPrice(b, taxRate));
 });
@@ -218,7 +230,7 @@ const totalManwon = computed(() => {
 
 
 function syncVehicle() {
-  if (!selectedTrim.value) return;
+  if (!selectedTrim.value || !트림공급가능(selectedTrim.value)) return;
   const t = selectedTrim.value;
   const taxRate = vehicleState.tax_rate || '5';
   const trimPriceManwon = trimPrice(t, taxRate);
@@ -327,7 +339,7 @@ function selectVariant(v) {
   vehicleState.options.clear(); vehicleState.color = null;
   quoteState.vehicle = null;
   /* ★인승·구동이 갈리면(그룹이 둘 이상) 그 화면을 먼저 보여 준다. 안 갈리면 곧장 트림으로. */
-  const 갈래 = new Set((v.trims || []).map(t => t.group).filter(Boolean));
+  const 갈래 = new Set((v.trims || []).filter((t) => 트림공급가능(t)).map(t => t.group).filter(Boolean));
   subStep.value = 갈래.size > 1 ? 'spec' : 'trim';
 }
 function selectSpec(g) {
@@ -338,6 +350,7 @@ function selectSpec(g) {
   subStep.value = 'trim';
 }
 function selectTrim(t) {
+  if (!트림공급가능(t)) return;
   vehicleState.trim = t.trim_id;
   vehicleState.options.clear();
   /* ★색은 «안 고른 채»로 둔다 — 웰릭스 견적기 기본이 「선택 안 함」이다.
