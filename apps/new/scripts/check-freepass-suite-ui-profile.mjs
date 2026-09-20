@@ -51,6 +51,11 @@ assert.ok(step.includes("commitSelection('variant:' + choice.key, 'trim')"),'Com
 assert.ok(!step.includes("subStep === 'spec'"),'Separate passenger/drive UI must not return');
 assert.ok(app.includes("const VEHICLE_SUB_STEPS = ['brand', 'model', 'variant', 'trim', 'colors', 'options'];"),'Separate spec navigation must not return');
 assert.ok(step.includes('text-align: left'),'Choice rows/titles must use start alignment');
+assert.ok(step.includes('Canonical card headline alignment'),'Canonical card headline alignment override missing');
+assert.ok(step.includes('.sv-row__label {\n  display: block;\n  flex: 1 1 auto;'),'Model/powertrain headline must own left edge');
+assert.ok(step.includes('.sv-row__chev {\n  flex: 0 0 auto;\n  margin-left: auto;'),'Choice affordance must stay on right edge');
+assert.ok(step.includes('.sv-trim-card__name {\n  display: block;\n  flex: 1 1 auto;'),'Trim headline must own left edge');
+assert.ok(step.includes('.sv-trim-card__check {\n  flex: 0 0 auto;\n  margin-left: auto;'),'Trim check must stay on right edge');
 assert.ok(step.includes('flex: 1; min-width: 0;'),'Choice label must own the readable start edge');
 assert.ok(step.includes('text-align: right'),'Money/number values must expose an end alignment');
 assert.ok(step.includes('font-weight: var(--fw-semi); color: var(--ink-2)'),'Unselected trim/option prices must remain neutral');
