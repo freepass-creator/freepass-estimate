@@ -146,7 +146,7 @@ const powertrainChoices = computed(() => {
     const groups = new Map();
 
     for (const trim of available) {
-      const group = trim.group || '';
+      const group = trim._ui_powertrain_group || '';
       if (!groups.has(group)) groups.set(group, { group, count: 0, minPrice: Infinity, order: trim._groupOrder ?? 0 });
       const item = groups.get(group);
       item.count += 1;
@@ -181,7 +181,7 @@ const trims = computed(() => {
   if (!selectedVariant.value) return [];
   const taxRate = vehicleState.tax_rate || '5';
   let list = [...(selectedVariant.value.trims || [])].filter((t) => 트림공급가능(t));
-  if (vehicleState.trimGroup) list = list.filter(t => t.group === vehicleState.trimGroup);
+  if (vehicleState.trimGroup) list = list.filter(t => (t._ui_powertrain_group || '') === vehicleState.trimGroup);
   return list.sort((a, b) => (a._groupOrder ?? 0) - (b._groupOrder ?? 0) || trimPrice(a, taxRate) - trimPrice(b, taxRate));
 });
 
@@ -352,7 +352,7 @@ function syncVehicle() {
     model: modelName,
     variant: selectedVariant.value?.variant_name || '',
     /* ★소제목(인승·구동·용도)을 트림 이름 앞에 붙인다 — 「익스클루시브」만으론 5인승인지 7인승인지 모른다 */
-    trim_name: [t.group, t.name].filter(Boolean).join(' '),
+    trim_name: [t._ui_powertrain_group, t.name].filter(Boolean).join(' '),
     // 공통 quoteState 계약: total_manwon = 트림 + 옵션 + 외장색.
     // 내장색은 quoteState.cond.colorIntPrice 로 별도 보관한다(웹과 동일, 이중계상 방지).
     total_manwon: totalManwon.value - interiorColorPriceManwon.value,
@@ -364,12 +364,13 @@ function syncVehicle() {
     colorInt: quoteState.cond.colorInt || null,
     fuel: can?.fuel || selectedVariant.value?.fuel,
     displacement_cc: can?.engine_cc || selectedVariant.value?.displacement_cc || match?.disp,
-    _product_id: t._product_id || t.trim_id,
+    _product_id: t._canonical_product_id || t._product_id || t.trim_id,
     _trim_meta: t,
     _price_before_won: Number(t._price_before_won || 0),
     _price_after_won: Number(t._price_after_won || 0),
     _price_basis: t._price_basis || '',
     _base_axes: t._base_axes || {},
+    _provider_candidates: t._provider_candidates || [],
     _canonical: canonical,
     _selected_options: selectedOptionIds.map(id => ({
       id,
@@ -456,7 +457,7 @@ function onFeeChange() {
       </button>
       <button v-if="selectedModel" class="sv-crumb" @click="goBack('model')">{{ selectedModel.model_name }}</button>
       <button v-if="selectedVariant" class="sv-crumb" @click="goBack('variant')">{{ [selectedVariant.variant_name, vehicleState.trimGroup].filter(Boolean).join(' · ') }}</button>
-      <button v-if="selectedTrim" class="sv-crumb" @click="goBack('trim')">{{ [selectedTrim.group, selectedTrim.name].filter(Boolean).join(' ') }}</button>
+      <button v-if="selectedTrim" class="sv-crumb" @click="goBack('trim')">{{ [selectedTrim._ui_powertrain_group, selectedTrim.name].filter(Boolean).join(' ') }}</button>
     </div>
 
     <!-- 1) 제조사 -->
