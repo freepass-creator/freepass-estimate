@@ -211,5 +211,14 @@
     "mode": "external",
     "kind": "excel",
     "adapter_id": "welrix"
+  },
+  "ui_theme": {
+    "id": "freepass",
+    "mode": "product",
+    "primary_color": "#1B2A4A",
+    "strong_color": "#0F1B35",
+    "strongest_color": "#07111F",
+    "soft_color": "#E6ECF5",
+    "soft_border_color": "#C8D4E4"
   }
 }
