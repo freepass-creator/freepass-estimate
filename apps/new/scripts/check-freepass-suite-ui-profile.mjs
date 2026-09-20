@@ -8,9 +8,12 @@ const step=read('src/components/mobile/StepVehicle.vue');
 const app=read('src/components/mobile/MobileApp.vue');
 const haptics=read('src/lib/haptics.js');
 const html=read('mobile.html');
+const brandTheme=read('src/lib/brand-theme.js');
+const freepassConfig=JSON.parse(read('public/data/company-config/freepass.json'));
+const welrixConfig=JSON.parse(read('public/data/company-config/welrix.json'));
 
 assert.equal(profile.contract,'freepass-product-ui-profile-binding/v1');
-assert.equal(profile.version,'1.0.0');
+assert.equal(profile.version,'1.1.0');
 assert.equal(profile.ai_core.revision,'01e6bb7e0cd08e6390b452892516fd204ed64090');
 assert.ok(profile.surfaces.includes('self-quote'));
 
@@ -23,7 +26,12 @@ for(const marker of [
   '--line:  #eceef0',
   '--r-card: 12px',
   '--r-chip: 10px'
-]) assert.ok(tokens.includes(marker),'Self Quote token drift: '+marker);
+]) assert.ok(tokens.includes(marker),'Self Quote default token drift: '+marker);
+
+assert.equal(profile.visual.defaultTheme.primary,'#1b2a4a');
+assert.equal(profile.themePolicy.themes.welrix.primary,'#c81e2a');
+assert.ok(profile.themePolicy.modes.includes('cobrand'));
+assert.ok(profile.themePolicy.modes.includes('white-label'));
 
 assert.ok(step.includes("? 0 : 160"),'Single-choice commit must be 160ms');
 assert.ok(tokens.includes('fp-step-in 160ms'),'Step entry must be 160ms');
@@ -34,6 +42,14 @@ for(const marker of ['subtle: 7','selection: 12','primary: 18','72 - elapsed',"a
 assert.ok(app.includes('overflow-y: auto'),'Self Quote must keep one bounded vertical scroll owner');
 assert.ok(app.includes('touch-action: pan-y'),'Self Quote touch scroll contract missing');
 assert.ok(html.includes('height: 100dvh'),'Self Quote dynamic viewport contract missing');
+assert.ok(brandTheme.includes('cfg.ui_theme||{}'),'Self Quote theme runtime must read ui_theme');
+assert.ok(brandTheme.includes('root.dataset.brandTheme'),'Self Quote theme runtime must expose active theme');
+assert.equal(freepassConfig.ui_theme.id,'freepass');
+assert.equal(freepassConfig.ui_theme.primary_color,'#1B2A4A');
+assert.equal(welrixConfig.ui_theme.id,'welrix');
+assert.equal(welrixConfig.ui_theme.mode,'cobrand');
+assert.equal(welrixConfig.ui_theme.primary_color,'#C81E2A');
+assert.equal(welrixConfig.ui_theme.soft_color,'#FDECEE');
 
 for (const marker of ['ui-header','ui-stepper','ui-bottom-action','ui-button primary','ui-button secondary']) {
   assert.ok(app.includes(marker),'Self Quote AI Core shell semantic missing: ' + marker);
