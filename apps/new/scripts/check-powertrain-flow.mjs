@@ -1,63 +1,117 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import { applySalesMainAxisBridge } from '../src/lib/sales-main-axis-bridge.js';
 
 const step=fs.readFileSync('src/components/mobile/StepVehicle.vue','utf8');
 const app=fs.readFileSync('src/components/mobile/MobileApp.vue','utf8');
 const dbSource=fs.readFileSync('public/sales-welrix-db.js','utf8');
+const bridge=JSON.parse(fs.readFileSync('public/data/freepass-newcar/sales-main-axis-bridge.json','utf8'));
 
-assert.ok(step.includes('const powertrainChoices = computed'),'combined powertrain choice builder missing');
-assert.ok(step.includes('function selectPowertrain(choice)'),'combined powertrain selection handler missing');
+assert.equal(bridge.schema,'freepass-sales-main-axis-bridge/v2');
+assert.equal(bridge.stats.provider_trims,443);
+assert.equal(bridge.stats.suppressed_provider_axis_rows,131);
+assert.ok(bridge.stats.redirect_provider_axis_rows >= 131);
+
+assert.ok(step.includes('const powertrainChoices = computed'),'powertrain choice builder missing');
+assert.ok(step.includes("trim._ui_powertrain_group || ''"),'powertrain must use canonical UI group');
+assert.ok(step.includes('function selectPowertrain(choice)'),'powertrain selection handler missing');
 assert.ok(step.includes("commitSelection('variant:' + choice.key, 'trim')"),'powertrain must advance directly to trim');
 assert.ok(!step.includes("subStep === 'spec'"),'separate spec screen must not return');
-assert.ok(!step.includes('function selectSpec('),'separate spec action must not return');
 assert.ok(app.includes("const VEHICLE_SUB_STEPS = ['brand', 'model', 'variant', 'trim', 'colors', 'options'];"),
   'vehicle substeps must not contain separate spec screen');
-assert.ok(!app.includes("'brand', 'model', 'variant', 'spec', 'trim'"),'legacy spec navigation returned');
 
 const ctx={window:{}};
 vm.createContext(ctx);
 vm.runInContext(dbSource,ctx);
 const db=ctx.window.VEHICLE_DB;
-assert.ok(db?.manufacturers?.length,'Sales Welrix DB failed to load');
+let originalTrims=0;
+for(const mf of db.manufacturers||[])for(const md of mf.models||[])for(const v of md.variants||[]) originalTrims+=(v.trims||[]).length;
+assert.equal(originalTrims,443,'provider source trim count drift');
 
-let trims=0;
-let choices=0;
-const duplicateLabels=[];
-const sample=[];
-for(const manufacturer of db.manufacturers||[]){
-  for(const model of manufacturer.models||[]){
-    const labels=new Set();
-    for(const variant of model.variants||[]){
-      const available=variant.trims||[];
-      trims+=available.length;
-      const groups=new Map();
-      for(const trim of available){
-        const group=trim.group||'';
-        if(!groups.has(group)) groups.set(group,[]);
-        groups.get(group).push(trim);
-      }
-      for(const [group,groupTrims] of groups){
-        choices++;
-        const showGroup=!!group&&group!=='일반';
-        const label=[variant.variant_name,showGroup?group:''].filter(Boolean).join(' · ');
-        if(labels.has(label)) duplicateLabels.push({brand:manufacturer.manufacturer_name,model:model.model_name,label});
-        labels.add(label);
-        if(['싼타페','팰리세이드','카니발','GV80'].includes(model.model_name)){
-          sample.push({model:model.model_name,label,count:groupTrims.length});
-        }
-      }
-    }
+applySalesMainAxisBridge(db,bridge);
+
+function model(name){
+  for(const mf of db.manufacturers||[]){
+    const md=(mf.models||[]).find(x=>x.model_name===name);
+    if(md)return md;
   }
+  throw new Error('model not found: '+name);
 }
-assert.equal(trims,443,'combined powertrain flow must preserve all 443 provider trims');
-assert.deepEqual(duplicateLabels,[],'combined powertrain labels must be unique within a model');
+function variant(modelName,re){
+  const v=(model(modelName).variants||[]).find(x=>re.test(x.variant_name));
+  if(!v)throw new Error('variant not found: '+modelName+' '+re);
+  return v;
+}
+function groups(v){
+  return [...new Set((v.trims||[]).map(t=>t._ui_powertrain_group||''))].sort();
+}
+function axisOptionNames(v){
+  const ids=[...new Set((v.trims||[]).flatMap(t=>t._main_axis_option_ids||[]))];
+  return ids.map(id=>v.options_master?.[id]?.name).filter(Boolean);
+}
+function has(re,arr){return arr.some(x=>re.test(x));}
+
+// Fixed values are not choices: Avante must not expose seat/drive or provider operational groups.
+for(const v of model('아반떼').variants||[]){
+  assert.deepEqual(groups(v),[''],'Avante fixed/operational group leaked into powertrain');
+  assert.ok(!has(/인승|2WD|4WD|AWD|FWD|RWD/i,axisOptionNames(v)),'Avante invented a seat/drive option');
+}
+
+// Option axes belong ONLY to Options.
+{
+  const v=variant('쏘렌토',/가솔린 2\.5/);
+  assert.deepEqual(groups(v),[''],'Sorento gas seat/drive option leaked into powertrain');
+  const opts=axisOptionNames(v);
+  assert.ok(has(/^6인승/,opts),'Sorento 6-seat option missing');
+  assert.ok(has(/^7인승/,opts),'Sorento 7-seat option missing');
+  assert.ok(has(/4WD|AWD|HTRAC/i,opts),'Sorento 4WD option missing');
+}
+{
+  const v=variant('싼타페',/가솔린 2\.5/);
+  assert.deepEqual(groups(v),[''],'Santa Fe seat/drive option leaked into powertrain');
+  const opts=axisOptionNames(v);
+  assert.ok(has(/^6인승/,opts) && has(/^7인승/,opts),'Santa Fe seat options missing');
+  assert.ok(has(/HTRAC|4WD|AWD/i,opts),'Santa Fe HTRAC option missing');
+}
+{
+  const v=variant('K8',/가솔린 3\.5/);
+  assert.deepEqual(groups(v),[''],'K8 AWD option leaked into powertrain');
+  assert.ok(has(/AWD|4WD/i,axisOptionNames(v)),'K8 AWD option missing');
+}
+
+// Real base configuration axes stay at Powertrain; option drive stays in Options.
+{
+  const v=variant('팰리세이드',/가솔린 2\.5/);
+  assert.deepEqual(groups(v),['7인승','9인승'],'Palisade real seat configuration must remain in powertrain');
+  assert.ok(has(/HTRAC|4WD|AWD/i,axisOptionNames(v)),'Palisade HTRAC option missing');
+}
+{
+  const v=variant('카니발',/가솔린 3\.5/);
+  assert.deepEqual(groups(v),['7인승','9인승'],'Carnival real seat configuration must remain in powertrain');
+  assert.ok(!has(/^6인승|^7인승|^9인승/,axisOptionNames(v)),'Carnival base seats were incorrectly converted to options');
+}
+
+// Legacy provider-combination links must redirect to base row + options.
+{
+  const key='쏘렌토 6인승 2.5 가솔린 터보 4WD 노블레스';
+  const r=bridge.redirect_provider_trim_ids?.[key];
+  assert.ok(r,'legacy provider redirect missing');
+  assert.equal(r.base_provider_trim_id,'쏘렌토 5인승 2.5 가솔린 터보 2WD 노블레스');
+  assert.equal(r.axis_option_ids.length,2);
+}
 
 console.log(JSON.stringify({
   status:'PASS',
-  flow:['brand','model','powertrain(engine+seat+drive)','trim','colors','options'],
-  trims,
-  powertrainChoices:choices,
-  duplicateLabels:0,
-  samples:sample.slice(0,8)
+  sourceProviderTrims:originalTrims,
+  suppressedProviderAxisRows:bridge.stats.suppressed_provider_axis_rows,
+  legacyRedirects:bridge.stats.redirect_provider_axis_rows,
+  examples:{
+    avante:'engine only',
+    sorento:'engine only; seats/4WD in options',
+    santafe:'engine only; seats/HTRAC in options',
+    k8:'engine only; AWD in options',
+    palisade:'7/9 seats in powertrain; HTRAC in options',
+    carnival:'7/9 seats in powertrain'
+  }
 },null,2));
