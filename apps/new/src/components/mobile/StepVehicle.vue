@@ -17,7 +17,7 @@ function commitDelayMs() {
   try {
     return window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ? 0 : 90;
   } catch {
-    return 90;
+    return 160;
   }
 }
 function commitSelection(key, nextStep) {
