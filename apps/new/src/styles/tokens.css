@@ -90,3 +90,15 @@
 :where(button, [role="button"], summary):not(:disabled):active {
   transform: scale(.975);
 }
+
+
+@keyframes fp-step-in {
+  from { opacity: .72; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.sv-section,
+.sc,
+.se,
+.sr {
+  animation: fp-step-in 120ms cubic-bezier(.2,.8,.2,1) both;
+}
