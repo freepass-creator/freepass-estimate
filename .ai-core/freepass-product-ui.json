@@ -102,5 +102,33 @@
     "branch": "feat/freepass-suite-ui-consumers-20260921",
     "path": "design-system/brand-themes.registry.json",
     "status": "CANDIDATE"
+  },
+  "alignmentPolicy": {
+    "start": [
+      "page-title",
+      "section-title",
+      "choice-row",
+      "trim",
+      "option",
+      "field-label",
+      "helper",
+      "card-narrative"
+    ],
+    "center": [
+      "manufacturer-grid",
+      "color-swatch-grid",
+      "short-chip",
+      "period-compare-tile",
+      "cta-label"
+    ],
+    "end": [
+      "money",
+      "percentage",
+      "quantity",
+      "total",
+      "definition-value",
+      "numeric-table-value"
+    ],
+    "invariant": "Font weight does not determine alignment. Choice rows share one start edge; numeric values use a stable end edge."
   }
 }
