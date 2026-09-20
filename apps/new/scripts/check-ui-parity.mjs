@@ -1,52 +1,42 @@
 import fs from 'node:fs';
-import path from 'node:path';
 import assert from 'node:assert/strict';
 
-const root=process.cwd();
-const upstream=path.resolve(root,'../../.ui-reference');
-const read=p=>fs.readFileSync(p,'utf8').replace(/\r\n/g,'\n');
+const read = (p) => fs.readFileSync(p, 'utf8');
+const mobileHtml = read('mobile.html');
+const mobileEntry = read('src/mobile.js');
+const mobileShell = read('src/components/mobile/MobileApp.vue');
+const vehicle = read('src/components/mobile/StepVehicle.vue');
+const theme = read('src/lib/brand-theme.js');
+const tokens = read('src/styles/tokens.css');
+const uiBaseline = read('../../docs/UI_BASELINE.md');
 
-function visibleHtml(s){
-  // Inline scripts are data/controller code. Keep script tags with src because entry topology is UI structure.
-  return s.replace(/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/gi,'<script>__FREEPASS_DATA_BINDING__</script>')
-    .replace(/[ \t]+$/gm,'').trim();
-}
-function vueTemplate(s){
-  return (s.match(/<template>[\s\S]*?<\/template>/i)?.[0]||'').replace(/[ \t]+$/gm,'').trim();
-}
-function walk(dir){
-  const out=[];
-  for(const ent of fs.readdirSync(dir,{withFileTypes:true})){
-    const p=path.join(dir,ent.name);
-    if(ent.isDirectory())out.push(...walk(p));else out.push(p);
-  }
-  return out;
-}
-const failures=[];
-// mobile.html entry shell remains locked byte-for-visible-byte.
-{
-  const file='mobile.html';
-  const a=visibleHtml(read(path.join(upstream,file)));
-  const b=visibleHtml(read(path.join(root,file)));
-  if(a!==b)failures.push(file+' visible HTML changed');
-}
-// index.html has one approved structural delta from the pinned Welrix baseline:
-// task CTAs were moved from the top/header to bottom action bars (page + dialog).
-// The placement itself is enforced separately by check-action-placement.mjs.
-const upComp=path.join(upstream,'src','components');
-for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
-  const rel=path.relative(upComp,p);
-  const local=path.join(root,'src','components',rel);
-  if(!fs.existsSync(local)){failures.push('missing component '+rel);continue}
-  const upstreamSource=read(p), localSource=read(local);
-  // MobileApp is the approved FreePass shell delta:
-  // - dynamic channel branding
-  // - one-screen-one-choice auto advance
-  // - top is informational / bottom is actionable
-  // Its action placement is enforced by check-action-placement.mjs + Playwright.
-  if(rel!=='mobile/MobileApp.vue'){
-    if(vueTemplate(upstreamSource)!==vueTemplate(localSource)) failures.push('component template changed '+rel);
-  }
-}
-assert.equal(failures.length,0,'Welrix visible UI parity failed:\n'+failures.join('\n'));
-console.log('PASS structure parity — Welrix information architecture retained; FreePass visual grammar allowed');
+assert.ok(mobileHtml.includes('<title>프리패스모빌리티 · 신차 장기렌터카 견적</title>'),
+  'mobile default identity must be FreePass');
+assert.ok(mobileHtml.includes('/freepass-manifest.webmanifest'),
+  'mobile default manifest must be FreePass');
+assert.ok(!mobileHtml.includes('<script src="/welrix-db.js"></script>'),
+  'mobile shell must not hardcode the generated mixed catalog');
+assert.ok(mobileEntry.includes("'/sales-welrix-db.js'"),
+  'Sales profile must load verified Welrix provider catalog through FreePass shell');
+assert.ok(mobileShell.includes("cfg.value.company_id === 'welrix'"),
+  'channel branding must remain config driven');
+assert.ok(mobileShell.includes("'프리패스모빌리티'"),
+  'FreePass shell brand must remain explicit');
+assert.ok(vehicle.includes('sv-brand-card') && vehicle.includes('sv-trim-card'),
+  'FreePass vehicle selection grammar missing');
+assert.ok(theme.includes("freepass?'프리패스모빌리티'"),
+  'FreePass theme authority missing');
+assert.ok(tokens.includes('--brand:      #1b2a4a;'),
+  'FreePass brand token baseline drift');
+assert.ok(uiBaseline.includes('Current canonical source:'),
+  'UI baseline must identify current FreePass canonical source');
+assert.ok(uiBaseline.includes('Welrix UI는 historical reference'),
+  'Welrix must remain lineage/reference, not current UI authority');
+
+console.log(JSON.stringify({
+  status: 'PASS',
+  uiAuthority: 'freepass-estimate',
+  historicalLineage: 'welrixtable',
+  salesCatalog: 'welrix-sales-443',
+  calculationAuthority: 'welrix',
+}, null, 2));
