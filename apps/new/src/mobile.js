@@ -96,7 +96,7 @@ function 담당자문(){
     벽.className = 'gate-bg';
     벽.innerHTML = `
       <div class="gate-card">
-        <img class="gate-ci" src="/welrix-ci.png" alt="">
+        <img class="gate-ci" src="${companyProfileId()==='freepass'?'/freepass-wordmark.svg':'/welrix-ci.png'}" alt="">
         <h1 class="gate-title">담당자 확인</h1>
         <p class="gate-sub">이 기기를 담당자용으로 기억합니다</p>
         <input id="gate-pin" inputmode="numeric" autocomplete="off" placeholder="PIN">
