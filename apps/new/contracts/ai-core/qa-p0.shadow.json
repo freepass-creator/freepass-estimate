@@ -1,0 +1,30 @@
+{
+  "schema": "freepass-estimate-ai-core-qa-shadow/v1",
+  "status": "SHADOW_PARITY",
+  "core_source": {
+    "repository": "freepass-creator/ai-core",
+    "pull_request": 157,
+    "revision": "584026ecaaac40073aeac5a775a5144bf704d0c8",
+    "contracts": [
+      "qa-checker-manifest/v1",
+      "qa-result/v1"
+    ]
+  },
+  "project_source": {
+    "revision": "b526fdc73e812dcb0594d10caf2123bbade1d38b",
+    "verification_manifest": "apps/new/verification-manifest.json",
+    "contracts_source": "apps/new/src/lib/quote/contracts.js"
+  },
+  "projection": {
+    "classification": "REQUIRED",
+    "proof_level": "SYNTHETIC",
+    "negative_control": {
+      "required": false,
+      "status": "NOT_APPLICABLE"
+    }
+  },
+  "boundary": {
+    "ci_pass_is_not_production_proof": true,
+    "production_revision_observation_required_separately": true
+  }
+}
