@@ -628,6 +628,7 @@ function onFeeChange() {
             <span class="sv-opt__name">{{ o.name }}</span>
             <span class="sv-opt__price">+{{ fmt(o.price) }}만</span>
           </div>
+          <div class="sv-opt__axis" v-if="o._main_axis">차량 구성 옵션</div>
           <div class="sv-opt__sub" v-if="o.sub">{{ o.sub }}</div>
           <div class="sv-opt__group" v-if="getGroup(o.id)">
             <i class="ph ph-info"></i>
@@ -1022,6 +1023,17 @@ function onFeeChange() {
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
   font-variant-numeric: tabular-nums; flex-shrink: 0;
   text-align: right;
+}
+.sv-opt__axis {
+  align-self: flex-start;
+  margin-top: 1px;
+  padding: 2px 6px;
+  border-radius: var(--r-sm);
+  background: var(--brand-50);
+  color: var(--brand);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  line-height: 1.35;
 }
 .sv-opt__sub { font-size: var(--fs-sm); color: var(--ink-3); line-height: 1.4; }
 .sv-opt__group {
