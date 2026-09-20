@@ -8,7 +8,7 @@ import { 웰릭스기본 } from './lib/welrix-rates.js';
    → 보증금 10% · 썬팅 루마 일반 · 블박 파인뷰 SF500 · 탁송 서울 · 2만km · 웰스 Basic · 대물 1억
    ⚠ 수수료율만 7% 다 — 그건 «우리가 받는 몫»이라 웰릭스 화면 기본값(5%)과 무관하다
      (대표 2026-09-17 「7% 수수료 7% 기준으로」). */
-const 기본보증금 = 웰릭스기본.dep;
+const 기본보증금 = 담당자인가() ? 웰릭스기본.dep : 0;
 import { reactive } from 'vue';
 
 // === 차량 선택 (cascade) 상태 ===
@@ -70,8 +70,9 @@ function persistMyContracts(arr) {
   try { localStorage.setItem(MY_CONTRACTS_KEY, JSON.stringify(arr)); } catch {}
 }
 function loadFeeRate() {
-  /* ★기본 수수료율은 welrix-rates.js 한 곳에서 정한다(지금 5% · 확인되면 7%).
-     담당자가 화면에서 바꾼 값은 localStorage 에 남아 그게 이긴다. */
+  /* 손님은 Promotion/공개견적 기준 7%를 항상 사용한다.
+     담당자만 자기 기기에 저장한 수수료율을 재사용한다. */
+  if (!담당자인가()) return 웰릭스기본.feeRatePct;
   try {
     const v = parseFloat(localStorage.getItem(FEE_KEY));
     return isFinite(v) ? v : 웰릭스기본.feeRatePct;
@@ -123,6 +124,18 @@ export const quoteState = reactive({
   // ReferenceGrid 컴포넌트가 read-only 로 표시
   referenceMonthly: [],
 });
+
+export function 역할기본조건동기화() {
+  const staff = 담당자인가();
+  const dep = staff ? 웰릭스기본.dep : 0;
+  quoteState.cond.dep = dep;
+  quoteState.cond.pre = 웰릭스기본.pre;
+  if (!staff) quoteState.cond.feeRatePct = 웰릭스기본.feeRatePct;
+  quoteState.scenarios.forEach((sc) => {
+    sc.dep = dep;
+    sc.pre = 웰릭스기본.pre;
+  });
+}
 
 // 담당자 정보(이름/연락처) + 수수료율 + 발송옵션 자동 저장
 import { watch } from 'vue';
