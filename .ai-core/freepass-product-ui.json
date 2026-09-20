@@ -137,5 +137,26 @@
       "numeric-table-value"
     ],
     "invariant": "Font weight does not determine alignment. Choice rows share one start edge; numeric values use a stable end edge."
+  },
+  "trustEmphasisPolicy": {
+    "brandPrimary": [
+      "primary-cta",
+      "selected-state",
+      "progress",
+      "active-navigation",
+      "key-result"
+    ],
+    "neutral": [
+      "list-price",
+      "option-price-unselected",
+      "body-copy",
+      "supporting-value"
+    ],
+    "partnerAccent": [
+      "partner-name",
+      "partner-logo",
+      "co-brand-label"
+    ],
+    "rule": "Brand color is a limited emphasis resource. Unselected monetary values stay neutral; selected/key-result values may use brand primary."
   }
 }
