@@ -1,4 +1,5 @@
 import { SHARE_SNAPSHOT_CONTRACT, CURRENT_SHARE_SNAPSHOT_VERSION, LEGACY_SHARE_SNAPSHOT_VERSION, QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_EXECUTION_CONTRACT } from './quote/contracts.js';
+import { redirectProviderTrimSelection } from './sales-main-axis-bridge.js';
 
 // ============================================================================
 //  공유 링크 — «고른 것 + 확정 견적 Snapshot» 을 주소에 담는다
@@ -238,6 +239,13 @@ export function 풀기(vehicleState, quoteState, 주소 = location.search) {
   try { p = new URLSearchParams(주소); } catch { return false; }
   if (!p.get('b') && !p.get('m')) return false;
 
+  // 과거 Promotion/공유 링크가 provider 완성차 row를 직접 가리켜도
+  // 메인 견적기의 기본 트림 + 축 옵션 선택으로 되돌린다.
+  const 축리다이렉트 = redirectProviderTrimSelection(p.get('t'));
+  if (축리다이렉트?.base_provider_trim_id) {
+    p.set('t', 축리다이렉트.base_provider_trim_id);
+  }
+
   for (const [짧, 긴] of Object.entries(키)) {
     const v = p.get(짧);
     if (v) vehicleState[긴] = v;
@@ -253,13 +261,15 @@ export function 풀기(vehicleState, quoteState, 주소 = location.search) {
       if (갈래) {
         vehicleState.variant = 갈래.variant_id;
         const 트림 = 갈래.trims.find((t) => t.trim_id === vehicleState.trim);
-        vehicleState.trimGroup = 트림?.group || null;
+        vehicleState.trimGroup = 트림?._ui_powertrain_group || null;
       }
     } catch { /* 못 찾으면 링크 값 그대로 */ }
   }
 
   const o = p.get('o');
-  vehicleState.options = new Set(o ? o.split('.').filter(Boolean) : []);
+  const 링크옵션 = o ? o.split('.').filter(Boolean) : [];
+  const 축옵션 = 축리다이렉트?.axis_option_ids || [];
+  vehicleState.options = new Set([...링크옵션, ...축옵션]);
   const color = p.get('c');
   if (color != null && color !== '') vehicleState.color = isNaN(+color) ? color : +color;
 
