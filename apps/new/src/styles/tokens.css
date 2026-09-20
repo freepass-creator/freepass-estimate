@@ -100,5 +100,5 @@
 .sc,
 .se,
 .sr {
-  animation: fp-step-in 120ms cubic-bezier(.2,.8,.2,1) both;
+  animation: fp-step-in 160ms cubic-bezier(.2,.8,.2,1) both;
 }
