@@ -92,9 +92,16 @@
         "primary": "#c81e2a",
         "strong": "#a3131d",
         "soft": "#fdecee"
+      },
+      "welrix-trust": {
+        "primary": "#1b2a4a",
+        "strong": "#0f1b35",
+        "soft": "#e6ecf5",
+        "partnerAccent": "#c81e2a"
       }
     },
-    "rule": "Brand colors may change by product/partner/white-label theme; semantic state meanings and component behavior may not."
+    "rule": "Brand colors may change by product/partner/white-label theme; semantic state meanings and component behavior may not.",
+    "customerFacingDefault": "welrix-trust"
   },
   "brandThemeRegistry": {
     "repository": "freepass-creator/ai-core",
