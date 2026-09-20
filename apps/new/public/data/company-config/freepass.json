@@ -208,7 +208,8 @@
     "deposit_buckets_max": 10000000
   },
   "quote_provider": {
-    "mode": "standard",
-    "adapter_id": "freepass-standard"
+    "mode": "external",
+    "kind": "excel",
+    "adapter_id": "welrix"
   }
 }
