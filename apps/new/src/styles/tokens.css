@@ -75,3 +75,18 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Mobile tactile feedback baseline */
+:where(button, [role="button"], summary) {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+:where(button, [role="button"], summary):not(:disabled) {
+  transition-property: transform, background-color, opacity;
+  transition-duration: 80ms, 120ms, 120ms;
+  transition-timing-function: cubic-bezier(.2,.8,.2,1);
+}
+:where(button, [role="button"], summary):not(:disabled):active {
+  transform: scale(.975);
+}
