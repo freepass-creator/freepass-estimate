@@ -36,11 +36,9 @@
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="/src/styles/tokens.css" />
-  <!-- 차량 DB — PC 와 동일 SSOT -->
-  <!-- ★차량 DB = 웰릭스 것 (2026-09-18 대표: 「웰릭스 거 견적기를 그대로 갖다 쓰고」)
-       trim_id 가 곧 /api/estimate 의 model 키다 — 이름 매핑이 없다.
-       옛 /vehicle-db.js 는 제조사 가격표에 없는 값이라 폐기했다(그 파일 머리 주석 참고). -->
-  <script src="/welrix-db.js"></script>
+  <!-- 차량 DB는 src/mobile.js가 profile/company config에 맞춰 boot 전에 로드한다.
+       FreePass Sales Self Quote 기본 프로필은 검증된 Welrix 443-trim catalog를 사용하고,
+       다른 프로필은 FreePass canonical vehicle DB를 사용할 수 있다. -->
   <!-- 견적서 이미지 캡쳐용 -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <!-- 견적서(official) CSS — PC 와 동일 스타일 (이미지 캡쳐 시 적용) -->
