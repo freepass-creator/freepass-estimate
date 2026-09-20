@@ -19,7 +19,7 @@ const vehicleState = {
   color: null,
 };
 const quoteState = {
-  cond: { km: 2, svc: '웰스 Basic', insProperty: '1억', extraDriver: '없음', deliveryCity: '서울' },
+  cond: { credit: '중신용', feeRatePct: 7, discount: 123, km: 2, svc: '웰스 Basic', insProperty: '1억', extraDriver: '없음', deliveryCity: '서울' },
   scenarios: [{ term: 60, dep: 0, pre: 0 }],
   tint: { product: '없음' },
   extras: { blackbox: '미설치' },
@@ -33,8 +33,8 @@ const quoteRuntime = {
   상태: 'ok',
   결과: [{ 월대여료: 500000, 인수가: 10000000, 총차량가: 30000000, 보증금: 0, 선납금: 0 }],
   차량가: 30000000,
-  계산기: 'FreePass 표준',
-  공급자: 'standard',
+  계산기: '웰릭스',
+  공급자: 'external:excel:welrix',
   계약: {
     request: QUOTE_REQUEST_CONTRACT,
     result: QUOTE_RESULT_CONTRACT,
@@ -54,8 +54,12 @@ assert.equal(raw.quoteContract, QUOTE_REQUEST_CONTRACT);
 assert.equal(raw.resultContract, QUOTE_RESULT_CONTRACT);
 assert.equal(raw.executionContract, QUOTE_EXECUTION_CONTRACT);
 assert.equal(raw.sourceRevision, 'a'.repeat(40));
-assert.equal(raw.providerMode, 'standard');
-assert.ok(!JSON.stringify(raw).includes('freepass-standard'), 'private adapter id leaked into share snapshot');
+assert.equal(raw.providerMode, 'external');
+const serialized = JSON.stringify(raw);
+assert.ok(!serialized.includes('external:excel:welrix'), 'private adapter id leaked into share snapshot');
+assert.ok(!serialized.includes('중신용'), 'customer credit class leaked into share snapshot');
+assert.ok(!serialized.includes('feeRatePct'), 'staff fee rate leaked into share snapshot');
+assert.ok(!serialized.includes('discount'), 'internal discount leaked into share snapshot');
 
 function encode(value) {
   return Buffer.from(JSON.stringify(value), 'utf8').toString('base64url');
