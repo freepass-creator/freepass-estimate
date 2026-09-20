@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <title>차종 가이드 · 웰릭스 모빌리티</title>
+  <meta name="description" content="트림별 견적, 연비·세금·보험료, 디자인·주행감 평가, 유튜브 리뷰까지. 차종 하나로 끝내는 가이드." />
+  <link rel="icon" type="image/png" href="/welrix-ci.png" />
+
+  <!-- Fonts + Icons -->
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+
+  <!-- Vehicle DB SSOT -->
+  <script src="/vehicle-db.js"></script>
+
+  <style>
+    :root {
+      --brand: #e1141e;
+      --brand-700: #b50f17;
+      --brand-100: #f7d4d6;
+      --brand-50: #fef0f1;
+      --ink-1: #0a0a0a;
+      --ink-2: #2a2a2e;
+      --ink-3: #6b6f78;
+      --ink-4: #9ca0aa;
+      --line: #e8e9ec;
+      --line-2: #d4d6db;
+      --bg: #fff;
+      --bg-soft: #f7f8fa;
+      --bg-soft-2: #f0f2f5;
+      --radius-pill: 999px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow: 0 12px 32px rgba(0,0,0,0.08);
+      --t-fast: 0.18s ease;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink-1); }
+    body {
+      font-family: 'Pretendard Variable', 'Pretendard', -apple-system, system-ui, sans-serif;
+      font-size: 14px; line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* === Top navigation === */
+    .gn-bar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .gn-inner {
+      max-width: 1180px; margin: 0 auto; padding: 12px 20px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .gn-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; color: var(--ink-2);
+      padding: 6px 10px; border-radius: 999px;
+      transition: background var(--t-fast);
+    }
+    .gn-back:hover { background: var(--bg-soft); }
+    .gn-back i { font-size: 14px; }
+    .gn-menu {
+      margin-left: auto;
+      display: flex; align-items: center; gap: 18px;
+    }
+    .gn-menu a {
+      font-size: 13px; font-weight: 600; color: var(--ink-3);
+      transition: color var(--t-fast);
+    }
+    .gn-menu a:hover { color: var(--ink-1); }
+    .gn-menu a.is-cta {
+      padding: 6px 14px;
+      background: var(--brand); color: #fff;
+      border-radius: 999px;
+      font-size: 12px; font-weight: 700;
+    }
+    .gn-menu a.is-cta:hover { background: var(--brand-700); }
+    @media (max-width: 720px) {
+      .gn-menu { gap: 10px; }
+      .gn-menu a:not(.is-cta) { display: none; }
+    }
+
+    /* === Detail mount === */
+    #guide-root { padding-bottom: 48px; }
+
+    /* Footer */
+    .gn-foot {
+      max-width: 1180px; margin: 0 auto; padding: 32px 20px;
+      border-top: 1px solid var(--line);
+      font-size: 11px; color: var(--ink-4);
+      text-align: center;
+    }
+    .gn-foot a { color: var(--ink-3); }
+  </style>
+</head>
+<body>
+  <nav class="gn-bar">
+    <div class="gn-inner">
+      <a class="gn-back" href="/vehicles.html">
+        <i class="ph ph-arrow-left"></i> 차량 가이드
+      </a>
+      <div class="gn-menu">
+        <a href="/home.html#lineup">인기 차종</a>
+        <a href="/home.html#quote">즉시 견적</a>
+        <a href="/home.html#contact" class="is-cta">
+          <i class="ph ph-chat-circle-dots"></i> 상담 신청
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="guide-root"></main>
+
+  <footer class="gn-foot">
+    표시 견적은 표준 조건(중신용·보증금 10%·60개월·서비스 웰스 Basic) 기준입니다.<br>
+    탁송·옵션·할인은 상담 시 별도 안내되며, 실제 견적은 상담을 통해 확정됩니다.<br>
+    <a href="/home.html">홈으로 돌아가기</a>
+  </footer>
+
+  <script type="module" src="/src/guide.js"></script>
+</body>
+</html>

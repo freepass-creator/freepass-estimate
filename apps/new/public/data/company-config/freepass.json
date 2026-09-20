@@ -1,0 +1,214 @@
+{
+  "_doc": "회사별 영업/원가 정책. 관리자 페이지가 편집하는 SSOT. setCompanyConfig() 로 calc.js 에 주입됨.",
+  "_admin_editable": {
+    "credit_lookup": "신용등급별 IRR/금리 — interest(대출이자율), profit(IRR/수익률), deposit(기본보증금률)",
+    "costs.registration_fee": "등록비 (번호판/공채할인/인지대/대행수수료 합)",
+    "costs.acquisition_tax_rate": "취득세율 (일반 4%)",
+    "costs.acquisition_tax_rate_porter": "취득세율 (포터 5%)",
+    "costs.delivery_first": "1차 탁송료",
+    "costs.repair_rate_annual": "자동차 수리 적립률 (연 단위)",
+    "fees.deposit_discount_rate": "보증금 할인 이율 (보증금×이율×년수 = 총이자)",
+    "fees.default_fee_rate_pct": "영업수수료 기본값 (UI 초기값)",
+    "fees.payback_table": "수수료율→페이백 슬라이딩 테이블 (0.5% 단위)",
+    "fees.commission.low_credit_cap": "저신용 영업수수료 상한",
+    "services.wells_basic_monthly": "웰스 Basic 정비 월비용",
+    "services.wells_self_yearly": "웰스 Self 정비 연비용",
+    "services.gps_monthly": "GPS 월비용",
+    "services.inspection_fee_yearly": "정기검사 연비용 (3년차부터)",
+    "residuals.km_adjustment": "약정주행거리별 잔가율 보정",
+    "residuals.term_surcharge": "기간별 잔가 가산 (제외 브랜드/모델 포함)",
+    "residuals.brand_adjustment": "브랜드/모델별 잔가 보정",
+    "residuals.buyback_rate_add": "인수가율 가산 (신용등급/브랜드/모델별)",
+    "residuals.credit_premium": "신용 가산 (대여료 가산)",
+    "insurance": "자동차보험 기본료 (일반/다인승/포터/대물 추가)",
+    "extra_driver": "추가운전자 비용",
+    "deposit_buckets_step": "보증금 단위 (50만원)",
+    "deposit_buckets_max": "보증금 상한 (1,000만원)"
+  },
+  "excel_version": "",
+  "excel_version_date": "",
+  "company_id": "freepass",
+  "name": "프리패스모빌리티",
+  "logo_url": "/freepass-wordmark.svg",
+  "brand_color": "#1B2A4A",
+  "brand_color_logo": "#1B2A4A",
+  "accent_color": "#9EC5F3",
+  "signature_link": "https://app.modusign.co.kr/magic-link/link/665f4cd0-fb5c-11f0-8c47-897ef2e93d12/authentication?shareType=URL",
+  "company_info": {
+    "full_name": "프리패스모빌리티 주식회사",
+    "biz_no": "000-00-00000",
+    "ceo": "대표이사명",
+    "address": "주소 입력",
+    "phone": "02-6956-8835",
+    "fax": "02-000-0000",
+    "email": "contact@freepassmobility.com",
+    "homepage": "freepassmobility.com"
+  },
+  "financial": {
+    "credit_lookup": {
+      "신용": {
+        "interest": 0.064,
+        "profit": 0.019,
+        "deposit": 0.05
+      },
+      "고신용": {
+        "interest": 0.064,
+        "profit": 0.019,
+        "deposit": 0.05
+      },
+      "중신용": {
+        "interest": 0.064,
+        "profit": 0.043,
+        "deposit": 0.2
+      },
+      "저신용": {
+        "interest": 0.064,
+        "profit": 0.084,
+        "deposit": 0.3
+      },
+      "무신용": {
+        "interest": 0.064,
+        "profit": 0.084,
+        "deposit": 0.3
+      }
+    },
+    "costs": {
+      "registration_fee": 200000,
+      "acquisition_tax_rate": 0.04,
+      "acquisition_tax_rate_porter": 0.05,
+      "delivery_first": 500000,
+      "repair_rate_annual": 0.02
+    },
+    "fees": {
+      "deposit_discount_rate": 0.03,
+      "default_fee_rate_pct": 5,
+      "payback_table": [
+        {
+          "rate": 0,
+          "payback": 700000
+        },
+        {
+          "rate": 0.5,
+          "payback": 630000
+        },
+        {
+          "rate": 1,
+          "payback": 560000
+        },
+        {
+          "rate": 1.5,
+          "payback": 490000
+        },
+        {
+          "rate": 2,
+          "payback": 420000
+        },
+        {
+          "rate": 2.5,
+          "payback": 350000
+        },
+        {
+          "rate": 3,
+          "payback": 280000
+        },
+        {
+          "rate": 3.5,
+          "payback": 210000
+        },
+        {
+          "rate": 4,
+          "payback": 140000
+        },
+        {
+          "rate": 4.5,
+          "payback": 70000
+        },
+        {
+          "rate": 5,
+          "payback": 0
+        }
+      ],
+      "commission": {
+        "low_credit_cap": 3000000
+      }
+    },
+    "services": {
+      "wells_basic_monthly": 12900,
+      "wells_self_yearly": 96000,
+      "gps_monthly": 11000,
+      "inspection_fee_yearly": 76000
+    },
+    "residuals": {
+      "km_adjustment": {
+        "1만km": 0.02,
+        "2만km": 0,
+        "3만km": -0.04,
+        "4만km": -0.1
+      },
+      "term_surcharge": {
+        "_doc": "Excel I22 의 제외 조건은 AW10/AW11 cell ref 오류로 사실상 항상 false → 모든 차에 기간가산 적용. calc.js 도 동일 동작 위해 exclude 비움.",
+        "exclude": {
+          "brands": [],
+          "models": []
+        },
+        "by_term_code": {
+          "3": 0.05,
+          "4": -0.005,
+          "5": -0.03
+        }
+      },
+      "brand_adjustment": {
+        "제네시스": -0.18,
+        "K9": -0.15,
+        "하이리무진": -0.15
+      },
+      "buyback_rate_add": {
+        "_doc": "Excel I6: IF(C3=\"고신용\",0%, IF(C3=\"중신용\",2%, 4%)) — 신용/저신용/무신용은 cascade default 4%",
+        "by_credit": {
+          "신용": 0.04,
+          "고신용": 0,
+          "중신용": 0.02,
+          "저신용": 0.04,
+          "무신용": 0.04
+        },
+        "by_brand": {
+          "제네시스": 0.23
+        },
+        "by_model": {
+          "K9": 0.2,
+          "하이리무진": 0.2
+        }
+      },
+      "credit_premium": {
+        "신용": 0,
+        "고신용": 0,
+        "중신용": 0.03,
+        "저신용": 0.05,
+        "무신용": 0
+      }
+    },
+    "insurance": {
+      "base_normal": 820750,
+      "base_multi_seat": 732880,
+      "base_porter": 2000000,
+      "property_extra": {
+        "1억": 0,
+        "2억": 10000,
+        "3억": 20000,
+        "5억": 30000
+      }
+    },
+    "extra_driver": {
+      "없음": 0,
+      "1명": 50000,
+      "2명": 100000,
+      "3명": 150000
+    },
+    "deposit_buckets_step": 500000,
+    "deposit_buckets_max": 10000000
+  },
+  "quote_provider": {
+    "mode": "standard",
+    "adapter_id": "freepass-standard"
+  }
+}

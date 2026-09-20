@@ -1,0 +1,44 @@
+name: Sync canonical new-car master map
+
+on:
+  push:
+    branches:
+      - work/ui-baseline
+    paths:
+      - 'apps/new/scripts/build-canonical-newcar-map.mjs'
+      - '.github/workflows/sync-newcar-master-map.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-map:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Estimate
+        uses: actions/checkout@v4
+        with:
+          ref: work/ui-baseline
+          fetch-depth: 0
+      - name: Checkout ERP master
+        uses: actions/checkout@v4
+        with:
+          repository: freepass-creator/freepasserp4
+          ref: main
+          path: .master-reference
+          persist-credentials: false
+      - name: Build canonical mapping
+        working-directory: apps/new
+        run: node scripts/build-canonical-newcar-map.mjs
+      - name: Commit generated mapping
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "freepass-estimate-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add apps/new/public/data/canonical-newcar-map.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data(new): sync canonical vehicle-master mapping [skip ci]"
+          git push origin HEAD:work/ui-baseline

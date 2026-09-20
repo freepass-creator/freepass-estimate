@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>FreePass Estimate · 신차 모바일 UI Baseline</title>
+<style>
+:root{
+  --bg:#fff;--soft:#f7f8fa;--soft2:#f2f3f5;--line:#eceef0;
+  --ink:#212529;--ink2:#5c6268;--ink3:#737980;--key:#1b2a4a;--keysoft:#e6ecf5;
+  --good:#267449;--r:10px;--sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Malgun Gothic",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--soft);font-family:var(--sans);color:var(--ink);font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+.app{width:min(100%,480px);min-height:100dvh;margin:0 auto;background:var(--bg);display:flex;flex-direction:column}
+.head{position:sticky;top:0;z-index:10;height:56px;display:flex;align-items:center;padding:0 14px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+.back{width:40px;height:40px;margin-left:-8px;border:0;background:transparent;border-radius:50%;font-size:21px;color:var(--ink2)}
+.back[hidden]{visibility:hidden;display:block}
+.title{flex:1;text-align:center;font-size:14px;font-weight:650;letter-spacing:-.02em}
+.headright{width:32px}
+.progress{height:2px;background:var(--line)}
+.progress i{display:block;height:100%;width:12.5%;background:var(--key);transition:width .18s ease}
+.body{flex:1;padding:26px 16px 110px}
+.crumb{min-height:22px;margin-bottom:12px;color:var(--ink3);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero{margin-bottom:24px}
+.hero small{display:block;margin-bottom:6px;color:var(--ink3);font-size:11px;font-weight:600}
+.hero h1{margin:0;font-size:24px;line-height:1.35;letter-spacing:-.04em}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.brand{min-height:92px;padding:16px 8px;border:0;border-radius:12px;background:var(--soft2);font-weight:650}
+.brand:active,.brand.on{background:var(--keysoft);color:var(--key)}
+.list{display:grid;gap:8px}
+.row{display:flex;align-items:center;width:100%;min-height:56px;padding:0 16px;border:0;border-radius:10px;background:var(--soft2);text-align:left}
+.row b{font-size:15px;font-weight:600}
+.row small{display:block;margin-top:2px;color:var(--ink3);font-size:11px;font-weight:400}
+.row .go{margin-left:auto;color:var(--ink3);font-size:18px}
+.row:active,.row.on{background:var(--keysoft);color:var(--key)}
+.colors{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.color{display:flex;align-items:center;gap:10px;min-height:58px;padding:8px 12px;border:0;border-radius:10px;background:var(--soft2);text-align:left}
+.sw{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.09)}
+.color.on{background:var(--keysoft);color:var(--key)}
+.blocklabel{margin:20px 0 8px;font-size:12px;color:var(--ink2);font-weight:650}
+.opts{display:grid;gap:8px}
+.opt{display:block;width:100%;padding:14px;border:0;border-radius:10px;background:var(--soft2);text-align:left}
+.opt .top{display:flex;gap:10px;justify-content:space-between}.opt b{font-size:14px}.opt em{font-style:normal;color:var(--ink2);font-size:12px}
+.opt.on{background:var(--keysoft);color:var(--key)}.opt.on em{color:var(--key)}
+.form{display:grid;gap:16px}
+.field{display:grid;gap:6px}.field label{font-size:12px;color:var(--ink2);font-weight:600}
+.field select,.field input{width:100%;height:44px;padding:0 12px;border:1px solid #d9dde1;border-radius:8px;background:#fff;outline:0}
+.field select:focus,.field input:focus{border-color:var(--key)}
+.quote{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.qrow{display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;padding:14px 16px;border-top:1px solid var(--line)}
+.qrow:first-child{border-top:0}.qrow span{color:var(--ink3);font-size:12px}.qrow b{text-align:right;font-size:18px}
+.months{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.month{padding:14px 8px;border:0;border-radius:10px;background:var(--soft2);text-align:center}
+.month b{display:block;margin-top:5px;font-size:15px}.month small{color:var(--ink3)}
+.footer{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(100%,480px);padding:8px 16px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);display:flex;gap:8px}
+.footer button{height:48px;border:0;border-radius:10px;font-weight:650}
+.prev{flex:0 0 84px;background:var(--soft2);color:var(--ink2)}
+.next{flex:1;background:var(--key);color:#fff}
+.next:disabled{background:var(--soft2);color:var(--ink3)}
+.auto-note{margin-top:18px;color:var(--ink3);font-size:11px;line-height:1.55;text-align:center}
+@media(min-width:520px){body{background:#e9ebee}.app{box-shadow:0 20px 60px rgba(0,0,0,.12)}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="head">
+    <button id="backTop" class="back" aria-label="이전">‹</button>
+    <div class="title">신차 장기렌터카</div>
+    <div class="headright"></div>
+  </header>
+  <div class="progress"><i id="bar"></i></div>
+  <main class="body">
+    <div id="crumb" class="crumb"></div>
+    <section class="hero"><small id="stepNo"></small><h1 id="question"></h1></section>
+    <div id="content"></div>
+    <p id="autoNote" class="auto-note"></p>
+  </main>
+  <footer class="footer">
+    <button id="prev" class="prev">이전</button>
+    <button id="next" class="next">다음</button>
+  </footer>
+</div>
+
+<script>
+const steps=['brand','model','power','trim','colors','options','conditions','result'];
+const data={
+  brand:['현대','기아','제네시스','쉐보레','르노코리아','KG모빌리티'],
+  model:['디 올 뉴 그랜저','쏘나타 디 엣지','디 올 뉴 싼타페','투싼'],
+  power:['가솔린 2.5','가솔린 3.5','하이브리드 1.6'],
+  trim:[
+    ['프리미엄','37,680,000원'],
+    ['익스클루시브','42,580,000원'],
+    ['캘리그래피','46,900,000원']
+  ]
+};
+let idx=0;
+const selected={brand:'',model:'',power:'',trim:'',ext:'',int:'',options:[]};
+const $=s=>document.querySelector(s);
+const escapeHtml=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function choose(key,val){
+  selected[key]=val;
+  if(['brand','model','power','trim'].includes(key)){
+    idx++;
+    render();
+  }
+}
+function toggleOpt(v){
+  const i=selected.options.indexOf(v);
+  if(i>=0)selected.options.splice(i,1);else selected.options.push(v);
+  render();
+}
+function crumb(){
+  return [selected.brand,selected.model,selected.power,selected.trim].filter(Boolean).join('  ›  ');
+}
+function render(){
+  const key=steps[idx];
+  $('#bar').style.width=((idx+1)/steps.length*100)+'%';
+  $('#stepNo').textContent='STEP '+(idx+1)+' / '+steps.length;
+  $('#crumb').textContent=crumb();
+  $('#backTop').hidden=idx===0;
+  $('#prev').style.visibility=idx===0?'hidden':'visible';
+  $('#next').style.display=['brand','model','power','trim','result'].includes(key)?'none':'block';
+  $('#next').disabled=false;
+  $('#autoNote').textContent=['brand','model','power','trim'].includes(key)
+    ? '선택하면 다음 화면으로 바로 넘어갑니다.'
+    : '';
+
+  if(key==='brand'){
+    $('#question').innerHTML='어떤 제조사를<br>선택할까요?';
+    $('#content').innerHTML='<div class="grid3">'+data.brand.map(v=>'<button class="brand '+(selected.brand===v?'on':'')+'" data-k="brand" data-v="'+escapeHtml(v)+'">'+escapeHtml(v)+'</button>').join('')+'</div>';
+  }
+  if(key==='model'){
+    $('#question').innerHTML=escapeHtml(selected.brand)+' 에서<br>어떤 모델로 갈까요?';
+    $('#content').innerHTML='<div class="list">'+data.model.map(v=>'<button class="row '+(selected.model===v?'on':'')+'" data-k="model" data-v="'+escapeHtml(v)+'"><b>'+escapeHtml(v)+'</b><span class="go">›</span></button>').join('')+'</div>';
+  }
+  if(key==='power'){
+    $('#question').innerHTML=escapeHtml(selected.model)+'<br>파워트레인을 골라주세요';
+    $('#content').innerHTML='<div class="list">'+data.power.map(v=>'<button class="row '+(selected.power===v?'on':'')+'" data-k="power" data-v="'+escapeHtml(v)+'"><b>'+escapeHtml(v)+'</b><span class="go">›</span></button>').join('')+'</div>';
+  }
+  if(key==='trim'){
+    $('#question').innerHTML=escapeHtml(selected.power)+'<br>세부 트림을 골라주세요';
+    $('#content').innerHTML='<div class="list">'+data.trim.map(([v,p])=>'<button class="row '+(selected.trim===v?'on':'')+'" data-k="trim" data-v="'+escapeHtml(v)+'"><span><b>'+escapeHtml(v)+'</b><small>'+p+'</small></span><span class="go">›</span></button>').join('')+'</div>';
+  }
+  if(key==='colors'){
+    $('#question').innerHTML='색상을<br>골라주세요';
+    const ex=[['어비스 블랙 펄','#17191c'],['세레니티 화이트 펄','#f4f3ef'],['녹턴 그레이','#63666b'],['바이오필릭 블루','#344a5e']];
+    const ins=[['블랙','#282828'],['브라운','#654b3b'],['베이지','#cbbda7']];
+    $('#content').innerHTML='<div class="blocklabel">외장 색상</div><div class="colors">'+ex.map(([n,c])=>'<button class="color '+(selected.ext===n?'on':'')+'" data-color="ext" data-v="'+n+'"><i class="sw" style="background:'+c+'"></i><span>'+n+'</span></button>').join('')+'</div><div class="blocklabel">내장 색상</div><div class="colors">'+ins.map(([n,c])=>'<button class="color '+(selected.int===n?'on':'')+'" data-color="int" data-v="'+n+'"><i class="sw" style="background:'+c+'"></i><span>'+n+'</span></button>').join('')+'</div>';
+    $('#next').disabled=!selected.ext&&!selected.int;
+  }
+  if(key==='options'){
+    $('#question').innerHTML='옵션을<br>선택해 주세요';
+    const opts=[['현대 스마트센스','+790,000원'],['프리뷰 전자제어 서스펜션','+1,090,000원'],['파킹 어시스트','+1,490,000원']];
+    $('#content').innerHTML='<div class="opts">'+opts.map(([n,p])=>'<button class="opt '+(selected.options.includes(n)?'on':'')+'" data-opt="'+n+'"><div class="top"><b>'+n+'</b><em>'+p+'</em></div></button>').join('')+'</div>';
+  }
+  if(key==='conditions'){
+    $('#question').innerHTML='계약 조건을<br>확인해 주세요';
+    $('#content').innerHTML='<div class="form"><div class="field"><label>신용</label><select><option>중신용</option></select></div><div class="field"><label>약정주행</label><select><option>연 2만km</option></select></div><div class="field"><label>보증금</label><input value="0%" /></div><div class="field"><label>선납금</label><input value="0%" /></div></div>';
+    $('#next').textContent='견적 보기';
+  }else $('#next').textContent='다음';
+
+  if(key==='result'){
+    $('#question').innerHTML='견적을<br>확인해 주세요';
+    $('#content').innerHTML='<div class="quote"><div class="qrow"><span>차량</span><b>'+escapeHtml(selected.model)+' '+escapeHtml(selected.trim)+'</b></div><div class="qrow"><span>36개월</span><b>742,000원</b></div><div class="qrow"><span>48개월</span><b>681,000원</b></div><div class="qrow"><span>60개월</span><b>639,000원</b></div></div><div class="months"><button class="month"><small>36개월</small><b>742,000</b></button><button class="month"><small>48개월</small><b>681,000</b></button><button class="month"><small>60개월</small><b>639,000</b></button></div><p class="auto-note">UI 확인용 대표 금액입니다. 실제 계산 연결 전 단계입니다.</p>';
+  }
+
+  document.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>choose(b.dataset.k,b.dataset.v));
+  document.querySelectorAll('[data-color]').forEach(b=>b.onclick=()=>{selected[b.dataset.color]=b.dataset.v;render()});
+  document.querySelectorAll('[data-opt]').forEach(b=>b.onclick=()=>toggleOpt(b.dataset.opt));
+}
+function back(){if(idx>0){idx--;render()}}
+$('#backTop').onclick=back;$('#prev').onclick=back;
+$('#next').onclick=()=>{if(idx<steps.length-1){idx++;render()}};
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+name: Build FreePass new-car UI DB
+
+on:
+  push:
+    branches: [work/ui-baseline]
+    paths:
+      - 'apps/new/public/data/freepass-newcar/current-feed.snapshot.json'
+      - 'apps/new/public/data/freepass-newcar/vehicle-trim-master.json'
+      - 'apps/new/public/data/freepass-newcar/model-aliases.json'
+      - 'apps/new/scripts/build-freepass-vehicle-db.mjs'
+      - '.github/workflows/build-freepass-newcar-db.yml'
+  workflow_dispatch:
+
+
+concurrency:
+  group: freepass-newcar-data-writer
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Estimate
+        uses: actions/checkout@v4
+        with:
+          ref: work/ui-baseline
+          fetch-depth: 0
+      - name: Checkout Welrix provider reference
+        uses: actions/checkout@v4
+        with:
+          repository: freepass-creator/welrixtable
+          ref: main
+          path: .welrix-reference
+          persist-credentials: false
+      - name: Build UI-compatible DB
+        working-directory: apps/new
+        env:
+          WELRIX_DB_PATH: ../../.welrix-reference/public/welrix-db.js
+        run: node scripts/build-freepass-vehicle-db.mjs
+      - name: Build readiness gaps
+        working-directory: apps/new
+        run: node scripts/build-readiness-gaps.mjs
+      - name: Syntax-check generated DB
+        working-directory: apps/new
+        run: |
+          node --check public/vehicle-db.js
+          node --check public/welrix-db.js
+      - name: Commit generated DB
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "freepass-estimate-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add apps/new/public/vehicle-db.js apps/new/public/welrix-db.js apps/new/public/data/freepass-newcar/product-index.json apps/new/public/data/freepass-newcar/readiness-gaps.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data(new): rebuild UI DB from FreePass product master"
+          git fetch origin work/ui-baseline
+          git rebase -X theirs origin/work/ui-baseline
+          git push origin HEAD:work/ui-baseline

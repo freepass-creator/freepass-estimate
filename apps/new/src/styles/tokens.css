@@ -1,0 +1,77 @@
+/* ============================================================================
+ *  공유 디자인 토큰 SSOT  —  신차(웰릭스) · 중고(손오공) 견적기 공통 규격
+ * ----------------------------------------------------------------------------
+ *  원칙: 크기·간격·폰트·중립색(ink/line/bg)은 두 앱이 100% 동일 (이미 값 일치).
+ *        앱별로 다른 것은 딱 하나 — CI 액센트색(--brand). 그 외는 전부 공유.
+ *
+ *  · 웰릭스 신차   → --brand: #e1141e  (CI 레드, welrix-ci.png)
+ *  · 손오공 중고   → --brand: #12a99b  (CI 틸, sonogong-ci.webp)
+ *
+ *  두 레포에 동일 파일을 두고 :root 의 --brand 블록만 앱별로 세팅한다.
+ *  (공용 패키지 추출 시 이 파일이 @freepass/ui-tokens 로 승격)
+ *
+ *  네이밍 규격(정본): --fs-*(폰트) / --r-*(라운드) / --sp-*(간격) / --ink-* / --line* / --bg*
+ *  웰릭스 기존 --font-size-* / --radius-* / --space-* 는 하단 '레거시 별칭'으로 유지(무손실 이관).
+ * ========================================================================== */
+
+:root {
+  /* ── FreePass product theme — Sales/Admin 공통 규격 ───────────────── */
+  --brand:      #1b2a4a;
+  --brand-700:  #0f1b35;
+  --brand-800:  #07111f;
+  --brand-100:  #c8d4e4;
+  --brand-50:   #e6ecf5;
+
+  /* ── 중립색 (두 앱 공유·동일) ───────────────────────────────── */
+  --ink-1: #212529;  --ink-2: #5c6268;  --ink-3: #737980;  --ink-4: #9aa1a8;  --ink-5: #c9ced3;
+  --line:  #eceef0;  --line-2: #d9dde1;  --line-3: #c8cdd2;
+  --bg:    #ffffff;  --bg-soft: #f7f8fa;  --bg-muted: #f2f3f5;  --bg-grey: #f7f8fa;
+
+  /* ── 라운드 (공유·동일) ───────────────────────────────────── */
+  --r-sm: 4px;  --r: 6px;  --r-md: 8px;  --r-lg: 12px;  --r-pill: 999px;
+  /* 터치 UI 표준 역할 */
+  --r-chip: 10px;  --r-card: 12px;  --r-sheet: 16px;
+
+  /* ── 간격 (공유·동일) ─────────────────────────────────────── */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;  --sp-4: 16px;  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;
+
+  /* ── 타이포 — 역할 기준 위계 ────────────────────────────────
+     caption 11 < meta 12.5 < label 13 < body/chip 14 < emphasis 15 < section 17 < page 22 */
+  --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  --fs-xs: 11px;  --fs-sm: 12.5px;  --fs-md: 13px;  --fs-base: 14px;
+  --fs-lg: 15px;  --fs-xl: 17px;  --fs-2xl: 22px;
+
+  /* ── 터치 높이 + 굵기 ─────────────────────────────────────── */
+  --h-chip: 36px; --h-input: 46px; --h-cta: 54px;
+  --h-touch-min: 44px;
+  --focus-ring: #1d4ed8;
+  --fw-regular: 400; --fw-medium: 500; --fw-semi: 600; --fw-bold: 700;
+
+  /* ── 레거시 별칭 (웰릭스 기존 CSS 무손실 이관용 — 새 코드는 위 정본 사용) ── */
+  --font-family:   var(--font);
+  --font-size-xs:  var(--fs-xs);   --font-size-sm:   var(--fs-sm);   --font-size-base: var(--fs-base);
+  --font-size-md:  var(--fs-md);   --font-size-lg:   var(--fs-lg);   --font-size-xl:   var(--fs-xl);
+  --font-size-2xl: var(--fs-2xl);
+  --radius-sm: var(--r-sm);  --radius: var(--r);  --radius-md: var(--r-md);  --radius-lg: var(--r-lg);  --radius-pill: var(--r-pill);
+  --space-1: var(--sp-1);  --space-2: var(--sp-2);  --space-3: var(--sp-3);  --space-4: var(--sp-4);
+  --space-5: var(--sp-5);  --space-6: var(--sp-6);  --space-8: var(--sp-8);
+}
+
+
+/* ── Accessibility baseline (AI Core Screen Design Standard) ─────────────
+ * Approved density is preserved; focus and motion behavior are hardened first.
+ * Individual 36px visual chips must provide/verify a >=44px effective hit target
+ * before WCAG touch-target adoption is considered complete. */
+:where(button, a[href], input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,6 @@
+# vercel 에 올리지 않는 것 — 런타임에 필요 없는 작업물
+.cursor
+_audit
+_dump
+_tools
+*.xlsx

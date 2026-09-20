@@ -1,0 +1,29 @@
+{
+  "schema": "freepass-verification-manifest/v1",
+  "contracts": [
+    {
+      "export": "QUOTE_REQUEST_CONTRACT",
+      "checker": "scripts/check-provider-contract.mjs"
+    },
+    {
+      "export": "QUOTE_RESULT_CONTRACT",
+      "checker": "scripts/check-quote-execution-contract.mjs"
+    },
+    {
+      "export": "QUOTE_PROVIDER_CONTRACT",
+      "checker": "scripts/check-provider-contract.mjs"
+    },
+    {
+      "export": "QUOTE_EXECUTION_CONTRACT",
+      "checker": "scripts/check-quote-execution-contract.mjs"
+    },
+    {
+      "export": "SHARE_SNAPSHOT_CONTRACT",
+      "checker": "scripts/check-share-snapshot-contract.mjs"
+    },
+    {
+      "export": "MOBILE_NAVIGATION_CONTRACT",
+      "checker": "scripts/check-mobile-navigation-contract.mjs"
+    }
+  ]
+}

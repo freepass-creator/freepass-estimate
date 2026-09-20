@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="56" viewBox="0 0 340 56" role="img" aria-label="freepassmobility">
+  <style>
+    .w{font-family:'Exo 2','Pretendard',Arial,sans-serif;dominant-baseline:middle}
+  </style>
+  <text class="w" x="0" y="28" font-size="34" font-weight="600" fill="#1B2A4A">freepass</text>
+  <text class="w" x="139" y="28" font-size="34" font-weight="300" fill="#7F93B3">mobility</text>
+</svg>

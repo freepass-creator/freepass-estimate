@@ -1,0 +1,20 @@
+name: Probe Welrix manual price
+on:
+  push:
+    branches: [work/ui-baseline]
+    paths:
+      - 'apps/new/scripts/probe-welrix-manual-price.mjs'
+      - '.github/workflows/probe-welrix-manual-price.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: apps/new
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/probe-welrix-manual-price.mjs

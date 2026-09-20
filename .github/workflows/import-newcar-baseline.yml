@@ -1,0 +1,100 @@
+name: Import pinned Welrix new-car baseline
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout FreePass Estimate
+        uses: actions/checkout@v4
+        with:
+          ref: work/ui-baseline
+          fetch-depth: 0
+
+      - name: Checkout pinned Welrix source
+        uses: actions/checkout@v4
+        with:
+          repository: freepass-creator/welrixtable
+          ref: 707a57f8f97aed28eaab7f1fa7e42cd0bff9ee2d
+          path: .upstream-welrix
+          persist-credentials: false
+
+      - name: Import new-car app baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf apps/new
+          mkdir -p apps/new
+
+          cp .upstream-welrix/index.html apps/new/index.html
+          cp .upstream-welrix/mobile.html apps/new/mobile.html
+          cp .upstream-welrix/home.html apps/new/home.html
+          cp .upstream-welrix/vehicles.html apps/new/vehicles.html
+          cp .upstream-welrix/guide.html apps/new/guide.html
+          cp .upstream-welrix/quote.js apps/new/quote.js
+          cp .upstream-welrix/package.json apps/new/package.json
+          cp .upstream-welrix/package-lock.json apps/new/package-lock.json
+          cp .upstream-welrix/vite.config.js apps/new/vite.config.js
+          cp .upstream-welrix/vercel.json apps/new/vercel.json
+          cp .upstream-welrix/.vercelignore apps/new/.vercelignore
+
+          cp -R .upstream-welrix/src apps/new/src
+          cp -R .upstream-welrix/public apps/new/public
+          cp -R .upstream-welrix/api apps/new/api
+
+          mkdir -p apps/new/scripts
+          cp .upstream-welrix/scripts/check-sync.mjs apps/new/scripts/check-sync.mjs
+          cp .upstream-welrix/scripts/e2e-mobile-ux.mjs apps/new/scripts/e2e-mobile-ux.mjs
+          cp .upstream-welrix/scripts/excel-cases.mjs apps/new/scripts/excel-cases.mjs
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const path = 'apps/new/package.json';
+          const pkg = JSON.parse(fs.readFileSync(path, 'utf8'));
+          pkg.name = '@freepass/estimate-new';
+          pkg.description = 'FreePass Estimate new-car app — UI baseline imported from pinned Welrix reference';
+          pkg.scripts = {
+            ...pkg.scripts,
+            'test:ui': 'node scripts/e2e-mobile-ux.mjs'
+          };
+          fs.writeFileSync(path, JSON.stringify(pkg, null, 2) + '\n');
+          NODE
+
+          rm -rf .upstream-welrix
+
+      - name: Record provenance
+        shell: bash
+        run: |
+          cat > apps/new/UPSTREAM.md <<'EOF'
+          # New-car UI upstream provenance
+
+          Initial UI/UX baseline was imported byte-for-byte from:
+
+          - repository: freepass-creator/welrixtable
+          - revision: 707a57f8f97aed28eaab7f1fa7e42cd0bff9ee2d
+          - imported scope: index.html, mobile.html, quote.js, src/, public/, api/, selected UI QA scripts
+
+          This is a one-time migration baseline. After FreePass Estimate becomes authoritative,
+          Welrix should consume the FreePass implementation rather than the other way around.
+          EOF
+
+      - name: Commit imported baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "freepass-estimate-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add apps/new
+          if git diff --cached --quiet; then
+            echo "No baseline changes"
+            exit 0
+          fi
+          git commit -m "chore(new): import pinned Welrix UI baseline [skip ci]"
+          git push origin HEAD:work/ui-baseline

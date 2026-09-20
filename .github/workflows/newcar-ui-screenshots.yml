@@ -1,0 +1,58 @@
+name: New-car UI screenshots
+
+on:
+  push:
+    branches: [work/ui-baseline]
+    paths:
+      - 'apps/new/index.html'
+      - 'apps/new/mobile.html'
+      - 'apps/new/src/**'
+      - 'apps/new/public/vehicle-db.js'
+      - 'apps/new/public/welrix-db.js'
+      - 'apps/new/scripts/capture-ui.mjs'
+      - '.github/workflows/newcar-ui-screenshots.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/new
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/new/package-lock.json
+      - run: npm ci
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Build
+        run: npm run build
+      - name: Start preview
+        run: |
+          nohup npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/freepass-preview.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/mobile.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/freepass-preview.log
+          exit 1
+      - name: Capture UI
+        env:
+          PREVIEW_URL: http://127.0.0.1:4173
+        run: node scripts/capture-ui.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: newcar-ui-screenshots
+          path: apps/new/ui-captures/*.png
+          retention-days: 3
+          if-no-files-found: error

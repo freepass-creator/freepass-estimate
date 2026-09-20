@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <title>차량 가이드 · 웰릭스 모빌리티</title>
+  <meta name="description" content="현대·기아·제네시스 25종 신차 장기렌터카 가이드. 트림별 견적·연비·세금·리뷰까지 한 번에." />
+  <link rel="icon" type="image/png" href="/welrix-ci.png" />
+
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+
+  <script src="/vehicle-db.js"></script>
+
+  <style>
+    :root {
+      --brand: #e1141e;
+      --brand-700: #b50f17;
+      --brand-50: #fef0f1;
+      --ink-1: #0a0a0a;
+      --ink-2: #2a2a2e;
+      --ink-3: #6b6f78;
+      --ink-4: #9ca0aa;
+      --line: #e8e9ec;
+      --line-2: #d4d6db;
+      --bg: #fff;
+      --bg-soft: #f7f8fa;
+      --radius-pill: 999px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --t-fast: 0.18s ease;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink-1); }
+    body {
+      font-family: 'Pretendard Variable', 'Pretendard', -apple-system, system-ui, sans-serif;
+      font-size: 14px; line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Top nav */
+    .vh-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .vh-nav__inner {
+      max-width: 1180px; margin: 0 auto; padding: 12px 20px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .vh-nav__back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; color: var(--ink-2);
+      padding: 6px 10px; border-radius: 999px;
+      transition: background var(--t-fast);
+    }
+    .vh-nav__back:hover { background: var(--bg-soft); }
+    .vh-nav__menu {
+      margin-left: auto;
+      display: flex; gap: 18px;
+    }
+    .vh-nav__menu a {
+      font-size: 13px; font-weight: 600; color: var(--ink-3);
+      transition: color var(--t-fast);
+    }
+    .vh-nav__menu a:hover { color: var(--ink-1); }
+    .vh-nav__menu a.is-active { color: var(--brand); }
+    .vh-nav__menu a.is-cta {
+      padding: 6px 14px;
+      background: var(--brand); color: #fff;
+      border-radius: 999px;
+      font-size: 12px; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .vh-nav__menu a.is-cta:hover { background: var(--brand-700); color: #fff; }
+    .vh-nav__menu a.is-cta i { font-size: 13px; }
+    @media (max-width: 640px) {
+      .vh-nav__menu { display: none; }
+    }
+
+    /* Hero */
+    .vh-hero {
+      padding: 56px 0 36px;
+      background: linear-gradient(180deg, var(--bg-soft) 0%, #fff 100%);
+    }
+    .vh-hero__inner {
+      max-width: 1180px; margin: 0 auto; padding: 0 20px;
+      text-align: center;
+    }
+    .vh-hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 11.5px; font-weight: 800; letter-spacing: 0.3px;
+      margin-bottom: 14px;
+    }
+    .vh-hero__title {
+      margin: 0 0 12px;
+      font-size: 34px; font-weight: 800; color: var(--ink-1);
+      letter-spacing: -0.03em; line-height: 1.2;
+    }
+    .vh-hero__title em { font-style: normal; color: var(--brand); }
+    .vh-hero__sub {
+      margin: 0 auto;
+      max-width: 600px;
+      font-size: 14.5px; color: var(--ink-3); line-height: 1.7;
+      letter-spacing: -0.01em;
+    }
+    .vh-hero__note {
+      display: block;
+      margin-top: 10px;
+      font-size: 11.5px; color: var(--ink-4);
+      letter-spacing: -0.01em;
+    }
+    @media (max-width: 600px) {
+      .vh-hero__title { font-size: 26px; }
+      .vh-hero__sub { font-size: 13.5px; }
+    }
+
+    /* 인덱스 마운트 */
+    .vh-index { padding: 32px 0 64px; }
+
+    /* Footer CTA */
+    .vh-cta-foot {
+      max-width: 1180px; margin: 0 auto; padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+    .vh-cta-foot h3 {
+      margin: 0 0 8px;
+      font-size: 18px; font-weight: 800; color: var(--ink-1);
+      letter-spacing: -0.02em;
+    }
+    .vh-cta-foot p {
+      margin: 0 0 18px;
+      font-size: 13.5px; color: var(--ink-3);
+    }
+    .vh-cta-foot__btns {
+      display: inline-flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+    }
+    .vh-cta-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 13.5px; font-weight: 700;
+      text-decoration: none;
+      transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+    }
+    .vh-cta-btn--primary { background: var(--ink-1); color: #fff; }
+    .vh-cta-btn--primary:hover { background: var(--brand); transform: translateY(-1px); }
+    .vh-cta-btn--outline {
+      background: var(--bg); color: var(--ink-2);
+      border: 1.5px solid var(--line-2);
+    }
+    .vh-cta-btn--outline:hover { border-color: var(--ink-1); color: var(--ink-1); }
+  </style>
+</head>
+<body>
+  <nav class="vh-nav">
+    <div class="vh-nav__inner">
+      <a class="vh-nav__back" href="/home.html">
+        <i class="ph ph-arrow-left"></i> 홈으로
+      </a>
+      <div class="vh-nav__menu">
+        <a href="/home.html#lineup">인기 차종</a>
+        <a href="/vehicles.html" class="is-active">차량 가이드</a>
+        <a href="/home.html#quote">즉시 견적</a>
+        <a href="/home.html#contact" class="is-cta">
+          <i class="ph ph-chat-circle-dots"></i> 상담 신청
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="vh-hero">
+    <div class="vh-hero__inner">
+      <div class="vh-hero__eyebrow">
+        <i class="ph ph-list-magnifying-glass"></i> 차량 가이드
+      </div>
+      <h1 class="vh-hero__title">
+        25종 차량을 <em>제대로</em> 알아보세요
+      </h1>
+      <p class="vh-hero__sub">
+        현대·기아·제네시스. 트림별 견적부터 연비·세금·보험료, 디자인 평가, 유튜브 리뷰까지.<br>
+        궁금한 차종을 골라보세요.
+        <span class="vh-hero__note">표시 월 부담은 표준 조건(중신용·보증금 10%·60개월) 기준이며, 탁송·옵션·할인은 상담 시 별도 안내됩니다.</span>
+      </p>
+    </div>
+  </section>
+
+  <main class="vh-index">
+    <div id="vehicle-index-root"></div>
+  </main>
+
+  <section class="vh-cta-foot">
+    <h3>아직 차종을 못 정하셨나요?</h3>
+    <p>AI 추천을 받아보세요. 30초면 딱 맞는 차종 3대를 골라드립니다.</p>
+    <div class="vh-cta-foot__btns">
+      <a class="vh-cta-btn vh-cta-btn--primary" href="/home.html#ai-recommender-root">
+        <i class="ph ph-sparkle"></i> AI 추천 받기
+      </a>
+      <a class="vh-cta-btn vh-cta-btn--outline" href="/home.html#contact">
+        <i class="ph ph-chat-circle-dots"></i> 상담 신청
+      </a>
+    </div>
+  </section>
+
+  <script type="module" src="/src/vehicles.js"></script>
+</body>
+</html>

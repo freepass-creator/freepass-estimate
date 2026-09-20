@@ -1,0 +1,19 @@
+name: Audit FreePass new-car feed
+on:
+  push:
+    branches: [work/ui-baseline]
+    paths:
+      - 'apps/new/scripts/audit-freepass-newcar-feed.mjs'
+      - '.github/workflows/audit-freepass-newcar-feed.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/new
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/audit-freepass-newcar-feed.mjs

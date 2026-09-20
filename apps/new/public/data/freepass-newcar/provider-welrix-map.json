@@ -1,0 +1,5404 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-19T02:42:24.297Z",
+  "stats": {
+    "total": 525,
+    "mapped": 215,
+    "unresolved": 310,
+    "pinned_id_map": 0,
+    "inferred": 215
+  },
+  "by_product_id": {
+    "kia_niro_하이브리드_시그니처": {
+      "provider": "welrix",
+      "api_model": "니로 1.6 하이브리드 2WD 시그니처",
+      "price": 36150000,
+      "label": "기아 | 니로 | 하이브리드 1.6 | 시그니처",
+      "match": "name"
+    },
+    "kia_niro_하이브리드_트렌디": {
+      "provider": "welrix",
+      "api_model": "니로 1.6 하이브리드 2WD 트렌디",
+      "price": 30270000,
+      "label": "기아 | 니로 | 하이브리드 1.6 | 트렌디",
+      "match": "name"
+    },
+    "kia_niro_하이브리드_프레스티지": {
+      "provider": "welrix",
+      "api_model": "니로 1.6 하이브리드 2WD 프레스티지",
+      "price": 33420000,
+      "label": "기아 | 니로 | 하이브리드 1.6 | 프레스티지",
+      "match": "name"
+    },
+    "kia_ray_가솔린1.0_시그니처": {
+      "provider": "welrix",
+      "api_model": "레이 해치백 1.0 가솔린 시그니처",
+      "price": 19550000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 해치백 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_트렌디": {
+      "provider": "welrix",
+      "api_model": "레이 해치백 1.0 가솔린 트렌디",
+      "price": 15550000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 해치백 | 트렌디",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_트렌디1인승밴": {
+      "provider": "welrix",
+      "api_model": "레이 밴 1.0 가솔린 트렌디 (1인승)",
+      "price": 14800000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 밴 1인승 | 트렌디",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_트렌디2인승밴": {
+      "provider": "welrix",
+      "api_model": "레이 밴 1.0 가솔린 트렌디",
+      "price": 14900000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 밴 | 트렌디",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_프레스티지": {
+      "provider": "welrix",
+      "api_model": "레이 해치백 1.0 가솔린 프레스티지",
+      "price": 18150000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 해치백 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_프레스티지스페셜1인승밴": {
+      "provider": "welrix",
+      "api_model": "레이 밴 1.0 가솔린 프레스티지 스페셜 (1인승)",
+      "price": 15950000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 밴 1인승 | 프레스티지 스페셜",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_프레스티지스페셜2인승밴": {
+      "provider": "welrix",
+      "api_model": "레이 밴 1.0 가솔린 프레스티지 스페셜",
+      "price": 16100000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 밴 | 프레스티지 스페셜",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_프레스티지1인승밴": {
+      "provider": "welrix",
+      "api_model": "레이 밴 1.0 가솔린 프레스티지 (1인승)",
+      "price": 15400000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 밴 1인승 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_프레스티지2인승밴": {
+      "provider": "welrix",
+      "api_model": "레이 밴 1.0 가솔린 프레스티지",
+      "price": 15550000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 밴 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_ray_가솔린1.0_xline": {
+      "provider": "welrix",
+      "api_model": "레이 해치백 1.0 가솔린 X-Line",
+      "price": 20600000,
+      "label": "기아 | 레이 | 가솔린 1.0 | 해치백 | X-Line",
+      "match": "name+price"
+    },
+    "kia_morning_가솔린1.0_시그니처": {
+      "provider": "welrix",
+      "api_model": "모닝 해치백 1.0 가솔린 시그니처",
+      "price": 18160000,
+      "label": "기아 | 모닝 | 가솔린 1.0 | 해치백 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_morning_가솔린1.0_트렌디": {
+      "provider": "welrix",
+      "api_model": "모닝 해치백 1.0 가솔린 트렌디",
+      "price": 14210000,
+      "label": "기아 | 모닝 | 가솔린 1.0 | 해치백 | 트렌디",
+      "match": "name+price"
+    },
+    "kia_morning_가솔린1.0_트렌디밴": {
+      "provider": "welrix",
+      "api_model": "모닝 밴 1.0 가솔린 트렌디",
+      "price": 13860000,
+      "label": "기아 | 모닝 | 가솔린 1.0 | 밴 | 트렌디",
+      "match": "name+price"
+    },
+    "kia_morning_가솔린1.0_프레스티지": {
+      "provider": "welrix",
+      "api_model": "모닝 해치백 1.0 가솔린 프레스티지",
+      "price": 16010000,
+      "label": "기아 | 모닝 | 가솔린 1.0 | 해치백 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_morning_가솔린1.0_프레스티지밴": {
+      "provider": "welrix",
+      "api_model": "모닝 밴 1.0 가솔린 프레스티지",
+      "price": 14510000,
+      "label": "기아 | 모닝 | 가솔린 1.0 | 밴 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_seltos_가솔린1.6터보_시그니처": {
+      "provider": "welrix",
+      "api_model": "셀토스 1.6 가솔린 2WD 시그니처",
+      "price": 31450000,
+      "label": "기아 | 셀토스 | 가솔린 1.6 | 2WD | 시그니처",
+      "match": "name+price"
+    },
+    "kia_seltos_가솔린1.6터보_트렌디": {
+      "provider": "welrix",
+      "api_model": "셀토스 1.6 가솔린 2WD 트렌디",
+      "price": 25120000,
+      "label": "기아 | 셀토스 | 가솔린 1.6 | 2WD | 트렌디",
+      "match": "name+price"
+    },
+    "kia_seltos_가솔린1.6터보_프레스티지": {
+      "provider": "welrix",
+      "api_model": "셀토스 1.6 가솔린 2WD 프레스티지",
+      "price": 28800000,
+      "label": "기아 | 셀토스 | 가솔린 1.6 | 2WD | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_seltos_가솔린1.6터보_xline": {
+      "provider": "welrix",
+      "api_model": "셀토스 1.6 가솔린 2WD X-Line",
+      "price": 32630000,
+      "label": "기아 | 셀토스 | 가솔린 1.6 | 2WD | X-Line",
+      "match": "name+price"
+    },
+    "kia_seltos_하이브리드_시그니처": {
+      "provider": "welrix",
+      "api_model": "셀토스 1.6 하이브리드 2WD 시그니처",
+      "price": 36200000,
+      "label": "기아 | 셀토스 | 하이브리드 1.6 | 시그니처",
+      "match": "name"
+    },
+    "kia_seltos_하이브리드_트렌디": {
+      "provider": "welrix",
+      "api_model": "셀토스 1.6 하이브리드 2WD 트렌디",
+      "price": 30400000,
+      "label": "기아 | 셀토스 | 하이브리드 1.6 | 트렌디",
+      "match": "name"
+    },
+    "kia_seltos_하이브리드_프레스티지": {
+      "provider": "welrix",
+      "api_model": "셀토스 1.6 하이브리드 2WD 프레스티지",
+      "price": 33550000,
+      "label": "기아 | 셀토스 | 하이브리드 1.6 | 프레스티지",
+      "match": "name"
+    },
+    "kia_sportage_가솔린1.6터보_노블레스": {
+      "provider": "welrix",
+      "api_model": "스포티지 1.6 가솔린 터보 2WD 노블레스",
+      "price": 33220000,
+      "label": "기아 | 스포티지 | 가솔린 1.6 터보 | 2WD | 노블레스",
+      "match": "name+price"
+    },
+    "kia_sportage_가솔린1.6터보_블랙에디션": {
+      "provider": "welrix",
+      "api_model": "스포티지 1.6 가솔린 터보 2WD 블랙 에디션",
+      "price": 35870000,
+      "label": "기아 | 스포티지 | 가솔린 1.6 터보 | 2WD | 블랙 에디션",
+      "match": "name+price"
+    },
+    "kia_sportage_가솔린1.6터보_시그니처": {
+      "provider": "welrix",
+      "api_model": "스포티지 1.6 가솔린 터보 2WD 시그니처",
+      "price": 35570000,
+      "label": "기아 | 스포티지 | 가솔린 1.6 터보 | 2WD | 시그니처",
+      "match": "name+price"
+    },
+    "kia_sportage_가솔린1.6터보_시그니처xline": {
+      "provider": "welrix",
+      "api_model": "스포티지 1.6 가솔린 터보 2WD X-Line",
+      "price": 36220000,
+      "label": "기아 | 스포티지 | 가솔린 1.6 터보 | 2WD | X-Line",
+      "match": "price"
+    },
+    "kia_sportage_가솔린1.6터보_프레스티지": {
+      "provider": "welrix",
+      "api_model": "스포티지 1.6 가솔린 터보 2WD 프레스티지",
+      "price": 29440000,
+      "label": "기아 | 스포티지 | 가솔린 1.6 터보 | 2WD | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_sportage_하이브리드터보_블랙에디션": {
+      "provider": "welrix",
+      "api_model": "스포티지 1.6 하이브리드 2WD 블랙 에디션",
+      "price": 41680000,
+      "label": "기아 | 스포티지 | 하이브리드 1.6 | 2WD | 블랙 에디션",
+      "match": "name"
+    },
+    "kia_sportage_lpg2.0_노블레스": {
+      "provider": "welrix",
+      "api_model": "스포티지 2.0 LPG 노블레스",
+      "price": 33870000,
+      "label": "기아 | 스포티지 | LPG 2.0 | 노블레스",
+      "match": "name+price"
+    },
+    "kia_sportage_lpg2.0_시그니처": {
+      "provider": "welrix",
+      "api_model": "스포티지 2.0 LPG 시그니처",
+      "price": 36220000,
+      "label": "기아 | 스포티지 | LPG 2.0 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_sportage_lpg2.0_시그니처xline": {
+      "provider": "welrix",
+      "api_model": "스포티지 2.0 LPG X-Line",
+      "price": 36870000,
+      "label": "기아 | 스포티지 | LPG 2.0 | X-Line",
+      "match": "price"
+    },
+    "kia_sportage_lpg2.0_프레스티지": {
+      "provider": "welrix",
+      "api_model": "스포티지 2.0 LPG 프레스티지",
+      "price": 30090000,
+      "label": "기아 | 스포티지 | LPG 2.0 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_sorento_가솔린2.5터보_노블레스": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD 노블레스",
+      "price": 39660000,
+      "label": "기아 | 쏘렌토 | 가솔린 2.5 터보 | 5인승 2WD | 노블레스",
+      "match": "name+price"
+    },
+    "kia_sorento_가솔린2.5터보_블랙에디션": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD 블랙 에디션",
+      "price": 44410000,
+      "label": "기아 | 쏘렌토 | 가솔린 2.5 터보 | 5인승 2WD | 블랙 에디션",
+      "match": "name+price"
+    },
+    "kia_sorento_가솔린2.5터보_시그니처": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD 시그니처",
+      "price": 42470000,
+      "label": "기아 | 쏘렌토 | 가솔린 2.5 터보 | 5인승 2WD | 시그니처",
+      "match": "name+price"
+    },
+    "kia_sorento_가솔린2.5터보_프레스티지": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD 프레스티지",
+      "price": 36410000,
+      "label": "기아 | 쏘렌토 | 가솔린 2.5 터보 | 5인승 2WD | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_sorento_가솔린2.5터보_xline": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD X-Line",
+      "price": 43410000,
+      "label": "기아 | 쏘렌토 | 가솔린 2.5 터보 | 5인승 2WD | X-Line",
+      "match": "name+price"
+    },
+    "kia_sorento_하이브리드터보_노블레스전자식4wd": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 노블레스",
+      "price": 46310000,
+      "label": "기아 | 쏘렌토 | 하이브리드 1.6 | 5인승 4WD | 노블레스",
+      "match": "name+price"
+    },
+    "kia_sorento_하이브리드터보_블랙에디션2wd": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 블랙 에디션",
+      "price": 48950000,
+      "label": "기아 | 쏘렌토 | 하이브리드 1.6 | 5인승 2WD | 블랙 에디션",
+      "match": "name+price"
+    },
+    "kia_sorento_하이브리드터보_블랙에디션전자식4wd": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 블랙 에디션",
+      "price": 51270000,
+      "label": "기아 | 쏘렌토 | 하이브리드 1.6 | 5인승 4WD | 블랙 에디션",
+      "match": "name+price"
+    },
+    "kia_sorento_하이브리드터보_시그니처전자식4wd": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 시그니처",
+      "price": 49080000,
+      "label": "기아 | 쏘렌토 | 하이브리드 1.6 | 5인승 4WD | 시그니처",
+      "match": "name+price"
+    },
+    "kia_sorento_하이브리드터보_프레스티지전자식4wd": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 프레스티지",
+      "price": 42950000,
+      "label": "기아 | 쏘렌토 | 하이브리드 1.6 | 5인승 4WD | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_sorento_하이브리드터보_xline전자식4wd": {
+      "provider": "welrix",
+      "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD X-Line",
+      "price": 50020000,
+      "label": "기아 | 쏘렌토 | 하이브리드 1.6 | 5인승 4WD | X-Line",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_노블레스아웃도어7인": {
+      "provider": "welrix",
+      "api_model": "카니발 7인승 3.5 가솔린 아웃도어",
+      "price": 42830000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 7인승 | 아웃도어",
+      "match": "price"
+    },
+    "kia_carnival_가솔린3.5_노블레스7인": {
+      "provider": "welrix",
+      "api_model": "카니발 7인승 3.5 가솔린 노블레스",
+      "price": 43820000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 7인승 | 노블레스",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_노블레스9인": {
+      "provider": "welrix",
+      "api_model": "카니발 9인승 3.5 가솔린 노블레스",
+      "price": 41210000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 9인승 | 노블레스",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_블랙에디션7인": {
+      "provider": "welrix",
+      "api_model": "카니발 7인승 3.5 가솔린 블랙 에디션",
+      "price": 48510000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 7인승 | 블랙 에디션",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_블랙에디션9인": {
+      "provider": "welrix",
+      "api_model": "카니발 9인승 3.5 가솔린 블랙 에디션",
+      "price": 45920000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 9인승 | 블랙 에디션",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_시그니처7인": {
+      "provider": "welrix",
+      "api_model": "카니발 7인승 3.5 가솔린 시그니처",
+      "price": 47380000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 7인승 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_시그니처9인": {
+      "provider": "welrix",
+      "api_model": "카니발 9인승 3.5 가솔린 시그니처",
+      "price": 44560000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 9인승 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_프레스티지9인": {
+      "provider": "welrix",
+      "api_model": "카니발 9인승 3.5 가솔린 프레스티지",
+      "price": 36860000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 9인승 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_xline7인": {
+      "provider": "welrix",
+      "api_model": "카니발 7인승 3.5 가솔린 X-Line",
+      "price": 47910000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 7인승 | X-Line",
+      "match": "name+price"
+    },
+    "kia_carnival_가솔린3.5_xline9인": {
+      "provider": "welrix",
+      "api_model": "카니발 9인승 3.5 가솔린 X-Line",
+      "price": 45320000,
+      "label": "기아 | 카니발 | 가솔린 3.5 | 9인승 | X-Line",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린1.6터보_노블레스": {
+      "provider": "welrix",
+      "api_model": "K5 1.6 가솔린 터보 노블레스",
+      "price": 33680000,
+      "label": "기아 | K5 | 가솔린 1.6 터보 | 노블레스",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린1.6터보_베스트셀렉션": {
+      "provider": "welrix",
+      "api_model": "K5 1.6 가솔린 터보 베스트 셀렉션",
+      "price": 30950000,
+      "label": "기아 | K5 | 가솔린 1.6 터보 | 베스트 셀렉션",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린1.6터보_시그니처": {
+      "provider": "welrix",
+      "api_model": "K5 1.6 가솔린 터보 시그니처",
+      "price": 36370000,
+      "label": "기아 | K5 | 가솔린 1.6 터보 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린1.6터보_프레스티지": {
+      "provider": "welrix",
+      "api_model": "K5 1.6 가솔린 터보 프레스티지",
+      "price": 29730000,
+      "label": "기아 | K5 | 가솔린 1.6 터보 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린2.0_노블레스": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 가솔린 노블레스",
+      "price": 32440000,
+      "label": "기아 | K5 | 가솔린 2.0 | 노블레스",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린2.0_베스트셀렉션": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 가솔린 베스트 셀렉션",
+      "price": 30140000,
+      "label": "기아 | K5 | 가솔린 2.0 | 베스트 셀렉션",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린2.0_스마트셀렉션": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 가솔린 스마트 셀렉션",
+      "price": 27630000,
+      "label": "기아 | K5 | 가솔린 2.0 | 스마트 셀렉션",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린2.0_시그니처": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 가솔린 시그니처",
+      "price": 35580000,
+      "label": "기아 | K5 | 가솔린 2.0 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_k5_가솔린2.0_프레스티지": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 가솔린 프레스티지",
+      "price": 28920000,
+      "label": "기아 | K5 | 가솔린 2.0 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_k5_하이브리드_노블레스": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 하이브리드 노블레스",
+      "price": 37700000,
+      "label": "기아 | K5 | 하이브리드 2.0 | 노블레스",
+      "match": "name"
+    },
+    "kia_k5_하이브리드_베스트셀렉션": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 하이브리드 베스트 셀렉션",
+      "price": 35430000,
+      "label": "기아 | K5 | 하이브리드 2.0 | 베스트 셀렉션",
+      "match": "name"
+    },
+    "kia_k5_하이브리드_시그니처": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 하이브리드 시그니처",
+      "price": 40640000,
+      "label": "기아 | K5 | 하이브리드 2.0 | 시그니처",
+      "match": "name"
+    },
+    "kia_k5_하이브리드_프레스티지": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 하이브리드 프레스티지",
+      "price": 34340000,
+      "label": "기아 | K5 | 하이브리드 2.0 | 프레스티지",
+      "match": "name"
+    },
+    "kia_k5_lpg2.0_노블레스": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 Lpi 노블레스",
+      "price": 33230000,
+      "label": "기아 | K5 | LPG 2.0 | 일반 | 노블레스",
+      "match": "name+price"
+    },
+    "kia_k5_lpg2.0_시그니처": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 Lpi 시그니처",
+      "price": 35480000,
+      "label": "기아 | K5 | LPG 2.0 | 일반 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_k5_lpg2.0_프레스티지": {
+      "provider": "welrix",
+      "api_model": "K5 2.0 Lpi 프레스티지",
+      "price": 29610000,
+      "label": "기아 | K5 | LPG 2.0 | 일반 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린2.5_노블레스": {
+      "provider": "welrix",
+      "api_model": "The new K8 2.5 가솔린 2WD 노블레스",
+      "price": 41430000,
+      "label": "기아 | K8 | 가솔린 2.5 | 노블레스",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린2.5_노블레스라이트": {
+      "provider": "welrix",
+      "api_model": "The new K8 2.5 가솔린 2WD 노블레스 라이트",
+      "price": 37310000,
+      "label": "기아 | K8 | 가솔린 2.5 | 노블레스 라이트",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린2.5_베스트셀렉션": {
+      "provider": "welrix",
+      "api_model": "The new K8 2.5 가솔린 2WD 베스트 셀렉션",
+      "price": 38850000,
+      "label": "기아 | K8 | 가솔린 2.5 | 베스트 셀렉션",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린2.5_시그니처": {
+      "provider": "welrix",
+      "api_model": "The new K8 2.5 가솔린 2WD 시그니처",
+      "price": 45020000,
+      "label": "기아 | K8 | 가솔린 2.5 | 시그니처",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린2.5_시그니처블랙": {
+      "provider": "welrix",
+      "api_model": "The new K8 2.5 가솔린 2WD 시그니처 블랙",
+      "price": 46600000,
+      "label": "기아 | K8 | 가솔린 2.5 | 시그니처 블랙",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린3.5_노블레스": {
+      "provider": "welrix",
+      "api_model": "The new K8 3.5 가솔린 2WD 노블레스",
+      "price": 44300000,
+      "label": "기아 | K8 | 가솔린 3.5 | 2WD | 노블레스",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린3.5_노블레스라이트": {
+      "provider": "welrix",
+      "api_model": "The new K8 3.5 가솔린 2WD 노블레스 라이트",
+      "price": 40430000,
+      "label": "기아 | K8 | 가솔린 3.5 | 2WD | 노블레스 라이트",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린3.5_베스트셀렉션": {
+      "provider": "welrix",
+      "api_model": "The new K8 3.5 가솔린 2WD 베스트 셀렉션",
+      "price": 41720000,
+      "label": "기아 | K8 | 가솔린 3.5 | 2WD | 베스트 셀렉션",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린3.5_시그니처": {
+      "provider": "welrix",
+      "api_model": "The new K8 3.5 가솔린 2WD 시그니처",
+      "price": 47890000,
+      "label": "기아 | K8 | 가솔린 3.5 | 2WD | 시그니처",
+      "match": "name+price"
+    },
+    "kia_k8_가솔린3.5_시그니처블랙": {
+      "provider": "welrix",
+      "api_model": "The new K8 3.5 가솔린 2WD 시그니처 블랙",
+      "price": 49470000,
+      "label": "기아 | K8 | 가솔린 3.5 | 2WD | 시그니처 블랙",
+      "match": "name+price"
+    },
+    "kia_k8_하이브리드터보_노블레스": {
+      "provider": "welrix",
+      "api_model": "The new K8 1.6 하이브리드 2WD 노블레스",
+      "price": 47780000,
+      "label": "기아 | K8 | 하이브리드 1.6 | 노블레스",
+      "match": "name"
+    },
+    "kia_k8_하이브리드터보_노블레스라이트": {
+      "provider": "welrix",
+      "api_model": "The new K8 1.6 하이브리드 2WD 노블레스 라이트",
+      "price": 43670000,
+      "label": "기아 | K8 | 하이브리드 1.6 | 노블레스 라이트",
+      "match": "name"
+    },
+    "kia_k8_하이브리드터보_베스트셀렉션": {
+      "provider": "welrix",
+      "api_model": "The new K8 1.6 하이브리드 2WD 베스트 셀렉션",
+      "price": 45200000,
+      "label": "기아 | K8 | 하이브리드 1.6 | 베스트 셀렉션",
+      "match": "name"
+    },
+    "kia_k8_하이브리드터보_시그니처": {
+      "provider": "welrix",
+      "api_model": "The new K8 1.6 하이브리드 2WD 시그니처",
+      "price": 51380000,
+      "label": "기아 | K8 | 하이브리드 1.6 | 시그니처",
+      "match": "name"
+    },
+    "kia_k8_하이브리드터보_시그니처블랙": {
+      "provider": "welrix",
+      "api_model": "The new K8 1.6 하이브리드 2WD 시그니처 블랙",
+      "price": 52750000,
+      "label": "기아 | K8 | 하이브리드 1.6 | 시그니처 블랙",
+      "match": "name"
+    },
+    "kia_k8_lpg3.5_노블레스": {
+      "provider": "welrix",
+      "api_model": "The new K8 3.5 Lpi 2WD 노블레스",
+      "price": 41610000,
+      "label": "기아 | K8 | LPG 3.5 | 일반 | 노블레스",
+      "match": "name+price"
+    },
+    "kia_k8_lpg3.5_프레스티지": {
+      "provider": "welrix",
+      "api_model": "The new K8 3.5 Lpi 2WD 프레스티지",
+      "price": 37770000,
+      "label": "기아 | K8 | LPG 3.5 | 일반 | 프레스티지",
+      "match": "name+price"
+    },
+    "kia_k9_가솔린3.3터보_마스터즈": {
+      "provider": "welrix",
+      "api_model": "K9 3.3 가솔린 터보 AWD 마스터즈",
+      "price": 79940000,
+      "label": "기아 | K9 | 가솔린 3.3 터보 | 4WD | 마스터즈",
+      "match": "name+price"
+    },
+    "kia_k9_가솔린3.3터보_베스트셀렉션ⅰ": {
+      "provider": "welrix",
+      "api_model": "K9 3.3 가솔린 터보 AWD 플래티넘+베스트셀렉션1",
+      "price": 74750000,
+      "label": "기아 | K9 | 가솔린 3.3 터보 | 4WD | 플래티넘+베스트셀렉션1",
+      "match": "price"
+    },
+    "kia_k9_가솔린3.3터보_베스트셀렉션ⅱ": {
+      "provider": "welrix",
+      "api_model": "K9 3.3 가솔린 터보 AWD 마스터즈+베스트셀렉션2",
+      "price": 87030000,
+      "label": "기아 | K9 | 가솔린 3.3 터보 | 4WD | 마스터즈+베스트셀렉션2",
+      "match": "price"
+    },
+    "kia_k9_가솔린3.3터보_플래티넘": {
+      "provider": "welrix",
+      "api_model": "K9 3.3 가솔린 터보 2WD 플래티넘",
+      "price": 66880000,
+      "label": "기아 | K9 | 가솔린 3.3 터보 | 2WD | 플래티넘",
+      "match": "name+price"
+    },
+    "kia_k9_가솔린3.8_마스터즈": {
+      "provider": "welrix",
+      "api_model": "K9 3.8 가솔린 터보 AWD 마스터즈",
+      "price": 75200000,
+      "label": "기아 | K9 | 가솔린 3.8 터보 | 4WD | 마스터즈",
+      "match": "name+price"
+    },
+    "kia_k9_가솔린3.8_베스트셀렉션ⅰ": {
+      "provider": "welrix",
+      "api_model": "K9 3.8 가솔린 터보 AWD 플래티넘+베스트셀렉션1",
+      "price": 68990000,
+      "label": "기아 | K9 | 가솔린 3.8 터보 | 4WD | 플래티넘+베스트셀렉션1",
+      "match": "price"
+    },
+    "kia_k9_가솔린3.8_베스트셀렉션ⅱ": {
+      "provider": "welrix",
+      "api_model": "K9 3.8 가솔린 터보 AWD 마스터즈+베스트셀렉션2",
+      "price": 82290000,
+      "label": "기아 | K9 | 가솔린 3.8 터보 | 4WD | 마스터즈+베스트셀렉션2",
+      "match": "price"
+    },
+    "kia_k9_가솔린3.8_플래티넘": {
+      "provider": "welrix",
+      "api_model": "K9 3.8 가솔린 터보 2WD 플래티넘",
+      "price": 60340000,
+      "label": "기아 | K9 | 가솔린 3.8 터보 | 2WD | 플래티넘",
+      "match": "name+price"
+    },
+    "genesis_g70": {
+      "provider": "welrix",
+      "api_model": "G70 2.5 가솔린 터보 2WD 기본 모델",
+      "price": 45000000,
+      "label": "제네시스 | G70 | 가솔린 2.5 터보 | 2WD | 기본 모델",
+      "match": "price"
+    },
+    "genesis_g80": {
+      "provider": "welrix",
+      "api_model": "G80 2.5 가솔린 터보 2WD 기본 모델",
+      "price": 60630000,
+      "label": "제네시스 | G80 | 가솔린 2.5 터보 | 2WD | 기본 모델",
+      "match": "price"
+    },
+    "genesis_g90": {
+      "provider": "welrix",
+      "api_model": "G90 3.5 가솔린 터보 2WD (5인승)",
+      "price": 97480000,
+      "label": "제네시스 | G90 | 가솔린 3.5 터보 | 5인승 2WD | 기본형",
+      "match": "price"
+    },
+    "genesis_gv70": {
+      "provider": "welrix",
+      "api_model": "New GV70 2.5 가솔린 터보 2WD 기본모델",
+      "price": 54730000,
+      "label": "제네시스 | GV70 | 가솔린 2.5 터보 | 2WD | 기본모델",
+      "match": "price"
+    },
+    "genesis_gv80": {
+      "provider": "welrix",
+      "api_model": "GV80 2.5 가솔린 터보 2WD 19인치휠 5인승",
+      "price": 68860000,
+      "label": "제네시스 | GV80 | 가솔린 2.5 터보 | 5인승 2WD | 19인치휠",
+      "match": "price"
+    },
+    "GNJS4RBT4": {
+      "provider": "welrix",
+      "api_model": "더 뉴 그랜저 2.5 가솔린 2WD Exclusive",
+      "price": 46940000,
+      "label": "현대 | 그랜저 | 가솔린 2.5 | Exclusive",
+      "match": "price"
+    },
+    "GNJS4RCT4": {
+      "provider": "welrix",
+      "api_model": "더 뉴 그랜저 2.5 가솔린 2WD Calligraphy",
+      "price": 53100000,
+      "label": "현대 | 그랜저 | 가솔린 2.5 | Calligraphy",
+      "match": "price"
+    },
+    "GNJS4RAT4": {
+      "provider": "welrix",
+      "api_model": "더 뉴 그랜저 2.5 가솔린 2WD Premium",
+      "price": 42450000,
+      "label": "현대 | 그랜저 | 가솔린 2.5 | Premium",
+      "match": "price"
+    },
+    "GNJS4SBT4": {
+      "provider": "welrix",
+      "api_model": "더 뉴 그랜저 3.5 가솔린 2WD Exclusive",
+      "price": 49410000,
+      "label": "현대 | 그랜저 | 가솔린 3.5 | 2WD | Exclusive",
+      "match": "price"
+    },
+    "GNJS4SCT4": {
+      "provider": "welrix",
+      "api_model": "더 뉴 그랜저 3.5 가솔린 2WD Calligraphy",
+      "price": 55570000,
+      "label": "현대 | 그랜저 | 가솔린 3.5 | 2WD | Calligraphy",
+      "match": "price"
+    },
+    "GNJS4SAT4": {
+      "provider": "welrix",
+      "api_model": "더 뉴 그랜저 3.5 가솔린 2WD Premium",
+      "price": 44910000,
+      "label": "현대 | 그랜저 | 가솔린 3.5 | 2WD | Premium",
+      "match": "price"
+    },
+    "GNJS4LBT4": {
+      "provider": "welrix",
+      "api_model": "더 뉴 그랜저 3.5 LPG 2WD Exclusive",
+      "price": 48420000,
+      "label": "현대 | 그랜저 | LPG 3.5 | Exclusive",
+      "match": "price"
+    },
+    "GNJS4LAT4": {
+      "provider": "welrix",
+      "api_model": "더 뉴 그랜저 3.5 LPG 2WD Premium",
+      "price": 43930000,
+      "label": "현대 | 그랜저 | LPG 3.5 | Premium",
+      "match": "price"
+    },
+    "FNJS4RMT1": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 아반떼 2.0 가솔린 Modern",
+      "price": 23980000,
+      "label": "현대 | 아반떼 | 가솔린 2.0 | 일반 | Modern",
+      "match": "price"
+    },
+    "FNJS4RST1": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 아반떼 2.0 가솔린 Inspiration",
+      "price": 31520000,
+      "label": "현대 | 아반떼 | 가솔린 2.0 | 일반 | Inspiration",
+      "match": "price"
+    },
+    "FNJS4ZMD1": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 아반떼 1.6 하이브리드 Modern",
+      "price": 30420000,
+      "label": "현대 | 아반떼 | 하이브리드 1.6 | 일반 | Modern",
+      "match": "price"
+    },
+    "FNJS4ZSD1": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 아반떼 1.6 하이브리드 Inspiration",
+      "price": 36990000,
+      "label": "현대 | 아반떼 | 하이브리드 1.6 | 일반 | Inspiration",
+      "match": "price"
+    },
+    "QXJJ5GFC6": {
+      "provider": "welrix",
+      "api_model": "베뉴 1.6 가솔린 2WD FLUX",
+      "price": 24400000,
+      "label": "현대 | 베뉴 | 가솔린 1.6 | FLUX",
+      "match": "name+price"
+    },
+    "QXJJ5GDC6": {
+      "provider": "welrix",
+      "api_model": "베뉴 1.6 가솔린 2WD PREMIUM",
+      "price": 22920000,
+      "label": "현대 | 베뉴 | 가솔린 1.6 | PREMIUM",
+      "match": "name+price"
+    },
+    "QXJJ5GAC6": {
+      "provider": "welrix",
+      "api_model": "베뉴 1.6 가솔린 2WD SMART",
+      "price": 19940000,
+      "label": "현대 | 베뉴 | 가솔린 1.6 | SMART",
+      "match": "name+price"
+    },
+    "MXJJ5TCA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 익스클루시브",
+      "price": 38800000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 5인승 4WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ5TCT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 익스클루시브",
+      "price": 36570000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 5인승 2WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ6TCA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 익스클루시브",
+      "price": 39840000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 6인승 4WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ6TCT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 익스클루시브",
+      "price": 37610000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 6인승 2WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ7TCA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 익스클루시브",
+      "price": 39490000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 7인승 4WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ7TCT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 익스클루시브",
+      "price": 37260000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 7인승 2WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ5THA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 캘리그래피",
+      "price": 47700000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 5인승 4WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ5THT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 캘리그래피",
+      "price": 45470000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 5인승 2WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ6THA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 캘리그래피",
+      "price": 48740000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 6인승 4WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ6THT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 캘리그래피",
+      "price": 46510000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 6인승 2WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ7THA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 캘리그래피",
+      "price": 48390000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 7인승 4WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ7THT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 캘리그래피",
+      "price": 46160000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 7인승 2WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ5TFA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 프레스티지",
+      "price": 41670000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 5인승 4WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ5TFT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 프레스티지",
+      "price": 39440000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 5인승 2WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ6TFA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 프레스티지",
+      "price": 42710000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 6인승 4WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ6TFT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 프레스티지",
+      "price": 40480000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 6인승 2WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ7TFA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 프레스티지",
+      "price": 42360000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 7인승 4WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ7TFT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 프레스티지",
+      "price": 40130000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 7인승 2WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ5TMA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD H-Pick",
+      "price": 44320000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 5인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "MXJJ5TMT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD H-Pick",
+      "price": 42090000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 5인승 2WD | H-Pick",
+      "match": "name+price"
+    },
+    "MXJJ6TMA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD H-Pick",
+      "price": 45360000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 6인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "MXJJ6TMT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD H-Pick",
+      "price": 43130000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 6인승 2WD | H-Pick",
+      "match": "name+price"
+    },
+    "MXJJ7TMA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD H-Pick",
+      "price": 45010000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 7인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "MXJJ7TMT3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD H-Pick",
+      "price": 42780000,
+      "label": "현대 | 싼타페 | 가솔린 2.5 터보 | 7인승 2WD | H-Pick",
+      "match": "name+price"
+    },
+    "MXJJ5ZCA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+      "price": 43450000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 5인승 4WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ6ZCA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+      "price": 44490000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 6인승 4WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ7ZCA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+      "price": 44140000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 7인승 4WD | 익스클루시브",
+      "match": "name+price"
+    },
+    "MXJJ5ZHA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+      "price": 52000000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 5인승 4WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ6ZHA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+      "price": 53040000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 6인승 4WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ7ZHA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+      "price": 52690000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 7인승 4WD | 캘리그래피",
+      "match": "name+price"
+    },
+    "MXJJ5ZFA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+      "price": 46320000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 5인승 4WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ6ZFA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+      "price": 47360000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 6인승 4WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ7ZFA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+      "price": 47010000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 7인승 4WD | 프레스티지",
+      "match": "name+price"
+    },
+    "MXJJ5ZMA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+      "price": 48960000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 5인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "MXJJ6ZMA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+      "price": 50000000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 6인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "MXJJ7ZMA3": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+      "price": 49650000,
+      "label": "현대 | 싼타페 | 하이브리드 1.6 | 7인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "DNJS4RCT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 1.6 터보 가솔린 Exclusive",
+      "price": 33730000,
+      "label": "현대 | 쏘나타 | 가솔린 1.6 터보 | Exclusive",
+      "match": "name+price"
+    },
+    "DNJS4RET7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 1.6 터보 가솔린 Inspiration",
+      "price": 36660000,
+      "label": "현대 | 쏘나타 | 가솔린 1.6 터보 | Inspiration",
+      "match": "name+price"
+    },
+    "DNJS4RBT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 1.6 터보 가솔린 Premium",
+      "price": 29330000,
+      "label": "현대 | 쏘나타 | 가솔린 1.6 터보 | Premium",
+      "match": "name+price"
+    },
+    "DNJS4RUT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 1.6 터보 가솔린 S",
+      "price": 30650000,
+      "label": "현대 | 쏘나타 | 가솔린 1.6 터보 | S",
+      "match": "name+price"
+    },
+    "DNJS4SCT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 가솔린 Exclusive",
+      "price": 33060000,
+      "label": "현대 | 쏘나타 | 가솔린 2.0 | Exclusive",
+      "match": "name+price"
+    },
+    "DNJS4SET7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 가솔린 Inspiration",
+      "price": 36000000,
+      "label": "현대 | 쏘나타 | 가솔린 2.0 | Inspiration",
+      "match": "name+price"
+    },
+    "DNJS4SBT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 가솔린 Premium",
+      "price": 28660000,
+      "label": "현대 | 쏘나타 | 가솔린 2.0 | Premium",
+      "match": "name+price"
+    },
+    "DNJS4SUT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 가솔린 S",
+      "price": 29980000,
+      "label": "현대 | 쏘나타 | 가솔린 2.0 | S",
+      "match": "name+price"
+    },
+    "DNJS4ZCT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 하이브리드 Exclusive",
+      "price": 38270000,
+      "label": "현대 | 쏘나타 | 하이브리드 2.0 | Exclusive",
+      "match": "name"
+    },
+    "DNJS4ZET7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 하이브리드 Inspiration",
+      "price": 41370000,
+      "label": "현대 | 쏘나타 | 하이브리드 2.0 | Inspiration",
+      "match": "name"
+    },
+    "DNJS4ZBT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 하이브리드 Premium",
+      "price": 34180000,
+      "label": "현대 | 쏘나타 | 하이브리드 2.0 | Premium",
+      "match": "name"
+    },
+    "DNJS4ZUT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 하이브리드 S",
+      "price": 35200000,
+      "label": "현대 | 쏘나타 | 하이브리드 2.0 | S",
+      "match": "name"
+    },
+    "DNJS4LCT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 LPG Exclusive",
+      "price": 33560000,
+      "label": "현대 | 쏘나타 | LPG 2.0 | 일반 | Exclusive",
+      "match": "name+price"
+    },
+    "DNJS4LET7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 LPG Inspiration",
+      "price": 36250000,
+      "label": "현대 | 쏘나타 | LPG 2.0 | 일반 | Inspiration",
+      "match": "name+price"
+    },
+    "DNJS4LBT7": {
+      "provider": "welrix",
+      "api_model": "쏘나타 디 엣지 2.0 LPG Premium",
+      "price": 29510000,
+      "label": "현대 | 쏘나타 | LPG 2.0 | 일반 | Premium",
+      "match": "name+price"
+    },
+    "SXJJ5THD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 가솔린 터보 2WD H-Pick",
+      "price": 26850000,
+      "label": "현대 | 코나 | 가솔린 1.6 터보 | 2WD | H-Pick",
+      "match": "name+price"
+    },
+    "SXJJ5TCD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 가솔린 터보 2WD Inspiration",
+      "price": 31460000,
+      "label": "현대 | 코나 | 가솔린 1.6 터보 | 2WD | Inspiration",
+      "match": "name+price"
+    },
+    "SXJJ5TCE4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 가솔린 터보 4WD Inspiration",
+      "price": 33490000,
+      "label": "현대 | 코나 | 가솔린 1.6 터보 | 4WD | Inspiration",
+      "match": "name+price"
+    },
+    "SXJJ5TAD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 가솔린 터보 2WD Modern",
+      "price": 24630000,
+      "label": "현대 | 코나 | 가솔린 1.6 터보 | 2WD | Modern",
+      "match": "name+price"
+    },
+    "SXJJ5TBD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 가솔린 터보 2WD Premium",
+      "price": 29150000,
+      "label": "현대 | 코나 | 가솔린 1.6 터보 | 2WD | Premium",
+      "match": "name+price"
+    },
+    "SXJJ5TBE4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 가솔린 터보 4WD Premium",
+      "price": 31180000,
+      "label": "현대 | 코나 | 가솔린 1.6 터보 | 4WD | Premium",
+      "match": "name+price"
+    },
+    "SXJJ5KHD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 2.0 가솔린 터보 2WD H-Pick",
+      "price": 26250000,
+      "label": "현대 | 코나 | 가솔린 2.0 터보 | H-Pick",
+      "match": "name+price"
+    },
+    "SXJJ5KAD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 2.0 가솔린 터보 2WD Modern",
+      "price": 23930000,
+      "label": "현대 | 코나 | 가솔린 2.0 터보 | Modern",
+      "match": "name+price"
+    },
+    "SXJJ5ZHD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 하이브리드 2WD H-Pick",
+      "price": 32200000,
+      "label": "현대 | 코나 | 하이브리드 1.6 | H-Pick",
+      "match": "name"
+    },
+    "SXJJ5ZCD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 하이브리드 2WD Inspiration",
+      "price": 36630000,
+      "label": "현대 | 코나 | 하이브리드 1.6 | Inspiration",
+      "match": "name"
+    },
+    "SXJJ5ZAD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 하이브리드 2WD Modern",
+      "price": 30380000,
+      "label": "현대 | 코나 | 하이브리드 1.6 | Modern",
+      "match": "name"
+    },
+    "SXJJ5ZBD4": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 코나 1.6 하이브리드 2WD Premium",
+      "price": 34670000,
+      "label": "현대 | 코나 | 하이브리드 1.6 | Premium",
+      "match": "name"
+    },
+    "NXJJ5THD5": {
+      "provider": "welrix",
+      "api_model": "더 뉴 투싼 1.6 가솔린 터보 2WD H-Pick",
+      "price": 32010000,
+      "label": "현대 | 투싼 | 가솔린 1.6 터보 | 2WD | H-Pick",
+      "match": "name+price"
+    },
+    "NXJJ5THH5": {
+      "provider": "welrix",
+      "api_model": "더 뉴 투싼 1.6 가솔린 터보 4WD H-Pick",
+      "price": 33990000,
+      "label": "현대 | 투싼 | 가솔린 1.6 터보 | 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "NXJJ5TPD5": {
+      "provider": "welrix",
+      "api_model": "더 뉴 투싼 1.6 가솔린 터보 2WD Inspiration",
+      "price": 34560000,
+      "label": "현대 | 투싼 | 가솔린 1.6 터보 | 2WD | Inspiration",
+      "match": "name+price"
+    },
+    "NXJJ5TPH5": {
+      "provider": "welrix",
+      "api_model": "더 뉴 투싼 1.6 가솔린 터보 4WD Inspiration",
+      "price": 36540000,
+      "label": "현대 | 투싼 | 가솔린 1.6 터보 | 4WD | Inspiration",
+      "match": "name+price"
+    },
+    "NXJJ5TDD5": {
+      "provider": "welrix",
+      "api_model": "더 뉴 투싼 1.6 가솔린 터보 2WD Modern",
+      "price": 28440000,
+      "label": "현대 | 투싼 | 가솔린 1.6 터보 | 2WD | Modern",
+      "match": "name+price"
+    },
+    "NXJJ5TDH5": {
+      "provider": "welrix",
+      "api_model": "더 뉴 투싼 1.6 가솔린 터보 4WD Modern",
+      "price": 30420000,
+      "label": "현대 | 투싼 | 가솔린 1.6 터보 | 4WD | Modern",
+      "match": "name+price"
+    },
+    "NXJJ5TCD5": {
+      "provider": "welrix",
+      "api_model": "더 뉴 투싼 1.6 가솔린 터보 2WD Premium",
+      "price": 31120000,
+      "label": "현대 | 투싼 | 가솔린 1.6 터보 | 2WD | Premium",
+      "match": "name+price"
+    },
+    "NXJJ5TCH5": {
+      "provider": "welrix",
+      "api_model": "더 뉴 투싼 1.6 가솔린 터보 4WD Premium",
+      "price": 33100000,
+      "label": "현대 | 투싼 | 가솔린 1.6 터보 | 4WD | Premium",
+      "match": "name+price"
+    },
+    "FXJJ7TAA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Exclusive",
+      "price": 48500000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 7인승 4WD | Exclusive",
+      "match": "price"
+    },
+    "FXJJ7TAT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Exclusive",
+      "price": 46100000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 7인승 2WD | Exclusive",
+      "match": "price"
+    },
+    "FXJJ9TAA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Exclusive",
+      "price": 47060000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 9인승 4WD | Exclusive",
+      "match": "price"
+    },
+    "FXJJ9TAT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Exclusive",
+      "price": 44780000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 9인승 2WD | Exclusive",
+      "match": "price"
+    },
+    "FXJJ7TCA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Calligraphy",
+      "price": 60470000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 7인승 4WD | Calligraphy",
+      "match": "price"
+    },
+    "FXJJ7TCT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Calligraphy",
+      "price": 58070000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 7인승 2WD | Calligraphy",
+      "match": "price"
+    },
+    "FXJJ9TCA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Calligraphy",
+      "price": 58340000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 9인승 4WD | Calligraphy",
+      "match": "price"
+    },
+    "FXJJ9TCT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Calligraphy",
+      "price": 56060000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 9인승 2WD | Calligraphy",
+      "match": "price"
+    },
+    "FXJJ7THA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD H-Pick",
+      "price": 54430000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 7인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "FXJJ7THT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD H-Pick",
+      "price": 52030000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 7인승 2WD | H-Pick",
+      "match": "name+price"
+    },
+    "FXJJ9THA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD H-Pick",
+      "price": 52680000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 9인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "FXJJ9THT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD H-Pick",
+      "price": 50400000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 9인승 2WD | H-Pick",
+      "match": "name+price"
+    },
+    "FXJJ7TDA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD XRT",
+      "price": 56220000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 7인승 4WD | XRT",
+      "match": "name+price"
+    },
+    "FXJJ7TDT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD XRT",
+      "price": 53820000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 7인승 2WD | XRT",
+      "match": "name+price"
+    },
+    "FXJJ9TDA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD XRT",
+      "price": 54390000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 9인승 4WD | XRT",
+      "match": "name+price"
+    },
+    "FXJJ9TDT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD XRT",
+      "price": 52110000,
+      "label": "현대 | 팰리세이드 | 가솔린 2.5 터보 | 9인승 2WD | XRT",
+      "match": "name+price"
+    },
+    "FXJJ7ZAA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Exclusive",
+      "price": 54800000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 7인승 4WD | Exclusive",
+      "match": "price"
+    },
+    "FXJJ9ZAA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Exclusive",
+      "price": 53050000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 9인승 4WD | Exclusive",
+      "match": "price"
+    },
+    "FXJJ9ZAT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Exclusive",
+      "price": 50770000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 9인승 2WD | Exclusive",
+      "match": "price"
+    },
+    "FXJJ7ZCA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Calligraphy",
+      "price": 66760000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 7인승 4WD | Calligraphy",
+      "match": "price"
+    },
+    "FXJJ7ZCT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Calligraphy",
+      "price": 64360000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 7인승 2WD | Calligraphy",
+      "match": "price"
+    },
+    "FXJJ9ZCA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Calligraphy",
+      "price": 64340000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 9인승 4WD | Calligraphy",
+      "match": "price"
+    },
+    "FXJJ9ZCT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Calligraphy",
+      "price": 62060000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 9인승 2WD | Calligraphy",
+      "match": "price"
+    },
+    "FXJJ7ZHA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick",
+      "price": 60720000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 7인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "FXJJ7ZHT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD H-Pick",
+      "price": 58320000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 7인승 2WD | H-Pick",
+      "match": "name+price"
+    },
+    "FXJJ9ZHA2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD H-Pick",
+      "price": 58680000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 9인승 4WD | H-Pick",
+      "match": "name+price"
+    },
+    "FXJJ9ZHT2": {
+      "provider": "welrix",
+      "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD H-Pick",
+      "price": 56400000,
+      "label": "현대 | 팰리세이드 | 하이브리드 2.5 터보 | 9인승 2WD | H-Pick",
+      "match": "name+price"
+    }
+  },
+  "unresolved": [
+    {
+      "id": "kia_morning_가솔린1.0_gtline",
+      "maker": "기아",
+      "model": "모닝",
+      "fuel": "가솔린 1.0",
+      "trim": "GT-Line",
+      "price": 19110000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_seltos_하이브리드_xline",
+      "maker": "기아",
+      "model": "셀토스",
+      "fuel": "하이브리드",
+      "trim": "X-Line",
+      "price": 36360000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_sportage_하이브리드터보_노블레스",
+      "maker": "기아",
+      "model": "스포티지",
+      "fuel": "하이브리드 터보",
+      "trim": "노블레스",
+      "price": 38030000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "스포티지 | 하이브리드 1.6 | 2WD | 노블레스",
+          "price": 39030000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "스포티지 | 하이브리드 1.6 | 4WD | 노블레스",
+          "price": 41260000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_sportage_하이브리드터보_시그니처",
+      "maker": "기아",
+      "model": "스포티지",
+      "fuel": "하이브리드 터보",
+      "trim": "시그니처",
+      "price": 40380000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "스포티지 | 하이브리드 1.6 | 2WD | 시그니처",
+          "price": 41380000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "스포티지 | 하이브리드 1.6 | 4WD | 시그니처",
+          "price": 43610000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_sportage_하이브리드터보_시그니처xline",
+      "maker": "기아",
+      "model": "스포티지",
+      "fuel": "하이브리드 터보",
+      "trim": "시그니처 X-Line",
+      "price": 41030000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_sportage_하이브리드터보_프레스티지",
+      "maker": "기아",
+      "model": "스포티지",
+      "fuel": "하이브리드 터보",
+      "trim": "프레스티지",
+      "price": 34360000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "스포티지 | 하이브리드 1.6 | 2WD | 프레스티지",
+          "price": 35360000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "스포티지 | 하이브리드 1.6 | 4WD | 프레스티지",
+          "price": 37590000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_sorento_하이브리드터보_노블레스2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "fuel": "하이브리드 터보",
+      "trim": "노블레스(2WD)",
+      "price": 42990000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 5인승 2WD | 노블레스",
+          "price": 43990000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 5인승 4WD | 노블레스",
+          "price": 46310000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 6인승 2WD | 노블레스",
+          "price": 44830000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 6인승 4WD | 노블레스",
+          "price": 47150000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 7인승 2WD | 노블레스",
+          "price": 44680000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 7인승 4WD | 노블레스",
+          "price": 47000000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_sorento_하이브리드터보_시그니처2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "fuel": "하이브리드 터보",
+      "trim": "시그니처(2WD)",
+      "price": 45760000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 5인승 2WD | 시그니처",
+          "price": 46760000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 5인승 4WD | 시그니처",
+          "price": 49080000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 6인승 2WD | 시그니처",
+          "price": 47600000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 6인승 4WD | 시그니처",
+          "price": 49920000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 7인승 2WD | 시그니처",
+          "price": 47450000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 7인승 4WD | 시그니처",
+          "price": 49770000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_sorento_하이브리드터보_프레스티지2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "fuel": "하이브리드 터보",
+      "trim": "프레스티지(2WD)",
+      "price": 39630000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 5인승 2WD | 프레스티지",
+          "price": 40630000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 5인승 4WD | 프레스티지",
+          "price": 42950000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 6인승 2WD | 프레스티지",
+          "price": 41470000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 6인승 4WD | 프레스티지",
+          "price": 43790000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 7인승 2WD | 프레스티지",
+          "price": 41320000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 7인승 4WD | 프레스티지",
+          "price": 43640000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_sorento_하이브리드터보_xline2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "fuel": "하이브리드 터보",
+      "trim": "X-Line(2WD)",
+      "price": 46700000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 5인승 2WD | X-Line",
+          "price": 47700000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 5인승 4WD | X-Line",
+          "price": 50020000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 6인승 2WD | X-Line",
+          "price": 48540000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 6인승 4WD | X-Line",
+          "price": 50860000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 7인승 2WD | X-Line",
+          "price": 48390000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "쏘렌토 | 하이브리드 1.6 | 7인승 4WD | X-Line",
+          "price": 50710000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_carnival_가솔린3.5_노블레스9인승하이루프",
+      "maker": "기아",
+      "model": "카니발",
+      "fuel": "가솔린 3.5",
+      "trim": "노블레스(9인승 하이루프)",
+      "price": 52110000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "카니발 | 가솔린 3.5 | 7인승 | 노블레스",
+          "price": 43820000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "카니발 | 가솔린 3.5 | 9인승 | 노블레스",
+          "price": 41210000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_carnival_가솔린3.5_시그니처9인승하이루프",
+      "maker": "기아",
+      "model": "카니발",
+      "fuel": "가솔린 3.5",
+      "trim": "시그니처(9인승 하이루프)",
+      "price": 55660000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "카니발 | 가솔린 3.5 | 7인승 | 시그니처",
+          "price": 47380000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "카니발 | 가솔린 3.5 | 9인승 | 시그니처",
+          "price": 44560000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "kia_ev3_전기_어스롱레인지",
+      "maker": "기아",
+      "model": "EV3",
+      "fuel": "전기",
+      "trim": "어스 롱레인지",
+      "price": 48100000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev3_전기_어스스탠다드",
+      "maker": "기아",
+      "model": "EV3",
+      "fuel": "전기",
+      "trim": "어스 스탠다드",
+      "price": 43900000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev3_전기_에어롱레인지",
+      "maker": "기아",
+      "model": "EV3",
+      "fuel": "전기",
+      "trim": "에어 롱레인지",
+      "price": 44150000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev3_전기_에어스탠다드",
+      "maker": "기아",
+      "model": "EV3",
+      "fuel": "전기",
+      "trim": "에어 스탠다드",
+      "price": 39950000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev3_전기_gtline롱레인지",
+      "maker": "기아",
+      "model": "EV3",
+      "fuel": "전기",
+      "trim": "GT-Line 롱레인지",
+      "price": 48950000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev3_전기_gtline스탠다드",
+      "maker": "기아",
+      "model": "EV3",
+      "fuel": "전기",
+      "trim": "GT-Line 스탠다드",
+      "price": 44750000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev4_전기_어스롱레인지",
+      "maker": "기아",
+      "model": "EV4",
+      "fuel": "전기",
+      "trim": "어스 롱레인지",
+      "price": 49210000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev4_전기_어스스탠다드",
+      "maker": "기아",
+      "model": "EV4",
+      "fuel": "전기",
+      "trim": "어스 스탠다드",
+      "price": 45010000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev4_전기_에어롱레인지",
+      "maker": "기아",
+      "model": "EV4",
+      "fuel": "전기",
+      "trim": "에어 롱레인지",
+      "price": 44620000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev4_전기_에어스탠다드",
+      "maker": "기아",
+      "model": "EV4",
+      "fuel": "전기",
+      "trim": "에어 스탠다드",
+      "price": 40420000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev4_전기_gtline롱레인지",
+      "maker": "기아",
+      "model": "EV4",
+      "fuel": "전기",
+      "trim": "GT-Line 롱레인지",
+      "price": 50310000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev4_전기_gtline스탠다드",
+      "maker": "기아",
+      "model": "EV4",
+      "fuel": "전기",
+      "trim": "GT-Line 스탠다드",
+      "price": 46110000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev5_전기_어스롱레인지",
+      "maker": "기아",
+      "model": "EV5",
+      "fuel": "전기",
+      "trim": "어스 롱레인지",
+      "price": 49500000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev5_전기_어스스탠다드",
+      "maker": "기아",
+      "model": "EV5",
+      "fuel": "전기",
+      "trim": "어스 스탠다드",
+      "price": 45300000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev5_전기_에어롱레인지",
+      "maker": "기아",
+      "model": "EV5",
+      "fuel": "전기",
+      "trim": "에어 롱레인지",
+      "price": 45750000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev5_전기_에어스탠다드",
+      "maker": "기아",
+      "model": "EV5",
+      "fuel": "전기",
+      "trim": "에어 스탠다드",
+      "price": 41550000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev5_전기_gtline롱레인지",
+      "maker": "기아",
+      "model": "EV5",
+      "fuel": "전기",
+      "trim": "GT-Line 롱레인지",
+      "price": 50600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev5_전기_gtline스탠다드",
+      "maker": "기아",
+      "model": "EV5",
+      "fuel": "전기",
+      "trim": "GT-Line 스탠다드",
+      "price": 46400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev6_전기_라이트롱레인지",
+      "maker": "기아",
+      "model": "EV6",
+      "fuel": "전기",
+      "trim": "라이트 롱레인지",
+      "price": 47600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev6_전기_라이트스탠다드",
+      "maker": "기아",
+      "model": "EV6",
+      "fuel": "전기",
+      "trim": "라이트 스탠다드",
+      "price": 43600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev6_전기_어스롱레인지",
+      "maker": "기아",
+      "model": "EV6",
+      "fuel": "전기",
+      "trim": "어스 롱레인지",
+      "price": 56600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev6_전기_어스스탠다드",
+      "maker": "기아",
+      "model": "EV6",
+      "fuel": "전기",
+      "trim": "어스 스탠다드",
+      "price": 52600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev6_전기_에어롱레인지",
+      "maker": "기아",
+      "model": "EV6",
+      "fuel": "전기",
+      "trim": "에어 롱레인지",
+      "price": 52600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev6_전기_에어스탠다드",
+      "maker": "기아",
+      "model": "EV6",
+      "fuel": "전기",
+      "trim": "에어 스탠다드",
+      "price": 48600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev6_전기_gtline롱레인지",
+      "maker": "기아",
+      "model": "EV6",
+      "fuel": "전기",
+      "trim": "GT-Line 롱레인지",
+      "price": 57200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_라이트롱레인지2wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "라이트 롱레인지(2WD)",
+      "price": 66420000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_라이트롱레인지4wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "라이트 롱레인지(4WD)",
+      "price": 69900000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_라이트스탠다드2wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "라이트 스탠다드(2WD)",
+      "price": 61970000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_어스롱레인지2wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "어스 롱레인지(2WD)",
+      "price": 73360000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_어스롱레인지4wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "어스 롱레인지(4WD)",
+      "price": 76890000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_어스스탠다드2wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "어스 스탠다드(2WD)",
+      "price": 68910000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_에어롱레인지2wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "에어 롱레인지(2WD)",
+      "price": 68570000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_에어롱레인지4wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "에어 롱레인지(4WD)",
+      "price": 72050000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_에어스탠다드2wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "에어 스탠다드(2WD)",
+      "price": 64120000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kia_ev9_전기_gtline롱레인지4wd",
+      "maker": "기아",
+      "model": "EV9",
+      "fuel": "전기",
+      "trim": "GT-Line 롱레인지(4WD)",
+      "price": 79170000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_그랑 콜레오스_가솔린 2.0 터보_esprit Alpine",
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "fuel": "가솔린",
+      "trim": "esprit Alpine",
+      "price": 41850000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_그랑 콜레오스_가솔린 2.0 터보_iconic",
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "fuel": "가솔린",
+      "trim": "iconic",
+      "price": 38910000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_그랑 콜레오스_가솔린 2.0 터보_iconic 4WD",
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "fuel": "가솔린",
+      "trim": "iconic 4WD",
+      "price": 41600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_그랑 콜레오스_가솔린 2.0 터보_techno",
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "fuel": "가솔린",
+      "trim": "techno",
+      "price": 35810000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_그랑 콜레오스_하이브리드 E-Tech_esprit Alpine",
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "fuel": "하이브리드",
+      "trim": "esprit Alpine",
+      "price": 45049000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_그랑 콜레오스_하이브리드 E-Tech_esprit Alpine étoile",
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "fuel": "하이브리드",
+      "trim": "esprit Alpine étoile",
+      "price": 45749000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_그랑 콜레오스_하이브리드 E-Tech_iconic",
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "fuel": "하이브리드",
+      "trim": "iconic",
+      "price": 42249000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_그랑 콜레오스_하이브리드 E-Tech_techno",
+      "maker": "르노",
+      "model": "그랑 콜레오스",
+      "fuel": "하이브리드",
+      "trim": "techno",
+      "price": 39059000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_아르카나_1.6 GTe_iconic",
+      "maker": "르노",
+      "model": "아르카나",
+      "fuel": "가솔린",
+      "trim": "iconic",
+      "price": 26770000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_아르카나_하이브리드 E-Tech_iconic",
+      "maker": "르노",
+      "model": "아르카나",
+      "fuel": "하이브리드",
+      "trim": "iconic",
+      "price": 33609000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_필랑트_하이브리드 E-Tech_esprit Alpine",
+      "maker": "르노",
+      "model": "필랑트",
+      "fuel": "하이브리드",
+      "trim": "esprit Alpine",
+      "price": 50439000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_필랑트_하이브리드 E-Tech_iconic",
+      "maker": "르노",
+      "model": "필랑트",
+      "fuel": "하이브리드",
+      "trim": "iconic",
+      "price": 47639000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "renault_필랑트_하이브리드 E-Tech_techno",
+      "maker": "르노",
+      "model": "필랑트",
+      "fuel": "하이브리드",
+      "trim": "techno",
+      "price": 43949000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "chevy_트랙스 크로스오버_ACTIV",
+      "maker": "쉐보레",
+      "model": "트랙스 크로스오버",
+      "fuel": "가솔린",
+      "trim": "ACTIV",
+      "price": 28330000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "chevy_트랙스 크로스오버_LS",
+      "maker": "쉐보레",
+      "model": "트랙스 크로스오버",
+      "fuel": "가솔린",
+      "trim": "LS",
+      "price": 21860000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "chevy_트랙스 크로스오버_Redline",
+      "maker": "쉐보레",
+      "model": "트랙스 크로스오버",
+      "fuel": "가솔린",
+      "trim": "Redline",
+      "price": 26020000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "chevy_트랙스 크로스오버_RS",
+      "maker": "쉐보레",
+      "model": "트랙스 크로스오버",
+      "fuel": "가솔린",
+      "trim": "RS",
+      "price": 28920000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "chevy_트레일블레이저_Premier",
+      "maker": "쉐보레",
+      "model": "트레일블레이저",
+      "fuel": "가솔린",
+      "trim": "Premier",
+      "price": 27960000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "chevy_트레일블레이저_RS",
+      "maker": "쉐보레",
+      "model": "트레일블레이저",
+      "fuel": "가솔린",
+      "trim": "RS",
+      "price": 30960000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "genesis_g80-ev",
+      "maker": "제네시스",
+      "model": "G80-EV",
+      "fuel": "전기",
+      "price": 84790000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "genesis_gv60",
+      "maker": "제네시스",
+      "model": "GV60",
+      "fuel": "가솔린",
+      "price": 64900000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "genesis_gv70-ev",
+      "maker": "제네시스",
+      "model": "GV70-EV",
+      "fuel": "전기",
+      "price": 75800000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "HEJJ5HDT2",
+      "maker": "현대",
+      "model": "넥쏘",
+      "fuel": "수소",
+      "trim": "모던",
+      "price": 76470532,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "HEJJ5HAT2",
+      "maker": "현대",
+      "model": "넥쏘",
+      "fuel": "수소",
+      "trim": "익스클루시브",
+      "price": 79369771,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "HEJJ5HCT2",
+      "maker": "현대",
+      "model": "넥쏘",
+      "fuel": "수소",
+      "trim": "프레스티지",
+      "price": 83789923,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "GNJS4ZBT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "fuel": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "price": 52819000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "GNJS4ZCT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "fuel": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "price": 58989000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "GNJS4ZAT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "fuel": "하이브리드 1.6 터보",
+      "trim": "프리미엄",
+      "price": 48328999,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "GNTS4LVT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저 택시",
+      "fuel": "LPG 3.5",
+      "trim": "고급형",
+      "price": 42170000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC3VMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "전기",
+      "trim": "Modern",
+      "price": 57920000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC5VMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "전기",
+      "trim": "Modern",
+      "price": 58700000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJTBVMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "전기",
+      "trim": "Modern",
+      "price": 60290000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC2ZMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "하이브리드",
+      "trim": "Modern",
+      "price": 37450000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC5ZMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "하이브리드",
+      "trim": "Modern",
+      "price": 38200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJT9ZMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "하이브리드",
+      "trim": "Modern",
+      "price": 39990000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJTBZMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "하이브리드",
+      "trim": "Modern",
+      "price": 39990000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJT9ZST4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "하이브리드",
+      "trim": "Smart",
+      "price": 38760000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJTBZST4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "하이브리드",
+      "trim": "Smart",
+      "price": 38700000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC2ZCT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "하이브리드",
+      "trim": "Smart(센터콘솔)",
+      "price": 36250000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC5ZCT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "하이브리드",
+      "trim": "Smart(센터콘솔)",
+      "price": 36990000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC3LMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "LPG 3.5",
+      "trim": "Modern",
+      "price": 34120000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC5LMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "LPG 3.5",
+      "trim": "Modern",
+      "price": 34900000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJTBLMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "LPG 3.5",
+      "trim": "Modern",
+      "price": 36590000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC3LST4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "LPG 3.5",
+      "trim": "Smart",
+      "price": 32590000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJTBLST4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "LPG 3.5",
+      "trim": "Smart",
+      "price": 35020000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJC5LCT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아",
+      "fuel": "LPG 3.5",
+      "trim": "Smart(센터콘솔)",
+      "price": 33460000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJL7VET4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지",
+      "fuel": "전기",
+      "trim": "Inspiration",
+      "price": 67309885,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJL7VPT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지",
+      "fuel": "전기",
+      "trim": "Prestige",
+      "price": 63593156,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJLBVPT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지",
+      "fuel": "전기",
+      "trim": "Prestige",
+      "price": 65490000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJL7ZET4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지",
+      "fuel": "하이브리드",
+      "trim": "Inspiration",
+      "price": 50920000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJL9ZET4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지",
+      "fuel": "하이브리드",
+      "trim": "Inspiration",
+      "price": 48760000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJL9ZPT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지",
+      "fuel": "하이브리드",
+      "trim": "Prestige",
+      "price": 44990000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJL7LET4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지",
+      "fuel": "LPG 3.5",
+      "trim": "Inspiration",
+      "price": 47720000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USTL7ZBT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 모빌리티",
+      "fuel": "하이브리드",
+      "trim": "모빌리티",
+      "price": 47870000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USTL9ZBT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 모빌리티",
+      "fuel": "하이브리드",
+      "trim": "모빌리티",
+      "price": 47060000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USTL7LBT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 라운지 모빌리티",
+      "fuel": "LPG 3.5",
+      "trim": "모빌리티",
+      "price": 44670000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJV6VET4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 리무진",
+      "fuel": "전기",
+      "trim": "Inspiration",
+      "price": 84820000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJV6ZET4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 리무진",
+      "fuel": "하이브리드",
+      "trim": "Inspiration",
+      "price": 70060000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USJV9ZET4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 리무진",
+      "fuel": "하이브리드",
+      "trim": "Inspiration",
+      "price": 59800000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USCTBZMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 킨더",
+      "fuel": "하이브리드",
+      "trim": "Modern",
+      "price": 45060000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USCTFZMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 킨더",
+      "fuel": "하이브리드",
+      "trim": "Modern",
+      "price": 47930000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USCTBLMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 킨더",
+      "fuel": "LPG 3.5",
+      "trim": "Modern",
+      "price": 41660000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "USCTFLMT4",
+      "maker": "현대",
+      "model": "더 뉴 스타리아 킨더",
+      "fuel": "LPG 3.5",
+      "trim": "Modern",
+      "price": 44530000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VLA3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "E-LITE(롱레인지) 18인치",
+      "price": 52984791,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VLD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "E-LITE(롱레인지) 18인치",
+      "price": 50636881,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VSA3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "E-LITE(롱레인지) 20인치",
+      "price": 53545627,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VSD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "E-LITE(롱레인지) 20인치",
+      "price": 51197719,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VHD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "E-Value +(스탠다드) 18인치",
+      "price": 48564639,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VBA3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Exclusive(롱레인지) 18인치",
+      "price": 57499999,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VBD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Exclusive(롱레인지) 18인치",
+      "price": 55152091,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VCA3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Exclusive(롱레인지) 20인치",
+      "price": 58060836,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VCD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Exclusive(롱레인지) 20인치",
+      "price": 55712927,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VAD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Exclusive(스탠다드) 18인치",
+      "price": 50950570,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VMA3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "N Line Exclusive(롱레인지) 20인치",
+      "price": 59800380,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VMD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "N Line Exclusive(롱레인지) 20인치",
+      "price": 57452472,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VNA3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "N Line Prestige(롱레인지) 20인치",
+      "price": 63669201,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VND3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "N Line Prestige(롱레인지) 20인치",
+      "price": 61321293,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VFA3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Prestige(롱레인지) 18인치",
+      "price": 62072243,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VFD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Prestige(롱레인지) 18인치",
+      "price": 59724335,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VGA3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Prestige(롱레인지) 20인치",
+      "price": 62633079,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VGD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Prestige(롱레인지) 20인치",
+      "price": 60285171,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS4VPD3",
+      "maker": "현대",
+      "model": "더 뉴 아이오닉 6",
+      "fuel": "전기",
+      "trim": "Prestige(스탠다드) 18인치",
+      "price": 55532319,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BFABA7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 83090000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BFABB7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 88390000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BHABA7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 83290000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BHABB7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 88590000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BKABA7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 84590000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BKABB7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 89890000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BLABA7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 85890000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BLABB7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 91190000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BPABA7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 85990000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BPABB7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 91290000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BQABA7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 86990000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "QV1BQABB7",
+      "maker": "현대",
+      "model": "더 뉴 파비스",
+      "fuel": "디젤 6.8",
+      "trim": "프리미엄",
+      "price": 92290000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FNJS4RPT1",
+      "maker": "현대",
+      "model": "디 올 뉴 아반떼",
+      "fuel": "가솔린",
+      "trim": "프리미엄",
+      "price": 27710000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "아반떼 | 가솔린 2.0 | 일반 | Premium",
+          "price": 27710000,
+          "nameOk": false,
+          "priceOk": true
+        },
+        {
+          "label": "아반떼 | 가솔린 2.0 | 선구매 | Premium",
+          "price": 27710000,
+          "nameOk": false,
+          "priceOk": true
+        }
+      ]
+    },
+    {
+      "id": "FNJS4ZPD1",
+      "maker": "현대",
+      "model": "디 올 뉴 아반떼",
+      "fuel": "하이브리드",
+      "trim": "프리미엄",
+      "price": 33610000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "아반떼 | 하이브리드 1.6 | 일반 | Premium",
+          "price": 33610000,
+          "nameOk": false,
+          "priceOk": true
+        },
+        {
+          "label": "아반떼 | 하이브리드 1.6 | 선구매 | Premium",
+          "price": 33610000,
+          "nameOk": false,
+          "priceOk": true
+        }
+      ]
+    },
+    {
+      "id": "MXJJ5ZCT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "익스클루시브",
+      "price": 40219000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 익스클루시브",
+          "price": 41220000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 익스클루시브",
+          "price": 43450000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 익스클루시브",
+          "price": 42260000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 익스클루시브",
+          "price": 44490000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 익스클루시브",
+          "price": 41910000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 익스클루시브",
+          "price": 44140000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ6ZCT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "익스클루시브",
+      "price": 41258999,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 익스클루시브",
+          "price": 41220000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 익스클루시브",
+          "price": 43450000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 익스클루시브",
+          "price": 42260000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 익스클루시브",
+          "price": 44490000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 익스클루시브",
+          "price": 41910000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 익스클루시브",
+          "price": 44140000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ7ZCT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "익스클루시브",
+      "price": 40909000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 익스클루시브",
+          "price": 41220000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 익스클루시브",
+          "price": 43450000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 익스클루시브",
+          "price": 42260000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 익스클루시브",
+          "price": 44490000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 익스클루시브",
+          "price": 41910000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 익스클루시브",
+          "price": 44140000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ5ZHT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "캘리그래피",
+      "price": 48768999,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 캘리그래피",
+          "price": 49770000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 캘리그래피",
+          "price": 52000000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 캘리그래피",
+          "price": 50810000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 캘리그래피",
+          "price": 53040000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 캘리그래피",
+          "price": 50460000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 캘리그래피",
+          "price": 52690000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ6ZHT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "캘리그래피",
+      "price": 49808998,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 캘리그래피",
+          "price": 49770000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 캘리그래피",
+          "price": 52000000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 캘리그래피",
+          "price": 50810000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 캘리그래피",
+          "price": 53040000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 캘리그래피",
+          "price": 50460000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 캘리그래피",
+          "price": 52690000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ7ZHT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "캘리그래피",
+      "price": 49458999,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 캘리그래피",
+          "price": 49770000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 캘리그래피",
+          "price": 52000000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 캘리그래피",
+          "price": 50810000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 캘리그래피",
+          "price": 53040000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 캘리그래피",
+          "price": 50460000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 캘리그래피",
+          "price": 52690000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ5ZFT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "프레스티지",
+      "price": 43089000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 프레스티지",
+          "price": 44090000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 프레스티지",
+          "price": 46320000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 프레스티지",
+          "price": 45130000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 프레스티지",
+          "price": 47360000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 프레스티지",
+          "price": 44780000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 프레스티지",
+          "price": 47010000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ6ZFT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "프레스티지",
+      "price": 44129000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 프레스티지",
+          "price": 44090000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 프레스티지",
+          "price": 46320000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 프레스티지",
+          "price": 45130000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 프레스티지",
+          "price": 47360000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 프레스티지",
+          "price": 44780000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 프레스티지",
+          "price": 47010000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ7ZFT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "프레스티지",
+      "price": 43778999,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | 프레스티지",
+          "price": 44090000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | 프레스티지",
+          "price": 46320000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | 프레스티지",
+          "price": 45130000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | 프레스티지",
+          "price": 47360000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | 프레스티지",
+          "price": 44780000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | 프레스티지",
+          "price": 47010000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ5ZMT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "H-Pick",
+      "price": 45728998,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | H-Pick",
+          "price": 46730000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | H-Pick",
+          "price": 48960000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | H-Pick",
+          "price": 47770000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | H-Pick",
+          "price": 50000000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | H-Pick",
+          "price": 47420000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | H-Pick",
+          "price": 49650000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ6ZMT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "H-Pick",
+      "price": 46768999,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | H-Pick",
+          "price": 46730000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | H-Pick",
+          "price": 48960000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | H-Pick",
+          "price": 47770000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | H-Pick",
+          "price": 50000000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | H-Pick",
+          "price": 47420000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | H-Pick",
+          "price": 49650000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "MXJJ7ZMT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "fuel": "하이브리드",
+      "trim": "H-Pick",
+      "price": 46419000,
+      "candidate_count": 6,
+      "candidates": [
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 2WD | H-Pick",
+          "price": 46730000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 5인승 4WD | H-Pick",
+          "price": 48960000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 2WD | H-Pick",
+          "price": 47770000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 6인승 4WD | H-Pick",
+          "price": 50000000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 2WD | H-Pick",
+          "price": 47420000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "싼타페 | 하이브리드 1.6 | 7인승 4WD | H-Pick",
+          "price": 49650000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "DNJS4TLT7",
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "fuel": "가솔린 1.6 터보",
+      "trim": "N Line",
+      "price": 37260000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "DNJS4NLT7",
+      "maker": "현대",
+      "model": "쏘나타 디 엣지",
+      "fuel": "가솔린 2.5 터보",
+      "trim": "N Line",
+      "price": 39260000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "TXTS4LMT2",
+      "maker": "현대",
+      "model": "쏘나타 택시",
+      "fuel": "LPG 2.0",
+      "trim": "모빌리티",
+      "price": 25950000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CNJS4NND5",
+      "maker": "현대",
+      "model": "아반떼 N",
+      "fuel": "가솔린 2.0 터보",
+      "trim": "N",
+      "price": 35640000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CNJS4NNN5",
+      "maker": "현대",
+      "model": "아반떼 N",
+      "fuel": "가솔린 2.0 터보",
+      "trim": "N",
+      "price": 33560000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VOA8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "모던(롱레인지) 19인치",
+      "price": 55247148,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VOD8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "모던(롱레인지) 19인치",
+      "price": 52899239,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VIA8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "인스퍼레이션(롱레인지) 19인치",
+      "price": 63631178,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VID8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "인스퍼레이션(롱레인지) 19인치",
+      "price": 61283270,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VJA8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "인스퍼레이션(롱레인지) 20인치",
+      "price": 64096958,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VJD8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "인스퍼레이션(롱레인지) 20인치",
+      "price": 61749048,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VPA8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "프리미엄(롱레인지) 19인치",
+      "price": 60589354,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VPD8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "프리미엄(롱레인지) 19인치",
+      "price": 58241444,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VUA8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "프리미엄(롱레인지) 20인치",
+      "price": 61055132,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VUD8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "프리미엄(롱레인지) 20인치",
+      "price": 58707224,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VHA8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "E-Lite(롱레인지) 19인치",
+      "price": 52984791,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VHD8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "E-Lite(롱레인지) 19인치",
+      "price": 50636881,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VVD8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "E-Value +(스탠다드) 19인치",
+      "price": 47347908,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VZA8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "N LINE(롱레인지) 20인치",
+      "price": 61796577,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ5VZD8",
+      "maker": "현대",
+      "model": "아이오닉 5",
+      "fuel": "전기",
+      "trim": "N LINE(롱레인지) 20인치",
+      "price": 59448669,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ58RA7",
+      "maker": "현대",
+      "model": "아이오닉 5 N",
+      "fuel": "전기",
+      "trim": "IONIQ 5 N",
+      "price": 81420000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NEJJ58BA7",
+      "maker": "현대",
+      "model": "아이오닉 5 N",
+      "fuel": "전기",
+      "trim": "IONIQ 5 N Essential",
+      "price": 78790000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "CEJS48RA4",
+      "maker": "현대",
+      "model": "아이오닉 6 N",
+      "fuel": "전기",
+      "trim": "N",
+      "price": 79904942,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VAA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "익스클루시브 19인치",
+      "price": 70826995,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VAH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "익스클루시브 19인치",
+      "price": 71682509,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VAT2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "익스클루시브 19인치",
+      "price": 68165399,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VAA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "익스클루시브 19인치",
+      "price": 70247148,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VAH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "익스클루시브 19인치",
+      "price": 71102661,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VAT2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "익스클루시브 19인치",
+      "price": 67585551,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VCA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 19인치",
+      "price": 82262357,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VCH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 19인치",
+      "price": 83149999,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VCT2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 19인치",
+      "price": 79600760,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VCA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 19인치",
+      "price": 80769961,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VCH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 19인치",
+      "price": 81625475,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VCT2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 19인치",
+      "price": 78108365,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VEA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 21인치",
+      "price": 82262357,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VEH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 21인치",
+      "price": 83149999,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VET2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 21인치",
+      "price": 79600760,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VEA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 21인치",
+      "price": 80769961,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VEH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 21인치",
+      "price": 81625475,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VET2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "캘리그래피 21인치",
+      "price": 78108365,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VBA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 19인치",
+      "price": 76397338,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VBH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 19인치",
+      "price": 77252851,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VBT2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 19인치",
+      "price": 73735741,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VBA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 19인치",
+      "price": 75903041,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VBH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 19인치",
+      "price": 76758555,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VBT2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 19인치",
+      "price": 73241445,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VDA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 21인치",
+      "price": 76397338,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VDH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 21인치",
+      "price": 77252851,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ6VDT2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 21인치",
+      "price": 73735741,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VDA2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 21인치",
+      "price": 75903041,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VDH2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 21인치",
+      "price": 76758555,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "MEJJ7VDT2",
+      "maker": "현대",
+      "model": "아이오닉 9",
+      "fuel": "전기",
+      "trim": "프레스티지 21인치",
+      "price": 73241445,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5TMD4",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "가솔린 1.6 터보",
+      "trim": "N Line Inspiration",
+      "price": 32450000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5TME4",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "가솔린 1.6 터보",
+      "trim": "N Line Inspiration",
+      "price": 34480000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5VES3",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "전기",
+      "trim": "E-Value +",
+      "price": 41520912,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5VCR3",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "전기",
+      "trim": "Inspiration",
+      "price": 49923954,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5VPR3",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "전기",
+      "trim": "Modern plus",
+      "price": 45655893,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5VMR3",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "전기",
+      "trim": "N Line Inspiration",
+      "price": 50865018,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5VBR3",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "전기",
+      "trim": "Premium",
+      "price": 46568440,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5VBS3",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "전기",
+      "trim": "Premium",
+      "price": 43564638,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "SXJJ5ZMD4",
+      "maker": "현대",
+      "model": "코나",
+      "fuel": "하이브리드",
+      "trim": "N Line Inspiration",
+      "price": 36619000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NXJJ5TMD5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "가솔린 1.6 터보",
+      "trim": "N Line",
+      "price": 35410000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NXJJ5TMH5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "가솔린 1.6 터보",
+      "trim": "N Line",
+      "price": 37390000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NXJJ5ZHA5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "H-Pick",
+      "price": 38719000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "투싼 | 하이브리드 1.6 | 2WD | H-Pick",
+          "price": 37490000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "투싼 | 하이브리드 1.6 | 4WD | H-Pick",
+          "price": 39720000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "NXJJ5ZHT5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "H-Pick",
+      "price": 36489000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "투싼 | 하이브리드 1.6 | 2WD | H-Pick",
+          "price": 37490000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "투싼 | 하이브리드 1.6 | 4WD | H-Pick",
+          "price": 39720000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "NXJJ5ZPA5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "Inspiration",
+      "price": 41399000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "투싼 | 하이브리드 1.6 | 2WD | Inspiration",
+          "price": 40170000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "투싼 | 하이브리드 1.6 | 4WD | Inspiration",
+          "price": 42400000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "NXJJ5ZPT5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "Inspiration",
+      "price": 39169000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "투싼 | 하이브리드 1.6 | 2WD | Inspiration",
+          "price": 40170000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "투싼 | 하이브리드 1.6 | 4WD | Inspiration",
+          "price": 42400000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "NXJJ5ZDA5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "Modern",
+      "price": 35409000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "투싼 | 하이브리드 1.6 | 2WD | Modern",
+          "price": 34180000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "투싼 | 하이브리드 1.6 | 4WD | Modern",
+          "price": 36410000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "NXJJ5ZDT5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "Modern",
+      "price": 33179000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "투싼 | 하이브리드 1.6 | 2WD | Modern",
+          "price": 34180000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "투싼 | 하이브리드 1.6 | 4WD | Modern",
+          "price": 36410000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "NXJJ5ZMA5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "N Line",
+      "price": 42049001,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NXJJ5ZMT5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "N Line",
+      "price": 39819000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "NXJJ5ZCA5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "Premium",
+      "price": 37879000,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "투싼 | 하이브리드 1.6 | 2WD | Premium",
+          "price": 36650000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "투싼 | 하이브리드 1.6 | 4WD | Premium",
+          "price": 38880000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "NXJJ5ZCT5",
+      "maker": "현대",
+      "model": "투싼",
+      "fuel": "하이브리드",
+      "trim": "Premium",
+      "price": 35648999,
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "label": "투싼 | 하이브리드 1.6 | 2WD | Premium",
+          "price": 36650000,
+          "nameOk": true,
+          "priceOk": false
+        },
+        {
+          "label": "투싼 | 하이브리드 1.6 | 4WD | Premium",
+          "price": 38880000,
+          "nameOk": true,
+          "priceOk": false
+        }
+      ]
+    },
+    {
+      "id": "FXJJ7TEA2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "가솔린 2.5",
+      "trim": "하이루프",
+      "price": 77700000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FXJJ7TET2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "가솔린 2.5",
+      "trim": "하이루프",
+      "price": 75300000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FXJJ9TEA2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "가솔린 2.5",
+      "trim": "하이루프",
+      "price": 74720000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FXJJ9TET2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "가솔린 2.5",
+      "trim": "하이루프",
+      "price": 72440000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FXJJ7ZAT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "하이브리드 2.5",
+      "trim": "익스클루시브",
+      "price": 51399000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FXJJ7ZEA2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "하이브리드 2.5",
+      "trim": "하이루프",
+      "price": 83990000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FXJJ7ZET2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "하이브리드 2.5",
+      "trim": "하이루프",
+      "price": 81590000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FXJJ9ZEA2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "하이브리드 2.5",
+      "trim": "하이루프",
+      "price": 80720000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "FXJJ9ZET2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "fuel": "하이브리드 2.5",
+      "trim": "하이루프",
+      "price": 78440000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_GL5_G5C2M_GL5AP02",
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(5인승)",
+      "fuel": "디젤",
+      "trim": "노블레스",
+      "price": 44200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_GL5_G5D2M_GL5AP02",
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(5인승)",
+      "fuel": "디젤",
+      "trim": "노블레스",
+      "price": 46250000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_GL5_G5A1M_GL5AP01",
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(5인승)",
+      "fuel": "디젤",
+      "trim": "프리미엄",
+      "price": 41060000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_GL5_G5B1M_GL5AP01",
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(5인승)",
+      "fuel": "디젤",
+      "trim": "프리미엄",
+      "price": 43110000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_GL7_G7C2M_GL7AL02",
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(7인승)",
+      "fuel": "디젤",
+      "trim": "노블레스",
+      "price": 44590000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_GL7_G7D2M_GL7AL02",
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(7인승)",
+      "fuel": "디젤",
+      "trim": "노블레스",
+      "price": 46640000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_GL7_G7A1M_GL7AL01",
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(7인승)",
+      "fuel": "디젤",
+      "trim": "프리미엄",
+      "price": 41450000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_GL7_G7B1M_GL7AL01",
+      "maker": "KG모빌리티",
+      "model": "렉스턴 뉴 아레나(7인승)",
+      "fuel": "디젤",
+      "trim": "프리미엄",
+      "price": 43500000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_OP5_OP9BC_OP5AB02",
+      "maker": "KG모빌리티",
+      "model": "무쏘",
+      "fuel": "전기",
+      "trim": "블랙엣지",
+      "price": 51300000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_OP5_OP9BD_OP5AB02",
+      "maker": "KG모빌리티",
+      "model": "무쏘",
+      "fuel": "전기",
+      "trim": "블랙엣지",
+      "price": 53800000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_OP5_OP9AC_OP5AB01",
+      "maker": "KG모빌리티",
+      "model": "무쏘",
+      "fuel": "전기",
+      "trim": "MX",
+      "price": 48500000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_OP5_OP9AD_OP5AB01",
+      "maker": "KG모빌리티",
+      "model": "무쏘",
+      "fuel": "전기",
+      "trim": "MX",
+      "price": 51000000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QGSMA_UH5AP01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "가솔린",
+      "trim": "M5",
+      "price": 34600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QGSOA_UH5AP02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "가솔린",
+      "trim": "M7",
+      "price": 40600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QGGSA_UH5AQ01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "가솔린",
+      "trim": "M7 그랜드 스타일",
+      "price": 41400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QGSQA_UH5AP03",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "가솔린",
+      "trim": "M9",
+      "price": 44600000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QGGUA_UH5AQ02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "가솔린",
+      "trim": "M9 그랜드 스타일",
+      "price": 45400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QDSMA_UH5AP01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "디젤",
+      "trim": "M5",
+      "price": 36500000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QDSOA_UH5AP02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "디젤",
+      "trim": "M7",
+      "price": 42500000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QDGSA_UH5AQ01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "디젤",
+      "trim": "M7 그랜드 스타일",
+      "price": 43300000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QDSQA_UH5AP03",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "디젤",
+      "trim": "M9",
+      "price": 46500000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UH5_QDGUA_UH5AQ02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(롱 데크)",
+      "fuel": "디젤",
+      "trim": "M9 그랜드 스타일",
+      "price": 47300000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGSAA_UP5AP01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M5",
+      "price": 30400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGSBA_UP5AP01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M5",
+      "price": 32400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGSCA_UP5AP02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M7",
+      "price": 36400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGSDA_UP5AP02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M7",
+      "price": 38400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGGGA_UP5AQ01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M7 그랜드 스타일",
+      "price": 37200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGGHA_UP5AQ01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M7 그랜드 스타일",
+      "price": 39200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGSEA_UP5AP03",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M9",
+      "price": 40400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGSFA_UP5AP03",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M9",
+      "price": 42400000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGGJA_UP5AQ02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M9 그랜드 스타일",
+      "price": 41200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QGGKA_UP5AQ02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "가솔린",
+      "trim": "M9 그랜드 스타일",
+      "price": 43200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDSAA_UP5AP01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M5",
+      "price": 32200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDSBA_UP5AP01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M5",
+      "price": 34300000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDSCA_UP5AP02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M7",
+      "price": 38200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDSDA_UP5AP02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M7",
+      "price": 40300000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDGGA_UP5AQ01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M7 그랜드 스타일",
+      "price": 39000000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDGHA_UP5AQ01",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M7 그랜드 스타일",
+      "price": 41100000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDSEA_UP5AP03",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M9",
+      "price": 42200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDSFA_UP5AP03",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M9",
+      "price": 44300000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDGJA_UP5AQ02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M9 그랜드 스타일",
+      "price": 43000000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_UP5_QDGKA_UP5AQ02",
+      "maker": "KG모빌리티",
+      "model": "무쏘(스탠다드 데크)",
+      "fuel": "디젤",
+      "trim": "M9 그랜드 스타일",
+      "price": 45100000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MC5_MC5QA_MC5AE01",
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "fuel": "가솔린",
+      "trim": "S8",
+      "price": 36170000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MC5_MC5RA_MC5AE01",
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "fuel": "가솔린",
+      "trim": "S8",
+      "price": 38370000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MC5_MC5SA_MC5AE01",
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "fuel": "가솔린",
+      "trim": "S8 (투톤)",
+      "price": 36170000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MC5_MC5TA_MC5AE01",
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "fuel": "가솔린",
+      "trim": "S8 (투톤)",
+      "price": 38370000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MD5_MD5CA_MD5AB01",
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "fuel": "하이브리드",
+      "trim": "S8",
+      "price": 39950000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MD5_MD5DA_MD5AB01",
+      "maker": "KG모빌리티",
+      "model": "액티언",
+      "fuel": "하이브리드",
+      "trim": "S8 (투톤)",
+      "price": 39950000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MW5_MW5ZL_MW5AM01",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "가솔린",
+      "trim": "T5",
+      "price": 29960000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MW5_MW5ZM_MW5AM01",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "가솔린",
+      "trim": "T5",
+      "price": 32160000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MW5_MW5ZN_MW5AM02",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "가솔린",
+      "trim": "T7",
+      "price": 33370000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MW5_MW5ZO_MW5AM02",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "가솔린",
+      "trim": "T7",
+      "price": 35570000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MW5_MW5ZP_MW5AM02",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "가솔린",
+      "trim": "T7 (투톤)",
+      "price": 33370000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MW5_MW5ZQ_MW5AM02",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "가솔린",
+      "trim": "T7 (투톤)",
+      "price": 35570000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MY5_MY5HA_MY5AB01",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "하이브리드",
+      "trim": "T5",
+      "price": 34020000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MY5_MY5IA_MY5AB02",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "하이브리드",
+      "trim": "T7",
+      "price": 38540000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MY5_MY5JA_MY5AB02",
+      "maker": "KG모빌리티",
+      "model": "토레스",
+      "fuel": "하이브리드",
+      "trim": "T7 (투톤)",
+      "price": 38540000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MV2_MV2KA_MV2AE01",
+      "maker": "KG모빌리티",
+      "model": "토레스 밴",
+      "fuel": "가솔린",
+      "trim": "TV5",
+      "price": 28150000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MV2_MV2LA_MV2AE02",
+      "maker": "KG모빌리티",
+      "model": "토레스 밴",
+      "fuel": "가솔린",
+      "trim": "TV7",
+      "price": 30770000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_MV2_MV2MA_MV2AE02",
+      "maker": "KG모빌리티",
+      "model": "토레스 밴",
+      "fuel": "가솔린",
+      "trim": "TV7",
+      "price": 32860000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_FL5_FMEQB_FL5AH01",
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX",
+      "fuel": "전기",
+      "trim": "E5",
+      "price": 48410000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_FL5_FMERB_FL5AH02",
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX",
+      "fuel": "전기",
+      "trim": "E7",
+      "price": 50500000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_FL5_FMESB_FL5AH02",
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX",
+      "fuel": "전기",
+      "trim": "E7 (투톤)",
+      "price": 50500000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_FL5_FMEDA_FL5AE01",
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX",
+      "fuel": "전기",
+      "trim": "TAXI",
+      "price": 48040000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_FL2_FL2FB_FL2AD01",
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX 밴",
+      "fuel": "전기",
+      "trim": "TV5",
+      "price": 45200000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_FL2_FL2GB_FL2AD02",
+      "maker": "KG모빌리티",
+      "model": "토레스 EVX 밴",
+      "fuel": "전기",
+      "trim": "TV7",
+      "price": 47060000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_XW5_XMHIA_XW5BD01",
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "fuel": "가솔린",
+      "trim": "V1",
+      "price": 20970000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_XW5_XMHJA_XW5BD02",
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "fuel": "가솔린",
+      "trim": "V3",
+      "price": 24870000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_XW5_XMHKA_XW5BD02",
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "fuel": "가솔린",
+      "trim": "V3 (투톤)",
+      "price": 24870000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_XW5_XMHLA_XW5BE01",
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "fuel": "가솔린",
+      "trim": "V5",
+      "price": 24070000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_XW5_XMHMA_XW5BE02",
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "fuel": "가솔린",
+      "trim": "V7",
+      "price": 27470000,
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "id": "kgm_XW5_XMHNA_XW5BE02",
+      "maker": "KG모빌리티",
+      "model": "티볼리",
+      "fuel": "가솔린",
+      "trim": "V7 (투톤)",
+      "price": 27470000,
+      "candidate_count": 0,
+      "candidates": []
+    }
+  ]
+}
