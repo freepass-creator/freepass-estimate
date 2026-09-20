@@ -8,6 +8,7 @@ import { 담당자인가, 담당자로, 담당자로들어왔나 } from './lib/r
 import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
 import { applyProductTheme } from './lib/brand-theme.js';
+import { installMobileHaptics } from './lib/haptics.js';
 
 function companyProfileId() {
   const params = new URLSearchParams(location.search);
@@ -134,6 +135,7 @@ async function boot() {
   try { 풀기(vehicleState, quoteState); }
   catch (e) { console.warn('[mobile] 공유 링크 풀기 실패:', e); }
 
+  installMobileHaptics(document);
   const app = createApp(MobileApp);
   app.mount('#m-app');
 }
