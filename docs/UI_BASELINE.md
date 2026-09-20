@@ -116,3 +116,29 @@ Reference:
 - 산출방식은 `freepass.json → external/excel/welrix` provider를 통해 Welrix calculation truth를 사용한다.
 - Welrix mapping이 없는 차량/트림은 Self Quote 선택 목록에서 노출하지 않는다.
 - 중고 견적은 Sales Self Quote 범위에 포함하지 않는다.
+
+
+## FreePass Suite UI Profile — 2026-09-21
+
+Self Quote는 독립 디자인 시스템이 아니다. FreePass Sales의 Sales App / Promotion과 함께 AI Core 기반 `freepass-product-ui/v1`을 소비한다.
+
+Binding:
+- local: `.ai-core/freepass-product-ui.json`
+- AI Core: `freepass-creator/ai-core@01e6bb7e0cd08e6390b452892516fd204ed64090`
+- authorities: `SCREEN_DESIGN_STANDARD`, `FREEPASS_PRODUCT_UI_PROFILE`, `UI_UX_CONSTITUTION`, interaction contract
+
+공통 grammar:
+- primary `#1b2a4a`, strong `#0f1b35`, soft `#e6ecf5`
+- card 12px / control 10px / touch minimum 44px
+- single-choice commit 160ms → auto-advance
+- step entry 160ms
+- pressed scale 0.965 / minimum hold 72ms
+- haptic 7 / 12 / 18ms
+- top informational / bottom actionable
+- selected / pressed / focus-visible 분리
+- reduced-motion / safe-area / bounded scroll owner
+
+검증:
+`npm run check:freepass-suite-ui`
+
+Welrix는 계산 provider/calc authority이며 FreePass Sales Self Quote의 UI authority를 소유하지 않는다.
