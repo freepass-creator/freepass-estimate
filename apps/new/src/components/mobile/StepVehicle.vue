@@ -176,7 +176,7 @@ const selectedPowertrainKey = computed(() =>
   vehicleState.variant ? vehicleState.variant + '::' + (vehicleState.trimGroup || '_') : ''
 );
 
-// 트림 — 인승·구동이 갈리는 차는 specGroups 에서 고른 묶음(vehicleState.trimGroup)으로 좁힌다
+// 트림 — 파워트레인 카드에서 함께 선택한 인승·구동 묶음(vehicleState.trimGroup)으로 좁힌다
 const trims = computed(() => {
   if (!selectedVariant.value) return [];
   const taxRate = vehicleState.tax_rate || '5';
@@ -883,7 +883,7 @@ function onFeeChange() {
 .sv-trim-card.is-selected { background: var(--brand-50); }
 .sv-trim-card.is-selected .sv-trim-card__name { color: var(--brand); font-weight: var(--fw-bold); }
 .sv-trim-card.is-selected .sv-trim-card__price { color: var(--brand); font-weight: var(--fw-bold); }
-/* 트림 소제목 — 인승·구동·용도 (예: 5인승 2WD) */
+/* 레거시 group label 스타일 — 현재 고객 flow에서는 파워트레인 카드에 합쳐 표시한다. */
 .sv-group {
   margin: 14px 2px 2px; font-size: var(--fs-md); font-weight: var(--fw-bold);
   color: var(--ink-3); letter-spacing: -0.2px;
