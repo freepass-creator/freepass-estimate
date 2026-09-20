@@ -1,0 +1,31 @@
+name: AI Core QA P0 Shadow
+
+on:
+  pull_request:
+    paths:
+      - 'apps/new/contracts/ai-core/qa-p0.shadow.json'
+      - 'apps/new/scripts/check-ai-core-qa-p0-shadow.mjs'
+      - '.github/workflows/ai-core-qa-p0-shadow.yml'
+  push:
+    branches: [work/ui-baseline]
+    paths:
+      - 'apps/new/contracts/ai-core/qa-p0.shadow.json'
+      - 'apps/new/scripts/check-ai-core-qa-p0-shadow.mjs'
+      - '.github/workflows/ai-core-qa-p0-shadow.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/new
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-ai-core-qa-p0-shadow.mjs
