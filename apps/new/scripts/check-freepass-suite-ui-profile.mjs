@@ -35,6 +35,13 @@ assert.ok(app.includes('overflow-y: auto'),'Self Quote must keep one bounded ver
 assert.ok(app.includes('touch-action: pan-y'),'Self Quote touch scroll contract missing');
 assert.ok(html.includes('height: 100dvh'),'Self Quote dynamic viewport contract missing');
 
+for (const marker of ['ui-header','ui-stepper','ui-bottom-action','ui-button primary','ui-button secondary']) {
+  assert.ok(app.includes(marker),'Self Quote AI Core shell semantic missing: ' + marker);
+}
+for (const marker of ['sv-brand-card ui-card','sv-row ui-card','sv-trim-card ui-card','sv-opt ui-card','sv-color-card ui-card']) {
+  assert.ok(step.includes(marker),'Self Quote AI Core card semantic missing: ' + marker);
+}
+
 console.log(JSON.stringify({
  status:'PASS',
  profile:profile.version,
