@@ -36,11 +36,16 @@ assert.ok(profile.themePolicy.modes.includes('white-label'));
 assert.ok(profile.alignmentPolicy.start.includes('choice-row'));
 assert.ok(profile.alignmentPolicy.center.includes('manufacturer-grid'));
 assert.ok(profile.alignmentPolicy.end.includes('money'));
+assert.ok(profile.trustEmphasisPolicy.neutral.includes('list-price'));
+assert.ok(profile.trustEmphasisPolicy.brandPrimary.includes('key-result'));
+assert.ok(profile.trustEmphasisPolicy.partnerAccent.includes('partner-name'));
 
 assert.ok(step.includes("? 0 : 160"),'Single-choice commit must be 160ms');
 assert.ok(step.includes('text-align: left'),'Choice rows/titles must use start alignment');
 assert.ok(step.includes('flex: 1; min-width: 0;'),'Choice label must own the readable start edge');
 assert.ok(step.includes('text-align: right'),'Money/number values must expose an end alignment');
+assert.ok(step.includes('font-weight: var(--fw-semi); color: var(--ink-2)'),'Unselected trim/option prices must remain neutral');
+assert.ok(step.includes('.sv-trim-card.is-selected .sv-trim-card__price { color: var(--brand)'),'Selected trim price may use brand emphasis');
 assert.ok(tokens.includes('fp-step-in 160ms'),'Step entry must be 160ms');
 assert.ok(tokens.includes('scale(.965)'),'Pressed depth must match FreePass profile');
 for(const marker of ['subtle: 7','selection: 12','primary: 18','72 - elapsed',"addEventListener('pointerdown'"]){
