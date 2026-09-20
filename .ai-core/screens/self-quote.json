@@ -2,7 +2,7 @@
   "contract": "ai-core-ui-screen-manifest/v1",
   "version": "1.0.0",
   "screen_id": "freepass-estimate.self-quote",
-  "product_profile": "freepass-product-ui/v1",
+  "product_profile": "freepass-product-ui/v1.1",
   "feature_ids": [
     "navigation.header",
     "navigation.stepper",
@@ -54,5 +54,6 @@
     "locales": [
       "ko-KR"
     ]
-  }
+  },
+  "brand_theme_source": "company-config/ui_theme"
 }
