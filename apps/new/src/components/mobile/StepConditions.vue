@@ -23,7 +23,7 @@ function toggleTerm(t) {
     if (list.length === 1) return;
     list.splice(idx, 1);
   } else {
-    list.push({ term: t, dep: quoteState.cond.dep || 10, pre: quoteState.cond.pre || 0 });
+    list.push({ term: t, dep: quoteState.cond.dep ?? 0, pre: quoteState.cond.pre ?? 0 });
     list.sort((a, b) => b.term - a.term);
   }
   /* 발송 체크 배열도 현재 기간 개수와 정확히 맞춘다. */
