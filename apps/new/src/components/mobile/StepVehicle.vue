@@ -23,7 +23,7 @@ const committingKey = ref('');
 let committingTimer = null;
 function commitDelayMs() {
   try {
-    return window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ? 0 : 90;
+    return window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ? 0 : 160;
   } catch {
     return 160;
   }
