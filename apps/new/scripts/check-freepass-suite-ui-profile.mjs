@@ -42,8 +42,14 @@ assert.ok(profile.trustEmphasisPolicy.partnerAccent.includes('partner-name'));
 assert.equal(profile.publicShellPolicy.horizontalGutterPx,16);
 assert.equal(profile.publicShellPolicy.primaryActionHeightPx,52);
 assert.equal(profile.publicShellPolicy.cardRadiusPx,12);
+assert.equal(profile.vehicleSelectionPolicy.separatePassengerDriveStep,false);
+assert.deepEqual(profile.vehicleSelectionPolicy.flow,['manufacturer','model','powertrain(engine+seat/drive)','trim','colors','options']);
 
 assert.ok(step.includes("? 0 : 160"),'Single-choice commit must be 160ms');
+assert.ok(step.includes('const powertrainChoices = computed'),'Combined powertrain choice builder missing');
+assert.ok(step.includes("commitSelection('variant:' + choice.key, 'trim')"),'Combined powertrain must advance directly to trim');
+assert.ok(!step.includes("subStep === 'spec'"),'Separate passenger/drive UI must not return');
+assert.ok(app.includes("const VEHICLE_SUB_STEPS = ['brand', 'model', 'variant', 'trim', 'colors', 'options'];"),'Separate spec navigation must not return');
 assert.ok(step.includes('text-align: left'),'Choice rows/titles must use start alignment');
 assert.ok(step.includes('flex: 1; min-width: 0;'),'Choice label must own the readable start edge');
 assert.ok(step.includes('text-align: right'),'Money/number values must expose an end alignment');
