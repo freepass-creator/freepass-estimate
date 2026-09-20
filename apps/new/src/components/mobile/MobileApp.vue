@@ -374,7 +374,7 @@ async function shareSignLink() {
 .m-brand {
   display: inline-flex; align-items: center;
   font: inherit; font-size: var(--fs-md); font-weight: 700; letter-spacing: -0.3px;
-  color: var(--brand); white-space: nowrap;
+  color: var(--partner-accent, var(--brand)); white-space: nowrap;
 }
 .m-brand__x { opacity: .55; margin: 0 1px; font-weight: 600; }
 
