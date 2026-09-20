@@ -24,6 +24,7 @@ export function applyProductTheme(cfg={}){
   root.style.setProperty('--brand-50',soft);
   root.style.setProperty('--accent',brand);
   root.style.setProperty('--accent-soft',soft);
+  root.style.setProperty('--partner-accent',theme.partner_accent||brand);
 
   const meta=document.querySelector('meta[name="theme-color"]');
   if(meta) meta.setAttribute('content',brand);
