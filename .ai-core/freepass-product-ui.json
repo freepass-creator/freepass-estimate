@@ -1,6 +1,6 @@
 {
   "contract": "freepass-product-ui-profile-binding/v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "ai_core": {
     "repository": "freepass-creator/ai-core",
     "revision": "01e6bb7e0cd08e6390b452892516fd204ed64090",
@@ -19,9 +19,6 @@
   ],
   "visual": {
     "font": "Pretendard Variable",
-    "brand": "#1b2a4a",
-    "brandStrong": "#0f1b35",
-    "brandSoft": "#e6ecf5",
     "background": "#f7f8fa",
     "surface": "#ffffff",
     "text": "#212529",
@@ -30,7 +27,13 @@
     "lineStrong": "#d9dde1",
     "cardRadiusPx": 12,
     "controlRadiusPx": 10,
-    "minTouchPx": 44
+    "minTouchPx": 44,
+    "defaultTheme": {
+      "id": "freepass",
+      "primary": "#1b2a4a",
+      "strong": "#0f1b35",
+      "soft": "#e6ecf5"
+    }
   },
   "interaction": {
     "topIsInformationBottomIsAction": true,
@@ -49,7 +52,48 @@
     "selectedState": "soft-surface + text-weight, not color-only"
   },
   "exceptions": {
-    "partnerAccent": "Co-brand/partner identity may use a secondary accent, but it must not replace the FreePass primary action/selection grammar."
+    "partnerAccent": "Co-brand/partner identity may override brand primary/strong/soft and logo through a declared theme; semantic state colors and interaction grammar remain invariant."
   },
-  "adoption_status": "MAPPED_PENDING_RENDERED_RECEIPT"
+  "adoption_status": "MAPPED_PENDING_RENDERED_RECEIPT",
+  "themePolicy": {
+    "modes": [
+      "freepass",
+      "cobrand",
+      "white-label"
+    ],
+    "overridable": [
+      "brand.primary",
+      "brand.strong",
+      "brand.soft",
+      "logo",
+      "wordmark",
+      "partnerAccent"
+    ],
+    "invariant": [
+      "semantic.success",
+      "semantic.warning",
+      "semantic.danger",
+      "semantic.focus",
+      "semantic.disabled",
+      "typography",
+      "spacing",
+      "radius",
+      "touch-target",
+      "interaction-state-semantics",
+      "haptic-motion-contract"
+    ],
+    "themes": {
+      "freepass": {
+        "primary": "#1b2a4a",
+        "strong": "#0f1b35",
+        "soft": "#e6ecf5"
+      },
+      "welrix": {
+        "primary": "#c81e2a",
+        "strong": "#a3131d",
+        "soft": "#fdecee"
+      }
+    },
+    "rule": "Brand colors may change by product/partner/white-label theme; semantic state meanings and component behavior may not."
+  }
 }
