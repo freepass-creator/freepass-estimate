@@ -8,9 +8,13 @@ Date: 2026-09-19
 ## 1. 화면 정본
 
 ### 신차 웹
-Source:
-- `freepass-creator/welrixtable/index.html`
+Current canonical source:
+- `apps/new/index.html`
+- `apps/new/src/**`
 - simple estimate mode: `28fr : 72fr`
+
+Historical lineage:
+- 최초 검증 기준은 `freepass-creator/welrixtable`에서 이관했지만, 현재 화면 정본은 FreePass Estimate다.
 
 유지:
 - 상단 48px 계열 헤더
@@ -26,10 +30,13 @@ Source:
 - 차량 선택을 별도 모달 중심으로 바꾸지 않는다.
 
 ### 신차 모바일
-Source:
-- `freepass-creator/welrixtable/src/components/mobile/MobileApp.vue`
-- `StepVehicle.vue`
-- `StickyQuote.vue`
+Current canonical source:
+- `apps/new/src/components/mobile/MobileApp.vue`
+- `apps/new/src/components/mobile/StepVehicle.vue`
+- `apps/new/src/components/mobile/StickyQuote.vue`
+- `apps/new/src/styles/tokens.css`
+
+Welrix UI는 historical reference이며 앞으로 화면을 Welrix에서 다시 복사하지 않는다.
 
 정본 UX:
 - **한 화면 한 선택**
@@ -100,3 +107,12 @@ Reference:
 7. UI 승인 이후 실제 데이터/계산 엔진 연결
 
 **UI 승인 전 계산 엔진 이관을 시작하지 않는다.**
+
+
+## 5. FreePass Sales Self Quote 범위
+
+- Sales에서 소비하는 Self Quote는 신차 장기렌터카만 사용한다.
+- 외형/상호작용은 이 문서의 FreePass Estimate canonical UI를 따른다.
+- 산출방식은 `freepass.json → external/excel/welrix` provider를 통해 Welrix calculation truth를 사용한다.
+- Welrix mapping이 없는 차량/트림은 Self Quote 선택 목록에서 노출하지 않는다.
+- 중고 견적은 Sales Self Quote 범위에 포함하지 않는다.
