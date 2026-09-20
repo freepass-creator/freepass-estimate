@@ -61,6 +61,7 @@ There are two business modes:
 
 2. **External**
    - The external company owns the calculation truth for that configured channel.
+   - FreePass Sales Self Quote는 이 모드를 사용하며 Welrix가 계산 truth를 소유한다.
    - FreePass sends the normalized quote request to an adapter.
    - Adapter kinds:
      - Excel
@@ -69,7 +70,16 @@ There are two business modes:
 
 An external provider may own its **calculation truth**, but it does not own the shared estimator UI/UX or quote contract.
 
-## 4. Current Welrix mapping
+## 4. FreePass Sales Self Quote profile — ACTIVE
+
+FreePass Sales에서 사용하는 셀프견적은 **신차 장기렌터카 전용**이다.
+
+- UI/UX authority: FreePass Estimate의 현재 canonical UI
+- calculation authority: Welrix
+- active provider: `external:excel:welrix`
+- product scope: `신차`
+- silent fallback: 금지
+- Welrix provider mapping이 없는 트림: 고객 선택면에서 제외
 
 ```json
 {
@@ -81,9 +91,11 @@ An external provider may own its **calculation truth**, but it does not own the 
 }
 ```
 
-Welrix external adapter currently calls the existing authoritative Welrix estimate API and normalizes the response into the FreePass result contract.
+Welrix external adapter는 기존 authoritative Welrix estimate API를 호출하고 응답을 FreePass result contract로 normalize한다.
 
-This is a provider integration, not UI ownership.
+FreePass Standard 엔진은 별도 capability로 보존하지만 **FreePass Sales Self Quote의 활성 산출엔진이 아니다**.
+
+이 관계는 provider integration이며 UI 소유권이 아니다.
 
 ## 5. Security boundary
 
