@@ -174,13 +174,24 @@
     "flow": [
       "manufacturer",
       "model",
-      "powertrain(engine+seat/drive)",
+      "powertrain(engine + true base-configuration axes only)",
       "trim",
       "colors",
-      "options"
+      "options(configuration axes included)"
     ],
     "separatePassengerDriveStep": false,
-    "storage": "variant + trimGroup",
-    "rule": "Passenger/drive/use axes are folded into the powertrain choice when they split real product combinations; selecting one choice advances directly to trim."
+    "fixedAxesVisible": false,
+    "optionAxesVisibleAt": "options",
+    "baseAxisVisibility": "show only when 2+ actual base configurations exist inside the powertrain",
+    "providerGroupIsUiAuthority": false,
+    "storage": "variant + base axes + selected axis options",
+    "examples": {
+      "avante": "fixed seats/drive hidden",
+      "sorento": "6/7 seats and 4WD are options",
+      "santafe": "6/7 seats and HTRAC are options",
+      "k8": "AWD is an option",
+      "palisade": "7/9 seats are base choices; HTRAC is an option",
+      "carnival": "7/9 seats are base choices"
+    }
   }
 }
