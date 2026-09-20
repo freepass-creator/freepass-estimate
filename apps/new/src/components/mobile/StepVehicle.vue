@@ -486,7 +486,7 @@ function onFeeChange() {
       <div class="sv-brand-grid">
         <button
           v-for="b in brands" :key="b.manufacturer_id"
-          class="sv-brand-card"
+          class="sv-brand-card ui-card"
           :class="{ 'is-selected': vehicleState.manufacturer === b.manufacturer_id, 'is-committing': committingKey === 'brand:' + b.manufacturer_id }"
           :disabled="!!committingKey"
           @click="selectBrand(b)"
@@ -503,7 +503,7 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="m in models" :key="m.model_id"
-          class="sv-row"
+          class="sv-row ui-card"
           :class="{ 'is-selected': vehicleState.model === m.model_id, 'is-committing': committingKey === 'model:' + m.model_id }"
           :disabled="!!committingKey"
           @click="selectModel(m)"
@@ -520,7 +520,7 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="v in variants" :key="v.variant_id"
-          class="sv-row"
+          class="sv-row ui-card"
           :class="{ 'is-selected': vehicleState.variant === v.variant_id, 'is-committing': committingKey === 'variant:' + v.variant_id }"
           :disabled="!!committingKey"
           @click="selectVariant(v)"
@@ -537,7 +537,7 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="g in specGroups" :key="g.label"
-          class="sv-row"
+          class="sv-row ui-card"
           :class="{ 'is-selected': vehicleState.trimGroup === g.label, 'is-committing': committingKey === 'spec:' + g.label }"
           :disabled="!!committingKey"
           @click="selectSpec(g)"
@@ -558,7 +558,7 @@ function onFeeChange() {
         <!-- 소제목 — 같은 엔진 안에서 갈리는 인승·구동·용도 (예: 5인승 2WD · 밴 · 렌터카) -->
         <div v-if="t.group && t.group !== trims[i - 1]?.group" class="sv-group">{{ t.group }}</div>
         <button
-          class="sv-trim-card"
+          class="sv-trim-card ui-card"
           :class="{ 'is-selected': vehicleState.trim === t.trim_id, 'is-committing': committingKey === 'trim:' + t.trim_id }"
           :disabled="!!committingKey"
           @click="selectTrim(t)"
@@ -615,7 +615,7 @@ function onFeeChange() {
       <div v-else class="sv-opts">
         <button
           v-for="o in availableOptions" :key="o.id"
-          class="sv-opt"
+          class="sv-opt ui-card"
           :class="{
             'is-selected': vehicleState.options.has(o.id),
             'is-disabled': !isEnabled(o.id) && !vehicleState.options.has(o.id),
@@ -673,7 +673,7 @@ function onFeeChange() {
         <div class="sv-color-grid">
           <button
             v-for="(c, i) in exteriorColors" :key="i"
-            class="sv-color-card"
+            class="sv-color-card ui-card"
             :class="{ 'is-selected': vehicleState.color === i }"
             :title="c.name"
             @click="pickExtColor(i)"
@@ -695,7 +695,7 @@ function onFeeChange() {
         <div class="sv-color-grid">
           <button
             v-for="c in 내장색들" :key="c.value"
-            class="sv-color-card"
+            class="sv-color-card ui-card"
             :class="{ 'is-selected': quoteState.cond.colorInt === c.value }"
             @click="pickIntColor(c)"
           >
