@@ -120,7 +120,7 @@ Reference:
 
 ## FreePass Suite UI Profile — 2026-09-21
 
-Self Quote는 독립 디자인 시스템이 아니다. FreePass Sales의 Sales App / Promotion과 함께 AI Core 기반 `freepass-product-ui/v1`을 소비한다.
+Self Quote는 독립 디자인 시스템이 아니다. FreePass Sales의 Sales App / Promotion과 함께 AI Core 기반 `freepass-product-ui/v1.1`을 소비한다.
 
 Binding:
 - local: `.ai-core/freepass-product-ui.json`
@@ -128,7 +128,9 @@ Binding:
 - authorities: `SCREEN_DESIGN_STANDARD`, `FREEPASS_PRODUCT_UI_PROFILE`, `UI_UX_CONSTITUTION`, interaction contract
 
 공통 grammar:
-- primary `#1b2a4a`, strong `#0f1b35`, soft `#e6ecf5`
+- FreePass 기본 테마: primary `#1b2a4a`, strong `#0f1b35`, soft `#e6ecf5`
+- Welrix co-brand 테마: primary `#c81e2a`, strong `#a3131d`, soft `#fdecee`
+- company config의 `ui_theme`가 브랜드 컬러를 선택하며 semantic status color는 변경하지 않음
 - card 12px / control 10px / touch minimum 44px
 - single-choice commit 160ms → auto-advance
 - step entry 160ms
