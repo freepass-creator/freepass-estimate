@@ -10,6 +10,15 @@ import { EXTERNAL_PROVIDER_POLICY, providerPublicMessage, providerRetryable } fr
 const WELRIX_URL = 'https://welrixmobility.netlify.app/api/estimate';
 
 let PRODUCT_INDEX = null;
+let SALES_WELRIX_TRIM_IDS = null;
+function salesWelrixTrimIds() {
+  if (SALES_WELRIX_TRIM_IDS) return SALES_WELRIX_TRIM_IDS;
+  const path = join(process.cwd(), 'public', 'data', 'freepass-newcar', 'sales-welrix-trim-ids.json');
+  const data = JSON.parse(readFileSync(path, 'utf8'));
+  SALES_WELRIX_TRIM_IDS = new Set(data.trim_ids || []);
+  return SALES_WELRIX_TRIM_IDS;
+}
+
 function productIndex() {
   if (PRODUCT_INDEX) return PRODUCT_INDEX;
   const path = join(process.cwd(), 'public', 'data', 'freepass-newcar', 'product-index.json');
@@ -38,6 +47,19 @@ class ProviderUnsupportedError extends ProviderRuntimeError {
 function welrixProviderResolution(request) {
   const productId = request?.차?.상품키 || request?.차?.키;
   const p = productIndex()?.products?.[productId];
+
+  // FreePass Sales Self Quote keeps the verified Welrix 443-trim catalog.
+  // In this catalog trim_id is already the authoritative Welrix API model key,
+  // so no name/price inference or canonical remapping is needed.
+  if (!p && salesWelrixTrimIds().has(productId)) {
+    return {
+      productId,
+      candidate: { api_model: productId },
+      absorbedWon: 0,
+      axes: {},
+      providerNative: true,
+    };
+  }
   if (!p) throw new ProviderUnsupportedError();
 
   const selected = Array.isArray(request?.차?.구성?.선택옵션) ? request.차.구성.선택옵션 : [];
