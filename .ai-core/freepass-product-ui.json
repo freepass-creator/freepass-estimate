@@ -105,7 +105,7 @@
   },
   "brandThemeRegistry": {
     "repository": "freepass-creator/ai-core",
-    "revision": "0cabfb86f11f380f9143076927f838c61abdbd7f",
+    "revision": "30e16079233112cd77bbb0f56476374672555c20",
     "branch": "feat/freepass-suite-ui-consumers-20260921",
     "path": "design-system/brand-themes.registry.json",
     "status": "CANDIDATE"
@@ -169,5 +169,18 @@
     "cardRadiusPx": 12,
     "controlRadiusPx": 10,
     "rule": "Promotion and Self Quote share edge rhythm, control height and card geometry; internal Sales App may use denser operational metrics."
+  },
+  "vehicleSelectionPolicy": {
+    "flow": [
+      "manufacturer",
+      "model",
+      "powertrain(engine+seat/drive)",
+      "trim",
+      "colors",
+      "options"
+    ],
+    "separatePassengerDriveStep": false,
+    "storage": "variant + trimGroup",
+    "rule": "Passenger/drive/use axes are folded into the powertrain choice when they split real product combinations; selecting one choice advances directly to trim."
   }
 }
