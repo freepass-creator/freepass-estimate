@@ -9,15 +9,21 @@ const mixWhite=(c,p)=>{const a=rgb(c);return a?hex(a.map(v=>v+(255-v)*p)):c};
 
 export function applyProductTheme(cfg={}){
   const root=document.documentElement;
-  const brand=cfg.brand_color||'#1B2A4A';
   const freepass=cfg.company_id==='freepass';
+  const theme=cfg.ui_theme||{};
+  const brand=theme.primary_color||cfg.brand_color||'#1B2A4A';
+  const strong=theme.strong_color||(freepass?'#0F1B35':shade(brand,-0.18));
+  const strongest=theme.strongest_color||(freepass?'#07111F':shade(brand,-0.30));
+  const soft=theme.soft_color||(freepass?'#E6ECF5':mixWhite(brand,0.94));
+  const softBorder=theme.soft_border_color||(freepass?'#C8D4E4':mixWhite(brand,0.82));
+  root.dataset.brandTheme=theme.id||cfg.company_id||'freepass';
   root.style.setProperty('--brand',brand);
-  root.style.setProperty('--brand-700',freepass?'#0F1B35':shade(brand,-0.18));
-  root.style.setProperty('--brand-800',freepass?'#07111F':shade(brand,-0.30));
-  root.style.setProperty('--brand-100',freepass?'#C8D4E4':mixWhite(brand,0.82));
-  root.style.setProperty('--brand-50',freepass?'#E6ECF5':mixWhite(brand,0.94));
-  root.style.setProperty('--accent',freepass?'#1B2A4A':brand);
-  root.style.setProperty('--accent-soft',freepass?'#F2F3F5':mixWhite(brand,0.94));
+  root.style.setProperty('--brand-700',strong);
+  root.style.setProperty('--brand-800',strongest);
+  root.style.setProperty('--brand-100',softBorder);
+  root.style.setProperty('--brand-50',soft);
+  root.style.setProperty('--accent',brand);
+  root.style.setProperty('--accent-soft',soft);
 
   const meta=document.querySelector('meta[name="theme-color"]');
   if(meta) meta.setAttribute('content',brand);
