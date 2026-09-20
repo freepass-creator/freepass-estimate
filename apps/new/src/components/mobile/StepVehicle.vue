@@ -4,6 +4,14 @@ import { vehicleState, quoteState } from '../../store.js';
 import { 담당자인가 } from '../../lib/role.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
+import {
+  requiredOptionIds,
+  exclusiveGroupFor,
+  conflictOptionIds,
+  optionStatus,
+  toggleOptionSelection,
+  validateOptionSelection,
+} from '../../lib/vehicle-option-rules.js';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
 import { 브랜드공급가능, 모델공급가능, 변형공급가능, 트림공급가능 } from '../../lib/quote/provider-availability.js';
 
@@ -160,31 +168,29 @@ function trimPrice(t, taxRate) {
   return (taxRate === '3.5' ? t.base_price_3_5 : t.base_price_5) || 0;
 }
 
-// === 옵션 master / 배타 그룹 / 선행 요건 (PC 와 동일 로직) ===
+// === 옵션 master / 배타 그룹 / 선행·제외 규칙 ===
 const optionsMaster = computed(() => selectedVariant.value?.options_master || {});
-const exclusiveGroups = computed(() => selectedVariant.value?.exclusive_groups || []);
 
 function getGroup(optId) {
-  return exclusiveGroups.value.find(g => g.members.includes(optId)) || null;
-}
-function isEnabled(optId) {
-  const opt = optionsMaster.value[optId];
-  if (!opt) return false;
-  if (opt.requires && !opt.requires.every(req => vehicleState.options.has(req))) return false;
-  if (opt.requires_in_trim?.[vehicleState.trim] &&
-      !opt.requires_in_trim[vehicleState.trim].every(req => vehicleState.options.has(req))) return false;
-  // option_excludes
-  if (selectedVariant.value?.option_excludes) {
-    for (const [parentId, excluded] of Object.entries(selectedVariant.value.option_excludes)) {
-      if (vehicleState.options.has(parentId) && excluded.includes(optId)) return false;
-    }
-  }
-  return true;
+  return exclusiveGroupFor(selectedVariant.value, optId);
 }
 function getRequires(optId) {
-  const opt = optionsMaster.value[optId];
-  if (!opt) return [];
-  return opt.requires || opt.requires_in_trim?.[vehicleState.trim] || [];
+  return requiredOptionIds(selectedVariant.value, vehicleState.trim, optId);
+}
+function getConflicts(optId) {
+  return conflictOptionIds(selectedVariant.value, optId)
+    .filter((id) => vehicleState.options.has(id));
+}
+function isEnabled(optId) {
+  return optionStatus({
+    variant: selectedVariant.value,
+    trim: selectedTrim.value,
+    optId,
+    selected: vehicleState.options,
+  }).enabled;
+}
+function optionNames(ids) {
+  return (ids || []).map((id) => optionsMaster.value[id]?.name).filter(Boolean);
 }
 
 // trim 의 available_options
@@ -200,16 +206,29 @@ const exteriorColors = computed(() => selectedTrim.value?._exterior_colors?.leng
   ? selectedTrim.value._exterior_colors
   : (selectedModel.value?.exterior_colors || []));
 
-// 옵션 토글
+// 옵션 토글 — 규칙 엔진이 배타/제외/선행 종속을 원자적으로 정리한다.
 function toggleOption(optId) {
-  if (!isEnabled(optId) && !vehicleState.options.has(optId)) return;
-  if (vehicleState.options.has(optId)) {
-    vehicleState.options.delete(optId);
-  } else {
-    // 같은 배타 그룹 다른 옵션 자동 해제
-    const g = getGroup(optId);
-    if (g) g.members.forEach(m => { if (m !== optId) vehicleState.options.delete(m); });
-    vehicleState.options.add(optId);
+  const result = toggleOptionSelection({
+    variant: selectedVariant.value,
+    trim: selectedTrim.value,
+    optId,
+    selected: vehicleState.options,
+  });
+  if (!result.changed) return;
+
+  vehicleState.options.clear();
+  result.next.forEach((id) => vehicleState.options.add(id));
+
+  // fail-closed: UI 상태에 잘못된 조합이 남으면 견적 계산으로 보내지 않는다.
+  const errors = validateOptionSelection({
+    variant: selectedVariant.value,
+    trim: selectedTrim.value,
+    selected: vehicleState.options,
+  });
+  if (errors.length) {
+    console.error('[FreePass option invariant]', errors);
+    vehicleState.options.clear();
+    return;
   }
   syncVehicle();
 }
@@ -601,6 +620,8 @@ function onFeeChange() {
             'is-selected': vehicleState.options.has(o.id),
             'is-disabled': !isEnabled(o.id) && !vehicleState.options.has(o.id),
           }"
+          :aria-pressed="vehicleState.options.has(o.id)"
+          :disabled="!isEnabled(o.id) && !vehicleState.options.has(o.id)"
           @click="toggleOption(o.id)"
         >
           <div class="sv-opt__top">
@@ -614,7 +635,11 @@ function onFeeChange() {
           </div>
           <div class="sv-opt__req" v-if="!isEnabled(o.id) && !vehicleState.options.has(o.id) && getRequires(o.id).length">
             <i class="ph ph-warning"></i>
-            선행: {{ getRequires(o.id).map(r => optionsMaster[r]?.name).filter(Boolean).join(', ') }}
+            먼저 선택: {{ optionNames(getRequires(o.id)).join(', ') }}
+          </div>
+          <div class="sv-opt__replace" v-if="!vehicleState.options.has(o.id) && getConflicts(o.id).length">
+            <i class="ph ph-arrows-left-right"></i>
+            선택 시 해제: {{ optionNames(getConflicts(o.id)).join(', ') }}
           </div>
         </button>
       </div>
@@ -995,6 +1020,10 @@ function onFeeChange() {
 .sv-opt__req {
   display: inline-flex; align-items: center; gap: 4px;
   font-size: var(--fs-xs); color: #c62828; margin-top: 2px;
+}
+.sv-opt__replace {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: var(--fs-xs); color: var(--ink-3); margin-top: 2px;
 }
 .sv-opt:active { background: var(--brand-50); }
 .sv-opt.is-selected {
