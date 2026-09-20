@@ -102,3 +102,28 @@
 .sr {
   animation: fp-step-in 160ms cubic-bezier(.2,.8,.2,1) both;
 }
+
+
+/* FreePass tactile interaction — immediate down + spring-like release */
+:where(button, [role="button"], summary):not(:disabled) {
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    transform 62ms cubic-bezier(.2,.8,.2,1),
+    filter 90ms ease,
+    background-color 110ms ease,
+    box-shadow 110ms ease,
+    opacity 110ms ease;
+}
+:where(button, [role="button"], summary).fp-pressed:not(:disabled) {
+  transform: scale(.965);
+  filter: brightness(.975);
+}
+:where(.sv-brand-card, .sv-row, .sv-trim-card, .sv-color-card, .sv-opt, .sc-chip, .se-chip, .se-card).fp-pressed:not(:disabled) {
+  box-shadow: inset 0 0 0 1px var(--brand-100);
+  background: var(--brand-50);
+}
+:where(.m-btn--primary, #gate-submit).fp-pressed:not(:disabled) {
+  transform: scale(.972);
+  filter: brightness(.90);
+}
