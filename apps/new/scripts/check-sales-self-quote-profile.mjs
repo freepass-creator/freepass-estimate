@@ -23,6 +23,9 @@ const availability = read('src/lib/quote/provider-availability.js');
 const externalEngine = read('src/lib/quote/engines/external.js');
 const externalApi = read('api/external-quote.js');
 const tokens = read('src/styles/tokens.css');
+const store = read('src/store.js');
+const rates = read('src/lib/welrix-rates.js');
+const conditions = read('src/components/mobile/StepConditions.vue');
 
 const expectedProvider = { mode: 'external', kind: 'excel', adapter_id: 'welrix' };
 assert.deepEqual(freepass.quote_provider, expectedProvider, 'FreePass Sales self quote must use Welrix external provider');
@@ -32,6 +35,13 @@ assert.ok(mobile.includes("params.get('c') || 'freepass'"), 'mobile default comp
 assert.ok(mobile.includes("return companyProfileId() === 'freepass' ? '/sales-welrix-db.js' : '/vehicle-db.js'"), 'FreePass Sales profile must load pinned Welrix catalog');
 assert.ok(tokens.includes('--brand:      #1b2a4a;'), 'FreePass visual token baseline must remain active');
 assert.ok(externalEngine.includes("export const 다루는차 = ['신차'];"), 'Sales self quote provider scope must remain new-car only');
+assert.ok(store.includes('const 기본보증금 = 담당자인가() ? 웰릭스기본.dep : 0;'), 'Guest deposit default must remain 0%');
+assert.ok(store.includes('if (!담당자인가()) return 웰릭스기본.feeRatePct;'), 'Guest fee rate must not inherit staff localStorage');
+assert.ok(rates.includes('feeRatePct: 7.0'), 'Sales public fee-rate baseline must remain 7%');
+assert.ok(rates.includes("deliveryRegion: '서울'"), 'Sales public delivery baseline must remain Seoul');
+assert.ok(rates.includes("tint: '루마 일반'"), 'Sales public tint baseline drift');
+assert.ok(rates.includes("blackbox: '파인뷰 SF500'"), 'Sales public blackbox baseline drift');
+assert.ok(conditions.includes('dep: quoteState.cond.dep ?? 0'), 'Adding a term must preserve guest 0% deposit');
 
 assert.equal(catalogMeta.schema, 'freepass-sales-welrix-catalog/v1');
 assert.equal(catalogMeta.source_repository, 'freepass-creator/welrixtable');
@@ -77,6 +87,15 @@ console.log(JSON.stringify({
     source: 'freepass-creator/welrixtable',
     blob: catalogMeta.source_blob_sha,
     trims: trimIds.length,
+  },
+  guestDefaults: {
+    credit: '중신용',
+    depositPct: 0,
+    prepayPct: 0,
+    feeRatePct: 7,
+    deliveryRegion: '서울',
+    tint: '루마 일반',
+    blackbox: '파인뷰 SF500',
   },
   silentFallback: false,
 }, null, 2));
