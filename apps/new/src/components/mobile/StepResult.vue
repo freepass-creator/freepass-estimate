@@ -171,6 +171,7 @@ const 공유시각 = computed(() => {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
   color: var(--ink-1); margin: 0 0 18px;
   line-height: 1.35; letter-spacing: -0.5px;
+  text-align: left;
 }
 .sr-snapshot {
   display: flex; flex-direction: column; gap: 3px;
@@ -200,7 +201,7 @@ const 공유시각 = computed(() => {
   margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line);
   font-size: var(--fs-md); color: var(--ink-3);
 }
-.sr-car__total b { font-size: var(--fs-lg); color: var(--ink-1); font-variant-numeric: tabular-nums; }
+.sr-car__total b { font-size: var(--fs-lg); color: var(--ink-1); font-variant-numeric: tabular-nums; text-align: right; }
 
 .sr-terms { display: grid; gap: 8px; margin-bottom: 12px; }
 .sr-term {
@@ -209,7 +210,7 @@ const 공유시각 = computed(() => {
 }
 .sr-term__label { font-size: var(--fs-lg); font-weight: 700; color: var(--ink-1); }
 .sr-term__sub { margin-top: 2px; font-size: var(--fs-sm); color: var(--ink-3); font-variant-numeric: tabular-nums; }
-.sr-term__monthly { font-size: var(--fs-md); color: var(--ink-2); white-space: nowrap; }
+.sr-term__monthly { font-size: var(--fs-md); color: var(--ink-2); white-space: nowrap; text-align: right; }
 .sr-term__monthly b {
   font-size: var(--fs-2xl); font-weight: 700; color: var(--brand);
   letter-spacing: -0.5px; font-variant-numeric: tabular-nums;
