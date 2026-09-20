@@ -1,0 +1,4788 @@
+{
+  "schema": "freepass-sales-main-axis-bridge/v1",
+  "source": {
+    "canonical_product_index_blob": "bd5fb055be1609b948032016084b34270b48f7d0",
+    "canonical_feed_blob": "78d3082522d3f5c42d47bd0e2323ffd4ab2e37c5",
+    "provider_catalog_blob": "2b2731fefe34facd9c16ff8295d4cefd1ac30437"
+  },
+  "stats": {
+    "canonical_products": 535,
+    "provider_trims": 443,
+    "canonical_products_with_axis_options": 191,
+    "bridge_base_trims": 73,
+    "suppressed_provider_axis_rows": 131,
+    "fallback_candidate_products": 44
+  },
+  "by_provider_trim_id": {
+    "셀토스 1.6 가솔린 2WD 시그니처": {
+      "canonical_product_id": "kia_seltos_가솔린1.6터보_시그니처",
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "가솔린 1.6 터보",
+      "trim": "시그니처",
+      "base_provider_trim_id": "셀토스 1.6 가솔린 2WD 시그니처",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_seltos_가솔린1.6터보_시그니처:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 1980000,
+          "sub": "터레인 모드(스노우/머드/샌드)+후륜 멀티링크 (트렌디는 스타일 패키지 적용 필요)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "셀토스 1.6 가솔린 2WD 시그니처",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 31450000
+        },
+        {
+          "api_model": "셀토스 1.6 가솔린 4WD 시그니처",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 33430000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "셀토스 1.6 가솔린 4WD 시그니처"
+      ]
+    },
+    "셀토스 1.6 가솔린 2WD 트렌디": {
+      "canonical_product_id": "kia_seltos_가솔린1.6터보_트렌디",
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "가솔린 1.6 터보",
+      "trim": "트렌디",
+      "base_provider_trim_id": "셀토스 1.6 가솔린 2WD 트렌디",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_seltos_가솔린1.6터보_트렌디:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 1980000,
+          "sub": "터레인 모드(스노우/머드/샌드)+후륜 멀티링크 (트렌디는 스타일 패키지 적용 필요)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "셀토스 1.6 가솔린 2WD 트렌디",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 25120000
+        },
+        {
+          "api_model": "셀토스 1.6 가솔린 4WD 트렌디",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 27100000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "셀토스 1.6 가솔린 4WD 트렌디"
+      ]
+    },
+    "셀토스 1.6 가솔린 2WD 프레스티지": {
+      "canonical_product_id": "kia_seltos_가솔린1.6터보_프레스티지",
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "base_provider_trim_id": "셀토스 1.6 가솔린 2WD 프레스티지",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_seltos_가솔린1.6터보_프레스티지:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 1980000,
+          "sub": "터레인 모드(스노우/머드/샌드)+후륜 멀티링크 (트렌디는 스타일 패키지 적용 필요)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "셀토스 1.6 가솔린 2WD 프레스티지",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 28800000
+        },
+        {
+          "api_model": "셀토스 1.6 가솔린 4WD 프레스티지",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 30780000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "셀토스 1.6 가솔린 4WD 프레스티지"
+      ]
+    },
+    "셀토스 1.6 가솔린 2WD X-Line": {
+      "canonical_product_id": "kia_seltos_가솔린1.6터보_xline",
+      "maker": "기아",
+      "model": "셀토스",
+      "engine": "가솔린 1.6 터보",
+      "trim": "X-Line",
+      "base_provider_trim_id": "셀토스 1.6 가솔린 2WD X-Line",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_seltos_가솔린1.6터보_xline:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 1980000,
+          "sub": "터레인 모드(스노우/머드/샌드)+후륜 멀티링크 (트렌디는 스타일 패키지 적용 필요)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "셀토스 1.6 가솔린 2WD X-Line",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 32630000
+        },
+        {
+          "api_model": "셀토스 1.6 가솔린 4WD X-Line",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 34610000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "셀토스 1.6 가솔린 4WD X-Line"
+      ]
+    },
+    "스포티지 1.6 가솔린 터보 2WD 노블레스": {
+      "canonical_product_id": "kia_sportage_가솔린1.6터보_노블레스",
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "노블레스",
+      "base_provider_trim_id": "스포티지 1.6 가솔린 터보 2WD 노블레스",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sportage_가솔린1.6터보_노블레스:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2230000,
+          "sub": "전자식 4WD + 터레인 모드(오토/스노우/머드/샌드)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "스포티지 1.6 가솔린 터보 2WD 노블레스",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 33220000
+        },
+        {
+          "api_model": "스포티지 1.6 가솔린 터보 4WD 노블레스",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 35450000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "스포티지 1.6 가솔린 터보 4WD 노블레스"
+      ]
+    },
+    "스포티지 1.6 가솔린 터보 2WD 블랙 에디션": {
+      "canonical_product_id": "kia_sportage_가솔린1.6터보_블랙에디션",
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "블랙 에디션",
+      "base_provider_trim_id": "스포티지 1.6 가솔린 터보 2WD 블랙 에디션",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sportage_가솔린1.6터보_블랙에디션:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2230000,
+          "sub": "전자식 4WD + 터레인 모드(오토/스노우/머드/샌드)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "스포티지 1.6 가솔린 터보 2WD 블랙 에디션",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 35870000
+        }
+      ],
+      "suppress_provider_trim_ids": []
+    },
+    "스포티지 1.6 가솔린 터보 2WD 시그니처": {
+      "canonical_product_id": "kia_sportage_가솔린1.6터보_시그니처",
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "시그니처",
+      "base_provider_trim_id": "스포티지 1.6 가솔린 터보 2WD 시그니처",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sportage_가솔린1.6터보_시그니처:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2230000,
+          "sub": "전자식 4WD + 터레인 모드(오토/스노우/머드/샌드)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "스포티지 1.6 가솔린 터보 2WD 시그니처",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 35570000
+        },
+        {
+          "api_model": "스포티지 1.6 가솔린 터보 4WD 시그니처",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 37800000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "스포티지 1.6 가솔린 터보 4WD 시그니처"
+      ]
+    },
+    "스포티지 1.6 가솔린 터보 2WD 프레스티지": {
+      "canonical_product_id": "kia_sportage_가솔린1.6터보_프레스티지",
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "base_provider_trim_id": "스포티지 1.6 가솔린 터보 2WD 프레스티지",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sportage_가솔린1.6터보_프레스티지:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2230000,
+          "sub": "전자식 4WD + 터레인 모드(오토/스노우/머드/샌드)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "스포티지 1.6 가솔린 터보 2WD 프레스티지",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 29440000
+        },
+        {
+          "api_model": "스포티지 1.6 가솔린 터보 4WD 프레스티지",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 31670000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "스포티지 1.6 가솔린 터보 4WD 프레스티지"
+      ]
+    },
+    "스포티지 1.6 하이브리드 2WD 노블레스": {
+      "canonical_product_id": "kia_sportage_하이브리드터보_노블레스",
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "base_provider_trim_id": "스포티지 1.6 하이브리드 2WD 노블레스",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sportage_하이브리드터보_노블레스:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2230000,
+          "sub": "전자식 4WD + 터레인 모드(오토/스노우/머드/샌드)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "스포티지 1.6 하이브리드 2WD 노블레스",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 39030000
+        },
+        {
+          "api_model": "스포티지 1.6 하이브리드 4WD 노블레스",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 41260000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "스포티지 1.6 하이브리드 4WD 노블레스"
+      ]
+    },
+    "스포티지 1.6 하이브리드 2WD 블랙 에디션": {
+      "canonical_product_id": "kia_sportage_하이브리드터보_블랙에디션",
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "블랙 에디션",
+      "base_provider_trim_id": "스포티지 1.6 하이브리드 2WD 블랙 에디션",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sportage_하이브리드터보_블랙에디션:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2230000,
+          "sub": "전자식 4WD + 터레인 모드(오토/스노우/머드/샌드)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "스포티지 1.6 하이브리드 2WD 블랙 에디션",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 41680000
+        }
+      ],
+      "suppress_provider_trim_ids": []
+    },
+    "스포티지 1.6 하이브리드 2WD 시그니처": {
+      "canonical_product_id": "kia_sportage_하이브리드터보_시그니처",
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "base_provider_trim_id": "스포티지 1.6 하이브리드 2WD 시그니처",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sportage_하이브리드터보_시그니처:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2230000,
+          "sub": "전자식 4WD + 터레인 모드(오토/스노우/머드/샌드)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "스포티지 1.6 하이브리드 2WD 시그니처",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 41380000
+        },
+        {
+          "api_model": "스포티지 1.6 하이브리드 4WD 시그니처",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 43610000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "스포티지 1.6 하이브리드 4WD 시그니처"
+      ]
+    },
+    "스포티지 1.6 하이브리드 2WD 프레스티지": {
+      "canonical_product_id": "kia_sportage_하이브리드터보_프레스티지",
+      "maker": "기아",
+      "model": "스포티지",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "base_provider_trim_id": "스포티지 1.6 하이브리드 2WD 프레스티지",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sportage_하이브리드터보_프레스티지:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2230000,
+          "sub": "전자식 4WD + 터레인 모드(오토/스노우/머드/샌드)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "스포티지 1.6 하이브리드 2WD 프레스티지",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 35360000
+        },
+        {
+          "api_model": "스포티지 1.6 하이브리드 4WD 프레스티지",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 37590000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "스포티지 1.6 하이브리드 4WD 프레스티지"
+      ]
+    },
+    "쏘렌토 5인승 2.5 가솔린 터보 2WD 노블레스": {
+      "canonical_product_id": "kia_sorento_가솔린2.5터보_노블레스",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "노블레스",
+      "base_provider_trim_id": "쏘렌토 5인승 2.5 가솔린 터보 2WD 노블레스",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_노블레스:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2320000,
+          "sub": "터레인 모드(오토/스노우/머드/샌드) (가솔린/디젤 전 트림 232만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_노블레스:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트(슬라이딩/리클라이닝/윙아웃 헤드레스트)+3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_노블레스:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD 노블레스",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 39660000
+        },
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 4WD 노블레스",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 41980000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 2WD 노블레스",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 40500000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 4WD 노블레스",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 42820000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 2WD 노블레스",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 40350000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 4WD 노블레스",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 42670000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 5인승 2.5 가솔린 터보 4WD 노블레스",
+        "쏘렌토 6인승 2.5 가솔린 터보 2WD 노블레스",
+        "쏘렌토 6인승 2.5 가솔린 터보 4WD 노블레스",
+        "쏘렌토 7인승 2.5 가솔린 터보 2WD 노블레스",
+        "쏘렌토 7인승 2.5 가솔린 터보 4WD 노블레스"
+      ]
+    },
+    "쏘렌토 5인승 2.5 가솔린 터보 2WD 블랙 에디션": {
+      "canonical_product_id": "kia_sorento_가솔린2.5터보_블랙에디션",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "블랙 에디션",
+      "base_provider_trim_id": "쏘렌토 5인승 2.5 가솔린 터보 2WD 블랙 에디션",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_블랙에디션:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2320000,
+          "sub": "터레인 모드(오토/스노우/머드/샌드) (가솔린/디젤 전 트림 232만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_블랙에디션:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트(슬라이딩/리클라이닝/윙아웃 헤드레스트)+3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_블랙에디션:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD 블랙 에디션",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 44410000
+        },
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 4WD 블랙 에디션",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 46730000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 2WD 블랙 에디션",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 45250000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 4WD 블랙 에디션",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 47570000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 2WD 블랙 에디션",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 45100000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 4WD 블랙 에디션",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 47420000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 5인승 2.5 가솔린 터보 4WD 블랙 에디션",
+        "쏘렌토 6인승 2.5 가솔린 터보 2WD 블랙 에디션",
+        "쏘렌토 6인승 2.5 가솔린 터보 4WD 블랙 에디션",
+        "쏘렌토 7인승 2.5 가솔린 터보 2WD 블랙 에디션",
+        "쏘렌토 7인승 2.5 가솔린 터보 4WD 블랙 에디션"
+      ]
+    },
+    "쏘렌토 5인승 2.5 가솔린 터보 2WD 시그니처": {
+      "canonical_product_id": "kia_sorento_가솔린2.5터보_시그니처",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "시그니처",
+      "base_provider_trim_id": "쏘렌토 5인승 2.5 가솔린 터보 2WD 시그니처",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_시그니처:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2320000,
+          "sub": "터레인 모드(오토/스노우/머드/샌드) (가솔린/디젤 전 트림 232만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_시그니처:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트(슬라이딩/리클라이닝/윙아웃 헤드레스트)+3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_시그니처:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD 시그니처",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 42470000
+        },
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 4WD 시그니처",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 44790000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 2WD 시그니처",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 43310000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 4WD 시그니처",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 45630000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 2WD 시그니처",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 43160000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 4WD 시그니처",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 45480000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 5인승 2.5 가솔린 터보 4WD 시그니처",
+        "쏘렌토 6인승 2.5 가솔린 터보 2WD 시그니처",
+        "쏘렌토 6인승 2.5 가솔린 터보 4WD 시그니처",
+        "쏘렌토 7인승 2.5 가솔린 터보 2WD 시그니처",
+        "쏘렌토 7인승 2.5 가솔린 터보 4WD 시그니처"
+      ]
+    },
+    "쏘렌토 5인승 2.5 가솔린 터보 2WD 프레스티지": {
+      "canonical_product_id": "kia_sorento_가솔린2.5터보_프레스티지",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "base_provider_trim_id": "쏘렌토 5인승 2.5 가솔린 터보 2WD 프레스티지",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_프레스티지:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2320000,
+          "sub": "터레인 모드(오토/스노우/머드/샌드) (가솔린/디젤 전 트림 232만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_프레스티지:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트(슬라이딩/리클라이닝/윙아웃 헤드레스트)+3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_프레스티지:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 36410000
+        },
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 4WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 38730000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 2WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 37250000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 4WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 39570000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 2WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 37100000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 4WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 39420000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 5인승 2.5 가솔린 터보 4WD 프레스티지",
+        "쏘렌토 6인승 2.5 가솔린 터보 2WD 프레스티지",
+        "쏘렌토 6인승 2.5 가솔린 터보 4WD 프레스티지",
+        "쏘렌토 7인승 2.5 가솔린 터보 2WD 프레스티지",
+        "쏘렌토 7인승 2.5 가솔린 터보 4WD 프레스티지"
+      ]
+    },
+    "쏘렌토 5인승 2.5 가솔린 터보 2WD X-Line": {
+      "canonical_product_id": "kia_sorento_가솔린2.5터보_xline",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "가솔린 2.5 터보",
+      "trim": "X-Line",
+      "base_provider_trim_id": "쏘렌토 5인승 2.5 가솔린 터보 2WD X-Line",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_xline:electric_4wd",
+          "raw_id": "electric_4wd",
+          "name": "전자식 4WD",
+          "price_won": 2320000,
+          "sub": "터레인 모드(오토/스노우/머드/샌드) (가솔린/디젤 전 트림 232만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_xline:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트(슬라이딩/리클라이닝/윙아웃 헤드레스트)+3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_가솔린2.5터보_xline:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩+2열 원터치 워크인+후석 매뉴얼 에어컨 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 2WD X-Line",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 43410000
+        },
+        {
+          "api_model": "쏘렌토 5인승 2.5 가솔린 터보 4WD X-Line",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 45730000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 2WD X-Line",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 44250000
+        },
+        {
+          "api_model": "쏘렌토 6인승 2.5 가솔린 터보 4WD X-Line",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 46570000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 2WD X-Line",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 44100000
+        },
+        {
+          "api_model": "쏘렌토 7인승 2.5 가솔린 터보 4WD X-Line",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 46420000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 5인승 2.5 가솔린 터보 4WD X-Line",
+        "쏘렌토 6인승 2.5 가솔린 터보 2WD X-Line",
+        "쏘렌토 6인승 2.5 가솔린 터보 4WD X-Line",
+        "쏘렌토 7인승 2.5 가솔린 터보 2WD X-Line",
+        "쏘렌토 7인승 2.5 가솔린 터보 4WD X-Line"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 2WD 노블레스": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_노블레스2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 2WD 노블레스",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_노블레스2wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_노블레스2wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 노블레스",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 43990000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 노블레스",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 46310000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD 노블레스",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 44830000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD 노블레스",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 47150000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD 노블레스",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 44680000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD 노블레스",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 47000000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD 노블레스",
+        "쏘렌토 6인승 1.6 하이브리드 4WD 노블레스",
+        "쏘렌토 7인승 1.6 하이브리드 2WD 노블레스",
+        "쏘렌토 7인승 1.6 하이브리드 4WD 노블레스"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 4WD 노블레스": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_노블레스전자식4wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 4WD 노블레스",
+      "base_axes": {
+        "drivetrain": "all",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_노블레스전자식4wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_노블레스전자식4wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 노블레스",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 43990000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 노블레스",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 46310000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD 노블레스",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 44830000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD 노블레스",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 47150000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD 노블레스",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 44680000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD 노블레스",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 47000000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD 노블레스",
+        "쏘렌토 6인승 1.6 하이브리드 4WD 노블레스",
+        "쏘렌토 7인승 1.6 하이브리드 2WD 노블레스",
+        "쏘렌토 7인승 1.6 하이브리드 4WD 노블레스"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 2WD 블랙 에디션": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_블랙에디션2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "블랙 에디션",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 2WD 블랙 에디션",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_블랙에디션2wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_블랙에디션2wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 블랙 에디션",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 48950000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 블랙 에디션",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 51270000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD 블랙 에디션",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 49790000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD 블랙 에디션",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 52110000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD 블랙 에디션",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 49640000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD 블랙 에디션",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 51960000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD 블랙 에디션",
+        "쏘렌토 6인승 1.6 하이브리드 4WD 블랙 에디션",
+        "쏘렌토 7인승 1.6 하이브리드 2WD 블랙 에디션",
+        "쏘렌토 7인승 1.6 하이브리드 4WD 블랙 에디션"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 4WD 블랙 에디션": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_블랙에디션전자식4wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "블랙 에디션",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 4WD 블랙 에디션",
+      "base_axes": {
+        "drivetrain": "all",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_블랙에디션전자식4wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_블랙에디션전자식4wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 블랙 에디션",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 48950000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 블랙 에디션",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 51270000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD 블랙 에디션",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 49790000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD 블랙 에디션",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 52110000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD 블랙 에디션",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 49640000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD 블랙 에디션",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 51960000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD 블랙 에디션",
+        "쏘렌토 6인승 1.6 하이브리드 4WD 블랙 에디션",
+        "쏘렌토 7인승 1.6 하이브리드 2WD 블랙 에디션",
+        "쏘렌토 7인승 1.6 하이브리드 4WD 블랙 에디션"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 2WD 시그니처": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_시그니처2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 2WD 시그니처",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_시그니처2wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_시그니처2wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 시그니처",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 46760000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 시그니처",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 49080000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD 시그니처",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 47600000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD 시그니처",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 49920000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD 시그니처",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 47450000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD 시그니처",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 49770000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD 시그니처",
+        "쏘렌토 6인승 1.6 하이브리드 4WD 시그니처",
+        "쏘렌토 7인승 1.6 하이브리드 2WD 시그니처",
+        "쏘렌토 7인승 1.6 하이브리드 4WD 시그니처"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 4WD 시그니처": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_시그니처전자식4wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 4WD 시그니처",
+      "base_axes": {
+        "drivetrain": "all",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_시그니처전자식4wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_시그니처전자식4wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 시그니처",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 46760000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 시그니처",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 49080000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD 시그니처",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 47600000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD 시그니처",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 49920000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD 시그니처",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 47450000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD 시그니처",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 49770000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD 시그니처",
+        "쏘렌토 6인승 1.6 하이브리드 4WD 시그니처",
+        "쏘렌토 7인승 1.6 하이브리드 2WD 시그니처",
+        "쏘렌토 7인승 1.6 하이브리드 4WD 시그니처"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 2WD 프레스티지": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_프레스티지2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 2WD 프레스티지",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_프레스티지2wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_프레스티지2wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 40630000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 42950000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 41470000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 43790000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 41320000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 43640000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD 프레스티지",
+        "쏘렌토 6인승 1.6 하이브리드 4WD 프레스티지",
+        "쏘렌토 7인승 1.6 하이브리드 2WD 프레스티지",
+        "쏘렌토 7인승 1.6 하이브리드 4WD 프레스티지"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 4WD 프레스티지": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_프레스티지전자식4wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 4WD 프레스티지",
+      "base_axes": {
+        "drivetrain": "all",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_프레스티지전자식4wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_프레스티지전자식4wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 40630000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 42950000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 41470000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 43790000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 41320000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 43640000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD 프레스티지",
+        "쏘렌토 6인승 1.6 하이브리드 4WD 프레스티지",
+        "쏘렌토 7인승 1.6 하이브리드 2WD 프레스티지",
+        "쏘렌토 7인승 1.6 하이브리드 4WD 프레스티지"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 2WD X-Line": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_xline2wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "X-Line",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 2WD X-Line",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_xline2wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_xline2wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD X-Line",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 47700000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD X-Line",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 50020000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD X-Line",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 48540000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD X-Line",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 50860000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD X-Line",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 48390000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD X-Line",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 50710000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD X-Line",
+        "쏘렌토 6인승 1.6 하이브리드 4WD X-Line",
+        "쏘렌토 7인승 1.6 하이브리드 2WD X-Line",
+        "쏘렌토 7인승 1.6 하이브리드 4WD X-Line"
+      ]
+    },
+    "쏘렌토 5인승 1.6 하이브리드 4WD X-Line": {
+      "canonical_product_id": "kia_sorento_하이브리드터보_xline전자식4wd",
+      "maker": "기아",
+      "model": "쏘렌토",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "X-Line",
+      "base_provider_trim_id": "쏘렌토 5인승 1.6 하이브리드 4WD X-Line",
+      "base_axes": {
+        "drivetrain": "all",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_xline전자식4wd:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승",
+          "price_won": 840000,
+          "sub": "2열 독립 캡틴시트+3열 5:5 폴딩 (5인승 기본 → 84만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:kia_sorento_하이브리드터보_xline전자식4wd:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승",
+          "price_won": 690000,
+          "sub": "3열 5:5 폴딩 (5인승 기본 → 69만 추가)",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 2WD X-Line",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 47700000
+        },
+        {
+          "api_model": "쏘렌토 5인승 1.6 하이브리드 4WD X-Line",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 50020000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 2WD X-Line",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 48540000
+        },
+        {
+          "api_model": "쏘렌토 6인승 1.6 하이브리드 4WD X-Line",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 50860000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 2WD X-Line",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 48390000
+        },
+        {
+          "api_model": "쏘렌토 7인승 1.6 하이브리드 4WD X-Line",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 50710000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "쏘렌토 6인승 1.6 하이브리드 2WD X-Line",
+        "쏘렌토 6인승 1.6 하이브리드 4WD X-Line",
+        "쏘렌토 7인승 1.6 하이브리드 2WD X-Line",
+        "쏘렌토 7인승 1.6 하이브리드 4WD X-Line"
+      ]
+    },
+    "The new K8 3.5 가솔린 2WD 노블레스": {
+      "canonical_product_id": "kia_k8_가솔린3.5_노블레스",
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "노블레스",
+      "base_provider_trim_id": "The new K8 3.5 가솔린 2WD 노블레스",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_k8_가솔린3.5_노블레스:awd",
+          "raw_id": "awd",
+          "name": "AWD (3.5G 전용)",
+          "price_won": 2180000,
+          "sub": "4륜구동 + 험로주행",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "The new K8 3.5 가솔린 2WD 노블레스",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 44300000
+        },
+        {
+          "api_model": "The new K8 3.5 가솔린 AWD 노블레스",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 46480000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "The new K8 3.5 가솔린 AWD 노블레스"
+      ]
+    },
+    "The new K8 3.5 가솔린 2WD 노블레스 라이트": {
+      "canonical_product_id": "kia_k8_가솔린3.5_노블레스라이트",
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "노블레스 라이트",
+      "base_provider_trim_id": "The new K8 3.5 가솔린 2WD 노블레스 라이트",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_k8_가솔린3.5_노블레스라이트:awd",
+          "raw_id": "awd",
+          "name": "AWD (3.5G 전용)",
+          "price_won": 2180000,
+          "sub": "4륜구동 + 험로주행",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "The new K8 3.5 가솔린 2WD 노블레스 라이트",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 40430000
+        }
+      ],
+      "suppress_provider_trim_ids": []
+    },
+    "The new K8 3.5 가솔린 2WD 시그니처": {
+      "canonical_product_id": "kia_k8_가솔린3.5_시그니처",
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "시그니처",
+      "base_provider_trim_id": "The new K8 3.5 가솔린 2WD 시그니처",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_k8_가솔린3.5_시그니처:awd",
+          "raw_id": "awd",
+          "name": "AWD (3.5G 전용)",
+          "price_won": 2180000,
+          "sub": "4륜구동 + 험로주행",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "The new K8 3.5 가솔린 2WD 시그니처",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 47890000
+        },
+        {
+          "api_model": "The new K8 3.5 가솔린 AWD 시그니처",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 50070000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "The new K8 3.5 가솔린 AWD 시그니처"
+      ]
+    },
+    "The new K8 3.5 가솔린 2WD 시그니처 블랙": {
+      "canonical_product_id": "kia_k8_가솔린3.5_시그니처블랙",
+      "maker": "기아",
+      "model": "K8",
+      "engine": "가솔린 3.5",
+      "trim": "시그니처 블랙",
+      "base_provider_trim_id": "The new K8 3.5 가솔린 2WD 시그니처 블랙",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_k8_가솔린3.5_시그니처블랙:awd",
+          "raw_id": "awd",
+          "name": "AWD (3.5G 전용)",
+          "price_won": 2180000,
+          "sub": "4륜구동 + 험로주행",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "The new K8 3.5 가솔린 2WD 시그니처 블랙",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 49470000
+        },
+        {
+          "api_model": "The new K8 3.5 가솔린 AWD 시그니처 블랙",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 51650000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "The new K8 3.5 가솔린 AWD 시그니처 블랙"
+      ]
+    },
+    "K9 3.3 가솔린 터보 2WD 플래티넘": {
+      "canonical_product_id": "kia_k9_가솔린3.3터보_플래티넘",
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.3 터보",
+      "trim": "플래티넘",
+      "base_provider_trim_id": "K9 3.3 가솔린 터보 2WD 플래티넘",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_k9_가솔린3.3터보_플래티넘:awd",
+          "raw_id": "awd",
+          "name": "AWD",
+          "price_won": 2470000,
+          "sub": "4륜구동 (베스트 셀렉션 Ⅰ/마스터즈/베스트 셀렉션 Ⅱ는 기본)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "K9 3.3 가솔린 터보 2WD 플래티넘",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 66880000
+        },
+        {
+          "api_model": "K9 3.3 가솔린 터보 AWD 플래티넘",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 69350000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "K9 3.3 가솔린 터보 AWD 플래티넘"
+      ]
+    },
+    "K9 3.8 가솔린 터보 2WD 플래티넘": {
+      "canonical_product_id": "kia_k9_가솔린3.8_플래티넘",
+      "maker": "기아",
+      "model": "K9",
+      "engine": "가솔린 3.8",
+      "trim": "플래티넘",
+      "base_provider_trim_id": "K9 3.8 가솔린 터보 2WD 플래티넘",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:kia_k9_가솔린3.8_플래티넘:awd",
+          "raw_id": "awd",
+          "name": "AWD",
+          "price_won": 2470000,
+          "sub": "4륜구동 (베스트 셀렉션 Ⅰ/마스터즈/베스트 셀렉션 Ⅱ는 기본)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "K9 3.8 가솔린 터보 2WD 플래티넘",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 60340000
+        },
+        {
+          "api_model": "K9 3.8 가솔린 터보 AWD 플래티넘",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 62810000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "K9 3.8 가솔린 터보 AWD 플래티넘"
+      ]
+    },
+    "GV80 2.5 가솔린 터보 AWD Black 5인승": {
+      "canonical_product_id": "genesis_gv80__가솔린_2.5_터보__블랙",
+      "maker": "제네시스",
+      "model": "GV80",
+      "engine": "가솔린 2.5 터보",
+      "trim": "블랙",
+      "base_provider_trim_id": "GV80 2.5 가솔린 터보 AWD Black 5인승",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:genesis_gv80__가솔린_2.5_터보__블랙:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2+2+2 캡틴체어)",
+          "price_won": 2800000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:genesis_gv80__가솔린_2.5_터보__블랙:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 캡틴체어)",
+          "price_won": 2000000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        },
+        {
+          "id": "main-axis:genesis_gv80__가솔린_2.5_터보__블랙:awd",
+          "raw_id": "awd",
+          "name": "AWD",
+          "price_won": 3000000,
+          "sub": "전자제어 풀타임 4WD",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "GV80 2.5 가솔린 터보 AWD Black 5인승",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 95080000
+        },
+        {
+          "api_model": "GV80 2.5 가솔린 터보 AWD Black 6인승",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 97580000
+        },
+        {
+          "api_model": "GV80 2.5 가솔린 터보 AWD Black 7인승",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 96080000
+        },
+        {
+          "api_model": "GV80 COUPE 2.5 가솔린 터보 AWD Black",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "쿠페 4WD",
+          "price_won": 100980000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "GV80 2.5 가솔린 터보 AWD Black 6인승",
+        "GV80 2.5 가솔린 터보 AWD Black 7인승"
+      ]
+    },
+    "GV80 3.5 가솔린 터보 AWD Black 5인승": {
+      "canonical_product_id": "genesis_gv80__가솔린_3.5_터보__블랙",
+      "maker": "제네시스",
+      "model": "GV80",
+      "engine": "가솔린 3.5 터보",
+      "trim": "블랙",
+      "base_provider_trim_id": "GV80 3.5 가솔린 터보 AWD Black 5인승",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:genesis_gv80__가솔린_3.5_터보__블랙:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2+2+2 캡틴체어)",
+          "price_won": 2800000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:genesis_gv80__가솔린_3.5_터보__블랙:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 캡틴체어)",
+          "price_won": 2000000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        },
+        {
+          "id": "main-axis:genesis_gv80__가솔린_3.5_터보__블랙:awd",
+          "raw_id": "awd",
+          "name": "AWD",
+          "price_won": 3000000,
+          "sub": "전자제어 풀타임 4WD",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "GV80 3.5 가솔린 터보 AWD Black 5인승",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 99280000
+        },
+        {
+          "api_model": "GV80 3.5 가솔린 터보 AWD Black 6인승",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 101780000
+        },
+        {
+          "api_model": "GV80 3.5 가솔린 터보 AWD Black 7인승",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 100280000
+        },
+        {
+          "api_model": "GV80 COUPE 3.5 가솔린 터보 AWD Black",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "쿠페 4WD",
+          "price_won": 105180000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "GV80 3.5 가솔린 터보 AWD Black 6인승",
+        "GV80 3.5 가솔린 터보 AWD Black 7인승"
+      ]
+    },
+    "더 뉴 그랜저 2.5 가솔린 2WD Exclusive": {
+      "canonical_product_id": "GNJS4RBT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 2.5",
+      "trim": "익스클루시브",
+      "base_provider_trim_id": "더 뉴 그랜저 2.5 가솔린 2WD Exclusive",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:GNJS4RBT4:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2200000,
+          "sub": "스마트스트림 가솔린 3.5 선택 시만 가능",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 그랜저 2.5 가솔린 2WD Exclusive",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "",
+          "price_won": 46940000
+        }
+      ],
+      "suppress_provider_trim_ids": []
+    },
+    "더 뉴 그랜저 2.5 가솔린 2WD Calligraphy": {
+      "canonical_product_id": "GNJS4RCT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 2.5",
+      "trim": "캘리그래피",
+      "base_provider_trim_id": "더 뉴 그랜저 2.5 가솔린 2WD Calligraphy",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:GNJS4RCT4:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2200000,
+          "sub": "스마트스트림 가솔린 3.5 선택 시만 가능",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 그랜저 2.5 가솔린 2WD Calligraphy",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "",
+          "price_won": 53100000
+        }
+      ],
+      "suppress_provider_trim_ids": []
+    },
+    "더 뉴 그랜저 2.5 가솔린 2WD Premium": {
+      "canonical_product_id": "GNJS4RAT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 2.5",
+      "trim": "프리미엄",
+      "base_provider_trim_id": "더 뉴 그랜저 2.5 가솔린 2WD Premium",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:GNJS4RAT4:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2200000,
+          "sub": "스마트스트림 가솔린 3.5 선택 시만 가능",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 그랜저 2.5 가솔린 2WD Premium",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "",
+          "price_won": 42450000
+        }
+      ],
+      "suppress_provider_trim_ids": []
+    },
+    "더 뉴 그랜저 3.5 가솔린 2WD Exclusive": {
+      "canonical_product_id": "GNJS4SBT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 3.5",
+      "trim": "익스클루시브",
+      "base_provider_trim_id": "더 뉴 그랜저 3.5 가솔린 2WD Exclusive",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:GNJS4SBT4:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2200000,
+          "sub": "스마트스트림 가솔린 3.5 선택 시만 가능",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 그랜저 3.5 가솔린 2WD Exclusive",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 49410000
+        },
+        {
+          "api_model": "더 뉴 그랜저 3.5 가솔린 4WD Exclusive",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 51610000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 그랜저 3.5 가솔린 4WD Exclusive"
+      ]
+    },
+    "더 뉴 그랜저 3.5 가솔린 2WD Calligraphy": {
+      "canonical_product_id": "GNJS4SCT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 3.5",
+      "trim": "캘리그래피",
+      "base_provider_trim_id": "더 뉴 그랜저 3.5 가솔린 2WD Calligraphy",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:GNJS4SCT4:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2200000,
+          "sub": "스마트스트림 가솔린 3.5 선택 시만 가능",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 그랜저 3.5 가솔린 2WD Calligraphy",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 55570000
+        },
+        {
+          "api_model": "더 뉴 그랜저 3.5 가솔린 4WD Calligraphy",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 57770000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 그랜저 3.5 가솔린 4WD Calligraphy"
+      ]
+    },
+    "더 뉴 그랜저 3.5 가솔린 2WD Premium": {
+      "canonical_product_id": "GNJS4SAT4",
+      "maker": "현대",
+      "model": "더 뉴 그랜저",
+      "engine": "가솔린 3.5",
+      "trim": "프리미엄",
+      "base_provider_trim_id": "더 뉴 그랜저 3.5 가솔린 2WD Premium",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:GNJS4SAT4:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2200000,
+          "sub": "스마트스트림 가솔린 3.5 선택 시만 가능",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 그랜저 3.5 가솔린 2WD Premium",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 44910000
+        },
+        {
+          "api_model": "더 뉴 그랜저 3.5 가솔린 4WD Premium",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 47110000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 그랜저 3.5 가솔린 4WD Premium"
+      ]
+    },
+    "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 익스클루시브": {
+      "canonical_product_id": "MXJJ5TCT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "익스클루시브",
+      "base_provider_trim_id": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 익스클루시브",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:MXJJ5TCT3:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2230000,
+          "sub": "+ 험로주행모드 (+223만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5TCT3:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2열 전동 독립시트+윙타입헤드레스트)",
+          "price_won": 1040000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5TCT3:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 원터치 워크인)",
+          "price_won": 690000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 익스클루시브",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 36570000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 익스클루시브",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 38800000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 익스클루시브",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 37610000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 익스클루시브",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 39840000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 익스클루시브",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 37260000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 익스클루시브",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 39490000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 익스클루시브",
+        "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 익스클루시브",
+        "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 익스클루시브",
+        "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 익스클루시브",
+        "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 익스클루시브"
+      ]
+    },
+    "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 캘리그래피": {
+      "canonical_product_id": "MXJJ5THT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "캘리그래피",
+      "base_provider_trim_id": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 캘리그래피",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:MXJJ5THT3:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2230000,
+          "sub": "+ 험로주행모드 (+223만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5THT3:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2열 전동 독립시트+윙타입헤드레스트)",
+          "price_won": 1040000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5THT3:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 원터치 워크인)",
+          "price_won": 690000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 캘리그래피",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 45470000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 캘리그래피",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 47700000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 캘리그래피",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 46510000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 캘리그래피",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 48740000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 캘리그래피",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 46160000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 캘리그래피",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 48390000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 캘리그래피",
+        "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 캘리그래피",
+        "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 캘리그래피",
+        "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 캘리그래피",
+        "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 캘리그래피"
+      ]
+    },
+    "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 프레스티지": {
+      "canonical_product_id": "MXJJ5TFT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "base_provider_trim_id": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 프레스티지",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:MXJJ5TFT3:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2230000,
+          "sub": "+ 험로주행모드 (+223만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5TFT3:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2열 전동 독립시트+윙타입헤드레스트)",
+          "price_won": 1040000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5TFT3:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 원터치 워크인)",
+          "price_won": 690000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 39440000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 41670000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 40480000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 42710000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 40130000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 42360000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 프레스티지",
+        "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 프레스티지",
+        "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 프레스티지",
+        "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 프레스티지",
+        "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 프레스티지"
+      ]
+    },
+    "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD H-Pick": {
+      "canonical_product_id": "MXJJ5TMT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "가솔린 2.5 터보",
+      "trim": "H-Pick",
+      "base_provider_trim_id": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD H-Pick",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:MXJJ5TMT3:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2230000,
+          "sub": "+ 험로주행모드 (+223만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5TMT3:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2열 전동 독립시트+윙타입헤드레스트)",
+          "price_won": 1040000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5TMT3:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 원터치 워크인)",
+          "price_won": 690000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD H-Pick",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 42090000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD H-Pick",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 44320000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD H-Pick",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 43130000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD H-Pick",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 45360000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD H-Pick",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 42780000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD H-Pick",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 45010000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD H-Pick",
+        "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD H-Pick",
+        "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD H-Pick",
+        "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD H-Pick",
+        "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD H-Pick"
+      ]
+    },
+    "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브": {
+      "canonical_product_id": "MXJJ5ZCT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "익스클루시브",
+      "base_provider_trim_id": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:MXJJ5ZCT3:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2230000,
+          "sub": "+ 험로주행모드 (+223만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5ZCT3:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2열 전동 독립시트+윙타입헤드레스트)",
+          "price_won": 1040000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5ZCT3:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 원터치 워크인)",
+          "price_won": 690000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 익스클루시브",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 41220000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 43450000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 42260000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 44490000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 41910000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 44140000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+        "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+        "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+        "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+        "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브"
+      ]
+    },
+    "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피": {
+      "canonical_product_id": "MXJJ5ZHT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "캘리그래피",
+      "base_provider_trim_id": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:MXJJ5ZHT3:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2230000,
+          "sub": "+ 험로주행모드 (+223만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5ZHT3:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2열 전동 독립시트+윙타입헤드레스트)",
+          "price_won": 1040000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5ZHT3:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 원터치 워크인)",
+          "price_won": 690000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 캘리그래피",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 49770000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 52000000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 50810000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 53040000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 50460000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 52690000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+        "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+        "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+        "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+        "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피"
+      ]
+    },
+    "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지": {
+      "canonical_product_id": "MXJJ5ZFT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "base_provider_trim_id": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:MXJJ5ZFT3:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2230000,
+          "sub": "+ 험로주행모드 (+223만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5ZFT3:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2열 전동 독립시트+윙타입헤드레스트)",
+          "price_won": 1040000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5ZFT3:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 원터치 워크인)",
+          "price_won": 690000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 44090000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 46320000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 45130000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 47360000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 44780000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 47010000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+        "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+        "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+        "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+        "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지"
+      ]
+    },
+    "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick": {
+      "canonical_product_id": "MXJJ5ZMT3",
+      "maker": "현대",
+      "model": "싼타페",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "base_provider_trim_id": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 5,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:MXJJ5ZMT3:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 2230000,
+          "sub": "+ 험로주행모드 (+223만)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5ZMT3:seat_6",
+          "raw_id": "seat_6",
+          "name": "6인승 (2열 전동 독립시트+윙타입헤드레스트)",
+          "price_won": 1040000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 6
+          }
+        },
+        {
+          "id": "main-axis:MXJJ5ZMT3:seat_7",
+          "raw_id": "seat_7",
+          "name": "7인승 (2열 원터치 워크인)",
+          "price_won": 690000,
+          "sub": "",
+          "effect": {
+            "axis": "seats",
+            "value": 7
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD H-Pick",
+          "seats": 5,
+          "drivetrain": "two",
+          "group": "5인승 2WD",
+          "price_won": 46730000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+          "seats": 5,
+          "drivetrain": "all",
+          "group": "5인승 4WD",
+          "price_won": 48960000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+          "seats": 6,
+          "drivetrain": "two",
+          "group": "6인승 2WD",
+          "price_won": 47770000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+          "seats": 6,
+          "drivetrain": "all",
+          "group": "6인승 4WD",
+          "price_won": 50000000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 47420000
+        },
+        {
+          "api_model": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 49650000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+        "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+        "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+        "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+        "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick"
+      ]
+    },
+    "디 올 뉴 코나 1.6 가솔린 터보 2WD Inspiration": {
+      "canonical_product_id": "SXJJ5TCD4",
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "인스퍼레이션",
+      "base_provider_trim_id": "디 올 뉴 코나 1.6 가솔린 터보 2WD Inspiration",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:SXJJ5TCD4:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC",
+          "price_won": 2030000,
+          "sub": "험로주행모드+경사로 저속+후륜 멀티링크 (1.6T 가솔린/HEV)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 코나 1.6 가솔린 터보 2WD Inspiration",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 31460000
+        },
+        {
+          "api_model": "디 올 뉴 코나 1.6 가솔린 터보 4WD Inspiration",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 33490000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 코나 1.6 가솔린 터보 4WD Inspiration"
+      ]
+    },
+    "디 올 뉴 코나 1.6 가솔린 터보 2WD Premium": {
+      "canonical_product_id": "SXJJ5TBD4",
+      "maker": "현대",
+      "model": "코나",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프리미엄",
+      "base_provider_trim_id": "디 올 뉴 코나 1.6 가솔린 터보 2WD Premium",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:SXJJ5TBD4:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC",
+          "price_won": 2030000,
+          "sub": "험로주행모드+경사로 저속+후륜 멀티링크 (1.6T 가솔린/HEV)",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 코나 1.6 가솔린 터보 2WD Premium",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 29150000
+        },
+        {
+          "api_model": "디 올 뉴 코나 1.6 가솔린 터보 4WD Premium",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 31180000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 코나 1.6 가솔린 터보 4WD Premium"
+      ]
+    },
+    "더 뉴 투싼 1.6 가솔린 터보 2WD H-Pick": {
+      "canonical_product_id": "NXJJ5THD5",
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "H-Pick",
+      "base_provider_trim_id": "더 뉴 투싼 1.6 가솔린 터보 2WD H-Pick",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:NXJJ5THD5:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 1980000,
+          "sub": "+ 경사로 저속 주행장치",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 가솔린 터보 2WD H-Pick",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 32010000
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 가솔린 터보 4WD H-Pick",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 33990000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 투싼 1.6 가솔린 터보 4WD H-Pick"
+      ]
+    },
+    "더 뉴 투싼 1.6 가솔린 터보 2WD Inspiration": {
+      "canonical_product_id": "NXJJ5TPD5",
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "인스퍼레이션",
+      "base_provider_trim_id": "더 뉴 투싼 1.6 가솔린 터보 2WD Inspiration",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:NXJJ5TPD5:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 1980000,
+          "sub": "+ 경사로 저속 주행장치",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 가솔린 터보 2WD Inspiration",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 34560000
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 가솔린 터보 4WD Inspiration",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 36540000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 투싼 1.6 가솔린 터보 4WD Inspiration"
+      ]
+    },
+    "더 뉴 투싼 1.6 가솔린 터보 2WD Modern": {
+      "canonical_product_id": "NXJJ5TDD5",
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "모던",
+      "base_provider_trim_id": "더 뉴 투싼 1.6 가솔린 터보 2WD Modern",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:NXJJ5TDD5:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 1980000,
+          "sub": "+ 경사로 저속 주행장치",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 가솔린 터보 2WD Modern",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 28440000
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 가솔린 터보 4WD Modern",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 30420000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 투싼 1.6 가솔린 터보 4WD Modern"
+      ]
+    },
+    "더 뉴 투싼 1.6 가솔린 터보 2WD Premium": {
+      "canonical_product_id": "NXJJ5TCD5",
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "가솔린 1.6 터보",
+      "trim": "프리미엄",
+      "base_provider_trim_id": "더 뉴 투싼 1.6 가솔린 터보 2WD Premium",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:NXJJ5TCD5:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 1980000,
+          "sub": "+ 경사로 저속 주행장치",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 가솔린 터보 2WD Premium",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 31120000
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 가솔린 터보 4WD Premium",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 33100000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 투싼 1.6 가솔린 터보 4WD Premium"
+      ]
+    },
+    "더 뉴 투싼 1.6 하이브리드 2WD H-Pick": {
+      "canonical_product_id": "NXJJ5ZHT5",
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "H-Pick",
+      "base_provider_trim_id": "더 뉴 투싼 1.6 하이브리드 2WD H-Pick",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:NXJJ5ZHT5:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 1980000,
+          "sub": "+ 경사로 저속 주행장치",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD H-Pick",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 37490000
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD H-Pick",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 39720000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 투싼 1.6 하이브리드 4WD H-Pick"
+      ]
+    },
+    "더 뉴 투싼 1.6 하이브리드 2WD Inspiration": {
+      "canonical_product_id": "NXJJ5ZPT5",
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "인스퍼레이션",
+      "base_provider_trim_id": "더 뉴 투싼 1.6 하이브리드 2WD Inspiration",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:NXJJ5ZPT5:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 1980000,
+          "sub": "+ 경사로 저속 주행장치",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Inspiration",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 40170000
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Inspiration",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 42400000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 투싼 1.6 하이브리드 4WD Inspiration"
+      ]
+    },
+    "더 뉴 투싼 1.6 하이브리드 2WD Modern": {
+      "canonical_product_id": "NXJJ5ZDT5",
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "모던",
+      "base_provider_trim_id": "더 뉴 투싼 1.6 하이브리드 2WD Modern",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:NXJJ5ZDT5:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 1980000,
+          "sub": "+ 경사로 저속 주행장치",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Modern",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 34180000
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Modern",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 36410000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 투싼 1.6 하이브리드 4WD Modern"
+      ]
+    },
+    "더 뉴 투싼 1.6 하이브리드 2WD Premium": {
+      "canonical_product_id": "NXJJ5ZCT5",
+      "maker": "현대",
+      "model": "투싼",
+      "engine": "하이브리드 1.6 터보",
+      "trim": "프리미엄",
+      "base_provider_trim_id": "더 뉴 투싼 1.6 하이브리드 2WD Premium",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": null,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:NXJJ5ZCT5:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC (4WD)",
+          "price_won": 1980000,
+          "sub": "+ 경사로 저속 주행장치",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 2WD Premium",
+          "seats": null,
+          "drivetrain": "two",
+          "group": "2WD",
+          "price_won": 36650000
+        },
+        {
+          "api_model": "더 뉴 투싼 1.6 하이브리드 4WD Premium",
+          "seats": null,
+          "drivetrain": "all",
+          "group": "4WD",
+          "price_won": 38880000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "더 뉴 투싼 1.6 하이브리드 4WD Premium"
+      ]
+    },
+    "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Exclusive": {
+      "canonical_product_id": "FXJJ7TAT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "익스클루시브",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Exclusive",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 7,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ7TAT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2400000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Exclusive",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 46100000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Exclusive",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 48500000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Exclusive",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 44780000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Exclusive",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 47060000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Exclusive",
+        "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Exclusive"
+      ]
+    },
+    "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Calligraphy": {
+      "canonical_product_id": "FXJJ7TCT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "캘리그래피",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Calligraphy",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 7,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ7TCT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2400000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Calligraphy",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 58070000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Calligraphy",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 60470000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Calligraphy",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 56060000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Calligraphy",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 58340000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Calligraphy",
+        "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Calligraphy"
+      ]
+    },
+    "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD H-Pick": {
+      "canonical_product_id": "FXJJ7THT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "H-Pick",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD H-Pick",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 7,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ7THT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD H-Pick",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 52030000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD H-Pick",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 54430000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD H-Pick",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 50400000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD H-Pick",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 52680000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD H-Pick",
+        "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD H-Pick"
+      ]
+    },
+    "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD XRT": {
+      "canonical_product_id": "FXJJ7TDT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "XRT",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD XRT",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 7,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ7TDT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD XRT",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 53820000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD XRT",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 56220000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD XRT",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 52110000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD XRT",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 54390000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD XRT",
+        "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD XRT"
+      ]
+    },
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Exclusive": {
+      "canonical_product_id": "FXJJ9TAT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "익스클루시브",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Exclusive",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 9,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ9TAT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Exclusive",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 46100000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Exclusive",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 48500000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Exclusive",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 44780000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Exclusive",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 47060000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Exclusive",
+        "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Exclusive"
+      ]
+    },
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Calligraphy": {
+      "canonical_product_id": "FXJJ9TCT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "캘리그래피",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Calligraphy",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 9,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ9TCT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Calligraphy",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 58070000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Calligraphy",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 60470000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Calligraphy",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 56060000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Calligraphy",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 58340000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Calligraphy",
+        "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Calligraphy"
+      ]
+    },
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD H-Pick": {
+      "canonical_product_id": "FXJJ9THT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "H-Pick",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD H-Pick",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 9,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ9THT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD H-Pick",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 52030000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD H-Pick",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 54430000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD H-Pick",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 50400000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD H-Pick",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 52680000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD H-Pick",
+        "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD H-Pick"
+      ]
+    },
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD XRT": {
+      "canonical_product_id": "FXJJ9TDT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "가솔린 2.5",
+      "trim": "XRT",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD XRT",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 9,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ9TDT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD XRT",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 53820000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD XRT",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 56220000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD XRT",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 52110000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD XRT",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 54390000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD XRT",
+        "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD XRT"
+      ]
+    },
+    "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Exclusive": {
+      "canonical_product_id": "FXJJ7ZAT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "하이브리드 2.5",
+      "trim": "익스클루시브",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Exclusive",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 7,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ7ZAT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2400000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Exclusive",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 52400000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Exclusive",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 54800000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Exclusive",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 50770000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Exclusive",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 53050000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Exclusive",
+        "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Exclusive"
+      ]
+    },
+    "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Calligraphy": {
+      "canonical_product_id": "FXJJ7ZCT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "하이브리드 2.5",
+      "trim": "캘리그래피",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Calligraphy",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 7,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ7ZCT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2400000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Calligraphy",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 64360000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Calligraphy",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 66760000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Calligraphy",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 62060000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Calligraphy",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 64340000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Calligraphy",
+        "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Calligraphy"
+      ]
+    },
+    "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD H-Pick": {
+      "canonical_product_id": "FXJJ7ZHT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "하이브리드 2.5",
+      "trim": "H-Pick",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD H-Pick",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 7,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ7ZHT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD H-Pick",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 58320000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 60720000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD H-Pick",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 56400000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD H-Pick",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 58680000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick",
+        "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD H-Pick"
+      ]
+    },
+    "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Exclusive": {
+      "canonical_product_id": "FXJJ9ZAT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "하이브리드 2.5",
+      "trim": "익스클루시브",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Exclusive",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 9,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ9ZAT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Exclusive",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 52400000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Exclusive",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 54800000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Exclusive",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 50770000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Exclusive",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 53050000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Exclusive",
+        "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Exclusive"
+      ]
+    },
+    "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Calligraphy": {
+      "canonical_product_id": "FXJJ9ZCT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "하이브리드 2.5",
+      "trim": "캘리그래피",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Calligraphy",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 9,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ9ZCT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Calligraphy",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 64360000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Calligraphy",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 66760000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Calligraphy",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 62060000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Calligraphy",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 64340000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Calligraphy",
+        "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Calligraphy"
+      ]
+    },
+    "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD H-Pick": {
+      "canonical_product_id": "FXJJ9ZHT2",
+      "maker": "현대",
+      "model": "팰리세이드",
+      "engine": "하이브리드 2.5",
+      "trim": "H-Pick",
+      "base_provider_trim_id": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD H-Pick",
+      "base_axes": {
+        "drivetrain": "two",
+        "seats": 9,
+        "body_configuration": ""
+      },
+      "axis_options": [
+        {
+          "id": "main-axis:FXJJ9ZHT2:htrac",
+          "raw_id": "htrac",
+          "name": "HTRAC + 험로주행모드 + 경사로 저속 주행장치",
+          "price_won": 2280000,
+          "sub": "",
+          "effect": {
+            "axis": "drivetrain",
+            "value": "all"
+          }
+        }
+      ],
+      "provider_candidates": [
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD H-Pick",
+          "seats": 7,
+          "drivetrain": "two",
+          "group": "7인승 2WD",
+          "price_won": 58320000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick",
+          "seats": 7,
+          "drivetrain": "all",
+          "group": "7인승 4WD",
+          "price_won": 60720000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD H-Pick",
+          "seats": 9,
+          "drivetrain": "two",
+          "group": "9인승 2WD",
+          "price_won": 56400000
+        },
+        {
+          "api_model": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD H-Pick",
+          "seats": 9,
+          "drivetrain": "all",
+          "group": "9인승 4WD",
+          "price_won": 58680000
+        }
+      ],
+      "suppress_provider_trim_ids": [
+        "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick",
+        "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD H-Pick"
+      ]
+    }
+  },
+  "suppressed_provider_trim_ids": [
+    "더 뉴 그랜저 3.5 가솔린 4WD Calligraphy",
+    "더 뉴 그랜저 3.5 가솔린 4WD Exclusive",
+    "더 뉴 그랜저 3.5 가솔린 4WD Premium",
+    "더 뉴 투싼 1.6 가솔린 터보 4WD H-Pick",
+    "더 뉴 투싼 1.6 가솔린 터보 4WD Inspiration",
+    "더 뉴 투싼 1.6 가솔린 터보 4WD Modern",
+    "더 뉴 투싼 1.6 가솔린 터보 4WD Premium",
+    "더 뉴 투싼 1.6 하이브리드 4WD H-Pick",
+    "더 뉴 투싼 1.6 하이브리드 4WD Inspiration",
+    "더 뉴 투싼 1.6 하이브리드 4WD Modern",
+    "더 뉴 투싼 1.6 하이브리드 4WD Premium",
+    "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 익스클루시브",
+    "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 캘리그래피",
+    "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD 프레스티지",
+    "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD H-Pick",
+    "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 익스클루시브",
+    "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 캘리그래피",
+    "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD 프레스티지",
+    "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD H-Pick",
+    "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 익스클루시브",
+    "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 캘리그래피",
+    "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD 프레스티지",
+    "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD H-Pick",
+    "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 익스클루시브",
+    "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 캘리그래피",
+    "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD 프레스티지",
+    "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD H-Pick",
+    "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 익스클루시브",
+    "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 캘리그래피",
+    "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 프레스티지",
+    "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD H-Pick",
+    "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 익스클루시브",
+    "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 캘리그래피",
+    "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD 프레스티지",
+    "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD H-Pick",
+    "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 익스클루시브",
+    "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 캘리그래피",
+    "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD 프레스티지",
+    "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD H-Pick",
+    "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 익스클루시브",
+    "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 캘리그래피",
+    "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD 프레스티지",
+    "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD H-Pick",
+    "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 익스클루시브",
+    "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 캘리그래피",
+    "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD 프레스티지",
+    "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD H-Pick",
+    "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 익스클루시브",
+    "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 캘리그래피",
+    "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD 프레스티지",
+    "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD H-Pick",
+    "디 올 뉴 코나 1.6 가솔린 터보 4WD Inspiration",
+    "디 올 뉴 코나 1.6 가솔린 터보 4WD Premium",
+    "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Calligraphy",
+    "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Exclusive",
+    "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD H-Pick",
+    "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD XRT",
+    "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Calligraphy",
+    "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Exclusive",
+    "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick",
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Calligraphy",
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Exclusive",
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD H-Pick",
+    "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD XRT",
+    "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Calligraphy",
+    "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Exclusive",
+    "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD H-Pick",
+    "셀토스 1.6 가솔린 4WD 시그니처",
+    "셀토스 1.6 가솔린 4WD 트렌디",
+    "셀토스 1.6 가솔린 4WD 프레스티지",
+    "셀토스 1.6 가솔린 4WD X-Line",
+    "스포티지 1.6 가솔린 터보 4WD 노블레스",
+    "스포티지 1.6 가솔린 터보 4WD 시그니처",
+    "스포티지 1.6 가솔린 터보 4WD 프레스티지",
+    "스포티지 1.6 하이브리드 4WD 노블레스",
+    "스포티지 1.6 하이브리드 4WD 시그니처",
+    "스포티지 1.6 하이브리드 4WD 프레스티지",
+    "쏘렌토 5인승 2.5 가솔린 터보 4WD 노블레스",
+    "쏘렌토 5인승 2.5 가솔린 터보 4WD 블랙 에디션",
+    "쏘렌토 5인승 2.5 가솔린 터보 4WD 시그니처",
+    "쏘렌토 5인승 2.5 가솔린 터보 4WD 프레스티지",
+    "쏘렌토 5인승 2.5 가솔린 터보 4WD X-Line",
+    "쏘렌토 6인승 1.6 하이브리드 2WD 노블레스",
+    "쏘렌토 6인승 1.6 하이브리드 2WD 블랙 에디션",
+    "쏘렌토 6인승 1.6 하이브리드 2WD 시그니처",
+    "쏘렌토 6인승 1.6 하이브리드 2WD 프레스티지",
+    "쏘렌토 6인승 1.6 하이브리드 2WD X-Line",
+    "쏘렌토 6인승 1.6 하이브리드 4WD 노블레스",
+    "쏘렌토 6인승 1.6 하이브리드 4WD 블랙 에디션",
+    "쏘렌토 6인승 1.6 하이브리드 4WD 시그니처",
+    "쏘렌토 6인승 1.6 하이브리드 4WD 프레스티지",
+    "쏘렌토 6인승 1.6 하이브리드 4WD X-Line",
+    "쏘렌토 6인승 2.5 가솔린 터보 2WD 노블레스",
+    "쏘렌토 6인승 2.5 가솔린 터보 2WD 블랙 에디션",
+    "쏘렌토 6인승 2.5 가솔린 터보 2WD 시그니처",
+    "쏘렌토 6인승 2.5 가솔린 터보 2WD 프레스티지",
+    "쏘렌토 6인승 2.5 가솔린 터보 2WD X-Line",
+    "쏘렌토 6인승 2.5 가솔린 터보 4WD 노블레스",
+    "쏘렌토 6인승 2.5 가솔린 터보 4WD 블랙 에디션",
+    "쏘렌토 6인승 2.5 가솔린 터보 4WD 시그니처",
+    "쏘렌토 6인승 2.5 가솔린 터보 4WD 프레스티지",
+    "쏘렌토 6인승 2.5 가솔린 터보 4WD X-Line",
+    "쏘렌토 7인승 1.6 하이브리드 2WD 노블레스",
+    "쏘렌토 7인승 1.6 하이브리드 2WD 블랙 에디션",
+    "쏘렌토 7인승 1.6 하이브리드 2WD 시그니처",
+    "쏘렌토 7인승 1.6 하이브리드 2WD 프레스티지",
+    "쏘렌토 7인승 1.6 하이브리드 2WD X-Line",
+    "쏘렌토 7인승 1.6 하이브리드 4WD 노블레스",
+    "쏘렌토 7인승 1.6 하이브리드 4WD 블랙 에디션",
+    "쏘렌토 7인승 1.6 하이브리드 4WD 시그니처",
+    "쏘렌토 7인승 1.6 하이브리드 4WD 프레스티지",
+    "쏘렌토 7인승 1.6 하이브리드 4WD X-Line",
+    "쏘렌토 7인승 2.5 가솔린 터보 2WD 노블레스",
+    "쏘렌토 7인승 2.5 가솔린 터보 2WD 블랙 에디션",
+    "쏘렌토 7인승 2.5 가솔린 터보 2WD 시그니처",
+    "쏘렌토 7인승 2.5 가솔린 터보 2WD 프레스티지",
+    "쏘렌토 7인승 2.5 가솔린 터보 2WD X-Line",
+    "쏘렌토 7인승 2.5 가솔린 터보 4WD 노블레스",
+    "쏘렌토 7인승 2.5 가솔린 터보 4WD 블랙 에디션",
+    "쏘렌토 7인승 2.5 가솔린 터보 4WD 시그니처",
+    "쏘렌토 7인승 2.5 가솔린 터보 4WD 프레스티지",
+    "쏘렌토 7인승 2.5 가솔린 터보 4WD X-Line",
+    "GV80 2.5 가솔린 터보 AWD Black 6인승",
+    "GV80 2.5 가솔린 터보 AWD Black 7인승",
+    "GV80 3.5 가솔린 터보 AWD Black 6인승",
+    "GV80 3.5 가솔린 터보 AWD Black 7인승",
+    "K9 3.3 가솔린 터보 AWD 플래티넘",
+    "K9 3.8 가솔린 터보 AWD 플래티넘",
+    "The new K8 3.5 가솔린 AWD 노블레스",
+    "The new K8 3.5 가솔린 AWD 시그니처",
+    "The new K8 3.5 가솔린 AWD 시그니처 블랙"
+  ]
+}
