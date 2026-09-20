@@ -5,7 +5,7 @@ const m=JSON.parse(fs.readFileSync('../../.ai-core/screens/self-quote.json','utf
 assert.equal(m.contract,'ai-core-ui-screen-manifest/v1');
 assert.match(m.version,/^1\.\d+\.\d+$/);
 assert.match(m.screen_id,/^[a-z0-9]+(?:[.-][a-z0-9]+)*$/);
-assert.equal(m.product_profile,'freepass-product-ui/v1');
+assert.equal(m.product_profile,'freepass-product-ui/v1.1');
 for(const id of ['navigation.header','navigation.stepper','navigation.bottom-action','data.card','system.responsive','system.focus']){
   assert.ok(m.feature_ids.includes(id),'Self Quote missing '+id);
 }
