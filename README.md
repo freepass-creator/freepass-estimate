@@ -78,12 +78,22 @@ PC 화면을 줄여 쓰지 않는다.
 - `freepass-creator/freepass-sales` — 모바일 UI 문법 Reference / downstream
 - `freepass-creator/freepass-admin` — 웹/Admin UI 문법 Reference
 
+## 운영·배포 원칙
+
+- GitHub Actions는 현재 릴리스 게이트로 사용하지 않는다.
+- 신차 견적 앱의 배포 루트는 `apps/new`다.
+- 로컬 정본 검증은 `cd apps/new && npm ci && npm run verify:local`로 수행한다.
+- production 배포 후에는 실제 배포 revision, `/mobile.html?force=mobile`, `b/m/t` 딥링크, 견적 계산·공유 링크를 수동 smoke test한다.
+- production 배포가 확인되기 전에는 FreePass Sales Promotion의 현재 runtime URL을 바꾸지 않는다.
+
+자세한 절차는 `docs/MANUAL-RELEASE.md`를 따른다.
+
 ## 변경 원칙
 
 견적 관련 변경은 다음 순서를 따른다.
 
 1. FreePass Estimate에서 변경
-2. 자동/회귀/시각 검증
+2. 로컬/회귀/시각 검증
 3. 정본 확정
 4. FreePass Sales / Welrix / 파트너 화면에 반영
 
