@@ -36,11 +36,15 @@ function countTrims(db){
   return n;
 }
 function findModel(db,name){
+  const aliases={
+    '아반떼':['아반떼','디 올 뉴 아반떼'],
+  };
+  const candidates=aliases[name] || [name];
   for(const mf of db.manufacturers||[]){
-    const md=(mf.models||[]).find(x=>x.model_name===name);
+    const md=(mf.models||[]).find(x=>candidates.includes(x.model_name));
     if(md)return md;
   }
-  throw new Error('model not found: '+name);
+  throw new Error('model not found: '+name+' aliases='+candidates.join(','));
 }
 function findVariant(db,modelName,re){
   const v=(findModel(db,modelName).variants||[]).find(x=>re.test(x.variant_name));
