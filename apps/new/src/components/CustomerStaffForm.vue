@@ -45,14 +45,14 @@ function onTelInput(e) {
 <style scoped>
 .cs-form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.2fr 1fr;
-  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 12px;
   align-items: center;
   padding: 4px 0;
 }
 .cs-field {
-  display: grid; grid-template-columns: auto 1fr;
-  align-items: center; gap: 6px;
+  display: grid; grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center; column-gap: 8px;
   min-width: 0;
 }
 .cs-field label {

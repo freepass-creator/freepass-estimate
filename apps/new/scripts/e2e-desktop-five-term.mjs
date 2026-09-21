@@ -55,9 +55,35 @@ try {
   const monthly = await page.locator('#reference-grid .term-card__monthly').allTextContents();
   const normalizedTerms = terms.map((value) => value.trim());
   const normalizedMonthly = monthly.map((value) => value.replace(/\s+/g, ' ').trim());
+  const formAlignment = await page.evaluate(() => {
+    const topFields = [...document.querySelectorAll('.cs-form .cs-field')];
+    const bottomFields = [...document.querySelectorAll('.qp-form--conds .qc-field')];
+    const topControls = topFields.map((field) =>
+      field.querySelector(':scope > input, :scope > .qc-pct')?.getBoundingClientRect(),
+    );
+    const bottomControls = bottomFields.map((field) =>
+      field.querySelector(':scope > select, :scope > .qc-pct')?.getBoundingClientRect(),
+    );
+    return topFields.map((field, index) => {
+      const topField = field.getBoundingClientRect();
+      const bottomField = bottomFields[index]?.getBoundingClientRect();
+      const topControl = topControls[index];
+      const bottomControl = bottomControls[index];
+      return {
+        fieldLeftDelta: Math.abs((topField?.left || 0) - (bottomField?.left || 0)),
+        fieldWidthDelta: Math.abs((topField?.width || 0) - (bottomField?.width || 0)),
+        controlLeftDelta: Math.abs((topControl?.left || 0) - (bottomControl?.left || 0)),
+        controlWidthDelta: Math.abs((topControl?.width || 0) - (bottomControl?.width || 0)),
+      };
+    });
+  });
 
   ok(JSON.stringify(normalizedTerms) === JSON.stringify(['12\uac1c\uc6d4', '24\uac1c\uc6d4', '36\uac1c\uc6d4', '48\uac1c\uc6d4', '60\uac1c\uc6d4']),
     `\uc57d\uc815 \uae30\uac04 \ubd88\uc77c\uce58: ${normalizedTerms.join(', ')}`);
+  ok(formAlignment.length === 4 && formAlignment.every((item) =>
+    item.fieldLeftDelta <= 1 && item.fieldWidthDelta <= 1 &&
+    item.controlLeftDelta <= 1 && item.controlWidthDelta <= 1),
+  `\uc0c1\ub2e8 \uc785\ub825\ubd80 \uc815\ub82c \ubd88\uc77c\uce58: ${JSON.stringify(formAlignment)}`);
   ok(quoteResponses.some((response) => response.status === 200),
     `\ud45c\uc900 \uacac\uc801 API 200 \uc751\ub2f5 \uc5c6\uc74c: ${JSON.stringify(quoteResponses)}`);
   const relevantRequestFailures = requestFailures.filter((request) =>
@@ -71,7 +97,7 @@ try {
 
   const screenshot = path.resolve(out, 'freepass-desktop-five-term-quotes.png');
   await page.screenshot({ path: screenshot, fullPage: true });
-  console.log(JSON.stringify({ ok: true, terms: normalizedTerms, monthly: normalizedMonthly, quoteResponses, screenshot }, null, 2));
+  console.log(JSON.stringify({ ok: true, terms: normalizedTerms, monthly: normalizedMonthly, formAlignment, quoteResponses, screenshot }, null, 2));
 } finally {
   await browser.close();
 }
