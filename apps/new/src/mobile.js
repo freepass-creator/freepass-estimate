@@ -1,6 +1,7 @@
 // 모바일 전용 entry — index.js 와 분리된 별도 번들
 // 기존 store/calc/firebase 는 재사용, UI 만 모바일 전용 컴포넌트로 새로 작성
 import { createApp } from 'vue';
+import { normalizeExteriorPaint, restorePaintSelection } from './lib/exterior-paint.js';
 import MobileApp from './components/mobile/MobileApp.vue';
 import { setCompanyConfig } from './lib/calc.js';
 import { quoteState } from './store.js';
@@ -97,6 +98,7 @@ async function boot() {
   await loadCompanyConfig();
   if (담당자로들어왔나() && !담당자인가()) await 담당자문();
   await waitForVehicleDb();
+  normalizeExteriorPaint(window.VEHICLE_DB);
   await loadVehicles();
   // 재고는 비동기 — mount 후에도 늦게 도착해도 OK
   loadStock();
@@ -104,6 +106,7 @@ async function boot() {
      VEHICLE_DB·vehicles.json 이 다 온 뒤라야 트림·옵션이 살아난다. */
   try { 풀기(vehicleState, quoteState); }
   catch (e) { console.warn('[mobile] 공유 링크 풀기 실패:', e); }
+  restorePaintSelection(window.VEHICLE_DB, vehicleState);
 
   const app = createApp(MobileApp);
   app.mount('#m-app');

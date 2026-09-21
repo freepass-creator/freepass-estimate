@@ -1688,6 +1688,7 @@ function syncToVueStore() {
       value: String(i),
       label: c.name,
       sub: c.price > 0 ? `+${(c.price * 10000).toLocaleString()}원` : '무료',
+      priceWon: c.price * 10000,
       name: c.name,
       swatch: c.hex,
     }));

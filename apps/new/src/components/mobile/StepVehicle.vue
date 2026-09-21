@@ -4,6 +4,7 @@ import { vehicleState, quoteState } from '../../store.js';
 import { 담당자인가 } from '../../lib/role.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
+import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
 
 const props = defineProps({
@@ -165,9 +166,7 @@ const availableOptions = computed(() => {
 });
 
 // 외장 색상 — FreePass 신차 상품마스터는 트림별 실제 색상 목록이 정본.
-const exteriorColors = computed(() => selectedTrim.value?._exterior_colors?.length
-  ? selectedTrim.value._exterior_colors
-  : (selectedModel.value?.exterior_colors || []));
+const exteriorColors = computed(() => exteriorColorsFor(selectedModel.value, selectedTrim.value));
 
 // 옵션 토글
 function toggleOption(optId) {
@@ -184,6 +183,8 @@ function toggleOption(optId) {
 }
 
 function pickExtColor(idx) {
+  if (exteriorColors.value[idx]?._paintUnavailable) return;
+  vehicleState.colorNotice = '';
   vehicleState.color = idx;
   syncVehicle();
 }
@@ -379,6 +380,7 @@ function onFeeChange() {
 
 <template>
   <div class="sv">
+    <p v-if="vehicleState.colorNotice" role="status">{{ vehicleState.colorNotice }}</p>
     <!-- breadcrumb — 텍스트만 결합 -->
     <div class="sv-crumbs" v-if="selectedBrand">
       <button class="sv-crumb" @click="goBack('brand')">
@@ -615,11 +617,13 @@ function onFeeChange() {
             class="sv-color-card"
             :class="{ 'is-selected': vehicleState.color === i }"
             :title="c.name"
+            :disabled="c._paintUnavailable"
             @click="pickExtColor(i)"
           >
             <span class="sv-color-swatch" :style="{ background: c.hex }"></span>
             <span class="sv-color-name">{{ c.name }}</span>
-            <span class="sv-color-price" v-if="c.price">+{{ fmt(c.price * 10000) }}원</span>
+            <span class="sv-color-price">{{ colorPriceLabel(c.price * 10000) }}</span>
+            <span v-if="c._paintUnavailable" class="sv-color-price">해당 트림 선택 불가</span>
             <i class="ph ph-check sv-color-check" v-if="vehicleState.color === i"></i>
           </button>
         </div>
@@ -640,7 +644,7 @@ function onFeeChange() {
           >
             <span class="sv-color-swatch" :style="{ background: c.swatch }"></span>
             <span class="sv-color-name">{{ c.label }}</span>
-            <span class="sv-color-price" v-if="c.price">+{{ fmt(c.price) }}원</span>
+            <span class="sv-color-price">{{ colorPriceLabel(c.price) }}</span>
             <i class="ph ph-check sv-color-check" v-if="quoteState.cond.colorInt === c.value"></i>
           </button>
         </div>

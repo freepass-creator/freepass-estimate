@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { vehicleState, quoteState } from '../store.js';
 import CustomDropdown from './CustomDropdown.vue';
+import { colorPriceLabel } from '../lib/exterior-paint.js';
 
 const isDisabled = computed(() => !vehicleState.trim);
 
@@ -19,7 +20,9 @@ function guessColor(name) {
 }
 
 // 외장 색상 옵션은 store에서 (모델 변경시 자동 갱신)
-const extOptions = computed(() => vehicleState.exteriorColorOptions || []);
+const extOptions = computed(() => (vehicleState.exteriorColorOptions || []).map(c => ({
+  ...c, sub: colorPriceLabel(c.priceWon),
+})));
 
 // 내장 색상 — FreePass 신차 상품마스터의 트림별 제조사 색상이 우선.
 const intOptions = computed(() => {
