@@ -69,11 +69,19 @@ try {
       const bottomField = bottomFields[index]?.getBoundingClientRect();
       const topControl = topControls[index];
       const bottomControl = bottomControls[index];
+      const topLabel = field.querySelector('label');
+      const bottomLabel = bottomFields[index]?.querySelector('label');
+      const topLabelRect = topLabel?.getBoundingClientRect();
+      const bottomLabelRect = bottomLabel?.getBoundingClientRect();
       return {
         fieldLeftDelta: Math.abs((topField?.left || 0) - (bottomField?.left || 0)),
         fieldWidthDelta: Math.abs((topField?.width || 0) - (bottomField?.width || 0)),
         controlLeftDelta: Math.abs((topControl?.left || 0) - (bottomControl?.left || 0)),
         controlWidthDelta: Math.abs((topControl?.width || 0) - (bottomControl?.width || 0)),
+        topLabelGap: Math.abs((topControl?.left || 0) - (topLabelRect?.right || 0)),
+        bottomLabelGap: Math.abs((bottomControl?.left || 0) - (bottomLabelRect?.right || 0)),
+        topLabelAlign: topLabel ? getComputedStyle(topLabel).textAlign : '',
+        bottomLabelAlign: bottomLabel ? getComputedStyle(bottomLabel).textAlign : '',
       };
     });
   });
@@ -82,7 +90,9 @@ try {
     `\uc57d\uc815 \uae30\uac04 \ubd88\uc77c\uce58: ${normalizedTerms.join(', ')}`);
   ok(formAlignment.length === 4 && formAlignment.every((item) =>
     item.fieldLeftDelta <= 1 && item.fieldWidthDelta <= 1 &&
-    item.controlLeftDelta <= 1 && item.controlWidthDelta <= 1),
+    item.controlLeftDelta <= 1 && item.controlWidthDelta <= 1 &&
+    Math.abs(item.topLabelGap - 8) <= 1 && Math.abs(item.bottomLabelGap - 8) <= 1 &&
+    item.topLabelAlign === 'right' && item.bottomLabelAlign === 'right'),
   `\uc0c1\ub2e8 \uc785\ub825\ubd80 \uc815\ub82c \ubd88\uc77c\uce58: ${JSON.stringify(formAlignment)}`);
   ok(quoteResponses.some((response) => response.status === 200),
     `\ud45c\uc900 \uacac\uc801 API 200 \uc751\ub2f5 \uc5c6\uc74c: ${JSON.stringify(quoteResponses)}`);

@@ -58,6 +58,7 @@ function onTelInput(e) {
 .cs-field label {
   font-size: 11px; color: var(--ink-4);
   font-weight: 400; letter-spacing: 0;
+  text-align: right;
   white-space: nowrap;
 }
 .cs-field input {
