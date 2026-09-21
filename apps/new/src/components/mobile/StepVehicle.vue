@@ -93,42 +93,30 @@ const selectedVariant = computed(() => {
   return selectedModel.value.variants.find(v => v.variant_id === vehicleState.variant);
 });
 
-function trimGroupOf(trim) {
-  if (trim.group) return trim.group;
-  const providerGroup = (trim._provider_candidates || []).find((candidate) => candidate.group)?.group;
-  if (providerGroup) return providerGroup;
-  const axes = trim._base_axes || {};
-  const seats = Number(axes.seats || trim.seats || 0);
-  const drive = { two: '2WD', four: '4WD', fwd: 'FWD', rwd: 'RWD', awd: 'AWD' }[String(axes.drivetrain || '').toLowerCase()]
-    || String(axes.drivetrain || '').toUpperCase();
-  return [seats > 0 ? `${seats}인승` : '', drive, axes.body_configuration || ''].filter(Boolean).join(' ');
-}
-
-/* 연료·배기량(variant_name)과 인승·구동·용도를 한 번에 고른다. */
-const powertrainChoices = computed(() => variants.value.flatMap((variant) => {
-  const groups = new Map();
-  for (const trim of variant.trims || []) {
-    if (trim.operating === false) continue;
-    const group = trimGroupOf(trim);
-    if (group && !groups.has(group)) groups.set(group, trim._groupOrder ?? 0);
+/* ★인승·구동·용도(예: 5인승 2WD · 7인승 4WD)가 갈리는 파워트레인은 «따로 고르는 화면»을 하나 끼운다.
+   대표 2026-09-18 「그 인승 구동 방식 그거를 어떻게 나눌지」 — 소제목으로 묶어 한 화면에 다 보여줬더니
+   싼타페 같은 차는 트림이 36장씩 늘어서서(6묶음 × 6트림) 스크롤이 길어지고 답답했다.
+   갈리지 않는 파워트레인(그랜저 2.5, K5 등)은 이 화면 자체가 없다 — 고를 게 없으니까. */
+const specGroups = computed(() => {
+  if (!selectedVariant.value) return [];
+  const taxRate = vehicleState.tax_rate || '5';
+  const 표 = new Map();
+  for (const t of selectedVariant.value.trims || []) {
+    if (t.operating === false || !t.group) continue;
+    if (!표.has(t.group)) 표.set(t.group, { label: t.group, order: t._groupOrder ?? 0, count: 0, minPrice: Infinity });
+    const g = 표.get(t.group);
+    g.count++;
+    g.minPrice = Math.min(g.minPrice, trimPrice(t, taxRate));
   }
-  if (!groups.size) return [{ key: variant.variant_id, variant, group: null, label: variant.variant_name }];
-  return [...groups.entries()]
-    .sort((a, b) => a[1] - b[1])
-    .map(([group]) => ({
-      key: `${variant.variant_id}::${group}`,
-      variant,
-      group,
-      label: [variant.variant_name, group].filter(Boolean).join(' · '),
-    }));
-}));
+  return [...표.values()].sort((a, b) => a.order - b.order);
+});
 
-// 트림 — 파워트레인에서 함께 고른 인승·구동 묶음으로 좁힌다
+// 트림 — 인승·구동이 갈리는 차는 specGroups 에서 고른 묶음(vehicleState.trimGroup)으로 좁힌다
 const trims = computed(() => {
   if (!selectedVariant.value) return [];
   const taxRate = vehicleState.tax_rate || '5';
   let list = [...(selectedVariant.value.trims || [])].filter(t => t.operating !== false);
-  if (vehicleState.trimGroup) list = list.filter(t => trimGroupOf(t) === vehicleState.trimGroup);
+  if (vehicleState.trimGroup) list = list.filter(t => t.group === vehicleState.trimGroup);
   return list.sort((a, b) => (a._groupOrder ?? 0) - (b._groupOrder ?? 0) || trimPrice(a, taxRate) - trimPrice(b, taxRate));
 });
 
@@ -288,7 +276,7 @@ function syncVehicle() {
     model: modelName,
     variant: selectedVariant.value?.variant_name || '',
     /* ★소제목(인승·구동·용도)을 트림 이름 앞에 붙인다 — 「익스클루시브」만으론 5인승인지 7인승인지 모른다 */
-    trim_name: [trimGroupOf(t), t.name].filter(Boolean).join(' '),
+    trim_name: [t.group, t.name].filter(Boolean).join(' '),
     // 공통 quoteState 계약: total_manwon = 트림 + 옵션 + 외장색.
     // 내장색은 quoteState.cond.colorIntPrice 로 별도 보관한다(웹과 동일, 이중계상 방지).
     total_manwon: totalManwon.value - interiorColorPriceManwon.value,
@@ -318,24 +306,33 @@ function syncVehicle() {
 
 function selectBrand(b) {
   vehicleState.manufacturer = b.manufacturer_id;
-  vehicleState.model = null; vehicleState.variant = null; vehicleState.trimGroup = null; vehicleState.trim = null;
+  vehicleState.model = null; vehicleState.variant = null; vehicleState.trim = null;
   vehicleState.options.clear(); vehicleState.color = null;
   quoteState.vehicle = null;
   subStep.value = 'model';
 }
 function selectModel(m) {
   vehicleState.model = m.model_id;
-  vehicleState.variant = null; vehicleState.trimGroup = null; vehicleState.trim = null;
+  vehicleState.variant = null; vehicleState.trim = null;
   vehicleState.options.clear(); vehicleState.color = null;
   quoteState.vehicle = null;
   // 한 화면 한 선택: 모델을 고르면 파워트레인 화면으로 즉시 이동한다.
   // 파워트레인이 하나여도 사용자가 그 화면에서 직접 고른다.
   subStep.value = 'variant';
 }
-function selectPowertrain(choice) {
-  vehicleState.variant = choice.variant.variant_id;
+function selectVariant(v) {
+  vehicleState.variant = v.variant_id;
   vehicleState.trim = null;
-  vehicleState.trimGroup = choice.group;
+  vehicleState.trimGroup = null;
+  vehicleState.options.clear(); vehicleState.color = null;
+  quoteState.vehicle = null;
+  /* ★인승·구동이 갈리면(그룹이 둘 이상) 그 화면을 먼저 보여 준다. 안 갈리면 곧장 트림으로. */
+  const 갈래 = new Set((v.trims || []).map(t => t.group).filter(Boolean));
+  subStep.value = 갈래.size > 1 ? 'spec' : 'trim';
+}
+function selectSpec(g) {
+  vehicleState.trimGroup = g.label;
+  vehicleState.trim = null;
   vehicleState.options.clear(); vehicleState.color = null;
   quoteState.vehicle = null;
   subStep.value = 'trim';
@@ -389,8 +386,9 @@ function onFeeChange() {
         <span>{{ selectedBrand.manufacturer_name }}</span>
       </button>
       <button v-if="selectedModel" class="sv-crumb" @click="goBack('model')">{{ selectedModel.model_name }}</button>
-      <button v-if="selectedVariant" class="sv-crumb" @click="goBack('variant')">{{ [selectedVariant.variant_name, vehicleState.trimGroup].filter(Boolean).join(' · ') }}</button>
-      <button v-if="selectedTrim" class="sv-crumb" @click="goBack('trim')">{{ [trimGroupOf(selectedTrim), selectedTrim.name].filter(Boolean).join(' ') }}</button>
+      <button v-if="selectedVariant" class="sv-crumb" @click="goBack('variant')">{{ selectedVariant.variant_name }}</button>
+      <button v-if="vehicleState.trimGroup && !selectedTrim" class="sv-crumb" @click="goBack('spec')">{{ vehicleState.trimGroup }}</button>
+      <button v-if="selectedTrim" class="sv-crumb" @click="goBack('trim')">{{ [selectedTrim.group, selectedTrim.name].filter(Boolean).join(' ') }}</button>
     </div>
 
     <!-- 1) 제조사 -->
@@ -464,17 +462,35 @@ function onFeeChange() {
       </div>
     </div>
 
-    <!-- 3) 파워트레인: 연료·배기량·인승·구동을 한 번에 선택 -->
+    <!-- 3) 세부모델 -->
     <div v-else-if="subStep === 'variant'" class="sv-section">
       <h2 class="sv-title">{{ selectedModel.model_name }}<br>파워트레인을 골라주세요</h2>
       <div class="sv-list">
         <button
-          v-for="choice in powertrainChoices" :key="choice.key"
+          v-for="v in variants" :key="v.variant_id"
           class="sv-row"
-          :class="{ 'is-selected': vehicleState.variant === choice.variant.variant_id && vehicleState.trimGroup === choice.group }"
-          @click="selectPowertrain(choice)"
+          :class="{ 'is-selected': vehicleState.variant === v.variant_id }"
+          @click="selectVariant(v)"
         >
-          <span class="sv-row__label">{{ choice.label }}</span>
+          <span class="sv-row__label">{{ v.variant_name }}</span>
+          <i class="ph ph-caret-right sv-row__chev"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 3.5) 인승·구동 — 이 파워트레인 안에서 갈릴 때만 뜬다 -->
+    <div v-else-if="subStep === 'spec'" class="sv-section">
+      <h2 class="sv-title">{{ selectedVariant?.variant_name }}<br>인승·구동방식을 골라주세요</h2>
+      <div class="sv-list">
+        <button
+          v-for="g in specGroups" :key="g.label"
+          class="sv-row"
+          :class="{ 'is-selected': vehicleState.trimGroup === g.label }"
+          @click="selectSpec(g)"
+        >
+          <span class="sv-row__label">{{ g.label }}
+            <small class="sv-row__hint">{{ g.count }}개 트림 · {{ fmt(g.minPrice * 10000) }}원~</small>
+          </span>
           <i class="ph ph-caret-right sv-row__chev"></i>
         </button>
       </div>
@@ -486,7 +502,7 @@ function onFeeChange() {
       <div class="sv-list">
         <template v-for="(t, i) in trims" :key="t.trim_id">
         <!-- 소제목 — 같은 엔진 안에서 갈리는 인승·구동·용도 (예: 5인승 2WD · 밴 · 렌터카) -->
-        <div v-if="trimGroupOf(t) && trimGroupOf(t) !== trimGroupOf(trims[i - 1] || {})" class="sv-group">{{ trimGroupOf(t) }}</div>
+        <div v-if="t.group && t.group !== trims[i - 1]?.group" class="sv-group">{{ t.group }}</div>
         <button
           class="sv-trim-card"
           :class="{ 'is-selected': vehicleState.trim === t.trim_id }"
