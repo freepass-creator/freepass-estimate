@@ -2,6 +2,8 @@ import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 
+// Desktop release proof: aligned fields, five-term amounts, provider failure, and manual retry.
+
 const BASE = process.env.BASE_URL || 'http://127.0.0.1:5173/index.html';
 const out = process.env.ARTIFACT_DIR || 'artifacts/desktop-five-term';
 fs.mkdirSync(out, { recursive: true });
