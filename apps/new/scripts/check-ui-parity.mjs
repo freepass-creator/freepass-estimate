@@ -23,12 +23,16 @@ function walk(dir){
   return out;
 }
 const failures=[];
-// mobile.html entry shell remains locked byte-for-visible-byte.
+// Keep the mobile document body locked to the pinned Welrix information
+// architecture. The head is intentionally channel-specific and is covered by
+// check-mobile-brand-identity.mjs so the default FreePass identity can render
+// before application JavaScript runs.
 {
   const file='mobile.html';
-  const a=visibleHtml(read(path.join(upstream,file)));
-  const b=visibleHtml(read(path.join(root,file)));
-  if(a!==b)failures.push(file+' visible HTML changed');
+  const body=s=>s.match(/<body\b[\s\S]*?<\/body>/i)?.[0]||'';
+  const a=visibleHtml(body(read(path.join(upstream,file))));
+  const b=visibleHtml(body(read(path.join(root,file))));
+  if(a!==b)failures.push(file+' visible body changed');
 }
 // index.html has one approved structural delta from the pinned Welrix baseline:
 // task CTAs were moved from the top/header to bottom action bars (page + dialog).
@@ -36,6 +40,7 @@ const failures=[];
 const upComp=path.join(upstream,'src','components');
 for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
   const rel=path.relative(upComp,p);
+  const portableRel=rel.replaceAll(path.sep,'/');
   const local=path.join(root,'src','components',rel);
   if(!fs.existsSync(local)){failures.push('missing component '+rel);continue}
   const upstreamSource=read(p), localSource=read(local);
@@ -44,7 +49,7 @@ for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
   // - one-screen-one-choice auto advance
   // - top is informational / bottom is actionable
   // Its action placement is enforced by check-action-placement.mjs + Playwright.
-  if(rel!=='mobile/MobileApp.vue'){
+  if(portableRel!=='mobile/MobileApp.vue'){
     if(vueTemplate(upstreamSource)!==vueTemplate(localSource)) failures.push('component template changed '+rel);
   }
 }
