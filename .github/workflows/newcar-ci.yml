@@ -43,6 +43,9 @@ jobs:
       - name: Mobile refresh brand identity
         working-directory: apps/new
         run: node scripts/check-mobile-brand-identity.mjs
+      - name: Provisional Sales control design reference
+        working-directory: apps/new
+        run: node scripts/check-control-design-reference.mjs
       - name: FreePass visual grammar
         working-directory: apps/new
         run: node scripts/check-freepass-visual-grammar.mjs

@@ -120,9 +120,10 @@ function toggleTerm(t) {
   font-variant-numeric: tabular-nums; color: var(--ink-2);
 }
 .sc-chip {
+  min-height: var(--h-chip);
   padding: 10px 14px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: var(--r-chip);
   font-family: inherit; font-size: var(--fs-base); font-weight: var(--fw-medium);
   color: var(--ink-2);
@@ -143,7 +144,7 @@ function toggleTerm(t) {
   padding: 0 14px;
   background: var(--bg);
   border: 1.5px solid var(--line);
-  border-radius: var(--r-chip);
+  border-radius: var(--r-card);
   transition: border-color .12s;
 }
 .sc-pct:focus-within { border-color: var(--brand); }

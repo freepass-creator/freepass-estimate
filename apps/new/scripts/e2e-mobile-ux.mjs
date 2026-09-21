@@ -58,7 +58,7 @@ try {
   });
   ok(ui.title === '22px', '페이지 타이틀 규격이 22px 아님: ' + ui.title);
   ok(+ui.titleWeight >= 700, '페이지 타이틀 굵기 부족');
-  ok(ui.ctaToken === '54px', '하단 CTA 토큰이 54px 아님: ' + ui.ctaToken);
+  ok(ui.ctaToken === '48px', '하단 CTA 토큰이 48px 아님: ' + ui.ctaToken);
   ok(ui.headerActionCount === 0, '상단 헤더에 업무 CTA가 남아 있음: ' + ui.headerActionCount);
   ok(ui.preparedNextCount >= 1, '자동전진 단계에서도 Next 인프라가 준비되어 있어야 함');
 

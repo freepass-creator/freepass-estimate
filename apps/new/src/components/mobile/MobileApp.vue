@@ -448,7 +448,7 @@ async function shareSignLink() {
 }
 .m-btn {
   height: var(--h-cta);
-  border: 0; border-radius: var(--r-card);
+  border: 0; border-radius: var(--r-chip);
   font-family: inherit; font-weight: 600;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center; gap: 6px;
@@ -465,14 +465,14 @@ async function shareSignLink() {
 .m-btn--primary {
   flex: 1;
   background: var(--brand); color: #fff;
-  font-size: var(--fs-lg);
+  font-size: 16px;
 }
 .m-btn--primary:not(:disabled):active { background: var(--brand-700); }
 /* 「견적 보기」 — 다음 옆에 나란히. 테두리 없이 옅은 바탕 */
 .m-btn--soft {
   flex: 1;
   background: var(--brand-50); color: var(--brand);
-  font-size: var(--fs-lg);
+  font-size: 16px;
 }
 .m-btn--soft:active { background: var(--line-2); }
 .m-btn--icon { flex: 0 0 52px; }

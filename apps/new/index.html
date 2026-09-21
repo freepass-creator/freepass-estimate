@@ -4742,15 +4742,48 @@ render();
 </html>
 
 <style id="freepass-control-grammar">
-  /* FreePass input grammar: only value-entry controls own a visible boundary. */
+  /* Temporary visual reference: FreePass Sales controls until the shared UI
+     standard is published. Estimate structure and behavior remain unchanged. */
+  .cdd .cdd__btn {
+    height: 44px;
+    padding: 0 34px 0 14px;
+    font-size: 14px;
+  }
+  .bottom-action {
+    height: 40px;
+    padding-inline: 14px;
+    font-size: 14px;
+  }
+  /* Only value-entry controls own a visible boundary. */
   .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select),
   .qc-field > input, .qc-field > select, .cs-field input,
   .qc-pct {
-    min-height: 40px;
+    min-height: 44px;
+    padding: 0 30px 0 14px;
     border: 1px solid var(--line-2) !important;
-    border-radius: 6px !important;
+    border-radius: 12px !important;
     background: var(--bg) !important;
     box-shadow: none !important;
+    font-size: 14px;
+  }
+  .qc-field > input, .cs-field input { padding: 0 14px !important; }
+  .qc-pct { padding: 0 10px 0 14px; }
+  .quote-panel .qc-pct input:not([type="checkbox"]):not([type="radio"]) {
+    min-height: 0 !important;
+    height: 100% !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    font-size: 14px;
+  }
+  .term-card__term-dd {
+    min-height: 40px !important;
+    height: 40px;
+    padding: 0 14px 0 4px !important;
+    border-radius: 6px !important;
+    font-size: 12.5px !important;
   }
   .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select):focus,
   .qc-field > input:focus, .qc-field > select:focus, .cs-field input:focus,

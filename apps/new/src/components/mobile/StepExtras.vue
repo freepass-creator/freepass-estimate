@@ -203,10 +203,11 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
 /* chip (보험/운전자) */
 .se-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .se-chip {
+  min-height: var(--h-chip);
   padding: 10px 14px;
   background: var(--bg-soft);
   border: 0;
-  border-radius: var(--r-md);
+  border-radius: var(--r-chip);
   font-family: inherit; font-size: var(--fs-base); font-weight: var(--fw-medium);
   color: var(--ink-2); cursor: pointer;
 }
@@ -224,7 +225,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   padding: 0 32px 0 14px;
   background: var(--bg);
   border: 1px solid var(--line-2);
-  border-radius: var(--r-md);
+  border-radius: var(--r-card);
   font-family: inherit; font-size: var(--fs-lg);
   color: var(--ink-1);
   cursor: pointer;
