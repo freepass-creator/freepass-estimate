@@ -19,4 +19,12 @@ Local browser: FreePass desktop/mobile and Welrix mobile K8 2.5 Noblesse Light s
 
 Cursor independent review identified trim availability, restored index and won-field consistency; fixed and regression-tested. Source-price zero migration is intentional; Set hydration is an existing state contract. Claude unavailable (weekly quota); Gemini unavailable (403); not counted as passes.
 
-This release aligns color rules. Earlier Welrix-only haptic/selection-summary changes are not claimed to have been fully propagated by this color release. Standard vs external rental pricing and source catalogs retain their owners.
+Initial color release: FreePass 071561d / dpl_DpEG5aSBijejvvmEpSdd2GwFK2Hk, Welrix d2d7fac / dpl_CHEUkmm8LbjEqt88uSYH6ciMBFSE. Standard vs external rental pricing and source catalogs retain their owners.
+
+## Selection feedback follow-up
+
+Back-ported and validated the earlier downstream fixes in canonical FreePass: cumulative footer summary, explicit unselected colors/options, summary rows between vehicle and credit, readable option support descriptions, and completed-touch haptic/pressed feedback. Branding, canonical navigation (including spec branch), and PC layout are preserved.
+
+Canonical haptics, selection summary resolver/component and color module are distributed byte-identically by sync-color-contract. Product layout integration stays in each consumer. This does not assert identical supplier equipment catalogs or rental prices.
+
+Eleven haptic/summary regressions plus canonical verify pass. Browser verifies K8 color selection, sunroof, expanded price-table metadata and footer. Measured quote bottom equals footer top both collapsed and expanded. Expanded quote height is capped by remaining viewport space. Browser viewport override did not apply to this hidden tab (observed width 1265, forced mobile surface width 540); physical 390px/device vibration not claimed verified. Cursor flagged footer lifecycle/height, addressed with measured offsets and scrolling cap.

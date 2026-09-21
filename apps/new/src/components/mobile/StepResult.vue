@@ -9,6 +9,7 @@ import { quoteState, vehicleState } from '../../store.js';
 import { 견적상태 } from '../../lib/quote/index.js';
 import { 담당자인가 } from '../../lib/role.js';
 import { fmt } from '../../lib/format.js';
+import { exteriorColorsFor } from '../../lib/exterior-paint.js';
 
 const 담당자 = 담당자인가();
 const 공유견적 = computed(() => !!quoteState.sharedSnapshot);
@@ -24,7 +25,7 @@ function 목록에서() {
     const t = pt?.trims.find((x) => x.trim_id === vehicleState.trim);
     if (!t) return {};
     const 옵 = [...(vehicleState.options || [])].map((id) => pt.options_master?.[id]?.name).filter(Boolean);
-    const 색 = vehicleState.color != null ? m.exterior_colors?.[vehicleState.color]?.name : null;
+    const 색 = vehicleState.color != null ? exteriorColorsFor(m,t)[vehicleState.color]?.name : null;
     return {
       brand: b.manufacturer_name, model: m.model_name, variant: pt.variant_name,
       trim_name: [t.group, t.name].filter(Boolean).join(' '),
@@ -121,8 +122,9 @@ const 공유시각 = computed(() => {
       <ul v-if="(v.options || []).length" class="sr-car__opts">
         <li v-for="o in v.options" :key="o">{{ o }}</li>
       </ul>
-      <div v-if="v.colorExt || v.colorInt" class="sr-car__color">
-        {{ [v.colorExt && `외장 ${v.colorExt}`, v.colorInt && `내장 ${v.colorInt}`].filter(Boolean).join(' · ') }}
+      <div v-else class="sr-car__color">옵션 미선택</div>
+      <div class="sr-car__color">
+        외장 {{ v.colorExt || '미선택' }} · 내장 {{ v.colorInt || '미선택' }}
       </div>
       <div class="sr-car__total">
         <span>총 차량가격</span><b>{{ fmt(총차량가) }}원</b>

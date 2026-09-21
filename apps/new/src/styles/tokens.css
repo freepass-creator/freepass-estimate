@@ -73,3 +73,7 @@
     transition-duration: 0.01ms !important;
   }
 }
+/* Shared completed-touch feedback; browser vibration support remains device-dependent. */
+:where(button, [role="button"], summary).fp-pressed:not(:disabled) { transform: scale(.965); filter: brightness(.975); }
+:where(.sv-brand-card, .sv-row, .sv-trim-card, .sv-color-card, .sv-opt, .sc-chip, .se-chip, .se-card).fp-pressed:not(:disabled) { background: var(--brand-50); }
+:where(.m-btn--primary, #gate-submit).fp-pressed:not(:disabled) { transform: scale(.972); filter: brightness(.90); }

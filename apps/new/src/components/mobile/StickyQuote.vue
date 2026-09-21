@@ -9,6 +9,8 @@ import { vehicleState } from '../../store.js';
 import { fmt } from '../../lib/format.js';
 import * as Fees from '../../lib/compute-fees.js';
 import { QUOTE_TERMS } from '../../lib/quote/terms.js';
+import { selectionSummary } from '../../lib/selection-summary.js';
+const selected = computed(() => selectionSummary(window.VEHICLE_DB, vehicleState, quoteState));
 
 const 담당자 = 담당자인가();   // 손님은 보증금·선납금을 만지지 않는다
 const expanded = ref(false);
@@ -235,6 +237,17 @@ const cards = computed(() => {
           <span class="sq-meta__val">{{ quoteState.vehicle?.brand }} {{ quoteState.vehicle?.model }} {{ quoteState.vehicle?.trim_name }}</span>
         </div>
         <div class="sq-meta__row">
+          <span class="sq-meta__key">옵션</span>
+          <span class="sq-meta__val">{{ selected?.options.length ? selected.options.join(' · ') : '미선택' }}</span>
+        </div>
+        <div class="sq-meta__row">
+          <span class="sq-meta__key">색상</span>
+          <span class="sq-meta__val">
+            <span class="sq-meta__color">외장 {{ selected?.exterior || '미선택' }}</span>
+            <span class="sq-meta__color">내장 {{ selected?.interior || '미선택' }}</span>
+          </span>
+        </div>
+        <div class="sq-meta__row">
           <span class="sq-meta__key">신용</span>
           <!-- 손님에게는 등급 이름 대신 「신용점수 무관」 (대표 2026-09-18) -->
           <span class="sq-meta__val">{{ 담당자 ? (quoteState.cond.credit || '중신용') : '신용점수 무관' }}</span>
@@ -245,8 +258,9 @@ const cards = computed(() => {
 </template>
 
 <style scoped>
+.sq-meta__color { display: block; }
 .sq {
-  position: fixed; bottom: 78px; left: 0; right: 0;
+  position: fixed; bottom: var(--footer-height, 78px); left: 0; right: 0;
   background: var(--bg);
   border-top: 1px solid var(--line);
   border-radius: var(--r-sheet) var(--r-sheet) 0 0;
@@ -258,7 +272,7 @@ const cards = computed(() => {
   overflow: hidden;
 }
 .sq--expanded {
-  max-height: 75vh;
+  max-height: min(75dvh, calc(100dvh - var(--footer-height, 78px) - var(--safe-top, 0px) - 80px));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;

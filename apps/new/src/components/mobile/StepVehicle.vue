@@ -5,6 +5,8 @@ import { 담당자인가 } from '../../lib/role.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
 import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
+import { selectionSummary } from '../../lib/selection-summary.js';
+const selectedSummary = computed(() => selectionSummary(window.VEHICLE_DB, vehicleState, quoteState));
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
 
 const props = defineProps({
@@ -380,6 +382,10 @@ function onFeeChange() {
 
 <template>
   <div class="sv">
+    <div v-if="selectedSummary && vehicleState.trim" class="sv-selected-summary">
+      <p>외장 {{ selectedSummary.exterior }} · 내장 {{ selectedSummary.interior }}</p>
+      <p>옵션 {{ selectedSummary.options.length ? selectedSummary.options.join(' · ') : '미선택' }}</p>
+    </div>
     <p v-if="vehicleState.colorNotice" role="status">{{ vehicleState.colorNotice }}</p>
     <!-- breadcrumb — 텍스트만 결합 -->
     <div class="sv-crumbs" v-if="selectedBrand">
@@ -574,6 +580,12 @@ function onFeeChange() {
             <span class="sv-opt__price">+{{ fmt(o.price) }}만</span>
           </div>
           <div class="sv-opt__sub" v-if="o.sub">{{ o.sub }}</div>
+          <div class="sv-opt__sub" v-if="o.includes?.length">
+            포함 사양: {{ o.includes.map(id => optionsMaster[id]?.name).filter(Boolean).join(' · ') }}
+          </div>
+          <div class="sv-opt__sub" v-if="getRequires(o.id).length">
+            선행 옵션: {{ getRequires(o.id).map(id => optionsMaster[id]?.name).filter(Boolean).join(' · ') }}
+          </div>
           <div class="sv-opt__group" v-if="getGroup(o.id)">
             <i class="ph ph-info"></i>
             {{ getGroup(o.id).label }} 중 1개만 선택
@@ -693,6 +705,8 @@ function onFeeChange() {
 </template>
 
 <style scoped>
+.sv-selected-summary { margin: 0 0 12px; font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.5; overflow-wrap: anywhere; }
+.sv-selected-summary p { margin: 3px 0; }
 .sv { padding-top: 4px; }
 .sv-title {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
@@ -954,7 +968,7 @@ function onFeeChange() {
   font-size: var(--fs-md); font-weight: var(--fw-bold); color: var(--brand);
   font-variant-numeric: tabular-nums; flex-shrink: 0;
 }
-.sv-opt__sub { font-size: var(--fs-sm); color: var(--ink-3); line-height: 1.4; }
+.sv-opt__sub { font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.55; white-space: normal; overflow-wrap: anywhere; }
 .sv-opt__group {
   display: inline-flex; align-items: center; gap: 4px;
   font-size: var(--fs-xs); color: var(--ink-4); margin-top: 2px;
