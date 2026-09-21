@@ -1,0 +1,12 @@
+{
+  "name": "프리패스모빌리티 — 신차 장기렌터카 셀프견적",
+  "short_name": "프리패스 견적",
+  "description": "프리패스모빌리티 신차 장기렌터카 셀프견적",
+  "start_url": "/mobile.html?force=mobile",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1b2a4a",
+  "lang": "ko"
+}

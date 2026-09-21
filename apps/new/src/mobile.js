@@ -9,11 +9,15 @@ import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
 import { applyProductTheme } from './lib/brand-theme.js';
 
-// 회사 config 로드 (welrix.json) — calc.js 에 주입
+function companyProfileId() {
+  const params = new URLSearchParams(location.search);
+  return params.get('c') || 'freepass';
+}
+
+// 회사 config 로드 — calc.js 와 화면 정체성에 함께 주입
 async function loadCompanyConfig() {
   try {
-    const params = new URLSearchParams(location.search);
-    const id = params.get('c') || 'freepass';
+    const id = companyProfileId();
     const res = await fetch(`/data/company-config/${id}.json`);
     const cfg = await res.json();
     setCompanyConfig(cfg);
@@ -71,7 +75,7 @@ function 담당자문(){
     벽.className = 'gate-bg';
     벽.innerHTML = `
       <div class="gate-card">
-        <img class="gate-ci" src="/welrix-ci.png" alt="">
+        <img class="gate-ci" src="${companyProfileId() === 'freepass' ? '/freepass-wordmark.svg' : '/welrix-ci.png'}" alt="${companyProfileId() === 'freepass' ? 'freepassmobility' : '웰릭스 모빌리티'}">
         <h1 class="gate-title">담당자 확인</h1>
         <p class="gate-sub">이 기기를 담당자용으로 기억합니다</p>
         <input id="gate-pin" inputmode="numeric" autocomplete="off" placeholder="PIN">
@@ -95,9 +99,11 @@ function 담당자문(){
 }
 
 async function boot() {
+  // 정체성을 먼저 확정해야 새로고침 직후 담당자 게이트에도 잘못된 브랜드가 노출되지 않는다.
+  await loadCompanyConfig();
   if (담당자로들어왔나() && !담당자인가()) await 담당자문();
   await waitForVehicleDb();
-  await Promise.all([loadCompanyConfig(), loadVehicles()]);
+  await loadVehicles();
   // 재고는 비동기 — mount 후에도 늦게 도착해도 OK
   loadStock();
   /* ★공유 링크로 들어왔으면 고른 것을 먼저 풀어 놓고 그린다.

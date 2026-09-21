@@ -40,6 +40,9 @@ jobs:
       - name: Mobile navigation contract
         working-directory: apps/new
         run: node scripts/check-mobile-navigation-contract.mjs
+      - name: Mobile refresh brand identity
+        working-directory: apps/new
+        run: node scripts/check-mobile-brand-identity.mjs
       - name: FreePass visual grammar
         working-directory: apps/new
         run: node scripts/check-freepass-visual-grammar.mjs
