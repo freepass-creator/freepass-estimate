@@ -13,7 +13,7 @@ FreePass의 신차/중고 견적을 독립 제품으로 운영한다.
 - FreePass Sales = 소비자 / Downstream
 - 향후 다른 채널/파트너 견적 화면 = 소비자 / Downstream
 
-역사적으로 Welrix의 검증된 신차 견적 구조와 FreePass Sales의 최신 모바일 UI 문법을 가져와 정리했지만,
+역사적으로 외부 신차 견적 자료의 검증된 구조와 FreePass Sales의 최신 모바일 UI 문법을 가져와 정리했지만,
 **이관이 완료된 뒤의 변경 방향은 항상 FreePass Estimate → Downstream** 이다.
 
 Downstream에서 발생한 개선사항을 정본으로 삼아 직접 역수입하지 않는다.
