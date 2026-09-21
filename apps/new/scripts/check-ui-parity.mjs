@@ -11,8 +11,14 @@ function visibleHtml(s){
   return s.replace(/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/gi,'<script>__FREEPASS_DATA_BINDING__</script>')
     .replace(/[ \t]+$/gm,'').trim();
 }
-function vueTemplate(s){
-  return (s.match(/<template>[\s\S]*?<\/template>/i)?.[0]||'').replace(/[ \t]+$/gm,'').trim();
+function vueStructure(s){
+  return (s.match(/<template>[\s\S]*?<\/template>/i)?.[0]||'')
+    // The imported project is a layout reference only. Product/brand copy is
+    // intentionally owned by FreePass, so compare element/directive structure
+    // without locking text nodes to the historical source.
+    .replace(/>[^<]*</g,'><')
+    .replace(/[ \t]+$/gm,'')
+    .trim();
 }
 function walk(dir){
   const out=[];
@@ -23,8 +29,8 @@ function walk(dir){
   return out;
 }
 const failures=[];
-// Keep the mobile document body locked to the pinned Welrix information
-// architecture. The head is intentionally channel-specific and is covered by
+// Keep the mobile document body locked to the pinned historical information
+// architecture. The head is intentionally FreePass-specific and is covered by
 // check-mobile-brand-identity.mjs so the default FreePass identity can render
 // before application JavaScript runs.
 {
@@ -45,13 +51,13 @@ for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
   if(!fs.existsSync(local)){failures.push('missing component '+rel);continue}
   const upstreamSource=read(p), localSource=read(local);
   // MobileApp is the approved FreePass shell delta:
-  // - dynamic channel branding
+  // - FreePass product branding
   // - one-screen-one-choice auto advance
   // - top is informational / bottom is actionable
   // Its action placement is enforced by check-action-placement.mjs + Playwright.
   if(portableRel!=='mobile/MobileApp.vue'){
-    if(vueTemplate(upstreamSource)!==vueTemplate(localSource)) failures.push('component template changed '+rel);
+    if(vueStructure(upstreamSource)!==vueStructure(localSource)) failures.push('component structure changed '+rel);
   }
 }
-assert.equal(failures.length,0,'Welrix visible UI parity failed:\n'+failures.join('\n'));
-console.log('PASS structure parity — Welrix information architecture retained; FreePass visual grammar allowed');
+assert.equal(failures.length,0,'Historical UI structure parity failed:\n'+failures.join('\n'));
+console.log('PASS historical structure reference — FreePass copy and visual grammar remain independent');
