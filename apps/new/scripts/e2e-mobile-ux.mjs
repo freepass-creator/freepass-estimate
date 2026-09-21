@@ -62,7 +62,7 @@ try {
   ok(ui.headerActionCount === 0, '상단 헤더에 업무 CTA가 남아 있음: ' + ui.headerActionCount);
   ok(ui.preparedNextCount >= 1, '자동전진 단계에서도 Next 인프라가 준비되어 있어야 함');
 
-  // 제조사 → 모델 → 파워트레인 → (있으면 인승/구동) → 트림
+  // 제조사 → 모델 → 파워트레인(연료·배기량·인승·구동 통합) → 트림
   await page.locator('.sv-brand-card').filter({ hasText: '현대' }).click();
   await page.waitForFunction(() => document.querySelector('.sv-title')?.textContent?.includes('어떤 모델'));
   const santa = page.locator('.sv-row').filter({ hasText: '싼타페' });
@@ -70,11 +70,11 @@ try {
   else await clickFirst(page.locator('.sv-row'), '모델');
 
   await page.waitForFunction(() => document.querySelector('.sv-title')?.textContent?.includes('파워트레인'));
+  const combinedPowertrain = page.locator('.sv-row__label').filter({ hasText: /가솔린|하이브리드/ }).filter({ hasText: /인승/ });
+  ok(await combinedPowertrain.count() > 0, '파워트레인에 인승·구동 정보가 합쳐져 있지 않음');
   await clickFirst(page.locator('.sv-row'), '파워트레인');
-
-  if (await page.locator('.sv-title').filter({ hasText: '인승·구동방식' }).count()) {
-    await clickFirst(page.locator('.sv-row'), '인승·구동');
-  }
+  ok(await page.locator('.sv-title').filter({ hasText: '인승·구동방식' }).count() === 0,
+    '별도 인승·구동 화면이 남아 있음');
   await page.waitForSelector('.sv-trim-card');
   await clickFirst(page.locator('.sv-trim-card'), '트림');
 

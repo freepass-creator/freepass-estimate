@@ -126,27 +126,9 @@ function 견적보기() {
 }
 const currentStep = computed(() => STEPS[stepIdx.value]);
 
-/* ★순서는 제조사 «내 차 만들기»와 같게 — 파워트레인 → (갈리면) 인승·구동 → 세부트림 → 색상 → 옵션.
-     현대 hyundai.com/kr/ko/e/vehicles/estimation: 01 모델(엔진·구동·트림) → 02 색상 → 옵션 → 완료.
-     ★'spec'(인승·구동) 은 그 파워트레인 안에서 실제로 갈릴 때만 있는 걸음이다 — 대표 2026-09-18
-       「그 인승 구동 방식 그거를 어떻게 나눌지」. 갈리지 않는 차(그랜저 2.5, K5 등)는 이 걸음이 아예 없다. */
-const VEHICLE_SUB_STEPS_ALL = ['brand', 'model', 'variant', 'spec', 'trim', 'colors', 'options'];
+const VEHICLE_SUB_STEPS = computed(() => ['brand', 'model', 'variant', 'trim', 'colors', 'options']);
 
-/* 지금 고른 파워트레인이 인승·구동으로 갈리는가 — StepVehicle.vue 의 specGroups 와 같은 기준.
-   그 컴포넌트 안 값이라 여기서는 DB 를 직접 다시 본다(전역 window.VEHICLE_DB, 같은 데이터). */
-const 파워트레인갈래있나 = computed(() => {
-  try {
-    const b = window.VEHICLE_DB?.manufacturers?.find((x) => x.manufacturer_id === vehicleState.manufacturer);
-    const m = b?.models?.find((x) => x.model_id === vehicleState.model);
-    const v = m?.variants?.find((x) => x.variant_id === vehicleState.variant);
-    return new Set((v?.trims || []).map((t) => t.group).filter(Boolean)).size > 1;
-  } catch { return false; }
-});
-const VEHICLE_SUB_STEPS = computed(() => (
-  파워트레인갈래있나.value ? VEHICLE_SUB_STEPS_ALL : VEHICLE_SUB_STEPS_ALL.filter((s) => s !== 'spec')
-));
-
-// 전체 페이지 (sub-step 포함) — progress bar 세그먼트 수. 'spec' 유무에 따라 차마다 다르다.
+// 전체 페이지 (sub-step 포함) — progress bar 세그먼트 수.
 const TOTAL_PAGES = computed(() => VEHICLE_SUB_STEPS.value.length + (STEPS.length - 1));
 // 현재 페이지 인덱스 (0-based)
 const currentPageIdx = computed(() => {
@@ -178,7 +160,7 @@ const 견적보기보임 = computed(() => {
 });
 
 const 자동전진단계 = computed(() => currentStep.value.key === 'vehicle'
-  && ['brand', 'model', 'variant', 'spec', 'trim'].includes(vehicleState.subStep || 'brand'));
+  && ['brand', 'model', 'variant', 'trim'].includes(vehicleState.subStep || 'brand'));
 
 /* FreePass 하단 내비게이션 계약
  * - 이전/다음 기능은 항상 공통 뼈대에 존재한다.
@@ -202,7 +184,6 @@ const canProceed = computed(() => {
   if (sub === 'brand')   return !!vehicleState.manufacturer;
   if (sub === 'model')   return !!vehicleState.model;
   if (sub === 'variant') return !!vehicleState.variant;
-  if (sub === 'spec')    return !!vehicleState.trimGroup;
   if (sub === 'trim')    return !!vehicleState.trim;
   return true;
 });
