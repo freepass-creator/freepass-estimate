@@ -77,3 +77,7 @@
 :where(button, [role="button"], summary).fp-pressed:not(:disabled) { transform: scale(.965); filter: brightness(.975); }
 :where(.sv-brand-card, .sv-row, .sv-trim-card, .sv-color-card, .sv-opt, .sc-chip, .se-chip, .se-card).fp-pressed:not(:disabled) { background: var(--brand-50); }
 :where(.m-btn--primary, #gate-submit).fp-pressed:not(:disabled) { transform: scale(.972); filter: brightness(.90); }
+
+/* Compact selection stays above the active step, never in the action footer. */
+.selection-anchor { position: sticky; top: calc(var(--safe-top, 0px) + 72px); z-index: 12; background: var(--bg); padding: 4px 0 6px; margin-bottom: 10px; }
+.selection-anchor:empty { display: none; }

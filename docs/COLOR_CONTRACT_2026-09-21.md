@@ -32,3 +32,8 @@ Eleven haptic/summary regressions plus canonical verify pass. Browser verifies K
 Final production: FreePass source bc2ef7e, dpl_51QH8i3Uc5z27m8mQqzXV7QxGQbs at https://freepass-estimator.vercel.app; Welrix source ec9c559, dpl_8zfKFJ5chz8BXiU5wNsxXAyoiFwC at https://welrixtable.vercel.app. Rollback targets are the initial color-release deployment IDs above. GitHub main readback equals bc2ef7e; current revision CI not observed (workflow list only has prior revisions).
 
 Live browser confirmed both canonical domains: K8 colors +80k/+400k/no surcharge and selection summary. FreePass matte+sunroof total 38,800,000 KRW with live term prices; Welrix matte-only 37,710,000 KRW with no equipment paint choice. This proves these display/selection paths, not full rental-price parity across providers.
+
+## Compact top selection refinement (2026-09-21)
+- User supersedes footer summary: remove bottom selection details; keep compact exterior/interior/options directly below vehicle breadcrumbs, sticky while scrolling. Conditions/results retain the same top summary.
+- Preserve unselected labels, all selected options, quote metadata, footer sizing and calculations.
+- Canonical npm run verify PASS; both production builds PASS; common contract sync check PASS. Local browser verified K8 paid paint + sunroof, unselected interior, top placement and footer removal; Welrix scrolling keeps summary at 80px below header. Cursor read-only layout review supplied checks; Claude/Gemini unavailable as recorded above, not PASS. Physical-device rotation not verified.

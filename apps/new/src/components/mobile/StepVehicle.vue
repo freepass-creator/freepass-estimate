@@ -5,8 +5,7 @@ import { 담당자인가 } from '../../lib/role.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
 import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
-import { selectionSummary } from '../../lib/selection-summary.js';
-const selectedSummary = computed(() => selectionSummary(window.VEHICLE_DB, vehicleState, quoteState));
+import SelectionSummary from './SelectionSummary.vue';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
 
 const props = defineProps({
@@ -382,12 +381,9 @@ function onFeeChange() {
 
 <template>
   <div class="sv">
-    <div v-if="selectedSummary && vehicleState.trim" class="sv-selected-summary">
-      <p>외장 {{ selectedSummary.exterior }} · 내장 {{ selectedSummary.interior }}</p>
-      <p>옵션 {{ selectedSummary.options.length ? selectedSummary.options.join(' · ') : '미선택' }}</p>
-    </div>
     <p v-if="vehicleState.colorNotice" role="status">{{ vehicleState.colorNotice }}</p>
     <!-- breadcrumb — 텍스트만 결합 -->
+    <div class="selection-anchor">
     <div class="sv-crumbs" v-if="selectedBrand">
       <button class="sv-crumb" @click="goBack('brand')">
         <img v-if="BRAND_LOGOS[selectedBrand.manufacturer_id]" :src="BRAND_LOGOS[selectedBrand.manufacturer_id]" />
@@ -397,6 +393,8 @@ function onFeeChange() {
       <button v-if="selectedVariant" class="sv-crumb" @click="goBack('variant')">{{ selectedVariant.variant_name }}</button>
       <button v-if="vehicleState.trimGroup && !selectedTrim" class="sv-crumb" @click="goBack('spec')">{{ vehicleState.trimGroup }}</button>
       <button v-if="selectedTrim" class="sv-crumb" @click="goBack('trim')">{{ [selectedTrim.group, selectedTrim.name].filter(Boolean).join(' ') }}</button>
+    </div>
+      <SelectionSummary :show-vehicle="false" />
     </div>
 
     <!-- 1) 제조사 -->
@@ -705,6 +703,7 @@ function onFeeChange() {
 </template>
 
 <style scoped>
+.selection-anchor .sv-crumbs { margin-bottom: 2px; }
 .sv-selected-summary { margin: 0 0 12px; font-size: var(--fs-sm); color: var(--ink-2); line-height: 1.5; overflow-wrap: anywhere; }
 .sv-selected-summary p { margin: 3px 0; }
 .sv { padding-top: 4px; }
