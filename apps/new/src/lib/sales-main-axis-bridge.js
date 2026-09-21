@@ -11,7 +11,7 @@ let bridgeCache = null;
 
 function S(v){ return String(v ?? '').trim(); }
 function seatFrom(v){
-  const m = S(v).match(/(\d{1,2})\s*인승/);
+  const m = S(v).match(/(\d{1,2})\s*인(?:승)?/);
   return m ? Number(m[1]) : null;
 }
 function driveToken(v){
@@ -25,7 +25,7 @@ function driveToken(v){
 }
 function structuralGroup(v){
   return S(v)
-    .replace(/\d{1,2}\s*인승/gi,' ')
+    .replace(/\d{1,2}\s*인(?:승)?/gi,' ')
     .replace(/(?:2WD|4WD|AWD|FWD|RWD|HTRAC)/gi,' ')
     .replace(/(?:일반|선구매|렌터카)/gi,' ')
     .replace(/\s+/g,' ')
@@ -77,7 +77,7 @@ function optionAxesForVariant(variant){
 
 function trimSeat(trim){
   const v=trim?._base_axes?.seats;
-  return v != null ? Number(v) : seatFrom(trim?.group);
+  return v != null ? Number(v) : (seatFrom(trim?.group) ?? seatFrom(trim?.name));
 }
 function trimDrive(trim){
   const raw=trim?._base_axes?.drivetrain;
