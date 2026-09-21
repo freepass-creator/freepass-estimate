@@ -103,7 +103,7 @@ export const quoteState = reactive({
   myContracts: loadMyContracts(),  // 내가 제출한 계약 심사 요청 id 들
   /* ★웰릭스 표로 바꿨다 — 썬팅 3택 · 블박 2택. 우리 옛 표(루마 6종 × 부위 5개)는 안 쓴다.
      표가 다르면 «같은 조건»을 만들 수 없고, 그러면 값이 0 으로 안 맞는다. */
-  tint: { product: 웰릭스기본.tint },
+  tint: { product: 웰릭스기본.tint, areas: new Set() },
   extras: { blackbox: 웰릭스기본.blackbox },
   cust:  { name: '', tel: '' },
   staff: loadStaff(),  // ← 영업 본인 정보 자동 로드
