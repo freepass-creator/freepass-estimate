@@ -11,7 +11,6 @@ FreePass의 신차/중고 견적을 독립 제품으로 운영한다.
 
 - FreePass Estimate = 원본 / SSOT / Upstream
 - FreePass Sales = 소비자 / Downstream
-- Welrix = 소비자 / Downstream
 - 향후 다른 채널/파트너 견적 화면 = 소비자 / Downstream
 
 역사적으로 Welrix의 검증된 신차 견적 구조와 FreePass Sales의 최신 모바일 UI 문법을 가져와 정리했지만,
@@ -31,8 +30,11 @@ UI BASELINE / USER APPROVAL
 
 현재는 기존 검증 구조를 FreePass Estimate 정본으로 고정하고 최신 FreePass 규격을 적용·검증하는 단계다.
 
+현재 `셀프견적` 화면은 **UI 구조와 디자인을 확인하기 위한 껍데기**다. 실제 견적 계산이 완성되었거나
+운영 가능한 상품이라는 뜻이 아니며, 계산 엔진·데이터·배포 준비 완료를 주장하지 않는다.
+
 ## Historical references
-- Welrix: 기존 신차 웹/모바일 견적 구조 및 기존 계산 연결의 역사적 Reference
+- 기존 외부 신차 견적 자료: 가져온 웹/모바일 구조와 계산 연결을 추적하기 위한 역사적 Reference일 뿐, 현재 제품·채널·호환 모드가 아님
 - Sonogong: 기존 중고 견적 구조의 역사적 Reference
 - FreePass ERP4: 기존 견적 계산/회귀 데이터 Reference
 - AI Core: 공통 개발·접근성·상태·품질 기준 Reference
@@ -52,7 +54,6 @@ FreePass Estimate
   └─ estimator design rules
           │
           ├──> FreePass Sales
-          ├──> Welrix
           └──> partner/channel surfaces
 ```
 

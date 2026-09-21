@@ -8,7 +8,7 @@ Date: 2026-09-19
 ## 1. 화면 정본
 
 ### 신차 웹
-Source:
+Historical import reference only (현재 제품이나 브랜드가 아님):
 - `freepass-creator/welrixtable/index.html`
 - simple estimate mode: `28fr : 72fr`
 
@@ -26,7 +26,7 @@ Source:
 - 차량 선택을 별도 모달 중심으로 바꾸지 않는다.
 
 ### 신차 모바일
-Source:
+Historical import reference only (현재 제품이나 브랜드가 아님):
 - `freepass-creator/welrixtable/src/components/mobile/MobileApp.vue`
 - `StepVehicle.vue`
 - `StickyQuote.vue`

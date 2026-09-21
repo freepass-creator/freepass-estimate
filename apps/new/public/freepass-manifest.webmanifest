@@ -1,7 +1,7 @@
 {
-  "name": "프리패스모빌리티 — 신차 장기렌터카 셀프견적",
+  "name": "프리패스모빌리티 — 신차 장기렌터카 견적",
   "short_name": "프리패스 견적",
-  "description": "프리패스모빌리티 신차 장기렌터카 셀프견적",
+  "description": "프리패스모빌리티 신차 장기렌터카 견적 화면",
   "start_url": "/mobile.html?force=mobile",
   "scope": "/",
   "display": "standalone",

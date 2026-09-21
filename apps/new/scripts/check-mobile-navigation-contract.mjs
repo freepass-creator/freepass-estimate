@@ -19,6 +19,7 @@ for(const token of [
 
 assert.ok(!e2e.includes('.m-header .m-act'),'stale E2E selector detected: header action no longer exists');
 assert.ok(e2e.includes(".m-footer button"),'E2E must exercise canonical bottom action area');
-assert.ok(e2e.includes('force=mobile&c=welrix'),'E2E provider fixture must remain explicit');
+assert.ok(e2e.includes('mobile.html?force=mobile'),'E2E must open the FreePass mobile shell');
+assert.ok(!e2e.includes('c=welrix'),'E2E must not enable a legacy brand mode');
 
 console.log(`PASS ${MOBILE_NAVIGATION_CONTRACT} — Prev/Next state contract + E2E selector freshness`);

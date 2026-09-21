@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 
-const BASE = process.env.BASE_URL || 'http://127.0.0.1:5173/mobile.html?force=mobile&c=welrix';
+const BASE = process.env.BASE_URL || 'http://127.0.0.1:5173/mobile.html?force=mobile';
 const out = process.env.ARTIFACT_DIR || 'artifacts/mobile-ux';
 fs.mkdirSync(out, { recursive: true });
 

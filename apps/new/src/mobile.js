@@ -9,16 +9,10 @@ import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
 import { applyProductTheme } from './lib/brand-theme.js';
 
-function companyProfileId() {
-  const params = new URLSearchParams(location.search);
-  return params.get('c') || 'freepass';
-}
-
 // 회사 config 로드 — calc.js 와 화면 정체성에 함께 주입
 async function loadCompanyConfig() {
   try {
-    const id = companyProfileId();
-    const res = await fetch(`/data/company-config/${id}.json`);
+    const res = await fetch('/data/company-config/freepass.json');
     const cfg = await res.json();
     setCompanyConfig(cfg);
     window.__welrix_companyConfig = cfg;
@@ -75,7 +69,7 @@ function 담당자문(){
     벽.className = 'gate-bg';
     벽.innerHTML = `
       <div class="gate-card">
-        <img class="gate-ci" src="${companyProfileId() === 'freepass' ? '/freepass-wordmark.svg' : '/welrix-ci.png'}" alt="${companyProfileId() === 'freepass' ? 'freepassmobility' : '웰릭스 모빌리티'}">
+        <img class="gate-ci" src="/freepass-wordmark.svg" alt="프리패스모빌리티">
         <h1 class="gate-title">담당자 확인</h1>
         <p class="gate-sub">이 기기를 담당자용으로 기억합니다</p>
         <input id="gate-pin" inputmode="numeric" autocomplete="off" placeholder="PIN">

@@ -12,10 +12,8 @@ import StickyQuote from './StickyQuote.vue';
 import SendSheet from './SendSheet.vue';
 
 const cfg = computed(() => window.__welrix_companyConfig || {});
-const 헤더브랜드 = computed(() => cfg.value.company_id === 'welrix'
-  ? '웰컴저축은행 × 웰릭스모빌리티'
-  : (cfg.value.name || '프리패스모빌리티'));
-const 공유제목 = computed(() => (cfg.value.name || '프리패스모빌리티') + ' 견적');
+const 헤더브랜드 = computed(() => '프리패스모빌리티');
+const 공유제목 = computed(() => '프리패스모빌리티 견적');
 
 // 발송은 헤더 상단 아이콘으로 — step 으로 안 둠 (사용자 의도)
 const STEPS = [

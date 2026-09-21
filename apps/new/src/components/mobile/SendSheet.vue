@@ -98,7 +98,7 @@ async function onShareImage() {
   errorMsg.value = ''; imgLoading.value = true;
   try {
     const blob = await buildQuoteBlob(); if (!blob) return;
-    const file = new File([blob], 'welrix-견적서.png', { type: 'image/png' });
+    const file = new File([blob], 'freepass-견적서.png', { type: 'image/png' });
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try { await navigator.share({ files: [file], title: '신차 장기렌터카 견적서' }); return; }
       catch (e) { if (e && e.name === 'AbortError') return; }
@@ -107,7 +107,7 @@ async function onShareImage() {
     if (navigator.clipboard?.write && window.ClipboardItem) {
       try { await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]); alert('이 기기는 이미지 바로전송 미지원 — 이미지 복사됨, 카톡에 붙여넣기 하세요'); return; } catch {}
     }
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `welrix-견적서-${Date.now()}.png`; a.click(); URL.revokeObjectURL(a.href);
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `freepass-견적서-${Date.now()}.png`; a.click(); URL.revokeObjectURL(a.href);
   } catch (e) { errorMsg.value = '이미지 생성 실패: ' + (e?.message || e); }
   finally { imgLoading.value = false; }
 }
@@ -121,7 +121,7 @@ async function onCopyImage() {
     if (navigator.clipboard?.write && window.ClipboardItem) {
       try { await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]); alert('이미지 복사 완료 — 카톡 채팅창에 붙여넣기 하세요'); return; } catch {}
     }
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `welrix-견적서-${Date.now()}.png`; a.click(); URL.revokeObjectURL(a.href);
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `freepass-견적서-${Date.now()}.png`; a.click(); URL.revokeObjectURL(a.href);
   } catch (e) { errorMsg.value = '이미지 생성 실패: ' + (e?.message || e); }
   finally { imgLoading.value = false; }
 }
@@ -175,7 +175,7 @@ function close() { emit('close'); }
       <!-- CI 제외 토글 — 발송 액션 위에 명확하게 -->
       <label class="ss-ci">
         <div class="ss-ci__left">
-          <div class="ss-ci__label">웰릭스 CI 제외하고 발송</div>
+          <div class="ss-ci__label">로고 제외하고 발송</div>
           <div class="ss-ci__hint">로고 없이 견적서 작성</div>
         </div>
         <input type="checkbox" class="ss-ci__input"
