@@ -66,7 +66,8 @@ function bridgeEntryForTrim(trim){
 function optionAxesForVariant(variant){
   const axes=new Set();
   for(const trim of variant?.trims || []){
-    for(const id of trim._main_axis_option_ids || []){
+    const ids=[...(trim._main_axis_option_ids || []), ...(trim._axis_option_ids || [])];
+    for(const id of ids){
       const effect=optionAxisEffect(variant.options_master?.[id]);
       if(effect?.axis) axes.add(effect.axis);
     }
