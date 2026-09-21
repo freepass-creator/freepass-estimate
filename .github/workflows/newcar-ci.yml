@@ -40,9 +40,6 @@ jobs:
       - name: Mobile navigation contract
         working-directory: apps/new
         run: node scripts/check-mobile-navigation-contract.mjs
-      - name: Tint state contract
-        working-directory: apps/new
-        run: node scripts/check-tint-state-contract.mjs
       - name: FreePass visual grammar
         working-directory: apps/new
         run: node scripts/check-freepass-visual-grammar.mjs
@@ -56,6 +53,8 @@ jobs:
           cache-dependency-path: apps/new/package-lock.json
       - name: Install
         run: npm ci
+      - name: Tint state contract
+        run: node scripts/check-tint-state-contract.mjs
       - name: Syntax check provider files
         run: |
           node --check src/lib/quote/contracts.js
