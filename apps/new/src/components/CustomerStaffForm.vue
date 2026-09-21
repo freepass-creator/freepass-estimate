@@ -47,6 +47,8 @@ function onTelInput(e) {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 12px;
+  width: 100%;
+  max-width: 1360px;
   align-items: center;
   padding: 4px 0;
 }
