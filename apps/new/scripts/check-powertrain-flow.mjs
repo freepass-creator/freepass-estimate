@@ -1,12 +1,13 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
-import { applySalesMainAxisBridge } from '../src/lib/sales-main-axis-bridge.js';
+import { applySalesMainAxisBridge, resolveBridgeProviderSelection } from '../src/lib/sales-main-axis-bridge.js';
 
 const step=fs.readFileSync('src/components/mobile/StepVehicle.vue','utf8');
 const app=fs.readFileSync('src/components/mobile/MobileApp.vue','utf8');
 const dbSource=fs.readFileSync('public/sales-welrix-db.js','utf8');
 const bridge=JSON.parse(fs.readFileSync('public/data/freepass-newcar/sales-main-axis-bridge.json','utf8'));
+const externalAdapter=fs.readFileSync('api/external-quote.js','utf8');
 
 assert.equal(bridge.schema,'freepass-sales-main-axis-bridge/v2');
 assert.equal(bridge.stats.provider_trims,443);
@@ -91,6 +92,34 @@ for(const v of model('아반떼').variants||[]){
   assert.deepEqual(groups(v),['7인승','9인승'],'Carnival real seat configuration must remain in powertrain');
   assert.ok(!has(/^6인승|^7인승|^9인승/,axisOptionNames(v)),'Carnival base seats were incorrectly converted to options');
 }
+
+// Axis options must be first-class Options and must resolve to the matching provider completed row.
+{
+  const v=variant('쏘렌토',/가솔린 2\.5/);
+  const trim=(v.trims||[]).find(t=>t.name==='노블레스' && (t._ui_powertrain_group||'')==='');
+  assert.ok(trim,'Sorento canonical base trim missing');
+  const axisIds=trim._main_axis_option_ids || [];
+  assert.ok(axisIds.length>=3,'Sorento canonical axis options were not injected');
+  assert.deepEqual((trim.available_options||[]).slice(0,axisIds.length),axisIds,'configuration options must be first in Options');
+
+  const six=axisIds.find(id=>/^6인승/.test(v.options_master[id]?.name||''));
+  const four=axisIds.find(id=>/4WD|AWD|HTRAC/i.test(v.options_master[id]?.name||''));
+  assert.ok(six && four,'Sorento seat/drive axis option ids missing');
+
+  const resolved=resolveBridgeProviderSelection(trim,v.options_master,[six,four]);
+  assert.ok(resolved?.candidate?.api_model,'Sorento option combination did not resolve to provider row');
+  assert.match(resolved.candidate.api_model,/6인승/);
+  assert.match(resolved.candidate.api_model,/4WD/);
+  const expectedAbsorbed=Math.round((Number(v.options_master[six].price)+Number(v.options_master[four].price))*10000);
+  assert.equal(resolved.absorbedWon,expectedAbsorbed,'provider-completed row must absorb seat/drive option price');
+
+  const seatGroup=(v.exclusive_groups||[]).find(g=>g.id.includes('main-axis:seats:') && g.members.includes(six));
+  assert.ok(seatGroup && seatGroup.members.length>=2,'seat options must be mutually exclusive');
+}
+
+assert.ok(externalAdapter.includes('sales-main-axis-bridge.json'),'main external adapter must load axis bridge');
+assert.ok(externalAdapter.includes('by_canonical_product_id'),'main external adapter must resolve bridge by canonical product');
+assert.ok(externalAdapter.includes('resolveProviderCandidate(candidates, axes)'),'main external adapter must use canonical resolver for bridged candidates');
 
 // Legacy provider-combination links must redirect to base row + options.
 {
