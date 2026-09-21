@@ -3,6 +3,7 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import { resolveCanonicalIdentity } from '../src/lib/newcar/configuration-resolver.js';
 import { calculateStandardQuote } from '../api/_standard/standard-service.js';
+import { QUOTE_TERMS } from '../src/lib/quote/terms.js';
 
 const ctx={window:{},console:{log(){},warn(){},error(){}}};
 vm.createContext(ctx);
@@ -43,11 +44,7 @@ function req(id,credit='중신용'){
       신용:credit,주행:'2만km',정비:'웰스 Basic',대물:'1억',추가운전자:'없음',
       탁송비:250000,썬팅비:0,블박비:0,수수료율:3,
     },
-    안들:[
-      {기간:36,보증금:0,선납:0},
-      {기간:48,보증금:0,선납:0},
-      {기간:60,보증금:0,선납:0},
-    ],
+    안들:QUOTE_TERMS.map((기간)=>({기간,보증금:0,선납:0})),
   };
 }
 
@@ -63,14 +60,14 @@ if(grandeur)cases.push(['gasoline',grandeur]);
 for(const [label,id] of cases){
   const request=req(id);
   const answer=await calculateStandardQuote(request);
-  assert.equal(answer.결과.length,3,label+' result length');
+  assert.equal(answer.결과.length,5,label+' result length');
   for(const row of answer.결과){
     assert.ok(Number.isFinite(row.월대여료)&&row.월대여료>0,label+' monthly');
     assert.ok(Number.isFinite(row.보증금)&&row.보증금>=0,label+' deposit');
     assert.ok(Number.isFinite(row.인수가)&&row.인수가>0,label+' residual');
     assert.ok(Number.isFinite(row.총차량가)&&row.총차량가>0,label+' vehicle price');
   }
-  assert.ok(answer.결과[2].월대여료 <= answer.결과[0].월대여료*1.25,
+  assert.ok(answer.결과[4].월대여료 <= answer.결과[0].월대여료*1.25,
     label+' 60m monthly unexpectedly explodes');
   console.log('PASS STANDARD',label,id,JSON.stringify({
     months:answer.결과.map((x,i)=>[request.안들[i].기간,x.월대여료]),
@@ -86,9 +83,10 @@ for(const [label,id] of cases){
   const normal=await calculateStandardQuote(req(id,'정상'));
   const low=await calculateStandardQuote(req(id,'저신용'));
   assert.deepEqual(normal.메타.residualRates,low.메타.residualRates,'credit must not change residual');
-  assert.ok(low.결과[1].월대여료>=normal.결과[1].월대여료,'low credit should not be cheaper under turnover-risk defaults');
+  const term48=QUOTE_TERMS.indexOf(48);
+  assert.ok(low.결과[term48].월대여료>=normal.결과[term48].월대여료,'low credit should not be cheaper under turnover-risk defaults');
   console.log('PASS STANDARD credit-risk separation',JSON.stringify({
-    normal48:normal.결과[1].월대여료,low48:low.결과[1].월대여료,
+    normal48:normal.결과[term48].월대여료,low48:low.결과[term48].월대여료,
   }));
 }
 

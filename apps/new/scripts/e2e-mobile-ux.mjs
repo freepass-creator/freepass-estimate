@@ -125,8 +125,8 @@ try {
   // 기간을 하나 빼도 이후 화면/재진입에서 되살아나면 안 된다.
   const term48 = page.locator('.sc-chip').filter({ hasText: '48개월' });
   if (await term48.count()) await term48.click();
-  ok(await page.locator('.sc-field').first().locator('.sc-chip.is-selected').count() === 2,
-    '기간 1개 해제 후 선택 수가 2가 아님');
+  ok(await page.locator('.sc-field').first().locator('.sc-chip.is-selected').count() === 4,
+    '5개 기간 중 1개 해제 후 선택 수가 4가 아님');
 
   // 용품/서비스
   await page.locator('.m-footer .m-btn--primary').click();
@@ -143,7 +143,7 @@ try {
   await page.waitForSelector('.sr-title');
   await page.waitForFunction(() => document.querySelectorAll('.sr-term__monthly b').length > 0, null, { timeout: 20000 });
   const monthly = await page.locator('.sr-term__monthly b').allTextContents();
-  ok(monthly.length === 2 && monthly.every(Boolean), '선택한 2개 기간만 결과에 나와야 함: ' + JSON.stringify(monthly));
+  ok(monthly.length === 4 && monthly.every(Boolean), '선택한 4개 기간만 결과에 나와야 함: ' + JSON.stringify(monthly));
 
   // 최종 결과를 끝까지 스크롤했을 때 조건/안내문이 고정 footer 뒤에 가리지 않아야 한다.
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
@@ -189,7 +189,7 @@ try {
   ok(JSON.stringify(received) === JSON.stringify(monthly),
     '공유받은 견적 금액이 원본과 다름: ' + JSON.stringify({ monthly, received }));
   ok(estimateCalls === 0, '공유받은 Snapshot을 열자마자 재계산 API 호출함: ' + estimateCalls);
-  ok(await page2.locator('.sr-term').count() === 2, '공유 견적에서 선택하지 않은 기간이 되살아남');
+  ok(await page2.locator('.sr-term').count() === 4, '공유 견적에서 선택하지 않은 기간이 되살아남');
   await noHorizontalOverflow(page2, '공유견적');
 
   await page2.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));

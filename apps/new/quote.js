@@ -4,6 +4,7 @@ import { 요청만들기 } from './src/lib/quote/build-request.js';
 import { applyProductTheme } from './src/lib/brand-theme.js';
 import { 견적계산 } from './src/lib/quote/calculate.js';
 import { resolveCanonicalIdentity } from './src/lib/newcar/configuration-resolver.js';
+import { QUOTE_TERMS } from './src/lib/quote/terms.js';
 // 룩업 데이터 SSOT — Vue 컴포넌트와 공유 (이전에는 quote.js 에 박혀있고 window.__welrix_data 로 노출,
 // 모듈 로드 순서로 컴포넌트가 빈 옵션 보던 문제 → 직접 import 으로 해결)
 import {
@@ -251,11 +252,7 @@ async function recomputeProvider(내순번) {
 
   const refDep = +state.cond.dep || 0;
   const refPre = +state.cond.pre || 0;
-  const REF_SCENARIOS = [
-    { 기간: 60, 보증금: refDep, 선납: refPre },
-    { 기간: 48, 보증금: refDep, 선납: refPre },
-    { 기간: 36, 보증금: refDep, 선납: refPre },
-  ];
+  const REF_SCENARIOS = QUOTE_TERMS.map((기간) => ({ 기간, 보증금: refDep, 선납: refPre }));
   const referenceRequest = { ...요청, 안들: REF_SCENARIOS };
 
   try {

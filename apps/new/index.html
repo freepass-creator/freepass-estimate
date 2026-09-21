@@ -452,7 +452,7 @@
       white-space: nowrap;
     }
 
-    /* 4기간 카드 — 폭에 맞춰 auto-fit (좁으면 2x2, 충분하면 1x4) */
+    /* 5기간 카드 — 폭에 맞춰 auto-fit */
     .terms-grid {
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
       gap: 6px !important; margin-bottom: 8px !important;
@@ -2470,9 +2470,9 @@ render();
     border-radius: 0 0 var(--radius-md) var(--radius-md);
     padding: 0 12px 8px;
   }
-  /* 기본 견적 — 3 컬럼 (36/48/60 고정) */
+  /* 기본 견적 — 5 컬럼 (12/24/36/48/60 고정) */
   .reference-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
     margin-bottom: 4px;
   }
   @media (max-width: 480px) {
@@ -4144,7 +4144,7 @@ render();
   <div id="customer-staff-root"></div>
   <div id="conditions-form-root"></div>
 
-  <!-- 기본 견적 — 36/48/60 × 위 조건 폼의 보증금/선납금 (참고용) -->
+  <!-- 기본 견적 — 12/24/36/48/60 × 위 조건 폼의 보증금/선납금 (참고용) -->
   <div class="qp-terms__title">기본 견적</div>
   <div class="reference-grid" id="reference-grid"></div>
 

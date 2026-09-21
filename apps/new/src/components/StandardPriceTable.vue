@@ -1,5 +1,5 @@
 <script setup>
-// 웰릭스 표준 가격표 — 제조사별 전 차종 × 36/48/60 월 대여료
+// 프리패스 표준 가격표 — 제조사별 전 차종 × 12/24/36/48/60 월 대여료
 // 표준 조건: 중신용 / 보증금 10% / 선납 0% / 2만km / 자동차보험 1억 기본
 // 선택된 행만 PDF (브라우저 인쇄→PDF 저장) 로 출력
 import { ref, computed } from 'vue';
@@ -7,9 +7,10 @@ import { quoteState } from '../store.js';
 import { calcQuote } from '../lib/calc.js';
 import { fmt, fmtTel } from '../lib/format.js';
 import { buildStandardPriceHtml, STANDARD_PRICE_CSS } from '../lib/build-standard-price-html.js';
+import { QUOTE_TERMS } from '../lib/quote/terms.js';
 
 const BRANDS = ['현대', '기아', '제네시스'];
-const STANDARD_TERMS = [36, 48, 60];
+const STANDARD_TERMS = QUOTE_TERMS;
 const STD = {
   credit: '중신용',
   km: '2만km',
@@ -74,7 +75,7 @@ const filteredRows = computed(() => {
     .filter(v => !selectedModel.value || v.model === selectedModel.value);
 });
 
-// 표준 견적 계산 — STANDARD_TERMS(36/48/60) 각각 calcQuote (기존 로직 유지)
+// 표준 견적 계산 — FreePass 표준 다섯 기간 각각 calcQuote
 // monthlies: 화면 표시용 숫자 배열, quoteTerms: 견적서 빌더용 상세(월대여료/만기인수/잔가율)
 function calcForRow(v) {
   const quoteTerms = STANDARD_TERMS.map((term, idx) => {
@@ -376,7 +377,7 @@ function openManufacturerPdf() {
             </div>
             <div class="spt-card__terms">
               <div v-for="(m, i) in r.monthlies" :key="i" class="spt-card__term">
-                <div class="spt-card__term-label">{{ [36,48,60][i] }}개월</div>
+                <div class="spt-card__term-label">{{ STANDARD_TERMS[i] }}개월</div>
                 <div class="spt-card__term-monthly">
                   {{ m != null ? fmt(m) : '—' }}<small>원/월</small>
                 </div>

@@ -12,6 +12,7 @@ import {
   MARKUP_DEFAULT, POLICY, SETTING,
 } from './data/cost-config.js';
 import { turnoverCost } from './turnover-cost.js';
+import { QUOTE_TERMS } from '../../src/lib/quote/terms.js';
 
 // 손오공 고객 견적서 월납입금 표기 — 렌트·구독 모두 천원 올림(ROUNDUP -3)
 // (2026-06-12 팀장 요청: 렌트도 구독과 동일하게 라운드업)
@@ -43,7 +44,7 @@ export function markupFor(price, spec) {
   return +bs[bs.length - 1]?.add || 0;   // 상한 초과는 마지막 구간
 }
 
-export const TERMS = [24, 36, 48, 60]; // 약정 개월
+export const TERMS = QUOTE_TERMS;
 
 // 보증금 배수표 — 엑셀 구독견적서_고객 26행.
 //   F26 = F27×2 (2년) · H26 = H27×3 (3년) · M26 = H26 (4년) · S26 = M26 (5년)
@@ -437,7 +438,7 @@ export function computeTerm(term, input) {
   return out;
 }
 
-// 전체 약정 견적 (24/36/48/60)
+// 전체 약정 견적 (12/24/36/48/60)
 export function computeQuote(input) {
   return TERMS.map((t) => computeTerm(t, input));
 }

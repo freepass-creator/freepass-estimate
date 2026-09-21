@@ -2,9 +2,10 @@
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
 import { 담당자인가 } from '../../lib/role.js';
+import { QUOTE_TERMS } from '../../lib/quote/terms.js';
 
 const 담당자 = 담당자인가();
-const TERMS = [36, 48, 60];  // 24개월 운영 안 함
+const TERMS = QUOTE_TERMS;
 const KMS = [1, 2, 3, 4];
 /* ★웰릭스 계산 서버는 신용을 «고신용·중신용·저신용» 셋만 받는다.
    예전 첫 칸 '신용' 은 서버가 「허용되지 않은 값: credit」으로 돌려보내 계산이 멈췄다. */

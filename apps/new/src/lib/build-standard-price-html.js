@@ -1,16 +1,16 @@
-// 웰릭스 표준 가격표 HTML 빌더 (SSOT) — StandardPriceTable.vue 전용.
-// 체크한 트림들을 "쭉 정리한" 가격표 한 장(행=트림, 열=차량가/36·48·60개월)으로 생성.
+// 프리패스 표준 가격표 HTML 빌더 (SSOT) — StandardPriceTable.vue 전용.
+// 체크한 트림들을 "쭉 정리한" 가격표 한 장(행=트림, 열=차량가/12·24·36·48·60개월)으로 생성.
 // 손님 개별 견적서(build-multi-quote-html.js, 견적바구니용 비교표+상세카드)와는 별개.
 // 부작용 없음(pure): rows + 조건/회사설정을 받아 HTML 문자열만 반환.
 import { fmt, fmtTel } from './format.js';
 
-const TERMS = [36, 48, 60];
+import { QUOTE_TERMS as TERMS } from './quote/terms.js';
 
 /**
  * 표준 가격표 HTML 생성.
  * @param {object}   args
  * @param {object[]} args.rows  — 선택된 트림 배열. 각 항목:
- *        { brand, model, trim, price, monthlies: [m36, m48, m60] }  (monthly 는 원 단위 숫자 or null)
+ *        { brand, model, trim, price, monthlies: [m12, m24, m36, m48, m60] }  (monthly 는 원 단위 숫자 or null)
  * @param {object}   args.cond  — 표준 조건 표기용 { credit, km, dep, pre, insProperty, svc }
  * @param {object}   [args.staff] — 담당자 { name, tel } (고객명은 표기 안 함)
  * @param {object}   [args.companyConfig] — { name, logo_url }

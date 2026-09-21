@@ -1,16 +1,17 @@
 <script setup>
-// 기본 견적 — 60/48/36 × 위 조건 폼의 보증금/선납금 (편집 X, 항상 노출)
+// 기본 견적 — 12/24/36/48/60 × 위 조건 폼의 보증금/선납금 (편집 X, 항상 노출)
 // 카드 구성: 기간 / 대여료 / 보증금(원) / 선납금(원). 만기인수 표시 X.
 // 차량 미선택 상태에서도 틀은 항상 보임 (숫자만 placeholder).
 import { computed } from 'vue';
 import { quoteState as state } from '../store.js';
 import { fmt } from '../lib/format.js';
+import { QUOTE_TERMS } from '../lib/quote/terms.js';
 
-const FIXED_TERMS = [60, 48, 36];
+const FIXED_TERMS = QUOTE_TERMS;
 
 const cards = computed(() => {
   const arr = state.referenceMonthly || [];
-  // 항상 3 카드 — 데이터 없으면 placeholder 로 채움
+  // 항상 5 카드 — 데이터 없으면 placeholder 로 채움
   return FIXED_TERMS.map((term, idx) => {
     const m = arr[idx];
     if (m && m.term === term) {

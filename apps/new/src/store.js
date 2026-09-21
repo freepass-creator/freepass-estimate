@@ -2,6 +2,7 @@
 // 기존 state 객체 구조 유지, Vue의 reactive() 로 감싸서 양방향 자동 동기화
 import { 담당자인가 } from './lib/role.js';
 import { 웰릭스기본 } from './lib/welrix-rates.js';
+import { quoteScenarios } from './lib/quote/terms.js';
 
 /* ★기본값은 «웰릭스 견적기를 새로 열었을 때»와 똑같이 둔다.
    대표 2026-09-18 「다 완전히 똑같이 맞추라고. 웰릭스도 기본값 있잖아, 그 기본값에 맞추자고」
@@ -107,19 +108,15 @@ export const quoteState = reactive({
   extras: { blackbox: 웰릭스기본.blackbox },
   cust:  { name: '', tel: '' },
   staff: loadStaff(),  // ← 영업 본인 정보 자동 로드
-  send: [true, true, true],
+  send: [true, true, true, true, true],
   send_options: loadSendOpts(),  // { showLogo: bool }
-  /* 3년·4년·5년 세 칸 — 대표 2026-09-17 「마지막에 그냥 견적이 3년 4년 5년 이렇게 딱 나와 주는 거지」
+  /* 프리패스 기존 견적 규격 — 12·24·36·48·60개월 다섯 칸.
      ★보증금은 손님 0 / 담당자 10. 손님에게는 «보증금 없이» 얼마인지가 기준이다 —
        보증금은 어차피 심사 뒤에 정해진다. */
-  scenarios: [
-    { term: 60, dep: 기본보증금, pre: 0 },
-    { term: 48, dep: 기본보증금, pre: 0 },
-    { term: 36, dep: 기본보증금, pre: 0 },
-  ],  // 24개월 운영 안 함
+  scenarios: quoteScenarios(기본보증금, 0),
   // 계산된 월대여료 결과 (recompute가 채움) — TermsGrid 컴포넌트가 reactive 읽음
   monthly: [],
-  // 기본 견적 — 36/48/60 × 보증금10% 선납0% 고정 (recompute 가 같이 채움)
+  // 기본 견적 — 12/24/36/48/60 × 현재 보증금/선납금 (recompute 가 같이 채움)
   // ReferenceGrid 컴포넌트가 read-only 로 표시
   referenceMonthly: [],
 });

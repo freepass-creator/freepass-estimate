@@ -1,12 +1,13 @@
 import { readFileSync } from 'node:fs';
 import { computeTerm } from './calc.js';
+import { QUOTE_TERMS } from '../../src/lib/quote/terms.js';
 
 const DEFAULTS = JSON.parse(readFileSync(new URL('./standard-quote-defaults.snapshot.json', import.meta.url), 'utf8'));
 const DELTA = JSON.parse(readFileSync(new URL('./data/residual-delta.json', import.meta.url), 'utf8'));
 const ENGINE_FACTS = JSON.parse(readFileSync(new URL('./data/engine-facts.json', import.meta.url), 'utf8'));
 
 const STANDARD = { 1: 85, 2: 75, 3: 66, 4: 58, 5: 51, 6: 44, 7: 38, 8: 33 };
-const TERM_YEAR = { 24: 2, 36: 3, 48: 4, 60: 5 };
+const TERM_YEAR = Object.fromEntries(QUOTE_TERMS.map((term) => [term, term / 12]));
 
 const S = (v) => String(v ?? '').trim();
 const N = (v) => S(v).toLowerCase()

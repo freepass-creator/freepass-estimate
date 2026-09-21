@@ -4,6 +4,7 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import { quoteState as state } from '../store.js';
 import { fmt } from '../lib/format.js';
+import { QUOTE_TERMS } from '../lib/quote/terms.js';
 
 const DAY_KEY = (() => {
   const d = new Date();
@@ -39,7 +40,7 @@ function snapshot() {
   const v = state.vehicle;
   if (!v) return;
   const ms = state.monthly || [];
-  // 60/48/36 순서 기준 monthly 매핑
+  // 12/24/36/48/60 순서 기준 monthly 매핑
   const findT = (term) => ms.find(m => m && m.term === term) || null;
   const entry = {
     id: Date.now() + '_' + Math.random().toString(36).slice(2,6),
@@ -56,7 +57,7 @@ function snapshot() {
     // 복원용 — 클릭 시 그대로 재산출하기 위한 전체 스냅샷
     vehicleFull: (() => { try { return JSON.parse(JSON.stringify(v)); } catch { return null; } })(),
     condFull: (() => { try { return JSON.parse(JSON.stringify(state.cond)); } catch { return null; } })(),
-    monthly: [60, 48, 36].map(t => {
+    monthly: QUOTE_TERMS.map(t => {
       const m = findT(t);
       return m ? { term: t, monthly: m.monthly, dep: m.dep, pre: m.pre,
                    residualPct: m.residualPct, residualAmt: m.residualAmt } : null;

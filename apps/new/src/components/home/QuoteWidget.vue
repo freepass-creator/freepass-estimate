@@ -6,6 +6,7 @@ import { ref, computed, onMounted } from 'vue';
 import { calcQuote } from '../../lib/calc.js';
 import { fmt } from '../../lib/format.js';
 import { DELIVERY_REGIONS, TINT_PRICES } from '../../data/lookups.js';
+import { QUOTE_TERMS } from '../../lib/quote/terms.js';
 
 // 기본 deliveryFee = 서울 광역시 (UI 표시 X)
 const DEFAULT_DELIVERY_FEE = (DELIVERY_REGIONS['광역시']?.['서울']) || 0;
@@ -16,7 +17,7 @@ const DEFAULT_TINT_FEE = (() => {
   return (m['front'] || 0) + (m['side_rear_with_coupon'] || 0);
 })();
 
-const TERMS = [60, 48, 36];
+const TERMS = QUOTE_TERMS;
 const DEPOSIT_PRESETS = [0, 10, 20, 30];
 const PREPAY_PRESETS = [0, 10, 20, 30];
 

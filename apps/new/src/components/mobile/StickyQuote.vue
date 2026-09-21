@@ -8,6 +8,7 @@ import { 견적상태 } from '../../lib/quote/index.js';
 import { vehicleState } from '../../store.js';
 import { fmt } from '../../lib/format.js';
 import * as Fees from '../../lib/compute-fees.js';
+import { QUOTE_TERMS } from '../../lib/quote/terms.js';
 
 const 담당자 = 담당자인가();   // 손님은 보증금·선납금을 만지지 않는다
 const expanded = ref(false);
@@ -37,8 +38,7 @@ const optPrice = computed(() => Fees.optPrice(quoteState));
 const deliveryFee = computed(() => Fees.deliveryFee(quoteState));
 const itemsFee = computed(() => Fees.itemsFee(quoteState));
 
-// 운영 기간 — 36/48/60 만 사용 (PC TermsGrid 와 동일)
-const TERM_OPTIONS = [36, 48, 60];
+const TERM_OPTIONS = QUOTE_TERMS;
 
 /* 금액바는 «표시»만 한다. 사용자가 계약조건에서 줄인 기간을 다시 만들어내지 않는다.
    quoteState.send 길이만 현재 시나리오 수와 맞춘다. */
@@ -73,7 +73,7 @@ function onSendToggle(idx) {
 const 계산중 = computed(() => 견적상태.상태 === 'pending');
 const 계산못함 = computed(() => 견적상태.상태 === 'error');
 
-// 각 시나리오 슬롯(0/1/2) — 숫자는 «웰릭스가 준 것»을 그대로 쓴다
+// 각 기간 시나리오 — 계산 결과의 같은 순서 슬롯을 읽는다.
 const cards = computed(() => {
   const r = 견적상태.상태 === 'ok' ? (견적상태.결과 || []) : [];
   return quoteState.scenarios.map((sc, idx) => {
@@ -289,7 +289,7 @@ const cards = computed(() => {
 
 /* 기간 카드 grid — 항상 표시 */
 .sq-terms {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px;
   padding: 0 16px 6px;
 }
 .sq-term-card {

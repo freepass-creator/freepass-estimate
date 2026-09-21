@@ -429,7 +429,7 @@ async function shareSignLink() {
 }
 .m-main--quote {
   /* 접힌 실시간 견적바 + footer가 함께 떠 있는 화면만 충분한 하단 여백을 둔다. */
-  padding-bottom: calc(var(--safe-bottom) + 210px);
+  padding-bottom: calc(var(--safe-bottom) + 226px);
 }
 .m-main--result {
   /* 최종 견적은 footer만 피하면 된다. 과도한 빈 스크롤을 만들지 않는다. */

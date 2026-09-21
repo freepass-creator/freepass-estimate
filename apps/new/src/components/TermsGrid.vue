@@ -2,9 +2,9 @@
 import { computed } from 'vue';
 import { quoteState as state } from '../store.js';
 import { fmt } from '../lib/format.js';
+import { QUOTE_TERMS } from '../lib/quote/terms.js';
 
-// 운영 기간 — 36/48/60 만 사용 (12/24 비운영)
-const TERM_OPTIONS = [36, 48, 60];
+const TERM_OPTIONS = QUOTE_TERMS;
 
 // 차량+트림 선택돼서 월대여료 계산된 상태
 const hasResults = computed(() => state.monthly && state.monthly.length > 0);

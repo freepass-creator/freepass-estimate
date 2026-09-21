@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "check": "node scripts/check-sync.mjs",
     "test:ui": "node scripts/e2e-mobile-ux.mjs",
+    "test:desktop": "node scripts/e2e-desktop-five-term.mjs",
     "check:provider": "node scripts/check-provider-contract.mjs",
     "check:runtime": "node scripts/check-quote-execution-contract.mjs",
     "check:release": "node scripts/check-release-proof.mjs",
