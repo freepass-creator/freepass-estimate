@@ -21,6 +21,7 @@ const conditions = read('src/components/mobile/StepConditions.vue');
 const extras = read('src/components/mobile/StepExtras.vue');
 const result = read('src/components/mobile/StepResult.vue');
 const desktop = read('index.html');
+const finalUi = read('src/styles/admin-alignment.css');
 
 assert.match(tokens, corners,
   'Admin baseline requires compact 6px control and card corners');
@@ -40,6 +41,12 @@ assert.match(desktop, /\.qc-field > input, \.cs-field input \{ padding: 0 14px !
   'desktop text fields must not render text against the boundary');
 assert.match(desktop, /\.quote-panel \.qc-pct input:not\(\[type="checkbox"\]\):not\(\[type="radio"\]\)\s*\{[\s\S]*border:\s*0 !important;[\s\S]*background:\s*transparent !important;/,
   'nested percent inputs must not gain a second field boundary');
+assert.match(finalUi, /\.sr-term\s*\{[\s\S]*padding:\s*12px;[\s\S]*border-radius:\s*var\(--r-card\);/,
+  'quote result term cards must use compact Admin density');
+assert.match(finalUi, /\.sq-table__term-select\s*\{[\s\S]*min-height:\s*var\(--h-touch-min\);/,
+  'live quote term controls must preserve the 44px touch floor');
+assert.match(finalUi, /#gate-submit,[\s\S]*#gate-admin\s*\{[\s\S]*height:\s*var\(--h-cta\);/,
+  'staff gate actions must use the common 44px action height');
 
 // Confine each assertion to its own rule; do not pass via unrelated later CSS.
 assert.match(result, /\.sr-term\s*\{[^}]*flex-wrap:\s*wrap;[^}]*padding:\s*var\(--sp-3\);[^}]*border-radius:\s*var\(--r-card\);/,
