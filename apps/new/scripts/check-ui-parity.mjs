@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 
+// Authority: FreePass Estimate owns product flow; pinned Welrix remains a compatibility guard only for unchanged surfaces.
 const root=process.cwd();
 const upstream=path.resolve(root,'../../.ui-reference');
 const read=p=>fs.readFileSync(p,'utf8').replace(/\r\n/g,'\n');
