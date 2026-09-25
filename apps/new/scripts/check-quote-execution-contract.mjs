@@ -55,6 +55,26 @@ need(success.실행?.evidence?.some((x) => x.includes('PRICING_ENGINE:freepass-s
 need(success.실행?.checks?.some((x) => x.name === 'quote-result-contract' && x.status === 'PASS'), 'result check proof missing');
 
 globalThis.fetch = async () => ({
+  ok: true,
+  status: 200,
+  json: async () => ({
+    ok: true,
+    contract: QUOTE_RESULT_CONTRACT,
+    providerContract: QUOTE_PROVIDER_CONTRACT,
+    차량가: 30000000,
+    결과: [{ 월대여료: 500000, 보증금: 0, 선납금: 0, 인수가: 0, 총차량가: 30000000, 수수료: 0 }],
+  }),
+});
+
+let missingEngine = null;
+try {
+  await 견적계산(request);
+} catch (error) {
+  missingEngine = error;
+}
+need(missingEngine?.code === 'PRICING_ENGINE_EVIDENCE_REQUIRED', 'missing pricing engine evidence must fail closed');
+
+globalThis.fetch = async () => ({
   ok: false,
   status: 503,
   json: async () => ({ ok: false, error: 'provider unavailable', code: 'PROVIDER_UNAVAILABLE' }),
