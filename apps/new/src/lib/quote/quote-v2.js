@@ -23,12 +23,15 @@ function codedError(message, code) {
 }
 
 export function stableValue(value) {
-  if (value === undefined) return null;
+  if (value === undefined) throw codedError('undefined cannot be hashed', 'QUOTE_V2_NON_DETERMINISTIC');
+  if (typeof value === 'function' || typeof value === 'symbol' || typeof value === 'bigint') {
+    throw codedError('unsupported value cannot be hashed', 'QUOTE_V2_NON_DETERMINISTIC');
+  }
   if (Array.isArray(value)) return value.map(stableValue);
   if (value && typeof value === 'object') {
     return Object.fromEntries(
       Object.entries(value)
-        .sort(([a], [b]) => a.localeCompare(b))
+        .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
         .map(([key, child]) => [key, stableValue(child)])
     );
   }
@@ -63,7 +66,18 @@ function priceSnapshot(snapshot) {
 
 function optionSnapshot(snapshot) {
   if (!Array.isArray(snapshot)) throw codedError('optionPriceSnapshot must be an array', 'QUOTE_V2_INVALID');
-  return stableValue(snapshot);
+  const byId = new Map();
+  for (const raw of snapshot) {
+    if (!raw || typeof raw !== 'object') throw codedError('optionPriceSnapshot item must be an object', 'QUOTE_V2_INVALID');
+    const optionId = requiredString(raw.optionId, 'optionPriceSnapshot.optionId');
+    const normalized = stableValue({ ...raw, optionId });
+    const previous = byId.get(optionId);
+    if (previous && stableStringify(previous) !== stableStringify(normalized)) {
+      throw codedError(`conflicting option snapshot: ${optionId}`, 'QUOTE_V2_INVALID');
+    }
+    byId.set(optionId, normalized);
+  }
+  return [...byId.values()].sort((a, b) => a.optionId < b.optionId ? -1 : a.optionId > b.optionId ? 1 : 0);
 }
 
 export function buildQuoteSnapshotPayload(input) {
