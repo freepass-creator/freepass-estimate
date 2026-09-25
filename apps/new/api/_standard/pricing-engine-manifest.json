@@ -12,6 +12,6 @@
     "apps/new/api/_standard/data/engine-facts.json"
   ],
   "source_digest": "c5b7f1bfb22cb812ff2a6cf623ba4285a93c85af10b65ede8477e923948846fa",
-  "policy_digest": "db0186b10720b013fb9fa3095660e1d88b6176599442218a4f6306b05b56227c",
-  "version": "freepass-standard/newcar@1.0.0+src.c5b7f1bfb22c.policy.db0186b10720"
+  "policy_digest": "dde4ea76ad37031118c32289e8320f567a25817d3d87a55264b2c26ed11c7492",
+  "version": "freepass-standard/newcar@1.0.0+src.c5b7f1bfb22c.policy.dde4ea76ad37"
 }
