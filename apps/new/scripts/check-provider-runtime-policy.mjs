@@ -165,6 +165,31 @@ try {
   assert.equal(rejectedPrice.body?.code, 'PROVIDER_PRICE_OVERRIDE_REJECTED');
   assert.equal(rejectedPrice.body?.retryable, false);
 
+  const mismatchedTotal = await runWithFetch(async (_url, opts) => {
+    const outbound = JSON.parse(opts.body);
+    return {
+      ok: true,
+      status: 200,
+      async json() {
+        return {
+          ok: true,
+          price: outbound.manualPrice,
+          results: outbound.inputs.map(() => ({
+            monthlyRent: 777000,
+            deposit: 0,
+            prepay: 0,
+            acquirePrice: 0,
+            totalCarPrice: 99999999,
+            payFee: 0,
+          })),
+        };
+      },
+    };
+  });
+  assert.equal(mismatchedTotal.statusCode, 502);
+  assert.equal(mismatchedTotal.body?.code, 'PROVIDER_PRICE_OVERRIDE_REJECTED');
+  assert.equal(mismatchedTotal.body?.retryable, false);
+
   const success = await runWithFetch(async (_url, opts) => {
     const outbound = JSON.parse(opts.body);
     assert.equal(outbound.manualPrice, 30000000);
@@ -180,7 +205,8 @@ try {
             deposit: 0,
             prepay: 0,
             acquirePrice: 0,
-            totalCarPrice: 99999999,
+            totalCarPrice: 30000000,
+            consumerPrice: 30000000,
             payFee: 0,
           })),
         };
