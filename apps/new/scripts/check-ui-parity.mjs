@@ -94,6 +94,53 @@ function guardFreePassOwnedSurface(rel,src){
     return;
   }
 
+  if(rel==='mobile/StepConditions.vue'){
+    // Contract conditions are FreePass-owned. Guard the shared term contract,
+    // mileage/credit choices, role-specific disclosure, and scenario mutation.
+    requireTokens(template,[
+      'class="sc-title"',
+      'v-for="t in TERMS"',
+      ':aria-pressed="selectedTerms.includes(t)"',
+      '@click="toggleTerm(t)"',
+      'v-for="k in KMS"',
+      '@click="quoteState.cond.km = k"',
+      'v-if="담당자"',
+      'v-for="c in CREDITS"',
+      '@click="quoteState.cond.credit = c.value"',
+      'v-if="!담당자"',
+      'quoteState.cond.feeRatePct',
+      'quoteState.cond.dep',
+      'quoteState.cond.pre',
+    ],rel);
+    requireTokens(src,[
+      "import { QUOTE_TERMS } from '../../lib/quote/terms.js';",
+      'const TERMS = QUOTE_TERMS;',
+      'function toggleTerm(t)',
+    ],rel);
+    return;
+  }
+
+  if(rel==='mobile/StepExtras.vue'){
+    // Service/extras presentation may follow FreePass visual grammar, while
+    // preserving every calculation-relevant choice and staff-only delivery input.
+    requireTokens(template,[
+      'class="se-title"',
+      'v-for="s in SVC"',
+      '@click="quoteState.cond.svc = s.value"',
+      'v-for="i in INS"',
+      '@click="quoteState.cond.insProperty = i.value"',
+      'v-for="e in EXTRA"',
+      '@click="quoteState.cond.extraDriver = e.value"',
+      'v-if="담당자"',
+      '@change="onRegionChange"',
+      'v-for="t in 썬팅들"',
+      '@click="quoteState.tint.product = t.name"',
+      'v-for="b in 블박들"',
+      '@click="quoteState.extras.blackbox = b.name"',
+    ],rel);
+    return;
+  }
+
   if(rel==='mobile/StepResult.vue'){
     // Result presentation may evolve for readability, but the quote output must
     // retain vehicle summary, term pricing, conditions, and calculation states.
@@ -155,6 +202,8 @@ const upComp=path.join(upstream,'src','components');
 const freePassOwned=new Set([
   'mobile/MobileApp.vue',
   'mobile/StepVehicle.vue',
+  'mobile/StepConditions.vue',
+  'mobile/StepExtras.vue',
   'mobile/StepResult.vue',
   'mobile/StickyQuote.vue',
 ]);
