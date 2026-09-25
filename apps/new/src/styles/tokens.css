@@ -5,7 +5,7 @@
  *  Admin 고유 패널 토폴로지·업무 흐름은 가져오지 않으며 Estimate가 자체 흐름을 계속 소유한다.
  *
  *  기존 Estimate 세부 토큰은 호환성을 위해 유지하되, 새 공통 조정은
- *  승인된 역할 토큰(Title/Main/Support, 44px control, 6px control radius)을 우선한다.
+ *  승인된 역할 토큰(Title/Main/Support, 44px control, 6px control radius, 4px surface radius)을 우선한다.
  *
  *  네이밍 규격(정본): --fs-*(폰트) / --r-*(라운드) / --sp-*(간격) / --ink-* / --line* / --bg*
  *  웰릭스 기존 --font-size-* / --radius-* / --space-* 는 하단 '레거시 별칭'으로 유지(무손실 이관).
@@ -26,8 +26,9 @@
 
   /* ── 라운드 ───────────────────────────────────────────────── */
   --r-sm: 4px;  --r: 6px;  --r-md: 8px;  --r-lg: 12px;  --r-pill: 999px;
-  /* 임시 Sales 디자인 참조: 버튼은 6px, 입력·카드는 12px */
-  --r-chip: 6px;  --r-card: 12px;  --r-sheet: 16px;
+  /* current Admin SSOT: content surface 4px, interactive control 6px. */
+  --r-panel: 4px;  --r-control: 6px;
+  --r-chip: var(--r-control);  --r-card: var(--r-panel);  --r-sheet: 16px;
 
   /* ── 간격 ─────────────────────────────────────────────────── */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;  --sp-4: 16px;  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;
@@ -35,7 +36,7 @@
   /* ── 타이포 ────────────────────────────────────────────────
      승인 역할 위계는 18 / 14 / 12. 기존 세부 scale은 호환성 별칭으로 유지한다. */
   --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
-  --fs-title: 18px; --fs-main: 14px; --fs-support: 12px;
+  --fs-title: 18px; --fs-main: 14px; --fs-support: 12px; --fs-mobile-input: 16px;
   --fs-xs: 11px;  --fs-sm: 12.5px;  --fs-md: 13px;  --fs-base: 14px;
   --fs-lg: 15px;  --fs-xl: 17px;  --fs-2xl: 22px;
 
