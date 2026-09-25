@@ -72,6 +72,12 @@ try{
   assert.equal(res1.state.body?.ok,true);
   assert.equal(res1.state.body?.contract,QUOTE_RESULT_CONTRACT);
   assert.equal(res1.state.body?.providerContract,QUOTE_PROVIDER_CONTRACT);
+  assert.deepEqual(res1.state.body?.pricingEngine,{
+    id:'welrix-excel',
+    version:'welrix-excel/v6.1',
+    evidence:'ADAPTER_PIN_ONLY',
+    verified:false,
+  });
   assert.ok(outbound?.model,'Welrix API model must be translated');
   assert.notEqual(outbound.model,supportedId,'FreePass product id must not leak as Welrix model key');
   assert.ok((supportedMeta.providerCandidates||[]).some(c=>c.api_model===outbound.model),
