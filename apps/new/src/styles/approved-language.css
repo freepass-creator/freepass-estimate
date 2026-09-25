@@ -1,0 +1,38 @@
+/* FreePass Estimate — approved FreePass design language overrides.
+ * Visual-only: do not change estimator topology, step flow, quote engine, or data contracts.
+ * Current reference: freepass-admin approved UI/UX language (18/14/12 roles, 44px controls, 6px controls).
+ */
+
+.bottom-action {
+  height: 44px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+}
+
+.cdd .cdd__btn,
+.quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select),
+.qc-field > input,
+.qc-field > select,
+.cs-field input,
+.qc-pct,
+.term-card__term-dd {
+  min-height: 44px !important;
+  border-radius: 6px !important;
+}
+
+.term-card__term-dd {
+  height: 44px !important;
+  font-size: 14px !important;
+}
+
+:where(button, a[href], input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid #1d4ed8 !important;
+  outline-offset: 2px;
+}
+
+@supports (height: 100dvh) {
+  body { height: 100dvh; }
+  @media (max-width: 1024px) {
+    .quote-modal { height: 100dvh; max-height: 100dvh; }
+  }
+}

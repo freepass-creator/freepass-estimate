@@ -133,9 +133,10 @@ function toggleTerm(t) {
 }
 .sc-chip:active { background: var(--brand-50); }
 .sc-chip.is-selected {
-  background: var(--brand);
+  background: var(--brand-50);
   border-color: transparent;
-  color: #fff;
+  color: var(--brand);
+  font-weight: var(--fw-bold);
 }
 
 /* 보증금/선납금/수수료 — 직접 입력 */
@@ -145,7 +146,7 @@ function toggleTerm(t) {
   padding: 0 14px;
   background: var(--bg);
   border: 1.5px solid var(--line);
-  border-radius: var(--r-card);
+  border-radius: var(--r-chip);
   transition: border-color .12s;
 }
 .sc-pct:focus-within { border-color: var(--brand); }

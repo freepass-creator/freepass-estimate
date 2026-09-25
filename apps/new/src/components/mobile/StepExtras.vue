@@ -225,7 +225,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   padding: 0 32px 0 14px;
   background: var(--bg);
   border: 1px solid var(--line-2);
-  border-radius: var(--r-card);
+  border-radius: var(--r-chip);
   font-family: inherit; font-size: var(--fs-lg);
   color: var(--ink-1);
   cursor: pointer;

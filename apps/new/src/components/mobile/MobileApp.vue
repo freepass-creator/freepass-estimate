@@ -380,6 +380,7 @@ async function shareSignLink() {
 .m-shell {
   display: flex; flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
 }
 
@@ -481,14 +482,14 @@ async function shareSignLink() {
 .m-btn--primary {
   flex: 1;
   background: var(--brand); color: #fff;
-  font-size: 16px;
+  font-size: var(--fs-main);
 }
 .m-btn--primary:not(:disabled):active { background: var(--brand-700); }
 /* 「견적 보기」 — 다음 옆에 나란히. 테두리 없이 옅은 바탕 */
 .m-btn--soft {
   flex: 1;
   background: var(--brand-50); color: var(--brand);
-  font-size: 16px;
+  font-size: var(--fs-main);
 }
 .m-btn--soft:active { background: var(--line-2); }
 .m-btn--icon { flex: 0 0 52px; }

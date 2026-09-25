@@ -11,6 +11,7 @@ function px(token) {
 }
 
 need(px('h-touch-min') === 44, '44px touch-target floor token missing');
+need((px('h-chip') ?? 0) >= 44, 'choice control height below 44px');
 need((px('h-input') ?? 0) >= 44, 'input height below 44px');
 need((px('h-cta') ?? 0) >= 44, 'CTA height below 44px');
 need(/:focus-visible\s*\{/.test(css), 'focus-visible rule missing');
