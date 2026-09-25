@@ -63,3 +63,13 @@ Before material structural changes:
 - compare against the canonical FreePass Estimate baseline,
 - obtain user approval where required,
 - then propagate downstream.
+## Branch discipline
+
+1. `main` is the stable baseline. Do not run parallel long-lived product development lines from it.
+2. At any point there may be only one active cross-cutting integration line. For the current consolidation that line is `integration/canonical-20260926`.
+3. Short-lived specialist branches (UI/UX, engine, adapter, data-contract, QA) are allowed, but they must target the active integration line and stop after their changes are absorbed.
+4. A specialist branch must never become a second source of truth. Do not continue feature work on a branch once a canonical integration branch contains its work.
+5. Web and mobile may use different presentation components, but they share one token authority, one selection/domain rule set, one Quote contract, and one provider/adapter contract.
+6. Historical/prototype branches and files are reference-only unless explicitly reactivated. Never infer canonical behavior from branch age or file names.
+7. The canonical external-provider path is the provider abstraction (`external` -> adapter). Legacy Welrix-direct paths are migration debt, not a second supported architecture.
+8. Before starting work, compare the intended base branch with `main` and the active integration branch. If the work already exists on the integration line, continue there instead of recreating it.
