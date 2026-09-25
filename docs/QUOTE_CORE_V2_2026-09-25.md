@@ -120,10 +120,35 @@ Regression checks now require paid interior color to increase the calculation ba
 
 ## Current blockers before runtime cutover
 
-1. Estimate runtime is not yet consuming a FreePass Data CANONICAL_ACTIVE release contract with all Quote master IDs.
-2. FreePass Data consumer registration currently does not expose an Estimate catalog capability.
-3. FreePass Data currently has no `PUT_ISSUED_QUOTE` command endpoint/receipt implementation.
-4. Legacy shared quote viewer still loads RTDB share payloads.
-5. CI runner allocation is currently unavailable for the PR; workflow started with runner_id=0 and zero executed steps.
+1. FreePass Data PR #49 now defines the dedicated `estimate-newcar-master/v1` consumer contract, but it is still Draft and no production ACTIVE release exists.
+2. The current legacy new-car feed and vehicle-trim master contain no model-year source field. The existing `year: 2026` value is a UI builder default and is explicitly rejected as Quote authority.
+3. Current Estimate UI option IDs must be reconciled with FreePass Data stable Option IDs. Name/label guessing is not allowed.
+4. FreePass Data currently has no `PUT_ISSUED_QUOTE` command endpoint/receipt implementation.
+5. Legacy shared quote viewer still loads RTDB share payloads.
+6. GitHub Actions runner allocation remains unavailable for the Estimate PR; observed runs end with `runner_id=0` and zero executed steps.
 
 Until these are resolved, Quote v2 stays Draft and must not silently fall back to RTDB or static-feed pseudo revisions.
+
+
+## FreePass Data master bridge
+
+Estimate now has a server-only bridge:
+
+`/api/freepass-data-master`
+
+The browser never receives the FreePass Data service token.
+
+Required server environment:
+- `FREEPASS_DATA_CONSUMER_BASE_URL`
+- `FREEPASS_DATA_ESTIMATE_TOKEN`
+
+The proxy accepts only:
+- contract = `estimate-newcar-master/v1`
+- projectionId = `estimate-newcar-master`
+- authority = `CANONICAL_ACTIVE`
+- schemaVersion = `1.0.0`
+- positive integer release revision
+- valid input/data SHA-256 digests
+- valid activation timestamp
+
+Quote issuance independently re-checks the same evidence and rejects any master-price mismatch between the calculation request and the FreePass Data record.
