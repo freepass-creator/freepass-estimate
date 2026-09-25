@@ -1,4 +1,5 @@
 import { buildIssuedQuote } from './quote-v2.js';
+import { normalizePricingEngineEvidence } from './pricing-engine.js';
 
 function required(value, field) {
   const v = String(value ?? '').trim();
@@ -149,7 +150,7 @@ export async function issueQuotesFromCalculation({
   request,
   calculation,
   masterContext,
-  pricingEngineVersion,
+  pricingEngineVersion = null,
   sourceRevision = null,
   createdAt,
   quoteVersion = 1,
@@ -166,7 +167,13 @@ export async function issueQuotesFromCalculation({
     interiorColorId: required(master.interiorColorId, 'interiorColorId'),
   };
 
-  const engineVersion = required(pricingEngineVersion, 'pricingEngineVersion');
+  const engineEvidence = normalizePricingEngineEvidence(calculation?.pricingEngine, { requireVerified: true });
+  const engineVersion = engineEvidence.version;
+  if (pricingEngineVersion != null && required(pricingEngineVersion, 'pricingEngineVersion') !== engineVersion) {
+    const error = new Error('pricingEngineVersion does not match calculation engine evidence');
+    error.code = 'QUOTE_PRICING_ENGINE_MISMATCH';
+    throw error;
+  }
   const revision = required(master.sourceRevision, 'masterContext.sourceRevision');
   if (sourceRevision != null && required(sourceRevision, 'sourceRevision') !== revision) {
     const error = new Error('sourceRevision does not match FreePass Data master evidence');
