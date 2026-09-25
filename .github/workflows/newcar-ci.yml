@@ -80,6 +80,7 @@ jobs:
           node --check src/lib/quote/repositories/freepass-data.js
           node --check src/lib/master/freepass-data-master.js
           node --check api/freepass-data-master.js
+          node --check api/_master/authoritative-request.js
           node --check src/lib/quote/engines/freepass-standard.js
           node --check src/lib/quote/engines/external.js
           node --check src/lib/quote/provider-policy.js
