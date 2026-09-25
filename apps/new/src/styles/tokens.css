@@ -28,6 +28,8 @@
   --r-sm: 4px;  --r: 6px;  --r-md: 8px;  --r-lg: 12px;  --r-pill: 999px;
   /* Admin 기준: 컨트롤·카드는 과도하게 둥글리지 않는다. */
   --r-chip: 6px;  --r-card: 6px;  --r-sheet: 12px;
+  /* Admin machine-SSOT role tokens: surface 4 / control 6 */
+  --r-panel: 4px;  --r-control: 6px;
 
   /* ── 간격 ─────────────────────────────────────────────────── */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;  --sp-4: 16px;  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;
@@ -36,6 +38,7 @@
   --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
   --fs-xs: 11px;  --fs-sm: 12px;  --fs-md: 13px;  --fs-base: 14px;
   --fs-lg: 14px;  --fs-xl: 16px;  --fs-2xl: 18px;
+  --fs-mobile-input: 16px;
 
   /* ── 터치 높이 + 굵기 — Admin 공통 컨트롤 44px ───────────────── */
   --h-chip: 44px; --h-input: 44px; --h-cta: 44px;
