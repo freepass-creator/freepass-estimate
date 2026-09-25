@@ -302,9 +302,17 @@ async function shareSignLink() {
     </header>
 
     <!-- 페이지별 progress segment — 전체 페이지 수 만큼 -->
-    <div class="m-progress">
+    <div
+      class="m-progress"
+      role="progressbar"
+      aria-label="견적 진행 단계"
+      :aria-valuemin="1"
+      :aria-valuemax="TOTAL_PAGES"
+      :aria-valuenow="currentPageIdx + 1"
+    >
       <div v-for="i in TOTAL_PAGES" :key="i"
            class="m-progress__seg"
+           aria-hidden="true"
            :class="{ 'is-done': (i - 1) <= currentPageIdx }"></div>
     </div>
 

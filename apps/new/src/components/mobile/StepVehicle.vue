@@ -442,8 +442,10 @@ function onFeeChange() {
       <div class="sv-brand-grid">
         <button
           v-for="b in brands" :key="b.manufacturer_id"
+          type="button"
           class="sv-brand-card"
           :class="{ 'is-selected': vehicleState.manufacturer === b.manufacturer_id }"
+          :aria-pressed="vehicleState.manufacturer === b.manufacturer_id"
           @click="selectBrand(b)"
         >
           <img v-if="BRAND_LOGOS[b.manufacturer_id]" :src="BRAND_LOGOS[b.manufacturer_id]" :alt="b.manufacturer_name" />
@@ -458,8 +460,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="m in models" :key="m.model_id"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.model === m.model_id }"
+          :aria-pressed="vehicleState.model === m.model_id"
           @click="selectModel(m)"
         >
           <span class="sv-row__label">{{ m.model_name }}</span>
@@ -474,8 +478,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="v in variants" :key="v.variant_id"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.variant === v.variant_id }"
+          :aria-pressed="vehicleState.variant === v.variant_id"
           @click="selectVariant(v)"
         >
           <span class="sv-row__label">{{ v.variant_name }}</span>
@@ -490,8 +496,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="g in specGroups" :key="g.label"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.trimGroup === g.label }"
+          :aria-pressed="vehicleState.trimGroup === g.label"
           @click="selectSpec(g)"
         >
           <span class="sv-row__label">{{ g.label }}
@@ -510,8 +518,10 @@ function onFeeChange() {
         <!-- 소제목 — 같은 엔진 안에서 갈리는 인승·구동·용도 (예: 5인승 2WD · 밴 · 렌터카) -->
         <div v-if="t.group && t.group !== trims[i - 1]?.group" class="sv-group">{{ t.group }}</div>
         <button
+          type="button"
           class="sv-trim-card"
           :class="{ 'is-selected': vehicleState.trim === t.trim_id }"
+          :aria-pressed="vehicleState.trim === t.trim_id"
           @click="selectTrim(t)"
         >
           <div class="sv-trim-card__top">
@@ -571,6 +581,9 @@ function onFeeChange() {
             'is-selected': vehicleState.options.has(o.id),
             'is-disabled': !isEnabled(o.id) && !vehicleState.options.has(o.id),
           }"
+          type="button"
+          :aria-pressed="vehicleState.options.has(o.id)"
+          :aria-disabled="!isEnabled(o.id) && !vehicleState.options.has(o.id)"
           @click="toggleOption(o.id)"
         >
           <div class="sv-opt__top">
@@ -624,8 +637,10 @@ function onFeeChange() {
         <div class="sv-color-grid">
           <button
             v-for="(c, i) in exteriorColors" :key="i"
+            type="button"
             class="sv-color-card"
             :class="{ 'is-selected': vehicleState.color === i }"
+            :aria-pressed="vehicleState.color === i"
             :title="c.name"
             :disabled="c._paintUnavailable"
             @click="pickExtColor(i)"
@@ -648,8 +663,10 @@ function onFeeChange() {
         <div class="sv-color-grid">
           <button
             v-for="c in 내장색들" :key="c.value"
+            type="button"
             class="sv-color-card"
             :class="{ 'is-selected': quoteState.cond.colorInt === c.value }"
+            :aria-pressed="quoteState.cond.colorInt === c.value"
             @click="pickIntColor(c)"
           >
             <span class="sv-color-swatch" :style="{ background: c.swatch }"></span>

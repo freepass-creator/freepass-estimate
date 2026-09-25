@@ -59,7 +59,9 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="k in KMS" :key="k"
+          type="button"
           class="sc-chip" :class="{ 'is-selected': quoteState.cond.km == k }"
+          :aria-pressed="quoteState.cond.km == k"
           @click="quoteState.cond.km = k"
         >{{ k }}만km/년</button>
       </div>
@@ -72,7 +74,9 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="c in CREDITS" :key="c.value"
+          type="button"
           class="sc-chip" :class="{ 'is-selected': quoteState.cond.credit === c.value }"
+          :aria-pressed="quoteState.cond.credit === c.value"
           @click="quoteState.cond.credit = c.value"
         >{{ c.label }}</button>
       </div>

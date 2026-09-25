@@ -79,7 +79,9 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-cards">
         <button
           v-for="s in SVC" :key="s.value"
+          type="button"
           class="se-card" :class="{ 'is-selected': quoteState.cond.svc === s.value }"
+          :aria-pressed="quoteState.cond.svc === s.value"
           @click="quoteState.cond.svc = s.value"
         >
           <span class="se-card__label">{{ s.label }}</span>
@@ -94,7 +96,9 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-chips">
         <button
           v-for="i in INS" :key="i.value"
+          type="button"
           class="se-chip" :class="{ 'is-selected': quoteState.cond.insProperty === i.value }"
+          :aria-pressed="quoteState.cond.insProperty === i.value"
           @click="quoteState.cond.insProperty = i.value"
         >{{ i.label }}</button>
       </div>
@@ -106,7 +110,9 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-chips">
         <button
           v-for="e in EXTRA" :key="e.value"
+          type="button"
           class="se-chip" :class="{ 'is-selected': quoteState.cond.extraDriver === e.value }"
+          :aria-pressed="quoteState.cond.extraDriver === e.value"
           @click="quoteState.cond.extraDriver = e.value"
         >{{ e.label }}</button>
       </div>
@@ -136,7 +142,9 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-chips">
         <button
           v-for="t in 썬팅들" :key="t.name"
+          type="button"
           class="se-chip" :class="{ 'is-selected': quoteState.tint.product === t.name }"
+          :aria-pressed="quoteState.tint.product === t.name"
           @click="quoteState.tint.product = t.name"
         >{{ t.name }}<small v-if="t.price"> +{{ fmt(t.price) }}</small></button>
       </div>
@@ -152,7 +160,9 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-chips">
         <button
           v-for="b in 블박들" :key="b.name"
+          type="button"
           class="se-chip" :class="{ 'is-selected': quoteState.extras.blackbox === b.name }"
+          :aria-pressed="quoteState.extras.blackbox === b.name"
           @click="quoteState.extras.blackbox = b.name"
         >{{ b.name }}<small v-if="b.price"> +{{ fmt(b.price) }}</small></button>
       </div>
