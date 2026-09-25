@@ -28,6 +28,23 @@ globalThis.fetch = async () => ({
     ok: true,
     contract: QUOTE_RESULT_CONTRACT,
     providerContract: QUOTE_PROVIDER_CONTRACT,
+    priceBasis: {
+      contract: 'freepass-price-basis/v1',
+      authority: 'FREEPASS_DATA_CANONICAL_ACTIVE',
+      masterContract: 'estimate-newcar-master/v1',
+      currency: 'KRW',
+      productId: 'TEST-CAR',
+      sourceRevision: 'freepass-data/test@r1',
+      basePrice: 30000000,
+      optionPrice: 0,
+      exteriorColorPrice: 0,
+      interiorColorPrice: 0,
+      discount: 0,
+      totalVehiclePrice: 30000000,
+      priceBefore: 30000000,
+      priceAfter: 30000000,
+      priceBasisName: '기준가',
+    },
     pricingEngine: {
     "id": "freepass-standard-newcar",
     "version": "freepass-standard/newcar@1.0.0+src.c5b7f1bfb22c.policy.db0186b10720",
@@ -51,6 +68,7 @@ need(success.실행?.status === 'SUCCEEDED', 'success status missing');
 need(success.실행?.request_id?.startsWith('quote-'), 'success request id missing');
 need(success.실행?.provider === 'standard', 'provider proof missing');
 need(success.pricingEngine?.verified === true, 'verified pricing engine evidence missing');
+need(success.priceBasis?.authority === 'FREEPASS_DATA_CANONICAL_ACTIVE', 'canonical price basis missing');
 need(success.실행?.evidence?.some((x) => x.includes('PRICING_ENGINE:freepass-standard-newcar:')), 'pricing engine execution evidence missing');
 need(success.실행?.checks?.some((x) => x.name === 'quote-result-contract' && x.status === 'PASS'), 'result check proof missing');
 
@@ -61,6 +79,23 @@ globalThis.fetch = async () => ({
     ok: true,
     contract: QUOTE_RESULT_CONTRACT,
     providerContract: QUOTE_PROVIDER_CONTRACT,
+    priceBasis: {
+      contract: 'freepass-price-basis/v1',
+      authority: 'FREEPASS_DATA_CANONICAL_ACTIVE',
+      masterContract: 'estimate-newcar-master/v1',
+      currency: 'KRW',
+      productId: 'TEST-CAR',
+      sourceRevision: 'freepass-data/test@r1',
+      basePrice: 30000000,
+      optionPrice: 0,
+      exteriorColorPrice: 0,
+      interiorColorPrice: 0,
+      discount: 0,
+      totalVehiclePrice: 30000000,
+      priceBefore: 30000000,
+      priceAfter: 30000000,
+      priceBasisName: '기준가',
+    },
     차량가: 30000000,
     결과: [{ 월대여료: 500000, 보증금: 0, 선납금: 0, 인수가: 0, 총차량가: 30000000, 수수료: 0 }],
   }),
