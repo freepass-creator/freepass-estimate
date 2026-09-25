@@ -71,6 +71,11 @@ jobs:
           node --check src/lib/quote/core-contract-shadow.js
           node --check scripts/check-ai-core-contract-shadow.mjs
           node --check src/lib/quote/build-request.js
+          node --check src/lib/quote/quote-v2.js
+          node --check src/lib/quote/from-calculation.js
+          node --check src/lib/quote/master-context.js
+          node --check src/lib/quote/quote-repository.js
+          node --check src/lib/quote/repositories/freepass-data.js
           node --check src/lib/quote/engines/freepass-standard.js
           node --check src/lib/quote/engines/external.js
           node --check src/lib/quote/provider-policy.js
@@ -84,6 +89,10 @@ jobs:
           node --check quote.js
       - name: Representative vehicle configuration
         run: node scripts/check-newcar-configurations.mjs
+      - name: Quote v2 pricing and persistence contracts
+        run: |
+          npm run check:pricing
+          npm run check:quote-v2
       - name: Standard engine regression
         run: node scripts/check-standard-engine.mjs
       - name: Provider contract
