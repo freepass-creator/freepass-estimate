@@ -229,6 +229,10 @@ try {
         select: select ? { height: rect(select).height, fontSize: css(select).fontSize, radius: css(select).borderRadius } : null,
         card: card ? { radius: css(card).borderRadius, padding: css(card).padding } : null,
         topbarActions: document.querySelectorAll('.global-topbar button, .global-topbar a[href]').length,
+        topbarBrand: {
+          src: document.querySelector('.global-topbar__brand img')?.getAttribute('src') || '',
+          alt: document.querySelector('.global-topbar__brand img')?.getAttribute('alt') || '',
+        },
         title: document.title,
       };
     });
@@ -278,6 +282,8 @@ try {
       ok(entry.select.radius === '6px', `desktop-${entry.width}: select radius drift ${entry.select.radius}`);
     }
     ok(entry.topbarActions === 0, `desktop-${entry.width}: topbar action reappeared`);
+    ok(entry.topbarBrand.src === '/freepass-wordmark.svg' && entry.topbarBrand.alt === '프리패스모빌리티',
+      `desktop-${entry.width}: stale visible brand ${JSON.stringify(entry.topbarBrand)}`);
     ok(!entry.consoleErrors.some((x) => x.includes('[email protected]') || x.includes('strict MIME checking')),
       `desktop-${entry.width}: font stylesheet failed`);
   }
