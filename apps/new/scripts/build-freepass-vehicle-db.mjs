@@ -279,7 +279,7 @@ function ensureMfr(name){
 }
 function ensureModel(mfr,name){
  const id='md_'+hash(mfr.manufacturer_name+'|'+name);
- if(!mfr.models.has(name))mfr.models.set(name,{model_id:id,model_name:name,category:'',year:2026,variants:new Map(),exterior_colors:[],_interior:[]});
+ if(!mfr.models.has(name))mfr.models.set(name,{model_id:id,model_name:name,category:'',year:null,variants:new Map(),exterior_colors:[],_interior:[]});
  return mfr.models.get(name);
 }
 function ensureVariant(model,engine,r){
