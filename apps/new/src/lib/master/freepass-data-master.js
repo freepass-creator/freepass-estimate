@@ -26,7 +26,10 @@ export function normalizeEstimateMasterResponse(body) {
   }
   if (!required(meta.releaseId, 'releaseId') ||
       !required(meta.manifestId, 'manifestId') ||
-      !Number.isInteger(Number(meta.revision)) ||
+      !Number.isSafeInteger(meta.revision) || meta.revision < 1 ||
+      meta.projectionId !== 'estimate-newcar-master' ||
+      meta.schemaVersion !== '1.0.0' ||
+      !meta.activatedAt || !Number.isFinite(Date.parse(meta.activatedAt)) ||
       !validDigest(meta.inputDigest) ||
       !validDigest(meta.dataDigest)) {
     throw codedError('Estimate master release evidence is incomplete', 'ESTIMATE_MASTER_EVIDENCE_INVALID');
@@ -42,7 +45,9 @@ export function normalizeEstimateMasterResponse(body) {
     }
     if (raw.status === 'ACTIVE') {
       for (const field of ['vehicleModelId', 'modelYearId', 'trimId', 'powertrainId']) required(raw[field], field);
-      if (!Number.isInteger(Number(raw.modelYear))) throw codedError('modelYear must be an integer', 'ESTIMATE_MASTER_INVALID');
+      if (!Number.isSafeInteger(raw.modelYear) || raw.modelYear < 1900 || raw.modelYear > 2200) {
+        throw codedError('ACTIVE modelYear must be a verified integer', 'ESTIMATE_MASTER_INVALID');
+      }
     }
     if (!Array.isArray(raw.options) || !Array.isArray(raw.exteriorColors) || !Array.isArray(raw.interiorColors)) {
       throw codedError('Estimate master option/color arrays are required', 'ESTIMATE_MASTER_INVALID');
