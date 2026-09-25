@@ -106,7 +106,7 @@ globalThis.fetch=async (url,opts)=>{
   return {
     ok:true,status:200,
     async json(){return {ok:true,price:outbound.manualPrice,...(upstreamEngineProof?{pricingEngine:upstreamEngineProof}:{}),results:[{
-      monthlyRent:777000,deposit:0,prepay:0,acquirePrice:0,totalCarPrice:99999999,payFee:0,
+      monthlyRent:777000,deposit:0,prepay:0,acquirePrice:0,totalCarPrice:30000000,consumerPrice:30000000,payFee:0,
     }]}}
   };
 };
