@@ -101,6 +101,7 @@ function welrixBody(request) {
       optionPrice: Math.max(0,
         (가격.옵션 || 차.옵션가 || 0) - resolved.absorbedWon
         + (가격.외장색 || 차.색추가금 || 0)
+        + (가격.내장색 || 0)
       ),
       stockDiscount: 가격.할인 || 차.할인 || 0,
       deliveryFee: 조건.탁송비,
