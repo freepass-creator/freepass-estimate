@@ -17,8 +17,10 @@ const base = {
   interiorColorId: 'int_black',
   contractTerm: 60,
   mileageCondition: '20000km',
-  deposit: 10,
+  deposit: 3500000,
   prepayment: 0,
+  depositRatePct: 10,
+  prepaymentRatePct: 0,
   vehiclePriceSnapshot: { basePrice: 35020000, colorPrice: 100000 },
   optionPriceSnapshot: [
     { optionId: 'opt_a', price: 500000 },
@@ -34,6 +36,7 @@ const shuffled = {
   ...base,
   vehiclePriceSnapshot: { colorPrice: 100000, basePrice: 35020000 },
   selectedOptionIds: ['opt_a', 'opt_b'],
+  optionPriceSnapshot: [...base.optionPriceSnapshot].reverse(),
 };
 
 const a = await sealQuoteSnapshot(base);
@@ -56,6 +59,14 @@ assert.notEqual(q1.quoteId, changed.quoteId);
 await assert.rejects(
   () => buildIssuedQuote({ ...base, monthlyRental: Number.NaN }, { createdAt: '2026-09-25T07:30:00.000Z' }),
   /monthlyRental must be finite/
+);
+
+await assert.rejects(
+  () => buildIssuedQuote({
+    ...base,
+    vehiclePriceSnapshot: { ...base.vehiclePriceSnapshot, accidentalUndefined: undefined },
+  }, { createdAt: '2026-09-25T07:30:00.000Z' }),
+  /undefined cannot be hashed/
 );
 
 console.log('PASS Quote v2 deterministic snapshot/hash/idempotency contract');
