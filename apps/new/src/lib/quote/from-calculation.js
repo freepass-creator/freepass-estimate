@@ -66,12 +66,18 @@ function assertMasterSnapshot(master, request) {
     optionPrice: masterOptions.reduce((sum, option) => sum + option.price, 0),
     exteriorColorPrice: finite(authoritative.exteriorColorPrice, 'masterPrice.exteriorColorPrice'),
     interiorColorPrice: finite(authoritative.interiorColorPrice, 'masterPrice.interiorColorPrice'),
+    priceBefore: finite(authoritative.priceBefore ?? 0, 'masterPrice.priceBefore'),
+    priceAfter: finite(authoritative.priceAfter ?? 0, 'masterPrice.priceAfter'),
+    priceBasis: String(authoritative.priceBasis ?? '').trim(),
   };
   const actual = {
     trimPrice: finite(price.트림 ?? 0, 'vehiclePrice.trim'),
     optionPrice: finite(price.옵션 ?? 0, 'vehiclePrice.options'),
     exteriorColorPrice: finite(price.외장색 ?? 0, 'vehiclePrice.exteriorColor'),
     interiorColorPrice: finite(price.내장색 ?? 0, 'vehiclePrice.interiorColor'),
+    priceBefore: finite(price.기준전 ?? 0, 'vehiclePrice.priceBefore'),
+    priceAfter: finite(price.기준후 ?? 0, 'vehiclePrice.priceAfter'),
+    priceBasis: String(price.기준명 ?? '').trim(),
   };
 
   for (const key of Object.keys(expected)) {
@@ -106,9 +112,9 @@ function assertMasterSnapshot(master, request) {
       interiorColorPrice: expected.interiorColorPrice,
       discount,
       standardCalculatedVehiclePrice: calculated,
-      priceBefore: finite(price.기준전 ?? 0, 'vehiclePrice.priceBefore'),
-      priceAfter: finite(price.기준후 ?? 0, 'vehiclePrice.priceAfter'),
-      priceBasis: String(price.기준명 ?? '').trim(),
+      priceBefore: expected.priceBefore,
+      priceAfter: expected.priceAfter,
+      priceBasis: expected.priceBasis,
       exteriorColorName: String(authoritative.exteriorColorName ?? '').trim(),
       interiorColorName: String(authoritative.interiorColorName ?? '').trim(),
       currency: 'KRW',
