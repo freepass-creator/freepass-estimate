@@ -94,6 +94,8 @@ export function buildQuoteSnapshotPayload(input) {
     mileageCondition: requiredString(input.mileageCondition, 'mileageCondition'),
     deposit: normalizeNumber(input.deposit ?? 0, 'deposit'),
     prepayment: normalizeNumber(input.prepayment ?? 0, 'prepayment'),
+    depositRatePct: normalizeNumber(input.depositRatePct ?? 0, 'depositRatePct'),
+    prepaymentRatePct: normalizeNumber(input.prepaymentRatePct ?? 0, 'prepaymentRatePct'),
     vehiclePriceSnapshot: priceSnapshot(input.vehiclePriceSnapshot),
     optionPriceSnapshot: optionSnapshot(input.optionPriceSnapshot),
     totalVehiclePrice: normalizeNumber(input.totalVehiclePrice, 'totalVehiclePrice'),
@@ -103,7 +105,7 @@ export function buildQuoteSnapshotPayload(input) {
   };
 
   if (payload.contractTerm <= 0) throw codedError('contractTerm must be positive', 'QUOTE_V2_INVALID');
-  if (payload.deposit < 0 || payload.prepayment < 0 || payload.totalVehiclePrice < 0 || payload.monthlyRental < 0) {
+  if (payload.deposit < 0 || payload.prepayment < 0 || payload.depositRatePct < 0 || payload.prepaymentRatePct < 0 || payload.totalVehiclePrice < 0 || payload.monthlyRental < 0) {
     throw codedError('money fields cannot be negative', 'QUOTE_V2_INVALID');
   }
   return Object.freeze(payload);
@@ -145,6 +147,8 @@ export async function buildIssuedQuote(input, {
     mileageCondition: snapshot.mileageCondition,
     deposit: snapshot.deposit,
     prepayment: snapshot.prepayment,
+    depositRatePct: snapshot.depositRatePct,
+    prepaymentRatePct: snapshot.prepaymentRatePct,
     vehiclePriceSnapshot: snapshot.vehiclePriceSnapshot,
     optionPriceSnapshot: snapshot.optionPriceSnapshot,
     totalVehiclePrice: snapshot.totalVehiclePrice,
