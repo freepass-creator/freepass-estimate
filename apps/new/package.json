@@ -15,7 +15,7 @@
     "check:release": "node scripts/check-release-proof.mjs",
     "check:snapshot": "node scripts/check-share-snapshot-contract.mjs",
     "check:quote-v2": "node scripts/check-quote-v2.mjs && node scripts/check-quote-factory.mjs && node scripts/check-master-context.mjs && node scripts/check-freepass-data-master.mjs && node scripts/check-quote-storage-boundary.mjs",
-    "verify": "npm run check:selection-feedback && npm run check:colors && node scripts/check-action-placement.mjs && node scripts/check-mobile-navigation-contract.mjs && npm run check:tint-state && npm run check:mobile-brand && npm run check:control-design && node scripts/check-freepass-visual-grammar.mjs && node scripts/check-accessibility-baseline.mjs && npm run check:model-year && node scripts/check-newcar-configurations.mjs && npm run check:pricing && node scripts/check-standard-engine.mjs && npm run check:provider && node scripts/test-provider-routing.mjs && npm run check:provider-policy && npm run check:runtime && npm run check:core-contract-shadow && npm run check:quote-v2 && npm run check:snapshot && npm run check:release && npm run check:verification && npm run check && npm run build",
+    "verify": "npm run check:selection-feedback && npm run check:colors && node scripts/check-action-placement.mjs && node scripts/check-mobile-navigation-contract.mjs && npm run check:tint-state && npm run check:mobile-brand && npm run check:control-design && node scripts/check-freepass-visual-grammar.mjs && node scripts/check-accessibility-baseline.mjs && npm run check:model-year && node scripts/check-newcar-configurations.mjs && npm run check:pricing && npm run check:pricing-engine && node scripts/check-standard-engine.mjs && npm run check:provider && node scripts/test-provider-routing.mjs && npm run check:provider-policy && npm run check:runtime && npm run check:core-contract-shadow && npm run check:quote-v2 && npm run check:snapshot && npm run check:release && npm run check:verification && npm run check && npm run build",
     "check:verification": "node scripts/check-verification-manifest.mjs",
     "check:provider-policy": "node scripts/check-provider-runtime-policy.mjs",
     "check:core-contract-shadow": "node scripts/check-ai-core-contract-shadow.mjs",
@@ -25,7 +25,8 @@
     "check:colors": "node scripts/check-color-contract.mjs && node --test scripts/exterior-paint.test.mjs",
     "check:selection-feedback": "node --test scripts/haptics.test.mjs scripts/selection-summary.test.mjs",
     "check:pricing": "node scripts/check-price-components.mjs",
-    "check:model-year": "node scripts/check-model-year-authority.mjs"
+    "check:model-year": "node scripts/check-model-year-authority.mjs",
+    "check:pricing-engine": "node scripts/check-pricing-engine-version.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"
