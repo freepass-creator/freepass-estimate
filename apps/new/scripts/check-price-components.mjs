@@ -73,7 +73,7 @@ const rawRequest = {
   안들: [{ 기간: 60, 보증금: 0, 선납: 0 }],
 };
 
-const { request: canonical } = canonicalizeQuoteRequestFromMaster(rawRequest, master);
+const { request: canonical, priceBasis } = canonicalizeQuoteRequestFromMaster(rawRequest, master);
 
 assert.deepEqual(canonical.차.가격, {
   트림: 35000000,
@@ -89,6 +89,23 @@ assert.deepEqual(canonical.차.가격, {
 assert.equal(canonical.차.구성.선택옵션[0].price_won, 1200000);
 assert.equal(canonical.차.마스터.authority, 'CANONICAL_ACTIVE');
 assert.equal(canonical.차.마스터.sourceRevision, 'freepass-data/rel_price_1@r7');
+assert.deepEqual(priceBasis, {
+  contract: 'freepass-price-basis/v1',
+  authority: 'FREEPASS_DATA_CANONICAL_ACTIVE',
+  masterContract: 'estimate-newcar-master/v1',
+  currency: 'KRW',
+  productId: 'prod_price_1',
+  sourceRevision: 'freepass-data/rel_price_1@r7',
+  basePrice: 35000000,
+  optionPrice: 1200000,
+  exteriorColorPrice: 100000,
+  interiorColorPrice: 300000,
+  discount: 500000,
+  totalVehiclePrice: 36100000,
+  priceBefore: 35000000,
+  priceAfter: 34700000,
+  priceBasisName: '세제혜택 후',
+});
 
 assert.equal(
   계산차량가({
