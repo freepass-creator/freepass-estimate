@@ -245,6 +245,27 @@ async function welrixExcel(request) {
     });
   }
 
+  for (const [idx, result] of j.results.entries()) {
+    if (result == null) continue;
+    for (const field of ['totalCarPrice', 'consumerPrice']) {
+      if (result[field] == null) continue;
+      const reported = Number(result[field]);
+      if (!Number.isFinite(reported) || Math.round(reported) !== canonicalTotal) {
+        throw new ProviderRuntimeError('PROVIDER_PRICE_OVERRIDE_REJECTED', {
+          status: 502,
+          retryable: false,
+          diagnostic: {
+            cause_name: 'PROVIDER_TOTAL_PRICE_MISMATCH',
+            field,
+            result_index: idx,
+            expected_price: canonicalTotal,
+            reported_price: Number.isFinite(reported) ? Math.round(reported) : null,
+          },
+        });
+      }
+    }
+  }
+
   return {
     // Canonical price is ours. Provider-returned prices are never promoted to master facts.
     vehiclePrice: canonicalTotal,
