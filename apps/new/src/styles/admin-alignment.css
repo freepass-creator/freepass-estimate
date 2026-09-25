@@ -1,0 +1,101 @@
+/* FreePass Estimate final visual alignment.
+ * Authority: freepass-admin ADMIN-UI-UX-SSOT (18/14/12, 44px controls,
+ * 6px controls, borderless selection surfaces). Estimate flow remains independent.
+ */
+
+/* Result page: keep the information hierarchy, remove legacy heavy chrome. */
+.m-shell .sr-title { margin-bottom: 16px; }
+.m-shell .sr-snapshot {
+  margin: -4px 0 12px;
+  padding: 12px;
+  border-radius: var(--r-card);
+}
+.m-shell .sr-car {
+  padding: 12px;
+  border-radius: var(--r-card);
+}
+.m-shell .sr-car__total {
+  padding-top: 8px;
+  border-top: 0;
+}
+.m-shell .sr-term {
+  padding: 12px;
+  border-radius: var(--r-card);
+}
+.m-shell .sr-term__monthly,
+.m-shell .sr-car__total b {
+  text-align: right;
+}
+.m-shell .sr-cond {
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+}
+.m-shell .sr-cond__row {
+  padding: 12px;
+  border-radius: var(--r-card);
+  font-size: var(--fs-base);
+}
+
+/* Live quote sheet: touch-first controls without the old line/shadow treatment. */
+.m-shell .sq {
+  border-top: 0;
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  box-shadow: none;
+}
+.m-shell .sq-summary {
+  min-height: var(--h-touch-min);
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.m-shell .sq-term-card { border: 0; }
+.m-shell .sq-term-card__check-btn {
+  width: 32px;
+  height: 32px;
+}
+.m-shell .sq-term-card__check-btn::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+}
+.m-shell .sq-table__term-select {
+  min-height: var(--h-touch-min);
+  font-size: var(--fs-sm);
+}
+.m-shell .sq-pct-input {
+  width: 38px;
+  height: var(--h-touch-min);
+  border-radius: var(--r-chip);
+  font-size: 16px;
+}
+.m-shell .sq-table thead th {
+  font-size: var(--fs-sm);
+  border-bottom-width: 1px;
+}
+
+/* Staff gate was still using a separate rounded/oversized legacy scale. */
+html body .gate-card {
+  border-radius: var(--r-card);
+  padding: 24px 20px 20px;
+  box-shadow: none;
+}
+html body #gate-pin {
+  height: var(--h-input);
+  padding: 0 12px;
+  border-width: 1px;
+  border-radius: var(--r-chip);
+  font-size: 16px;
+  letter-spacing: 8px;
+}
+html body #gate-submit,
+html body #gate-admin {
+  height: var(--h-cta);
+  border-radius: var(--r-chip);
+  font-size: var(--fs-base);
+}
+html body .gate-sub {
+  font-size: var(--fs-sm);
+  margin-bottom: 16px;
+}
