@@ -276,6 +276,8 @@ async function recomputeProvider(내순번) {
     console.error('[quote-provider]', e);
     state.monthly = [];
     state.referenceMonthly = [];
+    state.quoteProvider = null;
+    state.quoteEngine = null;
     state.quotePricingEngine = null;
     const doc = $('quote-doc');
     if (doc) doc.innerHTML = '<div class="quote-doc__empty">지금은 견적을 계산할 수 없습니다.<br><small>' +
@@ -346,6 +348,9 @@ function renderEmpty() {
   // 카드는 Vue TermsGrid / ReferenceGrid 가 자동 렌더 (state.monthly 비면 placeholder)
   state.monthly = [];
   state.referenceMonthly = [];
+  state.quoteProvider = null;
+  state.quoteEngine = null;
+  state.quotePricingEngine = null;
   $('quote-doc').innerHTML = '<div class="quote-doc__empty">차량과 트림을 선택하면 견적서가 생성됩니다.</div>';
   return;
 }
