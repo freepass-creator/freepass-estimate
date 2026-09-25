@@ -8,6 +8,26 @@ import { EXTERNAL_PROVIDER_POLICY, providerPublicMessage, providerRetryable } fr
 // Never exposes partner Excel files, ERP credentials or upstream auth to the browser.
 
 const WELRIX_URL = 'https://welrixmobility.netlify.app/api/estimate';
+const WELRIX_EXPECTED_ENGINE_VERSION = 'welrix-excel/v6.1';
+
+function welrixPricingEngineEvidence(upstream) {
+  const upstreamVersion = String(upstream?.pricingEngineVersion ?? upstream?.engineVersion ?? '').trim();
+  if (upstreamVersion) {
+    return Object.freeze({
+      id: 'welrix-excel',
+      version: upstreamVersion.startsWith('welrix-') ? upstreamVersion : `welrix-excel/${upstreamVersion}`,
+      evidence: 'UPSTREAM_RESPONSE',
+      verified: true,
+      upstreamVersion,
+    });
+  }
+  return Object.freeze({
+    id: 'welrix-excel',
+    version: WELRIX_EXPECTED_ENGINE_VERSION,
+    evidence: 'ADAPTER_PIN_ONLY',
+    verified: false,
+  });
+}
 
 let PRODUCT_INDEX = null;
 function productIndex() {
@@ -177,6 +197,7 @@ async function welrixExcel(request) {
 
   return {
     vehiclePrice: j.price ?? null,
+    pricingEngine: welrixPricingEngineEvidence(j),
     results: j.results.map((g) => (g == null ? null : {
       monthlyRent: g.monthlyRent,
       deposit: g.deposit,
