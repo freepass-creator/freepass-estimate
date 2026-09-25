@@ -388,7 +388,7 @@ async function shareSignLink() {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 20;
   display: flex; align-items: center; justify-content: space-between;
-  padding: calc(var(--safe-top) + 10px) 14px 10px;
+  padding: calc(var(--safe-top) + 10px) 16px 10px;
   background: var(--bg);
   gap: 8px;
 }
@@ -417,7 +417,7 @@ async function shareSignLink() {
 .m-progress {
   display: flex; gap: 4px;
   position: fixed; top: calc(var(--safe-top) + 56px); left: 0; right: 0;
-  padding: 0 14px 6px;
+  padding: 0 16px 6px;
   background: var(--bg);
   z-index: 19;
 }
@@ -433,7 +433,7 @@ async function shareSignLink() {
 
 .m-main {
   flex: 1;
-  padding: calc(var(--safe-top) + 80px) var(--sp-5) calc(var(--footer-height, 78px) + 16px);
+  padding: calc(var(--safe-top) + 80px) var(--sp-4) calc(var(--footer-height, 78px) + 16px);
   /* ★여기서 overflow-y:auto 를 «쓰지 않는다» — 2026-09-18.
      #m-app 은 min-height 만 있고 max-height 가 없어 콘텐츠만큼 늘어난다.
      즉 .m-main 이 실제로 넘쳐서 «따로» 스크롤되는 일은 없고(항상 clientHeight===scrollHeight),
@@ -454,14 +454,13 @@ async function shareSignLink() {
 .m-footer {
   position: fixed; bottom: 0; left: 0; right: 0;
   display: block;
-  padding: 12px 16px calc(var(--safe-bottom) + 12px);
-  background: rgba(255,255,255,.96);
-  border-top: 1px solid var(--line);
-  box-shadow: 0 -6px 18px rgba(0,0,0,.035);
-  backdrop-filter: blur(10px);
+  padding: 8px 16px calc(var(--safe-bottom) + 12px);
+  background: var(--bg);
   z-index: 30;
 }
 .m-footer__actions { display: flex; gap: 8px; }
+.m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:first-child { flex: 3 1 0; }
+.m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:last-child { flex: 7 1 0; }
 .m-btn {
   height: var(--h-cta);
   border: 0; border-radius: var(--r-chip);
@@ -481,14 +480,14 @@ async function shareSignLink() {
 .m-btn--primary {
   flex: 1;
   background: var(--brand); color: #fff;
-  font-size: 16px;
+  font-size: var(--fs-base);
 }
 .m-btn--primary:not(:disabled):active { background: var(--brand-700); }
 /* 「견적 보기」 — 다음 옆에 나란히. 테두리 없이 옅은 바탕 */
 .m-btn--soft {
   flex: 1;
   background: var(--brand-50); color: var(--brand);
-  font-size: 16px;
+  font-size: var(--fs-base);
 }
 .m-btn--soft:active { background: var(--line-2); }
 .m-btn--icon { flex: 0 0 52px; }
