@@ -13,6 +13,8 @@ import {
 const token='x'.repeat(40);
 const meta={
   contract:'estimate-newcar-master/v1',
+  projectionId:'estimate-newcar-master',
+  schemaVersion:'1.0.0',
   authority:'CANONICAL_ACTIVE',
   releaseId:'rel_estimate-master-001',
   manifestId:'manifest_estimate-master-001',
