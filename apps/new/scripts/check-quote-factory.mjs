@@ -36,6 +36,14 @@ const request = {
   ],
 };
 const calculation = {
+  pricingEngine: {
+  "id": "freepass-standard-newcar",
+  "version": "freepass-standard/newcar@1.0.0+src.c5b7f1bfb22c.policy.db0186b10720",
+  "evidence": "LOCAL_SOURCE_POLICY_MANIFEST",
+  "verified": true,
+  "sourceDigest": "c5b7f1bfb22cb812ff2a6cf623ba4285a93c85af10b65ede8477e923948846fa",
+  "policyDigest": "db0186b10720b013fb9fa3095660e1d88b6176599442218a4f6306b05b56227c"
+},
   결과: [
     { 월대여료: 820000, 보증금: 3600000, 선납금: 0, 총차량가: 36100000 },
     { 월대여료: 690000, 보증금: 7200000, 선납금: 1805000, 총차량가: 36100000 },
@@ -90,7 +98,6 @@ const common = {
   request,
   calculation,
   masterContext,
-  pricingEngineVersion: 'welrix-v6.1',
   createdAt: '2026-09-25T07:40:00.000Z',
 };
 
@@ -130,6 +137,39 @@ await assert.rejects(
   () => issueQuotesFromCalculation({ ...common, sourceRevision: 'freepass-data/fake@r999' }),
   /does not match FreePass Data master evidence/
 );
+
+await assert.rejects(
+  () => issueQuotesFromCalculation({ ...common, pricingEngineVersion: 'fake-engine/v999' }),
+  /does not match calculation engine evidence/
+);
+
+await assert.rejects(
+  () => issueQuotesFromCalculation({
+    ...common,
+    calculation: {
+      ...calculation,
+      pricingEngine: {
+        id: 'welrix-excel',
+        version: 'welrix-excel/v6.1',
+        evidence: 'ADAPTER_PIN_ONLY',
+        verified: false,
+      },
+    },
+  }),
+  /pricing engine version is not verified/
+);
+
+const changedEngine = await issueQuotesFromCalculation({
+  ...common,
+  calculation: {
+    ...calculation,
+    pricingEngine: {
+      ...calculation.pricingEngine,
+      version: calculation.pricingEngine.version.replace('@1.0.0', '@1.0.1'),
+    },
+  },
+});
+assert.notEqual(quotes[0].snapshotHash, changedEngine[0].snapshotHash, 'pricing engine version must be sealed into Quote identity');
 
 await assert.rejects(
   () => issueQuotesFromCalculation({
