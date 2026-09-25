@@ -7,6 +7,7 @@ import {
 } from '../src/lib/quote/quote-repository.js';
 import { createFreePassDataQuoteRepository } from '../src/lib/quote/repositories/freepass-data.js';
 import { quoteIdempotencyKey } from '../src/lib/quote/quote-v2.js';
+import { masterContextFromEstimateMasterRecord } from '../src/lib/quote/master-context.js';
 
 const request = {
   차: {
@@ -40,21 +41,50 @@ const calculation = {
     { 월대여료: 690000, 보증금: 7200000, 선납금: 1805000, 총차량가: 36100000 },
   ],
 };
-const masterContext = {
+const releaseMeta = {
+  authority: 'CANONICAL_ACTIVE',
+  releaseId: 'rel_20260925_001',
+  manifestId: 'manifest_001',
+  revision: 42,
+  inputDigest: 'a'.repeat(64),
+  dataDigest: 'b'.repeat(64),
+  generatedAt: '2026-09-25T07:00:00.000Z',
+  activatedAt: '2026-09-25T07:01:00.000Z',
+};
+const masterRecord = {
+  productId: 'prod_niro_signature',
   vehicleModelId: 'vm_niro',
   modelYearId: 'my_2026',
   trimId: 'trim_signature',
   powertrainId: 'pt_hev',
+  modelYear: 2026,
+  status: 'ACTIVE',
+  holdReasons: [],
+  basePrice: { amount: 35000000, currency: 'KRW' },
+  options: [
+    { optionId: 'opt_a', name: 'A', price: { amount: 500000, currency: 'KRW' }, requires: [], excludes: [] },
+    { optionId: 'opt_b', name: 'B', price: { amount: 700000, currency: 'KRW' }, requires: [], excludes: [] },
+  ],
+  exteriorColors: [
+    { colorId: 'ext_white', name: '화이트', price: { amount: 100000, currency: 'KRW' } },
+  ],
+  interiorColors: [
+    { colorId: 'int_black', name: '블랙', price: { amount: 300000, currency: 'KRW' } },
+  ],
+};
+const masterContext = masterContextFromEstimateMasterRecord({
+  record: masterRecord,
+  selectedOptionIds: ['opt_b', 'opt_a'],
   exteriorColorId: 'ext_white',
   interiorColorId: 'int_black',
-};
+  releaseMeta,
+});
 
 const common = {
   request,
   calculation,
   masterContext,
   pricingEngineVersion: 'welrix-v6.1',
-  sourceRevision: 'freepass-data/release-123',
   createdAt: '2026-09-25T07:40:00.000Z',
 };
 
@@ -80,12 +110,33 @@ const again = await issueQuotesFromCalculation({
 });
 assert.equal(quotes[0].snapshotHash, again[0].snapshotHash, 'option selection order must not change content identity');
 
-const revised = await issueQuotesFromCalculation({ ...common, sourceRevision: 'freepass-data/release-124' });
+const revisedContext = masterContextFromEstimateMasterRecord({
+  record: masterRecord,
+  selectedOptionIds: ['opt_a', 'opt_b'],
+  exteriorColorId: 'ext_white',
+  interiorColorId: 'int_black',
+  releaseMeta: { ...releaseMeta, releaseId: 'rel_20260925_002', revision: 43 },
+});
+const revised = await issueQuotesFromCalculation({ ...common, masterContext: revisedContext });
 assert.notEqual(quotes[0].snapshotHash, revised[0].snapshotHash, 'master source revision must be sealed');
 
 await assert.rejects(
-  () => issueQuotesFromCalculation({ ...common, masterContext: { ...masterContext, modelYearId: '' } }),
-  /modelYearId is required/
+  () => issueQuotesFromCalculation({ ...common, sourceRevision: 'freepass-data/fake@r999' }),
+  /does not match FreePass Data master evidence/
+);
+
+await assert.rejects(
+  () => issueQuotesFromCalculation({
+    ...common,
+    request: {
+      ...request,
+      차: {
+        ...request.차,
+        가격: { ...request.차.가격, 내장색: 0, 표준계산차량가: 35800000 },
+      },
+    },
+  }),
+  /interiorColorPrice does not match FreePass Data master/
 );
 
 const memory = new Map();
