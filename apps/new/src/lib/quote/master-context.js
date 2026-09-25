@@ -13,8 +13,12 @@ function required(value, field, code = 'QUOTE_MASTER_IDENTITY_REQUIRED') {
 export const FREEPASS_DATA_AUTHORITY = 'CANONICAL_ACTIVE';
 
 export function sourceRevisionFromFreePassData(meta) {
-  if (!meta || meta.authority !== FREEPASS_DATA_AUTHORITY) {
-    throw codedError('FreePass Data CANONICAL_ACTIVE release evidence is required', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
+  if (!meta || meta.authority !== FREEPASS_DATA_AUTHORITY ||
+      meta.contract !== 'estimate-newcar-master/v1' ||
+      meta.projectionId !== 'estimate-newcar-master' ||
+      meta.schemaVersion !== '1.0.0' ||
+      !meta.activatedAt || !Number.isFinite(Date.parse(meta.activatedAt))) {
+    throw codedError('FreePass Data Estimate Master CANONICAL_ACTIVE release evidence is required', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
   }
   const releaseId = required(meta.releaseId, 'releaseId', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
   const manifestId = required(meta.manifestId, 'manifestId', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
