@@ -184,7 +184,7 @@ const 공유시각 = computed(() => {
 
 .sr-car {
   padding: 16px; margin-bottom: 12px;
-  background: var(--bg-soft); border-radius: 12px;
+  background: var(--bg-soft); border-radius: var(--r-card);
 }
 .sr-car__name { font-size: var(--fs-xl); font-weight: 700; color: var(--ink-1); letter-spacing: -0.4px; }
 .sr-car__trim { margin-top: 2px; font-size: var(--fs-base); color: var(--ink-2); }
