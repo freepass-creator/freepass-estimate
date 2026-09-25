@@ -111,6 +111,29 @@ function guardFreePassOwnedSurface(rel,src){
     return;
   }
 
+  if(rel==='mobile/StickyQuote.vue'){
+    // The live quote sheet is FreePass-owned: term count follows the shared
+    // quote-term contract and its height follows the actual footer/safe area.
+    // Guard the user-facing controls and calculated outputs rather than the old
+    // fixed three-term Welrix markup.
+    requireTokens(template,[
+      'class="sq-summary"',
+      ':aria-expanded="expanded"',
+      'class="sq-terms"',
+      'v-for="c in cards"',
+      'class="sq-term-card__check-btn"',
+      '@click="onSendToggle(c.idx)"',
+      'class="sq-term-card__monthly"',
+      'v-if="expanded"',
+      'class="sq-table"',
+      'class="sq-table__term-select"',
+      '@change="onTermChange(c.idx, $event)"',
+      'class="sq-pct-input"',
+      'class="sq-meta"',
+    ],rel);
+    return;
+  }
+
   throw new Error('unregistered FreePass-owned UI surface: '+rel);
 }
 
@@ -132,6 +155,7 @@ const freePassOwned=new Set([
   'mobile/MobileApp.vue',
   'mobile/StepVehicle.vue',
   'mobile/StepResult.vue',
+  'mobile/StickyQuote.vue',
 ]);
 
 for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
