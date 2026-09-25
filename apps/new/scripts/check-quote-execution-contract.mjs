@@ -28,6 +28,14 @@ globalThis.fetch = async () => ({
     ok: true,
     contract: QUOTE_RESULT_CONTRACT,
     providerContract: QUOTE_PROVIDER_CONTRACT,
+    pricingEngine: {
+    "id": "freepass-standard-newcar",
+    "version": "freepass-standard/newcar@1.0.0+src.c5b7f1bfb22c.policy.db0186b10720",
+    "evidence": "LOCAL_SOURCE_POLICY_MANIFEST",
+    "verified": true,
+    "sourceDigest": "c5b7f1bfb22cb812ff2a6cf623ba4285a93c85af10b65ede8477e923948846fa",
+    "policyDigest": "db0186b10720b013fb9fa3095660e1d88b6176599442218a4f6306b05b56227c"
+},
     차량가: 30000000,
     결과: [{ 월대여료: 500000, 보증금: 0, 선납금: 0, 인수가: 0, 총차량가: 30000000, 수수료: 0 }],
   }),
@@ -42,6 +50,8 @@ need(success.계약?.provider === QUOTE_PROVIDER_CONTRACT, 'provider contract pr
 need(success.실행?.status === 'SUCCEEDED', 'success status missing');
 need(success.실행?.request_id?.startsWith('quote-'), 'success request id missing');
 need(success.실행?.provider === 'standard', 'provider proof missing');
+need(success.pricingEngine?.verified === true, 'verified pricing engine evidence missing');
+need(success.실행?.evidence?.some((x) => x.includes('PRICING_ENGINE:freepass-standard-newcar:')), 'pricing engine execution evidence missing');
 need(success.실행?.checks?.some((x) => x.name === 'quote-result-contract' && x.status === 'PASS'), 'result check proof missing');
 
 globalThis.fetch = async () => ({
