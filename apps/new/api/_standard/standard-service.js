@@ -162,10 +162,11 @@ function buildInput(request, scenario) {
   }
 
   const trim = Math.max(0, Number(price.트림 || 0));
-  const options = Math.max(0, Number(price.옵션 || 0)); // 내장색 포함
+  const options = Math.max(0, Number(price.옵션 || 0));
   const exterior = Math.max(0, Number(price.외장색 || 0));
+  const interior = Math.max(0, Number(price.내장색 || 0));
   const discount = Math.max(0, Number(price.할인 || 0));
-  const grossBeforeDiscount = trim + options + exterior;
+  const grossBeforeDiscount = trim + options + exterior + interior;
   const configuredPrice = Math.max(0, grossBeforeDiscount - discount);
   if (!(configuredPrice > 0)) throw new Error('차량가격이 올바르지 않습니다');
 
