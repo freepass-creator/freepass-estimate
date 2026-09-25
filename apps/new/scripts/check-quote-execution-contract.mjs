@@ -70,6 +70,8 @@ need(success.실행?.provider === 'standard', 'provider proof missing');
 need(success.pricingEngine?.verified === true, 'verified pricing engine evidence missing');
 need(success.priceBasis?.authority === 'FREEPASS_DATA_CANONICAL_ACTIVE', 'canonical price basis missing');
 need(success.실행?.evidence?.some((x) => x.includes('PRICING_ENGINE:freepass-standard-newcar:')), 'pricing engine execution evidence missing');
+need(success.실행?.evidence?.includes('PRICE_BASIS:freepass-data/test@r1:TEST-CAR'), 'price basis execution evidence missing');
+need(success.실행?.checks?.some((x) => x.name === 'price-basis' && x.status === 'PASS'), 'price basis execution check missing');
 need(success.실행?.checks?.some((x) => x.name === 'quote-result-contract' && x.status === 'PASS'), 'result check proof missing');
 
 globalThis.fetch = async () => ({
