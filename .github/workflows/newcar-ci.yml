@@ -3,7 +3,8 @@ name: FreePass Estimate UI + engine CI
 on:
   push:
     branches:
-      - work/ui-baseline
+      - main
+      - 'integration/**'
     paths:
       - 'apps/new/**'
       - '.github/workflows/newcar-ci.yml'
