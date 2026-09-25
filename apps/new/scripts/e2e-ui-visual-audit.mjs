@@ -37,8 +37,8 @@ async function metrics(page, label) {
           tag: el.tagName.toLowerCase(),
           className: String(el.className || ''),
           text: (el.textContent || el.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 60),
-          width: Math.round(r.width * 10) / 10,
-          height: Math.round(r.height * 10) / 10,
+          width: el.offsetWidth,
+          height: el.offsetHeight,
         };
       })
       .filter((x) => x.width < 44 || x.height < 44);
@@ -165,7 +165,7 @@ try {
     const stickyA11y = await page.evaluate(() => {
       const summary = document.querySelector('.sq-summary');
       const check = document.querySelector('.sq-term-card__check-btn');
-      const rect = (el) => el ? ({ width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height }) : null;
+      const rect = (el) => el ? ({ width: el.offsetWidth, height: el.offsetHeight }) : null;
       return {
         summaryTabIndex: summary?.tabIndex ?? null,
         summary: rect(summary),
@@ -211,7 +211,7 @@ try {
     const data = await page.evaluate(() => {
       const root = document.documentElement;
       const action = document.querySelector('.bottom-action');
-      const select = document.querySelector('.step-dd');
+      const select = document.querySelector('.cdd .cdd__btn, .step-dd');
       const card = document.querySelector('.card');
       const rect = (el) => el ? el.getBoundingClientRect() : null;
       const css = (el) => el ? getComputedStyle(el) : null;
