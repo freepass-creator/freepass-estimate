@@ -83,3 +83,12 @@ component structure changed mobile/StepVehicle.vue
 1. `check-ui-parity.mjs`의 역사적 참조와 현행 FreePass 템플릿 차이를 정확히 비교한다. 해당 정규식은 첫 중첩 template 닫힘에서 끝날 수 있으므로 비교 범위도 점검한다. 실패 컴포넌트를 무조건 제외하거나 검사 단계를 끄지 않는다.
 2. StickyQuote의 22px 발송 체크 버튼 및 키보드로 접근되지 않는 펼침 영역을 UI 범위에서 개선한다. 이번 커밋은 StickyQuote를 수정하지 않았다.
 3. 전체 앱 브라우저 테스트와 모바일 하단바/키보드/safe-area, 데스크톱 최종 computed style을 확인한 뒤에만 병합·배포 여부를 판단한다.
+
+
+## 후속 CI 정상화 — 2026-09-25 19시대
+
+- Vue SFC 최상위 template 추출을 중첩 template 인식 방식으로 수정했다. 기존 lazy 정규식은 내부 `<template v-if/v-for>`의 첫 닫힘에서 비교를 잘못 끝낼 수 있었다.
+- MobileApp은 기존 전용 계약을 유지하고, StepVehicle / StepResult / StickyQuote는 FreePass가 소유하는 UI surface로 명시해 의미 기반 구조 계약으로 보호한다. 나머지 Vue 컴포넌트와 mobile.html은 pinned Welrix reference 비교를 계속 유지한다.
+- StickyQuote는 Enter/Space 키보드 토글, 44px 발송 체크 터치영역, 44px 기간 select 및 보증금/선납 입력, 불필요한 상단선/그림자 제거를 반영했다. 계산 로직은 변경하지 않았다.
+- GitHub Actions run `36121584299` / job `108028088120`: **전체 SUCCESS**.
+- UI structure guard, action placement, navigation, Admin control design, visual grammar, accessibility, 차량 구성, 표준 엔진, provider/runtime, snapshot/release, sync check, production build, preview artifact 업로드까지 모두 PASS했다.
