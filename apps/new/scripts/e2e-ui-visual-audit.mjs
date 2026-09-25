@@ -162,6 +162,16 @@ try {
     await page.locator('.m-footer .m-btn--primary:visible').click();
     await page.waitForSelector('.sc-title');
     const conditions = await metrics(page, `mobile-${width}-conditions`);
+    const stickyA11y = await page.evaluate(() => {
+      const summary = document.querySelector('.sq-summary');
+      const check = document.querySelector('.sq-term-card__check-btn');
+      const rect = (el) => el ? ({ width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height }) : null;
+      return {
+        summaryTabIndex: summary?.tabIndex ?? null,
+        summary: rect(summary),
+        check: rect(check),
+      };
+    });
     await capture(page, `mobile-${width}-03-conditions`);
 
     await page.locator('.m-footer .m-btn--primary:visible').click();
@@ -174,17 +184,6 @@ try {
     await page.waitForTimeout(250);
     const result = await metrics(page, `mobile-${width}-result`);
     await capture(page, `mobile-${width}-05-result`);
-
-    const stickyA11y = await page.evaluate(() => {
-      const summary = document.querySelector('.sq-summary');
-      const check = document.querySelector('.sq-term-card__check-btn');
-      const rect = (el) => el ? ({ width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height }) : null;
-      return {
-        summaryTabIndex: summary?.tabIndex ?? null,
-        summary: rect(summary),
-        check: rect(check),
-      };
-    });
 
     report.mobile.push({
       width,
