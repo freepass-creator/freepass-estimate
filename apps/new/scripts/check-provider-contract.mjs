@@ -4,6 +4,11 @@ import { 공급자설정, 공급자키 } from '../src/lib/quote/provider-config.
 import { 결과검사, 요청검사 } from '../src/lib/quote/spec.js';
 import { normalizePricingEngineEvidence } from '../src/lib/quote/pricing-engine.js';
 
+assert.throws(() => 공급자설정({}), (error) =>
+  error?.code === 'PROVIDER_CONFIG_MISSING',
+  'missing provider config must fail closed'
+);
+
 const standardCfg = { quote_provider: { mode: 'standard', adapter_id: 'freepass-standard' } };
 assert.deepEqual(공급자설정(standardCfg), {
   mode: 'standard', kind: null, adapter_id: 'freepass-standard',
