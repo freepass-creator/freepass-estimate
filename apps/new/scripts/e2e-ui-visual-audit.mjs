@@ -210,9 +210,14 @@ try {
     await page.waitForSelector('.global-topbar');
     const data = await page.evaluate(() => {
       const root = document.documentElement;
-      const action = document.querySelector('.bottom-action');
-      const select = document.querySelector('.cdd .cdd__btn, .step-dd');
-      const card = document.querySelector('.card');
+      const firstVisible = (selector) => [...document.querySelectorAll(selector)].find((el) => {
+        const r = el.getBoundingClientRect();
+        const s = getComputedStyle(el);
+        return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+      }) || null;
+      const action = firstVisible('.bottom-action');
+      const select = firstVisible('.cdd__btn, .step-dd');
+      const card = firstVisible('.card, .trim-row, .color-card');
       const rect = (el) => el ? el.getBoundingClientRect() : null;
       const css = (el) => el ? getComputedStyle(el) : null;
       return {
@@ -224,10 +229,12 @@ try {
         select: select ? { height: rect(select).height, fontSize: css(select).fontSize, radius: css(select).borderRadius } : null,
         card: card ? { radius: css(card).borderRadius, padding: css(card).padding } : null,
         topbarActions: document.querySelectorAll('.global-topbar button, .global-topbar a[href]').length,
+        title: document.title,
       };
     });
     ok(data.overflow.html[0] <= data.overflow.html[1] + 1, `desktop-${width}: html horizontal overflow`);
     ok(data.overflow.body[0] <= data.overflow.body[1] + 1, `desktop-${width}: body horizontal overflow`);
+    ok(data.title.startsWith('프리패스모빌리티'), `desktop-${width}: stale browser title ${data.title}`);
     await capture(page, `desktop-${width}-01-initial`);
     report.desktop.push({ width, ...data, consoleErrors: consoleErrors.filter((x) => !x.includes('Failed to load resource')) });
     await context.close();
@@ -271,6 +278,8 @@ try {
       ok(entry.select.radius === '6px', `desktop-${entry.width}: select radius drift ${entry.select.radius}`);
     }
     ok(entry.topbarActions === 0, `desktop-${entry.width}: topbar action reappeared`);
+    ok(!entry.consoleErrors.some((x) => x.includes('[email protected]') || x.includes('strict MIME checking')),
+      `desktop-${entry.width}: font stylesheet failed`);
   }
 
   console.log(JSON.stringify({ ok: true, out: OUT, mobile: report.mobile.map(x => x.width), desktop: report.desktop.map(x => x.width) }, null, 2));
