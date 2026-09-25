@@ -1587,6 +1587,7 @@ function renderTotal() {
       tax_rate: state.tax_rate,
       options: Array.from(state.options).map(id => om?.[id]?.name).filter(Boolean),
       colorExt: state.color !== null ? getExteriorColors()[state.color]?.name : null,
+      colorExtId: state.color !== null ? (getExteriorColors()[state.color]?._stable_color_id || null) : null,
       _product_id: trim?._product_id || trim?.trim_id || null,
       _base_axes: trim?._base_axes || {},
       _trim_meta: trim || null,
@@ -1594,6 +1595,8 @@ function renderTotal() {
       _selected_option_ids: Array.from(state.options),
       _selected_options: Array.from(state.options).map(id => ({
         id,
+        stableId: om?.[id]?._stable_option_id || null,
+        sourceId: om?.[id]?._source_option_id || null,
         name: om?.[id]?.name || id,
         price_won: Math.round(getOptionPrice(om?.[id], state.trim) * 10000),
       })),
@@ -1691,14 +1694,19 @@ function syncToVueStore() {
       priceWon: c.price * 10000,
       name: c.name,
       swatch: c.hex,
+      stableId: c._stable_color_id || null,
+      sourceCode: c._source_color_code || null,
     }));
     vs.interiorColorOptions = getInteriorColors().map((c) => {
       const won = Number(c?._price_won ?? ((c?.price || 0) * 10000));
       const name = c?.name || c?.label || '';
+      const stableId = c?._stable_color_id || '';
       return {
-        value: `${name}|${won}`,
+        value: `${name}|${won}|${encodeURIComponent(stableId)}`,
         label: won > 0 ? `${name} (+${won.toLocaleString()}원)` : name,
         swatch: c?.hex || window.__welrix_guessColor?.(name) || '#d9dde1',
+        stableId: stableId || null,
+        sourceCode: c?._source_color_code || null,
       };
     }).filter((c) => c.value && !c.value.startsWith('|'));
   } else {
