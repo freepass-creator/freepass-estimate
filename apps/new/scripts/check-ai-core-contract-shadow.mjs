@@ -21,6 +21,24 @@ const request = {
   안들: [{ 기간: 60, 보증금: 0, 선납: 0 }],
 };
 
+const priceBasis = {
+  contract: 'freepass-price-basis/v1',
+  authority: 'FREEPASS_DATA_CANONICAL_ACTIVE',
+  masterContract: 'estimate-newcar-master/v1',
+  currency: 'KRW',
+  productId: 'CORE-SHADOW-CAR',
+  sourceRevision: 'freepass-data/core-shadow@r1',
+  basePrice: 30000000,
+  optionPrice: 0,
+  exteriorColorPrice: 0,
+  interiorColorPrice: 0,
+  discount: 0,
+  totalVehiclePrice: 30000000,
+  priceBefore: 0,
+  priceAfter: 0,
+  priceBasisName: '테스트 기준가',
+};
+
 globalThis.fetch = async () => ({
   ok: true,
   status: 200,
@@ -29,13 +47,14 @@ globalThis.fetch = async () => ({
     contract: QUOTE_RESULT_CONTRACT,
     providerContract: QUOTE_PROVIDER_CONTRACT,
     pricingEngine: {
-    "id": "freepass-standard-newcar",
-    "version": "freepass-standard/newcar@1.0.0+src.c5b7f1bfb22c.policy.db0186b10720",
-    "evidence": "LOCAL_SOURCE_POLICY_MANIFEST",
-    "verified": true,
-    "sourceDigest": "c5b7f1bfb22cb812ff2a6cf623ba4285a93c85af10b65ede8477e923948846fa",
-    "policyDigest": "db0186b10720b013fb9fa3095660e1d88b6176599442218a4f6306b05b56227c"
-},
+      id: 'freepass-standard-newcar',
+      version: 'freepass-standard/newcar@1.0.0+src.c5b7f1bfb22c.policy.dde4ea76ad37',
+      evidence: 'LOCAL_SOURCE_POLICY_MANIFEST',
+      verified: true,
+      sourceDigest: 'c5b7f1bfb22cb812ff2a6cf623ba4285a93c85af10b65ede8477e923948846fa',
+      policyDigest: 'dde4ea76ad37031118c32289e8320f567a25817d3d87a55264b2c26ed11c7492',
+    },
+    priceBasis,
     차량가: 30000000,
     결과: [{ 월대여료: 500000, 보증금: 0, 선납금: 0, 인수가: 0, 총차량가: 30000000, 수수료: 0 }],
   }),
@@ -52,6 +71,7 @@ need(successCore.status === 'SUCCEEDED', 'Core success status drift');
 need(successCore.retryable === false, 'Successful quote must not be retryable');
 need(successCore.evidence_refs.includes('QUOTE_PROVIDER:standard'), 'Core evidence projection drift');
 need(successCore.evidence_refs.some((x) => x.includes('PRICING_ENGINE:freepass-standard-newcar:')), 'Core pricing engine evidence drift');
+need(successCore.evidence_refs.includes('PRICE_BASIS:freepass-data/core-shadow@r1:CORE-SHADOW-CAR'), 'Core price basis evidence drift');
 
 globalThis.fetch = async () => ({
   ok: false,
@@ -73,4 +93,4 @@ need(failedCore.retryable === true, 'PROVIDER_UNAVAILABLE retryability drift');
 need(failedCore.issues.some((issue) => issue.code === 'PROVIDER_UNAVAILABLE'), 'provider error code not preserved in Core issues');
 need(failedCore.correlation_id === failed.quoteExecution.request_id, 'failure correlation id drift');
 
-console.log('AI Core adapter-result shadow: PASS — actual quote execution preserves status/provider/correlation/evidence');
+console.log('AI Core adapter-result shadow: PASS — actual quote execution preserves status/provider/correlation/pricing evidence');
