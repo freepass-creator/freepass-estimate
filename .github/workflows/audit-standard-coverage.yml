@@ -1,7 +1,7 @@
 name: Standard engine full coverage
 on:
   push:
-    branches: [work/ui-baseline]
+    branches: [main, 'integration/**']
     paths:
       - 'apps/new/scripts/audit-standard-coverage.mjs'
       - 'apps/new/api/_standard/**'
