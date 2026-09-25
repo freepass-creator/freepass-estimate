@@ -20,8 +20,8 @@ export default async function handler(req,res){
       ok:true,
       contract:QUOTE_RESULT_CONTRACT,
       providerContract:QUOTE_PROVIDER_CONTRACT,
-      priceBasis:authoritative.priceBasis,
       ...answer,
+      priceBasis:authoritative.priceBasis,
     });
   }catch(e){
     const requestedStatus=Number(e?.status);
