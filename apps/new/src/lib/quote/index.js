@@ -28,6 +28,7 @@ export const 견적상태 = reactive({
   계산기: '',
   공급자: '',
   pricingEngine: null,
+  priceBasis: null,
   계약: null,
   실행: null,
   오류코드: '',
@@ -60,6 +61,7 @@ async function 보내기() {
     견적상태.계산기 = 캐시.계산기 || 계산기들[이름].이름;
     견적상태.공급자 = 캐시.공급자 || providerKey;
     견적상태.pricingEngine = 캐시.pricingEngine || null;
+    견적상태.priceBasis = 캐시.priceBasis || null;
     견적상태.계약 = 캐시.계약 || null;
     견적상태.실행 = 캐시.실행 || null;
     견적상태.오류 = '';
@@ -72,6 +74,7 @@ async function 보내기() {
   견적상태.상태 = 'pending';
   견적상태.오류 = '';
   견적상태.pricingEngine = null;
+  견적상태.priceBasis = null;
 
   try {
     const 답 = await 견적계산(요청, { 강제계산기 });
@@ -87,6 +90,7 @@ async function 보내기() {
     견적상태.계산기 = 답?.계산기 || 계산기들[이름].이름;
     견적상태.공급자 = 답?.공급자 || providerKey;
     견적상태.pricingEngine = 답?.pricingEngine || null;
+    견적상태.priceBasis = 답?.priceBasis || null;
     견적상태.계약 = 답?.계약 || null;
     견적상태.실행 = 답?.실행 || null;
     견적상태.오류코드 = '';
@@ -106,6 +110,7 @@ function 비우기(상태, 오류 = '', 오류코드 = '', 실행 = null) {
   견적상태.결과 = [];
   견적상태.차량가 = null;
   견적상태.pricingEngine = null;
+  견적상태.priceBasis = null;
   견적상태.계산기 = '';
   견적상태.공급자 = '';
   if (상태 !== 'error') 견적상태.계약 = null;
@@ -118,5 +123,6 @@ export function 다시계산() {
   견적상태.상태 = 'pending';
   견적상태.오류 = '';
   견적상태.pricingEngine = null;
+  견적상태.priceBasis = null;
   타이머 = setTimeout(보내기, 150);
 }
