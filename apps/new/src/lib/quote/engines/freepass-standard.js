@@ -26,5 +26,6 @@ export async function 계산(요청, { 신호 } = {}) {
     메타: j.메타 || null,
     결과계약: j.contract,
     공급자계약: j.providerContract,
+    pricingEngine: j.pricingEngine || null,
   };
 }
