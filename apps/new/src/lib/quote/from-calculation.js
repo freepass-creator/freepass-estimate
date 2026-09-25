@@ -25,7 +25,7 @@ function requestSelectedOptions(request) {
   const options = request?.차?.구성?.선택옵션;
   if (!Array.isArray(options)) return [];
   return options.map((option) => ({
-    optionId: required(option?.id, 'selectedOption.id'),
+    optionId: required(option?.stableId ?? option?.id, 'selectedOption.stableId'),
     price: finite(option?.price_won ?? option?.price ?? 0, 'selectedOption.price'),
   })).sort((a, b) => a.optionId < b.optionId ? -1 : a.optionId > b.optionId ? 1 : 0);
 }
