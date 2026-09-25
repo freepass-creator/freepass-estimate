@@ -46,7 +46,9 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="t in TERMS" :key="t"
+          type="button"
           class="sc-chip" :class="{ 'is-selected': selectedTerms.includes(t) }"
+          :aria-pressed="selectedTerms.includes(t)"
           @click="toggleTerm(t)"
         >{{ t }}개월</button>
       </div>
