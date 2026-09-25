@@ -269,12 +269,14 @@ async function recomputeProvider(내순번) {
     state.referenceMonthly = referenceMonthly;
     state.quoteProvider = 답.공급자;
     state.quoteEngine = 답.계산기;
+    state.quotePricingEngine = 답.pricingEngine || null;
     renderQuoteDoc(monthly, totalKrw, tintFee, deliveryFee, itemsFee - tintFee);
   } catch (e) {
     if (내순번 !== __quoteSeq) return;
     console.error('[quote-provider]', e);
     state.monthly = [];
     state.referenceMonthly = [];
+    state.quotePricingEngine = null;
     const doc = $('quote-doc');
     if (doc) doc.innerHTML = '<div class="quote-doc__empty">지금은 견적을 계산할 수 없습니다.<br><small>' +
       String(e?.message || e) + '</small></div>';
