@@ -105,11 +105,18 @@ assert.throws(
   ()=>normalizeEstimateMasterResponse({ok:true,data:[record,{...record}],meta}),
   /duplicate Estimate master productId/
 );
-assert.throws(
-  ()=>getActiveEstimateMasterRecord({
-    byProductId:new Map([['prod_1',{...record,status:'HOLD',holdReasons:['MODEL_YEAR_UNVERIFIED']}]]),
-  },'prod_1'),
-  /HOLD/
-);
+const holdRecord={
+  ...record,
+  vehicleModelId:null,
+  modelYearId:null,
+  trimId:null,
+  powertrainId:null,
+  modelYear:null,
+  status:'HOLD',
+  holdReasons:['MODEL_YEAR_UNVERIFIED','STABLE_ID_UNVERIFIED'],
+};
+const holdMaster=normalizeEstimateMasterResponse({ok:true,data:[holdRecord],meta});
+assert.equal(holdMaster.byProductId.get('prod_1').modelYearId,null);
+assert.throws(()=>getActiveEstimateMasterRecord(holdMaster,'prod_1'),/HOLD/);
 
 console.log('PASS FreePass Data Estimate master proxy/client security boundary');
