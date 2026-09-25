@@ -74,6 +74,7 @@ jobs:
           node --check src/lib/quote/quote-v2.js
           node --check src/lib/quote/from-calculation.js
           node --check src/lib/quote/master-context.js
+          node --check src/lib/quote/master-selection.js
           node --check src/lib/quote/quote-repository.js
           node --check src/lib/quote/pricing-engine.js
           node --check src/lib/quote/repositories/freepass-data.js
