@@ -85,6 +85,10 @@ export function 요청만들기() {
       구성: {
         기본축: v._base_axes || {},
         canonical: v._canonical || null,
+        // 계산 서버는 화면 가격을 신뢰하지 않고 이 stable ID들로 FreePass Data
+        // CANONICAL_ACTIVE master를 다시 조회해 가격을 확정한다.
+        colorExtId: v.colorExtId || null,
+        colorIntId: v.colorIntId ?? c.colorIntId ?? null,
         선택옵션: Array.isArray(v._selected_options) ? v._selected_options : [],
       },
 
