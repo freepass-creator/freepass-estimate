@@ -77,6 +77,23 @@ for(const [label,id] of cases){
   }));
 }
 
+
+{
+  const id='kia_niro_하이브리드_시그니처';
+  const base=req(id);
+  const withInterior=structuredClone(base);
+  withInterior.차.가격.내장색=500000;
+  withInterior.차.가격.표준계산차량가+=500000;
+  const normal=await calculateStandardQuote(base);
+  const colored=await calculateStandardQuote(withInterior);
+  assert.equal(colored.결과[0].총차량가-normal.결과[0].총차량가,500000,'interior color must be included in total vehicle price');
+  assert.ok(colored.결과[0].월대여료>=normal.결과[0].월대여료,'paid interior color must not reduce monthly rent');
+  console.log('PASS STANDARD interior-color pricing',JSON.stringify({
+    base:normal.결과[0].총차량가,
+    colored:colored.결과[0].총차량가,
+  }));
+}
+
 // 신용 리스크는 잔가를 바꾸지 않고 월납 쪽으로만 반영되어야 한다.
 {
   const id='kia_niro_하이브리드_시그니처';
