@@ -102,8 +102,11 @@ const cards = computed(() => {
       @touchstart.passive="onTouchStart"
       @touchend="onTouchEnd"
       role="button"
+      tabindex="0"
       :aria-expanded="expanded"
       aria-label="견적 펼치기 (탭 또는 위로 스와이프)"
+      @keydown.enter.prevent="toggle"
+      @keydown.space.prevent="toggle"
     >
       <span class="sq-summary__bar"></span>
       <div class="sq-summary__row">
@@ -123,6 +126,7 @@ const cards = computed(() => {
         :class="{ 'is-checked': c.sent }"
       >
         <button
+          type="button"
           class="sq-term-card__check-btn"
           @click="onSendToggle(c.idx)"
           :aria-label="(c.sent ? '발송 제외' : '발송 포함') + ' ' + c.term + '개월'"
@@ -262,9 +266,9 @@ const cards = computed(() => {
 .sq {
   position: fixed; bottom: var(--footer-height, 78px); left: 0; right: 0;
   background: var(--bg);
-  border-top: 1px solid var(--line);
+  border-top: 0;
   border-radius: var(--r-sheet) var(--r-sheet) 0 0;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+  box-shadow: none;
   padding-bottom: 8px;
   z-index: 25;
   transition: max-height .25s;
@@ -280,7 +284,7 @@ const cards = computed(() => {
 
 .sq-summary {
   display: flex; flex-direction: column; align-items: stretch;
-  padding: 6px 20px 8px;
+  padding: 6px 16px 8px;
   cursor: pointer;
   user-select: none;
 }
@@ -311,7 +315,7 @@ const cards = computed(() => {
   display: flex; flex-direction: column; align-items: center; gap: 3px;
   padding: 8px 6px;
   background: var(--bg-soft);
-  border: 1.5px solid transparent;
+  border: 0;
   border-radius: var(--r-card);
   font-family: inherit;
   transition: background .12s, border-color .12s;
@@ -320,8 +324,8 @@ const cards = computed(() => {
   background: var(--brand-50);
 }
 .sq-term-card__check-btn {
-  position: absolute; top: 4px; right: 4px;
-  width: 22px; height: 22px;
+  position: absolute; top: -7px; right: -7px;
+  width: 44px; height: 44px;
   background: transparent; border: 0; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   color: var(--ink-4);
@@ -339,6 +343,7 @@ const cards = computed(() => {
   font-family: inherit;
   font-size: var(--fs-sm); font-weight: 600; color: var(--ink-1);
   text-align: center; text-align-last: center;
+  min-height: 44px;
   padding: 0 2px;
   cursor: pointer;
   outline: none;
@@ -363,11 +368,11 @@ const cards = computed(() => {
   display: inline-flex; align-items: center; gap: 1px;
 }
 .sq-pct-input {
-  width: 32px; height: 22px;
+  width: 44px; height: 44px;
   border: 1px solid var(--line-2); border-radius: var(--radius-sm);
   background: var(--bg);
   font-family: inherit;
-  font-size: var(--fs-xs); color: var(--ink-1); font-weight: 600;
+  font-size: var(--fs-base); color: var(--ink-1); font-weight: 600;
   text-align: center;
   font-variant-numeric: tabular-nums;
   outline: none;
