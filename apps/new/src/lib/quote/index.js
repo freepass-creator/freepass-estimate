@@ -51,7 +51,8 @@ async function 보내기() {
   }
 
   const 글 = providerKey + '|' + JSON.stringify(요청);
-  const 캐시 = 곳간.get(글);
+  const 캐시허용 = 이름 === '표준';
+  const 캐시 = 캐시허용 ? 곳간.get(글) : null;
   if (캐시) {
     견적상태.결과 = 캐시.결과;
     견적상태.차량가 = 캐시.차량가;
@@ -73,8 +74,10 @@ async function 보내기() {
     const 답 = await 견적계산(요청, { 강제계산기 });
     if (내순번 !== 순번) return;
 
-    if (곳간.size > 200) 곳간.delete(곳간.keys().next().value);
-    곳간.set(글, 답);
+    if (캐시허용) {
+      if (곳간.size > 200) 곳간.delete(곳간.keys().next().value);
+      곳간.set(글, 답);
+    }
 
     견적상태.결과 = 답.결과;
     견적상태.차량가 = 답.차량가 ?? null;
