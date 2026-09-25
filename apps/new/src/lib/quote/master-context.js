@@ -18,7 +18,11 @@ export function sourceRevisionFromFreePassData(meta) {
   }
   const releaseId = required(meta.releaseId, 'releaseId', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
   const manifestId = required(meta.manifestId, 'manifestId', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
-  const revision = required(meta.revision, 'revision', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
+  const revisionNumber = Number(meta.revision);
+  if (!Number.isSafeInteger(revisionNumber) || revisionNumber < 1) {
+    throw codedError('FreePass Data release revision is invalid', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
+  }
+  const revision = String(revisionNumber);
   const inputDigest = required(meta.inputDigest, 'inputDigest', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
   const dataDigest = required(meta.dataDigest, 'dataDigest', 'QUOTE_MASTER_SOURCE_EVIDENCE_REQUIRED');
 
@@ -32,7 +36,7 @@ export function sourceRevisionFromFreePassData(meta) {
       authority: FREEPASS_DATA_AUTHORITY,
       releaseId,
       manifestId,
-      revision,
+      revision: revisionNumber,
       inputDigest: inputDigest.toLowerCase(),
       dataDigest: dataDigest.toLowerCase(),
       generatedAt: String(meta.generatedAt ?? '').trim() || null,
@@ -167,6 +171,17 @@ export function masterContextFromEstimateMasterRecord({
   }
 
   required(record.productId, 'productId');
+  const modelYear = Number(record.modelYear);
+  if (!Number.isSafeInteger(modelYear) || modelYear < 1900 || modelYear > 2200) {
+    throw codedError('ACTIVE Estimate master requires a verified modelYear', 'QUOTE_MASTER_MODEL_YEAR_REQUIRED');
+  }
+  if ((record.options || []).some((option) => !option?.optionId)) {
+    throw codedError('ACTIVE Estimate master contains an option without stable ID', 'QUOTE_MASTER_IDENTITY_REQUIRED');
+  }
+  if ((record.exteriorColors || []).some((color) => !color?.colorId) ||
+      (record.interiorColors || []).some((color) => !color?.colorId)) {
+    throw codedError('ACTIVE Estimate master contains a color without stable ID', 'QUOTE_MASTER_IDENTITY_REQUIRED');
+  }
   const ext = findMasterItem(record.exteriorColors, exteriorColorId, 'colorId', 'exteriorColorId');
   const int = findMasterItem(record.interiorColors, interiorColorId, 'colorId', 'interiorColorId');
   const options = resolveMasterOptions(record, selectedOptionIds);
@@ -183,7 +198,7 @@ export function masterContextFromEstimateMasterRecord({
     sourceEvidence: evidence.sourceEvidence,
     quoteSnapshot: Object.freeze({
       productId: record.productId,
-      modelYear: Number(record.modelYear),
+      modelYear,
       selectedOptionIds: Object.freeze(options.map((option) => option.optionId)),
       optionPriceSnapshot: options,
       vehiclePriceSnapshot: Object.freeze({
