@@ -71,6 +71,7 @@ async function 보내기() {
   const 내순번 = ++순번;
   견적상태.상태 = 'pending';
   견적상태.오류 = '';
+  견적상태.pricingEngine = null;
 
   try {
     const 답 = await 견적계산(요청, { 강제계산기 });
@@ -105,6 +106,8 @@ function 비우기(상태, 오류 = '', 오류코드 = '', 실행 = null) {
   견적상태.결과 = [];
   견적상태.차량가 = null;
   견적상태.pricingEngine = null;
+  견적상태.계산기 = '';
+  견적상태.공급자 = '';
   if (상태 !== 'error') 견적상태.계약 = null;
 }
 
@@ -114,5 +117,6 @@ export function 다시계산() {
   if (!요청) { 비우기('idle'); return; }
   견적상태.상태 = 'pending';
   견적상태.오류 = '';
+  견적상태.pricingEngine = null;
   타이머 = setTimeout(보내기, 150);
 }
