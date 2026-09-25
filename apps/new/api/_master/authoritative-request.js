@@ -1,4 +1,5 @@
 import { fetchFreePassDataMaster } from '../freepass-data-master.js';
+import { createPriceBasis } from '../../src/lib/quote/price-basis.js';
 
 const MASTER_CONTRACT = 'estimate-newcar-master/v1';
 const MASTER_AUTHORITY = 'CANONICAL_ACTIVE';
@@ -166,6 +167,19 @@ export function canonicalizeQuoteRequestFromMaster(request, masterPayload) {
   const priceBefore = record.priceBefore ? krw(record.priceBefore, 'priceBefore') : 0;
   const priceAfter = record.priceAfter ? krw(record.priceAfter, 'priceAfter') : 0;
   const sourceRevision = `freepass-data/${meta.releaseId}@r${meta.revision}`;
+  const priceBasis = createPriceBasis({
+    productId,
+    sourceRevision,
+    basePrice: trimPrice,
+    optionPrice,
+    exteriorColorPrice,
+    interiorColorPrice,
+    discount,
+    totalVehiclePrice: standardCalculatedVehiclePrice,
+    priceBefore,
+    priceAfter,
+    priceBasisName: String(record.priceBasis ?? '').trim(),
+  });
 
   return Object.freeze({
     request: {
@@ -204,6 +218,7 @@ export function canonicalizeQuoteRequestFromMaster(request, masterPayload) {
     record,
     meta,
     sourceRevision,
+    priceBasis,
   });
 }
 
