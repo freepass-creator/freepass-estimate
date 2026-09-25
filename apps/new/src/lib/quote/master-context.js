@@ -83,3 +83,117 @@ export function legacyMasterIdentityGap(candidate) {
   if (!(candidate.powertrain_id || candidate.powertrainId)) gaps.push('powertrainId');
   return Object.freeze(gaps);
 }
+
+
+function moneyAmount(value, field) {
+  const amount = Number(value?.amount);
+  if (!Number.isFinite(amount) || amount < 0 || value?.currency !== 'KRW') {
+    throw codedError(`${field} must be non-negative KRW money`, 'QUOTE_MASTER_PRICE_INVALID');
+  }
+  return amount;
+}
+
+function findMasterItem(items, id, idField, field) {
+  const wanted = required(id, field);
+  const matches = (Array.isArray(items) ? items : []).filter((item) => item?.[idField] === wanted);
+  if (matches.length !== 1) {
+    throw codedError(`${field} is not uniquely present in FreePass Data master: ${wanted}`, 'QUOTE_MASTER_IDENTITY_REQUIRED');
+  }
+  return matches[0];
+}
+
+export function resolveMasterOptions(record, selectedOptionIds = []) {
+  if (!record || typeof record !== 'object') {
+    throw codedError('Estimate master record is required', 'QUOTE_MASTER_IDENTITY_REQUIRED');
+  }
+  const selected = [...new Set((selectedOptionIds || []).map((id) => required(id, 'selectedOptionId')))].sort();
+  const optionMap = new Map((record.options || []).map((option) => [option.optionId, option]));
+
+  for (const id of selected) {
+    if (!optionMap.has(id)) {
+      throw codedError(`selected option is not in FreePass Data master: ${id}`, 'QUOTE_OPTION_UNKNOWN');
+    }
+  }
+  const selectedSet = new Set(selected);
+  const groupOwners = new Map();
+
+  for (const id of selected) {
+    const option = optionMap.get(id);
+    for (const requiredId of option.requires || []) {
+      if (!selectedSet.has(requiredId)) {
+        throw codedError(`${id} requires ${requiredId}`, 'QUOTE_OPTION_REQUIRES_MISSING');
+      }
+    }
+    for (const excludedId of option.excludes || []) {
+      if (selectedSet.has(excludedId)) {
+        throw codedError(`${id} excludes ${excludedId}`, 'QUOTE_OPTION_EXCLUDES_CONFLICT');
+      }
+    }
+    if (option.exclusiveGroupId) {
+      const prior = groupOwners.get(option.exclusiveGroupId);
+      if (prior && prior !== id) {
+        throw codedError(`${prior} and ${id} are mutually exclusive`, 'QUOTE_OPTION_EXCLUSIVE_GROUP_CONFLICT');
+      }
+      groupOwners.set(option.exclusiveGroupId, id);
+    }
+  }
+
+  return Object.freeze(selected.map((id) => {
+    const option = optionMap.get(id);
+    return Object.freeze({
+      optionId: id,
+      name: String(option.name ?? '').trim(),
+      price: moneyAmount(option.price, `option ${id} price`),
+    });
+  }));
+}
+
+export function masterContextFromEstimateMasterRecord({
+  record,
+  selectedOptionIds = [],
+  exteriorColorId,
+  interiorColorId,
+  releaseMeta,
+} = {}) {
+  if (!record || typeof record !== 'object') {
+    throw codedError('Estimate master record is required', 'QUOTE_MASTER_IDENTITY_REQUIRED');
+  }
+  if (record.status !== 'ACTIVE') {
+    const reason = Array.isArray(record.holdReasons) ? record.holdReasons.join(', ') : '';
+    throw codedError(
+      `Estimate master record is HOLD${reason ? ': ' + reason : ''}`,
+      'QUOTE_MASTER_PRODUCT_HOLD'
+    );
+  }
+
+  required(record.productId, 'productId');
+  const ext = findMasterItem(record.exteriorColors, exteriorColorId, 'colorId', 'exteriorColorId');
+  const int = findMasterItem(record.interiorColors, interiorColorId, 'colorId', 'interiorColorId');
+  const options = resolveMasterOptions(record, selectedOptionIds);
+  const evidence = sourceRevisionFromFreePassData(releaseMeta);
+
+  return Object.freeze({
+    vehicleModelId: required(record.vehicleModelId, 'vehicleModelId'),
+    modelYearId: required(record.modelYearId, 'modelYearId'),
+    trimId: required(record.trimId, 'trimId'),
+    powertrainId: required(record.powertrainId, 'powertrainId'),
+    exteriorColorId: required(ext.colorId, 'exteriorColorId'),
+    interiorColorId: required(int.colorId, 'interiorColorId'),
+    sourceRevision: evidence.sourceRevision,
+    sourceEvidence: evidence.sourceEvidence,
+    quoteSnapshot: Object.freeze({
+      productId: record.productId,
+      modelYear: Number(record.modelYear),
+      selectedOptionIds: Object.freeze(options.map((option) => option.optionId)),
+      optionPriceSnapshot: options,
+      vehiclePriceSnapshot: Object.freeze({
+        basePrice: moneyAmount(record.basePrice, 'basePrice'),
+        exteriorColorPrice: moneyAmount(ext.price, 'exteriorColorPrice'),
+        interiorColorPrice: moneyAmount(int.price, 'interiorColorPrice'),
+        exteriorColorName: String(ext.name ?? '').trim(),
+        interiorColorName: String(int.name ?? '').trim(),
+        currency: 'KRW',
+      }),
+    }),
+  });
+}
