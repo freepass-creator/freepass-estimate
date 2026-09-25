@@ -37,10 +37,18 @@ export function normalizeEstimateMasterResponse(body) {
     if (!raw || typeof raw !== 'object') throw codedError('Estimate master record is invalid', 'ESTIMATE_MASTER_INVALID');
     const productId = required(raw.productId, 'productId');
     if (byProductId.has(productId)) throw codedError(`duplicate Estimate master productId: ${productId}`, 'ESTIMATE_MASTER_INVALID');
-    for (const field of ['vehicleModelId', 'modelYearId', 'trimId', 'powertrainId']) required(raw[field], field);
-    if (!Number.isInteger(Number(raw.modelYear))) throw codedError('modelYear must be an integer', 'ESTIMATE_MASTER_INVALID');
+    if (!['ACTIVE', 'HOLD'].includes(raw.status)) {
+      throw codedError('Estimate master status is invalid', 'ESTIMATE_MASTER_INVALID');
+    }
+    if (raw.status === 'ACTIVE') {
+      for (const field of ['vehicleModelId', 'modelYearId', 'trimId', 'powertrainId']) required(raw[field], field);
+      if (!Number.isInteger(Number(raw.modelYear))) throw codedError('modelYear must be an integer', 'ESTIMATE_MASTER_INVALID');
+    }
     if (!Array.isArray(raw.options) || !Array.isArray(raw.exteriorColors) || !Array.isArray(raw.interiorColors)) {
       throw codedError('Estimate master option/color arrays are required', 'ESTIMATE_MASTER_INVALID');
+    }
+    if (raw.status === 'HOLD' && (!Array.isArray(raw.holdReasons) || !raw.holdReasons.length)) {
+      throw codedError('HOLD master record requires holdReasons', 'ESTIMATE_MASTER_INVALID');
     }
     byProductId.set(productId, Object.freeze({ ...raw }));
   }
