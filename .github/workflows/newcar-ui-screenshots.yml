@@ -2,7 +2,7 @@ name: New-car UI screenshots
 
 on:
   push:
-    branches: [work/ui-baseline]
+    branches: [main, 'integration/**']
     paths:
       - 'apps/new/index.html'
       - 'apps/new/mobile.html'
