@@ -1,7 +1,7 @@
 name: Audit unresolved engine source facts
 on:
   push:
-    branches: [work/ui-baseline]
+    branches: [main, 'integration/**']
     paths:
       - 'apps/new/scripts/audit-gap-source-fields.mjs'
       - '.github/workflows/audit-gap-source-fields.yml'
