@@ -34,7 +34,11 @@ export function assertMasterResponse(body) {
   if (!meta || meta.contract !== CONTRACT || meta.authority !== AUTHORITY) {
     throw codedError('FreePass Data master contract/evidence mismatch', 'FREEPASS_DATA_MASTER_INVALID');
   }
-  if (!meta.releaseId || !meta.manifestId || !Number.isInteger(Number(meta.revision)) ||
+  if (!meta.releaseId || !meta.manifestId ||
+      !Number.isSafeInteger(meta.revision) || meta.revision < 1 ||
+      meta.projectionId !== 'estimate-newcar-master' ||
+      meta.schemaVersion !== '1.0.0' ||
+      !meta.activatedAt || !Number.isFinite(Date.parse(meta.activatedAt)) ||
       !validDigest(meta.inputDigest) || !validDigest(meta.dataDigest)) {
     throw codedError('FreePass Data master release evidence is incomplete', 'FREEPASS_DATA_MASTER_INVALID');
   }
