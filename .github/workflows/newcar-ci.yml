@@ -15,7 +15,40 @@ on:
 permissions:
   contents: read
 
+
 jobs:
+  pricing-authority:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/new
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/new/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Authoritative pricing syntax
+        run: |
+          node --check api/freepass-data-master.js
+          node --check api/_master/authoritative-request.js
+          node --check api/standard-quote.js
+          node --check api/external-quote.js
+          node --check src/lib/quote/build-request.js
+          node --check src/lib/quote/provider-policy.js
+      - name: FreePass Data price authority
+        run: npm run check:pricing
+      - name: External provider routing
+        run: node scripts/test-provider-routing.mjs
+      - name: External provider failure policy
+        run: npm run check:provider-policy
+      - name: Standard pricing regression
+        run: node scripts/check-standard-engine.mjs
+
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 10
