@@ -42,6 +42,9 @@ const calculation = {
   ],
 };
 const releaseMeta = {
+  contract: 'estimate-newcar-master/v1',
+  projectionId: 'estimate-newcar-master',
+  schemaVersion: '1.0.0',
   authority: 'CANONICAL_ACTIVE',
   releaseId: 'rel_20260925_001',
   manifestId: 'manifest_001',
