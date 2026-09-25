@@ -54,11 +54,12 @@ function makeRes(){
 
 const originalFetch=globalThis.fetch;
 let outbound=null;
+let upstreamEngineProof=null;
 globalThis.fetch=async (_url,opts)=>{
   outbound=JSON.parse(opts.body);
   return {
     ok:true,status:200,
-    async json(){return {ok:true,price:outbound.manualPrice||0,results:[{
+    async json(){return {ok:true,price:outbound.manualPrice||0,...(upstreamEngineProof?{pricingEngine:upstreamEngineProof}:{}),results:[{
       monthlyRent:777000,deposit:0,prepay:0,acquirePrice:0,totalCarPrice:0,payFee:0,
     }]}}
   };
@@ -82,6 +83,23 @@ try{
   assert.notEqual(outbound.model,supportedId,'FreePass product id must not leak as Welrix model key');
   assert.ok((supportedMeta.providerCandidates||[]).some(c=>c.api_model===outbound.model),
     'translated model must come from provider candidates');
+
+  upstreamEngineProof={
+    contract:'welrix-pricing-engine-evidence/v1',
+    id:'welrix-excel',
+    version:'welrix-excel/v6.1',
+    verified:true,
+  };
+  const resVerified=makeRes();
+  await handler(makeReq(supportedId),resVerified);
+  assert.deepEqual(resVerified.state.body?.pricingEngine,{
+    id:'welrix-excel',
+    version:'welrix-excel/v6.1',
+    evidence:'UPSTREAM_CONTRACT',
+    verified:true,
+    upstreamVersion:'welrix-excel/v6.1',
+  });
+  upstreamEngineProof=null;
 
   outbound=null;
   const [ev3Id]=ev3;
