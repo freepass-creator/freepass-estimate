@@ -9,14 +9,20 @@ import { EXTERNAL_PROVIDER_POLICY, providerPublicMessage, providerRetryable } fr
 
 const WELRIX_URL = 'https://welrixmobility.netlify.app/api/estimate';
 const WELRIX_EXPECTED_ENGINE_VERSION = 'welrix-excel/v6.1';
+const WELRIX_ENGINE_EVIDENCE_CONTRACT = 'welrix-pricing-engine-evidence/v1';
 
 function welrixPricingEngineEvidence(upstream) {
-  const upstreamVersion = String(upstream?.pricingEngineVersion ?? upstream?.engineVersion ?? '').trim();
-  if (upstreamVersion) {
+  const proof = upstream?.pricingEngine;
+  if (proof?.contract === WELRIX_ENGINE_EVIDENCE_CONTRACT &&
+      proof?.id === 'welrix-excel' &&
+      proof?.verified === true &&
+      typeof proof?.version === 'string' &&
+      proof.version.trim()) {
+    const upstreamVersion = proof.version.trim();
     return Object.freeze({
       id: 'welrix-excel',
-      version: upstreamVersion.startsWith('welrix-') ? upstreamVersion : `welrix-excel/${upstreamVersion}`,
-      evidence: 'UPSTREAM_RESPONSE',
+      version: upstreamVersion,
+      evidence: 'UPSTREAM_CONTRACT',
       verified: true,
       upstreamVersion,
     });
