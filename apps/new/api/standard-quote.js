@@ -16,7 +16,13 @@ export default async function handler(req,res){
   try{
     const authoritative=await authoritativeQuoteRequest(req.body);
     const answer=await calculateStandardQuote(authoritative.request);
-    res.status(200).json({ok:true,contract:QUOTE_RESULT_CONTRACT,providerContract:QUOTE_PROVIDER_CONTRACT,...answer});
+    res.status(200).json({
+      ok:true,
+      contract:QUOTE_RESULT_CONTRACT,
+      providerContract:QUOTE_PROVIDER_CONTRACT,
+      priceBasis:authoritative.priceBasis,
+      ...answer,
+    });
   }catch(e){
     const requestedStatus=Number(e?.status);
     const status=Number.isInteger(requestedStatus)&&requestedStatus>=400&&requestedStatus<=599
