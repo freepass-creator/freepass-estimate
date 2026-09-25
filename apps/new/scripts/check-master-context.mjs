@@ -3,6 +3,8 @@ import {
   FREEPASS_DATA_AUTHORITY,
   legacyMasterIdentityGap,
   masterContextFromCanonical,
+  masterContextFromEstimateMasterRecord,
+  resolveMasterOptions,
   sourceRevisionFromFreePassData,
 } from '../src/lib/quote/master-context.js';
 
@@ -70,5 +72,46 @@ assert.throws(
   ()=>sourceRevisionFromFreePassData({...releaseMeta,dataDigest:'not-a-digest'}),
   /digests are invalid/
 );
+
+const record={
+  productId:'prod_1',
+  vehicleModelId:'vm_001',
+  modelYearId:'my_2026',
+  trimId:'trim_001',
+  powertrainId:'pt_hev',
+  modelYear:2026,
+  status:'ACTIVE',
+  holdReasons:[],
+  basePrice:{amount:30000000,currency:'KRW'},
+  options:[
+    {optionId:'opt_base',name:'베이스',price:{amount:100000,currency:'KRW'},requires:[],excludes:[]},
+    {optionId:'opt_plus',name:'플러스',price:{amount:200000,currency:'KRW'},requires:['opt_base'],excludes:[],exclusiveGroupId:'g1'},
+    {optionId:'opt_other',name:'기타',price:{amount:300000,currency:'KRW'},requires:[],excludes:['opt_plus'],exclusiveGroupId:'g1'},
+  ],
+  exteriorColors:[{colorId:'ext_white',name:'화이트',price:{amount:80000,currency:'KRW'}}],
+  interiorColors:[{colorId:'int_black',name:'블랙',price:{amount:0,currency:'KRW'}}],
+};
+assert.throws(()=>resolveMasterOptions(record,['opt_plus']),/requires opt_base/);
+assert.throws(()=>resolveMasterOptions(record,['opt_base','opt_plus','opt_other']),/excludes|mutually exclusive/);
+
+const master=masterContextFromEstimateMasterRecord({
+  record,
+  selectedOptionIds:['opt_base','opt_plus'],
+  exteriorColorId:'ext_white',
+  interiorColorId:'int_black',
+  releaseMeta,
+});
+assert.deepEqual(master.quoteSnapshot.selectedOptionIds,['opt_base','opt_plus']);
+assert.equal(master.quoteSnapshot.vehiclePriceSnapshot.basePrice,30000000);
+assert.equal(master.quoteSnapshot.vehiclePriceSnapshot.exteriorColorPrice,80000);
+assert.equal(master.sourceRevision,evidence.sourceRevision);
+
+assert.throws(()=>masterContextFromEstimateMasterRecord({
+  record:{...record,status:'HOLD',holdReasons:['MODEL_YEAR_UNVERIFIED']},
+  selectedOptionIds:[],
+  exteriorColorId:'ext_white',
+  interiorColorId:'int_black',
+  releaseMeta,
+}),/HOLD/);
 
 console.log('PASS FreePass Data master identity/release evidence gate');
