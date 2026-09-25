@@ -82,6 +82,21 @@ function logProviderFailure({ kind, adapterId, error }) {
   console.error('[external-quote]', JSON.stringify(payload));
 }
 
+export function externalOptionPrice(price = {}, car = {}, absorbedWon = 0) {
+  const option = Number(price.옵션 ?? car.옵션가 ?? 0);
+  const exterior = Number(price.외장색 ?? car.색추가금 ?? 0);
+  const interior = Number(price.내장색 ?? 0);
+  const absorbed = Number(absorbedWon ?? 0);
+  if (![option, exterior, interior, absorbed].every(Number.isFinite)) {
+    throw new ProviderRuntimeError('PROVIDER_RESPONSE_INVALID', {
+      status: 422,
+      retryable: false,
+      diagnostic: { cause_name: 'PRICE_COMPONENT_INVALID' },
+    });
+  }
+  return Math.max(0, option - absorbed + exterior + interior);
+}
+
 function welrixBody(request) {
   const 차 = request?.차 || {};
   const 가격 = 차.가격 || {};
@@ -98,11 +113,7 @@ function welrixBody(request) {
       termMonths: a.기간,
       mileage: 조건.주행,
       // AWD/인승처럼 provider의 완성차 row에 이미 포함된 구성 옵션은 다시 더하지 않는다.
-      optionPrice: Math.max(0,
-        (가격.옵션 || 차.옵션가 || 0) - resolved.absorbedWon
-        + (가격.외장색 || 차.색추가금 || 0)
-        + (가격.내장색 || 0)
-      ),
+      optionPrice: externalOptionPrice(가격, 차, resolved.absorbedWon),
       stockDiscount: 가격.할인 || 차.할인 || 0,
       deliveryFee: 조건.탁송비,
       tintFee: 조건.썬팅비,
