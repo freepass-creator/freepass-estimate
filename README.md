@@ -1,28 +1,55 @@
 # FreePass Estimate
 
-FreePass 제품군의 **견적 기능 정본(SSOT / Upstream)** 저장소.
+FreePass 제품군의 **견적 UI·견적 산식·Quote 계약 정본** 저장소.
 
-## 소유권
+> 차량/트림/옵션/색상/연식/기준가격의 정본은 **FreePass Data**다.  
+> FreePass Estimate는 차종 마스터를 소유하거나 재구축하지 않는다.
 
-현재 견적 기능의 원본은 FreePass Estimate다.
+## 권한과 데이터 흐름
 
-- **FreePass Estimate** — 정본 / Upstream
-- **FreePass Sales** — 소비자 / Downstream
-- **Welrix** — 소비자 / Downstream
-- **향후 파트너·채널 견적 화면** — 소비자 / Downstream
+역할은 아래처럼 분리한다.
 
-Welrix에서 검증된 신차 견적 구조와 FreePass Sales의 모바일 UI 문법을 가져와 정리했지만,
-이제 견적 기능의 변경은 **FreePass Estimate에서 먼저 발생하고 downstream으로 전달**되어야 한다.
+- **FreePass Data** — Vehicle Master / 기준가격 / 옵션·색상 가격 / stable ID의 SSOT
+- **FreePass Estimate** — 견적 UI/UX / 표준 산식 / 외부 산식 Adapter / Quote 계약의 SSOT
+- **FreePass Standard** — FreePass Estimate가 소유하는 기본 견적 산식
+- **Welrix 및 향후 외부사** — 연결 가능한 외부 계산 Provider. 산식은 제공할 수 있지만 차량가격의 권한은 갖지 않는다.
+- **FreePass Sales / 파트너·채널 화면** — 견적 기능 소비자
 
 ```
+FreePass Data
+  └─ CANONICAL_ACTIVE Vehicle Master
+       ├─ vehicle / trim / model-year stable ID
+       ├─ base price
+       ├─ option / exterior / interior color price
+       └─ release evidence
+            │
+            v
 FreePass Estimate
-   ├──> FreePass Sales
-   ├──> Welrix
-   └──> Partner / Channel
+  ├─ FreePass Standard pricing engine
+  ├─ External Provider Adapter
+  │    ├─ Welrix formula
+  │    └─ future partner formula
+  └─ Quote / Snapshot / Version / Hash
+            │
+            ├──> FreePass Sales
+            └──> Partner / Channel
 ```
 
-Downstream에서 별도 진화한 견적 기능을 그대로 정본으로 삼지 않는다.
-필요한 개선은 이 저장소에 반영·검증한 뒤 다시 배포한다.
+**차가 무엇이고 얼마짜리인지는 FreePass Data가 결정한다.  
+그 기준값을 어떤 산식으로 계산할지는 FreePass Estimate가 결정한다.**
+
+## 가격 권한 규칙
+
+모든 산식은 동일한 FreePass Data 기준값에서 시작한다.
+
+1. 화면이 선택한 `productId + stable option/color ID`를 계산 서버로 보낸다.
+2. 계산 서버가 FreePass Data의 `estimate-newcar-master/v1` CANONICAL_ACTIVE release를 다시 조회한다.
+3. 트림/옵션/외장색/내장색 가격을 서버에서 재조립한다.
+4. 그 가격을 FreePass Standard 또는 외부 Provider Adapter에 넣는다.
+5. 외부 Provider가 자체 차량가격을 돌려줘도 master fact로 승격하지 않는다.
+6. 외부 Provider가 FreePass 기준가격 override를 지원하지 않거나 무시하면 **계산을 중단한다.** 다른 가격이나 다른 엔진으로 조용히 fallback하지 않는다.
+
+즉 브라우저가 들고 있는 가격 숫자와 외부 Provider의 차량가격은 권한값이 아니다.
 
 ## 제품 구조
 
@@ -37,11 +64,13 @@ Downstream에서 별도 진화한 견적 기능을 그대로 정본으로 삼지
 ### 신차
 - 장기렌터카만 제공한다.
 - 렌트/구독 선택을 두지 않는다.
-- 현재 이 저장소에 이관·검증된 신차 UI/UX를 정본으로 사용한다.
+- 차량 Master는 FreePass Data에서 읽는다.
+- 현재 이 저장소에 이관·검증된 신차 UI/UX와 계산 Provider 계약을 정본으로 사용한다.
 
 ### 중고차
 - 렌트 / 구독이 있다.
-- 중고 견적도 안정화 후 이 저장소가 정본을 소유한다.
+- 중고 차량 Master 역시 FreePass Data 소유를 원칙으로 한다.
+- 중고 견적 산식과 Quote 계약은 안정화 후 이 저장소가 정본을 소유한다.
 
 ### 모바일
 PC 화면을 줄여 쓰지 않는다.
@@ -67,13 +96,14 @@ PC 화면을 줄여 쓰지 않는다.
 - 의미 없는 카드 중첩과 선을 만들지 않는다.
 - AI Core는 접근성·상태·포커스·반응형 검증 규격의 기준으로 사용한다.
 
-## Historical / design references
+## Historical / integration references
 
-아래 저장소는 참고자료이거나 소비처다. 견적 정본 권한은 없다.
+아래 저장소는 역할이 다르며 FreePass Data의 차량 Master 권한을 대체하지 않는다.
 
-- `freepass-creator/welrixtable` — 기존 신차 UI/UX 및 계산 연결 Reference / downstream
+- `freepass-creator/freepass-data` — 차량 Master / 기준가격 SSOT
+- `freepass-creator/welrixtable` — Welrix 외부 산식·기존 UI/UX 검증 Reference
 - `freepass-creator/sonogong-estimator` — 기존 중고 UI/UX Reference
-- `freepass-creator/freepasserp4` — 기존 견적 로직/회귀검사 Reference
+- `freepass-creator/freepasserp4` — 과거 견적 로직/회귀검사 Reference
 - `freepass-creator/ai-core` — 공통 개발/디자인/검증 규격
 - `freepass-creator/freepass-sales` — 모바일 UI 문법 Reference / downstream
 - `freepass-creator/freepass-admin` — 웹/Admin UI 문법 Reference
@@ -82,9 +112,9 @@ PC 화면을 줄여 쓰지 않는다.
 
 견적 관련 변경은 다음 순서를 따른다.
 
-1. FreePass Estimate에서 변경
-2. 자동/회귀/시각 검증
-3. 정본 확정
-4. FreePass Sales / Welrix / 파트너 화면에 반영
+1. 차량/가격 fact가 바뀌는 문제라면 FreePass Data에서 수정한다.
+2. 산식/Provider/Quote/UI 문제라면 FreePass Estimate에서 수정한다.
+3. 자동·회귀·가격권한·시각 검증을 통과시킨다.
+4. 정본 확정 후 FreePass Sales / 파트너 화면에 반영한다.
 
-**견적 기능의 근원지는 이 저장소다.**
+**FreePass Data는 차량 사실의 근원지이고, FreePass Estimate는 견적 계산의 근원지다.**
