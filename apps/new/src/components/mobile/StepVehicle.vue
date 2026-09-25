@@ -720,7 +720,7 @@ function onFeeChange() {
 }
 .sv-crumb {
   display: inline-flex; align-items: center; gap: 4px;
-  padding: 0 2px; min-height: 44px; border: 0; background: transparent;
+  padding: 0 8px; min-width: 44px; min-height: 44px; border: 0; background: transparent;
   color: var(--ink-2); font-weight: var(--fw-medium);
   font-family: inherit; font-size: var(--fs-sm);
   cursor: pointer;
