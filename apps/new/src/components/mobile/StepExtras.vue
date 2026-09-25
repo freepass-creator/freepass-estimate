@@ -79,9 +79,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-cards">
         <button
           v-for="s in SVC" :key="s.value"
-          type="button"
           class="se-card" :class="{ 'is-selected': quoteState.cond.svc === s.value }"
-          :aria-pressed="quoteState.cond.svc === s.value"
           @click="quoteState.cond.svc = s.value"
         >
           <span class="se-card__label">{{ s.label }}</span>
@@ -96,9 +94,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-chips">
         <button
           v-for="i in INS" :key="i.value"
-          type="button"
           class="se-chip" :class="{ 'is-selected': quoteState.cond.insProperty === i.value }"
-          :aria-pressed="quoteState.cond.insProperty === i.value"
           @click="quoteState.cond.insProperty = i.value"
         >{{ i.label }}</button>
       </div>
@@ -110,9 +106,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-chips">
         <button
           v-for="e in EXTRA" :key="e.value"
-          type="button"
           class="se-chip" :class="{ 'is-selected': quoteState.cond.extraDriver === e.value }"
-          :aria-pressed="quoteState.cond.extraDriver === e.value"
           @click="quoteState.cond.extraDriver = e.value"
         >{{ e.label }}</button>
       </div>
@@ -142,9 +136,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-chips">
         <button
           v-for="t in 썬팅들" :key="t.name"
-          type="button"
           class="se-chip" :class="{ 'is-selected': quoteState.tint.product === t.name }"
-          :aria-pressed="quoteState.tint.product === t.name"
           @click="quoteState.tint.product = t.name"
         >{{ t.name }}<small v-if="t.price"> +{{ fmt(t.price) }}</small></button>
       </div>
@@ -160,9 +152,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
       <div class="se-chips">
         <button
           v-for="b in 블박들" :key="b.name"
-          type="button"
           class="se-chip" :class="{ 'is-selected': quoteState.extras.blackbox === b.name }"
-          :aria-pressed="quoteState.extras.blackbox === b.name"
           @click="quoteState.extras.blackbox = b.name"
         >{{ b.name }}<small v-if="b.price"> +{{ fmt(b.price) }}</small></button>
       </div>
@@ -179,10 +169,10 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   line-height: 1.35; letter-spacing: -0.5px;
 }
 .se-divider {
-  height: 1px; background: var(--line);
-  margin: 18px 0;
+  height: 0;
+  margin: 16px 0;
 }
-.se-field { margin-bottom: 22px; }
+.se-field { margin-bottom: 16px; }
 .se-label {
   display: flex; align-items: baseline; justify-content: space-between;
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
@@ -197,7 +187,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
 .se-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .se-card {
   display: flex; flex-direction: column; gap: 4px;
-  padding: 14px;
+  padding: 12px;
   background: var(--bg-soft);
   border: 0;
   border-radius: var(--r-card);
@@ -232,10 +222,10 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
 .se-select {
   width: 100%;
   height: var(--h-input);
-  padding: 0 32px 0 14px;
+  padding: 0 32px 0 12px;
   background: var(--bg);
   border: 1px solid var(--line-2);
-  border-radius: var(--r-chip);
+  border-radius: var(--r-card);
   font-family: inherit; font-size: var(--fs-lg);
   color: var(--ink-1);
   cursor: pointer;

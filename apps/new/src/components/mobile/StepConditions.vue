@@ -46,9 +46,7 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="t in TERMS" :key="t"
-          type="button"
           class="sc-chip" :class="{ 'is-selected': selectedTerms.includes(t) }"
-          :aria-pressed="selectedTerms.includes(t)"
           @click="toggleTerm(t)"
         >{{ t }}개월</button>
       </div>
@@ -59,9 +57,7 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="k in KMS" :key="k"
-          type="button"
           class="sc-chip" :class="{ 'is-selected': quoteState.cond.km == k }"
-          :aria-pressed="quoteState.cond.km == k"
           @click="quoteState.cond.km = k"
         >{{ k }}만km/년</button>
       </div>
@@ -74,9 +70,7 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="c in CREDITS" :key="c.value"
-          type="button"
           class="sc-chip" :class="{ 'is-selected': quoteState.cond.credit === c.value }"
-          :aria-pressed="quoteState.cond.credit === c.value"
           @click="quoteState.cond.credit = c.value"
         >{{ c.label }}</button>
       </div>
@@ -100,10 +94,10 @@ function toggleTerm(t) {
 <style scoped>
 .sc-title {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
-  color: var(--ink-1); margin: 0 0 24px;
+  color: var(--ink-1); margin: 0 0 16px;
   line-height: 1.35; letter-spacing: -0.5px;
 }
-.sc-field { margin-bottom: 22px; }
+.sc-field { margin-bottom: 16px; }
 .sc-label {
   display: flex; align-items: baseline; justify-content: space-between;
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
@@ -116,7 +110,7 @@ function toggleTerm(t) {
   display: flex; flex-wrap: wrap; gap: 6px;
 }
 .sc-note {
-  margin: 4px 0 0; padding: 12px 14px;
+  margin: 4px 0 0; padding: 12px;
   background: var(--bg-soft); border-radius: var(--r-chip);
   font-size: var(--fs-sm); color: var(--ink-3); line-height: 1.5;
   letter-spacing: -0.2px;
@@ -139,10 +133,9 @@ function toggleTerm(t) {
 }
 .sc-chip:active { background: var(--brand-50); }
 .sc-chip.is-selected {
-  background: var(--brand-50);
+  background: var(--brand);
   border-color: transparent;
-  color: var(--brand);
-  font-weight: var(--fw-bold);
+  color: #fff;
 }
 
 /* 보증금/선납금/수수료 — 직접 입력 */
@@ -152,7 +145,7 @@ function toggleTerm(t) {
   padding: 0 14px;
   background: var(--bg);
   border: 1.5px solid var(--line);
-  border-radius: var(--r-chip);
+  border-radius: var(--r-card);
   transition: border-color .12s;
 }
 .sc-pct:focus-within { border-color: var(--brand); }

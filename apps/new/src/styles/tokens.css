@@ -1,11 +1,11 @@
 /* ============================================================================
  *  FreePass Estimate 디자인 토큰
  * ----------------------------------------------------------------------------
- *  FreePass Admin의 현재 승인 UI/UX 규격을 시각 언어 기준으로 참조한다.
- *  Admin 고유 패널 토폴로지·업무 흐름은 가져오지 않으며 Estimate가 자체 흐름을 계속 소유한다.
+ *  FreePass Admin 승인 UI/UX 규격을 시각 언어 기준으로 사용한다.
+ *  화면 구조·업무 흐름·데이터 계약은 참조 대상이 아니며 Estimate가 계속 소유한다.
  *
- *  기존 Estimate 세부 토큰은 호환성을 위해 유지하되, 새 공통 조정은
- *  승인된 역할 토큰(Title/Main/Support, 44px control, 6px control radius, 4px surface radius)을 우선한다.
+ *  화면 구조와 단계 흐름은 Estimate가 소유하고, 아래 역할 토큰은 Admin의
+ *  확정 밀도·컨트롤·타이포 원칙에 맞춰 유지한다.
  *
  *  네이밍 규격(정본): --fs-*(폰트) / --r-*(라운드) / --sp-*(간격) / --ink-* / --line* / --bg*
  *  웰릭스 기존 --font-size-* / --radius-* / --space-* 는 하단 '레거시 별칭'으로 유지(무손실 이관).
@@ -26,22 +26,18 @@
 
   /* ── 라운드 ───────────────────────────────────────────────── */
   --r-sm: 4px;  --r: 6px;  --r-md: 8px;  --r-lg: 12px;  --r-pill: 999px;
-  /* current Admin SSOT: content surface 4px, interactive control 6px. */
-  --r-panel: 4px;  --r-control: 6px;
-  --r-chip: var(--r-control);  --r-card: var(--r-panel);  --r-sheet: 16px;
+  /* Admin 기준: 컨트롤·카드는 과도하게 둥글리지 않는다. */
+  --r-chip: 6px;  --r-card: 6px;  --r-sheet: 12px;
 
   /* ── 간격 ─────────────────────────────────────────────────── */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;  --sp-4: 16px;  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;
 
-  /* ── 타이포 ────────────────────────────────────────────────
-     승인 역할 위계는 18 / 14 / 12. 기존 세부 scale은 호환성 별칭으로 유지한다. */
+  /* ── 타이포 — Admin 18 / 14 / 12 위계를 중심으로 역할만 세분화 ───── */
   --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
-  --fs-title: 18px; --fs-main: 14px; --fs-support: 12px; --fs-mobile-input: 16px;
-  --fs-xs: 11px;  --fs-sm: 12.5px;  --fs-md: 13px;  --fs-base: 14px;
-  --fs-lg: 15px;  --fs-xl: 17px;  --fs-2xl: 22px;
+  --fs-xs: 11px;  --fs-sm: 12px;  --fs-md: 13px;  --fs-base: 14px;
+  --fs-lg: 14px;  --fs-xl: 16px;  --fs-2xl: 18px;
 
-  /* ── 터치 높이 + 굵기 ───────────────────────────────────────
-     승인된 공통 컨트롤/액션 및 모바일 터치 최소 높이는 44px. */
+  /* ── 터치 높이 + 굵기 — Admin 공통 컨트롤 44px ───────────────── */
   --h-chip: 44px; --h-input: 44px; --h-cta: 44px;
   --h-touch-min: 44px;
   --focus-ring: #1d4ed8;

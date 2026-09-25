@@ -6,26 +6,21 @@
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>웰릭스 모빌리티 — 신차 장기렌터카 견적</title>
-<meta name="description" content="현대·기아·제네시스 전 차종 신차 장기렌터카 실시간 견적" />
+<title>프리패스모빌리티 — 신차 장기렌터카 견적</title>
+<meta name="description" content="프리패스모빌리티 신차 장기렌터카 견적" />
 <!-- Open Graph (카톡/페북/슬랙 등 링크 미리보기) -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="웰릭스 모빌리티 — 신차 장기렌터카 견적" />
-<meta property="og:description" content="현대·기아·제네시스 전 차종 실시간 견적" />
-<meta property="og:image" content="/og-image.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:site_name" content="웰릭스 모빌리티" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="/og-image.png" />
-<link rel="icon" type="image/png" href="/favicon.png" />
+<meta property="og:title" content="프리패스모빌리티 — 신차 장기렌터카 견적" />
+<meta property="og:description" content="프리패스모빌리티 신차 장기렌터카 견적" />
+<meta property="og:site_name" content="프리패스모빌리티" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" type="image/svg+xml" href="/freepass-wordmark.svg" />
 <!-- PWA — 홈 화면에 추가 (앱처럼 설치) -->
 <link rel="manifest" href="/manifest.webmanifest" />
-<meta name="theme-color" content="#e1141e" />
-<link rel="apple-touch-icon" href="/welrix-icon-192.png" />
+<meta name="theme-color" content="#1b2a4a" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="웰릭스 견적" />
+<meta name="apple-mobile-web-app-title" content="프리패스 견적" />
 <script>
   // PWA 설치 자격 — service worker 등록 (prod 환경에서만)
   if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
@@ -51,8 +46,9 @@
     }
   })();
 </script>
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" href="/src/styles/admin-desktop-alignment.css" />
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- 차량 DB (제조사/모델/세부모델/트림/옵션/색상) — PC 와 모바일 공유 SSOT -->
 <script src="/vehicle-db.js"></script>
@@ -202,12 +198,12 @@
   }
   .desktop-action-bar__spacer { flex: 1; }
   .bottom-action {
-    height: 36px;
+    height: 44px;
     padding: 0 12px;
     border: 0;
     border-radius: var(--radius);
     font: inherit;
-    font-size: 12.5px;
+    font-size: 14px;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
@@ -312,12 +308,12 @@
   .step-dd {
     display: none;
     width: 100%;
-    height: 40px;
+    height: 44px;
     padding: 0 32px 0 12px;
     border: 1px solid var(--line-2);
     border-radius: 6px;
     background: var(--bg);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--ink-1);
     font-family: inherit;
@@ -394,7 +390,7 @@
     .group-title { display: none; }
 
     /* 입력/드롭다운은 FreePass 공통 control 규격 */
-    .step-dd { display: block; height: 40px; font-size: 13px; padding: 0 32px 0 12px; }
+    .step-dd { display: block; height: 44px; font-size: 14px; padding: 0 32px 0 12px; }
 
     /* 모든 섹션 padding 12px 0 으로 통일 (위 section 규칙으로 일괄) */
     .colors { gap: 5px !important; }
@@ -629,8 +625,8 @@
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .grid-1 { display: flex; flex-direction: column; gap: 6px; }
   .card {
-    border: 0; border-radius: 8px;
-    padding: 14px 12px; cursor: pointer; background: var(--bg-soft);
+    border: 0; border-radius: 6px;
+    padding: 12px; cursor: pointer; background: var(--bg-soft);
     transition: background .15s;
     text-align: left; font-family: inherit; width: 100%;
   }
@@ -642,8 +638,8 @@
   .card .price { font-size: 12.5px; color: var(--brand); font-weight: 600; margin-top: 6px; }
   .trim-row {
     display: flex; justify-content: space-between; align-items: center;
-    border: 0; border-radius: 8px;
-    padding: 14px; cursor: pointer; background: var(--bg-soft);
+    border: 0; border-radius: 6px;
+    padding: 12px; cursor: pointer; background: var(--bg-soft);
     transition: background .15s;
   }
   .trim-row.active { background: var(--brand-50); }
@@ -664,7 +660,7 @@
   .option-row {
     display: flex; align-items: flex-start; gap: 10px;
     border: 0;
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 10px 8px; cursor: pointer; background: transparent;
     transition: background .12s;
   }
@@ -683,7 +679,7 @@
   .colors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .color-card {
     display: flex; align-items: center; gap: 10px;
-    border: 0; border-radius: 8px;
+    border: 0; border-radius: 6px;
     padding: 10px 12px; cursor: pointer; background: var(--bg-soft);
     transition: background .15s;
   }
@@ -792,7 +788,7 @@
 </script>
 <!-- 전체 폭 상단바 -->
 <div class="global-topbar">
-  <div class="global-topbar__brand"><img class="ci" src="/welrix-ci.png" alt="welrix" /><span class="hidden-brand-name" id="brand-name-top" hidden>웰릭스 모빌리티</span></div>
+  <div class="global-topbar__brand"><img class="ci" src="/freepass-wordmark.svg" alt="프리패스모빌리티" /></div>
   <span class="global-topbar__hint">신차 장기렌터카 견적기</span>
   <span class="global-topbar__ver" id="excel-ver-top" title="견적 계산에 적용된 엑셀 견적기 버전" hidden></span>
   <span class="spacer"></span>

@@ -1,6 +1,5 @@
 // Vue 진입점 — 점진 마이그레이션 (mount points)
 import { createApp } from 'vue';
-import './styles/approved-language.css';
 import SummaryPanel from './components/SummaryPanel.vue';
 import TermsGrid from './components/TermsGrid.vue';
 import ReferenceGrid from './components/ReferenceGrid.vue';
