@@ -40,6 +40,7 @@ export async function 계산(요청, { 신호 } = {}) {
     결과계약: j.contract,
     공급자계약: j.providerContract,
     정책: j.providerPolicy || null,
+    pricingEngine: j.pricingEngine || null,
     결과: j.results.map((g) => (g == null ? null : {
       월대여료: g.monthlyRent,
       보증금: g.deposit,
