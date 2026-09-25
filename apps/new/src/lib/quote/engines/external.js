@@ -4,6 +4,7 @@
 
 import { 공급자설정 } from '../provider-config.js';
 import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../contracts.js';
+import { normalizePriceBasis } from '../price-basis.js';
 
 export const 이름 = '외부 연동';
 export const 다루는차 = ['신차'];
@@ -35,8 +36,10 @@ export async function 계산(요청, { 신호 } = {}) {
     throw error;
   }
 
+  const priceBasis = normalizePriceBasis(j.priceBasis);
   return {
     차량가: j.vehiclePrice ?? null,
+    priceBasis,
     결과계약: j.contract,
     공급자계약: j.providerContract,
     정책: j.providerPolicy || null,
