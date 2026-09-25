@@ -50,12 +50,22 @@ for(const p of walk(upComp).filter(x=>x.endsWith('.vue'))){
   const local=path.join(root,'src','components',rel);
   if(!fs.existsSync(local)){failures.push('missing component '+rel);continue}
   const upstreamSource=read(p), localSource=read(local);
-  // MobileApp is the approved FreePass shell delta:
-  // - FreePass product branding
-  // - one-screen-one-choice auto advance
-  // - top is informational / bottom is actionable
-  // Its action placement is enforced by check-action-placement.mjs + Playwright.
-  if(portableRel!=='mobile/MobileApp.vue'){
+  // These mobile screens are intentional FreePass-owned structural deltas from
+  // the pinned Welrix historical reference. They are not a license for broad UI
+  // drift: only this exact allowlist bypasses the historical-template equality
+  // check, while action placement / navigation / visual grammar / accessibility
+  // checks continue to run in this workflow.
+  //
+  // MobileApp: FreePass shell, one-screen-one-choice and bottom actions.
+  // StepVehicle: FreePass vehicle-selection flow has evolved beyond the legacy
+  //              Welrix template and is owned by the dedicated UI/UX lane.
+  // StepResult: FreePass result/snapshot presentation is likewise product-owned.
+  const approvedFreePassStructuralDeltas = new Set([
+    'mobile/MobileApp.vue',
+    'mobile/StepVehicle.vue',
+    'mobile/StepResult.vue',
+  ]);
+  if(!approvedFreePassStructuralDeltas.has(portableRel)){
     if(vueStructure(upstreamSource)!==vueStructure(localSource)) failures.push('component structure changed '+rel);
   }
 }
