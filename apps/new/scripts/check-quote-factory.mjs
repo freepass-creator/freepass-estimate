@@ -36,6 +36,23 @@ const request = {
   ],
 };
 const calculation = {
+  priceBasis: {
+    contract: 'freepass-price-basis/v1',
+    authority: 'FREEPASS_DATA_CANONICAL_ACTIVE',
+    masterContract: 'estimate-newcar-master/v1',
+    currency: 'KRW',
+    productId: 'prod_niro_signature',
+    sourceRevision: 'freepass-data/rel_20260925_001@r42',
+    basePrice: 35000000,
+    optionPrice: 1200000,
+    exteriorColorPrice: 100000,
+    interiorColorPrice: 300000,
+    discount: 500000,
+    totalVehiclePrice: 36100000,
+    priceBefore: 36400000,
+    priceAfter: 36100000,
+    priceBasisName: '세제혜택 후',
+  },
   pricingEngine: {
   "id": "freepass-standard-newcar",
   "version": "freepass-standard/newcar@1.0.0+src.c5b7f1bfb22c.policy.db0186b10720",
@@ -130,7 +147,17 @@ const revisedContext = masterContextFromEstimateMasterRecord({
   interiorColorId: 'int_black',
   releaseMeta: { ...releaseMeta, releaseId: 'rel_20260925_002', revision: 43 },
 });
-const revised = await issueQuotesFromCalculation({ ...common, masterContext: revisedContext });
+const revised = await issueQuotesFromCalculation({
+  ...common,
+  masterContext: revisedContext,
+  calculation: {
+    ...calculation,
+    priceBasis: {
+      ...calculation.priceBasis,
+      sourceRevision: 'freepass-data/rel_20260925_002@r43',
+    },
+  },
+});
 assert.notEqual(quotes[0].snapshotHash, revised[0].snapshotHash, 'master source revision must be sealed');
 
 await assert.rejects(
@@ -170,6 +197,17 @@ const changedEngine = await issueQuotesFromCalculation({
   },
 });
 assert.notEqual(quotes[0].snapshotHash, changedEngine[0].snapshotHash, 'pricing engine version must be sealed into Quote identity');
+
+await assert.rejects(
+  () => issueQuotesFromCalculation({
+    ...common,
+    calculation: {
+      ...calculation,
+      priceBasis: { ...calculation.priceBasis, totalVehiclePrice: 36099999 },
+    },
+  }),
+  /priceBasis total does not equal canonical price components/
+);
 
 await assert.rejects(
   () => issueQuotesFromCalculation({
