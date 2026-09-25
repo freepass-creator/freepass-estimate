@@ -284,6 +284,7 @@ const cards = computed(() => {
 
 .sq-summary {
   display: flex; flex-direction: column; align-items: stretch;
+  min-height: 44px;
   padding: 6px 16px 8px;
   cursor: pointer;
   user-select: none;
