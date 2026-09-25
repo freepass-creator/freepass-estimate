@@ -5,6 +5,7 @@ import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT,
 import * as 표준 from './engines/freepass-standard.js';
 import * as 외부 from './engines/external.js';
 import { normalizePricingEngineEvidence } from './pricing-engine.js';
+import { normalizePriceBasis } from './price-basis.js';
 
 export const 계산기들 = Object.freeze({ 표준, 외부 });
 
@@ -54,10 +55,14 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
     const 탈2 = 결과검사(답?.결과, 요청.안들);
     if (탈2) throw codedError(탈2, 'QUOTE_RESULT_INVALID');
     const pricingEngine = normalizePricingEngineEvidence(답?.pricingEngine);
+    const priceBasis = normalizePriceBasis(답?.priceBasis, {
+      expectedProductId: 요청?.차?.상품키 || 요청?.차?.키,
+    });
 
     return {
       ...답,
       pricingEngine,
+      priceBasis,
       계산기: 계산기.이름,
       공급자: providerKey,
       계약: {
@@ -77,11 +82,13 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
         evidence: [
           `QUOTE_PROVIDER:${providerKey}`,
           `PRICING_ENGINE:${pricingEngine.id}:${pricingEngine.version}:${pricingEngine.verified ? 'VERIFIED' : 'UNVERIFIED'}`,
+          `PRICE_BASIS:${priceBasis.sourceRevision}:${priceBasis.productId}`,
         ],
         checks: [
           { name: 'quote-request-contract', status: 'PASS' },
           { name: 'quote-result-contract', status: 'PASS' },
           { name: 'pricing-engine-evidence', status: 'PASS', detail: pricingEngine.verified ? 'VERIFIED' : 'UNVERIFIED' },
+          { name: 'price-basis', status: 'PASS', detail: priceBasis.sourceRevision },
         ],
       }),
     };
