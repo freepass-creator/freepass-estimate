@@ -22,18 +22,22 @@ async function call(name,body){
 }
 
 console.log('KNOWN_PRODUCT',JSON.stringify({productId,knownModel}));
-const known=await call('KNOWN',{
+const known=await call('KNOWN_PROVIDER_PRICE',{
  model:knownModel,old:false,manualPrice:0,inputs:[baseInput]
 });
 if(!known.r.ok||!known.j?.ok||!known.j?.results?.[0]?.monthlyRent){
  throw new Error('known provider model probe failed');
 }
 
-const manual=await call('MANUAL_UNKNOWN',{
- model:'__FREEPASS_MANUAL_PRICE_PROBE__',old:false,manualPrice:40000000,inputs:[baseInput]
+const overridePrice=40000000;
+const manual=await call('KNOWN_MODEL_FREEPASS_PRICE_OVERRIDE',{
+ model:knownModel,old:false,manualPrice:overridePrice,inputs:[baseInput]
 });
-if(manual.r.ok&&manual.j?.ok&&manual.j?.results?.[0]?.monthlyRent){
- console.log('MANUAL_PRICE_CAPABILITY=SUPPORTED');
-}else{
- console.log('MANUAL_PRICE_CAPABILITY=NOT_SUPPORTED');
+if(!manual.r.ok||!manual.j?.ok||!manual.j?.results?.[0]?.monthlyRent){
+ throw new Error('MANUAL_PRICE_CAPABILITY=NOT_SUPPORTED');
 }
+if(Number(manual.j?.price)!==overridePrice){
+ throw new Error(`MANUAL_PRICE_NOT_HONORED expected=${overridePrice} reported=${manual.j?.price}`);
+}
+
+console.log('MANUAL_PRICE_CAPABILITY=SUPPORTED_AND_ECHOED');
