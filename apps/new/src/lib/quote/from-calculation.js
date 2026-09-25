@@ -1,5 +1,6 @@
 import { buildIssuedQuote } from './quote-v2.js';
 import { normalizePricingEngineEvidence } from './pricing-engine.js';
+import { normalizePriceBasis } from './price-basis.js';
 
 function required(value, field) {
   const v = String(value ?? '').trim();
@@ -182,6 +183,29 @@ export async function issueQuotesFromCalculation({
   }
   const issuedAt = required(createdAt, 'createdAt');
   const snapshot = assertMasterSnapshot(master, request);
+  const priceBasis = normalizePriceBasis(calculation?.priceBasis, {
+    expectedSourceRevision: revision,
+    expectedProductId: snapshot.vehiclePriceSnapshot.productId,
+  });
+  const expectedBasis = snapshot.vehiclePriceSnapshot;
+  const basisChecks = {
+    basePrice: expectedBasis.basePrice,
+    optionPrice: expectedBasis.optionPrice,
+    exteriorColorPrice: expectedBasis.exteriorColorPrice,
+    interiorColorPrice: expectedBasis.interiorColorPrice,
+    discount: expectedBasis.discount,
+    totalVehiclePrice: expectedBasis.standardCalculatedVehiclePrice,
+    priceBefore: expectedBasis.priceBefore,
+    priceAfter: expectedBasis.priceAfter,
+    priceBasisName: expectedBasis.priceBasis,
+  };
+  for (const [field, expected] of Object.entries(basisChecks)) {
+    if (priceBasis[field] !== expected) {
+      const error = new Error(`calculation priceBasis.${field} does not match FreePass Data master snapshot`);
+      error.code = 'QUOTE_PRICE_BASIS_MASTER_MISMATCH';
+      throw error;
+    }
+  }
   const mileage = required(request?.조건?.주행, 'mileageCondition');
 
   const quotes = [];
@@ -196,6 +220,11 @@ export async function issueQuotesFromCalculation({
 
     const monthlyRental = finite(row.월대여료, 'monthlyRental');
     const totalVehiclePrice = finite(row.총차량가, 'totalVehiclePrice');
+    if (totalVehiclePrice !== priceBasis.totalVehiclePrice) {
+      const error = new Error('calculation totalVehiclePrice does not match canonical PriceBasis');
+      error.code = 'QUOTE_PRICE_BASIS_RESULT_MISMATCH';
+      throw error;
+    }
     if (!(monthlyRental > 0) || !(totalVehiclePrice > 0)) {
       const error = new Error('issued quote requires positive monthlyRental and totalVehiclePrice');
       error.code = 'QUOTE_RESULT_INVALID';
