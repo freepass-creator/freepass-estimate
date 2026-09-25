@@ -4,73 +4,73 @@
  */
 
 /* Result page: keep the information hierarchy, remove legacy heavy chrome. */
-.m-shell .sr-title { margin-bottom: 16px; }
-.m-shell .sr-snapshot {
+html .m-shell .sr .sr-title { margin-bottom: 16px; }
+html .m-shell .sr .sr-snapshot {
   margin: -4px 0 12px;
   padding: 12px;
   border-radius: var(--r-card);
 }
-.m-shell .sr-car {
+html .m-shell .sr .sr-car {
   padding: 12px;
   border-radius: var(--r-card);
 }
-.m-shell .sr-car__total {
+html .m-shell .sr .sr-car__total {
   padding-top: 8px;
   border-top: 0;
 }
-.m-shell .sr-term {
+html .m-shell .sr .sr-term {
   padding: 12px;
   border-radius: var(--r-card);
 }
-.m-shell .sr-term__monthly,
-.m-shell .sr-car__total b {
+html .m-shell .sr .sr-term__monthly,
+html .m-shell .sr .sr-car__total b {
   text-align: right;
 }
-.m-shell .sr-cond {
+html .m-shell .sr .sr-cond {
   gap: 8px;
   padding: 0;
   background: transparent;
   border-radius: 0;
   overflow: visible;
 }
-.m-shell .sr-cond__row {
+html .m-shell .sr .sr-cond__row {
   padding: 12px;
   border-radius: var(--r-card);
   font-size: var(--fs-base);
 }
 
 /* Live quote sheet: touch-first controls without the old line/shadow treatment. */
-.m-shell .sq {
+html .m-shell .sq.sq {
   border-top: 0;
   border-radius: var(--r-card) var(--r-card) 0 0;
   box-shadow: none;
 }
-.m-shell .sq-summary {
+html .m-shell .sq .sq-summary {
   min-height: var(--h-touch-min);
   padding-left: 16px;
   padding-right: 16px;
 }
-.m-shell .sq-term-card { border: 0; }
-.m-shell .sq-term-card__check-btn {
+html .m-shell .sq .sq-term-card { border: 0; }
+html .m-shell .sq .sq-term-card__check-btn {
   width: 32px;
   height: 32px;
 }
-.m-shell .sq-term-card__check-btn::before {
+html .m-shell .sq .sq-term-card__check-btn::before {
   content: '';
   position: absolute;
   inset: -6px;
 }
-.m-shell .sq-table__term-select {
+html .m-shell .sq .sq-table__term-select {
   min-height: var(--h-touch-min);
   font-size: var(--fs-sm);
 }
-.m-shell .sq-pct-input {
+html .m-shell .sq .sq-pct-input {
   width: 38px;
   height: var(--h-touch-min);
   border-radius: var(--r-chip);
   font-size: 16px;
 }
-.m-shell .sq-table thead th {
+html .m-shell .sq .sq-table thead th {
   font-size: var(--fs-sm);
   border-bottom-width: 1px;
 }
