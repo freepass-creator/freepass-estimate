@@ -9,6 +9,34 @@ Status: **DRAFT / P0 IMPLEMENTATION**
 - Firestore is a persistence adapter behind FreePass Data contracts. Estimate must not make Firestore collection paths part of its public contract.
 - RTDB is not an allowed target for new Quote v2 writes.
 
+## Pricing source of truth
+
+Vehicle pricing authority is upstream of every calculation engine.
+
+```
+FreePass Data CANONICAL_ACTIVE master
+  -> authoritative QuoteRequest price assembly
+     -> FreePass Standard OR External Provider Adapter
+        -> normalized result
+           -> Quote v2
+```
+
+Rules:
+
+- FreePass Data owns base/option/exterior/interior price facts.
+- The browser may carry prices for display, but pricing APIs re-resolve the selected stable IDs against FreePass Data before calculation.
+- Staff-entered commercial inputs such as an explicit discount remain request inputs; vehicle master facts do not.
+- FreePass Standard receives the server-rebuilt canonical price components.
+- An external provider is a **formula provider**, not a vehicle-price provider.
+- For Welrix, `manualPrice` is populated from the FreePass canonical base plus provider-row absorbed option axes, while remaining option/color values are supplied separately.
+- The adapter requires the provider to echo/honor that manual base price. A mismatch fails closed with `PROVIDER_PRICE_OVERRIDE_REJECTED`.
+- Provider-returned vehicle/total-car prices never overwrite the canonical FreePass Data total. The normalized QuoteResult retains the FreePass canonical total.
+- No silent fallback to provider-owned price, static feed price, RTDB, or another engine is allowed.
+
+The price equation for an external row must preserve the canonical total:
+
+`provider manual base + provider option/color input - discount = FreePass canonical configured vehicle price`
+
 ## Quote unit
 
 One Quote represents exactly:
@@ -106,7 +134,11 @@ They are migration debt only.
 The Quote v2 core and API boundary are guarded so RTDB/direct Firestore dependencies cannot enter the new quote core.
 Legacy removal happens only after equivalent command/read contracts exist and old share URLs have a migration/expiry policy.
 
-## Pricing defect fixed in this branch
+## Pricing defects fixed in this branch
+
+Two pricing defects are now guarded.
+
+### Paid interior color
 
 Paid interior color was previously carried in the request but omitted from some price assembly paths.
 
@@ -116,7 +148,19 @@ Fixed paths:
 - FreePass Standard total vehicle price
 - external/Welrix provider option price
 
-Regression checks now require paid interior color to increase the calculation basis.
+### External provider price authority
+
+Welrix previously received `manualPrice: 0`, which allowed the provider's own vehicle price to become the calculation basis.
+
+The adapter now:
+
+- rebuilds price facts from FreePass Data before the provider call,
+- sends a non-zero canonical `manualPrice`,
+- verifies that the provider honored that override,
+- preserves the FreePass canonical configured vehicle price as `vehiclePrice` / `totalCarPrice`,
+- fails closed if the override is rejected or ignored.
+
+Regression checks cover the full canonical price equation and the rejection path.
 
 ## Current blockers before runtime cutover
 
@@ -151,4 +195,4 @@ The proxy accepts only:
 - valid input/data SHA-256 digests
 - valid activation timestamp
 
-Quote issuance independently re-checks the same evidence and rejects any master-price mismatch between the calculation request and the FreePass Data record.
+Both pricing APIs resolve the selected product/options/colors against this master **before calculation**. Quote issuance independently re-checks the same evidence and rejects any master-price mismatch between the calculation request and the FreePass Data record.
