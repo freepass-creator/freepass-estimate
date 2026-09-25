@@ -5,9 +5,30 @@ import { QUOTE_TERMS } from '../../src/lib/quote/terms.js';
 const DEFAULTS = JSON.parse(readFileSync(new URL('./standard-quote-defaults.snapshot.json', import.meta.url), 'utf8'));
 const DELTA = JSON.parse(readFileSync(new URL('./data/residual-delta.json', import.meta.url), 'utf8'));
 const ENGINE_FACTS = JSON.parse(readFileSync(new URL('./data/engine-facts.json', import.meta.url), 'utf8'));
+const ENGINE_MANIFEST = JSON.parse(readFileSync(new URL('./pricing-engine-manifest.json', import.meta.url), 'utf8'));
 
 const STANDARD = { 1: 85, 2: 75, 3: 66, 4: 58, 5: 51, 6: 44, 7: 38, 8: 33 };
 const TERM_YEAR = Object.fromEntries(QUOTE_TERMS.map((term) => [term, term / 12]));
+
+export function standardPricingEngineEvidence() {
+  if (ENGINE_MANIFEST?.contract !== 'freepass-pricing-engine-manifest/v1' ||
+      ENGINE_MANIFEST?.engine_id !== 'freepass-standard-newcar' ||
+      !ENGINE_MANIFEST?.version ||
+      !/^[a-f0-9]{64}$/.test(String(ENGINE_MANIFEST?.source_digest || '')) ||
+      !/^[a-f0-9]{64}$/.test(String(ENGINE_MANIFEST?.policy_digest || ''))) {
+    const error = new Error('표준 견적 엔진 manifest가 올바르지 않습니다');
+    error.code = 'STANDARD_ENGINE_MANIFEST_INVALID';
+    throw error;
+  }
+  return Object.freeze({
+    id: ENGINE_MANIFEST.engine_id,
+    version: ENGINE_MANIFEST.version,
+    evidence: 'LOCAL_SOURCE_POLICY_MANIFEST',
+    verified: true,
+    sourceDigest: ENGINE_MANIFEST.source_digest,
+    policyDigest: ENGINE_MANIFEST.policy_digest,
+  });
+}
 
 const S = (v) => String(v ?? '').trim();
 const N = (v) => S(v).toLowerCase()
@@ -276,6 +297,7 @@ export async function calculateStandardQuote(request) {
   return {
     차량가: sharedMeta?.configuredPrice ?? null,
     결과,
+    pricingEngine: standardPricingEngineEvidence(),
     메타: {
       ...sharedMeta,
       config_source: DEFAULTS?.source || null,
