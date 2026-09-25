@@ -50,6 +50,10 @@ jobs:
         run: npm run check:provider-policy
       - name: Standard pricing regression
         run: node scripts/check-standard-engine.mjs
+      - name: Quote execution carries canonical PriceBasis
+        run: npm run check:runtime
+      - name: Quote issuance binds PriceBasis to master snapshot
+        run: node scripts/check-quote-factory.mjs
 
   verify:
     runs-on: ubuntu-latest
@@ -112,6 +116,7 @@ jobs:
           node --check src/lib/quote/master-selection.js
           node --check src/lib/quote/quote-repository.js
           node --check src/lib/quote/pricing-engine.js
+          node --check src/lib/quote/price-basis.js
           node --check src/lib/quote/repositories/freepass-data.js
           node --check src/lib/master/freepass-data-master.js
           node --check api/freepass-data-master.js
