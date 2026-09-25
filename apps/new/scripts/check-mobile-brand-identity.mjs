@@ -2,12 +2,15 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const html = fs.readFileSync('mobile.html', 'utf8');
+const desktopHtml = fs.readFileSync('index.html', 'utf8');
 const mobile = fs.readFileSync('src/mobile.js', 'utf8');
 const theme = fs.readFileSync('src/lib/brand-theme.js', 'utf8');
 const mobileApp = fs.readFileSync('src/components/mobile/MobileApp.vue', 'utf8');
 const sendSheet = fs.readFileSync('src/components/mobile/SendSheet.vue', 'utf8');
 const result = fs.readFileSync('src/components/mobile/StepResult.vue', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('public/freepass-manifest.webmanifest', 'utf8'));
+const desktopManifest = JSON.parse(fs.readFileSync('public/manifest.webmanifest', 'utf8'));
+const desktopHead = desktopHtml.match(/<head>[\s\S]*?<\/head>/i)?.[0] || '';
 
 assert.match(html, /<title>프리패스모빌리티 · 신차 장기렌터카 견적<\/title>/,
   'mobile static title must identify FreePass before JavaScript loads');
@@ -38,4 +41,19 @@ assert.doesNotMatch(result, /공유 당시 웰릭스 계산 결과/,
 assert.equal(manifest.start_url, '/mobile.html?force=mobile');
 assert.equal(manifest.theme_color, '#1b2a4a');
 
-console.log('PASS mobile brand identity — refresh and query parameters remain FreePass-only');
+assert.match(desktopHead, /<title>프리패스모빌리티 — 신차 장기렌터카 견적<\/title>/,
+  'desktop static title must identify FreePass');
+assert.match(desktopHead, /<meta property="og:site_name" content="프리패스모빌리티" \/>/,
+  'desktop Open Graph identity must be FreePass');
+assert.match(desktopHead, /<link rel="icon" type="image\/svg\+xml" href="\/freepass-wordmark\.svg" \/>/,
+  'desktop favicon must use a FreePass asset');
+assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\/freepass-wordmark\.svg" \/>/,
+  'mobile favicon must use a FreePass asset');
+assert.doesNotMatch(desktopHead, /웰릭스|welrix-icon|og-image\.png|\[email protected\]/,
+  'desktop head must not expose legacy Welrix branding or the broken font source');
+assert.equal(desktopManifest.name, '프리패스모빌리티 — 신차 장기렌터카 견적');
+assert.equal(desktopManifest.short_name, '프리패스 견적');
+assert.equal(desktopManifest.start_url, '/index.html');
+assert.equal(desktopManifest.theme_color, '#1b2a4a');
+
+console.log('PASS FreePass brand identity — mobile and desktop heads/manifests remain FreePass-only');
