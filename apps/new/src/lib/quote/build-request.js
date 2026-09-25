@@ -30,7 +30,7 @@ export function 요청만들기() {
   // 차량가 기준은 상품마스터 한 기준으로 다시 조립한다.
   // 트림 + 일반옵션 + 외/내장색 - 할인. 구성축(AWD/인승)이 외부 provider 완성차에
   // 이미 흡수되는지는 adapter가 별도로 처리한다.
-  const 표준계산차량가 = Math.max(0, 트림가 + 옵션 + 외장색 - 할인);
+  const 표준계산차량가 = Math.max(0, 트림가 + 옵션 + 외장색 + 내장색 - 할인);
 
   return {
     계약: QUOTE_REQUEST_CONTRACT,
