@@ -333,9 +333,9 @@ async function shareSignLink() {
         </button>
       </template>
       <template v-else>
-        <button v-if="하단내비.hasPrev" class="m-btn m-btn--ghost" :class="{ 'm-btn--icon': 견적보기보임 }"
+        <button v-if="하단내비.hasPrev" class="m-btn m-btn--ghost"
                 @click="prev" aria-label="이전">
-          <i class="ph ph-arrow-left"></i><span v-if="!견적보기보임">이전</span>
+          <i class="ph ph-arrow-left"></i><span>이전</span>
         </button>
         <button v-if="견적보기보임" class="m-btn m-btn--soft" @click="견적보기">견적 보기</button>
         <template v-if="stepIdx < STEPS.length - 1">
@@ -461,6 +461,9 @@ async function shareSignLink() {
 .m-footer__actions { display: flex; gap: 8px; }
 .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:first-child { flex: 3 1 0; }
 .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:last-child { flex: 7 1 0; }
+.m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(1) { flex: 3 1 0; }
+.m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(2) { flex: 3 1 0; }
+.m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(3) { flex: 4 1 0; }
 .m-btn {
   height: var(--h-cta);
   border: 0; border-radius: var(--r-chip);
@@ -490,6 +493,5 @@ async function shareSignLink() {
   font-size: var(--fs-base);
 }
 .m-btn--soft:active { background: var(--line-2); }
-.m-btn--icon { flex: 0 0 52px; }
 .m-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 </style>
