@@ -36,7 +36,7 @@ export async function 계산(요청, { 신호 } = {}) {
     throw error;
   }
 
-  const priceBasis = normalizePriceBasis(j.priceBasis);
+  const priceBasis = normalizePriceBasis(j.priceBasis, { expectedProductId: 요청?.차?.상품키 || 요청?.차?.키 });
   return {
     차량가: j.vehiclePrice ?? null,
     priceBasis,
