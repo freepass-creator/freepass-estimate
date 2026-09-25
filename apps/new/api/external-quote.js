@@ -280,7 +280,10 @@ export default async function handler(req, res) {
     let out;
     if (kind === 'excel' && adapterId === 'welrix') {
       const authoritative = await authoritativeQuoteRequest(request);
-      out = await welrixExcel(authoritative.request);
+      out = {
+        ...(await welrixExcel(authoritative.request)),
+        priceBasis: authoritative.priceBasis,
+      };
     } else if (kind === 'excel' || kind === 'erp') {
       return bad(res, 501, providerPublicMessage('PROVIDER_ADAPTER_UNREGISTERED'), 'PROVIDER_ADAPTER_UNREGISTERED', false);
     } else {
