@@ -29,7 +29,14 @@ const 내장색들 = computed(() => {
   return src.map((c) => {
     const name = typeof c === 'string' ? c : (c?.name || c?.label || '');
     const price = typeof c === 'string' ? 0 : Number(c?._price_won ?? c?.price ?? 0);
-    return { value: name, label: name, price, swatch: c?.hex || guessColor(name) };
+    return {
+      value: name,
+      label: name,
+      price,
+      swatch: c?.hex || guessColor(name),
+      stableId: c?._stable_color_id || null,
+      sourceCode: c?._source_color_code || null,
+    };
   }).filter((c) => c.value);
 });
 
@@ -192,6 +199,7 @@ function pickExtColor(idx) {
 function pickIntColor(c) {
   quoteState.cond.colorInt = c.value;
   quoteState.cond.colorIntPrice = c.price;
+  quoteState.cond.colorIntId = c.stableId || null;
   syncVehicle();
 }
 
@@ -224,8 +232,9 @@ function syncVehicle() {
   const t = selectedTrim.value;
   const taxRate = vehicleState.tax_rate || '5';
   const trimPriceManwon = trimPrice(t, taxRate);
-  const colorExtName = (vehicleState.color != null && exteriorColors.value[vehicleState.color])
-    ? exteriorColors.value[vehicleState.color].name : null;
+  const selectedExtColor = vehicleState.color != null ? exteriorColors.value[vehicleState.color] : null;
+  const colorExtName = selectedExtColor?.name || null;
+  const colorExtId = selectedExtColor?._stable_color_id || null;
   const optNames = [...vehicleState.options]
     .map(id => optionsMaster.value[id]?.name)
     .filter(Boolean);
@@ -287,7 +296,9 @@ function syncVehicle() {
     color_price_manwon: exteriorColorPriceManwon.value,
     options: optNames,
     colorExt: colorExtName,
+    colorExtId,
     colorInt: quoteState.cond.colorInt || null,
+    colorIntId: quoteState.cond.colorIntId || null,
     fuel: can?.fuel || selectedVariant.value?.fuel,
     displacement_cc: can?.engine_cc || selectedVariant.value?.displacement_cc || match?.disp,
     _product_id: t._product_id || t.trim_id,
@@ -299,6 +310,8 @@ function syncVehicle() {
     _canonical: canonical,
     _selected_options: selectedOptionIds.map(id => ({
       id,
+      stableId: optionsMaster.value[id]?._stable_option_id || null,
+      sourceId: optionsMaster.value[id]?._source_option_id || null,
       name: optionsMaster.value[id]?.name || id,
       price_won: Math.round(Number(optionsMaster.value[id]?.price || 0) * 10000),
     })),
@@ -349,6 +362,7 @@ function selectTrim(t) {
   vehicleState.color = null;
   quoteState.cond.colorInt = '';
   quoteState.cond.colorIntPrice = 0;
+  quoteState.cond.colorIntId = null;
   syncVehicle();
 
   // 한 화면 한 선택: 트림 선택 즉시 다음 구성 화면으로 이동한다.
