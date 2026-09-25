@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { configurationAxes, resolveProviderCandidate, absorbedAxisOptionIds } from '../src/lib/newcar/configuration-resolver.js';
 import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 import { EXTERNAL_PROVIDER_POLICY, providerPublicMessage, providerRetryable } from '../src/lib/quote/provider-policy.js';
+import { authoritativeQuoteRequest } from './_master/authoritative-request.js';
 
 // Server-side external quote adapter router.
 // Never exposes partner Excel files, ERP credentials or upstream auth to the browser.
@@ -123,6 +124,31 @@ export function externalOptionPrice(price = {}, car = {}, absorbedWon = 0) {
   return Math.max(0, option - absorbed + exterior + interior);
 }
 
+export function externalManualVehiclePrice(price = {}, absorbedWon = 0) {
+  const trim = Number(price.트림);
+  const absorbed = Number(absorbedWon ?? 0);
+  if (!Number.isFinite(trim) || trim <= 0 || !Number.isFinite(absorbed) || absorbed < 0) {
+    throw new ProviderRuntimeError('PROVIDER_PRICE_BASIS_INVALID', {
+      status: 422,
+      retryable: false,
+      diagnostic: { cause_name: 'CANONICAL_BASE_PRICE_INVALID' },
+    });
+  }
+  return Math.round(trim + absorbed);
+}
+
+export function externalCanonicalVehiclePrice(price = {}) {
+  const total = Number(price.표준계산차량가);
+  if (!Number.isFinite(total) || total <= 0) {
+    throw new ProviderRuntimeError('PROVIDER_PRICE_BASIS_INVALID', {
+      status: 422,
+      retryable: false,
+      diagnostic: { cause_name: 'CANONICAL_TOTAL_PRICE_INVALID' },
+    });
+  }
+  return Math.round(total);
+}
+
 function welrixBody(request) {
   const 차 = request?.차 || {};
   const 가격 = 차.가격 || {};
@@ -133,7 +159,10 @@ function welrixBody(request) {
   return {
     model: resolved.candidate.api_model,
     old: false,
-    manualPrice: 0,
+    // External providers supply formulas, not vehicle price authority.
+    // Base row price is always the FreePass Data canonical base plus any option axis
+    // already absorbed into the provider's completed vehicle row.
+    manualPrice: externalManualVehiclePrice(가격, resolved.absorbedWon),
     inputs: 안들.map((a) => ({
       credit: 조건.신용,
       termMonths: a.기간,
@@ -155,12 +184,14 @@ function welrixBody(request) {
 }
 
 async function welrixExcel(request) {
+  const body = welrixBody(request);
+  const canonicalTotal = externalCanonicalVehiclePrice(request?.차?.가격 || {});
   let r;
   try {
     r = await fetch(WELRIX_URL, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(welrixBody(request)),
+      body: JSON.stringify(body),
       signal: AbortSignal.timeout
         ? AbortSignal.timeout(EXTERNAL_PROVIDER_POLICY.timeout_ms)
         : undefined,
@@ -201,15 +232,29 @@ async function welrixExcel(request) {
     });
   }
 
+  const reportedBasePrice = Number(j.price);
+  if (!Number.isFinite(reportedBasePrice) || Math.round(reportedBasePrice) !== body.manualPrice) {
+    throw new ProviderRuntimeError('PROVIDER_PRICE_OVERRIDE_REJECTED', {
+      status: 502,
+      retryable: false,
+      diagnostic: {
+        cause_name: 'MANUAL_PRICE_NOT_HONORED',
+        expected_price: body.manualPrice,
+        reported_price: Number.isFinite(reportedBasePrice) ? Math.round(reportedBasePrice) : null,
+      },
+    });
+  }
+
   return {
-    vehiclePrice: j.price ?? null,
+    // Canonical price is ours. Provider-returned prices are never promoted to master facts.
+    vehiclePrice: canonicalTotal,
     pricingEngine: welrixPricingEngineEvidence(j),
     results: j.results.map((g) => (g == null ? null : {
       monthlyRent: g.monthlyRent,
       deposit: g.deposit,
       prepay: g.prepay,
       acquirePrice: g.acquirePrice,
-      totalCarPrice: g.totalCarPrice,
+      totalCarPrice: canonicalTotal,
       payFee: g.payFee,
     })),
   };
@@ -234,7 +279,8 @@ export default async function handler(req, res) {
   try {
     let out;
     if (kind === 'excel' && adapterId === 'welrix') {
-      out = await welrixExcel(request);
+      const authoritative = await authoritativeQuoteRequest(request);
+      out = await welrixExcel(authoritative.request);
     } else if (kind === 'excel' || kind === 'erp') {
       return bad(res, 501, providerPublicMessage('PROVIDER_ADAPTER_UNREGISTERED'), 'PROVIDER_ADAPTER_UNREGISTERED', false);
     } else {
@@ -253,6 +299,18 @@ export default async function handler(req, res) {
       ...out,
     });
   } catch (rawError) {
+    if (String(rawError?.code || '').startsWith('FREEPASS_DATA_')) {
+      const status = Number(rawError?.status);
+      const safeStatus = Number.isInteger(status) && status >= 400 && status <= 599 ? status : 503;
+      return bad(
+        res,
+        safeStatus,
+        'FreePass Data 차종 기준값을 확인할 수 없습니다.',
+        rawError.code,
+        safeStatus >= 500,
+      );
+    }
+
     const error = rawError instanceof ProviderRuntimeError
       ? rawError
       : new ProviderRuntimeError('PROVIDER_ERROR', {
