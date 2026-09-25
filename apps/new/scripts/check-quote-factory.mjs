@@ -64,6 +64,9 @@ const masterRecord = {
   status: 'ACTIVE',
   holdReasons: [],
   basePrice: { amount: 35000000, currency: 'KRW' },
+  priceBefore: { amount: 36400000, currency: 'KRW' },
+  priceAfter: { amount: 36100000, currency: 'KRW' },
+  priceBasis: '세제혜택 후',
   options: [
     { optionId: 'opt_a', name: 'A', price: { amount: 500000, currency: 'KRW' }, requires: [], excludes: [] },
     { optionId: 'opt_b', name: 'B', price: { amount: 700000, currency: 'KRW' }, requires: [], excludes: [] },
