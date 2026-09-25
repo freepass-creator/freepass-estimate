@@ -37,6 +37,44 @@ The price equation for an external row must preserve the canonical total:
 
 `provider manual base + provider option/color input - discount = FreePass canonical configured vehicle price`
 
+### PriceBasis contract
+
+Every successful calculation carries:
+
+`freepass-price-basis/v1`
+
+Required provenance:
+
+- authority = `FREEPASS_DATA_CANONICAL_ACTIVE`
+- masterContract = `estimate-newcar-master/v1`
+- productId
+- sourceRevision = `freepass-data/<releaseId>@r<revision>`
+- currency = KRW
+- basePrice / optionPrice / exteriorColorPrice / interiorColorPrice
+- discount
+- totalVehiclePrice
+- priceBefore / priceAfter / priceBasisName
+
+The invariant is:
+
+`max(0, base + option + exterior + interior - discount) = totalVehiclePrice`
+
+Standard and every external provider must return the same PriceBasis for the same selected vehicle configuration, even though their monthly-rental formula may differ.
+
+Quote issuance rejects a calculation when:
+
+- PriceBasis is missing,
+- Product ID differs,
+- FreePass Data source revision differs,
+- any price component differs from the master snapshot,
+- or a provider result reports a different total vehicle price.
+
+### Legacy display/provider artifacts
+
+`public/vehicle-db.js`, `public/data/freepass-newcar/product-index.json` and related historical files are transitional UI/provider compatibility artifacts only.
+
+They are **not** vehicle-master authority and must never be used as pricing authority. Automatic ERP4-to-Estimate master sync/build/audit workflows have been removed. New vehicle-master ingestion, correction, publication, and readiness work belongs in FreePass Data.
+
 ## Quote unit
 
 One Quote represents exactly:
