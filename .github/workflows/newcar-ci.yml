@@ -40,6 +40,8 @@ jobs:
           node --check api/external-quote.js
           node --check src/lib/quote/build-request.js
           node --check src/lib/quote/provider-policy.js
+      - name: Estimate/Data authority boundary
+        run: npm run check:authority-boundary
       - name: FreePass Data price authority
         run: npm run check:pricing
       - name: External provider routing
