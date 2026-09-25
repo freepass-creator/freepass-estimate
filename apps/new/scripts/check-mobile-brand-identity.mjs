@@ -47,10 +47,14 @@ assert.match(desktopHead, /<meta property="og:site_name" content="프리패스�
   'desktop Open Graph identity must be FreePass');
 assert.match(desktopHead, /<link rel="icon" type="image\/svg\+xml" href="\/freepass-wordmark\.svg" \/>/,
   'desktop favicon must use a FreePass asset');
+assert.match(desktopHtml, /<div class="global-topbar__brand"><img class="ci" src="\/freepass-wordmark\.svg" alt="프리패스모빌리티" \/><\/div>/,
+  'desktop visible topbar must use the FreePass wordmark');
 assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\/freepass-wordmark\.svg" \/>/,
   'mobile favicon must use a FreePass asset');
 assert.doesNotMatch(desktopHead, /웰릭스|welrix-icon|og-image\.png|\[email protected\]/,
   'desktop head must not expose legacy Welrix branding or the broken font source');
+assert.doesNotMatch(desktopHtml.match(/<div class="global-topbar">[\s\S]*?<\/div>\s*<div class="desktop-action-bar"/)?.[0] || '', /웰릭스|welrix-ci/,
+  'desktop visible topbar must not expose Welrix identity');
 assert.equal(desktopManifest.name, '프리패스모빌리티 — 신차 장기렌터카 견적');
 assert.equal(desktopManifest.short_name, '프리패스 견적');
 assert.equal(desktopManifest.start_url, '/index.html');
