@@ -14,10 +14,9 @@ html .m-shell .sr .sr-cond__row { padding: 12px; border-radius: var(--r-card); f
 html .m-shell .sq.sq { border-top: 0; border-radius: var(--r-card) var(--r-card) 0 0; box-shadow: none; }
 html .m-shell .sq .sq-summary { min-height: var(--h-touch-min); padding-left: 16px; padding-right: 16px; }
 html .m-shell .sq .sq-term-card { border: 0; }
-html .m-shell .sq .sq-term-card__check-btn { width: 32px; height: 32px; }
-html .m-shell .sq .sq-term-card__check-btn::before { content: ''; position: absolute; inset: -6px; }
+html .m-shell .sq .sq-term-card__check-btn { width: var(--h-touch-min); height: var(--h-touch-min); }
 html .m-shell .sq .sq-table__term-select { min-height: var(--h-touch-min); font-size: var(--fs-sm); }
-html .m-shell .sq .sq-pct-input { width: 38px; height: var(--h-touch-min); border-radius: var(--r-chip); font-size: 16px; }
+html .m-shell .sq .sq-pct-input { width: var(--h-touch-min); height: var(--h-touch-min); border-radius: var(--r-chip); font-size: 16px; }
 html .m-shell .sq .sq-table thead th { font-size: var(--fs-sm); border-bottom-width: 1px; }
 
 html body .gate-card { border-radius: var(--r-card); padding: 24px 20px 20px; box-shadow: none; }
