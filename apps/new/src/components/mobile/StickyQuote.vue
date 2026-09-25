@@ -308,11 +308,18 @@ const cards = computed(() => {
 
 /* 기간 카드 grid — 항상 표시 */
 .sq-terms {
-  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px;
+  display: flex; gap: 6px;
   padding: 0 16px 6px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
 }
+.sq-terms::-webkit-scrollbar { display: none; }
 .sq-term-card {
   position: relative;
+  flex: 0 0 92px; min-width: 92px;
+  scroll-snap-align: start;
   display: flex; flex-direction: column; align-items: center; gap: 3px;
   padding: 8px 6px;
   background: var(--bg-soft);
@@ -325,7 +332,7 @@ const cards = computed(() => {
   background: var(--brand-50);
 }
 .sq-term-card__check-btn {
-  position: absolute; top: -7px; right: -7px;
+  position: absolute; top: 0; right: 0;
   width: 44px; height: 44px;
   background: transparent; border: 0; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
@@ -353,6 +360,7 @@ const cards = computed(() => {
 .sq-table__term-select:focus { color: var(--brand); }
 .sq-table thead th.is-dim .sq-table__term-select { color: var(--ink-4); }
 .sq-term-card__monthly {
+  white-space: nowrap;
   font-size: var(--fs-lg); font-weight: 700; color: var(--ink-1);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.4px;
