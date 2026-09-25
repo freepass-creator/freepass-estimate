@@ -169,10 +169,10 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
   line-height: 1.35; letter-spacing: -0.5px;
 }
 .se-divider {
-  height: 1px; background: var(--line);
-  margin: 18px 0;
+  height: 0;
+  margin: 16px 0;
 }
-.se-field { margin-bottom: 22px; }
+.se-field { margin-bottom: 16px; }
 .se-label {
   display: flex; align-items: baseline; justify-content: space-between;
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
@@ -187,7 +187,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
 .se-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .se-card {
   display: flex; flex-direction: column; gap: 4px;
-  padding: 14px;
+  padding: 12px;
   background: var(--bg-soft);
   border: 0;
   border-radius: var(--r-card);
@@ -222,7 +222,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
 .se-select {
   width: 100%;
   height: var(--h-input);
-  padding: 0 32px 0 14px;
+  padding: 0 32px 0 12px;
   background: var(--bg);
   border: 1px solid var(--line-2);
   border-radius: var(--r-card);
