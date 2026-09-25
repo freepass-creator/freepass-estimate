@@ -97,7 +97,7 @@ export const quoteState = reactive({
     feeRatePct: loadFeeRate(),
     deliveryRegion: 웰릭스기본.deliveryRegion, deliveryCity: 웰릭스기본.deliveryRegion,   // 웰릭스는 10권역 — 권역 하나로 쓴다
     svc: 웰릭스기본.svc, insProperty: 웰릭스기본.insProperty, extraDriver: 웰릭스기본.extraDriver,
-    colorInt: '', colorIntPrice: 0,
+    colorInt: '', colorIntPrice: 0, colorIntId: null,
     discount: 0,
   },
   _lastSentQuoteId: null,
