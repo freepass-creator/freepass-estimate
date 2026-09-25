@@ -38,12 +38,7 @@ html .m-shell .ss-sheet :is(input, button, [tabindex]):focus-visible {
   scroll-margin-block-end: calc(var(--safe-bottom) + 72px);
 }
 
-/* Current Admin machine-SSOT lock: surface 4 / control 6 / mobile input 16. */
-:root {
-  --r-panel: 4px;
-  --r-control: 6px;
-  --fs-mobile-input: 16px;
-}
+/* Current Admin machine-SSOT role tokens live in tokens.css. */
 
 html .m-shell .sv .sv-title,
 html .m-shell .sc .sc-title,
