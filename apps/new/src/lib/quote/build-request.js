@@ -13,6 +13,16 @@ function 색추가금() {
   return Math.round((Number(v.color_price_manwon) || 0) * 10000);
 }
 
+export function 계산차량가({ trimPrice = 0, optionPrice = 0, exteriorColorPrice = 0, interiorColorPrice = 0, discount = 0 } = {}) {
+  const values = [trimPrice, optionPrice, exteriorColorPrice, interiorColorPrice, discount].map(Number);
+  if (!values.every(Number.isFinite)) {
+    const error = new Error('차량 가격 구성값이 올바르지 않습니다');
+    error.code = 'QUOTE_PRICE_COMPONENT_INVALID';
+    throw error;
+  }
+  return Math.max(0, values[0] + values[1] + values[2] + values[3] - values[4]);
+}
+
 /** @returns {object|null} provider-neutral quote request */
 export function 요청만들기() {
   const c = quoteState.cond || {};
@@ -30,7 +40,13 @@ export function 요청만들기() {
   // 차량가 기준은 상품마스터 한 기준으로 다시 조립한다.
   // 트림 + 일반옵션 + 외/내장색 - 할인. 구성축(AWD/인승)이 외부 provider 완성차에
   // 이미 흡수되는지는 adapter가 별도로 처리한다.
-  const 표준계산차량가 = Math.max(0, 트림가 + 옵션 + 외장색 + 내장색 - 할인);
+  const 표준계산차량가 = 계산차량가({
+    trimPrice: 트림가,
+    optionPrice: 옵션,
+    exteriorColorPrice: 외장색,
+    interiorColorPrice: 내장색,
+    discount: 할인,
+  });
 
   return {
     계약: QUOTE_REQUEST_CONTRACT,
