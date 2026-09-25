@@ -1,0 +1,77 @@
+/* FreePass Estimate final visual alignment.
+ * Authority: freepass-admin ADMIN-UI-UX-SSOT. Estimate flow remains independent.
+ */
+html .m-shell .sr .sr-title { margin-bottom: 16px; }
+html .m-shell .sr .sr-snapshot { margin: -4px 0 12px; padding: 12px; border-radius: var(--r-panel); }
+html .m-shell .sr .sr-car { padding: 12px; border-radius: var(--r-panel); }
+html .m-shell .sr .sr-car__total { padding-top: 8px; border-top: 0; }
+html .m-shell .sr .sr-term { padding: 12px; border-radius: var(--r-panel); }
+html .m-shell .sr .sr-term__monthly,
+html .m-shell .sr .sr-car__total b { text-align: right; }
+html .m-shell .sr .sr-cond { gap: 8px; padding: 0; background: transparent; border-radius: 0; overflow: visible; }
+html .m-shell .sr .sr-cond__row { padding: 12px; border-radius: var(--r-panel); font-size: var(--fs-base); }
+
+html .m-shell .sq.sq { border-top: 0; border-radius: var(--r-card) var(--r-card) 0 0; box-shadow: none; }
+html .m-shell .sq .sq-summary { min-height: var(--h-touch-min); padding-left: 16px; padding-right: 16px; }
+html .m-shell .sq .sq-term-card { border: 0; }
+html .m-shell .sq .sq-term-card__check-btn { width: var(--h-touch-min); height: var(--h-touch-min); }
+html .m-shell .sq .sq-table__term-select { min-height: var(--h-touch-min); font-size: var(--fs-sm); }
+html .m-shell .sq .sq-pct-input { width: var(--h-touch-min); height: var(--h-touch-min); border-radius: var(--r-chip); font-size: 16px; }
+html .m-shell .sq .sq-table thead th { font-size: var(--fs-sm); border-bottom-width: 1px; }
+
+html body .gate-card { border-radius: var(--r-panel); padding: 24px 20px 20px; box-shadow: none; }
+html body #gate-pin { height: var(--h-input); padding: 0 12px; border-width: 1px; border-radius: var(--r-chip); font-size: 16px; letter-spacing: 8px; }
+html body #gate-submit,
+html body #gate-admin { height: var(--h-cta); border-radius: var(--r-chip); font-size: var(--fs-base); }
+html body .gate-sub { font-size: var(--fs-sm); margin-bottom: 16px; }
+html body .gate-bg { background: #eef1f4; }
+
+html .m-shell .ss-sheet { max-height: 85vh; max-height: 85dvh; scroll-padding-block-end: calc(var(--safe-bottom) + 72px); }
+html .m-shell .ss-handle { height: var(--h-touch-min); }
+html .m-shell .ss-staff__edit { min-width: var(--h-touch-min); min-height: var(--h-touch-min); display: inline-flex; align-items: center; justify-content: center; }
+html .m-shell .ss-staff__done { height: var(--h-cta); }
+html .m-shell .ss-input { border-width: 1px; border-color: var(--line-2); font-size: var(--fs-mobile-input); }
+html .m-shell .ss-action { border: 0; }
+html .m-shell .ss-ci__input:focus-visible ~ .ss-ci__switch { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+html .m-shell .ss-sheet :is(input, button, [tabindex]):focus-visible {
+  scroll-margin-block-start: 16px;
+  scroll-margin-block-end: calc(var(--safe-bottom) + 72px);
+}
+
+/* Current Admin machine-SSOT lock: surface 4 / control 6 / mobile input 16. */
+:root {
+  --r-panel: 4px;
+  --r-control: 6px;
+  --fs-mobile-input: 16px;
+}
+
+html .m-shell .sv .sv-title,
+html .m-shell .sc .sc-title,
+html .m-shell .se .se-title { margin-bottom: 16px; }
+
+html .m-shell .sv .sv-crumb { min-height: var(--h-touch-min); }
+html .m-shell .sv .sv-block,
+html .m-shell .sc .sc-field,
+html .m-shell .se .se-field { margin-bottom: 16px; }
+html .m-shell .se .se-divider { height: 0; margin: 16px 0; background: transparent; }
+
+html .m-shell :is(.sv, .sc, .se)
+  input:not([type="checkbox"]):not([type="radio"]) { font-size: var(--fs-mobile-input); }
+
+html .m-shell .m-header,
+html .m-shell .m-progress { padding-left: 16px; padding-right: 16px; }
+html .m-shell .m-main { padding-left: 16px; padding-right: 16px; }
+
+html .m-shell .m-footer {
+  padding: 8px 16px calc(var(--safe-bottom) + 12px);
+  background: var(--bg);
+  border-top: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:first-child { flex: 3 1 0; }
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:last-child { flex: 7 1 0; }
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(1) { flex: 3 1 0; }
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(2) { flex: 3 1 0; }
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(3) { flex: 4 1 0; }
+html .m-shell .m-btn--icon::after { content: '이전'; }

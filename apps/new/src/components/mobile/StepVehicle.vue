@@ -456,8 +456,10 @@ function onFeeChange() {
       <div class="sv-brand-grid">
         <button
           v-for="b in brands" :key="b.manufacturer_id"
+          type="button"
           class="sv-brand-card"
           :class="{ 'is-selected': vehicleState.manufacturer === b.manufacturer_id }"
+          :aria-pressed="vehicleState.manufacturer === b.manufacturer_id"
           @click="selectBrand(b)"
         >
           <img v-if="BRAND_LOGOS[b.manufacturer_id]" :src="BRAND_LOGOS[b.manufacturer_id]" :alt="b.manufacturer_name" />
@@ -472,8 +474,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="m in models" :key="m.model_id"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.model === m.model_id }"
+          :aria-pressed="vehicleState.model === m.model_id"
           @click="selectModel(m)"
         >
           <span class="sv-row__label">{{ m.model_name }}</span>
@@ -488,8 +492,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="v in variants" :key="v.variant_id"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.variant === v.variant_id }"
+          :aria-pressed="vehicleState.variant === v.variant_id"
           @click="selectVariant(v)"
         >
           <span class="sv-row__label">{{ v.variant_name }}</span>
@@ -504,8 +510,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="g in specGroups" :key="g.label"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.trimGroup === g.label }"
+          :aria-pressed="vehicleState.trimGroup === g.label"
           @click="selectSpec(g)"
         >
           <span class="sv-row__label">{{ g.label }}
@@ -524,8 +532,10 @@ function onFeeChange() {
         <!-- 소제목 — 같은 엔진 안에서 갈리는 인승·구동·용도 (예: 5인승 2WD · 밴 · 렌터카) -->
         <div v-if="t.group && t.group !== trims[i - 1]?.group" class="sv-group">{{ t.group }}</div>
         <button
+          type="button"
           class="sv-trim-card"
           :class="{ 'is-selected': vehicleState.trim === t.trim_id }"
+          :aria-pressed="vehicleState.trim === t.trim_id"
           @click="selectTrim(t)"
         >
           <div class="sv-trim-card__top">
@@ -580,11 +590,14 @@ function onFeeChange() {
       <div v-else class="sv-opts">
         <button
           v-for="o in availableOptions" :key="o.id"
+          type="button"
           class="sv-opt"
           :class="{
             'is-selected': vehicleState.options.has(o.id),
             'is-disabled': !isEnabled(o.id) && !vehicleState.options.has(o.id),
           }"
+          :aria-pressed="vehicleState.options.has(o.id)"
+          :aria-disabled="!isEnabled(o.id) && !vehicleState.options.has(o.id)"
           @click="toggleOption(o.id)"
         >
           <div class="sv-opt__top">
@@ -638,8 +651,10 @@ function onFeeChange() {
         <div class="sv-color-grid">
           <button
             v-for="(c, i) in exteriorColors" :key="i"
+            type="button"
             class="sv-color-card"
             :class="{ 'is-selected': vehicleState.color === i }"
+            :aria-pressed="vehicleState.color === i"
             :title="c.name"
             :disabled="c._paintUnavailable"
             @click="pickExtColor(i)"
@@ -662,8 +677,10 @@ function onFeeChange() {
         <div class="sv-color-grid">
           <button
             v-for="c in 내장색들" :key="c.value"
+            type="button"
             class="sv-color-card"
             :class="{ 'is-selected': quoteState.cond.colorInt === c.value }"
+            :aria-pressed="quoteState.cond.colorInt === c.value"
             @click="pickIntColor(c)"
           >
             <span class="sv-color-swatch" :style="{ background: c.swatch }"></span>
@@ -723,7 +740,7 @@ function onFeeChange() {
 .sv { padding-top: 4px; }
 .sv-title {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
-  color: var(--ink-1); margin: 0 0 24px;
+  color: var(--ink-1); margin: 0 0 16px;
   line-height: 1.35; letter-spacing: -0.5px;
 }
 
@@ -734,7 +751,7 @@ function onFeeChange() {
 }
 .sv-crumb {
   display: inline-flex; align-items: center; gap: 4px;
-  padding: 0 2px; min-height: 32px; border: 0; background: transparent;
+  padding: 0 8px; min-width: 44px; min-height: 44px; border: 0; background: transparent;
   color: var(--ink-2); font-weight: var(--fw-medium);
   font-family: inherit; font-size: var(--fs-sm);
   cursor: pointer;
@@ -783,7 +800,7 @@ function onFeeChange() {
 .sv-brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .sv-brand-card {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px; padding: 22px 8px;
+  gap: 8px; padding: 16px 8px;
   background: var(--bg-soft);
   border: 0;
   border-radius: var(--r-card);
@@ -810,7 +827,7 @@ function onFeeChange() {
 .sv-list { display: flex; flex-direction: column; gap: 8px; }
 .sv-row {
   display: flex; align-items: center; justify-content: space-between;
-  padding: var(--sp-4);
+  padding: var(--sp-3);
   background: var(--bg-soft);
   border: 0;
   border-radius: var(--r-card);
@@ -827,10 +844,10 @@ function onFeeChange() {
 /* 트림 카드 */
 .sv-trim-card {
   display: flex; flex-direction: column; gap: 6px;
-  padding: 16px;
+  padding: 12px;
   background: var(--bg-soft);
   border: 0;
-  border-radius: 12px;
+  border-radius: var(--r-card);
   text-align: left;
   font-family: inherit; cursor: pointer;
 }
@@ -852,7 +869,7 @@ function onFeeChange() {
 .sv-group:first-child { margin-top: 0; }
 
 /* 옵션·색상 sub-step */
-.sv-block { margin-bottom: 22px; }
+.sv-block { margin-bottom: 16px; }
 .sv-block__label {
   display: flex; align-items: baseline; justify-content: space-between;
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
@@ -914,6 +931,7 @@ function onFeeChange() {
 }
 .sv-disclosure__summary {
   display: flex; align-items: center; gap: 8px;
+  min-height: 44px;
   list-style: none;
   cursor: pointer;
   user-select: none;
@@ -1003,9 +1021,9 @@ function onFeeChange() {
 /* 가격 합산 카드 */
 .sv-total {
   margin-top: 28px;
-  padding: 14px 16px;
+  padding: 12px;
   background: var(--brand-50);
-  border-radius: 12px;
+  border-radius: var(--r-card);
 }
 .sv-total__row {
   display: flex; justify-content: space-between;
@@ -1014,8 +1032,7 @@ function onFeeChange() {
   padding: 3px 0;
 }
 .sv-total__row--total {
-  border-top: 1px solid var(--brand-100);
-  margin-top: 6px; padding-top: 8px;
+  margin-top: 6px; padding-top: 6px;
   font-size: var(--fs-lg); color: var(--brand); font-weight: var(--fw-bold);
 }
 </style>

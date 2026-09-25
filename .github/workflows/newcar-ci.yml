@@ -1,4 +1,4 @@
-name: New-car baseline CI
+name: FreePass Estimate UI + engine CI
 
 on:
   push:
@@ -70,7 +70,7 @@ jobs:
           ref: 707a57f8f97aed28eaab7f1fa7e42cd0bff9ee2d
           path: .ui-reference
           persist-credentials: false
-      - name: Historical UI structure reference
+      - name: UI structure guard
         working-directory: apps/new
         run: node scripts/check-ui-parity.mjs
       - name: Action placement standard
@@ -82,7 +82,7 @@ jobs:
       - name: Mobile refresh brand identity
         working-directory: apps/new
         run: node scripts/check-mobile-brand-identity.mjs
-      - name: Provisional Sales control design reference
+      - name: FreePass Admin control design reference
         working-directory: apps/new
         run: node scripts/check-control-design-reference.mjs
       - name: FreePass visual grammar
@@ -168,3 +168,48 @@ jobs:
           path: apps/new/dist
           retention-days: 3
           if-no-files-found: error
+
+  visual-audit:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/new
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/new/package-lock.json
+      - name: Install app dependencies
+        run: npm ci
+      - name: Install browser audit dependency
+        run: npm install --no-save --package-lock=false playwright@1.55.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Start Vite
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/freepass-vite.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:5173/mobile.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/freepass-vite.log
+          exit 1
+      - name: Rendered UI visual audit
+        env:
+          BASE_URL: http://127.0.0.1:5173
+          ARTIFACT_DIR: artifacts/ui-visual-audit
+        run: node scripts/e2e-ui-visual-audit.mjs
+      - name: Upload UI visual audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-visual-audit
+          path: apps/new/artifacts/ui-visual-audit
+          retention-days: 3
+          if-no-files-found: warn

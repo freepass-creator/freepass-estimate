@@ -17,4 +17,4 @@ need(/:focus-visible\s*\{/.test(css), 'focus-visible rule missing');
 need(/outline:\s*3px\s+solid\s+var\(--focus-ring\)/.test(css), 'focus ring missing');
 need(/prefers-reduced-motion:\s*reduce/.test(css), 'reduced-motion rule missing');
 
-console.log('accessibility baseline: PASS');
+console.log('accessibility baseline: PASS — Admin 44px touch floor');
