@@ -20,29 +20,100 @@ function finite(value, field) {
   return n;
 }
 
-function selectedOptions(request) {
+function requestSelectedOptions(request) {
   const options = request?.차?.구성?.선택옵션;
   if (!Array.isArray(options)) return [];
   return options.map((option) => ({
     optionId: required(option?.id, 'selectedOption.id'),
-    name: String(option?.name ?? '').trim(),
     price: finite(option?.price_won ?? option?.price ?? 0, 'selectedOption.price'),
-  }));
+  })).sort((a, b) => a.optionId < b.optionId ? -1 : a.optionId > b.optionId ? 1 : 0);
 }
 
-function vehiclePriceSnapshot(request) {
+function assertMasterSnapshot(master, request) {
+  const snap = master?.quoteSnapshot;
+  if (!snap || typeof snap !== 'object') {
+    const error = new Error('FreePass Data quote snapshot is required');
+    error.code = 'QUOTE_MASTER_SNAPSHOT_REQUIRED';
+    throw error;
+  }
+  if (!Array.isArray(snap.selectedOptionIds) || !Array.isArray(snap.optionPriceSnapshot) ||
+      !snap.vehiclePriceSnapshot || typeof snap.vehiclePriceSnapshot !== 'object') {
+    const error = new Error('FreePass Data quote snapshot is incomplete');
+    error.code = 'QUOTE_MASTER_SNAPSHOT_REQUIRED';
+    throw error;
+  }
+
+  const masterOptions = [...snap.optionPriceSnapshot]
+    .map((option) => ({
+      optionId: required(option?.optionId, 'masterOption.optionId'),
+      name: String(option?.name ?? '').trim(),
+      price: finite(option?.price, 'masterOption.price'),
+    }))
+    .sort((a, b) => a.optionId < b.optionId ? -1 : a.optionId > b.optionId ? 1 : 0);
+  const requestOptions = requestSelectedOptions(request);
+
+  if (JSON.stringify(requestOptions.map(({ optionId, price }) => ({ optionId, price }))) !==
+      JSON.stringify(masterOptions.map(({ optionId, price }) => ({ optionId, price })))) {
+    const error = new Error('selected option IDs/prices do not match FreePass Data master');
+    error.code = 'QUOTE_MASTER_OPTION_MISMATCH';
+    throw error;
+  }
+
   const price = request?.차?.가격 || {};
-  return {
+  const authoritative = snap.vehiclePriceSnapshot;
+  const expected = {
+    trimPrice: finite(authoritative.basePrice, 'masterPrice.basePrice'),
+    optionPrice: masterOptions.reduce((sum, option) => sum + option.price, 0),
+    exteriorColorPrice: finite(authoritative.exteriorColorPrice, 'masterPrice.exteriorColorPrice'),
+    interiorColorPrice: finite(authoritative.interiorColorPrice, 'masterPrice.interiorColorPrice'),
+  };
+  const actual = {
     trimPrice: finite(price.트림 ?? 0, 'vehiclePrice.trim'),
     optionPrice: finite(price.옵션 ?? 0, 'vehiclePrice.options'),
     exteriorColorPrice: finite(price.외장색 ?? 0, 'vehiclePrice.exteriorColor'),
     interiorColorPrice: finite(price.내장색 ?? 0, 'vehiclePrice.interiorColor'),
-    discount: finite(price.할인 ?? 0, 'vehiclePrice.discount'),
-    standardCalculatedVehiclePrice: finite(price.표준계산차량가 ?? 0, 'vehiclePrice.standardCalculatedVehiclePrice'),
-    priceBefore: finite(price.기준전 ?? 0, 'vehiclePrice.priceBefore'),
-    priceAfter: finite(price.기준후 ?? 0, 'vehiclePrice.priceAfter'),
-    priceBasis: String(price.기준명 ?? '').trim(),
   };
+
+  for (const key of Object.keys(expected)) {
+    if (actual[key] !== expected[key]) {
+      const error = new Error(`${key} does not match FreePass Data master`);
+      error.code = 'QUOTE_MASTER_PRICE_MISMATCH';
+      throw error;
+    }
+  }
+
+  const discount = finite(price.할인 ?? 0, 'vehiclePrice.discount');
+  const calculated = Math.max(
+    0,
+    expected.trimPrice + expected.optionPrice + expected.exteriorColorPrice + expected.interiorColorPrice - discount
+  );
+  const requestCalculated = finite(price.표준계산차량가 ?? 0, 'vehiclePrice.standardCalculatedVehiclePrice');
+  if (calculated !== requestCalculated) {
+    const error = new Error('calculated vehicle price does not match master price components');
+    error.code = 'QUOTE_MASTER_PRICE_MISMATCH';
+    throw error;
+  }
+
+  return Object.freeze({
+    selectedOptionIds: Object.freeze(masterOptions.map((option) => option.optionId)),
+    optionPriceSnapshot: Object.freeze(masterOptions),
+    vehiclePriceSnapshot: Object.freeze({
+      productId: required(snap.productId, 'masterSnapshot.productId'),
+      modelYear: finite(snap.modelYear, 'masterSnapshot.modelYear'),
+      basePrice: expected.trimPrice,
+      optionPrice: expected.optionPrice,
+      exteriorColorPrice: expected.exteriorColorPrice,
+      interiorColorPrice: expected.interiorColorPrice,
+      discount,
+      standardCalculatedVehiclePrice: calculated,
+      priceBefore: finite(price.기준전 ?? 0, 'vehiclePrice.priceBefore'),
+      priceAfter: finite(price.기준후 ?? 0, 'vehiclePrice.priceAfter'),
+      priceBasis: String(price.기준명 ?? '').trim(),
+      exteriorColorName: String(authoritative.exteriorColorName ?? '').trim(),
+      interiorColorName: String(authoritative.interiorColorName ?? '').trim(),
+      currency: 'KRW',
+    }),
+  });
 }
 
 function validateCalculation(request, calculation) {
@@ -73,7 +144,7 @@ export async function issueQuotesFromCalculation({
   calculation,
   masterContext,
   pricingEngineVersion,
-  sourceRevision,
+  sourceRevision = null,
   createdAt,
   quoteVersion = 1,
 } = {}) {
@@ -90,10 +161,14 @@ export async function issueQuotesFromCalculation({
   };
 
   const engineVersion = required(pricingEngineVersion, 'pricingEngineVersion');
-  const revision = required(sourceRevision, 'sourceRevision');
+  const revision = required(master.sourceRevision, 'masterContext.sourceRevision');
+  if (sourceRevision != null && required(sourceRevision, 'sourceRevision') !== revision) {
+    const error = new Error('sourceRevision does not match FreePass Data master evidence');
+    error.code = 'QUOTE_MASTER_SOURCE_MISMATCH';
+    throw error;
+  }
   const issuedAt = required(createdAt, 'createdAt');
-  const options = selectedOptions(request);
-  const priceSnapshot = vehiclePriceSnapshot(request);
+  const snapshot = assertMasterSnapshot(master, request);
   const mileage = required(request?.조건?.주행, 'mileageCondition');
 
   const quotes = [];
@@ -116,15 +191,15 @@ export async function issueQuotesFromCalculation({
 
     quotes.push(await buildIssuedQuote({
       ...identity,
-      selectedOptionIds: options.map((option) => option.optionId),
+      selectedOptionIds: snapshot.selectedOptionIds,
       contractTerm: finite(scenario.기간, 'contractTerm'),
       mileageCondition: mileage,
       deposit: finite(row.보증금 ?? 0, 'deposit'),
       prepayment: finite(row.선납금 ?? 0, 'prepayment'),
       depositRatePct: finite(scenario.보증금 ?? 0, 'depositRatePct'),
       prepaymentRatePct: finite(scenario.선납 ?? 0, 'prepaymentRatePct'),
-      vehiclePriceSnapshot: priceSnapshot,
-      optionPriceSnapshot: options,
+      vehiclePriceSnapshot: snapshot.vehiclePriceSnapshot,
+      optionPriceSnapshot: snapshot.optionPriceSnapshot,
       totalVehiclePrice,
       monthlyRental,
       pricingEngineVersion: engineVersion,
