@@ -207,6 +207,9 @@ export function masterContextFromEstimateMasterRecord({
       optionPriceSnapshot: options,
       vehiclePriceSnapshot: Object.freeze({
         basePrice: moneyAmount(record.basePrice, 'basePrice'),
+        priceBefore: record.priceBefore ? moneyAmount(record.priceBefore, 'priceBefore') : 0,
+        priceAfter: record.priceAfter ? moneyAmount(record.priceAfter, 'priceAfter') : 0,
+        priceBasis: String(record.priceBasis ?? '').trim(),
         exteriorColorPrice: moneyAmount(ext.price, 'exteriorColorPrice'),
         interiorColorPrice: moneyAmount(int.price, 'interiorColorPrice'),
         exteriorColorName: String(ext.name ?? '').trim(),
