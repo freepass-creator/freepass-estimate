@@ -95,6 +95,13 @@ assert.match(finalUi, /\.sr-term\s*\{[\s\S]*padding:\s*12px;/,
   'quote result term cards must keep the compact mobile density');
 assert.match(finalUi, /\.sq-table__term-select\s*\{[\s\S]*min-height:\s*var\(--h-touch-min\);/,
   'mobile quote controls must preserve the 44px touch floor');
+const sticky = read('src/components/mobile/StickyQuote.vue');
+assert.match(sticky, /\.sq-detail\s*\{[\s\S]*border-top:\s*0;/,
+  'expanded mobile quote detail must stay line-free');
+assert.match(sticky, /\.sq-table th, \.sq-table td\s*\{[\s\S]*border-bottom:\s*0;/,
+  'expanded mobile quote rows must not reintroduce separators');
+assert.match(sticky, /\.sq-table thead th\s*\{[\s\S]*font-size:\s*var\(--fs-sm\);[\s\S]*border-bottom:\s*0;/,
+  'expanded mobile quote headers must use support scale without divider lines');
 assert.match(finalUi, /#gate-submit,[\s\S]*#gate-admin\s*\{[\s\S]*height:\s*var\(--h-cta\);/,
   'staff gate actions must remain mobile 44px controls');
 assert.match(finalUi, /\.sv-pc__in, \.sc-pct, \.se-discount\)\s*\{[\s\S]*border-color:\s*transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\);/,
