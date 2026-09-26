@@ -30,7 +30,7 @@
     "check:authority-boundary": "node scripts/check-authority-boundary.mjs",
     "check:quote-core-convergence": "node scripts/check-quote-core-convergence.mjs",
     "check:quote-preview": "node scripts/check-quote-preview.mjs",
-    "check:feature": "node --test scripts/feature-conditions.test.mjs scripts/feature-options.test.mjs scripts/feature-vehicle-selection.test.mjs scripts/feature-actions.test.mjs scripts/feature-roles.test.mjs scripts/feature-history.test.mjs"
+    "check:feature": "node --test scripts/feature-conditions.test.mjs scripts/feature-options.test.mjs scripts/feature-vehicle-selection.test.mjs scripts/feature-actions.test.mjs scripts/feature-roles.test.mjs scripts/feature-history.test.mjs scripts/feature-vehicle-kind.test.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"
