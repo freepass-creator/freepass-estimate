@@ -2,6 +2,12 @@ import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT 
 import assert from 'node:assert/strict';
 import { 공급자설정, 공급자키 } from '../src/lib/quote/provider-config.js';
 import { 결과검사, 요청검사 } from '../src/lib/quote/spec.js';
+import { normalizePricingEngineEvidence } from '../src/lib/quote/pricing-engine.js';
+
+assert.throws(() => 공급자설정({}), (error) =>
+  error?.code === 'PROVIDER_CONFIG_MISSING',
+  'missing provider config must fail closed'
+);
 
 const standardCfg = { quote_provider: { mode: 'standard', adapter_id: 'freepass-standard' } };
 assert.deepEqual(공급자설정(standardCfg), {
@@ -28,6 +34,15 @@ const request = {
 assert.equal(요청검사(request), null);
 assert.match(요청검사({ ...request, 계약: 'freepass-quote-request/v999' }), /지원하지 않는 견적 요청 계약/);
 assert.equal(결과검사([{ 월대여료: 1 }], request.안들), null);
+
+assert.equal(normalizePricingEngineEvidence({
+  id:'freepass-standard-newcar',version:'freepass-standard/newcar@1.0.0',
+  evidence:'LOCAL_SOURCE_POLICY_MANIFEST',verified:true,
+}).verified,true);
+assert.throws(()=>normalizePricingEngineEvidence({
+  id:'welrix-excel',version:'welrix-excel/v6.1',evidence:'ADAPTER_PIN_ONLY',verified:false,
+},{requireVerified:true}),/not verified/);
+assert.throws(()=>normalizePricingEngineEvidence(null),/required/);
 
 // Calculation implementations are tested separately:
 // - server-side FreePass standard: check-standard-engine.mjs

@@ -50,9 +50,10 @@ const intCurrentValue = computed(() => {
 });
 
 function onIntChange(value) {
-  const [name, price] = value.split('|');
+  const [name, price, stableEncoded = ''] = value.split('|');
   quoteState.cond.colorInt = name || '';
   quoteState.cond.colorIntPrice = +price || 0;
+  quoteState.cond.colorIntId = stableEncoded ? decodeURIComponent(stableEncoded) : null;
   // 외부 hook (renderQuoteDoc 등)
   window.__welrix_recompute?.();
 }

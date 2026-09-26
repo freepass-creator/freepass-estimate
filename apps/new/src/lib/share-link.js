@@ -1,4 +1,5 @@
 import { SHARE_SNAPSHOT_CONTRACT, CURRENT_SHARE_SNAPSHOT_VERSION, LEGACY_SHARE_SNAPSHOT_VERSION, QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_EXECUTION_CONTRACT } from './quote/contracts.js';
+import { includedScenarioIndexes, selectedLiveQuoteTerms } from './feature/actions.js';
 
 // ============================================================================
 //  공유 링크 — «고른 것 + 확정 견적 Snapshot» 을 주소에 담는다
@@ -97,22 +98,18 @@ function 안전한스냅샷(값) {
 /** 지금 웰릭스 계산 결과를 «고객에게 공개 가능한» Snapshot 으로 만든다. */
 function 스냅샷만들기(quoteState, 견적상태) {
   if (!견적상태 || 견적상태.상태 !== 'ok' || !Array.isArray(견적상태.결과)) return null;
-  const scenarios = quoteState?.scenarios || [];
-  const terms = scenarios.map((sc, i) => {
-    const r = 견적상태.결과[i];
-    if (!r) return null;
-    return {
-      term: +sc.term,
-      monthly: r.월대여료 ?? null,
-      acquire: r.인수가 ?? null,
-      totalCarPrice: r.총차량가 ?? null,
-      deposit: r.보증금 ?? null,
-      prepay: r.선납금 ?? null,
-      depPct: +sc.dep || 0,
-      prePct: +sc.pre || 0,
-    };
-  }).filter(Boolean);
-  if (!terms.length || !terms.some((x) => x.monthly != null)) return null;
+  const selected = selectedLiveQuoteTerms(quoteState, 견적상태.결과);
+  const terms = selected.map(({ scenario: sc, result: r }) => ({
+    term: +sc.term,
+    monthly: r.월대여료 ?? null,
+    acquire: r.인수가 ?? null,
+    totalCarPrice: r.총차량가 ?? null,
+    deposit: r.보증금 ?? null,
+    prepay: r.선납금 ?? null,
+    depPct: +sc.dep || 0,
+    prePct: +sc.pre || 0,
+  }));
+  if (!terms.length) return null;
 
   const c = quoteState?.cond || {};
   const car = quoteState?.vehicle || {};
@@ -176,10 +173,12 @@ export function 담기(vehicleState, quoteState) {
 
   /* 기간·보증금·선납은 각 시나리오마다 같이 보존한다. 내부 수수료/신용은 넣지 않는다. */
   const scenarios = quoteState?.scenarios || [];
-  if (scenarios.length) {
-    p.set('y', scenarios.map((s) => +s.term || 0).join('.'));
-    p.set('dp', scenarios.map((s) => +s.dep || 0).join('.'));
-    p.set('pp', scenarios.map((s) => +s.pre || 0).join('.'));
+  const included = includedScenarioIndexes(quoteState);
+  if (included.length) {
+    const selectedScenarios = included.map((index) => scenarios[index]).filter(Boolean);
+    p.set('y', selectedScenarios.map((s) => +s.term || 0).join('.'));
+    p.set('dp', selectedScenarios.map((s) => +s.dep || 0).join('.'));
+    p.set('pp', selectedScenarios.map((s) => +s.pre || 0).join('.'));
   }
 
   return p.toString();

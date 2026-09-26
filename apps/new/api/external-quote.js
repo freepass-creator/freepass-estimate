@@ -3,11 +3,39 @@ import { join } from 'node:path';
 import { configurationAxes, resolveProviderCandidate, absorbedAxisOptionIds } from '../src/lib/newcar/configuration-resolver.js';
 import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 import { EXTERNAL_PROVIDER_POLICY, providerPublicMessage, providerRetryable } from '../src/lib/quote/provider-policy.js';
+import { authoritativeQuoteRequest } from './_master/authoritative-request.js';
+import { conditionCostsFromRequest } from '../src/lib/quote/condition-cost-contract.js';
 
 // Server-side external quote adapter router.
 // Never exposes partner Excel files, ERP credentials or upstream auth to the browser.
 
 const WELRIX_URL = 'https://welrixmobility.netlify.app/api/estimate';
+const WELRIX_EXPECTED_ENGINE_VERSION = 'welrix-excel/v6.1';
+const WELRIX_ENGINE_EVIDENCE_CONTRACT = 'welrix-pricing-engine-evidence/v1';
+
+function welrixPricingEngineEvidence(upstream) {
+  const proof = upstream?.pricingEngine;
+  if (proof?.contract === WELRIX_ENGINE_EVIDENCE_CONTRACT &&
+      proof?.id === 'welrix-excel' &&
+      proof?.verified === true &&
+      typeof proof?.version === 'string' &&
+      proof.version.trim()) {
+    const upstreamVersion = proof.version.trim();
+    return Object.freeze({
+      id: 'welrix-excel',
+      version: upstreamVersion,
+      evidence: 'UPSTREAM_CONTRACT',
+      verified: true,
+      upstreamVersion,
+    });
+  }
+  return Object.freeze({
+    id: 'welrix-excel',
+    version: WELRIX_EXPECTED_ENGINE_VERSION,
+    evidence: 'ADAPTER_PIN_ONLY',
+    verified: false,
+  });
+}
 
 let PRODUCT_INDEX = null;
 function productIndex() {
@@ -82,30 +110,77 @@ function logProviderFailure({ kind, adapterId, error }) {
   console.error('[external-quote]', JSON.stringify(payload));
 }
 
+export function externalOptionPrice(price = {}, car = {}, absorbedWon = 0) {
+  const option = Number(price.옵션 ?? car.옵션가 ?? 0);
+  const exterior = Number(price.외장색 ?? car.색추가금 ?? 0);
+  const interior = Number(price.내장색 ?? 0);
+  const absorbed = Number(absorbedWon ?? 0);
+  if (![option, exterior, interior, absorbed].every(Number.isFinite)) {
+    throw new ProviderRuntimeError('PROVIDER_RESPONSE_INVALID', {
+      status: 422,
+      retryable: false,
+      diagnostic: { cause_name: 'PRICE_COMPONENT_INVALID' },
+    });
+  }
+  return Math.max(0, option - absorbed + exterior + interior);
+}
+
+export function externalManualVehiclePrice(price = {}, absorbedWon = 0) {
+  const trim = Number(price.트림);
+  const absorbed = Number(absorbedWon ?? 0);
+  if (!Number.isFinite(trim) || trim <= 0 || !Number.isFinite(absorbed) || absorbed < 0) {
+    throw new ProviderRuntimeError('PROVIDER_PRICE_BASIS_INVALID', {
+      status: 422,
+      retryable: false,
+      diagnostic: { cause_name: 'CANONICAL_BASE_PRICE_INVALID' },
+    });
+  }
+  return Math.round(trim + absorbed);
+}
+
+export function externalCanonicalVehiclePrice(price = {}) {
+  const total = Number(price.표준계산차량가);
+  if (!Number.isFinite(total) || total <= 0) {
+    throw new ProviderRuntimeError('PROVIDER_PRICE_BASIS_INVALID', {
+      status: 422,
+      retryable: false,
+      diagnostic: { cause_name: 'CANONICAL_TOTAL_PRICE_INVALID' },
+    });
+  }
+  return Math.round(total);
+}
+
 function welrixBody(request) {
   const 차 = request?.차 || {};
   const 가격 = 차.가격 || {};
   const 조건 = request?.조건 || {};
   const 안들 = request?.안들 || [];
   const resolved = welrixProviderResolution(request);
+  const conditionCosts = conditionCostsFromRequest(request);
+
+  // Welrix upstream exposes one dashcam/prep fee input and has no explicit
+  // navi/hipass fields. Never silently fold unsupported money into another field.
+  if (conditionCosts.naviFee > 0 || conditionCosts.hipassFee > 0) {
+    throw new ProviderUnsupportedError();
+  }
 
   return {
     model: resolved.candidate.api_model,
     old: false,
-    manualPrice: 0,
+    // External providers supply formulas, not vehicle price authority.
+    // Base row price is always the FreePass Data canonical base plus any option axis
+    // already absorbed into the provider's completed vehicle row.
+    manualPrice: externalManualVehiclePrice(가격, resolved.absorbedWon),
     inputs: 안들.map((a) => ({
       credit: 조건.신용,
       termMonths: a.기간,
       mileage: 조건.주행,
       // AWD/인승처럼 provider의 완성차 row에 이미 포함된 구성 옵션은 다시 더하지 않는다.
-      optionPrice: Math.max(0,
-        (가격.옵션 || 차.옵션가 || 0) - resolved.absorbedWon
-        + (가격.외장색 || 차.색추가금 || 0)
-      ),
+      optionPrice: externalOptionPrice(가격, 차, resolved.absorbedWon),
       stockDiscount: 가격.할인 || 차.할인 || 0,
-      deliveryFee: 조건.탁송비,
-      tintFee: 조건.썬팅비,
-      dashcamFee: 조건.블박비,
+      deliveryFee: conditionCosts.deliveryFee,
+      tintFee: conditionCosts.tintFee,
+      dashcamFee: conditionCosts.dashcamFee,
       deposit_pct: (a.보증금 || 0) / 100,
       prepay_pct: (a.선납 || 0) / 100,
       liability: 조건.대물,
@@ -117,12 +192,14 @@ function welrixBody(request) {
 }
 
 async function welrixExcel(request) {
+  const body = welrixBody(request);
+  const canonicalTotal = externalCanonicalVehiclePrice(request?.차?.가격 || {});
   let r;
   try {
     r = await fetch(WELRIX_URL, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(welrixBody(request)),
+      body: JSON.stringify(body),
       signal: AbortSignal.timeout
         ? AbortSignal.timeout(EXTERNAL_PROVIDER_POLICY.timeout_ms)
         : undefined,
@@ -163,14 +240,50 @@ async function welrixExcel(request) {
     });
   }
 
+  const reportedBasePrice = Number(j.price);
+  if (!Number.isFinite(reportedBasePrice) || Math.round(reportedBasePrice) !== body.manualPrice) {
+    throw new ProviderRuntimeError('PROVIDER_PRICE_OVERRIDE_REJECTED', {
+      status: 502,
+      retryable: false,
+      diagnostic: {
+        cause_name: 'MANUAL_PRICE_NOT_HONORED',
+        expected_price: body.manualPrice,
+        reported_price: Number.isFinite(reportedBasePrice) ? Math.round(reportedBasePrice) : null,
+      },
+    });
+  }
+
+  for (const [idx, result] of j.results.entries()) {
+    if (result == null) continue;
+    for (const field of ['totalCarPrice', 'consumerPrice']) {
+      if (result[field] == null) continue;
+      const reported = Number(result[field]);
+      if (!Number.isFinite(reported) || Math.round(reported) !== canonicalTotal) {
+        throw new ProviderRuntimeError('PROVIDER_PRICE_OVERRIDE_REJECTED', {
+          status: 502,
+          retryable: false,
+          diagnostic: {
+            cause_name: 'PROVIDER_TOTAL_PRICE_MISMATCH',
+            field,
+            result_index: idx,
+            expected_price: canonicalTotal,
+            reported_price: Number.isFinite(reported) ? Math.round(reported) : null,
+          },
+        });
+      }
+    }
+  }
+
   return {
-    vehiclePrice: j.price ?? null,
+    // Canonical price is ours. Provider-returned prices are never promoted to master facts.
+    vehiclePrice: canonicalTotal,
+    pricingEngine: welrixPricingEngineEvidence(j),
     results: j.results.map((g) => (g == null ? null : {
       monthlyRent: g.monthlyRent,
       deposit: g.deposit,
       prepay: g.prepay,
       acquirePrice: g.acquirePrice,
-      totalCarPrice: g.totalCarPrice,
+      totalCarPrice: canonicalTotal,
       payFee: g.payFee,
     })),
   };
@@ -195,7 +308,11 @@ export default async function handler(req, res) {
   try {
     let out;
     if (kind === 'excel' && adapterId === 'welrix') {
-      out = await welrixExcel(request);
+      const authoritative = await authoritativeQuoteRequest(request);
+      out = {
+        ...(await welrixExcel(authoritative.request)),
+        priceBasis: authoritative.priceBasis,
+      };
     } else if (kind === 'excel' || kind === 'erp') {
       return bad(res, 501, providerPublicMessage('PROVIDER_ADAPTER_UNREGISTERED'), 'PROVIDER_ADAPTER_UNREGISTERED', false);
     } else {
@@ -214,6 +331,18 @@ export default async function handler(req, res) {
       ...out,
     });
   } catch (rawError) {
+    if (String(rawError?.code || '').startsWith('FREEPASS_DATA_')) {
+      const status = Number(rawError?.status);
+      const safeStatus = Number.isInteger(status) && status >= 400 && status <= 599 ? status : 503;
+      return bad(
+        res,
+        safeStatus,
+        'FreePass Data 차종 기준값을 확인할 수 없습니다.',
+        rawError.code,
+        safeStatus >= 500,
+      );
+    }
+
     const error = rawError instanceof ProviderRuntimeError
       ? rawError
       : new ProviderRuntimeError('PROVIDER_ERROR', {

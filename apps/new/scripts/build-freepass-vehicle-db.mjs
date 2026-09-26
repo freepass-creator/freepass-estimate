@@ -257,9 +257,10 @@ const colorHex=name=>{
  return'#d9dde1';
 };
 const colorObj=c=>{
- if(typeof c==='string')return{name:c,code:c,hex:colorHex(c),price:0,_price_won:0};
+ if(typeof c==='string')return{name:c,code:c,hex:colorHex(c),price:0,_price_won:0,_source_color_code:null};
  const price=Number(c?.price||0);
- return{name:S(c?.name)||S(c?.label),code:S(c?.code)||S(c?.name)||'color',hex:S(c?.hex)||colorHex(c?.name),price:price/10000,_price_won:price,ok:c?.ok};
+ const sourceCode=S(c?.code);
+ return{name:S(c?.name)||S(c?.label),code:sourceCode||S(c?.name)||'color',hex:S(c?.hex)||colorHex(c?.name),price:price/10000,_price_won:price,ok:c?.ok,_source_color_code:sourceCode||null};
 };
 const uniqColors=arr=>{
  const m=new Map();for(const c of arr.map(colorObj).filter(x=>x.name)){
@@ -279,7 +280,7 @@ function ensureMfr(name){
 }
 function ensureModel(mfr,name){
  const id='md_'+hash(mfr.manufacturer_name+'|'+name);
- if(!mfr.models.has(name))mfr.models.set(name,{model_id:id,model_name:name,category:'',year:2026,variants:new Map(),exterior_colors:[],_interior:[]});
+ if(!mfr.models.has(name))mfr.models.set(name,{model_id:id,model_name:name,category:'',year:null,variants:new Map(),exterior_colors:[],_interior:[]});
  return mfr.models.get(name);
 }
 function ensureVariant(model,engine,r){
@@ -302,6 +303,8 @@ function mergeOptionRow(v,r,productId){
    const price=Number(o?.price||0)/10000;
    v.options_master[id]={
      name:S(o?.name)||rawId,price,sub:S(o?.sub),
+     _source_option_id:rawId,
+     _stable_option_id:S(r.trimKey)?S(r.trimKey)+'::opt:'+encodeURIComponent(rawId):null,
      ...(Array.isArray(o?.requires)&&o.requires.length?{requires:o.requires.map(x=>optionRef(x,om)).filter(Boolean).map(x=>'o_'+hash(productId+'|'+x))}:{})
    };
  }
@@ -309,7 +312,7 @@ function mergeOptionRow(v,r,productId){
    for(const o of r.options){
      const rawId='flat_'+hash(S(o?.name)+'|'+Number(o?.price||0));
      const id='o_'+hash(productId+'|'+rawId);idMap[rawId]=id;
-     v.options_master[id]={name:S(o?.name),price:Number(o?.price||0)/10000,sub:''};
+     v.options_master[id]={name:S(o?.name),price:Number(o?.price||0)/10000,sub:'',_source_option_id:rawId,_stable_option_id:S(r.trimKey)?S(r.trimKey)+'::opt:'+encodeURIComponent(rawId):null};
    }
  }
  const rawAvail=Array.isArray(r.availableOptions)?r.availableOptions:(Object.keys(om).length?Object.keys(om):Object.keys(idMap));
@@ -341,8 +344,15 @@ for(const r of feed.rows||[]){
  const group0=groupLabel(r,axes0);
  const trimName0=displayTrim(r,group0);
  const opt=mergeOptionRow(variant,r,S(r.id));
- const ext=uniqColors(r.extColors||[]),intc=uniqColors(r.intColors||[]);
- model.exterior_colors=uniqColors([...model.exterior_colors,...ext]);
+ const ext0=uniqColors(r.extColors||[]),int0=uniqColors(r.intColors||[]);
+ const stableColor=(x,kind)=>({
+   ...x,
+   _stable_color_id:S(r.trimKey)&&x._source_color_code
+     ? S(r.trimKey)+'::'+kind+':'+encodeURIComponent(x._source_color_code)
+     : null,
+ });
+ const ext=ext0.map(x=>stableColor(x,'ext')),intc=int0.map(x=>stableColor(x,'int'));
+ model.exterior_colors=uniqColors([...model.exterior_colors,...ext0]);
  model._interior=[...new Set([...model._interior,...intc.map(x=>x.name)])];
  const ccands=masterCandidates(r,name,engine,trimName0);
  const axes=refineBaseAxes(r,axes0,ccands);

@@ -1,13 +1,36 @@
 import { readFileSync } from 'node:fs';
 import { computeTerm } from './calc.js';
 import { QUOTE_TERMS } from '../../src/lib/quote/terms.js';
+import { conditionCostsFromRequest } from '../../src/lib/quote/condition-cost-contract.js';
+import { assertStandardConditionSupport } from './condition-policy.js';
 
 const DEFAULTS = JSON.parse(readFileSync(new URL('./standard-quote-defaults.snapshot.json', import.meta.url), 'utf8'));
 const DELTA = JSON.parse(readFileSync(new URL('./data/residual-delta.json', import.meta.url), 'utf8'));
 const ENGINE_FACTS = JSON.parse(readFileSync(new URL('./data/engine-facts.json', import.meta.url), 'utf8'));
+const ENGINE_MANIFEST = JSON.parse(readFileSync(new URL('./pricing-engine-manifest.json', import.meta.url), 'utf8'));
 
 const STANDARD = { 1: 85, 2: 75, 3: 66, 4: 58, 5: 51, 6: 44, 7: 38, 8: 33 };
 const TERM_YEAR = Object.fromEntries(QUOTE_TERMS.map((term) => [term, term / 12]));
+
+export function standardPricingEngineEvidence() {
+  if (ENGINE_MANIFEST?.contract !== 'freepass-pricing-engine-manifest/v1' ||
+      ENGINE_MANIFEST?.engine_id !== 'freepass-standard-newcar' ||
+      !ENGINE_MANIFEST?.version ||
+      !/^[a-f0-9]{64}$/.test(String(ENGINE_MANIFEST?.source_digest || '')) ||
+      !/^[a-f0-9]{64}$/.test(String(ENGINE_MANIFEST?.policy_digest || ''))) {
+    const error = new Error('표준 견적 엔진 manifest가 올바르지 않습니다');
+    error.code = 'STANDARD_ENGINE_MANIFEST_INVALID';
+    throw error;
+  }
+  return Object.freeze({
+    id: ENGINE_MANIFEST.engine_id,
+    version: ENGINE_MANIFEST.version,
+    evidence: 'LOCAL_SOURCE_POLICY_MANIFEST',
+    verified: true,
+    sourceDigest: ENGINE_MANIFEST.source_digest,
+    policyDigest: ENGINE_MANIFEST.policy_digest,
+  });
+}
 
 const S = (v) => String(v ?? '').trim();
 const N = (v) => S(v).toLowerCase()
@@ -151,6 +174,7 @@ function buildInput(request, scenario) {
   const car = request?.차 || {};
   const price = car.가격 || {};
   const cond = request?.조건 || {};
+  const conditionCosts = conditionCostsFromRequest(request);
   const credit = creditKey(cond.신용);
   const config = structuredClone(DEFAULTS?.engine_configs?.[credit] || DEFAULTS?.engine_configs?.중신용 || {});
   const fuel = engineFuel(car.연료 || car.파워트레인);
@@ -162,10 +186,11 @@ function buildInput(request, scenario) {
   }
 
   const trim = Math.max(0, Number(price.트림 || 0));
-  const options = Math.max(0, Number(price.옵션 || 0)); // 내장색 포함
+  const options = Math.max(0, Number(price.옵션 || 0));
   const exterior = Math.max(0, Number(price.외장색 || 0));
+  const interior = Math.max(0, Number(price.내장색 || 0));
   const discount = Math.max(0, Number(price.할인 || 0));
-  const grossBeforeDiscount = trim + options + exterior;
+  const grossBeforeDiscount = trim + options + exterior + interior;
   const configuredPrice = Math.max(0, grossBeforeDiscount - discount);
   if (!(configuredPrice > 0)) throw new Error('차량가격이 올바르지 않습니다');
 
@@ -211,9 +236,9 @@ function buildInput(request, scenario) {
     gpsMonthly: config?.setting?.gpsMonthly,
     parkingMonthly: config?.setting?.parkingMonthly,
     salesFeeRate,
-    // 화면에서 고른 실비가 있으면 그 값이 우선한다.
-    deliveryFee: Number(cond.탁송비 || config?.setting?.deliveryFee || 0),
-    initPrepFee: Number(cond.썬팅비 || 0) + Number(cond.블박비 || 0),
+    // QuoteRequest에서 한 번 확정된 canonical 조건비용만 사용한다.
+    deliveryFee: conditionCosts.deliveryFee,
+    initPrepFee: conditionCosts.tintFee + conditionCosts.accessoryFee,
     inspectionFee: config?.setting?.inspectionFee,
     returnDeliveryFee: config?.setting?.returnDeliveryFee,
     disposalFeeRate: config?.setting?.disposalFeeRate,
@@ -246,6 +271,7 @@ function buildInput(request, scenario) {
 export async function calculateStandardQuote(request) {
   if (!request?.차?.상품키 && !request?.차?.키) throw new Error('신차 상품ID가 없습니다');
   if (!Array.isArray(request?.안들) || !request.안들.length) throw new Error('견적 기간이 없습니다');
+  const conditionPolicy = assertStandardConditionSupport(request);
   if (DEFAULTS?.live_override_present) {
     throw new Error('회사 공용 원가설정 override를 FreePass Estimate로 먼저 이관해야 합니다');
   }
@@ -275,11 +301,13 @@ export async function calculateStandardQuote(request) {
   return {
     차량가: sharedMeta?.configuredPrice ?? null,
     결과,
+    pricingEngine: standardPricingEngineEvidence(),
     메타: {
       ...sharedMeta,
       config_source: DEFAULTS?.source || null,
       config_generated_at: DEFAULTS?.generated_at || null,
       live_override_present: !!DEFAULTS?.live_override_present,
+      condition_policy: conditionPolicy.contract,
     },
   };
 }

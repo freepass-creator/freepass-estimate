@@ -1,4 +1,5 @@
 import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../contracts.js';
+import { normalizePriceBasis } from '../price-basis.js';
 
 
 // FreePass standard new-car quote engine client.
@@ -20,11 +21,14 @@ export async function 계산(요청, { 신호 } = {}) {
     error.code = j?.code || (r.status >= 500 ? 'PROVIDER_ERROR' : 'STANDARD_QUOTE_INVALID');
     throw error;
   }
+  const priceBasis = normalizePriceBasis(j.priceBasis, { expectedProductId: 요청?.차?.상품키 || 요청?.차?.키 });
   return {
     차량가: j.차량가 ?? null,
+    priceBasis,
     결과: j.결과,
     메타: j.메타 || null,
     결과계약: j.contract,
     공급자계약: j.providerContract,
+    pricingEngine: j.pricingEngine || null,
   };
 }

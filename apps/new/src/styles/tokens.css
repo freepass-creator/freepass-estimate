@@ -1,67 +1,202 @@
 /* ============================================================================
- *  FreePass Estimate 디자인 토큰
- * ----------------------------------------------------------------------------
- *  공통 UI 규격이 확정되기 전까지 FreePass Sales의 시각 문법만 임시 참조한다.
- *  화면 구조·업무 흐름·데이터 계약은 참조 대상이 아니며 Estimate가 계속 소유한다.
+ * FreePass Estimate canonical visual tokens
+ * Authority: FreePass Admin PR #92 actual-route lineage
+ * Visual contract: docs/UI_ADMIN_PR92_ADOPTION.md
  *
- *  브랜드색·간격·타이포는 현재 Estimate 로컬 토큰이다. 향후 공통 규격이
- *  발행되면 아래 역할 토큰을 그 규격에 연결하고 임시 Sales 참조를 제거한다.
- *
- *  네이밍 규격(정본): --fs-*(폰트) / --r-*(라운드) / --sp-*(간격) / --ink-* / --line* / --bg*
- *  웰릭스 기존 --font-size-* / --radius-* / --space-* 는 하단 '레거시 별칭'으로 유지(무손실 이관).
+ * Estimate owns its flow and domain semantics. These tokens only project the
+ * FreePass Admin #92 visual language into Estimate.
  * ========================================================================== */
 
 :root {
-  /* ── FreePass product theme — Sales/Admin 공통 규격 ───────────────── */
-  --brand:      #1b2a4a;
-  --brand-700:  #0f1b35;
-  --brand-800:  #07111f;
-  --brand-100:  #c8d4e4;
-  --brand-50:   #e6ecf5;
+  /* ── Canonical FreePass Admin #92 palette ───────────────────────── */
+  --fp-primary: #1B2A4A;
+  --fp-primary-hover: #24395F;
+  --fp-primary-weak: #EEF3FA;
+  --fp-focus-ring: #D8E2F0;
+  --fp-nav: #0F1B2D;
+  --fp-nav-raised: #1A2940;
+  --fp-nav-text: #AEB9CA;
+  --fp-nav-muted: #8492A6;
 
-  /* ── 중립색 ─────────────────────────────────────────────────── */
-  --ink-1: #212529;  --ink-2: #5c6268;  --ink-3: #737980;  --ink-4: #9aa1a8;  --ink-5: #c9ced3;
-  --line:  #eceef0;  --line-2: #d9dde1;  --line-3: #c8cdd2;
-  --bg:    #ffffff;  --bg-soft: #f7f8fa;  --bg-muted: #f2f3f5;  --bg-grey: #f7f8fa;
+  --fp-canvas: #F2F6FC;
+  --fp-bg: #F4F6F9;
+  --fp-surface: #FFFFFF;
+  --fp-surface-soft: #F7F9FC;
+  --fp-surface-hover: #F3F6FA;
+  --fp-selected: #EAF1FF;
+  --fp-neutral: #F2F4F7;
 
-  /* ── 라운드 ───────────────────────────────────────────────── */
-  --r-sm: 4px;  --r: 6px;  --r-md: 8px;  --r-lg: 12px;  --r-pill: 999px;
-  /* 임시 Sales 디자인 참조: 버튼은 6px, 입력·카드는 12px */
-  --r-chip: 6px;  --r-card: 12px;  --r-sheet: 16px;
+  --fp-text: #101828;
+  --fp-text-2: #475467;
+  --fp-text-muted: #667085;
+  --fp-text-3: #98A2B3;
 
-  /* ── 간격 ─────────────────────────────────────────────────── */
-  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;  --sp-4: 16px;  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;
+  --fp-line: #E3E8EF;
+  --fp-line-strong: #CDD5DF;
 
-  /* ── 타이포 — 역할 기준 위계 ────────────────────────────────
-     caption 11 < meta 12.5 < label 13 < body/chip 14 < emphasis 15 < section 17 < page 22 */
+  --fp-ok: #067647;
+  --fp-ok-bg: #ECFDF3;
+  --fp-info: #175CD3;
+  --fp-info-bg: #EFF8FF;
+  --fp-warn: #B54708;
+  --fp-warn-bg: #FFFAEB;
+  --fp-err: #B42318;
+  --fp-err-bg: #FEF3F2;
+
+  /* ── Typography: 24 / 20 / 18 / 16 / 14 / 12 ───────────────────── */
+  --fp-fs-kpi: 24px;
+  --fp-fs-screen: 20px;
+  --fp-fs-panel: 18px;
+  --fp-fs-section: 16px;
+  --fp-fs-body: 14px;
+  --fp-fs-support: 12px;
+
   --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
-  --fs-xs: 11px;  --fs-sm: 12.5px;  --fs-md: 13px;  --fs-base: 14px;
-  --fs-lg: 15px;  --fs-xl: 17px;  --fs-2xl: 22px;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi: 600;
+  --fw-bold: 700;
 
-  /* ── 터치 높이 + 굵기 ───────────────────────────────────────
-     일반 컨트롤 44px, 손님용 주 CTA 48px. 공통 규격 확정 시 이 토큰만 교체한다. */
-  --h-chip: 40px; --h-input: 44px; --h-cta: 48px;
-  --h-touch-min: 44px;
-  --focus-ring: #1d4ed8;
-  --fw-regular: 400; --fw-medium: 500; --fw-semi: 600; --fw-bold: 700;
+  /* ── Spacing: 4 / 8 / 12 / 16 / 20 / 24 / 32 ───────────────────── */
+  --fp-sp-1: 4px;
+  --fp-sp-2: 8px;
+  --fp-sp-3: 12px;
+  --fp-sp-4: 16px;
+  --fp-sp-5: 20px;
+  --fp-sp-6: 24px;
+  --fp-sp-7: 32px;
 
-  /* ── 레거시 별칭 (웰릭스 기존 CSS 무손실 이관용 — 새 코드는 위 정본 사용) ── */
-  --font-family:   var(--font);
-  --font-size-xs:  var(--fs-xs);   --font-size-sm:   var(--fs-sm);   --font-size-base: var(--fs-base);
-  --font-size-md:  var(--fs-md);   --font-size-lg:   var(--fs-lg);   --font-size-xl:   var(--fs-xl);
+  /* ── Geometry: 4 / 6 / 8 / pill ─────────────────────────────────── */
+  --fp-r-sm: 4px;
+  --fp-r-control: 6px;
+  --fp-r-panel: 8px;
+  --fp-r-pill: 999px;
+
+  /* ── Density ─────────────────────────────────────────────────────── */
+  --fp-control-sm: 32px;
+  --fp-control: 36px;
+  --fp-row: 40px;
+  --fp-topbar: 56px;
+  --fp-panel-head: 44px;
+  --fp-panel-foot: 56px;
+
+  --fp-mobile-control: 44px;
+  --fp-mobile-action: 44px;
+  --fp-mobile-touch: 44px;
+
+  /* ── Line-free surfaces and interaction ─────────────────────────── */
+  --fp-elevation-0: none;
+  --fp-elevation-base: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --fp-elevation-hover: 0 2px 6px rgba(16, 24, 40, 0.08);
+  --fp-elevation-float: 0 8px 22px rgba(16, 24, 40, 0.12);
+  --fp-focus-halo: 0 0 0 3px rgba(29, 78, 216, 0.14);
+  --fp-press-y: 1px;
+
+  --fp-motion-press: 80ms;
+  --fp-motion-state: 120ms;
+  --fp-motion-float: 160ms;
+  --fp-motion-ease: ease-out;
+
+  /* ── Estimate compatibility aliases
+   * Existing components may keep these names while numeric truth stays above.
+   * New UI code should prefer --fp-* semantic tokens. ───────────────── */
+  --brand: var(--fp-primary);
+  --brand-700: var(--fp-primary-hover);
+  --brand-800: var(--fp-nav);
+  --brand-100: var(--fp-focus-ring);
+  --brand-50: var(--fp-primary-weak);
+
+  --ink-1: var(--fp-text);
+  --ink-2: var(--fp-text-2);
+  --ink-3: var(--fp-text-muted);
+  --ink-4: var(--fp-text-3);
+  --ink-5: var(--fp-line-strong);
+
+  --line: var(--fp-line);
+  --line-2: var(--fp-line-strong);
+  --line-3: var(--fp-text-3);
+
+  --bg: var(--fp-surface);
+  --bg-soft: var(--fp-surface-soft);
+  --bg-muted: var(--fp-neutral);
+  --bg-grey: var(--fp-bg);
+  --bg-canvas: var(--fp-canvas);
+  --bg-hover: var(--fp-surface-hover);
+  --bg-selected: var(--fp-selected);
+
+  --r-sm: var(--fp-r-sm);
+  --r: var(--fp-r-control);
+  --r-md: var(--fp-r-panel);
+  --r-lg: var(--fp-r-panel);
+  --r-pill: var(--fp-r-pill);
+  --r-chip: var(--fp-r-control);
+  --r-card: var(--fp-r-control);
+  --r-panel: var(--fp-r-panel);
+  --r-control: var(--fp-r-control);
+  --r-sheet: var(--fp-r-panel);
+
+  --sp-1: var(--fp-sp-1);
+  --sp-2: var(--fp-sp-2);
+  --sp-3: var(--fp-sp-3);
+  --sp-4: var(--fp-sp-4);
+  --sp-5: var(--fp-sp-5);
+  --sp-6: var(--fp-sp-6);
+  --sp-8: var(--fp-sp-7);
+
+  --fs-xs: var(--fp-fs-support);
+  --fs-sm: var(--fp-fs-support);
+  --fs-md: var(--fp-fs-body);
+  --fs-base: var(--fp-fs-body);
+  --fs-lg: var(--fp-fs-section);
+  --fs-xl: var(--fp-fs-panel);
+  --fs-2xl: var(--fp-fs-screen);
+  --fs-kpi: var(--fp-fs-kpi);
+  --fs-mobile-input: 16px;
+
+  /* Mobile components use these existing names. Desktop uses --fp-control. */
+  --h-chip: var(--fp-mobile-control);
+  --h-input: var(--fp-mobile-control);
+  --h-cta: var(--fp-mobile-action);
+  --h-touch-min: var(--fp-mobile-touch);
+
+  --focus-ring: var(--fp-primary);
+  --focus-halo: var(--fp-focus-halo);
+
+  /* Legacy Welrix aliases: compatibility only. */
+  --font-family: var(--font);
+  --font-size-xs: var(--fs-xs);
+  --font-size-sm: var(--fs-sm);
+  --font-size-base: var(--fs-base);
+  --font-size-md: var(--fs-md);
+  --font-size-lg: var(--fs-lg);
+  --font-size-xl: var(--fs-xl);
   --font-size-2xl: var(--fs-2xl);
-  --radius-sm: var(--r-sm);  --radius: var(--r);  --radius-md: var(--r-md);  --radius-lg: var(--r-lg);  --radius-pill: var(--r-pill);
-  --space-1: var(--sp-1);  --space-2: var(--sp-2);  --space-3: var(--sp-3);  --space-4: var(--sp-4);
-  --space-5: var(--sp-5);  --space-6: var(--sp-6);  --space-8: var(--sp-8);
+
+  --radius-sm: var(--r-sm);
+  --radius: var(--r);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-pill: var(--r-pill);
+
+  --space-1: var(--sp-1);
+  --space-2: var(--sp-2);
+  --space-3: var(--sp-3);
+  --space-4: var(--sp-4);
+  --space-5: var(--sp-5);
+  --space-6: var(--sp-6);
+  --space-8: var(--sp-8);
+
+  --shadow-sm: var(--fp-elevation-base);
+  --shadow: var(--fp-elevation-base);
+  --shadow-md: var(--fp-elevation-hover);
+  --shadow-lg: var(--fp-elevation-float);
+  --shadow-xl: var(--fp-elevation-float);
 }
 
-
-/* ── Accessibility baseline (AI Core Screen Design Standard) ─────────────
- * Approved density is preserved; focus and motion behavior are hardened first.
- * Individual 36px visual chips must provide/verify a >=44px effective hit target
- * before WCAG touch-target adoption is considered complete. */
+/* Accessibility baseline. Components may replace the outline with the shared
+ * focus halo only when they preserve a clearly visible focus-visible state. */
 :where(button, a[href], input, select, textarea, [tabindex]):focus-visible {
-  outline: 3px solid var(--focus-ring);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
 }
 
@@ -73,11 +208,24 @@
     transition-duration: 0.01ms !important;
   }
 }
+
 /* Shared completed-touch feedback; browser vibration support remains device-dependent. */
-:where(button, [role="button"], summary).fp-pressed:not(:disabled) { transform: scale(.965); filter: brightness(.975); }
-:where(.sv-brand-card, .sv-row, .sv-trim-card, .sv-color-card, .sv-opt, .sc-chip, .se-chip, .se-card).fp-pressed:not(:disabled) { background: var(--brand-50); }
-:where(.m-btn--primary, #gate-submit).fp-pressed:not(:disabled) { transform: scale(.972); filter: brightness(.90); }
+:where(button, [role="button"], summary).fp-pressed:not(:disabled) {
+  transform: translateY(var(--fp-press-y)) scale(.985);
+  filter: brightness(.985);
+}
+:where(.sv-brand-card, .sv-row, .sv-trim-card, .sv-color-card, .sv-opt, .sc-chip, .se-chip, .se-card).fp-pressed:not(:disabled) {
+  background: var(--bg-selected);
+}
+:where(.m-btn--primary, #gate-submit).fp-pressed:not(:disabled) {
+  transform: translateY(var(--fp-press-y)) scale(.985);
+  filter: brightness(.96);
+}
 
 /* Compact selection scrolls with the active step. */
-.selection-anchor { background: var(--bg); padding: 4px 0 6px; margin-bottom: 10px; }
+.selection-anchor {
+  background: var(--bg);
+  padding: var(--sp-1) 0 6px;
+  margin-bottom: 10px;
+}
 .selection-anchor:empty { display: none; }

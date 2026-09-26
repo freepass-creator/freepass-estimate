@@ -25,7 +25,8 @@ export function buildOfficialQuoteHtml(a) {
   const { quoteNo = '', todayStr = '', expireStr = '' } = quoteMeta;
 
   const vehicleBlocks = vehicles.map((veh, vIdx) => {
-    const sent = (veh.monthly || []).filter((m) => send[m.idx] !== false);
+    const vehicleSend = Array.isArray(veh.send) ? veh.send : send;
+    const sent = (veh.monthly || []).filter((m) => vehicleSend[m.idx] !== false);
     const bestVal = sent.length > 1 ? Math.min(...sent.map(m => m.monthly)) : -1;
     const trimKrw = (veh.trim_price_manwon || 0) * 10000;
     const optsKrw = (veh.options_price_manwon || 0) * 10000;

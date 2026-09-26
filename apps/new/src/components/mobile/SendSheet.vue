@@ -4,9 +4,13 @@ import { quoteState } from '../../store.js';
 import { 견적상태 } from '../../lib/quote/index.js';
 import { buildOfficialQuoteHtml } from '../../lib/build-quote-html.js';
 import { fmt, fmtTel } from '../../lib/format.js';
+import { selectedLiveQuoteTerms, selectedSharedQuoteTerms } from '../../lib/feature/actions.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 
 defineProps({ open: Boolean });
 const emit = defineEmits(['close']);
+const 역할정책 = rolePolicy(역할());
 
 function onStaffTelInput(e) {
   const v = fmtTel(e.target.value);
@@ -26,37 +30,41 @@ const errorMsg = ref('');
    대표 2026-09-18 「차량 선택하는 방법만 우리 방법으로 하고,
    그 차량 금액에 따른 대여료 산출은 웰릭스 API를 써야지」 */
 const monthlyResults = computed(() => {
-  /* 공유받은 견적은 «보낸 당시 Snapshot»이 정본이다. 직원이 그 링크를 다시 열어 발송해도 같은 금액을 쓴다. */
-  if (quoteState.sharedSnapshot?.terms?.length) {
-    return quoteState.sharedSnapshot.terms.map((t, idx) => ({
-      idx, term: t.term, dep: t.depPct ?? 0, pre: t.prePct ?? 0,
+  if (quoteState.sharedSnapshot) {
+    return selectedSharedQuoteTerms(quoteState.sharedSnapshot).map((t, idx) => ({
+      idx,
+      term: t.term,
+      dep: t.depPct ?? 0,
+      pre: t.prePct ?? 0,
       monthly: t.monthly,
       depAmt: t.deposit ?? 0,
       preAmt: t.prepay ?? 0,
       residualAmt: t.acquire ?? 0,
       residualPct: (t.acquire && t.totalCarPrice) ? t.acquire / t.totalCarPrice : 0,
-    })).filter((x) => x.monthly != null);
+    }));
   }
   if (견적상태.상태 !== 'ok') return [];
-  const r = 견적상태.결과 || [];
-  return (quoteState.scenarios || []).map((s, idx) => {
-    const g = r[idx];
-    if (!g || g.월대여료 == null) return null;
-    return {
-      idx, term: s.term, dep: s.dep ?? 0, pre: s.pre ?? 0,
-      monthly: g.월대여료,
-      depAmt: g.보증금 ?? 0,
-      preAmt: g.선납금 ?? 0,
-      residualAmt: g.인수가 ?? 0,
-      residualPct: (g.인수가 && g.총차량가) ? g.인수가 / g.총차량가 : 0,
-    };
-  }).filter(Boolean);
+  return selectedLiveQuoteTerms(quoteState, 견적상태.결과).map(({ index, scenario: sc, result: g }) => ({
+    idx: index,
+    term: sc.term,
+    dep: sc.dep ?? 0,
+    pre: sc.pre ?? 0,
+    monthly: g.월대여료,
+    depAmt: g.보증금 ?? 0,
+    preAmt: g.선납금 ?? 0,
+    residualAmt: g.인수가 ?? 0,
+    residualPct: (g.인수가 && g.총차량가) ? g.인수가 / g.총차량가 : 0,
+  }));
 });
 
 const imgLoading = ref(false);
 
 // 견적서 이미지(PNG blob) 생성 — 공통 (복사/전송이 같이 씀)
 async function buildQuoteBlob() {
+  if (!역할정책.canSendOfficialQuote) {
+    errorMsg.value = '담당자 전용 기능입니다';
+    return null;
+  }
   const v = quoteState.vehicle;
   if (!v) { errorMsg.value = '차량을 먼저 선택하세요'; return null; }
   /* ★값이 없으면 «빈 견적서»가 나가지 않게 막는다 — 웰릭스 계산이 아직/못 온 것이다 */

@@ -11,15 +11,13 @@ export const EXTERNAL_KIND = Object.freeze({
   ERP: 'erp',
 });
 
-const LEGACY_WELRIX = Object.freeze({
-  mode: PROVIDER_MODE.EXTERNAL,
-  kind: EXTERNAL_KIND.EXCEL,
-  adapter_id: 'welrix',
-});
-
 export function 공급자설정(cfg = globalThis.window?.__welrix_companyConfig) {
   const p = cfg?.quote_provider;
-  if (!p) return { ...LEGACY_WELRIX };
+  if (!p) {
+    const error = new Error('견적 공급자 설정이 없습니다');
+    error.code = 'PROVIDER_CONFIG_MISSING';
+    throw error;
+  }
 
   if (p.mode === PROVIDER_MODE.STANDARD) {
     return {

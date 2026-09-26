@@ -4,17 +4,19 @@ Read `PROJECT.md` and `docs/UI_BASELINE.md` before editing UI.
 
 ## Authority
 
-FreePass Estimate is the **authoritative upstream source** for all estimator UI/UX, quote interaction rules, QuoteRequest/QuoteResult contracts, and quote-provider contracts.
+Authority is deliberately split.
 
-Welrix, FreePass Sales, Sonogong, ERP4 and other repositories may be used as historical/reference inputs, but they are not allowed to become the source of truth again.
+- **FreePass Data** is the sole source of truth for vehicle/master identity, model year, trim/powertrain, option/color identity, and authoritative vehicle/option/color prices.
+- **FreePass Estimate** is the authoritative source for estimator UI/UX, pricing engines, provider adapters, QuoteRequest/QuoteResult contracts, snapshots, and quote interaction rules.
+- **Welrix and future external providers** may supply a calculation formula. They are never vehicle-price authority.
 
-Default synchronization direction:
+Default flow:
 
 ```
-FreePass Estimate -> FreePass Sales / Welrix / partner-channel surfaces
+FreePass Data master -> FreePass Estimate pricing engine/adapter -> Quote -> Sales / partner-channel surfaces
 ```
 
-If a downstream product needs an estimator change, implement and validate the canonical change here first, then propagate downstream.
+If a vehicle fact or master price is wrong, fix FreePass Data. If a formula, adapter, Quote contract, or estimator behavior is wrong, fix FreePass Estimate.
 
 ## Hard rules
 
@@ -35,6 +37,13 @@ If a downstream product needs an estimator change, implement and validate the ca
 15. Quote-provider differences must not fork the shared estimator UI without explicit approval.
 16. External provider failure must fail visibly; do not silently fall back to another calculator.
 17. Representative prototype prices must be labeled as placeholders unless produced by an approved provider.
+18. Do not create, reconstruct, or silently maintain a second vehicle master inside FreePass Estimate.
+19. Browser/display prices are not calculation authority. Server-side pricing must resolve the selected product/options/colors against a CANONICAL_ACTIVE FreePass Data Estimate master.
+20. Every pricing engine starts from FreePass Data authoritative price components.
+21. External providers supply formulas only. Their own vehicle price must never overwrite FreePass Data master values.
+22. When an external provider requires a vehicle-price input, the adapter must send the FreePass canonical price in the provider's required shape.
+23. If an external provider cannot accept or demonstrably ignores the FreePass canonical price override, fail closed. Do not calculate with the provider's own price and do not silently fall back.
+24. Provider-specific model keys/mappings may live in adapters, but they are mappings only; they must not become a shadow vehicle master.
 
 ## Change rule
 
@@ -55,7 +64,6 @@ Before material structural changes:
 - obtain user approval where required,
 - then propagate downstream.
 
-
 ## Branch discipline
 
 Before starting any change, read `docs/DEVELOPMENT_BRANCH_MODEL.md` and `registry/branch-status.json`.
@@ -68,10 +76,12 @@ Regular product work has exactly four lanes:
 
 Rules:
 1. `main` is the only long-lived product truth.
-2. A page/device is never a branch authority. Do not create branches for new-car page, used-car page, result page, desktop, mobile, etc.
-3. AI/vendor names are not branch roles.
-4. At most one active product branch per lane.
-5. Do not branch from a work branch. Start from the current canonical line and merge back to it.
-6. Tests/QA belong to the branch being tested; do not create a permanent QA branch.
-7. Any branch marked `DEPRECATED_*` or `ARCHIVE_*` in `registry/branch-status.json` is read-only history. Never continue product development there.
-8. `work/canon/<task>` is repository-governance-only and may not contain product functionality.
+2. Until PR #17 is merged, `integration/canonical-20260926` is the single temporary consolidation line.
+3. A page or device is never a branch authority. Do not create branches for new-car, used-car, result, desktop, mobile, etc.
+4. AI/vendor names are not branch roles.
+5. At most one active product branch per lane.
+6. Do not branch from a work branch. Start from the current canonical line and merge back to it.
+7. Tests and QA belong to the branch they verify; do not create a permanent QA branch.
+8. Any branch marked `DEPRECATED_*` or `ARCHIVE_*` in `registry/branch-status.json` is read-only history.
+9. `work/canon/<task>` is repository-governance-only and may not contain product functionality.
+10. After PR #17 merges, retire `integration/canonical-20260926` and start all new work from updated `main`.

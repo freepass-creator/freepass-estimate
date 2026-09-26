@@ -4,6 +4,8 @@ import { createQuoteExecution, attachQuoteExecution } from './execution-result.j
 import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT, QUOTE_EXECUTION_CONTRACT, buildRevision } from './contracts.js';
 import * as 표준 from './engines/freepass-standard.js';
 import * as 외부 from './engines/external.js';
+import { normalizePricingEngineEvidence } from './pricing-engine.js';
+import { normalizePriceBasis } from './price-basis.js';
 
 export const 계산기들 = Object.freeze({ 표준, 외부 });
 
@@ -31,7 +33,7 @@ function executionRequestId() {
   return `quote-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
 }
 
-export async function 견적계산(요청, { 신호, 강제계산기 = null } = {}) {
+export async function 견적계산(요청, { 신호, 강제계산기 = null, allowUnverifiedPricingEngine = false } = {}) {
   const startedAt = new Date().toISOString();
   const requestId = executionRequestId();
   let 이름 = null;
@@ -52,9 +54,15 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
     const 답 = await 계산기.계산(요청, { 신호 });
     const 탈2 = 결과검사(답?.결과, 요청.안들);
     if (탈2) throw codedError(탈2, 'QUOTE_RESULT_INVALID');
+    const pricingEngine = normalizePricingEngineEvidence(답?.pricingEngine, { requireVerified: !allowUnverifiedPricingEngine });
+    const priceBasis = normalizePriceBasis(답?.priceBasis, {
+      expectedProductId: 요청?.차?.상품키 || 요청?.차?.키,
+    });
 
     return {
       ...답,
+      pricingEngine,
+      priceBasis,
       계산기: 계산기.이름,
       공급자: providerKey,
       계약: {
@@ -64,18 +72,25 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
         execution: QUOTE_EXECUTION_CONTRACT,
       },
       실행: createQuoteExecution({
-        status: 'SUCCEEDED',
+        status: pricingEngine.verified ? 'SUCCEEDED' : 'HOLD',
         provider: providerKey,
         engine: 계산기.이름,
         startedAt,
         endedAt: new Date().toISOString(),
         revision: buildRevision(),
         requestId,
-        evidence: [`QUOTE_PROVIDER:${providerKey}`],
+        evidence: [
+          `QUOTE_PROVIDER:${providerKey}`,
+          `PRICING_ENGINE:${pricingEngine.id}:${pricingEngine.version}:${pricingEngine.verified ? 'VERIFIED' : 'UNVERIFIED'}`,
+          `PRICE_BASIS:${priceBasis.sourceRevision}:${priceBasis.productId}`,
+        ],
         checks: [
           { name: 'quote-request-contract', status: 'PASS' },
           { name: 'quote-result-contract', status: 'PASS' },
+          { name: 'pricing-engine-evidence', status: pricingEngine.verified ? 'PASS' : 'FAIL', detail: pricingEngine.verified ? 'VERIFIED' : 'UNVERIFIED' },
+          { name: 'price-basis', status: 'PASS', detail: priceBasis.sourceRevision },
         ],
+        blockers: pricingEngine.verified ? [] : ['PRICING_ENGINE_VERSION_UNVERIFIED'],
       }),
     };
   } catch (rawError) {
@@ -84,7 +99,7 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
 
     if (!error.quoteExecution) {
       attachQuoteExecution(error, createQuoteExecution({
-        status: error.code === 'PROVIDER_UNSUPPORTED' ? 'HOLD' : 'FAILED',
+        status: ['PROVIDER_UNSUPPORTED', 'PRICING_ENGINE_VERSION_UNVERIFIED'].includes(error.code) ? 'HOLD' : 'FAILED',
         provider: providerKey,
         engine: 이름 ? 계산기들[이름]?.이름 || 이름 : null,
         startedAt,

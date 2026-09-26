@@ -17,12 +17,15 @@
 // ============================================================================
 
 const 열쇠 = 'welrix_role';
+let 세션역할 = null;
 
 /** 지금 보는 사람 — 'staff' | 'guest' */
 export function 역할() {
+  if (세션역할 === 'staff') return 'staff';
+  if (세션역할 === 'guest') return 'guest';
   try {
     if (localStorage.getItem(열쇠) === 'staff') return 'staff';
-  } catch { /* 사파리 프라이빗 등 — 못 읽으면 손님으로 본다 */ }
+  } catch { /* 사파리 프라이빗 등 — 저장소를 못 읽어도 세션 역할은 유지한다 */ }
   return 'guest';
 }
 
@@ -32,12 +35,14 @@ export const 담당자인가 = () => 역할() === 'staff';
 export function 담당자로(핀) {
   const 정답 = String(window.__GATE_PINS?.agent ?? '');
   if (!정답 || String(핀).trim() !== 정답) return false;
+  세션역할 = 'staff';
   try { localStorage.setItem(열쇠, 'staff'); } catch { /* 못 적어도 이번 세션은 담당자 */ }
   return true;
 }
 
 /** 담당자를 그만둔다 (내 폰을 남에게 넘길 때) */
 export function 손님으로() {
+  세션역할 = 'guest';
   try { localStorage.removeItem(열쇠); } catch { /* 무시 */ }
 }
 

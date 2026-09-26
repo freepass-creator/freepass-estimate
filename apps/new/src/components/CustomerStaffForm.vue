@@ -1,14 +1,13 @@
 <script setup>
 import { quoteState } from '../store.js';
 import { fmtTel } from '../lib/format.js';
+import { CONDITION_LIMITS, normalizeFeeRate } from '../lib/feature/conditions.js';
 
-const FEE_MIN = -10;   // 영업이 싸게 보이게 마이너스 수수료 허용 (기본 5%)
-const FEE_MAX = 7;
+const FEE_MIN = CONDITION_LIMITS.feeRatePct.min;
+const FEE_MAX = CONDITION_LIMITS.feeRatePct.max;
 
 function onFeeChange() {
-  let v = +quoteState.cond.feeRatePct || 0;
-  v = Math.max(FEE_MIN, Math.min(FEE_MAX, Math.round(v * 10) / 10));
-  quoteState.cond.feeRatePct = v;
+  quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
   window.__welrix_recompute?.();
 }
 

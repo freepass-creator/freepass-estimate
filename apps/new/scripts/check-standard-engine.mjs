@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { resolveCanonicalIdentity } from '../src/lib/newcar/configuration-resolver.js';
 import { calculateStandardQuote } from '../api/_standard/standard-service.js';
 import { QUOTE_TERMS } from '../src/lib/quote/terms.js';
+import { createQuoteConditionCosts } from '../src/lib/quote/condition-cost-contract.js';
 
 const ctx={window:{},console:{log(){},warn(){},error(){}}};
 vm.createContext(ctx);
@@ -22,6 +23,7 @@ function req(id,credit='중신용'){
   const {mf,md,v,t}=findProduct(id);
   const canonical=resolveCanonicalIdentity(t,v.options_master||{},[]);
   const trimWon=Math.round(Number(t.base_price_5||0)*10000);
+  const costs=createQuoteConditionCosts({deliveryFee:250000});
   return {
     버전:1,
     차:{
@@ -42,7 +44,7 @@ function req(id,credit='중신용'){
     },
     조건:{
       신용:credit,주행:'2만km',정비:'웰스 Basic',대물:'1억',추가운전자:'없음',
-      탁송비:250000,썬팅비:0,블박비:0,수수료율:3,
+      탁송비:costs.deliveryFee,썬팅비:costs.tintFee,블박비:costs.dashcamFee,내비비:0,하이패스비:0,비용:costs,수수료율:3,
     },
     안들:QUOTE_TERMS.map((기간)=>({기간,보증금:0,선납:0})),
   };
@@ -61,6 +63,8 @@ for(const [label,id] of cases){
   const request=req(id);
   const answer=await calculateStandardQuote(request);
   assert.equal(answer.결과.length,5,label+' result length');
+  assert.equal(answer.pricingEngine?.verified,true,label+' engine evidence verified');
+  assert.match(answer.pricingEngine?.version||'',/^freepass-standard\/newcar@1\.2\.0\+src\.[a-f0-9]{12}\.policy\.[a-f0-9]{12}$/,label+' engine version');
   for(const row of answer.결과){
     assert.ok(Number.isFinite(row.월대여료)&&row.월대여료>0,label+' monthly');
     assert.ok(Number.isFinite(row.보증금)&&row.보증금>=0,label+' deposit');
@@ -77,6 +81,23 @@ for(const [label,id] of cases){
   }));
 }
 
+
+{
+  const id='kia_niro_하이브리드_시그니처';
+  const base=req(id);
+  const withInterior=structuredClone(base);
+  withInterior.차.가격.내장색=500000;
+  withInterior.차.가격.표준계산차량가+=500000;
+  const normal=await calculateStandardQuote(base);
+  const colored=await calculateStandardQuote(withInterior);
+  assert.equal(colored.결과[0].총차량가-normal.결과[0].총차량가,500000,'interior color must be included in total vehicle price');
+  assert.ok(colored.결과[0].월대여료>=normal.결과[0].월대여료,'paid interior color must not reduce monthly rent');
+  console.log('PASS STANDARD interior-color pricing',JSON.stringify({
+    base:normal.결과[0].총차량가,
+    colored:colored.결과[0].총차량가,
+  }));
+}
+
 // 신용 리스크는 잔가를 바꾸지 않고 월납 쪽으로만 반영되어야 한다.
 {
   const id='kia_niro_하이브리드_시그니처';
@@ -88,6 +109,36 @@ for(const [label,id] of cases){
   console.log('PASS STANDARD credit-risk separation',JSON.stringify({
     normal48:normal.결과[term48].월대여료,low48:low.결과[term48].월대여료,
   }));
+}
+
+// Standard는 아직 정책이 없는 선택조건을 조용히 무시하면 안 된다.
+{
+  const id='kia_niro_하이브리드_시그니처';
+  const baseline=req(id);
+  const unsupported=[
+    ['주행','1만km'],
+    ['주행','3만km'],
+    ['주행','4만km'],
+    ['정비','웰스 Self'],
+    ['대물','2억'],
+    ['대물','3억'],
+    ['대물','5억'],
+    ['추가운전자','1명'],
+    ['추가운전자','2명'],
+    ['추가운전자','3명'],
+  ];
+  for(const [field,value] of unsupported){
+    const changed=structuredClone(baseline);
+    changed.조건[field]=value;
+    await assert.rejects(
+      ()=>calculateStandardQuote(changed),
+      (error)=>error?.code==='STANDARD_CONDITION_UNSUPPORTED',
+      `${field}=${value} must fail closed until Standard policy exists`
+    );
+  }
+  const ok=await calculateStandardQuote(baseline);
+  assert.equal(ok.메타.condition_policy,'freepass-standard-condition-policy/v1');
+  console.log('PASS STANDARD unsupported-condition fail-closed');
 }
 
 // 수소차는 정책 미확정 상태에서 가솔린처럼 조용히 계산하면 안 된다.

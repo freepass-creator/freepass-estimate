@@ -1,0 +1,191 @@
+/* FreePass Estimate final visual alignment.
+ * Authority: freepass-admin ADMIN-UI-UX-SSOT. Estimate flow remains independent.
+ */
+html .m-shell .sr .sr-title { margin-bottom: 16px; }
+html .m-shell .sr .sr-snapshot { margin: -4px 0 12px; padding: 12px; border-radius: var(--r-panel); }
+html .m-shell .sr .sr-car { padding: 12px; border-radius: var(--r-panel); }
+html .m-shell .sr .sr-car__total { padding-top: 8px; border-top: 0; }
+html .m-shell .sr .sr-term {
+  padding: 12px;
+  border-radius: var(--r-panel);
+  background: var(--fp-surface-soft);
+}
+html .m-shell .sr .sr-term__monthly,
+html .m-shell .sr .sr-car__total b { text-align: right; }
+html .m-shell .sr .sr-cond { gap: 8px; padding: 0; background: transparent; border-radius: 0; overflow: visible; }
+html .m-shell .sr .sr-cond__row { padding: 12px; border-radius: var(--r-panel); font-size: var(--fs-base); }
+
+html .m-shell .sq.sq { border-top: 0; border-radius: var(--r-card) var(--r-card) 0 0; box-shadow: none; }
+html .m-shell .sq .sq-summary { min-height: var(--h-touch-min); padding-left: 16px; padding-right: 16px; }
+html .m-shell .sq .sq-term-card { border: 0; }
+html .m-shell .sq .sq-term-card__check-btn { width: var(--h-touch-min); height: var(--h-touch-min); }
+html .m-shell .sq .sq-table__term-select { min-height: var(--h-touch-min); font-size: var(--fs-sm); }
+html .m-shell .sq .sq-pct-input { width: var(--h-touch-min); height: var(--h-touch-min); border-radius: var(--r-chip); font-size: 16px; }
+html .m-shell .sq .sq-table thead th { font-size: var(--fs-sm); border-bottom-width: 1px; }
+
+html body .gate-card { border-radius: var(--r-panel); padding: 24px 20px 20px; box-shadow: none; }
+html body #gate-pin { height: var(--h-input); padding: 0 12px; border-width: 1px; border-radius: var(--r-chip); font-size: 16px; letter-spacing: 8px; }
+html body #gate-submit,
+html body #gate-admin { height: var(--h-cta); border-radius: var(--r-chip); font-size: var(--fs-base); }
+html body .gate-sub { font-size: var(--fs-sm); margin-bottom: 16px; }
+html body .gate-bg { background: #eef1f4; }
+
+html .m-shell .ss-sheet { max-height: 85vh; max-height: 85dvh; scroll-padding-block-end: calc(var(--safe-bottom) + 72px); }
+html .m-shell .ss-handle { height: var(--h-touch-min); }
+html .m-shell .ss-staff__edit { min-width: var(--h-touch-min); min-height: var(--h-touch-min); display: inline-flex; align-items: center; justify-content: center; }
+html .m-shell .ss-staff__done { height: var(--h-cta); }
+html .m-shell .ss-input { border-width: 1px; border-color: var(--line-2); font-size: var(--fs-mobile-input); }
+html .m-shell .ss-action { border: 0; }
+html .m-shell .ss-ci__input:focus-visible ~ .ss-ci__switch { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+html .m-shell .ss-sheet :is(input, button, [tabindex]):focus-visible {
+  scroll-margin-block-start: 16px;
+  scroll-margin-block-end: calc(var(--safe-bottom) + 72px);
+}
+
+/* Current Admin machine-SSOT role tokens live in tokens.css. */
+
+html .m-shell .sv .sv-title,
+html .m-shell .sc .sc-title,
+html .m-shell .se .se-title { margin-bottom: 16px; }
+
+html .m-shell .sv .sv-crumb { min-height: var(--h-touch-min); }
+html .m-shell .sv .sv-block,
+html .m-shell .sc .sc-field,
+html .m-shell .se .se-field { margin-bottom: 16px; }
+html .m-shell .se .se-divider { height: 0; margin: 16px 0; background: transparent; }
+
+html .m-shell :is(.sv, .sc, .se)
+  input:not([type="checkbox"]):not([type="radio"]) { font-size: var(--fs-mobile-input); }
+
+html .m-shell .m-header,
+html .m-shell .m-progress { padding-left: 16px; padding-right: 16px; }
+html .m-shell .m-main { padding-left: 16px; padding-right: 16px; }
+
+html .m-shell .m-footer {
+  padding: 8px 16px calc(var(--safe-bottom) + 12px);
+  background: var(--bg);
+  border-top: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:first-child { flex: 3 1 0; }
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:last-child { flex: 7 1 0; }
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(1) { flex: 3 1 0; }
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(2) { flex: 3 1 0; }
+html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(3) { flex: 4 1 0; }
+html .m-shell .m-btn--icon::after { content: '이전'; }
+
+
+/* Admin PR #92 mobile gutter contract: 380+ = 16px, narrow mobile = 12px. */
+@media (max-width: 379px) {
+  html .m-shell .m-header,
+  html .m-shell .m-progress,
+  html .m-shell .m-main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  html .m-shell .m-footer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+
+/* Admin PR #92 mobile surface interaction contract.
+ * Mobile Panel itself is the screen; only child cards/controls carry elevation.
+ */
+html .m-shell :is(
+  .sv-brand-card,
+  .sv-row,
+  .sv-trim-card,
+  .sv-color-card,
+  .sv-opt,
+  .sc-chip,
+  .se-chip,
+  .se-card,
+  .sr-car,
+  .sr-term,
+  .sr-cond__row
+) {
+  border-color: transparent !important;
+  box-shadow: var(--fp-elevation-base);
+}
+
+html .m-shell :is(.m-btn, .sq-term-card) {
+  box-shadow: var(--fp-elevation-base);
+}
+
+html .m-shell :is(
+  .sv-brand-card.is-selected,
+  .sv-row.is-selected,
+  .sv-trim-card.is-selected,
+  .sv-color-card.is-selected,
+  .sv-opt.is-selected,
+  .se-card.is-selected
+) {
+  background: var(--fp-selected) !important;
+  box-shadow: inset 0 1px 2px rgba(29, 78, 216, 0.10);
+}
+
+/* Admin PR #92: compact selection controls may use solid primary.
+ * Keep this distinct from selected entity cards, which use a locked tint surface.
+ */
+html .m-shell :is(.sc-chip.is-selected, .se-chip.is-selected) {
+  background: var(--fp-primary) !important;
+  color: #fff !important;
+  font-weight: var(--fw-semi);
+  box-shadow: inset 0 1px 2px rgba(16, 24, 40, 0.14);
+}
+
+html .m-shell :is(.m-btn, .sq-term-card):active {
+  box-shadow: var(--fp-elevation-0);
+  transform: translateY(var(--fp-press-y));
+}
+
+html .m-shell :is(
+  .sv-brand-card,
+  .sv-row,
+  .sv-trim-card,
+  .sv-color-card,
+  .sv-opt,
+  .sc-chip,
+  .se-chip,
+  .se-card
+):focus-visible {
+  outline: none;
+  box-shadow: var(--fp-focus-halo), var(--fp-elevation-base);
+}
+
+html .m-shell :is(.m-btn, .sv-brand-card, .sv-row, .sv-trim-card, .sv-color-card, .sv-opt, .sc-chip, .se-chip, .se-card):disabled {
+  box-shadow: none;
+}
+
+
+/* Admin PR #92 line-free mobile field grammar.
+ * Inputs remain clearly editable through neutral surface + elevation + focus halo.
+ */
+html .m-shell :is(.sv-pc__in, .sc-pct, .se-discount) {
+  border-color: transparent !important;
+  background: var(--fp-surface-soft) !important;
+  box-shadow: var(--fp-elevation-base);
+}
+
+html .m-shell :is(.se-select, .sq-pct-input) {
+  border-color: transparent !important;
+  background-color: var(--fp-surface-soft) !important;
+  box-shadow: var(--fp-elevation-base);
+}
+
+html .m-shell :is(.sv-pc__in, .sc-pct, .se-discount):focus-within,
+html .m-shell :is(.se-select, .sq-pct-input):focus-visible {
+  outline: none !important;
+  border-color: transparent !important;
+  background-color: var(--fp-surface) !important;
+  box-shadow: var(--fp-focus-halo), var(--fp-elevation-hover) !important;
+}
+
+html .m-shell :is(.se-select, .sq-pct-input):disabled {
+  background-color: var(--fp-neutral) !important;
+  box-shadow: none !important;
+  color: var(--fp-text-3) !important;
+}

@@ -1,8 +1,10 @@
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import { quoteState, vehicleState } from '../../store.js';
-import { 담당자인가, 손님링크 } from '../../lib/role.js';
+import { 역할, 손님링크 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { 지금주소 } from '../../lib/share-link.js';
+import { quoteActionReadiness, resetForRequote } from '../../lib/feature/actions.js';
 import StepVehicle from './StepVehicle.vue';
 import StepConditions from './StepConditions.vue';
 import StepExtras from './StepExtras.vue';
@@ -26,7 +28,7 @@ const cfg = computed(() => window.__welrix_companyConfig || {});
 const 헤더브랜드 = computed(() => '프리패스모빌리티');
 const 공유제목 = computed(() => '프리패스모빌리티 견적');
 
-// 발송은 헤더 상단 아이콘으로 — step 으로 안 둠 (사용자 의도)
+// 발송/공유는 단계(step)가 아니다. 결과 화면의 하단 액션 영역에서만 노출한다.
 const STEPS = [
   { key: 'vehicle',    label: '차량',     comp: StepVehicle    },
   { key: 'conditions', label: '계약 조건', comp: StepConditions },
@@ -35,11 +37,22 @@ const STEPS = [
   { key: 'result',     label: '견적',     comp: StepResult     },
 ];
 
-const 담당자 = 담당자인가();
+const 역할정책 = rolePolicy(역할());
+const 담당자 = 역할정책.isStaff;
 const 공유됨 = ref(false);
 const 공유중 = ref(false);
 const 공유견적 = computed(() => !!quoteState.sharedSnapshot);
-const 견적준비됨 = computed(() => !!vehicleState.trim && (공유견적.value || 견적상태.상태 === 'ok'));
+
+const vehicleSelection = globalThis.FreePassVehicleSelection;
+if (!vehicleSelection) throw new Error('FreePassVehicleSelection runtime is required');
+const 견적준비 = computed(() => quoteActionReadiness({
+  quoteState,
+  vehicleSelected: !!vehicleState.trim,
+  calculationStatus: 견적상태.상태,
+  calculationResults: 견적상태.결과,
+  surface: 'mobile',
+}));
+const 견적준비됨 = computed(() => 견적준비.value.ready);
 
 /* ── 조건이 바뀌면 웰릭스에 다시 묻는다 ────────────────────────────────
  *  읽는 값이 하나라도 바뀌면 watch 가 걸린다. 연속 입력은 견적 뼈대가 묶는다. */
@@ -122,7 +135,7 @@ const stepIdx = ref(vehicleState.견적부터 ? STEPS.length - 1 : 0);
 const 돌아갈곳 = ref(vehicleState.견적부터 ? { stepIdx: 0, subStep: 'options' } : null);
 function 수정하기() {
   /* 공유받은 견적은 여기까지 «보낸 당시 값»이다. 수정부터는 새 견적이므로 실시간 계산으로 전환한다. */
-  quoteState.sharedSnapshot = null;
+  resetForRequote(quoteState);
   stepIdx.value = 0;
   vehicleState.subStep = 'options';
   돌아갈곳.value = null;
@@ -141,21 +154,16 @@ const currentStep = computed(() => STEPS[stepIdx.value]);
      현대 hyundai.com/kr/ko/e/vehicles/estimation: 01 모델(엔진·구동·트림) → 02 색상 → 옵션 → 완료.
      ★'spec'(인승·구동) 은 그 파워트레인 안에서 실제로 갈릴 때만 있는 걸음이다 — 대표 2026-09-18
        「그 인승 구동 방식 그거를 어떻게 나눌지」. 갈리지 않는 차(그랜저 2.5, K5 등)는 이 걸음이 아예 없다. */
-const VEHICLE_SUB_STEPS_ALL = ['brand', 'model', 'variant', 'spec', 'trim', 'colors', 'options'];
-
-/* 지금 고른 파워트레인이 인승·구동으로 갈리는가 — StepVehicle.vue 의 specGroups 와 같은 기준.
-   그 컴포넌트 안 값이라 여기서는 DB 를 직접 다시 본다(전역 window.VEHICLE_DB, 같은 데이터). */
-const 파워트레인갈래있나 = computed(() => {
+const VEHICLE_SUB_STEPS = computed(() => {
   try {
-    const b = window.VEHICLE_DB?.manufacturers?.find((x) => x.manufacturer_id === vehicleState.manufacturer);
-    const m = b?.models?.find((x) => x.model_id === vehicleState.model);
-    const v = m?.variants?.find((x) => x.variant_id === vehicleState.variant);
-    return new Set((v?.trims || []).map((t) => t.group).filter(Boolean)).size > 1;
-  } catch { return false; }
+    const brand = window.VEHICLE_DB?.manufacturers?.find((x) => x.manufacturer_id === vehicleState.manufacturer);
+    const model = brand?.models?.find((x) => x.model_id === vehicleState.model);
+    const variant = model?.variants?.find((x) => x.variant_id === vehicleState.variant);
+    return vehicleSelection.vehicleSubSteps(variant);
+  } catch {
+    return vehicleSelection.vehicleSubSteps(null);
+  }
 });
-const VEHICLE_SUB_STEPS = computed(() => (
-  파워트레인갈래있나.value ? VEHICLE_SUB_STEPS_ALL : VEHICLE_SUB_STEPS_ALL.filter((s) => s !== 'spec')
-));
 
 // 전체 페이지 (sub-step 포함) — progress bar 세그먼트 수. 'spec' 유무에 따라 차마다 다르다.
 const TOTAL_PAGES = computed(() => VEHICLE_SUB_STEPS.value.length + (STEPS.length - 1));
@@ -267,13 +275,14 @@ const vehicles = ref(window.__welrix_vehicles || []);
 // 발송 sheet
 const sendOpen = ref(false);
 function openSend() {
-  if (!견적준비됨.value) return;
+  if (!역할정책.canSendOfficialQuote || !견적준비됨.value) return;
   sendOpen.value = true;
 }
 
 // 조회동의 링크 — 헤더 [동의링크] 누르면 OS 시스템 공유시트(복사·카톡 등). 회사 설정의 signature_link.
 const signCopied = ref(false);
 async function shareSignLink() {
+  if (!역할정책.canShareSignatureLink) return;
   const url = cfg.value.signature_link;
   if (!url) { alert('이 회사는 조회동의 링크가 설정되어 있지 않습니다.'); return; }
   const text = '[' + (cfg.value.name || '프리패스모빌리티') + '] 조회 동의 부탁드립니다. 아래 링크에서 진행해 주세요.';
@@ -302,9 +311,17 @@ async function shareSignLink() {
     </header>
 
     <!-- 페이지별 progress segment — 전체 페이지 수 만큼 -->
-    <div class="m-progress">
+    <div
+      class="m-progress"
+      role="progressbar"
+      aria-label="견적 진행 단계"
+      :aria-valuemin="1"
+      :aria-valuemax="TOTAL_PAGES"
+      :aria-valuenow="currentPageIdx + 1"
+    >
       <div v-for="i in TOTAL_PAGES" :key="i"
            class="m-progress__seg"
+           aria-hidden="true"
            :class="{ 'is-done': (i - 1) <= currentPageIdx }"></div>
     </div>
 
@@ -333,9 +350,9 @@ async function shareSignLink() {
         </button>
       </template>
       <template v-else>
-        <button v-if="하단내비.hasPrev" class="m-btn m-btn--ghost" :class="{ 'm-btn--icon': 견적보기보임 }"
+        <button v-if="하단내비.hasPrev" class="m-btn m-btn--ghost"
                 @click="prev" aria-label="이전">
-          <i class="ph ph-arrow-left"></i><span v-if="!견적보기보임">이전</span>
+          <i class="ph ph-arrow-left"></i><span>이전</span>
         </button>
         <button v-if="견적보기보임" class="m-btn m-btn--soft" @click="견적보기">견적 보기</button>
         <template v-if="stepIdx < STEPS.length - 1">
@@ -388,7 +405,7 @@ async function shareSignLink() {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 20;
   display: flex; align-items: center; justify-content: space-between;
-  padding: calc(var(--safe-top) + 10px) 14px 10px;
+  padding: calc(var(--safe-top) + 10px) 16px 10px;
   background: var(--bg);
   gap: 8px;
 }
@@ -417,7 +434,7 @@ async function shareSignLink() {
 .m-progress {
   display: flex; gap: 4px;
   position: fixed; top: calc(var(--safe-top) + 56px); left: 0; right: 0;
-  padding: 0 14px 6px;
+  padding: 0 16px 6px;
   background: var(--bg);
   z-index: 19;
 }
@@ -433,7 +450,7 @@ async function shareSignLink() {
 
 .m-main {
   flex: 1;
-  padding: calc(var(--safe-top) + 80px) var(--sp-5) calc(var(--footer-height, 78px) + 16px);
+  padding: calc(var(--safe-top) + 80px) var(--sp-4) calc(var(--footer-height, 78px) + 16px);
   /* ★여기서 overflow-y:auto 를 «쓰지 않는다» — 2026-09-18.
      #m-app 은 min-height 만 있고 max-height 가 없어 콘텐츠만큼 늘어난다.
      즉 .m-main 이 실제로 넘쳐서 «따로» 스크롤되는 일은 없고(항상 clientHeight===scrollHeight),
@@ -454,14 +471,16 @@ async function shareSignLink() {
 .m-footer {
   position: fixed; bottom: 0; left: 0; right: 0;
   display: block;
-  padding: 12px 16px calc(var(--safe-bottom) + 12px);
-  background: rgba(255,255,255,.96);
-  border-top: 1px solid var(--line);
-  box-shadow: 0 -6px 18px rgba(0,0,0,.035);
-  backdrop-filter: blur(10px);
+  padding: 8px 16px calc(var(--safe-bottom) + 12px);
+  background: var(--bg);
   z-index: 30;
 }
 .m-footer__actions { display: flex; gap: 8px; }
+.m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:first-child { flex: 3 1 0; }
+.m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:last-child { flex: 7 1 0; }
+.m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(1) { flex: 3 1 0; }
+.m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(2) { flex: 3 1 0; }
+.m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(3) { flex: 4 1 0; }
 .m-btn {
   height: var(--h-cta);
   border: 0; border-radius: var(--r-chip);
@@ -481,16 +500,15 @@ async function shareSignLink() {
 .m-btn--primary {
   flex: 1;
   background: var(--brand); color: #fff;
-  font-size: 16px;
+  font-size: var(--fs-base);
 }
 .m-btn--primary:not(:disabled):active { background: var(--brand-700); }
 /* 「견적 보기」 — 다음 옆에 나란히. 테두리 없이 옅은 바탕 */
 .m-btn--soft {
   flex: 1;
   background: var(--brand-50); color: var(--brand);
-  font-size: 16px;
+  font-size: var(--fs-base);
 }
 .m-btn--soft:active { background: var(--line-2); }
-.m-btn--icon { flex: 0 0 52px; }
 .m-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 </style>

@@ -1,12 +1,33 @@
 <script setup>
 import { computed, ref, onMounted } from 'vue';
 import { vehicleState, quoteState } from '../../store.js';
-import { 담당자인가 } from '../../lib/role.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
 import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
 import SelectionSummary from './SelectionSummary.vue';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
+import { applyScenarioPercent, normalizeFeeRate } from '../../lib/feature/conditions.js';
+
+function resetQuoteVehicleWhenSelectionChanges(result) {
+  if (result.changed) quoteState.vehicle = null;
+  return result.changed;
+}
+
+function optionContext() {
+  return {
+    selected: vehicleState.options,
+    optionsMaster: optionsMaster.value,
+    exclusiveGroups: exclusiveGroups.value,
+    optionExcludes: selectedVariant.value?.option_excludes || {},
+    trimId: vehicleState.trim,
+  };
+}
+const optionRules = globalThis.FreePassFeatureOptions;
+if (!optionRules) throw new Error('FreePassFeatureOptions runtime is required');
+const vehicleSelection = globalThis.FreePassVehicleSelection;
+if (!vehicleSelection) throw new Error('FreePassVehicleSelection runtime is required');
 
 const props = defineProps({
   vehicles: { type: Array, default: () => [] },
@@ -29,7 +50,14 @@ const 내장색들 = computed(() => {
   return src.map((c) => {
     const name = typeof c === 'string' ? c : (c?.name || c?.label || '');
     const price = typeof c === 'string' ? 0 : Number(c?._price_won ?? c?.price ?? 0);
-    return { value: name, label: name, price, swatch: c?.hex || guessColor(name) };
+    return {
+      value: name,
+      label: name,
+      price,
+      swatch: c?.hex || guessColor(name),
+      stableId: c?._stable_color_id || null,
+      sourceCode: c?._source_color_code || null,
+    };
   }).filter((c) => c.value);
 });
 
@@ -136,26 +164,13 @@ const optionsMaster = computed(() => selectedVariant.value?.options_master || {}
 const exclusiveGroups = computed(() => selectedVariant.value?.exclusive_groups || []);
 
 function getGroup(optId) {
-  return exclusiveGroups.value.find(g => g.members.includes(optId)) || null;
+  return optionRules.getExclusiveGroup(exclusiveGroups.value, optId);
 }
 function isEnabled(optId) {
-  const opt = optionsMaster.value[optId];
-  if (!opt) return false;
-  if (opt.requires && !opt.requires.every(req => vehicleState.options.has(req))) return false;
-  if (opt.requires_in_trim?.[vehicleState.trim] &&
-      !opt.requires_in_trim[vehicleState.trim].every(req => vehicleState.options.has(req))) return false;
-  // option_excludes
-  if (selectedVariant.value?.option_excludes) {
-    for (const [parentId, excluded] of Object.entries(selectedVariant.value.option_excludes)) {
-      if (vehicleState.options.has(parentId) && excluded.includes(optId)) return false;
-    }
-  }
-  return true;
+  return optionRules.isOptionEnabled({ ...optionContext(), optionId: optId });
 }
 function getRequires(optId) {
-  const opt = optionsMaster.value[optId];
-  if (!opt) return [];
-  return opt.requires || opt.requires_in_trim?.[vehicleState.trim] || [];
+  return optionRules.requiredOptionIds(optionsMaster.value, vehicleState.trim, optId);
 }
 
 // trim 의 available_options
@@ -171,16 +186,11 @@ const exteriorColors = computed(() => exteriorColorsFor(selectedModel.value, sel
 
 // 옵션 토글
 function toggleOption(optId) {
-  if (!isEnabled(optId) && !vehicleState.options.has(optId)) return;
-  if (vehicleState.options.has(optId)) {
-    vehicleState.options.delete(optId);
-  } else {
-    // 같은 배타 그룹 다른 옵션 자동 해제
-    const g = getGroup(optId);
-    if (g) g.members.forEach(m => { if (m !== optId) vehicleState.options.delete(m); });
-    vehicleState.options.add(optId);
-  }
-  syncVehicle();
+  const result = optionRules.toggleOptionSelection({
+    ...optionContext(),
+    optionId: optId,
+  });
+  if (result.changed) syncVehicle();
 }
 
 function pickExtColor(idx) {
@@ -192,6 +202,7 @@ function pickExtColor(idx) {
 function pickIntColor(c) {
   quoteState.cond.colorInt = c.value;
   quoteState.cond.colorIntPrice = c.price;
+  quoteState.cond.colorIntId = c.stableId || null;
   syncVehicle();
 }
 
@@ -224,8 +235,9 @@ function syncVehicle() {
   const t = selectedTrim.value;
   const taxRate = vehicleState.tax_rate || '5';
   const trimPriceManwon = trimPrice(t, taxRate);
-  const colorExtName = (vehicleState.color != null && exteriorColors.value[vehicleState.color])
-    ? exteriorColors.value[vehicleState.color].name : null;
+  const selectedExtColor = vehicleState.color != null ? exteriorColors.value[vehicleState.color] : null;
+  const colorExtName = selectedExtColor?.name || null;
+  const colorExtId = selectedExtColor?._stable_color_id || null;
   const optNames = [...vehicleState.options]
     .map(id => optionsMaster.value[id]?.name)
     .filter(Boolean);
@@ -287,7 +299,9 @@ function syncVehicle() {
     color_price_manwon: exteriorColorPriceManwon.value,
     options: optNames,
     colorExt: colorExtName,
+    colorExtId,
     colorInt: quoteState.cond.colorInt || null,
+    colorIntId: quoteState.cond.colorIntId || null,
     fuel: can?.fuel || selectedVariant.value?.fuel,
     displacement_cc: can?.engine_cc || selectedVariant.value?.displacement_cc || match?.disp,
     _product_id: t._product_id || t.trim_id,
@@ -299,6 +313,8 @@ function syncVehicle() {
     _canonical: canonical,
     _selected_options: selectedOptionIds.map(id => ({
       id,
+      stableId: optionsMaster.value[id]?._stable_option_id || null,
+      sourceId: optionsMaster.value[id]?._source_option_id || null,
       name: optionsMaster.value[id]?.name || id,
       price_won: Math.round(Number(optionsMaster.value[id]?.price || 0) * 10000),
     })),
@@ -307,75 +323,53 @@ function syncVehicle() {
 }
 
 function selectBrand(b) {
-  vehicleState.manufacturer = b.manufacturer_id;
-  vehicleState.model = null; vehicleState.variant = null; vehicleState.trim = null;
-  vehicleState.options.clear(); vehicleState.color = null;
-  quoteState.vehicle = null;
-  subStep.value = 'model';
+  const result = vehicleSelection.applySelection(vehicleState, 'manufacturer', b.manufacturer_id);
+  resetQuoteVehicleWhenSelectionChanges(result);
+  subStep.value = vehicleSelection.nextStepAfterSelection('manufacturer');
 }
 function selectModel(m) {
-  vehicleState.model = m.model_id;
-  vehicleState.variant = null; vehicleState.trim = null;
-  vehicleState.options.clear(); vehicleState.color = null;
-  quoteState.vehicle = null;
-  // 한 화면 한 선택: 모델을 고르면 파워트레인 화면으로 즉시 이동한다.
-  // 파워트레인이 하나여도 사용자가 그 화면에서 직접 고른다.
-  subStep.value = 'variant';
+  const result = vehicleSelection.applySelection(vehicleState, 'model', m.model_id);
+  resetQuoteVehicleWhenSelectionChanges(result);
+  subStep.value = vehicleSelection.nextStepAfterSelection('model');
 }
 function selectVariant(v) {
-  vehicleState.variant = v.variant_id;
-  vehicleState.trim = null;
-  vehicleState.trimGroup = null;
-  vehicleState.options.clear(); vehicleState.color = null;
-  quoteState.vehicle = null;
-  /* ★인승·구동이 갈리면(그룹이 둘 이상) 그 화면을 먼저 보여 준다. 안 갈리면 곧장 트림으로. */
-  const 갈래 = new Set((v.trims || []).map(t => t.group).filter(Boolean));
-  subStep.value = 갈래.size > 1 ? 'spec' : 'trim';
+  const result = vehicleSelection.applySelection(vehicleState, 'variant', v.variant_id);
+  resetQuoteVehicleWhenSelectionChanges(result);
+  subStep.value = vehicleSelection.nextStepAfterSelection('variant', { variant: v });
 }
 function selectSpec(g) {
-  vehicleState.trimGroup = g.label;
-  vehicleState.trim = null;
-  vehicleState.options.clear(); vehicleState.color = null;
-  quoteState.vehicle = null;
-  subStep.value = 'trim';
+  const result = vehicleSelection.applySelection(vehicleState, 'trimGroup', g.label);
+  resetQuoteVehicleWhenSelectionChanges(result);
+  subStep.value = vehicleSelection.nextStepAfterSelection('trimGroup');
 }
 function selectTrim(t) {
-  vehicleState.trim = t.trim_id;
-  vehicleState.options.clear();
-  /* ★색은 «안 고른 채»로 둔다 — 웰릭스 견적기 기본이 「선택 안 함」이다.
-     대표 2026-09-18 「아 우리도 외장색 기본으로 해」
-     자동으로 골라 두면 그 색이 유료일 때(그랜저 세레니티 화이트 펄 +10만) 값이 벌어진다.
-     고르고 싶은 사람은 색상 걸음에서 고르면 되고, 안 골라도 다음으로 넘어간다. */
-  vehicleState.color = null;
-  quoteState.cond.colorInt = '';
-  quoteState.cond.colorIntPrice = 0;
-  syncVehicle();
+  const result = vehicleSelection.applySelection(vehicleState, 'trim', t.trim_id);
+  if (result.changed) {
+    quoteState.cond.colorInt = '';
+    quoteState.cond.colorIntPrice = 0;
+    quoteState.cond.colorIntId = null;
+    quoteState.vehicle = null;
+    syncVehicle();
+  } else if (!quoteState.vehicle) {
+    syncVehicle();
+  }
 
-  // 한 화면 한 선택: 트림 선택 즉시 다음 구성 화면으로 이동한다.
-  // 실제 제조사 색상이 있으면 색상 → 옵션 순서를 유지하고,
-  // 색상 정보가 없는 상품만 옵션 화면으로 바로 간다.
-  const 색상있음 = (t._exterior_colors?.length || t._interior_colors?.length);
-  subStep.value = 색상있음 ? 'colors' : 'options';
+  subStep.value = vehicleSelection.nextStepAfterSelection('trim', { trim: t });
 }
 
 function goBack(target) { subStep.value = target; }
 
-const 담당자 = 담당자인가();   // ★손님이면 수수료 칸을 아예 안 그린다
+const 담당자 = rolePolicy(역할()).canEditInternalFinanceTerms;   // ★손님이면 수수료/보증금/선납금 내부 입력을 아예 안 그린다
 
 // 시작 조건 — 제조사 화면에서 수수료/보증금/선납금 선입력 (StepConditions 와 동일 SSOT·클램프)
 function onDepChange() {
-  const v = Math.max(0, Math.min(30, +quoteState.cond.dep || 0));
-  quoteState.cond.dep = v;
-  (quoteState.scenarios || []).forEach(s => { s.dep = v; });
+  applyScenarioPercent(quoteState, 'dep', quoteState.cond.dep);
 }
 function onPreChange() {
-  const v = Math.max(0, Math.min(30, +quoteState.cond.pre || 0));
-  quoteState.cond.pre = v;
-  (quoteState.scenarios || []).forEach(s => { s.pre = v; });
+  applyScenarioPercent(quoteState, 'pre', quoteState.cond.pre);
 }
 function onFeeChange() {
-  const v = Math.max(-10, Math.min(7, Math.round((+quoteState.cond.feeRatePct || 0) * 10) / 10));
-  quoteState.cond.feeRatePct = v;
+  quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
 }
 </script>
 
@@ -442,8 +436,10 @@ function onFeeChange() {
       <div class="sv-brand-grid">
         <button
           v-for="b in brands" :key="b.manufacturer_id"
+          type="button"
           class="sv-brand-card"
           :class="{ 'is-selected': vehicleState.manufacturer === b.manufacturer_id }"
+          :aria-pressed="vehicleState.manufacturer === b.manufacturer_id"
           @click="selectBrand(b)"
         >
           <img v-if="BRAND_LOGOS[b.manufacturer_id]" :src="BRAND_LOGOS[b.manufacturer_id]" :alt="b.manufacturer_name" />
@@ -458,8 +454,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="m in models" :key="m.model_id"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.model === m.model_id }"
+          :aria-pressed="vehicleState.model === m.model_id"
           @click="selectModel(m)"
         >
           <span class="sv-row__label">{{ m.model_name }}</span>
@@ -474,8 +472,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="v in variants" :key="v.variant_id"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.variant === v.variant_id }"
+          :aria-pressed="vehicleState.variant === v.variant_id"
           @click="selectVariant(v)"
         >
           <span class="sv-row__label">{{ v.variant_name }}</span>
@@ -490,8 +490,10 @@ function onFeeChange() {
       <div class="sv-list">
         <button
           v-for="g in specGroups" :key="g.label"
+          type="button"
           class="sv-row"
           :class="{ 'is-selected': vehicleState.trimGroup === g.label }"
+          :aria-pressed="vehicleState.trimGroup === g.label"
           @click="selectSpec(g)"
         >
           <span class="sv-row__label">{{ g.label }}
@@ -510,8 +512,10 @@ function onFeeChange() {
         <!-- 소제목 — 같은 엔진 안에서 갈리는 인승·구동·용도 (예: 5인승 2WD · 밴 · 렌터카) -->
         <div v-if="t.group && t.group !== trims[i - 1]?.group" class="sv-group">{{ t.group }}</div>
         <button
+          type="button"
           class="sv-trim-card"
           :class="{ 'is-selected': vehicleState.trim === t.trim_id }"
+          :aria-pressed="vehicleState.trim === t.trim_id"
           @click="selectTrim(t)"
         >
           <div class="sv-trim-card__top">
@@ -562,15 +566,18 @@ function onFeeChange() {
     <div v-else-if="subStep === 'options'" class="sv-section">
       <h2 class="sv-title">옵션을<br>선택해 주세요</h2>
 
-      <div v-if="!availableOptions.length" class="sv-empty">선택 가능한 옵션이 없습니다.</div>
+      <div v-if="!availableOptions.length" class="sv-empty" role="status">선택 가능한 옵션이 없습니다.</div>
       <div v-else class="sv-opts">
         <button
           v-for="o in availableOptions" :key="o.id"
+          type="button"
           class="sv-opt"
           :class="{
             'is-selected': vehicleState.options.has(o.id),
             'is-disabled': !isEnabled(o.id) && !vehicleState.options.has(o.id),
           }"
+          :aria-pressed="vehicleState.options.has(o.id)"
+          :aria-disabled="!isEnabled(o.id) && !vehicleState.options.has(o.id)"
           @click="toggleOption(o.id)"
         >
           <div class="sv-opt__top">
@@ -624,8 +631,10 @@ function onFeeChange() {
         <div class="sv-color-grid">
           <button
             v-for="(c, i) in exteriorColors" :key="i"
+            type="button"
             class="sv-color-card"
             :class="{ 'is-selected': vehicleState.color === i }"
+            :aria-pressed="vehicleState.color === i"
             :title="c.name"
             :disabled="c._paintUnavailable"
             @click="pickExtColor(i)"
@@ -648,8 +657,10 @@ function onFeeChange() {
         <div class="sv-color-grid">
           <button
             v-for="c in 내장색들" :key="c.value"
+            type="button"
             class="sv-color-card"
             :class="{ 'is-selected': quoteState.cond.colorInt === c.value }"
+            :aria-pressed="quoteState.cond.colorInt === c.value"
             @click="pickIntColor(c)"
           >
             <span class="sv-color-swatch" :style="{ background: c.swatch }"></span>
@@ -709,7 +720,7 @@ function onFeeChange() {
 .sv { padding-top: 4px; }
 .sv-title {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
-  color: var(--ink-1); margin: 0 0 24px;
+  color: var(--ink-1); margin: 0 0 16px;
   line-height: 1.35; letter-spacing: -0.5px;
 }
 
@@ -720,7 +731,7 @@ function onFeeChange() {
 }
 .sv-crumb {
   display: inline-flex; align-items: center; gap: 4px;
-  padding: 0 2px; min-height: 32px; border: 0; background: transparent;
+  padding: 0 8px; min-width: 44px; min-height: 44px; border: 0; background: transparent;
   color: var(--ink-2); font-weight: var(--fw-medium);
   font-family: inherit; font-size: var(--fs-sm);
   cursor: pointer;
@@ -769,7 +780,7 @@ function onFeeChange() {
 .sv-brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .sv-brand-card {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px; padding: 22px 8px;
+  gap: 8px; padding: 16px 8px;
   background: var(--bg-soft);
   border: 0;
   border-radius: var(--r-card);
@@ -784,19 +795,19 @@ function onFeeChange() {
 .sv-brand-card.is-selected .sv-brand-card__name { color: var(--brand); font-weight: var(--fw-bold); }
 
 .sv-debug {
-  padding: 12px 14px;
-  background: #fff8e1;
-  border: 1px solid #f4d35e;
-  border-radius: var(--r-md);
-  font-size: var(--fs-sm); color: #936916;
-  margin-bottom: 12px;
+  padding: var(--sp-3);
+  background: var(--fp-warn-bg);
+  border: 0;
+  border-radius: var(--r-card);
+  font-size: var(--fs-sm); color: var(--fp-warn);
+  margin-bottom: var(--sp-3);
 }
 
 /* 리스트 */
 .sv-list { display: flex; flex-direction: column; gap: 8px; }
 .sv-row {
   display: flex; align-items: center; justify-content: space-between;
-  padding: var(--sp-4);
+  padding: var(--sp-3);
   background: var(--bg-soft);
   border: 0;
   border-radius: var(--r-card);
@@ -813,10 +824,10 @@ function onFeeChange() {
 /* 트림 카드 */
 .sv-trim-card {
   display: flex; flex-direction: column; gap: 6px;
-  padding: 16px;
+  padding: 12px;
   background: var(--bg-soft);
   border: 0;
-  border-radius: 12px;
+  border-radius: var(--r-card);
   text-align: left;
   font-family: inherit; cursor: pointer;
 }
@@ -838,7 +849,7 @@ function onFeeChange() {
 .sv-group:first-child { margin-top: 0; }
 
 /* 옵션·색상 sub-step */
-.sv-block { margin-bottom: 22px; }
+.sv-block { margin-bottom: 16px; }
 .sv-block__label {
   display: flex; align-items: baseline; justify-content: space-between;
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
@@ -885,10 +896,14 @@ function onFeeChange() {
 }
 
 .sv-empty {
-  padding: 18px; text-align: center;
-  background: var(--bg-soft);
-  border-radius: var(--r-md);
-  color: var(--ink-4); font-size: var(--fs-md);
+  padding: var(--sp-4);
+  text-align: center;
+  background: var(--fp-surface-soft);
+  border-radius: var(--r-card);
+  box-shadow: var(--fp-elevation-base);
+  color: var(--fp-text-muted);
+  font-size: var(--fs-base);
+  line-height: 1.5;
 }
 
 /* 할인 — 접힘 disclosure */
@@ -900,6 +915,7 @@ function onFeeChange() {
 }
 .sv-disclosure__summary {
   display: flex; align-items: center; gap: 8px;
+  min-height: 44px;
   list-style: none;
   cursor: pointer;
   user-select: none;
@@ -975,7 +991,7 @@ function onFeeChange() {
 .sv-opt__group i { font-size: 12px; }
 .sv-opt__req {
   display: inline-flex; align-items: center; gap: 4px;
-  font-size: var(--fs-xs); color: #c62828; margin-top: 2px;
+  font-size: var(--fs-xs); color: var(--fp-err); margin-top: 2px;
 }
 .sv-opt:active { background: var(--brand-50); }
 .sv-opt.is-selected {
@@ -989,9 +1005,9 @@ function onFeeChange() {
 /* 가격 합산 카드 */
 .sv-total {
   margin-top: 28px;
-  padding: 14px 16px;
+  padding: 12px;
   background: var(--brand-50);
-  border-radius: 12px;
+  border-radius: var(--r-card);
 }
 .sv-total__row {
   display: flex; justify-content: space-between;
@@ -1000,8 +1016,7 @@ function onFeeChange() {
   padding: 3px 0;
 }
 .sv-total__row--total {
-  border-top: 1px solid var(--brand-100);
-  margin-top: 6px; padding-top: 8px;
+  margin-top: 6px; padding-top: 6px;
   font-size: var(--fs-lg); color: var(--brand); font-weight: var(--fw-bold);
 }
 </style>

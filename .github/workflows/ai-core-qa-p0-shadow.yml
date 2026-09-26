@@ -7,7 +7,7 @@ on:
       - 'apps/new/scripts/check-ai-core-qa-p0-shadow.mjs'
       - '.github/workflows/ai-core-qa-p0-shadow.yml'
   push:
-    branches: [work/ui-baseline]
+    branches: [main, 'integration/**']
     paths:
       - 'apps/new/contracts/ai-core/qa-p0.shadow.json'
       - 'apps/new/scripts/check-ai-core-qa-p0-shadow.mjs'

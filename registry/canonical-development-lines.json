@@ -94,12 +94,5 @@
       ]
     }
   },
-  "baseline": [
-    {
-      "guard": "workflow-ref-pin",
-      "path": ".github/workflows/newcar-ci.yml",
-      "expires": "2026-10-31",
-      "reason": "역사적 UI 비교용 welrixtable 고정 ref가 남아 있다. FreePass 소유 UI 구조 스냅샷으로 교체 후 예외를 제거한다."
-    }
-  ]
+  "baseline": []
 }

@@ -35,7 +35,8 @@ fail(workflow.includes('Release revision proof contract'),'ESTIMATE_RELEASE_PROO
 
 const releaseChecker = read('scripts/check-release-proof.mjs');
 fail(releaseChecker.includes('/api/version') || releaseChecker.includes('api/version'),'ESTIMATE_RELEASE_REVISION_ENDPOINT_NOT_CHECKED');
-fail(releaseChecker.includes('HOLD') || releaseChecker.includes('production'),'ESTIMATE_RELEASE_PROOF_BOUNDARY_MISSING');
+fail(shadow.boundary?.ci_pass_is_not_production_proof === true,'ESTIMATE_CI_PRODUCTION_BOUNDARY_MISSING');
+fail(shadow.boundary?.production_revision_observation_required_separately === true,'ESTIMATE_RELEASE_PROOF_BOUNDARY_MISSING');
 
 console.log(JSON.stringify({
   status:'SHADOW_PARITY',

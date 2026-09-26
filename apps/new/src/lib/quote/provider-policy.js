@@ -13,6 +13,8 @@ const PUBLIC_MESSAGES = Object.freeze({
   PROVIDER_TIMEOUT: '견적 계산 응답이 지연되고 있습니다. 잠시 후 다시 시도해 주세요.',
   PROVIDER_UNAVAILABLE: '현재 견적 계산 공급자에 연결할 수 없습니다. 잠시 후 다시 시도해 주세요.',
   PROVIDER_RESPONSE_INVALID: '견적 계산 결과를 확인할 수 없습니다.',
+  PROVIDER_PRICE_BASIS_INVALID: '차량 기준가격을 확인할 수 없어 견적을 계산하지 않았습니다.',
+  PROVIDER_PRICE_OVERRIDE_REJECTED: '외부 계산기가 FreePass 기준가격을 적용하지 않아 견적을 중단했습니다.',
   PROVIDER_ADAPTER_UNREGISTERED: '등록되지 않은 견적 계산 연결입니다.',
   PROVIDER_KIND_INVALID: '견적 계산 연결 설정을 확인해 주세요.',
   PROVIDER_ERROR: '현재 견적을 계산할 수 없습니다.',

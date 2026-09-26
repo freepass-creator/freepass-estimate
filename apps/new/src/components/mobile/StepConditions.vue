@@ -1,36 +1,20 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 담당자인가 } from '../../lib/role.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { QUOTE_TERMS } from '../../lib/quote/terms.js';
+import { CREDIT_OPTIONS, KM_OPTIONS, toggleQuoteTerm } from '../../lib/feature/conditions.js';
 
-const 담당자 = 담당자인가();
+const 담당자 = rolePolicy(역할()).canEditInternalCredit;
 const TERMS = QUOTE_TERMS;
-const KMS = [1, 2, 3, 4];
-/* ★웰릭스 계산 서버는 신용을 «고신용·중신용·저신용» 셋만 받는다.
-   예전 첫 칸 '신용' 은 서버가 「허용되지 않은 값: credit」으로 돌려보내 계산이 멈췄다. */
-const CREDITS = [
-  { value: '고신용', label: '고신용' },
-  { value: '중신용', label: '중신용' },
-  { value: '저신용', label: '저신용' },
-];
+const KMS = KM_OPTIONS;
+const CREDITS = CREDIT_OPTIONS;
 
 const selectedTerms = computed(() => (quoteState.scenarios || []).map(s => s.term));
 
 function toggleTerm(t) {
-  const list = quoteState.scenarios || [];
-  const idx = list.findIndex(s => s.term === t);
-  if (idx >= 0) {
-    if (list.length === 1) return;
-    list.splice(idx, 1);
-  } else {
-    list.push({ term: t, dep: quoteState.cond.dep || 10, pre: quoteState.cond.pre || 0 });
-    list.sort((a, b) => b.term - a.term);
-  }
-  /* 발송 체크 배열도 현재 기간 개수와 정확히 맞춘다. */
-  if (!Array.isArray(quoteState.send)) quoteState.send = [];
-  while (quoteState.send.length < list.length) quoteState.send.push(true);
-  if (quoteState.send.length > list.length) quoteState.send.splice(list.length);
+  toggleQuoteTerm(quoteState, t);
 }
 
 </script>
@@ -46,7 +30,7 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="t in TERMS" :key="t"
-          class="sc-chip" :class="{ 'is-selected': selectedTerms.includes(t) }"
+          type="button" class="sc-chip" :class="{ 'is-selected': selectedTerms.includes(t) }" :aria-pressed="selectedTerms.includes(t)"
           @click="toggleTerm(t)"
         >{{ t }}개월</button>
       </div>
@@ -57,7 +41,7 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="k in KMS" :key="k"
-          class="sc-chip" :class="{ 'is-selected': quoteState.cond.km == k }"
+          type="button" class="sc-chip" :class="{ 'is-selected': quoteState.cond.km == k }" :aria-pressed="quoteState.cond.km == k"
           @click="quoteState.cond.km = k"
         >{{ k }}만km/년</button>
       </div>
@@ -70,7 +54,7 @@ function toggleTerm(t) {
       <div class="sc-chips">
         <button
           v-for="c in CREDITS" :key="c.value"
-          class="sc-chip" :class="{ 'is-selected': quoteState.cond.credit === c.value }"
+          type="button" class="sc-chip" :class="{ 'is-selected': quoteState.cond.credit === c.value }" :aria-pressed="quoteState.cond.credit === c.value"
           @click="quoteState.cond.credit = c.value"
         >{{ c.label }}</button>
       </div>
@@ -94,10 +78,10 @@ function toggleTerm(t) {
 <style scoped>
 .sc-title {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
-  color: var(--ink-1); margin: 0 0 24px;
+  color: var(--ink-1); margin: 0 0 16px;
   line-height: 1.35; letter-spacing: -0.5px;
 }
-.sc-field { margin-bottom: 22px; }
+.sc-field { margin-bottom: 16px; }
 .sc-label {
   display: flex; align-items: baseline; justify-content: space-between;
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
@@ -110,7 +94,7 @@ function toggleTerm(t) {
   display: flex; flex-wrap: wrap; gap: 6px;
 }
 .sc-note {
-  margin: 4px 0 0; padding: 12px 14px;
+  margin: 4px 0 0; padding: 12px;
   background: var(--bg-soft); border-radius: var(--r-chip);
   font-size: var(--fs-sm); color: var(--ink-3); line-height: 1.5;
   letter-spacing: -0.2px;

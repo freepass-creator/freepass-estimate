@@ -1,15 +1,15 @@
-name: New-car UI screenshots
+name: FreePass Estimate post-merge visual QA
 
 on:
   push:
-    branches: [work/ui-baseline]
+    branches: [main, 'integration/**']
     paths:
       - 'apps/new/index.html'
       - 'apps/new/mobile.html'
       - 'apps/new/src/**'
       - 'apps/new/public/vehicle-db.js'
       - 'apps/new/public/welrix-db.js'
-      - 'apps/new/scripts/capture-ui.mjs'
+      - 'apps/new/scripts/e2e-ui-visual-audit.mjs'
       - '.github/workflows/newcar-ui-screenshots.yml'
   workflow_dispatch:
 
@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  capture:
+  visual-qa:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
@@ -30,29 +30,35 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: apps/new/package-lock.json
-      - run: npm ci
-      - name: Install Playwright
-        run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
-      - name: Build
+      - name: Install app dependencies
+        run: npm ci
+      - name: Install browser audit dependency
+        run: npm install --no-save --package-lock=false playwright@1.55.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Production build
         run: npm run build
       - name: Start preview
         run: |
-          nohup npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/freepass-preview.log 2>&1 &
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/freepass-preview.log 2>&1 &
           for i in {1..30}; do
-            if curl -fsS http://127.0.0.1:4173/mobile.html >/dev/null; then exit 0; fi
+            if curl -fsS http://127.0.0.1:4173/mobile.html >/dev/null; then
+              exit 0
+            fi
             sleep 1
           done
           cat /tmp/freepass-preview.log
           exit 1
-      - name: Capture UI
+      - name: Canonical visual audit
         env:
-          PREVIEW_URL: http://127.0.0.1:4173
-        run: node scripts/capture-ui.mjs
-      - uses: actions/upload-artifact@v4
+          BASE_URL: http://127.0.0.1:4173
+          ARTIFACT_DIR: artifacts/ui-visual-audit
+        run: node scripts/e2e-ui-visual-audit.mjs
+      - name: Upload visual QA receipt
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: newcar-ui-screenshots
-          path: apps/new/ui-captures/*.png
+          name: freepass-estimate-visual-qa
+          path: apps/new/artifacts/ui-visual-audit
           retention-days: 3
-          if-no-files-found: error
+          if-no-files-found: warn

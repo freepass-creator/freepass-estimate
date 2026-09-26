@@ -27,6 +27,8 @@ export const 견적상태 = reactive({
   차량가: null,
   계산기: '',
   공급자: '',
+  pricingEngine: null,
+  priceBasis: null,
   계약: null,
   실행: null,
   오류코드: '',
@@ -51,12 +53,15 @@ async function 보내기() {
   }
 
   const 글 = providerKey + '|' + JSON.stringify(요청);
-  const 캐시 = 곳간.get(글);
+  const 캐시허용 = 이름 === '표준';
+  const 캐시 = 캐시허용 ? 곳간.get(글) : null;
   if (캐시) {
     견적상태.결과 = 캐시.결과;
     견적상태.차량가 = 캐시.차량가;
     견적상태.계산기 = 캐시.계산기 || 계산기들[이름].이름;
     견적상태.공급자 = 캐시.공급자 || providerKey;
+    견적상태.pricingEngine = 캐시.pricingEngine || null;
+    견적상태.priceBasis = 캐시.priceBasis || null;
     견적상태.계약 = 캐시.계약 || null;
     견적상태.실행 = 캐시.실행 || null;
     견적상태.오류 = '';
@@ -68,18 +73,24 @@ async function 보내기() {
   const 내순번 = ++순번;
   견적상태.상태 = 'pending';
   견적상태.오류 = '';
+  견적상태.pricingEngine = null;
+  견적상태.priceBasis = null;
 
   try {
     const 답 = await 견적계산(요청, { 강제계산기 });
     if (내순번 !== 순번) return;
 
-    if (곳간.size > 200) 곳간.delete(곳간.keys().next().value);
-    곳간.set(글, 답);
+    if (캐시허용) {
+      if (곳간.size > 200) 곳간.delete(곳간.keys().next().value);
+      곳간.set(글, 답);
+    }
 
     견적상태.결과 = 답.결과;
     견적상태.차량가 = 답.차량가 ?? null;
     견적상태.계산기 = 답?.계산기 || 계산기들[이름].이름;
     견적상태.공급자 = 답?.공급자 || providerKey;
+    견적상태.pricingEngine = 답?.pricingEngine || null;
+    견적상태.priceBasis = 답?.priceBasis || null;
     견적상태.계약 = 답?.계약 || null;
     견적상태.실행 = 답?.실행 || null;
     견적상태.오류코드 = '';
@@ -98,6 +109,10 @@ function 비우기(상태, 오류 = '', 오류코드 = '', 실행 = null) {
   견적상태.실행 = 실행;
   견적상태.결과 = [];
   견적상태.차량가 = null;
+  견적상태.pricingEngine = null;
+  견적상태.priceBasis = null;
+  견적상태.계산기 = '';
+  견적상태.공급자 = '';
   if (상태 !== 'error') 견적상태.계약 = null;
 }
 
@@ -107,5 +122,7 @@ export function 다시계산() {
   if (!요청) { 비우기('idle'); return; }
   견적상태.상태 = 'pending';
   견적상태.오류 = '';
+  견적상태.pricingEngine = null;
+  견적상태.priceBasis = null;
   타이머 = setTimeout(보내기, 150);
 }

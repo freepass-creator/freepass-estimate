@@ -33,7 +33,10 @@ export default function handler(req, res) {
   let provider;
   try {
     provider = 공급자설정(cfg);
-  } catch {
+  } catch (error) {
+    if (error?.code === 'PROVIDER_CONFIG_MISSING') {
+      return bad(res, 422, '견적 공급자 설정이 없습니다.', 'PROVIDER_NOT_CONFIGURED');
+    }
     return bad(res, 422, '견적 공급자 설정이 올바르지 않습니다.', 'PROVIDER_CONFIG_INVALID');
   }
 
