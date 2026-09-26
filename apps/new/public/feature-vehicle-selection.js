@@ -67,6 +67,11 @@
     return [...groups];
   }
 
+  function vehicleSubSteps(variant) {
+    const base = ['brand', 'model', 'variant', 'spec', 'trim', 'colors', 'options'];
+    return operatingTrimGroups(variant).length > 1 ? base : base.filter((step) => step !== 'spec');
+  }
+
   function nextStepAfterSelection(step, context = {}) {
     if (step === 'manufacturer') return 'model';
     if (step === 'model') return 'variant';
@@ -87,6 +92,7 @@
     STEPS,
     applySelection,
     operatingTrimGroups,
+    vehicleSubSteps,
     nextStepAfterSelection,
   });
 })(globalThis);
