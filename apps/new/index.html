@@ -148,43 +148,47 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
-    background: var(--bg); color: var(--ink-1);
+    font-family: var(--font);
+    background: var(--fp-canvas); color: var(--fp-text);
     letter-spacing: -0.2px; line-height: 1.5;
-    font-size: 13.5px;
+    font-size: var(--fp-fs-body);
     -webkit-text-size-adjust: 100%;
     margin: 0;
     display: grid;
-    /* 좌(차량) 400px 고정 — 손오공 견적기와 좌패널 폭 통일. 중(견적):우(채팅) = 52:20 잔여배분 */
+    /* Estimate-specific composition: vehicle configuration + quote workspace. */
     grid-template-columns: 400px minmax(0, 52fr) minmax(0, 20fr);
-    grid-template-rows: 48px minmax(0, 1fr) 50px;
+    grid-template-rows: var(--fp-topbar) minmax(0, 1fr) var(--fp-panel-foot);
     gap: 0;
     height: 100vh;
     overflow: hidden;
   }
-  /* 톱바 — 화이트 + 헤어라인만 */
+  /* FreePass Admin PR #92 information-only topbar. */
   .global-topbar {
     grid-column: 1 / -1;
     position: sticky; top: 0; z-index: 50;
-    display: flex; align-items: center; gap: 16px;
-    padding: 0 20px; height: 48px;
-    background: var(--bg);
-    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: var(--fp-sp-4);
+    padding: 0 var(--fp-sp-5); height: var(--fp-topbar);
+    background: var(--fp-nav);
+    border-bottom: 0;
+    color: #fff;
   }
-  .ph { font-size: 14px; line-height: 1; }
+  .ph { font-size: var(--fp-fs-body); line-height: 1; }
   .global-topbar__brand {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 13.5px; font-weight: 500; letter-spacing: -0.2px; color: var(--ink-1);
+    display: inline-flex; align-items: center; gap: var(--fp-sp-2);
+    font-size: var(--fp-fs-body); font-weight: 600; letter-spacing: -0.2px; color: #fff;
   }
-  .global-topbar__brand .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-1); }
+  .global-topbar__brand .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; }
   .global-topbar__brand .ci {
     height: 24px; width: auto; display: block;
+    filter: brightness(0) invert(1); opacity: .96;
   }
-  .global-topbar__hint { font-size: 12px; color: var(--ink-4); padding-left: 12px; }
+  .global-topbar__hint {
+    font-size: var(--fp-fs-support); color: var(--fp-nav-text); padding-left: var(--fp-sp-3);
+  }
   .global-topbar__ver {
-    font-size: 11px; font-weight: 600; color: var(--ink-4);
-    margin-left: 10px; padding: 2px 7px; border-radius: 5px;
-    background: var(--brand-50); font-variant-numeric: tabular-nums;
+    font-size: var(--fp-fs-support); font-weight: 600; color: var(--fp-nav-text);
+    margin-left: var(--fp-sp-2); padding: 2px var(--fp-sp-2); border-radius: var(--fp-r-control);
+    background: var(--fp-nav-raised); font-variant-numeric: tabular-nums;
   }
   .global-topbar .spacer { flex: 1; }
 
@@ -194,8 +198,8 @@
     grid-column: 1 / -1;
     grid-row: 3;
     z-index: 60;
-    background: var(--bg);
-    border-top: 1px solid var(--line);
+    background: var(--fp-canvas);
+    border-top: 0;
     display: flex;
     align-items: center;
     min-width: 0;
@@ -211,23 +215,24 @@
   }
   .desktop-action-bar__spacer { flex: 1; }
   .bottom-action {
-    height: 44px;
-    padding: 0 12px;
-    border: 0;
-    border-radius: var(--radius);
+    height: var(--fp-control);
+    padding: 0 var(--fp-sp-3);
+    border: 1px solid transparent;
+    border-radius: var(--fp-r-control);
+    box-shadow: var(--fp-elevation-base);
     font: inherit;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--fp-fs-body);
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: var(--fp-sp-2);
     cursor: pointer;
     white-space: nowrap;
   }
-  .bottom-action.secondary { background: transparent; color: var(--ink-2); }
-  .bottom-action.secondary:hover { background: var(--bg-muted); color: var(--ink-1); }
-  .bottom-action.primary { background: var(--brand); color: #fff; font-weight: 600; }
+  .bottom-action.secondary { background: var(--fp-surface-soft); color: var(--fp-text-2); }
+  .bottom-action.secondary:hover { background: var(--fp-surface-hover); color: var(--fp-text); }
+  .bottom-action.primary { background: var(--fp-primary); color: #fff; font-weight: 600; }
   .bottom-action:disabled { opacity: .38; cursor: not-allowed; }
   @media (max-width: 1024px) {
     .desktop-action-bar__inner { overflow-x: auto; padding: 0 10px; }
