@@ -59,6 +59,75 @@ function selectedOptionsFromCatalog(variant, selectedOptionIds) {
     });
 }
 
+
+function normalized(value) {
+  return String(value ?? '').toLowerCase()
+    .replace(/hybrid|electric|하이브리드|일렉트릭|전기차/gi, '')
+    .replace(/[\s·,()\[\]{}_"'’”&+.-]/g, '');
+}
+
+function catalogContexts(db) {
+  const out = [];
+  for (const manufacturer of db?.manufacturers || []) {
+    for (const model of manufacturer?.models || []) {
+      for (const variant of model?.variants || []) {
+        for (const trim of variant?.trims || []) {
+          if (trim?.operating === false) continue;
+          out.push({ manufacturer, model, variant, trim });
+        }
+      }
+    }
+  }
+  return out;
+}
+
+export function resolveCatalogPreviewContext(legacyVehicle, db = globalThis.window?.VEHICLE_DB) {
+  if (!legacyVehicle || !db) {
+    throw codedError('legacy vehicle and catalog are required', 'QUOTE_PREVIEW_IDENTITY_UNRESOLVED');
+  }
+
+  const brand = String(legacyVehicle.brand || '').trim();
+  const price = nonNegativeMoney(legacyVehicle.price, 'legacy vehicle price');
+  const legacyModels = [legacyVehicle.model, legacyVehicle.name].map(normalized).filter(Boolean);
+  const legacyTrim = normalized(legacyVehicle.trim);
+  const legacyEngine = normalized(legacyVehicle.engine_label || legacyVehicle.fuel);
+
+  const candidates = catalogContexts(db)
+    .filter(({ manufacturer, trim }) =>
+      manufacturer?.manufacturer_name === brand &&
+      nonNegativeMoney((Number(trim?.base_price_5) || 0) * 10000, 'catalog price') === price
+    )
+    .map((context) => {
+      const modelName = normalized(context.model?.model_name);
+      const trimName = normalized(context.trim?.name);
+      const variantName = normalized(context.variant?.variant_name);
+      const engineName = normalized(context.trim?.engine || context.variant?.variant_name);
+
+      let score = 0;
+      if (legacyModels.some((name) => name === modelName)) score += 40;
+      else if (legacyModels.some((name) => name && modelName && (name.includes(modelName) || modelName.includes(name)))) score += 20;
+
+      if (legacyTrim && trimName) {
+        if (legacyTrim === trimName) score += 60;
+        else if (legacyTrim.includes(trimName) || trimName.includes(legacyTrim)) score += 35;
+      }
+      if (legacyTrim && variantName && legacyTrim.includes(variantName)) score += 10;
+      if (legacyEngine && engineName && (legacyEngine.includes(engineName) || engineName.includes(legacyEngine))) score += 5;
+
+      return { context, score };
+    })
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  if (!candidates.length) {
+    throw codedError('legacy vehicle cannot be resolved to canonical catalog product', 'QUOTE_PREVIEW_IDENTITY_UNRESOLVED');
+  }
+  if (candidates.length > 1 && candidates[0].score === candidates[1].score) {
+    throw codedError('legacy vehicle resolves to multiple canonical catalog products', 'QUOTE_PREVIEW_IDENTITY_AMBIGUOUS');
+  }
+  return candidates[0].context;
+}
+
 export function buildCatalogPreviewRequest({
   manufacturer,
   model,
