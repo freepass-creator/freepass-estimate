@@ -167,6 +167,17 @@ Focus는 제거하지 않는다.
 selected는 hover보다 더 떠오르는 상태가 아니다.
 **selected = 눌려 고정된 surface**다.
 
+### Selected semantics by component type
+
+모든 selected를 한 가지 색으로 처리하지 않는다.
+
+- Entity / content card selected → `selected tint + shallow inset`
+- Compact selection control selected → `solid primary + white text`
+- Result / output card → selected가 아니므로 `neutral surface`
+- Status / badge → semantic signal color, press/hover 없음
+
+즉 차량 카드, 기간/주행 선택칩, 견적 결과 카드, 상태 뱃지는 서로 같은 물성이 아니다.
+
 ## Migration rule
 
 과거 Welrix/Sales 값은 runtime compatibility alias로만 남길 수 있다.
