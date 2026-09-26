@@ -64,7 +64,7 @@ for(const [label,id] of cases){
   const answer=await calculateStandardQuote(request);
   assert.equal(answer.결과.length,5,label+' result length');
   assert.equal(answer.pricingEngine?.verified,true,label+' engine evidence verified');
-  assert.match(answer.pricingEngine?.version||'',/^freepass-standard\/newcar@1\.0\.0\+src\.[a-f0-9]{12}\.policy\.[a-f0-9]{12}$/,label+' engine version');
+  assert.match(answer.pricingEngine?.version||'',/^freepass-standard\/newcar@1\.1\.0\+src\.[a-f0-9]{12}\.policy\.[a-f0-9]{12}$/,label+' engine version');
   for(const row of answer.결과){
     assert.ok(Number.isFinite(row.월대여료)&&row.월대여료>0,label+' monthly');
     assert.ok(Number.isFinite(row.보증금)&&row.보증금>=0,label+' deposit');
