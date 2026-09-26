@@ -11,6 +11,8 @@ import { applyScenarioPercent, normalizeFeeRate } from '../../lib/feature/condit
 
 const optionRules = globalThis.FreePassFeatureOptions;
 if (!optionRules) throw new Error('FreePassFeatureOptions runtime is required');
+const vehicleSelection = globalThis.FreePassVehicleSelection;
+if (!vehicleSelection) throw new Error('FreePassVehicleSelection runtime is required');
 
 const props = defineProps({
   vehicles: { type: Array, default: () => [] },
@@ -314,57 +316,44 @@ function syncVehicle() {
   };
 }
 
+function resetQuoteVehicleWhenSelectionChanges(result) {
+  if (result.changed) quoteState.vehicle = null;
+  return result.changed;
+}
+
 function selectBrand(b) {
-  vehicleState.manufacturer = b.manufacturer_id;
-  vehicleState.model = null; vehicleState.variant = null; vehicleState.trim = null;
-  vehicleState.options.clear(); vehicleState.color = null;
-  quoteState.vehicle = null;
-  subStep.value = 'model';
+  const result = vehicleSelection.applySelection(vehicleState, 'manufacturer', b.manufacturer_id);
+  resetQuoteVehicleWhenSelectionChanges(result);
+  subStep.value = vehicleSelection.nextStepAfterSelection('manufacturer');
 }
 function selectModel(m) {
-  vehicleState.model = m.model_id;
-  vehicleState.variant = null; vehicleState.trim = null;
-  vehicleState.options.clear(); vehicleState.color = null;
-  quoteState.vehicle = null;
-  // 한 화면 한 선택: 모델을 고르면 파워트레인 화면으로 즉시 이동한다.
-  // 파워트레인이 하나여도 사용자가 그 화면에서 직접 고른다.
-  subStep.value = 'variant';
+  const result = vehicleSelection.applySelection(vehicleState, 'model', m.model_id);
+  resetQuoteVehicleWhenSelectionChanges(result);
+  subStep.value = vehicleSelection.nextStepAfterSelection('model');
 }
 function selectVariant(v) {
-  vehicleState.variant = v.variant_id;
-  vehicleState.trim = null;
-  vehicleState.trimGroup = null;
-  vehicleState.options.clear(); vehicleState.color = null;
-  quoteState.vehicle = null;
-  /* ★인승·구동이 갈리면(그룹이 둘 이상) 그 화면을 먼저 보여 준다. 안 갈리면 곧장 트림으로. */
-  const 갈래 = new Set((v.trims || []).map(t => t.group).filter(Boolean));
-  subStep.value = 갈래.size > 1 ? 'spec' : 'trim';
+  const result = vehicleSelection.applySelection(vehicleState, 'variant', v.variant_id);
+  resetQuoteVehicleWhenSelectionChanges(result);
+  subStep.value = vehicleSelection.nextStepAfterSelection('variant', { variant: v });
 }
 function selectSpec(g) {
-  vehicleState.trimGroup = g.label;
-  vehicleState.trim = null;
-  vehicleState.options.clear(); vehicleState.color = null;
-  quoteState.vehicle = null;
-  subStep.value = 'trim';
+  const result = vehicleSelection.applySelection(vehicleState, 'trimGroup', g.label);
+  resetQuoteVehicleWhenSelectionChanges(result);
+  subStep.value = vehicleSelection.nextStepAfterSelection('trimGroup');
 }
 function selectTrim(t) {
-  vehicleState.trim = t.trim_id;
-  vehicleState.options.clear();
-  /* ★색은 «안 고른 채»로 둔다 — 웰릭스 견적기 기본이 「선택 안 함」이다.
-     대표 2026-09-18 「아 우리도 외장색 기본으로 해」
-     자동으로 골라 두면 그 색이 유료일 때(그랜저 세레니티 화이트 펄 +10만) 값이 벌어진다.
-     고르고 싶은 사람은 색상 걸음에서 고르면 되고, 안 골라도 다음으로 넘어간다. */
-  vehicleState.color = null;
-  quoteState.cond.colorInt = '';
-  quoteState.cond.colorIntPrice = 0;
-  quoteState.cond.colorIntId = null;
-  syncVehicle();
+  const result = vehicleSelection.applySelection(vehicleState, 'trim', t.trim_id);
+  if (result.changed) {
+    quoteState.cond.colorInt = '';
+    quoteState.cond.colorIntPrice = 0;
+    quoteState.cond.colorIntId = null;
+    quoteState.vehicle = null;
+    syncVehicle();
+  } else if (!quoteState.vehicle) {
+    syncVehicle();
+  }
 
-  // 한 화면 한 선택: 트림 선택 즉시 다음 구성 화면으로 이동한다.
-  // 실제 제조사 색상이 있으면 색상 → 옵션 순서를 유지하고,
-  // 색상 정보가 없는 상품만 옵션 화면으로 바로 간다.
-  const 색상있음 = (t._exterior_colors?.length || t._interior_colors?.length);
-  subStep.value = 색상있음 ? 'colors' : 'options';
+  subStep.value = vehicleSelection.nextStepAfterSelection('trim', { trim: t });
 }
 
 function goBack(target) { subStep.value = target; }
