@@ -20,6 +20,7 @@ on:
       - 'apps/new/src/lib/quote/shadow-roundtrip.js'
       - 'apps/new/src/lib/quote/share-migration.js'
       - 'apps/new/src/lib/quote/share-envelope*.js'
+      - 'apps/new/src/lib/quote/share-bundle.js'
       - 'apps/new/scripts/check-quote-*.mjs'
       - 'apps/new/scripts/check-share-envelope*.mjs'
       - 'apps/new/scripts/check-legacy-*.mjs'
@@ -75,6 +76,7 @@ jobs:
           node --check src/lib/quote/share-migration.js
           node --check src/lib/quote/share-envelope.js
           node --check src/lib/quote/share-envelope-repository.js
+          node --check src/lib/quote/share-bundle.js
           node --check src/lib/quote/repositories/freepass-data-share-envelope.js
           node --check src/lib/quote/cutover-readiness.js
           node --check src/lib/quote/cutover-probe.js
@@ -109,6 +111,8 @@ jobs:
         run: node scripts/check-share-envelope-persistence.mjs
       - name: Public Share Envelope migration routing
         run: node scripts/check-share-envelope-migration.mjs
+      - name: Canonical Share bundle resolver
+        run: node scripts/check-canonical-share-bundle.mjs
       - name: Existing Quote factory regression
         run: node scripts/check-quote-factory.mjs
       - name: Quote storage boundary
