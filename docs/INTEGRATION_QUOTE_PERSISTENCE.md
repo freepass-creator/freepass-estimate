@@ -89,3 +89,27 @@ Fail-closed rules:
 - RTDB is never a fallback for this runtime
 
 This runtime does not itself replace the current legacy send UI. The F/U lanes may call this seam only after the upstream FreePass Data contracts are live and C approves runtime cutover.
+
+
+## Canonical Quote read path
+
+Quote v2 lookup uses a separate read receipt contract:
+
+`freepass-quote-read-receipt/v1`
+
+Browser flow:
+
+```
+Quote viewer / consumer
+  -> QuoteRepository.get
+     -> /api/issued-quote?quoteId=...
+        -> FreePass Data consumer read endpoint
+           -> FOUND receipt + immutable Quote v2
+              or NOT_FOUND
+```
+
+The Estimate gateway normalizes upstream HTTP 404 into an explicit `NOT_FOUND` receipt.
+A FOUND response is accepted only when quoteId, quoteVersion and snapshotHash all match the returned Quote v2 payload.
+
+This read seam is intentionally not wired into the current `?q=<legacy-id>` customer viewer yet.
+Legacy RTDB links must continue to load until a share-envelope/legacy-ID migration policy is approved.
