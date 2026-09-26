@@ -3,6 +3,7 @@ import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import { quoteState, vehicleState } from '../../store.js';
 import { 담당자인가, 손님링크 } from '../../lib/role.js';
 import { 지금주소 } from '../../lib/share-link.js';
+import { quoteActionReadiness, resetForRequote } from '../../lib/feature/actions.js';
 import StepVehicle from './StepVehicle.vue';
 import StepConditions from './StepConditions.vue';
 import StepExtras from './StepExtras.vue';
@@ -42,7 +43,14 @@ const 공유견적 = computed(() => !!quoteState.sharedSnapshot);
 
 const vehicleSelection = globalThis.FreePassVehicleSelection;
 if (!vehicleSelection) throw new Error('FreePassVehicleSelection runtime is required');
-const 견적준비됨 = computed(() => !!vehicleState.trim && (공유견적.value || 견적상태.상태 === 'ok'));
+const 견적준비 = computed(() => quoteActionReadiness({
+  quoteState,
+  vehicleSelected: !!vehicleState.trim,
+  calculationStatus: 견적상태.상태,
+  calculationResults: 견적상태.결과,
+  surface: 'mobile',
+}));
+const 견적준비됨 = computed(() => 견적준비.value.ready);
 
 /* ── 조건이 바뀌면 웰릭스에 다시 묻는다 ────────────────────────────────
  *  읽는 값이 하나라도 바뀌면 watch 가 걸린다. 연속 입력은 견적 뼈대가 묶는다. */
@@ -125,7 +133,7 @@ const stepIdx = ref(vehicleState.견적부터 ? STEPS.length - 1 : 0);
 const 돌아갈곳 = ref(vehicleState.견적부터 ? { stepIdx: 0, subStep: 'options' } : null);
 function 수정하기() {
   /* 공유받은 견적은 여기까지 «보낸 당시 값»이다. 수정부터는 새 견적이므로 실시간 계산으로 전환한다. */
-  quoteState.sharedSnapshot = null;
+  resetForRequote(quoteState);
   stepIdx.value = 0;
   vehicleState.subStep = 'options';
   돌아갈곳.value = null;
