@@ -146,7 +146,7 @@ const 공유시각 = computed(() => {
           <span v-else class="sr-muted">{{ 계산중 ? '계산 중…' : '—' }}</span>
         </div>
       </div>
-      <p v-if="계산못함" class="sr-error">지금 계산할 수 없습니다. 잠시 뒤 다시 열거나 상담으로 문의해 주세요.</p>
+      <p v-if="계산못함" class="sr-error" role="alert">지금 계산할 수 없습니다. 잠시 뒤 다시 열거나 상담으로 문의해 주세요.</p>
     </section>
 
     <!-- 조건 — 결과의 보조정보이므로 2열 요약으로 압축 -->
@@ -232,7 +232,16 @@ const 공유시각 = computed(() => {
   letter-spacing: -0.5px; font-variant-numeric: tabular-nums;
 }
 .sr-muted { color: var(--ink-3); }
-.sr-error { margin: var(--sp-1) 0 0; font-size: var(--fs-base); color: #c62828; overflow-wrap: anywhere; }
+.sr-error {
+  margin: var(--sp-2) 0 0;
+  padding: var(--sp-3);
+  border-radius: var(--r-card);
+  background: var(--fp-err-bg);
+  color: var(--fp-err);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
 
 .sr-cond__title {
   margin: var(--sp-4) 0 var(--sp-2);

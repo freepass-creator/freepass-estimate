@@ -28,7 +28,7 @@ const cfg = computed(() => window.__welrix_companyConfig || {});
 const 헤더브랜드 = computed(() => '프리패스모빌리티');
 const 공유제목 = computed(() => '프리패스모빌리티 견적');
 
-// 발송은 헤더 상단 아이콘으로 — step 으로 안 둠 (사용자 의도)
+// 발송/공유는 단계(step)가 아니다. 결과 화면의 하단 액션 영역에서만 노출한다.
 const STEPS = [
   { key: 'vehicle',    label: '차량',     comp: StepVehicle    },
   { key: 'conditions', label: '계약 조건', comp: StepConditions },
