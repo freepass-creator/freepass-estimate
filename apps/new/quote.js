@@ -1,5 +1,4 @@
 // wel2 견적 모듈 — wel 의 데이터/로직 활용 + estimator_4 톤
-import { setCompanyConfig } from './src/lib/calc.js';
 import { 요청만들기 } from './src/lib/quote/build-request.js';
 import { applyProductTheme } from './src/lib/brand-theme.js';
 import { 견적계산 } from './src/lib/quote/calculate.js';
@@ -60,7 +59,6 @@ async function loadCompanyConfig() {
     const r = await fetch(`./data/company-config/${id}.json?t=${Date.now()}`, { cache: 'no-store' });
     if (r.ok) {
       const cfg = await r.json();
-      setCompanyConfig(cfg);
       window.__welrix_companyConfig = cfg;
       applyProductTheme(cfg);
       applyExcelVersion(cfg);

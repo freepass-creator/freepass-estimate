@@ -1,5 +1,7 @@
-// welrix 견적 계산 엔진 v1.0
-// 엑셀 견적1 시트 121개 수식 정밀 포팅
+// LEGACY REGRESSION ASSET ONLY — runtime authority가 아니다.
+// 운영 견적 정본은 api/_standard/calc.js + src/lib/quote/* Quote Core다.
+// 이 파일을 화면/runtime에서 다시 import하면 check-quote-core-convergence가 실패해야 한다.
+// welrix 견적 계산 엔진 v1.0 — 과거 엑셀 견적1 시트 121개 수식 정밀 포팅
 // 출력 H34 (최종 월 대여료) = ROUNDDOWN((H27+H28-H32),-3) + 추가운전자 + 기간가산절사
 
 // ============ Excel PMT/IPMT 함수 정확 구현 ============
