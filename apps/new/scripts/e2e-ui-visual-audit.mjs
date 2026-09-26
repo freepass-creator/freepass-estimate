@@ -253,6 +253,18 @@ try {
     await context.close();
   }
 
+    {
+    const width = 1025;
+    const context = await browser.newContext({ viewport: { width, height: 900 }, locale: 'ko-KR' });
+    const page = await context.newPage();
+    await page.goto(`${BASE}/index.html`, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('.global-topbar');
+    const path = new URL(page.url()).pathname;
+    ok(path.endsWith('/index.html'), `responsive-${width}: desktop shell unexpectedly redirected: ${path}`);
+    report.responsive.push({ width, path });
+    await context.close();
+  }
+
     for (const width of [1280, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, locale: 'ko-KR' });
     const page = await context.newPage();
