@@ -68,6 +68,11 @@ Bottom action area
 
 ### Mobile
 
+Responsive shell boundary:
+- `<= 1024px`: Mobile shell
+- `>= 1025px`: Web shell
+- 769~1024px의 별도 hybrid shell을 만들지 않는다.
+
 Admin #92 원칙대로 모바일은 PC 축소판이 아니다.
 
 ```
