@@ -9,13 +9,12 @@ import {
   SHARE_ENVELOPE_REPOSITORY_CONTRACT,
 } from '../src/lib/quote/share-envelope-repository.js';
 import { buildShareEnvelope } from '../src/lib/quote/share-envelope.js';
+import { makeIssuedQuote } from './fixtures/issued-quote.mjs';
 
-const quote={
-  contract:'freepass-quote/v2',
-  quoteId:'q_loader',
-  quoteVersion:1,
-  snapshotHash:'a'.repeat(64),
-};
+const quote=await makeIssuedQuote({
+  contractTerm:36,
+  createdAt:'2026-09-26T08:58:00.000Z',
+});
 
 const envelope=await buildShareEnvelope({
   quoteRefs:[{
