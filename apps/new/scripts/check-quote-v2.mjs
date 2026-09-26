@@ -1,11 +1,17 @@
 import assert from 'node:assert/strict';
 import {
   QUOTE_CONTRACT_V2,
+  QUOTE_REVISION_CONTRACT_V1,
   buildIssuedQuote,
   sealQuoteSnapshot,
   stableStringify,
   quoteIdempotencyKey,
+  reviseIssuedQuote,
+  verifyIssuedQuoteIntegrity,
+  verifyQuoteRevision,
 } from '../src/lib/quote/quote-v2.js';
+
+const engineVersion = 'freepass-standard/newcar@1.0.0+src.aaa.policy.bbb';
 
 const base = {
   vehicleModelId: 'vm_kia_niro',
@@ -16,7 +22,22 @@ const base = {
   exteriorColorId: 'ext_white',
   interiorColorId: 'int_black',
   contractTerm: 60,
-  mileageCondition: '20000km',
+  mileageCondition: '2만km',
+  conditionSnapshot: {
+    credit: '중신용',
+    mileageCondition: '2만km',
+    maintenance: '웰스 Basic',
+    liability: '1억',
+    extraDriver: '없음',
+    feeRatePct: 5,
+    costs: {
+      deliveryFee: 120000,
+      tintFee: 105000,
+      dashcamFee: 180000,
+      naviFee: 0,
+      hipassFee: 0,
+    },
+  },
   deposit: 3500000,
   prepayment: 0,
   depositRatePct: 10,
@@ -28,7 +49,16 @@ const base = {
   ],
   totalVehiclePrice: 36320000,
   monthlyRental: 746000,
-  pricingEngineVersion: 'welrix-v6.1',
+  pricingEngineVersion: engineVersion,
+  calculationProvenance: {
+    providerKey: 'standard',
+    engineId: 'freepass-standard-newcar',
+    engineVersion,
+    evidence: 'LOCAL_SOURCE_POLICY_MANIFEST',
+    verified: true,
+    sourceDigest: 'a'.repeat(64),
+    policyDigest: 'b'.repeat(64),
+  },
   sourceRevision: 'freepass-data/release-123',
 };
 
@@ -43,18 +73,104 @@ const a = await sealQuoteSnapshot(base);
 const b = await sealQuoteSnapshot(shuffled);
 assert.equal(a.snapshotHash, b.snapshotHash, 'key order and duplicate option IDs must not change hash');
 assert.equal(stableStringify(a.vehiclePriceSnapshot), stableStringify(b.vehiclePriceSnapshot));
+assert.equal(a.conditionSnapshot.costs.totalPrepFee, 405000);
 
 const q1 = await buildIssuedQuote(base, { createdAt: '2026-09-25T07:30:00.000Z' });
 const q2 = await buildIssuedQuote(shuffled, { createdAt: '2026-09-25T08:30:00.000Z' });
 assert.equal(q1.contract, QUOTE_CONTRACT_V2);
+assert.equal(q1.quoteVersion, 1);
 assert.equal(q1.quoteId, q2.quoteId, 'same content must derive same default quote identity');
 assert.equal(q1.snapshotHash, q2.snapshotHash);
 assert.notEqual(q1.createdAt, q2.createdAt, 'issuance metadata must not contaminate content hash');
 assert.equal(quoteIdempotencyKey(q1), quoteIdempotencyKey(q2));
+await verifyIssuedQuoteIntegrity(q1);
 
-const changed = await buildIssuedQuote({ ...base, monthlyRental: 747000 }, { createdAt: '2026-09-25T07:30:00.000Z' });
-assert.notEqual(q1.snapshotHash, changed.snapshotHash);
-assert.notEqual(q1.quoteId, changed.quoteId);
+for (const [name, changed] of [
+  ['monthly rental', { monthlyRental: 747000 }],
+  ['credit', { conditionSnapshot: { ...base.conditionSnapshot, credit: '저신용' } }],
+  ['signed fee rate', { conditionSnapshot: { ...base.conditionSnapshot, feeRatePct: -1.5 } }],
+  ['delivery cost', {
+    conditionSnapshot: {
+      ...base.conditionSnapshot,
+      costs: { ...base.conditionSnapshot.costs, deliveryFee: 99000 },
+    },
+  }],
+  ['maintenance', { conditionSnapshot: { ...base.conditionSnapshot, maintenance: '웰스 Self' } }],
+  ['liability', { conditionSnapshot: { ...base.conditionSnapshot, liability: '2억' } }],
+  ['extra driver', { conditionSnapshot: { ...base.conditionSnapshot, extraDriver: '1명' } }],
+  ['engine id', {
+    calculationProvenance: { ...base.calculationProvenance, engineId: 'different-engine' },
+  }],
+  ['engine digest', {
+    calculationProvenance: { ...base.calculationProvenance, sourceDigest: 'c'.repeat(64) },
+  }],
+]) {
+  const quote = await buildIssuedQuote({ ...base, ...changed }, { createdAt: '2026-09-25T07:30:00.000Z' });
+  assert.notEqual(q1.snapshotHash, quote.snapshotHash, `${name} must change snapshotHash`);
+  assert.notEqual(q1.quoteId, quote.quoteId, `${name} must change default quoteId`);
+}
+
+await assert.rejects(
+  () => buildIssuedQuote({
+    ...base,
+    conditionSnapshot: { ...base.conditionSnapshot, feeRatePct: 7.1 },
+  }, { createdAt: '2026-09-25T07:30:00.000Z' }),
+  /feeRatePct must be -10\.\.7/
+);
+
+await assert.rejects(
+  () => buildIssuedQuote({
+    ...base,
+    calculationProvenance: { ...base.calculationProvenance, verified: false },
+  }, { createdAt: '2026-09-25T07:30:00.000Z' }),
+  /verified calculation provenance/
+);
+
+await assert.rejects(
+  () => buildIssuedQuote(base, {
+    createdAt: '2026-09-25T07:30:00.000Z',
+    quoteId: q1.quoteId,
+    quoteVersion: 2,
+  }),
+  (error) => error?.code === 'QUOTE_REVISION_EXPLICIT_API_REQUIRED'
+);
+
+const revised = await reviseIssuedQuote({
+  previousQuote: q1,
+  nextSnapshotInput: { ...base, monthlyRental: 747000 },
+  createdAt: '2026-09-25T09:00:00.000Z',
+});
+assert.equal(revised.quoteId, q1.quoteId);
+assert.equal(revised.quoteVersion, 2);
+assert.equal(revised.revision.contract, QUOTE_REVISION_CONTRACT_V1);
+assert.equal(revised.revision.previousQuoteVersion, 1);
+assert.equal(revised.revision.previousSnapshotHash, q1.snapshotHash);
+assert.notEqual(revised.snapshotHash, q1.snapshotHash);
+assert.notEqual(quoteIdempotencyKey(revised), quoteIdempotencyKey(q1));
+await verifyIssuedQuoteIntegrity(revised);
+await verifyQuoteRevision(q1, revised);
+
+const sameContentRevision = await reviseIssuedQuote({
+  previousQuote: q1,
+  nextSnapshotInput: base,
+  createdAt: '2026-09-25T09:10:00.000Z',
+});
+assert.equal(sameContentRevision.snapshotHash, q1.snapshotHash, 'explicit business revision may retain content');
+assert.equal(sameContentRevision.quoteVersion, 2);
+await verifyQuoteRevision(q1, sameContentRevision);
+
+await assert.rejects(
+  () => verifyIssuedQuoteIntegrity({ ...q1, snapshotHash: '0'.repeat(64) }),
+  /snapshotHash does not match content/
+);
+
+await assert.rejects(
+  () => verifyQuoteRevision(q1, {
+    ...revised,
+    revision: { ...revised.revision, previousSnapshotHash: '0'.repeat(64) },
+  }),
+  /revision/
+);
 
 await assert.rejects(
   () => buildIssuedQuote({ ...base, monthlyRental: Number.NaN }, { createdAt: '2026-09-25T07:30:00.000Z' }),
@@ -69,4 +185,4 @@ await assert.rejects(
   /undefined cannot be hashed/
 );
 
-console.log('PASS Quote v2 deterministic snapshot/hash/idempotency contract');
+console.log('PASS Quote v2 calculation provenance + deterministic identity + revision lineage');
