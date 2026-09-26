@@ -1,23 +1,44 @@
-/* FreePass Admin approved desktop control language.
- * Loaded independently so legacy inline rules cannot reintroduce the old Sales scale.
+/* FreePass Estimate desktop projection of FreePass Admin PR #92.
+ * Authority: docs/UI_ADMIN_PR92_ADOPTION.md
+ * Desktop density is 36px standard / 32px compact. Mobile remains 44px.
  */
 html body .desktop-action-bar .bottom-action {
-  height: 44px;
-  border-radius: 6px;
-  font-size: 14px;
+  height: var(--fp-control);
+  border: 1px solid transparent;
+  border-radius: var(--fp-r-control);
+  box-shadow: var(--fp-elevation-base);
+  font-size: var(--fp-fs-body);
 }
+
 html body .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select),
 html body .quote-panel .qc-field > input,
 html body .quote-panel .qc-field > select,
 html body .quote-panel .cs-field input,
 html body .quote-panel .qc-pct {
-  min-height: 44px;
-  border-radius: 6px !important;
-  font-size: 14px;
+  min-height: var(--fp-control);
+  height: var(--fp-control);
+  border-color: transparent !important;
+  border-radius: var(--fp-r-control) !important;
+  background: var(--fp-surface-soft) !important;
+  box-shadow: var(--fp-elevation-base) !important;
+  font-size: var(--fp-fs-body);
 }
+
 html body .quote-panel .term-card__term-dd {
-  min-height: 44px !important;
-  height: 44px !important;
-  border-radius: 6px !important;
-  font-size: 14px !important;
+  min-height: var(--fp-control-sm) !important;
+  height: var(--fp-control-sm) !important;
+  border-color: transparent !important;
+  border-radius: var(--fp-r-control) !important;
+  background: var(--fp-surface-soft) !important;
+  box-shadow: var(--fp-elevation-base) !important;
+  font-size: var(--fp-fs-support) !important;
+}
+
+html body .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select):focus-visible,
+html body .quote-panel .qc-pct:focus-within,
+html body .cdd .cdd__btn:focus-visible {
+  outline: none;
+  border-color: transparent !important;
+  background: var(--fp-surface) !important;
+  box-shadow: var(--fp-focus-halo), var(--fp-elevation-hover) !important;
 }
