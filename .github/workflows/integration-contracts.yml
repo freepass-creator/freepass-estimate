@@ -6,6 +6,7 @@ on:
       - 'work/integration/**'
     paths:
       - 'apps/new/api/issued-quote.js'
+      - 'apps/new/api/_auth/*.js'
       - 'apps/new/api/issued-quotes.js'
       - 'apps/new/api/share-envelope*.js'
       - 'apps/new/src/lib/quote/cutover-readiness.js'
@@ -13,9 +14,11 @@ on:
       - 'apps/new/src/lib/quote/delivery-runtime.js'
       - 'apps/new/src/lib/quote/legacy-write-policy.js'
       - 'apps/new/src/firebase/quotes.js'
+      - 'apps/new/src/firebase/id-token.js'
       - 'apps/new/src/lib/quote/persistence-runtime.js'
       - 'apps/new/src/lib/quote/quote-repository.js'
       - 'apps/new/src/lib/quote/repositories/freepass-data.js'
+      - 'apps/new/src/lib/quote/repositories/firebase-authenticated.js'
       - 'apps/new/src/lib/quote/repositories/freepass-data-share-envelope.js'
       - 'apps/new/src/lib/quote/shadow-roundtrip.js'
       - 'apps/new/src/lib/quote/share-migration.js'
@@ -68,6 +71,8 @@ jobs:
       - name: Integration syntax
         run: |
           node --check api/issued-quotes.js
+          node --check api/_auth/firebase-id-token.js
+          node --check api/_auth/estimate-write-access.js
           node --check api/issued-quote.js
           node --check api/share-envelopes.js
           node --check api/share-envelope.js
@@ -85,6 +90,8 @@ jobs:
           node --check src/lib/quote/delivery-runtime.js
           node --check src/lib/quote/legacy-write-policy.js
           node --check src/firebase/quotes.js
+          node --check src/firebase/id-token.js
+          node --check src/lib/quote/repositories/firebase-authenticated.js
           node --check src/lib/quote/shadow-roundtrip.js
           node --check scripts/probe-freepass-data-cutover.mjs
       - name: Quote persistence gateway
@@ -107,6 +114,10 @@ jobs:
         run: node scripts/check-legacy-rtdb-cutover.mjs
       - name: Legacy Quote RTDB inventory
         run: node scripts/check-legacy-quote-inventory.mjs
+      - name: Canonical write authentication boundary
+        run: node scripts/check-write-auth-boundary.mjs
+      - name: Browser canonical write authentication
+        run: node scripts/check-browser-write-auth.mjs
       - name: Quote shadow round-trip
         run: node scripts/check-quote-shadow-roundtrip.mjs
       - name: Share Envelope authority boundary
