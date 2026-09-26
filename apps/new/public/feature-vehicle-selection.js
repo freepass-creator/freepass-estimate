@@ -74,12 +74,9 @@
     if (step === 'trimGroup') return 'trim';
     if (step === 'trim') {
       const trim = context.trim || {};
-      const model = context.model || {};
       const hasColors = Boolean(
         trim._exterior_colors?.length ||
-        trim._interior_colors?.length ||
-        model.exterior_colors?.length ||
-        model._interior?.length
+        trim._interior_colors?.length
       );
       return hasColors ? 'colors' : 'options';
     }
