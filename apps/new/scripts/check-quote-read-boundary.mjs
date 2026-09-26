@@ -5,6 +5,7 @@ import {
   readIssuedQuote,
 } from '../src/lib/quote/quote-repository.js';
 import { createFreePassDataQuoteRepository } from '../src/lib/quote/repositories/freepass-data.js';
+import { makeIssuedQuote } from './fixtures/issued-quote.mjs';
 import {
   assertQuoteReadReceipt,
   fetchIssuedQuoteReceipt,
@@ -12,12 +13,10 @@ import {
 } from '../api/issued-quote.js';
 
 const token = 'x'.repeat(40);
-const quote = {
-  contract: 'freepass-quote/v2',
-  quoteId: 'q_read_test',
-  quoteVersion: 3,
-  snapshotHash: 'f'.repeat(64),
-};
+const quote = await makeIssuedQuote({
+  contractTerm: 36,
+  createdAt: '2026-09-26T01:00:00.000Z',
+});
 
 const receipt = {
   contract: QUOTE_READ_RECEIPT_CONTRACT,
@@ -52,7 +51,7 @@ assert.equal(
 );
 
 assert.equal(
-  assertQuoteReadReceipt(receipt, { quoteId: quote.quoteId, quoteVersion: 3 }).quote.quoteId,
+  assertQuoteReadReceipt(receipt, { quoteId: quote.quoteId, quoteVersion: quote.quoteVersion }).quote.quoteId,
   quote.quoteId
 );
 assert.throws(
@@ -63,7 +62,7 @@ assert.throws(
 let captured = null;
 const found = await fetchIssuedQuoteReceipt({
   quoteId: quote.quoteId,
-  quoteVersion: 3,
+  quoteVersion: quote.quoteVersion,
   env: {
     NODE_ENV: 'production',
     FREEPASS_DATA_QUOTE_READ_BASE_URL: 'https://data.example.test/issued-quotes',
@@ -76,8 +75,8 @@ const found = await fetchIssuedQuoteReceipt({
 });
 assert.equal(found.status, 'FOUND');
 assert.equal(captured.init.headers.authorization, `Bearer ${token}`);
-assert.ok(captured.url.includes('/issued-quotes/q_read_test'));
-assert.ok(captured.url.includes('quoteVersion=3'));
+assert.ok(captured.url.includes('/issued-quotes/' + encodeURIComponent(quote.quoteId)));
+assert.ok(captured.url.includes('quoteVersion=${quote.quoteVersion}'));
 
 const missing = await fetchIssuedQuoteReceipt({
   quoteId: 'q_missing',
@@ -99,7 +98,7 @@ const repo = {
   contract: QUOTE_REPOSITORY_CONTRACT,
   async get() { return receipt; },
 };
-const loaded = await readIssuedQuote(repo, { quoteId: quote.quoteId, quoteVersion: 3 });
+const loaded = await readIssuedQuote(repo, { quoteId: quote.quoteId, quoteVersion: quote.quoteVersion });
 assert.equal(loaded.snapshotHash, quote.snapshotHash);
 
 const notFound = await readIssuedQuote({
@@ -124,11 +123,11 @@ const browserRepo = createFreePassDataQuoteRepository({
     return { ok: true, status: 200, json: async () => receipt };
   },
 });
-const viaAdapter = await readIssuedQuote(browserRepo, { quoteId: quote.quoteId, quoteVersion: 3 });
-assert.equal(viaAdapter.quoteVersion, 3);
+const viaAdapter = await readIssuedQuote(browserRepo, { quoteId: quote.quoteId, quoteVersion: quote.quoteVersion });
+assert.equal(viaAdapter.quoteVersion, quote.quoteVersion);
 assert.ok(readUrl.startsWith('/api/issued-quote?'));
-assert.ok(readUrl.includes('quoteId=q_read_test'));
-assert.ok(readUrl.includes('quoteVersion=3'));
+assert.ok(readUrl.includes('quoteId=' + encodeURIComponent(quote.quoteId)));
+assert.ok(readUrl.includes('quoteVersion=${quote.quoteVersion}'));
 
 await assert.rejects(
   () => readIssuedQuote({
