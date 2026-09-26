@@ -340,3 +340,21 @@ Readiness v3 does not accept a human boolean for this gate. It requires:
 ```
 
 The live cutover probe derives this evidence from `FREEPASS_QUOTE_WRITE_MODE`.
+
+
+## Canonical viewer data handoff
+
+I-01 now provides two UI-independent read seams:
+
+- `loadCanonicalShareBundle`
+  - Share Envelope read
+  - expiry validation
+  - ordered Quote v2 reads
+  - per-reference quoteId / quoteVersion / snapshotHash verification
+- `createCanonicalShareBundleLoader`
+  - browser-safe composition of the Quote + Envelope same-origin adapters
+  - gives F/U one `load({ envelopeId, envelopeVersion })` method
+
+This layer returns only canonical data.
+It does not render the customer view, choose typography, or add customer/staff presentation fields.
+F/U owns rendering after this verified bundle is returned.
