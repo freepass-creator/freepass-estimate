@@ -13,6 +13,7 @@ on:
       - 'apps/new/src/lib/quote/repositories/freepass-data.js'
       - 'apps/new/src/lib/quote/shadow-roundtrip.js'
       - 'apps/new/src/lib/quote/share-migration.js'
+      - 'apps/new/src/lib/quote/share-envelope.js'
       - 'apps/new/scripts/check-quote-*.mjs'
       - 'docs/INTEGRATION_QUOTE_PERSISTENCE.md'
       - '.github/workflows/integration-contracts.yml'
@@ -57,6 +58,7 @@ jobs:
           node --check src/lib/quote/repositories/freepass-data.js
           node --check src/lib/quote/persistence-runtime.js
           node --check src/lib/quote/share-migration.js
+          node --check src/lib/quote/share-envelope.js
           node --check src/lib/quote/cutover-readiness.js
           node --check src/lib/quote/shadow-roundtrip.js
       - name: Quote persistence gateway
@@ -71,6 +73,8 @@ jobs:
         run: node scripts/check-quote-cutover-readiness.mjs
       - name: Quote shadow round-trip
         run: node scripts/check-quote-shadow-roundtrip.mjs
+      - name: Share Envelope authority boundary
+        run: node scripts/check-share-envelope.mjs
       - name: Existing Quote factory regression
         run: node scripts/check-quote-factory.mjs
       - name: Quote storage boundary
