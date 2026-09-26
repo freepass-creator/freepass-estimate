@@ -1,0 +1,69 @@
+{
+  "schema": "freepass-estimate-branch-status/v1",
+  "updated_at": "2026-09-26",
+  "canonical": {
+    "branch": "main",
+    "status": "CANONICAL",
+    "rule": "only long-lived product truth"
+  },
+  "temporary_active": [
+    {
+      "branch": "integration/canonical-20260926",
+      "status": "ACTIVE_INTEGRATION_TEMPORARY",
+      "purpose": "PR #17 consolidation only",
+      "retire_when": "PR #17 merged to main"
+    }
+  ],
+  "future_lanes": [
+    {
+      "lane": "UI_UX",
+      "pattern": "work/ui-ux/<task>",
+      "max_active": 1
+    },
+    {
+      "lane": "FEATURE",
+      "pattern": "work/feature/<task>",
+      "max_active": 1
+    },
+    {
+      "lane": "ENGINE",
+      "pattern": "work/engine/<task>",
+      "max_active": 1
+    },
+    {
+      "lane": "INTEGRATION",
+      "pattern": "work/integration/<task>",
+      "max_active": 1
+    }
+  ],
+  "do_not_develop": [
+    {"branch":"automation/estimate-uiux-admin-sync-20260925-2108","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
+    {"branch":"backup/new-provider-refactor-20260919","status":"DEPRECATED_DO_NOT_USE","disposition":"historical backup"},
+    {"branch":"c-adoption/core-contract-shadow","status":"DEPRECATED_DO_NOT_USE","disposition":"superseded by later adoption"},
+    {"branch":"c-adoption/core-contract-shadow-v2","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
+    {"branch":"claude/ai-core-integration-standardization-ntmoli","status":"DEPRECATED_DO_NOT_USE","disposition":"main-equivalent historical session branch"},
+    {"branch":"claude/pr-17-adversarial-audit-21e94m","status":"ARCHIVE_DO_NOT_DEVELOP","disposition":"audit evidence only"},
+    {"branch":"codex/align-sales-control-design","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
+    {"branch":"codex/fix-five-term-local-quotes","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
+    {"branch":"codex/fix-freepass-refresh-identity","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
+    {"branch":"codex/fix-tint-state-invariant","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
+    {"branch":"codex/refresh-ai-core-kit-v2-20260922","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
+    {"branch":"docs/ai-core-ui-reference-20260919","status":"DEPRECATED_DO_NOT_USE","disposition":"historical documentation line"},
+    {"branch":"feat/manual-release-normalization-20260920","status":"DEPRECATED_REVIEW_ONLY","disposition":"do not develop; recover any still-valid unique behavior into canonical line only"},
+    {"branch":"work/canon/registry-cleanup","status":"DEPRECATED_DO_NOT_USE","disposition":"PR #21 merged"},
+    {"branch":"work/gpt/admin-ui-alignment-20260925","status":"DEPRECATED_DO_NOT_USE","disposition":"superseded"},
+    {"branch":"work/gpt/ai-core-qa-p0-shadow-20260920","status":"DEPRECATED_DO_NOT_USE","disposition":"superseded"},
+    {"branch":"work/gpt/quote-core-v2-20260925","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed into PR #17"},
+    {"branch":"work/replay-qa-shadow-main-20260920","status":"DEPRECATED_DO_NOT_USE","disposition":"historical replay"},
+    {"branch":"work/ui-admin-alignment-20260925","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed into PR #17"},
+    {"branch":"work/ui-baseline","status":"DEPRECATED_REVIEW_ONLY","disposition":"do not develop; historical data/QA reference only"}
+  ],
+  "rules": {
+    "page_branches_forbidden": true,
+    "device_branches_forbidden": true,
+    "ai_vendor_branches_forbidden": true,
+    "child_branches_from_work_branch_forbidden": true,
+    "qa_is_separate_branch": false,
+    "max_regular_active_product_branches": 4
+  }
+}
