@@ -62,3 +62,30 @@ Cutover order:
 7. remove the legacy writer and then the reader.
 
 No silent fallback from Quote v2 persistence to RTDB is allowed.
+
+
+## Runtime composition
+
+`src/lib/quote/persistence-runtime.js` is the UI-independent cutover seam.
+
+```
+request + calculation
+  + current selected vehicle stable IDs
+  + FreePass Data CANONICAL_ACTIVE master
+    -> masterContextFromSelection
+       -> issueQuotesFromCalculation
+          -> persistIssuedQuotes
+             -> QuoteRepository
+                -> /api/issued-quotes
+```
+
+Fail-closed rules:
+
+- missing FreePass Data master => no repository call
+- missing stable vehicle/option/color identity => no repository call
+- master/request price mismatch => no repository call
+- repository unavailable => error returned; no second repository is attempted
+- receipt identity/hash mismatch => persistence is treated as failed
+- RTDB is never a fallback for this runtime
+
+This runtime does not itself replace the current legacy send UI. The F/U lanes may call this seam only after the upstream FreePass Data contracts are live and C approves runtime cutover.
