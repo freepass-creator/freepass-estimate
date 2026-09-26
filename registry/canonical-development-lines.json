@@ -1,0 +1,104 @@
+{
+  "schema": "ai-core-canonical-development-lines/v1",
+  "updated_at": "2026-09-26",
+  "policy": {
+    "one_canonical_line_per_concern": true,
+    "historical_assets_must_not_claim_authority": true,
+    "superseded_branches_are_not_runtime_authority": true
+  },
+  "lines": [
+    {
+      "id": "pricing-formula",
+      "canonical_entrypoint": "apps/new/api/_standard/calc.js",
+      "canonical_roots": [
+        "apps/new/api/_standard/",
+        "apps/new/src/lib/quote/terms.js"
+      ],
+      "notes": [
+        "견적 대여료 계산식 정본은 FreePass Estimate main 의 apps/new/api/_standard/calc.js다. 약정 기간은 apps/new/src/lib/quote/terms.js QUOTE_TERMS = [12, 24, 36, 48, 60] 한 곳에서 받는다.",
+        "freepasserp4 및 과거 work/ui-baseline 의 calc.js 사본은 정본이 아니다. 외부 시스템은 FreePass Estimate 정본을 소비해야 한다.",
+        "integration/canonical-20260926 은 main 병합 전 단일 통합 후보일 뿐 별도 장기 정본이 아니다."
+      ]
+    },
+    {
+      "id": "estimator-architecture",
+      "canonical_entrypoint": "docs/NEW_CAR_ARCHITECTURE.md",
+      "canonical_roots": [
+        "docs/NEW_CAR_ARCHITECTURE.md",
+        "PROJECT.md"
+      ],
+      "notes": [
+        "견적 기능 소유권(Estimate = upstream)은 PROJECT.md·NEW_CAR_ARCHITECTURE.md 가 정한다. README.md·AGENTS.md 는 그 요약이다."
+      ]
+    },
+    {
+      "id": "ui-ux",
+      "canonical_entrypoint": "docs/UI_BASELINE.md",
+      "canonical_roots": [
+        "docs/UI_BASELINE.md",
+        "docs/UI_ACTION_PLACEMENT.md",
+        "apps/new/src/styles/tokens.css"
+      ],
+      "notes": [
+        "디자인 토큰은 apps/new/src/styles/tokens.css 한 곳이며, 통합 후보는 FreePass Admin 규격을 따른다."
+      ]
+    },
+    {
+      "id": "color-contract",
+      "canonical_entrypoint": "docs/COLOR_CONTRACT_2026-09-21.md",
+      "canonical_roots": [
+        "docs/COLOR_CONTRACT_2026-09-21.md"
+      ]
+    }
+  ],
+  "repository_guards": {
+    "workflow_refs": {
+      "allow": [
+        "main"
+      ],
+      "why": "예약·운영 작업의 정본 실행 기준은 main 이다."
+    },
+    "pull_request": {
+      "max_behind_main": 30,
+      "single_open_pr_per_canonical_path": true,
+      "why": "묵은 가지·같은 정본을 동시에 고치는 PR 이 개발선 분열의 원인이다.",
+      "allowed_head_patterns": [
+        "^work/[a-z0-9._-]+/[a-z0-9._-]+$",
+        "^dependabot/",
+        "^renovate/"
+      ],
+      "forbidden_actor_prefixes": [
+        "gpt/",
+        "claude/",
+        "codex/",
+        "cursor/",
+        "gemini/",
+        "work/gpt/",
+        "work/claude/",
+        "work/codex/",
+        "work/cursor/",
+        "work/gemini/"
+      ],
+      "legacy_head_exceptions": [
+        {
+          "branch": "integration/canonical-20260926",
+          "expires": "2026-10-07",
+          "reason": "PR #17 단일 통합 후보. 병합 후 폐기 대상."
+        },
+        {
+          "branch": "claude/ai-core-integration-standardization-ntmoli",
+          "expires": "2026-10-07",
+          "reason": "기존 세션 브랜치. main 과 동일해 신규 작업 금지."
+        }
+      ]
+    }
+  },
+  "baseline": [
+    {
+      "guard": "workflow-ref-pin",
+      "path": ".github/workflows/newcar-ci.yml",
+      "expires": "2026-10-31",
+      "reason": "역사적 UI 비교용 welrixtable 고정 ref가 남아 있다. FreePass 소유 UI 구조 스냅샷으로 교체 후 예외를 제거한다."
+    }
+  ]
+}
