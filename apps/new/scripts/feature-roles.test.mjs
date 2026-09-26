@@ -7,6 +7,7 @@ import {
   normalizeRole,
   roleCan,
   rolePolicy,
+  conditionDefaultsForRole,
 } from '../src/lib/feature/roles.js';
 
 test('unknown roles fail closed to guest', () => {
@@ -40,4 +41,18 @@ test('staff owns internal terms and operational send actions', () => {
 
 test('unknown feature names fail closed', () => {
   assert.equal(roleCan(ROLE_STAFF, 'delete_everything'), false);
+});
+
+
+test('guest starts without deposit while staff uses configured staff deposit', () => {
+  assert.deepEqual(conditionDefaultsForRole(ROLE_GUEST, { staffDeposit: 10 }), {
+    credit: '중신용',
+    dep: 0,
+    pre: 0,
+  });
+  assert.deepEqual(conditionDefaultsForRole(ROLE_STAFF, { staffDeposit: 10 }), {
+    credit: '중신용',
+    dep: 10,
+    pre: 0,
+  });
 });
