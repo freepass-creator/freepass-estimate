@@ -330,7 +330,10 @@ try {
     });
     ok(data.overflow.html[0] <= data.overflow.html[1] + 1, `desktop-${width}: html horizontal overflow`);
     ok(data.overflow.body[0] <= data.overflow.body[1] + 1, `desktop-${width}: body horizontal overflow`);
-    const shellCols = data.shell.columns.split(/\s+/).map(Number).filter(Number.isFinite);
+    const shellCols = data.shell.columns
+      .split(/\s+/)
+      .map((value) => Number.parseFloat(value))
+      .filter(Number.isFinite);
     ok(shellCols.length === 2, `desktop-${width}: expected two grid columns, got ${data.shell.columns}`);
     const shellRatio = shellCols[0] / shellCols[1];
     ok(shellRatio > 0.37 && shellRatio < 0.41,
