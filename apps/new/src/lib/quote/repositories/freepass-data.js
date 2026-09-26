@@ -1,6 +1,7 @@
 import {
   QUOTE_REPOSITORY_CONTRACT,
   QUOTE_WRITE_RECEIPT_CONTRACT,
+  QUOTE_READ_RECEIPT_CONTRACT,
 } from '../quote-repository.js';
 
 function codedError(message, code) {
@@ -10,18 +11,31 @@ function codedError(message, code) {
 }
 
 /**
- * FreePass Data / server command adapter.
- * This is intentionally HTTP-contract based: browser code must not know Firestore
- * collection paths or write directly to Firestore.
+ * Browser-side QuoteRepository adapter.
+ *
+ * Write and read both terminate at same-origin Estimate gateways. Browser code
+ * never receives the FreePass Data service token or knows Firestore paths.
  */
 export function createFreePassDataQuoteRepository({
-  endpoint,
+  endpoint = '/api/issued-quotes',
+  readEndpoint = '/api/issued-quote',
   fetchImpl = globalThis.fetch,
   authToken = null,
+  authTokenProvider = null,
 } = {}) {
-  const url = String(endpoint ?? '').trim();
-  if (!url) throw codedError('FreePass Data quote command endpoint is not configured', 'QUOTE_REPOSITORY_UNAVAILABLE');
+  const writeUrl = String(endpoint ?? '').trim();
+  const readUrl = String(readEndpoint ?? '').trim();
+  if (!writeUrl) throw codedError('FreePass Data quote command endpoint is not configured', 'QUOTE_REPOSITORY_UNAVAILABLE');
+  if (!readUrl) throw codedError('FreePass Data quote read endpoint is not configured', 'QUOTE_REPOSITORY_UNAVAILABLE');
   if (typeof fetchImpl !== 'function') throw codedError('fetch is unavailable', 'QUOTE_REPOSITORY_UNAVAILABLE');
+
+  const authHeaders = async () => {
+    const supplied = String(authToken ?? '').trim();
+    const token = supplied || (typeof authTokenProvider === 'function'
+      ? String(await authTokenProvider() ?? '').trim()
+      : '');
+    return token ? { authorization: `Bearer ${token}` } : {};
+  };
 
   return Object.freeze({
     contract: QUOTE_REPOSITORY_CONTRACT,
@@ -29,12 +43,12 @@ export function createFreePassDataQuoteRepository({
       const headers = {
         'content-type': 'application/json',
         'idempotency-key': idempotencyKey,
+        ...(await authHeaders()),
       };
-      if (authToken) headers.authorization = `Bearer ${authToken}`;
 
       let response;
       try {
-        response = await fetchImpl(url, {
+        response = await fetchImpl(writeUrl, {
           method: 'POST',
           headers,
           body: JSON.stringify({
@@ -56,6 +70,36 @@ export function createFreePassDataQuoteRepository({
       }
       if (body?.contract !== QUOTE_WRITE_RECEIPT_CONTRACT) {
         throw codedError('quote repository receipt contract mismatch', 'QUOTE_REPOSITORY_RECEIPT_INVALID');
+      }
+      return body;
+    },
+
+    async get({ quoteId, quoteVersion = null }) {
+      const params = new URLSearchParams({ quoteId: String(quoteId ?? '') });
+      if (quoteVersion != null) params.set('quoteVersion', String(quoteVersion));
+
+      let response;
+      try {
+        response = await fetchImpl(`${readUrl}?${params.toString()}`, {
+          method: 'GET',
+          headers: {
+            accept: 'application/json',
+            ...(await authHeaders()),
+          },
+          cache: 'no-store',
+        });
+      } catch (error) {
+        throw codedError(error?.message || 'quote reader request failed', 'QUOTE_REPOSITORY_UNAVAILABLE');
+      }
+
+      const body = await response.json().catch(() => null);
+      if (!response.ok) {
+        const error = codedError(body?.error || `quote reader response ${response.status}`, body?.code || 'QUOTE_REPOSITORY_READ_FAILED');
+        error.status = response.status;
+        throw error;
+      }
+      if (body?.contract !== QUOTE_READ_RECEIPT_CONTRACT) {
+        throw codedError('quote reader receipt contract mismatch', 'QUOTE_REPOSITORY_RECEIPT_INVALID');
       }
       return body;
     },

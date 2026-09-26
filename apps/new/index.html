@@ -51,7 +51,7 @@
 <link rel="stylesheet" href="/src/styles/tokens.css" />
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- 차량 DB (제조사/모델/세부모델/트림/옵션/색상) — PC 와 모바일 공유 SSOT -->
-<script src="/vehicle-db.js"></script>
+<script src="/vehicle-db.js"></script>\n<script src="/feature-options.js"></script>\n<script src="/feature-vehicle-selection.js"></script>
 <style>
   /* ================================================================
    * Legacy compatibility aliases only.
@@ -66,6 +66,17 @@
     --brand-100: var(--fp-focus-ring);
     --brand-50: var(--fp-primary-weak);
     --welrix-red: #e1141e;
+
+function optionRuleContext() {
+  const variant = getVariant();
+  return {
+    selected: state.options,
+    optionsMaster: getOptionsMaster(),
+    exclusiveGroups: variant?.exclusive_groups || [],
+    optionExcludes: variant?.option_excludes || {},
+    trimId: state.trim,
+  };
+}
 
     --ink-1: var(--fp-text);
     --ink-2: var(--fp-text-2);
@@ -1183,39 +1194,26 @@ function getTrimPrice(trim, taxRate) {
 }
 
 function isOptionEnabled(optId) {
-  const om = getOptionsMaster();
-  const opt = om[optId];
-  if (!opt) return false;
-  // requires 충족 여부
-  if (opt.requires && !opt.requires.every(req => state.options.has(req))) return false;
-  if (opt.requires_in_trim?.[state.trim] && !opt.requires_in_trim[state.trim].every(req => state.options.has(req))) return false;
-  // 다른 선택된 옵션이 나를 exclude하고 있으면 비활성
-  const v = getVariant();
-  if (v?.option_excludes) {
-    for (const [parentId, excludedIds] of Object.entries(v.option_excludes)) {
-      if (state.options.has(parentId) && excludedIds.includes(optId)) return false;
-    }
-  }
-  return true;
+  return window.FreePassFeatureOptions.isOptionEnabled({
+    ...optionRuleContext(),
+    optionId: optId,
+  });
 }
 
-// 옵션이 어떤 부모 옵션에 의해 포함되어 비활성화된 경우 부모 옵션 ID 반환
 function getExcludingParent(optId) {
-  const v = getVariant();
-  if (!v?.option_excludes) return null;
-  for (const [parentId, excludedIds] of Object.entries(v.option_excludes)) {
-    if (state.options.has(parentId) && excludedIds.includes(optId)) {
-      return parentId;
-    }
-  }
-  return null;
+  const ctx = optionRuleContext();
+  return window.FreePassFeatureOptions.getExcludingParent(
+    ctx.selected,
+    ctx.optionExcludes,
+    optId,
+  );
 }
 
-// 옵션이 속한 배타 그룹 반환
 function getExclusiveGroup(optId) {
-  const v = getVariant();
-  if (!v?.exclusive_groups) return null;
-  return v.exclusive_groups.find(g => g.members.includes(optId)) || null;
+  return window.FreePassFeatureOptions.getExclusiveGroup(
+    optionRuleContext().exclusiveGroups,
+    optId,
+  );
 }
 
 function getMinPrice(model) {
@@ -1248,80 +1246,40 @@ document.addEventListener('click', (e) => {
   }
   const mfrBtn = e.target.closest('[data-mfr]');
   if (mfrBtn && !mfrBtn.disabled) {
-    if (state.manufacturer !== mfrBtn.dataset.mfr) {
-      state.manufacturer = mfrBtn.dataset.mfr;
-      state.model = state.variant = state.trim = state.color = null;
-      state.options.clear();
-    }
+    window.FreePassVehicleSelection.applySelection(state, 'manufacturer', mfrBtn.dataset.mfr);
     render(); return;
   }
   const modelBtn = e.target.closest('[data-model]');
   if (modelBtn) {
-    if (state.model !== modelBtn.dataset.model) {
-      state.model = modelBtn.dataset.model;
-      state.variant = state.trim = state.color = null;
-      state.options.clear();
-    }
+    window.FreePassVehicleSelection.applySelection(state, 'model', modelBtn.dataset.model);
     render(); return;
   }
   const variantBtn = e.target.closest('[data-variant]');
   if (variantBtn) {
-    if (state.variant !== variantBtn.dataset.variant) {
-      state.variant = variantBtn.dataset.variant;
-      state.trim = state.color = null;
-      state.options.clear();
-    }
+    window.FreePassVehicleSelection.applySelection(state, 'variant', variantBtn.dataset.variant);
     render(); return;
   }
   const trimRow = e.target.closest('[data-trim]');
   if (trimRow) {
-    if (state.trim !== trimRow.dataset.trim) {
-      state.trim = trimRow.dataset.trim;
-      state.options.clear();
-    }
+    window.FreePassVehicleSelection.applySelection(state, 'trim', trimRow.dataset.trim);
     render(); return;
   }
   const colorCard = e.target.closest('[data-color]');
   if (colorCard) {
-    state.color = parseInt(colorCard.dataset.color);
+    window.FreePassVehicleSelection.applySelection(state, 'color', colorCard.dataset.color);
     render(); return;
   }
 });
 
 document.addEventListener('change', (e) => {
   if (e.target.matches('.option-row input[type="checkbox"]')) {
-    const id = e.target.closest('[data-opt]').dataset.opt;
-    const om = getOptionsMaster();
-    const v = getVariant();
-    if (e.target.checked) {
-      // 1. 같은 배타 그룹의 다른 옵션 해제
-      const group = getExclusiveGroup(id);
-      if (group) {
-        for (const memberId of group.members) {
-          if (memberId !== id) state.options.delete(memberId);
-        }
-      }
-      // 2. 이 옵션이 exclude하는 옵션들 자동 해제 (상위 패키지가 하위 패키지/옵션을 포함)
-      if (v?.option_excludes?.[id]) {
-        for (const excId of v.option_excludes[id]) {
-          state.options.delete(excId);
-        }
-      }
-      // 3. exclude된 하위 옵션들의 종속 옵션도 정리 (예: 파킹어시스트가 navi_1에 종속이고 navi_1이 해제되면)
-      Object.entries(om).forEach(([k, opt]) => {
-        if (opt.requires?.some(r => !state.options.has(r))) state.options.delete(k);
-        if (opt.requires_in_trim?.[state.trim]?.some(r => !state.options.has(r))) state.options.delete(k);
-      });
-      state.options.add(id);
-    } else {
-      state.options.delete(id);
-      // 이 옵션을 requires로 가진 종속 옵션 해제 (기존 동작)
-      Object.entries(om).forEach(([k, opt]) => {
-        if (opt.requires?.includes(id) || opt.requires_in_trim?.[state.trim]?.includes(id)) {
-          state.options.delete(k);
-        }
-      });
-    }
+    const id = e.target.closest('[data-opt]')?.dataset.opt;
+    if (!id) return;
+    window.FreePassFeatureOptions.setOptionSelected({
+      ...optionRuleContext(),
+      optionId: id,
+      checked: e.target.checked,
+    });
     render();
   }
 });
@@ -1702,45 +1660,18 @@ function syncToVueStore() {
 
 // Vue → cascade 선택 위임
 window.__welrix_pick = function(stepKey, value) {
-  if (stepKey === 'manufacturer') {
-    state.manufacturer = value || null;
-    state.model = state.variant = state.trim = state.color = null;
-    state.options.clear();
-    if (state.manufacturer) $('sec-model').classList.remove('hidden');
-  } else if (stepKey === 'model') {
-    state.model = value || null;
-    state.variant = state.trim = state.color = null;
-    state.options.clear();
-    if (state.model) $('sec-variant').classList.remove('hidden');
-  } else if (stepKey === 'variant') {
-    state.variant = value || null;
-    state.trim = state.color = null;
-    state.options.clear();
-    if (state.variant) $('sec-trim').classList.remove('hidden');
-  } else if (stepKey === 'trim') {
-    state.trim = value || null;
-    state.color = null;
-    state.options.clear();
-    if (state.trim) {
-      $('sec-options').classList.remove('hidden');
-      $('sec-color').classList.remove('hidden');
-    }
-  } else if (stepKey === 'colorExt') {
-    state.color = value !== '' && value != null ? +value : null;
-  }
+  const mappedStep = stepKey === 'colorExt' ? 'color' : stepKey;
+  window.FreePassVehicleSelection.applySelection(state, mappedStep, value);
   render();
 };
 
 // Vue 컴포넌트에서 옵션 토글 — 인라인 로직 그대로 호출
 window.__welrix_toggleOption = function(id) {
-  if (state.options.has(id)) state.options.delete(id);
-  else state.options.add(id);
-  // 배타 그룹 — 같은 그룹의 다른 옵션 자동 해제
-  const group = getExclusiveGroup(id);
-  if (group && state.options.has(id)) {
-    group.members.forEach((m) => { if (m !== id) state.options.delete(m); });
-  }
-  render();
+  const result = window.FreePassFeatureOptions.toggleOptionSelection({
+    ...optionRuleContext(),
+    optionId: id,
+  });
+  if (result.changed) render();
 };
 
 // cascade 진행 중 "다음에 선택해야 할" 섹션 강조

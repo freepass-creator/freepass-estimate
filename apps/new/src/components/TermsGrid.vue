@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { quoteState as state } from '../store.js';
 import { fmt } from '../lib/format.js';
 import { QUOTE_TERMS } from '../lib/quote/terms.js';
+import { setScenarioIncluded, setScenarioPercent, setScenarioTerm } from '../lib/feature/conditions.js';
 
 const TERM_OPTIONS = QUOTE_TERMS;
 
@@ -26,8 +27,9 @@ const cards = computed(() => {
 });
 
 function onTermChange(idx, e) {
-  state.scenarios[idx].term = +e.target.value;
-  window.__welrix_recompute?.();
+  const result = setScenarioTerm(state, idx, e.target.value);
+  e.target.value = result.value ?? state.scenarios[idx]?.term ?? '';
+  if (result.changed) window.__welrix_recompute?.();
 }
 // 숫자만 허용 (한글/영문/기호 입력 시 즉시 제거)
 function stripNonDigits(e) {
@@ -35,20 +37,18 @@ function stripNonDigits(e) {
   if (cleaned !== e.target.value) e.target.value = cleaned;
 }
 function onDepChange(idx, e) {
-  const v = Math.max(0, Math.min(100, +e.target.value.replace(/\D/g, '') || 0));
-  e.target.value = v;
-  state.scenarios[idx].dep = v;
-  window.__welrix_recompute?.();
+  const result = setScenarioPercent(state, idx, 'dep', e.target.value.replace(/\D/g, ''));
+  e.target.value = result.value ?? 0;
+  if (result.changed) window.__welrix_recompute?.();
 }
 function onPreChange(idx, e) {
-  const v = Math.max(0, Math.min(100, +e.target.value.replace(/\D/g, '') || 0));
-  e.target.value = v;
-  state.scenarios[idx].pre = v;
-  window.__welrix_recompute?.();
+  const result = setScenarioPercent(state, idx, 'pre', e.target.value.replace(/\D/g, ''));
+  e.target.value = result.value ?? 0;
+  if (result.changed) window.__welrix_recompute?.();
 }
 function onSendToggle(idx, e) {
-  state.send[idx] = e.target.checked;
-  window.__welrix_recompute?.();
+  const result = setScenarioIncluded(state, idx, e.target.checked);
+  e.target.checked = result.value !== false;
 }
 </script>
 

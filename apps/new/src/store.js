@@ -1,20 +1,31 @@
 // 공용 reactive store — Vue 컴포넌트와 기존 vanilla JS 모두 같은 참조 사용
 // 기존 state 객체 구조 유지, Vue의 reactive() 로 감싸서 양방향 자동 동기화
-import { 담당자인가 } from './lib/role.js';
+import { 역할 } from './lib/role.js';
+import { conditionDefaultsForRole } from './lib/feature/roles.js';
 import { 웰릭스기본 } from './lib/welrix-rates.js';
 import { quoteScenarios } from './lib/quote/terms.js';
+import { normalizeFeeRate } from './lib/feature/conditions.js';
 
 /* ★기본값은 «웰릭스 견적기를 새로 열었을 때»와 똑같이 둔다.
    대표 2026-09-18 「다 완전히 똑같이 맞추라고. 웰릭스도 기본값 있잖아, 그 기본값에 맞추자고」
    → 보증금 10% · 썬팅 루마 일반 · 블박 파인뷰 SF500 · 탁송 서울 · 2만km · 웰스 Basic · 대물 1억
    ⚠ 수수료율만 7% 다 — 그건 «우리가 받는 몫»이라 웰릭스 화면 기본값(5%)과 무관하다
      (대표 2026-09-17 「7% 수수료 7% 기준으로」). */
-const 기본보증금 = 웰릭스기본.dep;
+const 역할조건기본 = conditionDefaultsForRole(역할(), {
+  staffDeposit: 웰릭스기본.dep,
+  guestDeposit: 0,
+  prepay: 웰릭스기본.pre,
+  credit: 웰릭스기본.credit,
+});
+const 기본보증금 = 역할조건기본.dep;
 import { reactive } from 'vue';
 
 // === 차량 선택 (cascade) 상태 ===
 // index.html 인라인 스크립트 'state' 와 syncToVueStore() 로 동기화됨
 export const vehicleState = reactive({
+  kind: '신차',
+  vehicleAssetId: null,
+  quoteMode: null,
   manufacturer: null,
   model: null,
   variant: null,
@@ -75,8 +86,8 @@ function loadFeeRate() {
      담당자가 화면에서 바꾼 값은 localStorage 에 남아 그게 이긴다. */
   try {
     const v = parseFloat(localStorage.getItem(FEE_KEY));
-    return isFinite(v) ? v : 웰릭스기본.feeRatePct;
-  } catch { return 웰릭스기본.feeRatePct; }
+    return isFinite(v) ? normalizeFeeRate(v) : normalizeFeeRate(웰릭스기본.feeRatePct);
+  } catch { return normalizeFeeRate(웰릭스기본.feeRatePct); }
 }
 function persistFeeRate(v) {
   try { localStorage.setItem(FEE_KEY, String(v)); } catch {}
@@ -91,9 +102,9 @@ export const quoteState = reactive({
     /* ★보증금·선납금 기본 — 손님은 0, 담당자는 10/0.
        손님에게 «보증금 10%» 로 계산해 보여 주면 실제(무보증)보다 싸게 보인다.
        0 에서 시작해야 손님이 본 값보다 실제가 싸지, 비싸지지 않는다. */
-    credit: 웰릭스기본.credit, km: 웰릭스기본.km,
+    credit: 역할조건기본.credit, km: 웰릭스기본.km,
     dep: 기본보증금,
-    pre: 웰릭스기본.pre,
+    pre: 역할조건기본.pre,
     feeRatePct: loadFeeRate(),
     deliveryRegion: 웰릭스기본.deliveryRegion, deliveryCity: 웰릭스기본.deliveryRegion,   // 웰릭스는 10권역 — 권역 하나로 쓴다
     svc: 웰릭스기본.svc, insProperty: 웰릭스기본.insProperty, extraDriver: 웰릭스기본.extraDriver,
@@ -118,7 +129,7 @@ export const quoteState = reactive({
   /* 프리패스 기존 견적 규격 — 12·24·36·48·60개월 다섯 칸.
      ★보증금은 손님 0 / 담당자 10. 손님에게는 «보증금 없이» 얼마인지가 기준이다 —
        보증금은 어차피 심사 뒤에 정해진다. */
-  scenarios: quoteScenarios(기본보증금, 0),
+  scenarios: quoteScenarios(기본보증금, 역할조건기본.pre),
   // 계산된 월대여료 결과 (recompute가 채움) — TermsGrid 컴포넌트가 reactive 읽음
   monthly: [],
   // 기본 견적 — 12/24/36/48/60 × 현재 보증금/선납금 (recompute 가 같이 채움)

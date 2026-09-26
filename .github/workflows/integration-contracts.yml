@@ -1,0 +1,163 @@
+name: FreePass Estimate integration contracts
+
+on:
+  push:
+    branches:
+      - 'work/integration/**'
+    paths:
+      - 'apps/new/api/issued-quote.js'
+      - 'apps/new/api/issued-quotes.js'
+      - 'apps/new/api/share-envelope*.js'
+      - 'apps/new/api/_auth/*.js'
+      - 'apps/new/src/firebase/quotes.js'
+      - 'apps/new/src/firebase/id-token.js'
+      - 'apps/new/src/lib/quote/cutover-readiness.js'
+      - 'apps/new/src/lib/quote/cutover-probe.js'
+      - 'apps/new/src/lib/quote/delivery-runtime.js'
+      - 'apps/new/src/lib/quote/firebase-canonical-delivery.js'
+      - 'apps/new/src/lib/quote/canonical-delivery-session.js'
+      - 'apps/new/src/lib/quote/legacy-write-policy.js'
+      - 'apps/new/src/lib/quote/persistence-runtime.js'
+      - 'apps/new/src/lib/quote/quote-repository.js'
+      - 'apps/new/src/lib/quote/repositories/freepass-data.js'
+      - 'apps/new/src/lib/quote/repositories/firebase-authenticated.js'
+      - 'apps/new/src/lib/quote/repositories/freepass-data-share-envelope.js'
+      - 'apps/new/src/lib/quote/shadow-roundtrip.js'
+      - 'apps/new/src/lib/quote/share-migration.js'
+      - 'apps/new/src/lib/quote/share-envelope*.js'
+      - 'apps/new/src/lib/quote/share-bundle.js'
+      - 'apps/new/src/lib/quote/share-bundle-loader.js'
+      - 'apps/new/scripts/check-quote-*.mjs'
+      - 'apps/new/scripts/check-share-envelope*.mjs'
+      - 'apps/new/scripts/check-legacy-*.mjs'
+      - 'apps/new/scripts/check-*auth*.mjs'
+      - 'apps/new/scripts/check-canonical-*.mjs'
+      - 'apps/new/scripts/check-cutover-probe.mjs'
+      - 'apps/new/scripts/probe-freepass-data-cutover.mjs'
+      - 'docs/INTEGRATION_QUOTE_PERSISTENCE.md'
+      - '.github/workflows/integration-contracts.yml'
+  pull_request:
+    paths:
+      - 'apps/new/api/issued-quote.js'
+      - 'apps/new/api/issued-quotes.js'
+      - 'apps/new/api/share-envelope*.js'
+      - 'apps/new/api/_auth/*.js'
+      - 'apps/new/src/firebase/quotes.js'
+      - 'apps/new/src/firebase/id-token.js'
+      - 'apps/new/src/lib/quote/cutover-readiness.js'
+      - 'apps/new/src/lib/quote/cutover-probe.js'
+      - 'apps/new/src/lib/quote/delivery-runtime.js'
+      - 'apps/new/src/lib/quote/firebase-canonical-delivery.js'
+      - 'apps/new/src/lib/quote/canonical-delivery-session.js'
+      - 'apps/new/src/lib/quote/legacy-write-policy.js'
+      - 'apps/new/src/lib/quote/persistence-runtime.js'
+      - 'apps/new/src/lib/quote/quote-repository.js'
+      - 'apps/new/src/lib/quote/repositories/freepass-data.js'
+      - 'apps/new/src/lib/quote/repositories/firebase-authenticated.js'
+      - 'apps/new/src/lib/quote/repositories/freepass-data-share-envelope.js'
+      - 'apps/new/src/lib/quote/shadow-roundtrip.js'
+      - 'apps/new/src/lib/quote/share-migration.js'
+      - 'apps/new/src/lib/quote/share-envelope*.js'
+      - 'apps/new/src/lib/quote/share-bundle.js'
+      - 'apps/new/src/lib/quote/share-bundle-loader.js'
+      - 'apps/new/scripts/check-quote-*.mjs'
+      - 'apps/new/scripts/check-share-envelope*.mjs'
+      - 'apps/new/scripts/check-legacy-*.mjs'
+      - 'apps/new/scripts/check-*auth*.mjs'
+      - 'apps/new/scripts/check-canonical-*.mjs'
+      - 'apps/new/scripts/check-cutover-probe.mjs'
+      - 'apps/new/scripts/probe-freepass-data-cutover.mjs'
+      - 'docs/INTEGRATION_QUOTE_PERSISTENCE.md'
+      - '.github/workflows/integration-contracts.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  quote-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/new
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/new/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Integration syntax
+        run: |
+          node --check api/issued-quotes.js
+          node --check api/_auth/firebase-id-token.js
+          node --check api/_auth/estimate-write-access.js
+          node --check api/issued-quote.js
+          node --check api/share-envelopes.js
+          node --check api/share-envelope.js
+          node --check src/lib/quote/quote-repository.js
+          node --check src/lib/quote/repositories/freepass-data.js
+          node --check src/lib/quote/persistence-runtime.js
+          node --check src/lib/quote/share-migration.js
+          node --check src/lib/quote/share-envelope.js
+          node --check src/lib/quote/share-envelope-repository.js
+          node --check src/lib/quote/share-bundle.js
+          node --check src/lib/quote/share-bundle-loader.js
+          node --check src/lib/quote/repositories/freepass-data-share-envelope.js
+          node --check src/lib/quote/cutover-readiness.js
+          node --check src/lib/quote/cutover-probe.js
+          node --check src/lib/quote/delivery-runtime.js
+          node --check src/lib/quote/canonical-delivery-session.js
+          node --check src/lib/quote/firebase-canonical-delivery.js
+          node --check src/lib/quote/legacy-write-policy.js
+          node --check src/firebase/quotes.js
+          node --check src/firebase/id-token.js
+          node --check src/lib/quote/repositories/firebase-authenticated.js
+          node --check src/lib/quote/shadow-roundtrip.js
+          node --check scripts/probe-freepass-data-cutover.mjs
+      - name: Quote persistence gateway
+        run: node scripts/check-quote-persistence-gateway.mjs
+      - name: Quote persistence runtime
+        run: node scripts/check-quote-persistence-runtime.mjs
+      - name: Quote canonical read boundary
+        run: node scripts/check-quote-read-boundary.mjs
+      - name: Quote share migration routing
+        run: node scripts/check-quote-share-migration.mjs
+      - name: Quote cutover readiness
+        run: node scripts/check-quote-cutover-readiness.mjs
+      - name: Full canonical cutover probe
+        run: node scripts/check-cutover-probe.mjs
+      - name: Canonical Share delivery runtime
+        run: node scripts/check-canonical-delivery-runtime.mjs
+      - name: Canonical delivery session
+        run: node scripts/check-canonical-delivery-session.mjs
+      - name: Firebase canonical delivery facade
+        run: node scripts/check-firebase-canonical-delivery.mjs
+      - name: Legacy Quote write policy
+        run: node scripts/check-legacy-quote-write-policy.mjs
+      - name: Legacy RTDB cutover boundary
+        run: node scripts/check-legacy-rtdb-cutover.mjs
+      - name: Legacy Quote RTDB inventory
+        run: node scripts/check-legacy-quote-inventory.mjs
+      - name: Canonical write authentication boundary
+        run: node scripts/check-write-auth-boundary.mjs
+      - name: Browser canonical write authentication
+        run: node scripts/check-browser-write-auth.mjs
+      - name: Quote shadow round-trip
+        run: node scripts/check-quote-shadow-roundtrip.mjs
+      - name: Share Envelope authority boundary
+        run: node scripts/check-share-envelope.mjs
+      - name: Share Envelope persistence boundary
+        run: node scripts/check-share-envelope-persistence.mjs
+      - name: Public Share Envelope migration routing
+        run: node scripts/check-share-envelope-migration.mjs
+      - name: Canonical Share bundle resolver
+        run: node scripts/check-canonical-share-bundle.mjs
+      - name: Canonical Share browser loader
+        run: node scripts/check-canonical-share-loader.mjs
+      - name: Existing Quote factory regression
+        run: node scripts/check-quote-factory.mjs
+      - name: Quote storage boundary
+        run: node scripts/check-quote-storage-boundary.mjs

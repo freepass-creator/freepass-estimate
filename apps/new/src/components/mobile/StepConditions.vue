@@ -1,36 +1,20 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 담당자인가 } from '../../lib/role.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { QUOTE_TERMS } from '../../lib/quote/terms.js';
+import { CREDIT_OPTIONS, KM_OPTIONS, toggleQuoteTerm } from '../../lib/feature/conditions.js';
 
-const 담당자 = 담당자인가();
+const 담당자 = rolePolicy(역할()).canEditInternalCredit;
 const TERMS = QUOTE_TERMS;
-const KMS = [1, 2, 3, 4];
-/* ★웰릭스 계산 서버는 신용을 «고신용·중신용·저신용» 셋만 받는다.
-   예전 첫 칸 '신용' 은 서버가 「허용되지 않은 값: credit」으로 돌려보내 계산이 멈췄다. */
-const CREDITS = [
-  { value: '고신용', label: '고신용' },
-  { value: '중신용', label: '중신용' },
-  { value: '저신용', label: '저신용' },
-];
+const KMS = KM_OPTIONS;
+const CREDITS = CREDIT_OPTIONS;
 
 const selectedTerms = computed(() => (quoteState.scenarios || []).map(s => s.term));
 
 function toggleTerm(t) {
-  const list = quoteState.scenarios || [];
-  const idx = list.findIndex(s => s.term === t);
-  if (idx >= 0) {
-    if (list.length === 1) return;
-    list.splice(idx, 1);
-  } else {
-    list.push({ term: t, dep: quoteState.cond.dep || 10, pre: quoteState.cond.pre || 0 });
-    list.sort((a, b) => b.term - a.term);
-  }
-  /* 발송 체크 배열도 현재 기간 개수와 정확히 맞춘다. */
-  if (!Array.isArray(quoteState.send)) quoteState.send = [];
-  while (quoteState.send.length < list.length) quoteState.send.push(true);
-  if (quoteState.send.length > list.length) quoteState.send.splice(list.length);
+  toggleQuoteTerm(quoteState, t);
 }
 
 </script>

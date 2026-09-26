@@ -4,7 +4,11 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import { quoteState as state } from '../store.js';
 import { fmt } from '../lib/format.js';
-import { QUOTE_TERMS } from '../lib/quote/terms.js';
+import {
+  buildHistorySnapshot,
+  restoreHistorySnapshot,
+  sameHistoryConfiguration,
+} from '../lib/feature/history.js';
 
 const DAY_KEY = (() => {
   const d = new Date();
@@ -27,51 +31,15 @@ function persist() {
 
 onMounted(load);
 
-// 마지막 저장된 vehicle key (중복 누적 방지)
-let lastKey = '';
-let lastSaveAt = 0;
-function vehicleKey() {
-  const v = state.vehicle;
-  if (!v) return '';
-  return `${v.brand}|${v.model}|${v.variant}|${v.trim_name}|${v.total_manwon}`;
-}
-
 function snapshot() {
-  const v = state.vehicle;
-  if (!v) return;
-  const ms = state.monthly || [];
-  // 12/24/36/48/60 순서 기준 monthly 매핑
-  const findT = (term) => ms.find(m => m && m.term === term) || null;
-  const entry = {
-    id: Date.now() + '_' + Math.random().toString(36).slice(2,6),
-    ts: Date.now(),
-    vehicle: {
-      brand: v.brand, model: v.model, variant: v.variant, trim_name: v.trim_name,
-      total_manwon: v.total_manwon, fuel: v.fuel, displacement_cc: v.displacement_cc,
-    },
-    cond: {
-      credit: state.cond.credit, km: state.cond.km,
-      dep: state.cond.dep, pre: state.cond.pre,
-      svc: state.cond.svc, insProperty: state.cond.insProperty,
-    },
-    // 복원용 — 클릭 시 그대로 재산출하기 위한 전체 스냅샷
-    vehicleFull: (() => { try { return JSON.parse(JSON.stringify(v)); } catch { return null; } })(),
-    condFull: (() => { try { return JSON.parse(JSON.stringify(state.cond)); } catch { return null; } })(),
-    monthly: QUOTE_TERMS.map(t => {
-      const m = findT(t);
-      return m ? { term: t, monthly: m.monthly, dep: m.dep, pre: m.pre,
-                   residualPct: m.residualPct, residualAmt: m.residualAmt } : null;
-    }),
-  };
-  // 최근 entry 와 같은 vehicle 이면 갱신 (덮어쓰기), 아니면 새로 추가
+  const entry = buildHistorySnapshot(state, {
+    id: Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+    now: Date.now(),
+  });
+  if (!entry) return;
+
   const last = entries.value[0];
-  const sameKey = last && last.vehicle &&
-    last.vehicle.brand === v.brand && last.vehicle.model === v.model &&
-    last.vehicle.variant === v.variant && last.vehicle.trim_name === v.trim_name &&
-    last.vehicle.total_manwon === v.total_manwon &&
-    last.cond.dep === state.cond.dep && last.cond.pre === state.cond.pre &&
-    last.cond.credit === state.cond.credit;
-  if (sameKey) {
+  if (last && sameHistoryConfiguration(last, state)) {
     entries.value[0] = entry;
   } else {
     entries.value = [entry, ...entries.value].slice(0, MAX_ENTRIES);
@@ -79,23 +47,39 @@ function snapshot() {
   persist();
 }
 
-// 차량 / 조건 변경 시 자동 스냅샷 (debounce 800ms)
+// 차량 / 조건 / 계산결과 / 발송기간 변경 시 자동 스냅샷 (debounce 800ms)
 let debounceTimer = null;
 function scheduleSnapshot() {
   if (!state.vehicle?.total_manwon) return;
-  if (!state.monthly?.length) return;
+  if (!(state.monthly || []).some((item) => item?.monthly != null)) return;
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(snapshot, 800);
 }
 
 watch(
-  () => [
-    vehicleKey(),
-    state.monthly?.length,
-    state.cond.dep, state.cond.pre, state.cond.credit, state.cond.km,
-  ],
+  () => JSON.stringify({
+    vehicle: state.vehicle ? {
+      brand: state.vehicle.brand,
+      model: state.vehicle.model,
+      variant: state.vehicle.variant,
+      trim_name: state.vehicle.trim_name,
+      total_manwon: state.vehicle.total_manwon,
+      options: state.vehicle.options || [],
+      colorExt: state.vehicle.colorExt || null,
+    } : null,
+    scenarios: state.scenarios || [],
+    send: state.send || [],
+    monthly: state.monthly || [],
+    cond: {
+      credit: state.cond.credit,
+      km: state.cond.km,
+      dep: state.cond.dep,
+      pre: state.cond.pre,
+      svc: state.cond.svc,
+      insProperty: state.cond.insProperty,
+    },
+  }),
   scheduleSnapshot,
-  { deep: false }
 );
 
 // 액션
@@ -111,22 +95,21 @@ function clearAll() {
 
 // 클릭 — 그 견적을 계산기에 그대로 복원·재산출
 function restoreEntry(entry) {
-  const vf = entry.vehicleFull;
-  if (!vf || !vf.total_manwon) {
+  const result = restoreHistorySnapshot(entry, state);
+  if (!result.restored) {
     // 구버전 엔트리(복원 데이터 없음) — 미리보기로 폴백
-    if (typeof window.__welrix_previewHistoryEntry === 'function') { window.__welrix_previewHistoryEntry(entry); return; }
-    const v = entry.vehicle;
-    const m = entry.monthly.map(x => x ? `${x.term}M ${fmt(x.monthly)}원` : '—').join(' / ');
-    alert(`${v.brand} ${v.model} ${v.trim_name}\n${m}\n\n(이 견적은 예전 형식이라 복원할 수 없어요. 새로 산출한 견적부터 클릭 복원됩니다.)`);
+    if (typeof window.__welrix_previewHistoryEntry === 'function') {
+      window.__welrix_previewHistoryEntry(entry);
+      return;
+    }
+    const v = entry.vehicle || {};
+    const m = (entry.monthly || []).map((x) => x ? `${x.term}M ${fmt(x.monthly)}원` : '—').join(' / ');
+    alert(`${v.brand || ''} ${v.model || ''} ${v.trim_name || ''}\n${m}\n\n(이 견적은 예전 형식이라 복원할 수 없습니다.)`);
     return;
   }
-  // 차량 복원 (state.vehicle 교체 → SummaryPanel 등 reactive 갱신)
-  state.vehicle = JSON.parse(JSON.stringify(vf));
-  // 조건 복원 (credit/km/dep/pre/수수료/할인/색상 등) — 기존 cond 위에 덮어쓰기
-  if (entry.condFull) Object.assign(state.cond, entry.condFull);
-  // 재계산 — findVehicleMeta 가 카탈로그에서 r팩터를 끌어와 그대로 산출
+
+  // Snapshot 금액을 먼저 복원한 뒤 현재 Provider 기준으로 다시 산출해 최신 live 상태를 만든다.
   window.__welrix_recompute?.();
-  // 복원된 견적 확인하도록 상단으로
   try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch {}
 }
 

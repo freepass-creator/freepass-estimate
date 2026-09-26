@@ -1,8 +1,10 @@
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import { quoteState, vehicleState } from '../../store.js';
-import { 담당자인가, 손님링크 } from '../../lib/role.js';
+import { 역할, 손님링크 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { 지금주소 } from '../../lib/share-link.js';
+import { quoteActionReadiness, resetForRequote } from '../../lib/feature/actions.js';
 import StepVehicle from './StepVehicle.vue';
 import StepConditions from './StepConditions.vue';
 import StepExtras from './StepExtras.vue';
@@ -35,11 +37,22 @@ const STEPS = [
   { key: 'result',     label: '견적',     comp: StepResult     },
 ];
 
-const 담당자 = 담당자인가();
+const 역할정책 = rolePolicy(역할());
+const 담당자 = 역할정책.isStaff;
 const 공유됨 = ref(false);
 const 공유중 = ref(false);
 const 공유견적 = computed(() => !!quoteState.sharedSnapshot);
-const 견적준비됨 = computed(() => !!vehicleState.trim && (공유견적.value || 견적상태.상태 === 'ok'));
+
+const vehicleSelection = globalThis.FreePassVehicleSelection;
+if (!vehicleSelection) throw new Error('FreePassVehicleSelection runtime is required');
+const 견적준비 = computed(() => quoteActionReadiness({
+  quoteState,
+  vehicleSelected: !!vehicleState.trim,
+  calculationStatus: 견적상태.상태,
+  calculationResults: 견적상태.결과,
+  surface: 'mobile',
+}));
+const 견적준비됨 = computed(() => 견적준비.value.ready);
 
 /* ── 조건이 바뀌면 웰릭스에 다시 묻는다 ────────────────────────────────
  *  읽는 값이 하나라도 바뀌면 watch 가 걸린다. 연속 입력은 견적 뼈대가 묶는다. */
@@ -122,7 +135,7 @@ const stepIdx = ref(vehicleState.견적부터 ? STEPS.length - 1 : 0);
 const 돌아갈곳 = ref(vehicleState.견적부터 ? { stepIdx: 0, subStep: 'options' } : null);
 function 수정하기() {
   /* 공유받은 견적은 여기까지 «보낸 당시 값»이다. 수정부터는 새 견적이므로 실시간 계산으로 전환한다. */
-  quoteState.sharedSnapshot = null;
+  resetForRequote(quoteState);
   stepIdx.value = 0;
   vehicleState.subStep = 'options';
   돌아갈곳.value = null;
@@ -141,21 +154,16 @@ const currentStep = computed(() => STEPS[stepIdx.value]);
      현대 hyundai.com/kr/ko/e/vehicles/estimation: 01 모델(엔진·구동·트림) → 02 색상 → 옵션 → 완료.
      ★'spec'(인승·구동) 은 그 파워트레인 안에서 실제로 갈릴 때만 있는 걸음이다 — 대표 2026-09-18
        「그 인승 구동 방식 그거를 어떻게 나눌지」. 갈리지 않는 차(그랜저 2.5, K5 등)는 이 걸음이 아예 없다. */
-const VEHICLE_SUB_STEPS_ALL = ['brand', 'model', 'variant', 'spec', 'trim', 'colors', 'options'];
-
-/* 지금 고른 파워트레인이 인승·구동으로 갈리는가 — StepVehicle.vue 의 specGroups 와 같은 기준.
-   그 컴포넌트 안 값이라 여기서는 DB 를 직접 다시 본다(전역 window.VEHICLE_DB, 같은 데이터). */
-const 파워트레인갈래있나 = computed(() => {
+const VEHICLE_SUB_STEPS = computed(() => {
   try {
-    const b = window.VEHICLE_DB?.manufacturers?.find((x) => x.manufacturer_id === vehicleState.manufacturer);
-    const m = b?.models?.find((x) => x.model_id === vehicleState.model);
-    const v = m?.variants?.find((x) => x.variant_id === vehicleState.variant);
-    return new Set((v?.trims || []).map((t) => t.group).filter(Boolean)).size > 1;
-  } catch { return false; }
+    const brand = window.VEHICLE_DB?.manufacturers?.find((x) => x.manufacturer_id === vehicleState.manufacturer);
+    const model = brand?.models?.find((x) => x.model_id === vehicleState.model);
+    const variant = model?.variants?.find((x) => x.variant_id === vehicleState.variant);
+    return vehicleSelection.vehicleSubSteps(variant);
+  } catch {
+    return vehicleSelection.vehicleSubSteps(null);
+  }
 });
-const VEHICLE_SUB_STEPS = computed(() => (
-  파워트레인갈래있나.value ? VEHICLE_SUB_STEPS_ALL : VEHICLE_SUB_STEPS_ALL.filter((s) => s !== 'spec')
-));
 
 // 전체 페이지 (sub-step 포함) — progress bar 세그먼트 수. 'spec' 유무에 따라 차마다 다르다.
 const TOTAL_PAGES = computed(() => VEHICLE_SUB_STEPS.value.length + (STEPS.length - 1));
@@ -267,13 +275,14 @@ const vehicles = ref(window.__welrix_vehicles || []);
 // 발송 sheet
 const sendOpen = ref(false);
 function openSend() {
-  if (!견적준비됨.value) return;
+  if (!역할정책.canSendOfficialQuote || !견적준비됨.value) return;
   sendOpen.value = true;
 }
 
 // 조회동의 링크 — 헤더 [동의링크] 누르면 OS 시스템 공유시트(복사·카톡 등). 회사 설정의 signature_link.
 const signCopied = ref(false);
 async function shareSignLink() {
+  if (!역할정책.canShareSignatureLink) return;
   const url = cfg.value.signature_link;
   if (!url) { alert('이 회사는 조회동의 링크가 설정되어 있지 않습니다.'); return; }
   const text = '[' + (cfg.value.name || '프리패스모빌리티') + '] 조회 동의 부탁드립니다. 아래 링크에서 진행해 주세요.';
