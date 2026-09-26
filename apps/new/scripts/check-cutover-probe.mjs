@@ -11,6 +11,17 @@ import {
   SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
 } from '../src/lib/quote/share-envelope-repository.js';
 
+const blockedPolicy={
+  contract:'freepass-legacy-quote-write-policy/v1',
+  mode:'CANONICAL_ONLY',
+  legacyNewQuoteWriteBlocked:true,
+};
+const allowedPolicy={
+  contract:'freepass-legacy-quote-write-policy/v1',
+  mode:'LEGACY_ALLOWED',
+  legacyNewQuoteWriteBlocked:false,
+};
+
 const quote={
   contract:'freepass-quote/v2',
   quoteId:'q_probe_full',
@@ -97,7 +108,7 @@ const ready=await runCutoverProbe({
   now:()=>times.shift(),
   envelopeExpiresAt:'2026-10-03T06:01:02.000Z',
   canonicalViewerReady:true,
-  legacyWriteBlockReady:true,
+  legacyWritePolicy:blockedPolicy,
 });
 
 assert.equal(ready.contract,'freepass-estimate-cutover-probe/v1');
@@ -122,7 +133,7 @@ const hold=await runCutoverProbe({
   now:()=>holdTimes.shift(),
   envelopeExpiresAt:'2026-10-03T06:02:02.000Z',
   canonicalViewerReady:false,
-  legacyWriteBlockReady:false,
+  legacyWritePolicy:allowedPolicy,
 });
 assert.equal(hold.status,'HOLD');
 assert.deepEqual(
@@ -146,4 +157,4 @@ await assert.rejects(
 );
 assert.equal(envelopeTouched,false);
 
-console.log('PASS full cutover probe: master -> Quote round-trip -> Envelope round-trip -> readiness v2');
+console.log('PASS full cutover probe: master -> Quote round-trip -> Envelope round-trip -> readiness v3');
