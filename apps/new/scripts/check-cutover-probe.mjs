@@ -10,6 +10,7 @@ import {
   SHARE_ENVELOPE_REPOSITORY_CONTRACT,
   SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
 } from '../src/lib/quote/share-envelope-repository.js';
+import { makeIssuedQuote } from './fixtures/issued-quote.mjs';
 
 const secureWriteAccessPolicy={
   contract:'freepass-estimate-write-access/v1',
@@ -30,12 +31,10 @@ const allowedPolicy={
   legacyNewQuoteWriteBlocked:false,
 };
 
-const quote={
-  contract:'freepass-quote/v2',
-  quoteId:'q_probe_full',
-  quoteVersion:1,
-  snapshotHash:'c'.repeat(64),
-};
+const quote=await makeIssuedQuote({
+  contractTerm:36,
+  createdAt:'2026-09-26T05:59:00.000Z',
+});
 
 const master={
   meta:{
