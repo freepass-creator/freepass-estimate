@@ -77,7 +77,7 @@ const request = {
       기준명: '세제혜택 후',
     },
     구성: {
-      선택옵션: [{ id: 'legacy_opt_1', name: '옵션', price_won: 500000 }],
+      선택옵션: [{ id: 'legacy_opt_1', stableId: 'opt_runtime', name: '옵션', price_won: 500000 }],
     },
   },
   조건: { 주행: '2만km' },
