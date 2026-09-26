@@ -149,6 +149,7 @@ const partial = evaluateQuoteCutoverReadiness({
   quoteReadProbe,
   envelopeWriteProbe,
   envelopeReadProbe,
+  writeAccessPolicy: secureWriteAccessPolicy,
 });
 assert.equal(partial.status, 'HOLD');
 assert.equal(partial.gates.masterActiveRelease, true);
