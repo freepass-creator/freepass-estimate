@@ -48,6 +48,12 @@ if (directWelrix.length) {
   process.exit(1);
 }
 
+const retiredWelrixEngine = path.resolve('src/lib/quote/engines/welrix.js');
+if (fs.existsSync(retiredWelrixEngine)) {
+  console.error('[quote-core-convergence] retired direct Welrix engine must not be reintroduced');
+  process.exit(1);
+}
+
 const homeWidget = fs.readFileSync(path.resolve('src/components/home/QuoteWidget.vue'), 'utf8');
 for (const required of [
   "from '../../lib/quote/calculate.js'",
