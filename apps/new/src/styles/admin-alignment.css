@@ -85,3 +85,65 @@ html .m-shell .m-btn--icon::after { content: '이전'; }
     padding-right: 12px;
   }
 }
+
+
+/* Admin PR #92 mobile surface interaction contract.
+ * Mobile Panel itself is the screen; only child cards/controls carry elevation.
+ */
+html .m-shell :is(
+  .sv-brand-card,
+  .sv-row,
+  .sv-trim-card,
+  .sv-color-card,
+  .sv-opt,
+  .sc-chip,
+  .se-chip,
+  .se-card,
+  .sr-car,
+  .sr-term,
+  .sr-cond__row
+) {
+  border-color: transparent !important;
+  box-shadow: var(--fp-elevation-base);
+}
+
+html .m-shell :is(.m-btn, .sq-term-card) {
+  box-shadow: var(--fp-elevation-base);
+}
+
+html .m-shell :is(
+  .sv-brand-card.is-selected,
+  .sv-row.is-selected,
+  .sv-trim-card.is-selected,
+  .sv-color-card.is-selected,
+  .sv-opt.is-selected,
+  .sc-chip.is-selected,
+  .se-chip.is-selected,
+  .se-card.is-selected
+) {
+  background: var(--fp-selected) !important;
+  box-shadow: inset 0 1px 2px rgba(29, 78, 216, 0.10);
+}
+
+html .m-shell :is(.m-btn, .sq-term-card):active {
+  box-shadow: var(--fp-elevation-0);
+  transform: translateY(var(--fp-press-y));
+}
+
+html .m-shell :is(
+  .sv-brand-card,
+  .sv-row,
+  .sv-trim-card,
+  .sv-color-card,
+  .sv-opt,
+  .sc-chip,
+  .se-chip,
+  .se-card
+):focus-visible {
+  outline: none;
+  box-shadow: var(--fp-focus-halo), var(--fp-elevation-base);
+}
+
+html .m-shell :is(.m-btn, .sv-brand-card, .sv-row, .sv-trim-card, .sv-color-card, .sv-opt, .sc-chip, .se-chip, .se-card):disabled {
+  box-shadow: none;
+}
