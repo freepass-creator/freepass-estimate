@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { computeTerm } from './calc.js';
 import { QUOTE_TERMS } from '../../src/lib/quote/terms.js';
+import { conditionCostsFromRequest } from '../../src/lib/quote/condition-cost-contract.js';
 
 const DEFAULTS = JSON.parse(readFileSync(new URL('./standard-quote-defaults.snapshot.json', import.meta.url), 'utf8'));
 const DELTA = JSON.parse(readFileSync(new URL('./data/residual-delta.json', import.meta.url), 'utf8'));
@@ -172,6 +173,7 @@ function buildInput(request, scenario) {
   const car = request?.차 || {};
   const price = car.가격 || {};
   const cond = request?.조건 || {};
+  const conditionCosts = conditionCostsFromRequest(request);
   const credit = creditKey(cond.신용);
   const config = structuredClone(DEFAULTS?.engine_configs?.[credit] || DEFAULTS?.engine_configs?.중신용 || {});
   const fuel = engineFuel(car.연료 || car.파워트레인);
@@ -233,9 +235,9 @@ function buildInput(request, scenario) {
     gpsMonthly: config?.setting?.gpsMonthly,
     parkingMonthly: config?.setting?.parkingMonthly,
     salesFeeRate,
-    // 화면에서 고른 실비가 있으면 그 값이 우선한다.
-    deliveryFee: Number(cond.탁송비 || config?.setting?.deliveryFee || 0),
-    initPrepFee: Number(cond.썬팅비 || 0) + Number(cond.블박비 || 0),
+    // QuoteRequest에서 한 번 확정된 canonical 조건비용만 사용한다.
+    deliveryFee: conditionCosts.deliveryFee,
+    initPrepFee: conditionCosts.tintFee + conditionCosts.accessoryFee,
     inspectionFee: config?.setting?.inspectionFee,
     returnDeliveryFee: config?.setting?.returnDeliveryFee,
     disposalFeeRate: config?.setting?.disposalFeeRate,
