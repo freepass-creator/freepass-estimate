@@ -29,13 +29,24 @@ const request = {
       ],
     },
   },
-  조건: { 주행: '2만km' },
+  조건: {
+    신용: '중신용',
+    주행: '2만km',
+    정비: '웰스 Basic',
+    대물: '1억',
+    추가운전자: '없음',
+    탁송비: 120000,
+    썬팅비: 105000,
+    블박비: 180000,
+    수수료율: 5,
+  },
   안들: [
     { 기간: 36, 보증금: 10, 선납: 0 },
     { 기간: 60, 보증금: 20, 선납: 5 },
   ],
 };
 const calculation = {
+  공급자: 'standard',
   priceBasis: {
     contract: 'freepass-price-basis/v1',
     authority: 'FREEPASS_DATA_CANONICAL_ACTIVE',
@@ -127,6 +138,12 @@ assert.equal(quotes[1].prepayment, 1805000);
 assert.equal(quotes[1].prepaymentRatePct, 5);
 assert.deepEqual(quotes[0].selectedOptionIds, ['opt_a', 'opt_b']);
 assert.equal(quotes[0].vehiclePriceSnapshot.interiorColorPrice, 300000);
+assert.equal(quotes[0].conditionSnapshot.credit, '중신용');
+assert.equal(quotes[0].conditionSnapshot.feeRatePct, 5);
+assert.equal(quotes[0].conditionSnapshot.costs.totalPrepFee, 405000);
+assert.equal(quotes[0].calculationProvenance.providerKey, 'standard');
+assert.equal(quotes[0].calculationProvenance.engineId, 'freepass-standard-newcar');
+assert.equal(quotes[0].calculationProvenance.verified, true);
 
 const again = await issueQuotesFromCalculation({
   ...common,
@@ -159,6 +176,26 @@ const revised = await issueQuotesFromCalculation({
   },
 });
 assert.notEqual(quotes[0].snapshotHash, revised[0].snapshotHash, 'master source revision must be sealed');
+
+const creditChanged = await issueQuotesFromCalculation({
+  ...common,
+  request: { ...request, 조건: { ...request.조건, 신용: '저신용' } },
+});
+assert.notEqual(quotes[0].snapshotHash, creditChanged[0].snapshotHash, 'credit must be sealed');
+
+const feeChanged = await issueQuotesFromCalculation({
+  ...common,
+  request: { ...request, 조건: { ...request.조건, 수수료율: -2.5 } },
+});
+assert.notEqual(quotes[0].snapshotHash, feeChanged[0].snapshotHash, 'signed fee rate must be sealed');
+
+await assert.rejects(
+  () => issueQuotesFromCalculation({
+    ...common,
+    request: { ...request, 조건: { ...request.조건, 수수료율: 8 } },
+  }),
+  /feeRatePct must be -10\.\.7/
+);
 
 await assert.rejects(
   () => issueQuotesFromCalculation({ ...common, sourceRevision: 'freepass-data/fake@r999' }),
