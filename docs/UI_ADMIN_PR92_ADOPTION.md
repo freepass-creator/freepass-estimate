@@ -198,6 +198,15 @@ selected는 hover보다 더 떠오르는 상태가 아니다.
 
 순서로 진행한다.
 
+### Visual QA single harness
+
+시각 검증 구현은 하나만 사용한다.
+
+- canonical harness: `apps/new/scripts/e2e-ui-visual-audit.mjs`
+- PR/U 작업 검증과 main/integration 병합 후 screenshot receipt가 같은 harness를 사용한다.
+- 별도 screenshot script나 다른 viewport/판정 규칙을 만들지 않는다.
+- viewport / interaction / computed-style contract를 바꿀 때는 canonical harness 한 곳만 갱신한다.
+
 ## Out of scope
 
 U-01은 아래를 변경하지 않는다.
