@@ -12,20 +12,19 @@ import {
   CANONICAL_SHARE_BUNDLE_CONTRACT,
   loadCanonicalShareBundle,
 } from '../src/lib/quote/share-bundle.js';
+import { makeIssuedQuote } from './fixtures/issued-quote.mjs';
 
 const quotes=[
-  {
-    contract:'freepass-quote/v2',
-    quoteId:'q_bundle_36',
-    quoteVersion:1,
-    snapshotHash:'a'.repeat(64),
-  },
-  {
-    contract:'freepass-quote/v2',
-    quoteId:'q_bundle_60',
-    quoteVersion:1,
-    snapshotHash:'b'.repeat(64),
-  },
+  await makeIssuedQuote({
+    contractTerm:36,
+    monthlyRental:700000,
+    createdAt:'2026-09-26T07:58:00.000Z',
+  }),
+  await makeIssuedQuote({
+    contractTerm:60,
+    monthlyRental:600000,
+    createdAt:'2026-09-26T07:58:00.000Z',
+  }),
 ];
 
 const envelope=await buildShareEnvelope({
@@ -93,7 +92,7 @@ const found=await loadCanonicalShareBundle({
 });
 assert.equal(found.contract,CANONICAL_SHARE_BUNDLE_CONTRACT);
 assert.equal(found.status,'FOUND');
-assert.deepEqual(found.quotes.map((q)=>q.quoteId),['q_bundle_36','q_bundle_60']);
+assert.deepEqual(found.quotes.map((q)=>q.quoteId),quotes.map((q)=>q.quoteId));
 
 const missing=await loadCanonicalShareBundle({
   envelopeRepository,
@@ -119,7 +118,7 @@ await assert.rejects(
     quoteRepository:{
       contract:QUOTE_REPOSITORY_CONTRACT,
       async get({quoteId,quoteVersion}){
-        if(quoteId==='q_bundle_36'){
+        if(quoteId===quotes[0].quoteId){
           return {
             contract:QUOTE_READ_RECEIPT_CONTRACT,
             status:'FOUND',
