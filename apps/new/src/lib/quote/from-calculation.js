@@ -124,6 +124,39 @@ function assertMasterSnapshot(master, request) {
   });
 }
 
+function conditionSnapshotFromRequest(request) {
+  const cond = request?.조건 || {};
+  return Object.freeze({
+    credit: required(cond.신용, 'condition.credit'),
+    mileageCondition: required(cond.주행, 'condition.mileage'),
+    maintenance: required(cond.정비, 'condition.maintenance'),
+    liability: required(cond.대물, 'condition.liability'),
+    extraDriver: required(cond.추가운전자, 'condition.extraDriver'),
+    feeRatePct: finite(cond.수수료율, 'condition.feeRatePct'),
+    costs: Object.freeze({
+      deliveryFee: finite(cond.탁송비 ?? 0, 'condition.deliveryFee'),
+      tintFee: finite(cond.썬팅비 ?? 0, 'condition.tintFee'),
+      dashcamFee: finite(cond.블박비 ?? 0, 'condition.dashcamFee'),
+      naviFee: finite(cond.내비비 ?? cond.naviFee ?? 0, 'condition.naviFee'),
+      hipassFee: finite(cond.하이패스비 ?? cond.hipassFee ?? 0, 'condition.hipassFee'),
+    }),
+  });
+}
+
+function calculationProvenanceFromExecution(calculation, engineEvidence) {
+  const providerKey = required(calculation?.공급자, 'calculation.providerKey');
+  return Object.freeze({
+    providerKey,
+    engineId: engineEvidence.id,
+    engineVersion: engineEvidence.version,
+    evidence: engineEvidence.evidence,
+    verified: engineEvidence.verified === true,
+    ...(engineEvidence.sourceDigest ? { sourceDigest: engineEvidence.sourceDigest } : {}),
+    ...(engineEvidence.policyDigest ? { policyDigest: engineEvidence.policyDigest } : {}),
+    ...(engineEvidence.upstreamVersion ? { upstreamVersion: engineEvidence.upstreamVersion } : {}),
+  });
+}
+
 function validateCalculation(request, calculation) {
   const scenarios = request?.안들;
   const rows = calculation?.결과;
@@ -206,7 +239,13 @@ export async function issueQuotesFromCalculation({
       throw error;
     }
   }
-  const mileage = required(request?.조건?.주행, 'mileageCondition');
+  if (Number(quoteVersion) !== 1) {
+    const error = new Error('Quote revision requires the explicit reviseIssuedQuote API');
+    error.code = 'QUOTE_REVISION_EXPLICIT_API_REQUIRED';
+    throw error;
+  }
+  const conditionSnapshot = conditionSnapshotFromRequest(request);
+  const calculationProvenance = calculationProvenanceFromExecution(calculation, engineEvidence);
 
   const quotes = [];
   for (let index = 0; index < scenarios.length; index += 1) {
@@ -235,7 +274,8 @@ export async function issueQuotesFromCalculation({
       ...identity,
       selectedOptionIds: snapshot.selectedOptionIds,
       contractTerm: finite(scenario.기간, 'contractTerm'),
-      mileageCondition: mileage,
+      mileageCondition: conditionSnapshot.mileageCondition,
+      conditionSnapshot,
       deposit: finite(row.보증금 ?? 0, 'deposit'),
       prepayment: finite(row.선납금 ?? 0, 'prepayment'),
       depositRatePct: finite(scenario.보증금 ?? 0, 'depositRatePct'),
@@ -245,10 +285,10 @@ export async function issueQuotesFromCalculation({
       totalVehiclePrice,
       monthlyRental,
       pricingEngineVersion: engineVersion,
+      calculationProvenance,
       sourceRevision: revision,
     }, {
       createdAt: issuedAt,
-      quoteVersion,
     }));
   }
 
