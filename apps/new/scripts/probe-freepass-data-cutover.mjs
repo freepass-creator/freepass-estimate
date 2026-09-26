@@ -18,6 +18,7 @@ import {
   SHARE_ENVELOPE_REPOSITORY_CONTRACT,
 } from '../src/lib/quote/share-envelope-repository.js';
 import { runCutoverProbe } from '../src/lib/quote/cutover-probe.js';
+import { legacyQuoteWriteBlockEvidence } from '../src/lib/quote/legacy-write-policy.js';
 
 function fail(message, code = 'CUTOVER_PROBE_CONFIG_INVALID') {
   const error = new Error(message);
@@ -117,7 +118,10 @@ try {
     quote: fixtureQuote(),
     envelopeExpiresAt: expiry(),
     canonicalViewerReady: flag('FREEPASS_CANONICAL_VIEWER_READY'),
-    legacyWriteBlockReady: flag('FREEPASS_LEGACY_WRITE_BLOCK_READY'),
+    legacyWritePolicy: legacyQuoteWriteBlockEvidence({
+      globalMode: process.env.FREEPASS_QUOTE_WRITE_MODE,
+      viteMode: '',
+    }),
   });
 
   // Deliberately emit only IDs, hashes, release evidence and gate results.
