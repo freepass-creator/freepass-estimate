@@ -5,7 +5,11 @@ html .m-shell .sr .sr-title { margin-bottom: 16px; }
 html .m-shell .sr .sr-snapshot { margin: -4px 0 12px; padding: 12px; border-radius: var(--r-panel); }
 html .m-shell .sr .sr-car { padding: 12px; border-radius: var(--r-panel); }
 html .m-shell .sr .sr-car__total { padding-top: 8px; border-top: 0; }
-html .m-shell .sr .sr-term { padding: 12px; border-radius: var(--r-panel); }
+html .m-shell .sr .sr-term {
+  padding: 12px;
+  border-radius: var(--r-panel);
+  background: var(--fp-surface-soft);
+}
 html .m-shell .sr .sr-term__monthly,
 html .m-shell .sr .sr-car__total b { text-align: right; }
 html .m-shell .sr .sr-cond { gap: 8px; padding: 0; background: transparent; border-radius: 0; overflow: visible; }
