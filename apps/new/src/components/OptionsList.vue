@@ -28,6 +28,7 @@ function toggle(opt) {
       :checked="isChecked(opt.id)"
       :disabled="!opt.enabled && !isChecked(opt.id)"
       @click.stop="toggle(opt)"
+      @change.stop
     />
     <div class="o-info">
       <div class="o-name">{{ opt.name }}</div>
