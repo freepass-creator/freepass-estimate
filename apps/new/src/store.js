@@ -3,6 +3,7 @@
 import { 담당자인가 } from './lib/role.js';
 import { 웰릭스기본 } from './lib/welrix-rates.js';
 import { quoteScenarios } from './lib/quote/terms.js';
+import { normalizeFeeRate } from './lib/feature/conditions.js';
 
 /* ★기본값은 «웰릭스 견적기를 새로 열었을 때»와 똑같이 둔다.
    대표 2026-09-18 「다 완전히 똑같이 맞추라고. 웰릭스도 기본값 있잖아, 그 기본값에 맞추자고」
@@ -75,8 +76,8 @@ function loadFeeRate() {
      담당자가 화면에서 바꾼 값은 localStorage 에 남아 그게 이긴다. */
   try {
     const v = parseFloat(localStorage.getItem(FEE_KEY));
-    return isFinite(v) ? v : 웰릭스기본.feeRatePct;
-  } catch { return 웰릭스기본.feeRatePct; }
+    return isFinite(v) ? normalizeFeeRate(v) : normalizeFeeRate(웰릭스기본.feeRatePct);
+  } catch { return normalizeFeeRate(웰릭스기본.feeRatePct); }
 }
 function persistFeeRate(v) {
   try { localStorage.setItem(FEE_KEY, String(v)); } catch {}
