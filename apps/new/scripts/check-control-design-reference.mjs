@@ -12,6 +12,30 @@ const desktop = read('index.html');
 const mobileHtml = read('mobile.html');
 const finalUi = read('src/styles/admin-alignment.css');
 
+const repoRoot = new URL('../../../', import.meta.url);
+const postMergeVisualQa = fs.readFileSync(new URL('.github/workflows/newcar-ui-screenshots.yml', repoRoot), 'utf8');
+
+assert.equal(
+  fs.existsSync(new URL('../src/styles/admin-desktop-alignment.css', import.meta.url)),
+  false,
+  'duplicate desktop alignment authority must not be recreated'
+);
+assert.equal(
+  fs.existsSync(new URL('../scripts/capture-ui.mjs', import.meta.url)),
+  false,
+  'duplicate screenshot harness must not be recreated'
+);
+assert.match(
+  postMergeVisualQa,
+  /run:\s*node scripts\/e2e-ui-visual-audit\.mjs/,
+  'post-merge visual QA must use the canonical e2e-ui-visual-audit harness'
+);
+assert.doesNotMatch(
+  postMergeVisualQa,
+  /capture-ui\.mjs/,
+  'post-merge workflow must not reference the retired screenshot harness'
+);
+
 const canonicalScale = [
   /--fp-fs-kpi:\s*24px;/,
   /--fp-fs-screen:\s*20px;/,
