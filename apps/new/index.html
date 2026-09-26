@@ -28,6 +28,9 @@
       navigator.serviceWorker.register('/sw.js').catch(() => {});
     });
   }
+
+  /* Current/incomplete fields use semantic label emphasis.
+     Input surfaces/focus are owned by the PR #92 line-free field grammar. */
 </script>
 <script>
   // 모바일/태블릿 viewport(≤1024px) 이면 모바일 전용 shell로 자동 이동
@@ -51,7 +54,9 @@
 <link rel="stylesheet" href="/src/styles/tokens.css" />
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- 차량 DB (제조사/모델/세부모델/트림/옵션/색상) — PC 와 모바일 공유 SSOT -->
-<script src="/vehicle-db.js"></script>\n<script src="/feature-options.js"></script>\n<script src="/feature-vehicle-selection.js"></script>
+<script src="/vehicle-db.js"></script>
+<script src="/feature-options.js"></script>
+<script src="/feature-vehicle-selection.js"></script>
 <style>
   /* ================================================================
    * Legacy compatibility aliases only.
@@ -209,7 +214,7 @@
     padding: 0 16px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--fp-sp-2);
     min-width: 0;
   }
   .desktop-action-bar__spacer { flex: 1; }
@@ -225,7 +230,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--fp-sp-2);
+    gap: 6px;
     cursor: pointer;
     white-space: nowrap;
   }
@@ -714,7 +719,7 @@
     color: var(--ink-1);
     outline: none;
     font-variant-numeric: tabular-nums;
-    transition: border-color .12s;
+    transition: background var(--fp-motion-state), box-shadow var(--fp-motion-state);
   }
   #gate-pin:focus { border-color: var(--brand); }
   #gate-err {
@@ -723,7 +728,7 @@
     background: #fff1f1;
     color: #c62828;
     border-radius: 6px;
-    font-size: 12.5px;
+    font-size: var(--fp-fs-body);
   }
   #gate-submit {
     width: 100%; height: 50px;
@@ -1172,6 +1177,16 @@ function getOptionPrice(opt, trimId) {
   return opt?.price ?? 0;
 }
 
+// 트림 base_price: state.tax_rate에 따라 5% 또는 3.5% 가격 반환
+// 호환성: 두 필드 없으면 trim.base_price 사용
+function getTrimPrice(trim, taxRate) {
+  if (!trim) return 0;
+  const rate = taxRate || state.tax_rate || '5';
+  if (rate === '5' && typeof trim.base_price_5 === 'number') return trim.base_price_5;
+  if (rate === '3_5' && typeof trim.base_price_3_5 === 'number') return trim.base_price_3_5;
+  return trim.base_price ?? trim.base_price_3_5 ?? trim.base_price_5 ?? 0;
+}
+
 function optionRuleContext() {
   const variant = getVariant();
   return {
@@ -1181,16 +1196,6 @@ function optionRuleContext() {
     optionExcludes: variant?.option_excludes || {},
     trimId: state.trim,
   };
-}
-
-// 트림 base_price: state.tax_rate에 따라 5% 또는 3.5% 가격 반환
-// 호환성: 두 필드 없으면 trim.base_price 사용
-function getTrimPrice(trim, taxRate) {
-  if (!trim) return 0;
-  const rate = taxRate || state.tax_rate || '5';
-  if (rate === '5' && typeof trim.base_price_5 === 'number') return trim.base_price_5;
-  if (rate === '3_5' && typeof trim.base_price_3_5 === 'number') return trim.base_price_3_5;
-  return trim.base_price ?? trim.base_price_3_5 ?? trim.base_price_5 ?? 0;
 }
 
 function isOptionEnabled(optId) {
@@ -2021,7 +2026,7 @@ render();
     padding: var(--fp-sp-3) 0; margin: 0 0 var(--fp-sp-2);
     background: transparent; border: 0;
     border-radius: 0;
-    font-size: var(--fp-fs-body);
+    font-size: 12.5px;
   }
   .qp-summary-mini__row {
     display: flex; align-items: baseline; gap: 10px; width: 100%;
@@ -2256,13 +2261,10 @@ render();
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  /* Current/incomplete fields use semantic label emphasis.
-     Input surfaces/focus are owned by the PR #92 line-free field grammar. */
   .qc-field:has(input:placeholder-shown) > label {
     color: var(--fp-primary);
     font-weight: 600;
   }
-
   /* % 입력 — input + % 라벨 wrap (full width로 underline 일관 유지) */
   .qc-pct {
     display: flex; align-items: center; gap: var(--fp-sp-1);
@@ -2299,7 +2301,7 @@ render();
     font-family: inherit; color: var(--fp-text);
     font-variant-numeric: tabular-nums;
     outline: none;
-    transition: background var(--fp-motion-state), box-shadow var(--fp-motion-state);
+    transition: border-color .12s;
   }
   .qc-field > select { appearance: none; -webkit-appearance: none;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23a3a3a3' stroke-width='1.5' stroke-linecap='round'><polyline points='3 5 6 8 9 5'/></svg>");
@@ -2385,7 +2387,7 @@ render();
   /* 헤더 — 기간 라벨 + 체크 (조용한 톤) */
   .term-card__head {
     display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 14px;
+    margin-bottom: var(--fp-sp-3);
   }
   .term-card__term-dd {
     appearance: none;
@@ -2440,7 +2442,7 @@ render();
     font-size: var(--fp-fs-kpi); font-weight: 700; color: var(--fp-text);
     letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
     line-height: 1.1;
-    margin-bottom: var(--fp-sp-3);
+    margin-bottom: 14px;
   }
   .term-card__monthly em {
     font-style: normal; font-size: var(--fp-fs-support); font-weight: 400;
