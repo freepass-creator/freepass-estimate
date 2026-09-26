@@ -249,7 +249,7 @@ try {
   // These are the current Admin-derived UI contracts; fail the visual job if
   // the rendered CSS silently drifts from them.
   for (const entry of report.mobile) {
-    ok(entry.initial.tokens.title === '18px', `mobile-${entry.width}: title token drift ${entry.initial.tokens.title}`);
+    ok(entry.initial.tokens.title === '20px', `mobile-${entry.width}: title token drift ${entry.initial.tokens.title}`);
     ok(entry.initial.tokens.body === '14px', `mobile-${entry.width}: body token drift ${entry.initial.tokens.body}`);
     ok(entry.initial.tokens.support === '12px', `mobile-${entry.width}: support token drift ${entry.initial.tokens.support}`);
     ok(entry.initial.tokens.input === '44px', `mobile-${entry.width}: input token drift`);
@@ -272,12 +272,12 @@ try {
 
   for (const entry of report.desktop) {
     if (entry.action) {
-      ok(Math.round(entry.action.height) === 44, `desktop-${entry.width}: bottom action height drift ${entry.action.height}`);
+      ok(Math.round(entry.action.height) === 36, `desktop-${entry.width}: bottom action height drift ${entry.action.height}`);
       ok(entry.action.fontSize === '14px', `desktop-${entry.width}: bottom action font drift ${entry.action.fontSize}`);
       ok(entry.action.radius === '6px', `desktop-${entry.width}: bottom action radius drift ${entry.action.radius}`);
     }
     if (entry.select) {
-      ok(Math.round(entry.select.height) === 44, `desktop-${entry.width}: select height drift ${entry.select.height}`);
+      ok(Math.round(entry.select.height) === 36, `desktop-${entry.width}: select height drift ${entry.select.height}`);
       ok(entry.select.fontSize === '14px', `desktop-${entry.width}: select font drift ${entry.select.fontSize}`);
       ok(entry.select.radius === '6px', `desktop-${entry.width}: select radius drift ${entry.select.radius}`);
     }
