@@ -88,6 +88,8 @@ jobs:
         run: node scripts/check-share-envelope.mjs
       - name: Share Envelope persistence boundary
         run: node scripts/check-share-envelope-persistence.mjs
+      - name: Public Share Envelope migration routing
+        run: node scripts/check-share-envelope-migration.mjs
       - name: Existing Quote factory regression
         run: node scripts/check-quote-factory.mjs
       - name: Quote storage boundary
