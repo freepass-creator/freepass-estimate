@@ -5,9 +5,12 @@ import { 견적상태 } from '../../lib/quote/index.js';
 import { buildOfficialQuoteHtml } from '../../lib/build-quote-html.js';
 import { fmt, fmtTel } from '../../lib/format.js';
 import { selectedLiveQuoteTerms, selectedSharedQuoteTerms } from '../../lib/feature/actions.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 
 defineProps({ open: Boolean });
 const emit = defineEmits(['close']);
+const 역할정책 = rolePolicy(역할());
 
 function onStaffTelInput(e) {
   const v = fmtTel(e.target.value);
@@ -58,6 +61,10 @@ const imgLoading = ref(false);
 
 // 견적서 이미지(PNG blob) 생성 — 공통 (복사/전송이 같이 씀)
 async function buildQuoteBlob() {
+  if (!역할정책.canSendOfficialQuote) {
+    errorMsg.value = '담당자 전용 기능입니다';
+    return null;
+  }
   const v = quoteState.vehicle;
   if (!v) { errorMsg.value = '차량을 먼저 선택하세요'; return null; }
   /* ★값이 없으면 «빈 견적서»가 나가지 않게 막는다 — 웰릭스 계산이 아직/못 온 것이다 */
