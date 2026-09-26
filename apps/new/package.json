@@ -28,7 +28,7 @@
     "check:model-year": "node scripts/check-model-year-authority.mjs",
     "check:pricing-engine": "node scripts/check-pricing-engine-version.mjs",
     "check:authority-boundary": "node scripts/check-authority-boundary.mjs",
-    "check:feature": "node --test scripts/feature-conditions.test.mjs scripts/feature-options.test.mjs"
+    "check:feature": "node --test scripts/feature-conditions.test.mjs scripts/feature-options.test.mjs scripts/feature-vehicle-selection.test.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"
