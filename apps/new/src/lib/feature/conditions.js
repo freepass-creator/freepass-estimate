@@ -60,6 +60,62 @@ export function applyScenarioPercent(quoteState, key, rawValue) {
   return value;
 }
 
+
+export function setScenarioPercent(quoteState, index, key, rawValue) {
+  if (!quoteState?.cond || !Array.isArray(quoteState.scenarios)) {
+    throw new Error('quoteState.scenarios is required');
+  }
+  const scenario = quoteState.scenarios[index];
+  if (!scenario) return { changed: false, value: null };
+  const value = normalizePercent(key, rawValue);
+  const changed = scenario[key] !== value;
+  scenario[key] = value;
+  return { changed, value };
+}
+
+export function setScenarioTerm(quoteState, index, rawTerm) {
+  if (!Array.isArray(quoteState?.scenarios)) throw new Error('quoteState.scenarios is required');
+  const scenario = quoteState.scenarios[index];
+  const term = Number(rawTerm);
+  if (!scenario || !QUOTE_TERMS.includes(term)) {
+    return { changed: false, accepted: false, value: scenario?.term ?? null };
+  }
+  const duplicate = quoteState.scenarios.some((item, i) => i !== index && item.term === term);
+  if (duplicate) return { changed: false, accepted: false, value: scenario.term };
+  const changed = scenario.term !== term;
+  scenario.term = term;
+  return { changed, accepted: true, value: term };
+}
+
+export function setScenarioIncluded(quoteState, index, included) {
+  if (!Array.isArray(quoteState?.scenarios)) throw new Error('quoteState.scenarios is required');
+  if (!Array.isArray(quoteState.send)) quoteState.send = [];
+  while (quoteState.send.length < quoteState.scenarios.length) quoteState.send.push(true);
+  if (quoteState.send.length > quoteState.scenarios.length) quoteState.send.splice(quoteState.scenarios.length);
+
+  if (index < 0 || index >= quoteState.scenarios.length) {
+    return { changed: false, accepted: false, value: null };
+  }
+
+  const next = Boolean(included);
+  const current = quoteState.send[index] !== false;
+  if (current === next) return { changed: false, accepted: true, value: current };
+
+  if (!next) {
+    const includedCount = quoteState.scenarios.reduce(
+      (count, _scenario, i) => count + (quoteState.send[i] !== false ? 1 : 0),
+      0,
+    );
+    if (includedCount <= 1) {
+      quoteState.send[index] = true;
+      return { changed: false, accepted: false, value: true };
+    }
+  }
+
+  quoteState.send[index] = next;
+  return { changed: true, accepted: true, value: next };
+}
+
 export function toggleQuoteTerm(quoteState, term) {
   if (!quoteState?.cond) throw new Error('quoteState.cond is required');
   if (!QUOTE_TERMS.includes(term)) return false;
