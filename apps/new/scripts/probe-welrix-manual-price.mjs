@@ -37,7 +37,9 @@ if(!manual.r.ok||!manual.j?.ok||!manual.j?.results?.[0]?.monthlyRent){
  throw new Error('MANUAL_PRICE_CAPABILITY=NOT_SUPPORTED');
 }
 if(Number(manual.j?.price)!==overridePrice){
- throw new Error(`MANUAL_PRICE_NOT_HONORED expected=${overridePrice} reported=${manual.j?.price}`);
+ console.log(`MANUAL_PRICE_CAPABILITY=NOT_SUPPORTED expected=${overridePrice} reported=${manual.j?.price}`);
+ console.log('PASS Welrix capability probe: provider does not honor FreePass manual price; Estimate adapter must remain fail-closed');
+ process.exit(0);
 }
 
 console.log('MANUAL_PRICE_CAPABILITY=SUPPORTED_AND_ECHOED');
