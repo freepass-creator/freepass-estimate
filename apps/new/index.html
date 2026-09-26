@@ -55,9 +55,9 @@
 <script src="/vehicle-db.js"></script>
 <style>
   /* ================================================================
-   * Welrix Design Tokens — 견적서 official 양식 기준
-   * 모든 화면(영업 ERP / 견적서 / 손님 / 관리자 / 모달) 공통
-   * brand 색은 회사 config 의 brand_color 로 동적 override 가능
+   * Legacy compatibility aliases only.
+   * Visual authority is src/styles/tokens.css + FreePass Admin PR #92.
+   * Do not add new visual constants in this inline compatibility block.
    * ================================================================ */
   :root {
     /* Compatibility aliases only. Numeric visual truth lives in src/styles/tokens.css
@@ -2457,7 +2457,7 @@ render();
   .qc-field .pct input:hover { border-bottom: none; }
   .qc-field .pct input:focus { outline: none; border-bottom: none; }
 
-  /* 4기간 */
+  /* 기간별 견적 */
   .qp-terms__title {
     font-size: 12px; font-weight: 500; color: var(--ink-3);
     letter-spacing: 0; padding: 14px 0 8px; margin: 0;
@@ -2500,7 +2500,7 @@ render();
     .terms-grid { grid-template-columns: 1fr; }
     .reference-grid { grid-template-columns: 1fr; }
   }
-  /* === term-card 재설계 — 대여료 hero / 조건 muted / 헤어라인만 === */
+  /* Legacy term-card base geometry. Final visual authority is the PR #92 grammar below. */
   .term-card {
     background: transparent; border: 0; border-radius: 0;
     border-top: 1px solid var(--line);
