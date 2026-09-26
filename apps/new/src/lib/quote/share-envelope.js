@@ -134,3 +134,44 @@ export async function verifyShareEnvelopeIntegrity(envelope) {
   }
   return value;
 }
+
+
+export async function buildShareEnvelopeFromPersistedQuotes({
+  quotes,
+  receipts,
+  createdAt,
+  expiresAt,
+  envelopeVersion = 1,
+  envelopeId = null,
+} = {}) {
+  if (!Array.isArray(quotes) || !quotes.length || !Array.isArray(receipts) || receipts.length !== quotes.length) {
+    throw codedError('persisted Quote/receipt pairs are required', 'SHARE_ENVELOPE_QUOTE_RECEIPT_MISMATCH');
+  }
+
+  const quoteRefs = quotes.map((quote, index) => {
+    const receipt = receipts[index];
+    if (!quote || quote.contract !== 'freepass-quote/v2') {
+      throw codedError(`quotes[${index}] is not Quote v2`, 'SHARE_ENVELOPE_QUOTE_RECEIPT_MISMATCH');
+    }
+    if (!receipt || receipt.contract !== 'freepass-quote-write-receipt/v1' ||
+        !['CREATED', 'EXISTING'].includes(receipt.status) ||
+        receipt.quoteId !== quote.quoteId ||
+        Number(receipt.quoteVersion) !== quote.quoteVersion ||
+        receipt.snapshotHash !== quote.snapshotHash) {
+      throw codedError(`receipt[${index}] does not prove persisted Quote v2`, 'SHARE_ENVELOPE_QUOTE_RECEIPT_MISMATCH');
+    }
+    return {
+      quoteId: quote.quoteId,
+      quoteVersion: quote.quoteVersion,
+      snapshotHash: quote.snapshotHash,
+    };
+  });
+
+  return buildShareEnvelope({
+    quoteRefs,
+    createdAt,
+    expiresAt,
+    envelopeVersion,
+    envelopeId,
+  });
+}
