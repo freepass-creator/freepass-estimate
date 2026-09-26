@@ -1,4 +1,5 @@
 import { QUOTE_REQUEST_CONTRACT, LEGACY_QUOTE_VERSION } from './contracts.js';
+import { createQuoteConditionCosts } from './condition-cost-contract.js';
 
 export const QUOTE_PREVIEW_PURPOSE = 'PRICE_PREVIEW';
 
@@ -146,6 +147,21 @@ export function buildCatalogPreviewRequest({
     throw codedError('at least one preview scenario is required', 'QUOTE_PREVIEW_INPUT_INVALID');
   }
 
+  const 비용 = createQuoteConditionCosts({
+    deliveryFee: nonNegativeMoney(conditions.deliveryFee || 0, 'deliveryFee'),
+    tintFee: nonNegativeMoney(conditions.tintFee || 0, 'tintFee'),
+    dashcamFee: nonNegativeMoney(conditions.dashcamFee || 0, 'dashcamFee'),
+    naviFee: nonNegativeMoney(conditions.naviFee || 0, 'naviFee'),
+    hipassFee: nonNegativeMoney(conditions.hipassFee || 0, 'hipassFee'),
+    basis: {
+      delivery: 'PREVIEW_INPUT',
+      tint: 'PREVIEW_INPUT',
+      dashcam: 'PREVIEW_INPUT',
+      navi: 'PREVIEW_INPUT',
+      hipass: 'PREVIEW_INPUT',
+    },
+  });
+
   return Object.freeze({
     계약: QUOTE_REQUEST_CONTRACT,
     버전: LEGACY_QUOTE_VERSION,
@@ -190,9 +206,12 @@ export function buildCatalogPreviewRequest({
       정비: conditions.maintenance || '웰스 Basic',
       대물: conditions.liability || '1억',
       추가운전자: conditions.extraDriver || '없음',
-      탁송비: nonNegativeMoney(conditions.deliveryFee || 0, 'deliveryFee'),
-      썬팅비: nonNegativeMoney(conditions.tintFee || 0, 'tintFee'),
-      블박비: nonNegativeMoney(conditions.dashcamFee || 0, 'dashcamFee'),
+      탁송비: 비용.deliveryFee,
+      썬팅비: 비용.tintFee,
+      블박비: 비용.dashcamFee,
+      내비비: 비용.naviFee,
+      하이패스비: 비용.hipassFee,
+      비용,
       수수료율: Number(conditions.feeRatePct || 0),
     },
     안들: scenarios.map((scenario) => Object.freeze({

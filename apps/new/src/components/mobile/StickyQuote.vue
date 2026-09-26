@@ -7,7 +7,6 @@ import { quoteState } from '../../store.js';
 import { 견적상태 } from '../../lib/quote/index.js';
 import { vehicleState } from '../../store.js';
 import { fmt } from '../../lib/format.js';
-import * as Fees from '../../lib/compute-fees.js';
 import { QUOTE_TERMS } from '../../lib/quote/terms.js';
 import { selectionSummary } from '../../lib/selection-summary.js';
 const selected = computed(() => selectionSummary(window.VEHICLE_DB, vehicleState, quoteState));
@@ -34,11 +33,6 @@ function onTouchEnd(e) {
   else        expanded.value = false;    // 아래로 → 접힘
   e.preventDefault();  // tap 으로 토글되지 않도록
 }
-
-// 비용 — lib/compute-fees.js 통합 함수 사용
-const optPrice = computed(() => Fees.optPrice(quoteState));
-const deliveryFee = computed(() => Fees.deliveryFee(quoteState));
-const itemsFee = computed(() => Fees.itemsFee(quoteState));
 
 const TERM_OPTIONS = QUOTE_TERMS;
 

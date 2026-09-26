@@ -80,6 +80,10 @@ assert.deepEqual(first.차.구성.선택옵션.map((o) => o.stableId), [
   'trim-1::opt:b',
 ]);
 assert.deepEqual(first.안들.map((s) => s.기간), [36, 60]);
+assert.equal(first.조건.비용?.contract, 'freepass-quote-condition-costs/v1');
+assert.equal(first.조건.탁송비, first.조건.비용.deliveryFee);
+assert.equal(first.조건.썬팅비, first.조건.비용.tintFee);
+assert.equal(first.조건.블박비, first.조건.비용.dashcamFee);
 
 const ambiguousDb = structuredClone(db);
 ambiguousDb.manufacturers[0].models[0].variants[0].trims.push({

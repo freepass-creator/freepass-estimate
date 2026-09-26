@@ -31,6 +31,7 @@ const base = {
     extraDriver: '없음',
     feeRatePct: 5,
     costs: {
+      policyId: 'freepass-estimate-condition-costs/2026-09-26',
       deliveryFee: 120000,
       tintFee: 105000,
       dashcamFee: 180000,
@@ -93,6 +94,12 @@ for (const [name, changed] of [
     conditionSnapshot: {
       ...base.conditionSnapshot,
       costs: { ...base.conditionSnapshot.costs, deliveryFee: 99000 },
+    },
+  }],
+  ['condition cost policy', {
+    conditionSnapshot: {
+      ...base.conditionSnapshot,
+      costs: { ...base.conditionSnapshot.costs, policyId: 'freepass-estimate-condition-costs/next' },
     },
   }],
   ['maintenance', { conditionSnapshot: { ...base.conditionSnapshot, maintenance: '웰스 Self' } }],
