@@ -1,10 +1,14 @@
 name: FreePass Estimate UI + engine CI
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-      - 'integration/**'
+      - 'work/ui-ux/**'
+      - 'work/feature/**'
+      - 'work/engine/**'
+      - 'work/integration/**'
     paths:
       - 'apps/new/**'
       - '.github/workflows/newcar-ci.yml'
@@ -16,6 +20,9 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   pricing-authority:
@@ -58,33 +65,12 @@ jobs:
 
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: apps/new
     steps:
       - uses: actions/checkout@v4
-      - name: FreePass Estimate UI structure guard
-        working-directory: apps/new
-        run: node scripts/check-ui-parity.mjs
-      - name: Action placement standard
-        working-directory: apps/new
-        run: node scripts/check-action-placement.mjs
-      - name: Mobile navigation contract
-        working-directory: apps/new
-        run: node scripts/check-mobile-navigation-contract.mjs
-      - name: Mobile refresh brand identity
-        working-directory: apps/new
-        run: node scripts/check-mobile-brand-identity.mjs
-      - name: FreePass Admin control design reference
-        working-directory: apps/new
-        run: node scripts/check-control-design-reference.mjs
-      - name: FreePass visual grammar
-        working-directory: apps/new
-        run: node scripts/check-freepass-visual-grammar.mjs
-      - name: Accessibility baseline
-        working-directory: apps/new
-        run: node scripts/check-accessibility-baseline.mjs
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -92,8 +78,8 @@ jobs:
           cache-dependency-path: apps/new/package-lock.json
       - name: Install
         run: npm ci
-      - name: Tint state contract
-        run: node scripts/check-tint-state-contract.mjs
+      - name: FreePass Estimate UI structure guard
+        run: node scripts/check-ui-parity.mjs
       - name: Syntax check provider files
         run: |
           node --check src/lib/quote/contracts.js
@@ -126,35 +112,10 @@ jobs:
           node --check api/_standard/standard-service.js
           node --check api/_standard/calc.js
           node --check quote.js
-      - name: Representative vehicle configuration
-        run: node scripts/check-newcar-configurations.mjs
-      - name: Quote v2 pricing and persistence contracts
-        run: |
-          npm run check:pricing
-          npm run check:pricing-engine
-          npm run check:quote-v2
-      - name: Standard engine regression
-        run: node scripts/check-standard-engine.mjs
-      - name: Provider contract
-        run: npm run check:provider
-      - name: Provider routing
-        run: node scripts/test-provider-routing.mjs
-      - name: Provider runtime failure/privacy policy
-        run: npm run check:provider-policy
-      - name: Quote runtime proof contract
-        run: npm run check:runtime
-      - name: AI Core adapter-result shadow contract
-        run: npm run check:core-contract-shadow
-      - name: Share snapshot provenance contract
-        run: npm run check:snapshot
-      - name: Verification manifest freshness
-        run: npm run check:verification
-      - name: Release revision proof contract
-        run: npm run check:release
-      - name: Existing sync checks
-        run: npm run check
-      - name: Production build
-        run: npm run build
+      # package.json owns the U/F/E verification list. Do not copy a subset here:
+      # that previously omitted feature, model-year, preview and convergence tests.
+      - name: Canonical UFE verification and production build
+        run: npm run verify
       - name: Upload preview build artifact
         uses: actions/upload-artifact@v4
         with:
