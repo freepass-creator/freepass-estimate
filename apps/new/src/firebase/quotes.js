@@ -2,6 +2,7 @@
 // 손님 페이지는 ?q=<id> 로 접근해 read-only 로 표시
 import { ref, set, get, update, push } from 'firebase/database';
 import { db, waitAuth, auth } from './config.js';
+import { assertLegacyQuoteWriteAllowed } from '../lib/quote/legacy-write-policy.js';
 
 // short id (6자) — Base36 timestamp + random
 function makeShortId() {
@@ -16,6 +17,8 @@ function makeShortId() {
  * @returns {Promise<{id, url}>}
  */
 export async function saveQuote(payload) {
+  // Cutover guard MUST run before auth/RTDB access. Existing legacy readers stay available.
+  assertLegacyQuoteWriteAllowed();
   await waitAuth();
   const id = makeShortId();
   const myUid = auth.currentUser?.uid || null;
