@@ -16,6 +16,12 @@ import {
 } from '../src/lib/quote/shadow-roundtrip.js';
 import { evaluateQuoteCutoverReadiness } from '../src/lib/quote/cutover-readiness.js';
 
+const blockedPolicy = {
+  contract: 'freepass-legacy-quote-write-policy/v1',
+  mode: 'CANONICAL_ONLY',
+  legacyNewQuoteWriteBlocked: true,
+};
+
 const quote = {
   contract: 'freepass-quote/v2',
   quoteId: 'q_shadow_001',
@@ -155,7 +161,7 @@ const readiness = evaluateQuoteCutoverReadiness({
   envelopeWriteProbe: envelopeProof.writeProbe,
   envelopeReadProbe: envelopeProof.readProbe,
   canonicalViewerReady: true,
-  legacyWriteBlockReady: true,
+  legacyWritePolicy: blockedPolicy,
 });
 assert.equal(readiness.status, 'READY');
 assert.equal(readiness.gates.envelopeReferencesVerifiedQuote, true);
@@ -258,4 +264,4 @@ await assert.rejects(
   (error) => error?.code === 'SHARE_ENVELOPE_SHADOW_ROUNDTRIP_FAILED'
 );
 
-console.log('PASS canonical shadow round-trips: Quote + Share Envelope -> readiness v2 evidence');
+console.log('PASS canonical shadow round-trips: Quote + Share Envelope -> readiness v3 evidence');
