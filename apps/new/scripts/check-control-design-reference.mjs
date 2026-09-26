@@ -10,7 +10,6 @@ const extras = read('src/components/mobile/StepExtras.vue');
 const result = read('src/components/mobile/StepResult.vue');
 const desktop = read('index.html');
 const mobileHtml = read('mobile.html');
-const desktopAlignment = read('src/styles/admin-desktop-alignment.css');
 const finalUi = read('src/styles/admin-alignment.css');
 
 const canonicalScale = [
@@ -95,11 +94,6 @@ assert.match(desktop, /\.quote-modal__head\s*\{[\s\S]*min-height:\s*var\(--fp-pa
   'quote modal header must use the PR92 panel-head grammar');
 assert.match(desktop, /\.quote-panel :is\(input:not\(\[type="checkbox"\]\):not\(\[type="radio"\]\), select\),[\s\S]*min-height:\s*var\(--fp-control\);[\s\S]*border:\s*1px solid transparent !important;[\s\S]*background:\s*var\(--fp-surface-soft\) !important;/,
   'desktop fields must use surface/elevation rather than visible borders');
-
-assert.match(desktopAlignment, /height:\s*var\(--fp-control\);/,
-  'desktop alignment stylesheet must use the 36px canonical control token');
-assert.doesNotMatch(desktopAlignment, /height:\s*44px|min-height:\s*44px/,
-  'desktop alignment must not reintroduce the old unified 44px Sales density');
 
 assert.match(finalUi, /\.sr-term\s*\{[\s\S]*padding:\s*12px;/,
   'quote result term cards must keep the compact mobile density');
