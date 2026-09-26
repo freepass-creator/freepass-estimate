@@ -1,11 +1,12 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 담당자인가 } from '../../lib/role.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { QUOTE_TERMS } from '../../lib/quote/terms.js';
 import { CREDIT_OPTIONS, KM_OPTIONS, toggleQuoteTerm } from '../../lib/feature/conditions.js';
 
-const 담당자 = 담당자인가();
+const 담당자 = rolePolicy(역할()).canEditInternalCredit;
 const TERMS = QUOTE_TERMS;
 const KMS = KM_OPTIONS;
 const CREDITS = CREDIT_OPTIONS;
