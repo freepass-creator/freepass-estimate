@@ -12,6 +12,19 @@ import {
   SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
 } from '../src/lib/quote/share-envelope-repository.js';
 
+const secureWriteAccessPolicy = {
+  contract: 'freepass-estimate-write-access/v1',
+  serverVerifiedFirebaseIdTokenRequired: true,
+  anonymousWritesAllowed: false,
+  requiredRoles: ['staff', 'admin'],
+};
+const weakWriteAccessPolicy = {
+  contract: 'freepass-estimate-write-access/v1',
+  serverVerifiedFirebaseIdTokenRequired: true,
+  anonymousWritesAllowed: true,
+  requiredRoles: [],
+};
+
 const blockedPolicy = {
   contract: 'freepass-legacy-quote-write-policy/v1',
   mode: 'CANONICAL_ONLY',
@@ -126,6 +139,7 @@ assert.deepEqual(
     'SHARE_ENVELOPE_READ_SHADOW_PROOF_REQUIRED',
     'CANONICAL_VIEWER_CUTOVER_NOT_READY',
     'LEGACY_WRITE_BLOCK_NOT_READY',
+    'CANONICAL_WRITE_AUTH_POLICY_NOT_READY',
   ]
 );
 
@@ -161,6 +175,7 @@ const quoteMismatch = evaluateQuoteCutoverReadiness({
   envelopeReadProbe,
   canonicalViewerReady: true,
   legacyWritePolicy: blockedPolicy,
+  writeAccessPolicy: secureWriteAccessPolicy,
 });
 assert.equal(quoteMismatch.status, 'HOLD');
 assert.ok(quoteMismatch.blockers.some((x) => x.code === 'QUOTE_SHADOW_ROUNDTRIP_MISMATCH'));
@@ -180,6 +195,7 @@ const envelopeMismatch = evaluateQuoteCutoverReadiness({
   },
   canonicalViewerReady: true,
   legacyWritePolicy: blockedPolicy,
+  writeAccessPolicy: secureWriteAccessPolicy,
 });
 assert.equal(envelopeMismatch.status, 'HOLD');
 assert.ok(envelopeMismatch.blockers.some((x) => x.code === 'SHARE_ENVELOPE_SHADOW_ROUNDTRIP_MISMATCH'));
@@ -203,6 +219,7 @@ const refMismatch = evaluateQuoteCutoverReadiness({
   },
   canonicalViewerReady: true,
   legacyWritePolicy: blockedPolicy,
+  writeAccessPolicy: secureWriteAccessPolicy,
 });
 assert.equal(refMismatch.status, 'HOLD');
 assert.ok(refMismatch.blockers.some((x) => x.code === 'SHARE_ENVELOPE_QUOTE_REFERENCE_MISMATCH'));
@@ -215,6 +232,7 @@ const ready = evaluateQuoteCutoverReadiness({
   envelopeReadProbe,
   canonicalViewerReady: true,
   legacyWritePolicy: blockedPolicy,
+  writeAccessPolicy: secureWriteAccessPolicy,
 });
 assert.equal(ready.status, 'READY');
 assert.equal(ready.blockers.length, 0);
@@ -228,11 +246,12 @@ const badMaster = evaluateQuoteCutoverReadiness({
   envelopeReadProbe,
   canonicalViewerReady: true,
   legacyWritePolicy: blockedPolicy,
+  writeAccessPolicy: secureWriteAccessPolicy,
 });
 assert.equal(badMaster.status, 'HOLD');
 assert.ok(badMaster.blockers.some((x) => x.code === 'MASTER_ACTIVE_RELEASE_REQUIRED'));
 
-console.log('PASS cutover readiness v3: master + Quote round-trip + Envelope round-trip + viewer/write-block gates');
+console.log('PASS cutover readiness v4: master + Quote round-trip + Envelope round-trip + viewer/write-block gates');
 
 const wrongPolicy = evaluateQuoteCutoverReadiness({
   master,
@@ -242,6 +261,20 @@ const wrongPolicy = evaluateQuoteCutoverReadiness({
   envelopeReadProbe,
   canonicalViewerReady: true,
   legacyWritePolicy: allowedPolicy,
+  writeAccessPolicy: secureWriteAccessPolicy,
 });
 assert.equal(wrongPolicy.status, 'HOLD');
 assert.ok(wrongPolicy.blockers.some((x) => x.code === 'LEGACY_WRITE_BLOCK_NOT_READY'));
+
+const weakAuth = evaluateQuoteCutoverReadiness({
+  master,
+  quoteWriteProbe,
+  quoteReadProbe,
+  envelopeWriteProbe,
+  envelopeReadProbe,
+  canonicalViewerReady: true,
+  legacyWritePolicy: blockedPolicy,
+  writeAccessPolicy: weakWriteAccessPolicy,
+});
+assert.equal(weakAuth.status, 'HOLD');
+assert.ok(weakAuth.blockers.some((x) => x.code === 'CANONICAL_WRITE_AUTH_POLICY_NOT_READY'));
