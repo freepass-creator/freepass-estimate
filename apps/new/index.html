@@ -154,8 +154,8 @@
     -webkit-text-size-adjust: 100%;
     margin: 0;
     display: grid;
-    /* Estimate-specific composition: vehicle configuration + quote workspace. */
-    grid-template-columns: 400px minmax(0, 52fr) minmax(0, 20fr);
+    /* Canonical Estimate composition: vehicle configuration 28 / quote workspace 72. */
+    grid-template-columns: minmax(0, 28fr) minmax(0, 72fr);
     grid-template-rows: var(--fp-topbar) minmax(0, 1fr) var(--fp-panel-foot);
     gap: 0;
     height: 100vh;
@@ -4711,12 +4711,8 @@ render();
 <!-- Vue 웰릭스 표준 가격표 모달 mount root -->
 <div id="standard-price-root"></div>
 
-<!-- 단순 견적 모드: 채팅·계약·서류 패널 숨김 (견적바구니는 유지) -->
-<style id="simple-mode-overrides">
-  body { grid-template-columns: minmax(0, 28fr) minmax(0, 72fr) !important; }
-  @media (max-width: 1024px) {
-    body { grid-template-columns: 1fr !important; }
-  }
+<!-- 현재 Estimate는 2-panel shell. 계약/채팅 root는 기능 보존용으로 mount하되 화면에서는 노출하지 않는다. -->
+<style id="estimate-hidden-surfaces">
   #contract-panel-root { display: none !important; }
 </style>
 
