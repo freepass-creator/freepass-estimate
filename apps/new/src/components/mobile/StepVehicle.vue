@@ -586,7 +586,7 @@ function onFeeChange() {
     <div v-else-if="subStep === 'options'" class="sv-section">
       <h2 class="sv-title">옵션을<br>선택해 주세요</h2>
 
-      <div v-if="!availableOptions.length" class="sv-empty">선택 가능한 옵션이 없습니다.</div>
+      <div v-if="!availableOptions.length" class="sv-empty" role="status">선택 가능한 옵션이 없습니다.</div>
       <div v-else class="sv-opts">
         <button
           v-for="o in availableOptions" :key="o.id"
@@ -916,10 +916,14 @@ function onFeeChange() {
 }
 
 .sv-empty {
-  padding: 18px; text-align: center;
-  background: var(--bg-soft);
-  border-radius: var(--r-md);
-  color: var(--ink-4); font-size: var(--fs-md);
+  padding: var(--sp-4);
+  text-align: center;
+  background: var(--fp-surface-soft);
+  border-radius: var(--r-card);
+  box-shadow: var(--fp-elevation-base);
+  color: var(--fp-text-muted);
+  font-size: var(--fs-base);
+  line-height: 1.5;
 }
 
 /* 할인 — 접힘 disclosure */
