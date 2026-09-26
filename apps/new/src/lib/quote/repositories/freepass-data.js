@@ -21,6 +21,7 @@ export function createFreePassDataQuoteRepository({
   readEndpoint = '/api/issued-quote',
   fetchImpl = globalThis.fetch,
   authToken = null,
+  authTokenProvider = null,
 } = {}) {
   const writeUrl = String(endpoint ?? '').trim();
   const readUrl = String(readEndpoint ?? '').trim();
@@ -28,7 +29,13 @@ export function createFreePassDataQuoteRepository({
   if (!readUrl) throw codedError('FreePass Data quote read endpoint is not configured', 'QUOTE_REPOSITORY_UNAVAILABLE');
   if (typeof fetchImpl !== 'function') throw codedError('fetch is unavailable', 'QUOTE_REPOSITORY_UNAVAILABLE');
 
-  const authHeaders = () => authToken ? { authorization: `Bearer ${authToken}` } : {};
+  const authHeaders = async () => {
+    const supplied = String(authToken ?? '').trim();
+    const token = supplied || (typeof authTokenProvider === 'function'
+      ? String(await authTokenProvider() ?? '').trim()
+      : '');
+    return token ? { authorization: `Bearer ${token}` } : {};
+  };
 
   return Object.freeze({
     contract: QUOTE_REPOSITORY_CONTRACT,
@@ -36,7 +43,7 @@ export function createFreePassDataQuoteRepository({
       const headers = {
         'content-type': 'application/json',
         'idempotency-key': idempotencyKey,
-        ...authHeaders(),
+        ...(await authHeaders()),
       };
 
       let response;
@@ -77,7 +84,7 @@ export function createFreePassDataQuoteRepository({
           method: 'GET',
           headers: {
             accept: 'application/json',
-            ...authHeaders(),
+            ...(await authHeaders()),
           },
           cache: 'no-store',
         });
