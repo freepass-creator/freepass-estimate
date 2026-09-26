@@ -160,7 +160,7 @@ await assert.rejects(
     envelopeId:envelope.envelopeId,
     now:()=> '2026-09-26T08:05:00.000Z',
   }),
-  (error)=>error?.code==='CANONICAL_SHARE_QUOTE_MISMATCH'
+  (error)=>error?.code==='QUOTE_V2_INTEGRITY_MISMATCH'
 );
 
 console.log('PASS canonical Share bundle: Envelope -> ordered Quote v2 records, expiry + identity fail-closed');
