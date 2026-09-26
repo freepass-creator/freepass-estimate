@@ -62,6 +62,14 @@ assert.match(desktop, /\.term-card__monthly\s*\{[\s\S]*font-size:\s*var\(--fp-fs
   'desktop monthly quote hero must use the PR92 KPI scale');
 assert.match(desktop, /\.terms-grid\s*\{[\s\S]*border:\s*1px solid transparent !important;[\s\S]*background:\s*var\(--fp-primary-weak\) !important;/,
   'customer quote block must remain a tinted line-free surface');
+assert.match(desktop, /\.term-card__row \+ \.term-card__row\s*\{[\s\S]*border-top:\s*0 !important;/,
+  'quote fact rows must not reintroduce dashed separators');
+assert.match(desktop, /details\.qp-extras\[open\] > summary\s*\{[\s\S]*border-bottom:\s*0 !important;[\s\S]*background:\s*var\(--fp-surface-soft\);/,
+  'extras accordion must use surface hierarchy instead of dividers');
+assert.match(desktop, /\.customer-output\s*\{[\s\S]*border:\s*1px solid transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\);/,
+  'runtime quote preview shell must stay line-free');
+assert.match(desktop, /\.quote-modal__head\s*\{[\s\S]*min-height:\s*var\(--fp-panel-head\);[\s\S]*border-bottom:\s*0 !important;/,
+  'quote modal header must use the PR92 panel-head grammar');
 assert.match(desktop, /\.quote-panel :is\(input:not\(\[type="checkbox"\]\):not\(\[type="radio"\]\), select\),[\s\S]*min-height:\s*var\(--fp-control\);[\s\S]*border:\s*1px solid transparent !important;[\s\S]*background:\s*var\(--fp-surface-soft\) !important;/,
   'desktop fields must use surface/elevation rather than visible borders');
 
