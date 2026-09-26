@@ -33,7 +33,7 @@ function executionRequestId() {
   return `quote-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
 }
 
-export async function 견적계산(요청, { 신호, 강제계산기 = null } = {}) {
+export async function 견적계산(요청, { 신호, 강제계산기 = null, allowUnverifiedPricingEngine = false } = {}) {
   const startedAt = new Date().toISOString();
   const requestId = executionRequestId();
   let 이름 = null;
@@ -54,7 +54,7 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
     const 답 = await 계산기.계산(요청, { 신호 });
     const 탈2 = 결과검사(답?.결과, 요청.안들);
     if (탈2) throw codedError(탈2, 'QUOTE_RESULT_INVALID');
-    const pricingEngine = normalizePricingEngineEvidence(답?.pricingEngine);
+    const pricingEngine = normalizePricingEngineEvidence(답?.pricingEngine, { requireVerified: !allowUnverifiedPricingEngine });
     const priceBasis = normalizePriceBasis(답?.priceBasis, {
       expectedProductId: 요청?.차?.상품키 || 요청?.차?.키,
     });
@@ -72,7 +72,7 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
         execution: QUOTE_EXECUTION_CONTRACT,
       },
       실행: createQuoteExecution({
-        status: 'SUCCEEDED',
+        status: pricingEngine.verified ? 'SUCCEEDED' : 'HOLD',
         provider: providerKey,
         engine: 계산기.이름,
         startedAt,
@@ -87,9 +87,10 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
         checks: [
           { name: 'quote-request-contract', status: 'PASS' },
           { name: 'quote-result-contract', status: 'PASS' },
-          { name: 'pricing-engine-evidence', status: 'PASS', detail: pricingEngine.verified ? 'VERIFIED' : 'UNVERIFIED' },
+          { name: 'pricing-engine-evidence', status: pricingEngine.verified ? 'PASS' : 'FAIL', detail: pricingEngine.verified ? 'VERIFIED' : 'UNVERIFIED' },
           { name: 'price-basis', status: 'PASS', detail: priceBasis.sourceRevision },
         ],
+        blockers: pricingEngine.verified ? [] : ['PRICING_ENGINE_VERSION_UNVERIFIED'],
       }),
     };
   } catch (rawError) {
@@ -98,7 +99,7 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null } = 
 
     if (!error.quoteExecution) {
       attachQuoteExecution(error, createQuoteExecution({
-        status: error.code === 'PROVIDER_UNSUPPORTED' ? 'HOLD' : 'FAILED',
+        status: ['PROVIDER_UNSUPPORTED', 'PRICING_ENGINE_VERSION_UNVERIFIED'].includes(error.code) ? 'HOLD' : 'FAILED',
         provider: providerKey,
         engine: 이름 ? 계산기들[이름]?.이름 || 이름 : null,
         startedAt,

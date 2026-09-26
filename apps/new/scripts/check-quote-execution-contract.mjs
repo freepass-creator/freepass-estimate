@@ -112,6 +112,55 @@ try {
 need(missingEngine?.code === 'PRICING_ENGINE_EVIDENCE_REQUIRED', 'missing pricing engine evidence must fail closed');
 
 globalThis.fetch = async () => ({
+  ok: true,
+  status: 200,
+  json: async () => ({
+    ok: true,
+    contract: QUOTE_RESULT_CONTRACT,
+    providerContract: QUOTE_PROVIDER_CONTRACT,
+    priceBasis: {
+      contract: 'freepass-price-basis/v1',
+      authority: 'FREEPASS_DATA_CANONICAL_ACTIVE',
+      masterContract: 'estimate-newcar-master/v1',
+      currency: 'KRW',
+      productId: 'TEST-CAR',
+      sourceRevision: 'freepass-data/test@r1',
+      basePrice: 30000000,
+      optionPrice: 0,
+      exteriorColorPrice: 0,
+      interiorColorPrice: 0,
+      discount: 0,
+      totalVehiclePrice: 30000000,
+      priceBefore: 30000000,
+      priceAfter: 30000000,
+      priceBasisName: '기준가',
+    },
+    pricingEngine: {
+      id: 'welrix-excel',
+      version: 'welrix-excel/v6.1',
+      evidence: 'ADAPTER_PIN_ONLY',
+      verified: false,
+    },
+    차량가: 30000000,
+    결과: [{ 월대여료: 500000, 보증금: 0, 선납금: 0, 인수가: 0, 총차량가: 30000000, 수수료: 0 }],
+  }),
+});
+
+let unverified = null;
+try {
+  await 견적계산(request);
+} catch (error) {
+  unverified = error;
+}
+need(unverified?.code === 'PRICING_ENGINE_VERSION_UNVERIFIED', 'unverified pricing engine must fail closed');
+need(unverified?.quoteExecution?.status === 'HOLD', 'unverified pricing engine must produce HOLD execution');
+
+const diagnostic = await 견적계산(request, { allowUnverifiedPricingEngine: true });
+need(diagnostic.pricingEngine?.verified === false, 'diagnostic mode must preserve unverified evidence');
+need(diagnostic.실행?.status === 'HOLD', 'diagnostic unverified execution must never be SUCCEEDED');
+need(diagnostic.실행?.blockers?.includes('PRICING_ENGINE_VERSION_UNVERIFIED'), 'diagnostic HOLD blocker missing');
+
+globalThis.fetch = async () => ({
   ok: false,
   status: 503,
   json: async () => ({ ok: false, error: 'provider unavailable', code: 'PROVIDER_UNAVAILABLE' }),
