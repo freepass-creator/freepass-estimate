@@ -61,9 +61,10 @@
     "pull_request": {
       "max_behind_main": 30,
       "single_open_pr_per_canonical_path": true,
-      "why": "묵은 가지·같은 정본을 동시에 고치는 PR 이 개발선 분열의 원인이다.",
+      "why": "제품 개발은 UI/UX·Feature·Engine·Integration 4개 레인만 허용하고, 페이지/기기/AI별 브랜치 분기를 금지한다.",
       "allowed_head_patterns": [
-        "^work/[a-z0-9._-]+/[a-z0-9._-]+$",
+        "^work/(ui-ux|feature|engine|integration)/[a-z0-9._-]+$",
+        "^work/canon/[a-z0-9._-]+$",
         "^dependabot/",
         "^renovate/"
       ],

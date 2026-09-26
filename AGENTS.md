@@ -54,3 +54,24 @@ Before material structural changes:
 - compare against the canonical FreePass Estimate baseline,
 - obtain user approval where required,
 - then propagate downstream.
+
+
+## Branch discipline
+
+Before starting any change, read `docs/DEVELOPMENT_BRANCH_MODEL.md` and `registry/branch-status.json`.
+
+Regular product work has exactly four lanes:
+- `work/ui-ux/<task>`
+- `work/feature/<task>`
+- `work/engine/<task>`
+- `work/integration/<task>`
+
+Rules:
+1. `main` is the only long-lived product truth.
+2. A page/device is never a branch authority. Do not create branches for new-car page, used-car page, result page, desktop, mobile, etc.
+3. AI/vendor names are not branch roles.
+4. At most one active product branch per lane.
+5. Do not branch from a work branch. Start from the current canonical line and merge back to it.
+6. Tests/QA belong to the branch being tested; do not create a permanent QA branch.
+7. Any branch marked `DEPRECATED_*` or `ARCHIVE_*` in `registry/branch-status.json` is read-only history. Never continue product development there.
+8. `work/canon/<task>` is repository-governance-only and may not contain product functionality.
