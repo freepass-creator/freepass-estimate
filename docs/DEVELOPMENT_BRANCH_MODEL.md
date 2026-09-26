@@ -7,8 +7,8 @@ Date: 2026-09-26
 
 `main` is the only long-lived product truth.
 
-Until PR #17 is merged, `integration/canonical-20260926` is the single temporary consolidation line.
-It is not a second main and must be retired after PR #17 is absorbed.
+PR #17 was merged on 2026-09-26. `integration/canonical-20260926` is retired.
+`main` is the sole product truth; new work starts from the current `main` in one of the four U/F/E/I lanes.
 
 No page, device, AI vendor, prototype, audit, or historical branch may become a product authority.
 
