@@ -4,6 +4,7 @@ import {
   assertIssuedQuote,
 } from '../src/lib/quote/quote-repository.js';
 import { quoteIdempotencyKey } from '../src/lib/quote/quote-v2.js';
+import { authorizeEstimateWriteRequest } from './_auth/estimate-write-access.js';
 
 const DEFAULT_COMMAND_PATH = '/v1/commands/freepass-estimate/issued-quotes';
 
@@ -154,7 +155,7 @@ function sendError(res, error) {
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  res.setHeader('Access-Control-Allow-Headers', 'content-type, idempotency-key');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type, idempotency-key, authorization');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
 
   if (req.method === 'OPTIONS') {
@@ -167,6 +168,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    await authorizeEstimateWriteRequest(req);
     const receipt = await forwardIssuedQuoteCommand({
       body: req.body,
       requestIdempotencyKey: req.headers?.['idempotency-key'],
