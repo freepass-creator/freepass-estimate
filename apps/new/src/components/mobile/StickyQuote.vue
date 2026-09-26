@@ -9,6 +9,7 @@ import { vehicleState } from '../../store.js';
 import { fmt } from '../../lib/format.js';
 import * as Fees from '../../lib/compute-fees.js';
 import { QUOTE_TERMS } from '../../lib/quote/terms.js';
+import { setScenarioIncluded, setScenarioPercent, setScenarioTerm } from '../../lib/feature/conditions.js';
 import { selectionSummary } from '../../lib/selection-summary.js';
 const selected = computed(() => selectionSummary(window.VEHICLE_DB, vehicleState, quoteState));
 
@@ -49,24 +50,23 @@ while (quoteState.send.length < quoteState.scenarios.length) quoteState.send.pus
 if (quoteState.send.length > quoteState.scenarios.length) quoteState.send.splice(quoteState.scenarios.length);
 
 function onTermChange(idx, e) {
-  quoteState.scenarios[idx].term = +e.target.value;
+  const result = setScenarioTerm(quoteState, idx, e.target.value);
+  e.target.value = result.value ?? quoteState.scenarios[idx]?.term ?? '';
 }
 function stripNonDigits(e) {
   const cleaned = e.target.value.replace(/\D/g, '');
   if (cleaned !== e.target.value) e.target.value = cleaned;
 }
 function onDepChange(idx, e) {
-  const v = Math.max(0, Math.min(100, +e.target.value.replace(/\D/g, '') || 0));
-  e.target.value = v;
-  quoteState.scenarios[idx].dep = v;
+  const result = setScenarioPercent(quoteState, idx, 'dep', e.target.value.replace(/\D/g, ''));
+  e.target.value = result.value ?? 0;
 }
 function onPreChange(idx, e) {
-  const v = Math.max(0, Math.min(100, +e.target.value.replace(/\D/g, '') || 0));
-  e.target.value = v;
-  quoteState.scenarios[idx].pre = v;
+  const result = setScenarioPercent(quoteState, idx, 'pre', e.target.value.replace(/\D/g, ''));
+  e.target.value = result.value ?? 0;
 }
 function onSendToggle(idx) {
-  quoteState.send[idx] = !quoteState.send[idx];
+  setScenarioIncluded(quoteState, idx, !(quoteState.send[idx] !== false));
 }
 
 /* 조건이 바뀌면 다시 묻는 watch 는 MobileApp 에 있다 — 이 금액바는 옵션 단계 전엔 안 뜨지만
