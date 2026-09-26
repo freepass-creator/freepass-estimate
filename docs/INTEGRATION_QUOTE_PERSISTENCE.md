@@ -236,3 +236,23 @@ Read receipt:
 
 Both write and read re-verify the immutable envelope snapshot hash.
 The browser never receives the FreePass Data service token and never knows Firestore paths.
+
+
+### Public canonical share URL
+
+Customer-facing canonical delivery uses Share Envelope identity:
+
+`?share=<envelopeId>&shareVersion=<n>`
+
+Direct single-Quote lookup is reserved for technical/internal use:
+
+`?quote=<quoteId>&quoteVersion=<n>`
+
+Historical RTDB customer links remain:
+
+`?q=<legacyId>`
+
+These namespaces must never be mixed.
+
+A missing or failed canonical Share Envelope read does not authorize fallback to the legacy RTDB reader.
+Legacy reads occur only when the incoming URL explicitly uses the historical `?q=` namespace.
