@@ -1,10 +1,9 @@
 // 모바일 전용 entry — index.js 와 분리된 별도 번들
-// 기존 store/calc/firebase 는 재사용, UI 만 모바일 전용 컴포넌트로 새로 작성
+// store/firebase 는 공유하되 견적 계산은 Quote Core만 사용한다.
 import { createApp } from 'vue';
 import { installMobileHaptics } from './lib/haptics.js';
 import { normalizeExteriorPaint, restorePaintSelection } from './lib/exterior-paint.js';
 import MobileApp from './components/mobile/MobileApp.vue';
-import { setCompanyConfig } from './lib/calc.js';
 import { quoteState } from './store.js';
 import { 담당자인가, 담당자로, 담당자로들어왔나 } from './lib/role.js';
 import { conditionDefaultsForRole } from './lib/feature/roles.js';
@@ -13,12 +12,11 @@ import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
 import { applyProductTheme } from './lib/brand-theme.js';
 
-// 회사 config 로드 — calc.js 와 화면 정체성에 함께 주입
+// 회사 config 로드 — 화면 정체성/권한 등 UI 설정에만 주입한다.
 async function loadCompanyConfig() {
   try {
     const res = await fetch('/data/company-config/freepass.json');
     const cfg = await res.json();
-    setCompanyConfig(cfg);
     window.__welrix_companyConfig = cfg;
     applyProductTheme(cfg);
   } catch (e) {

@@ -33,7 +33,7 @@ for (const file of files) {
   const name = rel(file);
 
   const importsLegacyCalc =
-    /import\s*\{[^}]*\bcalcQuote\b[^}]*\}\s*from\s*['"][^'"]*lib\/calc\.js['"]/.test(source);
+    /(?:from\s*['"][^'"]*lib\/calc\.js['"]|import\s*\(\s*['"][^'"]*lib\/calc\.js['"]\s*\))/.test(source);
   if (importsLegacyCalc) directCalc.push(name);
 
   if (/from\s*['"][^'"]*quote\/engines\/welrix\.js['"]/.test(source)) {
@@ -43,7 +43,7 @@ for (const file of files) {
 
 const unexpectedCalc = directCalc.filter((file) => !LEGACY_DIRECT_ALLOWLIST.has(file));
 if (unexpectedCalc.length) {
-  console.error('[quote-core-convergence] direct legacy calcQuote imports are forbidden:');
+  console.error('[quote-core-convergence] runtime imports from legacy src/lib/calc.js are forbidden:');
   for (const file of unexpectedCalc) console.error(' - ' + file);
   process.exit(1);
 }
