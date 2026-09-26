@@ -5,6 +5,7 @@ import { applyProductTheme } from './src/lib/brand-theme.js';
 import { 견적계산 } from './src/lib/quote/calculate.js';
 import { resolveCanonicalIdentity } from './src/lib/newcar/configuration-resolver.js';
 import { QUOTE_TERMS } from './src/lib/quote/terms.js';
+import { applyScenarioPercent } from './src/lib/feature/conditions.js';
 // 룩업 데이터 SSOT — Vue 컴포넌트와 공유 (이전에는 quote.js 에 박혀있고 window.__welrix_data 로 노출,
 // 모듈 로드 순서로 컴포넌트가 빈 옵션 보던 문제 → 직접 import 으로 해결)
 import {
@@ -585,18 +586,12 @@ function attach() {
   });
   // 전체 보증금/선납금 — 입력시 4기간 시나리오 일괄 적용
   $('q-dep')?.addEventListener('change', (e) => {
-    const v = Math.max(0, Math.min(100, +e.target.value || 0));
-    e.target.value = v;
-    state.cond.dep = v;
-    state.scenarios.forEach((sc) => { sc.dep = v; });
+    e.target.value = applyScenarioPercent(state, 'dep', e.target.value);
     if (state.vehicle && state.vehicle.total_manwon) recompute();
     else renderEmpty();
   });
   $('q-pre')?.addEventListener('change', (e) => {
-    const v = Math.max(0, Math.min(100, +e.target.value || 0));
-    e.target.value = v;
-    state.cond.pre = v;
-    state.scenarios.forEach((sc) => { sc.pre = v; });
+    e.target.value = applyScenarioPercent(state, 'pre', e.target.value);
     if (state.vehicle && state.vehicle.total_manwon) recompute();
     else renderEmpty();
   });
