@@ -70,3 +70,18 @@ html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:
 html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(2) { flex: 3 1 0; }
 html .m-shell .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(3) { flex: 4 1 0; }
 html .m-shell .m-btn--icon::after { content: '이전'; }
+
+
+/* Admin PR #92 mobile gutter contract: 380+ = 16px, narrow mobile = 12px. */
+@media (max-width: 379px) {
+  html .m-shell .m-header,
+  html .m-shell .m-progress,
+  html .m-shell .m-main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  html .m-shell .m-footer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
