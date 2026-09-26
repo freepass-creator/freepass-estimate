@@ -1,18 +1,18 @@
 <script setup>
 import { quoteState } from '../store.js';
+import { applyScenarioPercent } from '../lib/feature/conditions.js';
+
+const CREDITS = CREDIT_OPTIONS;
+const KMS = KM_OPTIONS;
 
 function recompute() { window.__welrix_recompute?.(); }
 
 function onDepChange() {
-  const v = Math.max(0, Math.min(30, +quoteState.cond.dep || 0));
-  quoteState.cond.dep = v;
-  quoteState.scenarios.forEach((sc) => { sc.dep = v; });
+  applyScenarioPercent(quoteState, 'dep', quoteState.cond.dep);
   recompute();
 }
 function onPreChange() {
-  const v = Math.max(0, Math.min(30, +quoteState.cond.pre || 0));
-  quoteState.cond.pre = v;
-  quoteState.scenarios.forEach((sc) => { sc.pre = v; });
+  applyScenarioPercent(quoteState, 'pre', quoteState.cond.pre);
   recompute();
 }
 </script>
@@ -22,7 +22,7 @@ function onPreChange() {
     <div class="qc-field">
       <label>신용</label>
       <select v-model="quoteState.cond.credit" @change="recompute">
-        <option>신용</option><option>중신용</option><option>저신용</option>
+        <option>고신용</option><option>중신용</option><option>저신용</option>
       </select>
     </div>
     <div class="qc-field">
