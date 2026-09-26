@@ -5,7 +5,7 @@ const BASE = process.env.BASE_URL || 'http://127.0.0.1:5173';
 const OUT = process.env.ARTIFACT_DIR || 'artifacts/ui-visual-audit';
 fs.mkdirSync(OUT, { recursive: true });
 
-const report = { generatedAt: new Date().toISOString(), mobile: [], desktop: [] };
+const report = { generatedAt: new Date().toISOString(), mobile: [], desktop: [], responsive: [] };
 
 function ok(condition, message) {
   if (!condition) throw new Error(message);
@@ -220,7 +220,19 @@ try {
     await context.close();
   }
 
-  for (const width of [1280, 1440]) {
+  // Single responsive shell boundary: <=1024 mobile, >=1025 desktop.
+  for (const width of [834, 1024]) {
+    const context = await browser.newContext({ viewport: { width, height: 900 }, locale: 'ko-KR' });
+    const page = await context.newPage();
+    await page.goto(`${BASE}/index.html`, { waitUntil: 'domcontentloaded' });
+    await page.waitForURL(/mobile\.html/, { timeout: 10000 });
+    const path = new URL(page.url()).pathname;
+    ok(path.endsWith('/mobile.html'), `responsive-${width}: index did not converge to mobile shell: ${path}`);
+    report.responsive.push({ width, path });
+    await context.close();
+  }
+
+    for (const width of [1280, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, locale: 'ko-KR' });
     const page = await context.newPage();
     const consoleErrors = [];
