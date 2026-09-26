@@ -1,9 +1,16 @@
 # FreePass Estimate UI Baseline
 
-Status: **UI approval gate**
-Date: 2026-09-19
+Status: **U-01 CANONICAL UI BASELINE**
+Date: 2026-09-26
 
-이 문서는 새로운 UI 기획서가 아니다. 기존 견적기 UI/UX를 정본으로 두고 최신 FreePass 규격만 적용하기 위한 상속표다.
+이 문서는 새로운 UI 기획서가 아니다. Estimate의 기존 견적 UX를 유지하면서 FreePass Admin PR #92 actual-route의 시각 언어를 정본으로 적용하기 위한 상속표다.
+
+Visual authority:
+- FreePass Admin PR #92
+- inspected authority commit: `ac3ca6944012e43d8722a26024c5152a7e961ddb`
+- local adoption contract: `docs/UI_ADMIN_PR92_ADOPTION.md`
+
+과거 Welrix/Sales 화면은 구조·기능 이력 참고일 뿐 시각 정본이 아니다.
 
 ## 1. 화면 정본
 
@@ -55,12 +62,22 @@ Historical import reference only (현재 제품이나 브랜드가 아님):
 - 별도 페이지에서 렌트 / 구독.
 - 신차 UI 승인 이후 별도 baseline을 만든다.
 
-## 3. 최신 FreePass 시각 규격 적용
+## 3. FreePass Admin PR #92 시각 규격 적용
 
-Reference:
-- `freepass-sales`: 모바일 상호작용/버튼/선택 상태
-- `freepass-admin`: 웹 작업면/밀도/패널 위계
-- `ai-core`: 접근성·focus·data state의 기술 기준
+Primary reference:
+- `freepass-admin` PR #92 actual route: 전체 시각 언어·밀도·surface·interaction 정본
+- `ai-core`: 접근성·focus·data state 기술 기준
+
+핵심 문법:
+- Minimal Operational UI
+- Line-free UI
+- Web: canvas 위 panel surface island
+- Mobile: 현재 화면 자체가 panel surface
+- Web standard control 36px / compact 32px
+- Mobile control/action/touch 44px
+- Typography 24 / 20 / 18 / 16 / 14 / 12
+- Radius 4 / 6 / 8 / pill
+- selected = tint/pressed surface, hover = elevation 변화
 
 ### 버튼
 - 일반 버튼: `border: 0`
@@ -78,7 +95,9 @@ Reference:
 - 섹션은 여백으로 나눈다.
 - 의미 없는 카드 중첩 금지.
 - 모든 섹션을 사각 테두리로 감싸지 않는다.
-- hairline은 구조상 필요한 패널 경계/행 구분에만 쓴다.
+- visible border는 기본 위계 수단으로 쓰지 않는다.
+- Web panel은 canvas + surface + gap + 얕은 elevation으로 구분한다.
+- 입력/표처럼 의미상 필요한 곳도 먼저 surface/elevation으로 해결하고, 선은 최후 수단으로 제한한다.
 
 ### 선택 UI
 - 알약(pill)을 기본 선택 표현으로 쓰지 않는다.
