@@ -75,13 +75,13 @@
        고정된 줄(헤더·진행바·금액바·아래 버튼)은 left:0; right:0 이라 max-width + margin:auto 로 가운데 온다.
        html 을 앞에 붙인 건 컴포넌트 scoped 스타일보다 세게 먹이려는 것이다. */
     @media (min-width: 561px) {
-      html body { background: #f1f2f4; }
+      html body { background: var(--fp-canvas); }
       html #m-app, html .m-header, html .m-progress, html .m-footer, html .sq {
         max-width: 480px; margin-left: auto; margin-right: auto;
       }
       html #m-app {
         background: var(--bg);
-        box-shadow: 0 0 0 1px rgba(0,0,0,.035), 0 12px 40px rgba(0,0,0,.035);
+        box-shadow: var(--fp-elevation-float);
       }
     }
     @media (min-width: 900px) {
@@ -91,57 +91,86 @@
       }
     }
 
-    /* 진입 게이트 */
+    /* 진입 게이트 — Admin PR #92 line-free mobile grammar */
     .gate-bg {
       position: fixed; inset: 0;
-      background: linear-gradient(135deg, #f7f7f7, #eef4fa);
+      background: var(--fp-canvas);
       display: flex; align-items: center; justify-content: center;
-      z-index: 9999; padding: 20px;
+      z-index: 9999; padding: var(--fp-sp-5);
     }
     .gate-card {
       width: 100%; max-width: 360px;
-      background: #fff;
-      border-radius: 16px;
-      padding: 36px 28px 28px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      background: var(--fp-surface);
+      border: 0;
+      border-radius: var(--fp-r-panel);
+      padding: var(--fp-sp-6) var(--fp-sp-5) var(--fp-sp-5);
+      box-shadow: var(--fp-elevation-base);
       text-align: center;
     }
-    .gate-ci { height: 24px; width: auto; margin-bottom: 20px; }
-    .gate-title { font-size: 18px; font-weight: 700; color: var(--ink-1); margin: 0 0 6px; letter-spacing: -0.3px; }
-    .gate-sub { font-size: 13px; color: var(--ink-3); margin: 0 0 22px; }
-    #gate-pin {
-      width: 100%; height: 50px;
-      padding: 0 16px;
-      border: 1.5px solid var(--line);
-      border-radius: 10px;
-      font-family: inherit; font-size: 22px;
-      text-align: center; letter-spacing: 12px;
-      color: var(--ink-1); outline: none;
-      font-variant-numeric: tabular-nums;
-      transition: border-color .12s;
+    .gate-ci { height: 24px; width: auto; margin-bottom: var(--fp-sp-4); }
+    .gate-title {
+      font-size: var(--fp-fs-panel); font-weight: 700;
+      color: var(--fp-text); margin: 0 0 var(--fp-sp-1);
+      letter-spacing: -0.3px;
     }
-    #gate-pin:focus { border-color: var(--brand); }
+    .gate-sub {
+      font-size: var(--fp-fs-support); color: var(--fp-text-muted);
+      margin: 0 0 var(--fp-sp-4);
+    }
+    #gate-pin {
+      width: 100%; height: var(--fp-mobile-control);
+      padding: 0 var(--fp-sp-3);
+      border: 1px solid transparent;
+      border-radius: var(--fp-r-control);
+      background: var(--fp-surface-soft);
+      box-shadow: var(--fp-elevation-base);
+      font-family: inherit; font-size: 16px;
+      text-align: center; letter-spacing: 8px;
+      color: var(--fp-text); outline: none;
+      font-variant-numeric: tabular-nums;
+      transition:
+        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
+        background-color var(--fp-motion-state) var(--fp-motion-ease);
+    }
+    #gate-pin:focus-visible {
+      background: var(--fp-surface);
+      box-shadow: var(--fp-focus-halo), var(--fp-elevation-hover);
+    }
     #gate-err {
-      margin-top: 10px; padding: 8px 12px;
-      background: #fff1f1; color: #c62828;
-      border-radius: 6px; font-size: 12.5px;
+      margin-top: var(--fp-sp-2); padding: var(--fp-sp-2) var(--fp-sp-3);
+      background: var(--fp-err-bg); color: var(--fp-err);
+      border-radius: var(--fp-r-control);
+      font-size: var(--fp-fs-support);
+    }
+    #gate-submit,
+    #gate-admin {
+      width: 100%; height: var(--fp-mobile-action);
+      border: 0; border-radius: var(--fp-r-control);
+      font-family: inherit; font-size: var(--fp-fs-body);
+      font-weight: 600; cursor: pointer;
+      transition:
+        transform var(--fp-motion-press) var(--fp-motion-ease),
+        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
+        background-color var(--fp-motion-state) var(--fp-motion-ease);
     }
     #gate-submit {
-      width: 100%; height: 50px; margin-top: 14px;
-      background: var(--brand); color: #fff;
-      border: 0; border-radius: 10px;
-      font-family: inherit; font-size: 15px; font-weight: 600;
-      cursor: pointer;
+      margin-top: var(--fp-sp-3);
+      background: var(--fp-primary); color: #fff;
+      box-shadow: var(--fp-elevation-base);
     }
-    #gate-submit:active { background: var(--brand-700); }
     #gate-admin {
-      width: 100%; height: 38px; margin-top: 8px;
-      background: transparent; color: var(--ink-3);
-      border: 0; border-radius: 8px;
-      font-family: inherit; font-size: 12.5px; font-weight: 500;
-      cursor: pointer;
+      margin-top: var(--fp-sp-2);
+      background: var(--fp-surface-soft); color: var(--fp-text-2);
+      box-shadow: var(--fp-elevation-base);
     }
-    #gate-admin:active { background: var(--bg-soft); color: var(--ink-1); }
+    #gate-submit:active,
+    #gate-admin:active {
+      transform: translateY(var(--fp-press-y));
+      box-shadow: var(--fp-elevation-0);
+    }
+    @media (max-width: 379px) {
+      .gate-bg { padding-inline: var(--fp-sp-3); }
+    }
   </style>
   <script>
     // PC viewport 로 들어오면 데스크탑 페이지로 redirect (단, ?force=mobile 이면 유지)
