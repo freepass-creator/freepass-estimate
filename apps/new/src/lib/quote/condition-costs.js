@@ -1,8 +1,6 @@
-import { DELIVERY_REGIONS, FLAT_DELIVERY, TINT_PRICES, ACCESSORIES } from '../../data/lookups.js';
+import { FLAT_DELIVERY, TINT_PRICES, ACCESSORIES } from '../../data/lookups.js';
 import { 탁송, 썬팅들, 블박들 } from '../welrix-rates.js';
-
-export const QUOTE_CONDITION_COSTS_CONTRACT = 'freepass-quote-condition-costs/v1';
-export const QUOTE_CONDITION_COST_POLICY = 'freepass-estimate-condition-costs/2026-09-26';
+import { createQuoteConditionCosts } from './condition-cost-contract.js';
 
 function codedError(message, code = 'QUOTE_CONDITION_COST_UNRESOLVED') {
   const error = new Error(message);
@@ -119,22 +117,18 @@ export function resolveQuoteConditionCosts(state) {
   const accessoryFee = dashcam.amount + navi.amount + hipass.amount;
   const totalPrepFee = delivery.amount + tintCost.amount + accessoryFee;
 
-  return Object.freeze({
-    contract: QUOTE_CONDITION_COSTS_CONTRACT,
-    policyId: QUOTE_CONDITION_COST_POLICY,
+  return createQuoteConditionCosts({
     deliveryFee: delivery.amount,
     tintFee: tintCost.amount,
     dashcamFee: dashcam.amount,
     naviFee: navi.amount,
     hipassFee: hipass.amount,
-    accessoryFee,
-    totalPrepFee,
-    basis: Object.freeze({
+    basis: {
       delivery: delivery.basis,
       tint: tintCost.basis,
       dashcam: dashcam.basis,
       navi: navi.basis,
       hipass: hipass.basis,
-    }),
+    },
   });
 }
