@@ -78,8 +78,10 @@ assert.match(desktop, /window\.innerWidth <= 1024/,
   'desktop entry must hand <=1024px viewports to the mobile shell');
 assert.match(mobileHtml, /window\.innerWidth > 1024/,
   'mobile entry must hand >1024px viewports to the desktop shell');
-assert.match(desktop, /<style id="freepass-control-grammar">[\s\S]*grid-template-rows:\s*var\(--fp-topbar\)[\s\S]*column-gap:\s*12px;/,
-  'desktop workspace must project the PR92 shell density');
+assert.match(desktop, /body\s*\{[\s\S]*grid-template-rows:\s*var\(--fp-topbar\) minmax\(0, 1fr\) var\(--fp-panel-foot\);/,
+  'desktop base shell must own the PR92 row density');
+assert.match(desktop, /<style id="freepass-control-grammar">[\s\S]*body\s*\{\s*column-gap:\s*12px;/,
+  'desktop guardrails must only refine viewport composition');
 const quoteRuntimeStart = desktop.indexOf('<!-- ===== wel 견적 계산');
 const quoteDocumentStart = desktop.indexOf('/* 실제 견적서 영역 */', quoteRuntimeStart);
 assert.ok(quoteRuntimeStart >= 0 && quoteDocumentStart > quoteRuntimeStart,
@@ -90,32 +92,34 @@ assert.doesNotMatch(
   /font-size:\s*(?:10|10\.5|11|11\.5|12\.5|13|13\.5|15|17|22|30)px\s*;/,
   'runtime Estimate UI must use the canonical PR92 typography scale; exported quote document is exempt'
 );
-assert.match(desktop, /\.cdd \.cdd__btn\s*\{[\s\S]*height:\s*var\(--fp-control\)[\s\S]*border-color:\s*transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\)/,
-  'desktop dropdowns must use the 36px line-free control grammar');
-assert.match(desktop, /\.wrap \.step-dd\s*\{[\s\S]*height:\s*var\(--fp-control\) !important;[\s\S]*border:\s*1px solid transparent !important;[\s\S]*font-size:\s*var\(--fp-fs-body\) !important;/,
-  'vehicle configuration dropdowns must use PR92 desktop density');
+assert.match(desktop, /\.cdd__btn\s*\{[\s\S]*height:\s*var\(--fp-control\);[\s\S]*border:\s*1px solid transparent;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\);/,
+  'desktop dropdown base must own the 36px line-free control grammar');
+assert.match(desktop, /\.step-dd\s*\{[\s\S]*height:\s*var\(--fp-control\);[\s\S]*border:\s*1px solid transparent;[\s\S]*font-size:\s*var\(--fp-fs-body\);/,
+  'vehicle configuration dropdown base must use PR92 desktop density');
+assert.match(desktop, /\.wrap \.step-dd\s*\{[\s\S]*display:\s*block !important;[\s\S]*height:\s*var\(--fp-control\) !important;/,
+  'desktop guardrail must only force vehicle dropdown visibility and density');
 assert.match(desktop, /\.wrap :is\(\.step-title, \.step-title-text\)\s*\{[\s\S]*font-size:\s*var\(--fp-fs-support\) !important;[\s\S]*color:\s*var\(--fp-text-muted\) !important;/,
   'vehicle configuration labels must use the PR92 support scale');
 assert.match(desktop, /\.wrap \.option-row \.o-name\s*\{[\s\S]*font-size:\s*var\(--fp-fs-body\) !important;/,
   'vehicle option identities must use the PR92 body scale');
 assert.match(desktop, /\.wrap \.footnote\s*\{[\s\S]*border-top:\s*0 !important;[\s\S]*font-size:\s*var\(--fp-fs-support\) !important;/,
   'vehicle panel footnotes must use spacing instead of dividers');
-assert.match(desktop, /\.bottom-action\s*\{[\s\S]*height:\s*var\(--fp-control\)[\s\S]*border:\s*1px solid transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\)/,
-  'desktop actions must use Admin PR92 line-free controls');
-assert.match(desktop, /section\.is-current \.step-dd,[\s\S]*border-bottom-color:\s*transparent !important;[\s\S]*animation:\s*none !important;/,
-  'legacy current-field underline pulse must stay disabled under PR92 line-free grammar');
-assert.match(desktop, /\.term-card__monthly\s*\{[\s\S]*font-size:\s*var\(--fp-fs-kpi\) !important;/,
-  'desktop monthly quote hero must use the PR92 KPI scale');
-assert.match(desktop, /\.terms-grid\s*\{[\s\S]*border:\s*1px solid transparent !important;[\s\S]*background:\s*var\(--fp-primary-weak\) !important;/,
-  'customer quote block must remain a tinted line-free surface');
-assert.match(desktop, /\.term-card__row \+ \.term-card__row\s*\{[\s\S]*border-top:\s*0 !important;/,
+assert.match(desktop, /\.bottom-action\s*\{[\s\S]*height:\s*var\(--fp-control\);[\s\S]*border:\s*1px solid transparent;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\);/,
+  'desktop action base must use Admin PR92 line-free controls');
+assert.doesNotMatch(quoteRuntimeCss, /wel-input-pulse|border-bottom-color:\s*var\(--brand\)/,
+  'legacy underline/pulse field grammar must not exist in runtime Estimate UI');
+assert.match(desktop, /\.term-card__monthly\s*\{[\s\S]*font-size:\s*var\(--fp-fs-kpi\);/,
+  'desktop monthly quote base must use the PR92 KPI scale');
+assert.match(desktop, /\.terms-grid\s*\{[\s\S]*background:\s*var\(--fp-surface-soft\);[\s\S]*border:\s*0;/,
+  'customer quote block must be a neutral line-free surface');
+assert.match(desktop, /\.term-card__row \+ \.term-card__row\s*\{\s*border-top:\s*0;\s*\}/,
   'quote fact rows must not reintroduce dashed separators');
 assert.match(desktop, /details\.qp-extras\[open\] > summary\s*\{[\s\S]*border-bottom:\s*0 !important;[\s\S]*background:\s*var\(--fp-surface-soft\);/,
   'extras accordion must use surface hierarchy instead of dividers');
-assert.match(desktop, /\.customer-output\s*\{[\s\S]*border:\s*1px solid transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\);/,
-  'runtime quote preview shell must stay line-free');
-assert.match(desktop, /\.quote-modal__head\s*\{[\s\S]*min-height:\s*var\(--fp-panel-head\);[\s\S]*border-bottom:\s*0 !important;/,
-  'quote modal header must use the PR92 panel-head grammar');
+assert.match(desktop, /\.customer-output\s*\{[\s\S]*border:\s*0;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\);/,
+  'runtime quote preview base must stay line-free');
+assert.match(desktop, /\.quote-modal__head\s*\{[\s\S]*min-height:\s*var\(--fp-panel-head\);[\s\S]*border-bottom:\s*0;/,
+  'quote modal base header must use the PR92 panel-head grammar');
 assert.match(desktop, /\.quote-panel :is\(input:not\(\[type="checkbox"\]\):not\(\[type="radio"\]\), select\),[\s\S]*min-height:\s*var\(--fp-control\);[\s\S]*border:\s*1px solid transparent !important;[\s\S]*background:\s*var\(--fp-surface-soft\) !important;/,
   'desktop fields must use surface/elevation rather than visible borders');
 
