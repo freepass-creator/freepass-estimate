@@ -117,5 +117,10 @@ assert.match(result, /\.sr-term\s*\{[^}]*flex-wrap:\s*wrap;[^}]*padding:\s*var\(
   'result cards must wrap safely with shared spacing');
 assert.match(result, /\.sr-term__monthly\s*\{[^}]*text-align:\s*right;[^}]*overflow-wrap:\s*anywhere;/,
   'monthly amounts must remain right-aligned without forcing overflow');
+const vehicle = read('src/components/mobile/StepVehicle.vue');
+assert.match(vehicle, /class="sv-empty" role="status"/,
+  'mobile empty state must expose status semantics');
+assert.match(vehicle, /\.sv-empty\s*\{[\s\S]*background:\s*var\(--fp-surface-soft\);[\s\S]*box-shadow:\s*var\(--fp-elevation-base\);/,
+  'mobile empty state must use the PR92 neutral surface grammar');
 
 console.log('PASS FreePass Admin PR92 design authority — desktop 36 / mobile 44 / line-free');
