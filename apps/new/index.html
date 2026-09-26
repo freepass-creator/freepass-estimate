@@ -2251,7 +2251,11 @@ render();
     flex-shrink: 0;
   }
   .quote-panel .qp-title {
-    font-size: 11.5px; color: var(--ink-3); font-weight: 500; letter-spacing: 0; margin-bottom: 6px;
+    font-size: var(--fp-fs-support);
+    color: var(--fp-text-muted);
+    font-weight: 500;
+    letter-spacing: 0;
+    margin-bottom: var(--fp-sp-2);
   }
   .quote-panel .qp-title b { color: var(--ink-1); }
   .quote-panel .qp-vehicle {
@@ -2260,10 +2264,15 @@ render();
   }
   .quote-panel .qp-vehicle .empty { color: var(--ink-4); font-weight: 400; font-size: 14px; }
   .quote-panel .qp-total-price {
-    margin-top: 6px;
-    font-size: 13px; color: var(--ink-3);
+    margin-top: var(--fp-sp-2);
+    font-size: var(--fp-fs-body);
+    color: var(--fp-text-muted);
   }
-  .quote-panel .qp-total-price b { color: var(--ink-1); font-size: 15px; font-weight: 500; }
+  .quote-panel .qp-total-price b {
+    color: var(--fp-text);
+    font-size: var(--fp-fs-section);
+    font-weight: 600;
+  }
 
   /* 우측 패널 form — 좌측 field-row와 톤 통일, 2 column */
   .qp-form {
@@ -2291,9 +2300,14 @@ render();
     grid-template-columns: 64px 1fr;
   }
   .qc-field label {
-    font-size: 11px; color: var(--ink-4); font-weight: 400; letter-spacing: 0;
+    font-size: var(--fp-fs-support);
+    color: var(--fp-text-muted);
+    font-weight: 500;
+    letter-spacing: 0;
     text-align: right;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   /* ===== 입력/드롭다운 3가지 상태 =====
      1) 입력 완료 (default, blurred):  var(--ink-4) 중간 회색 — 차분
@@ -2476,14 +2490,24 @@ render();
     margin-bottom: 14px;
   }
   .term-card__term-dd {
-    appearance: none; -webkit-appearance: none;
-    background: transparent; border: 0;
-    font-size: 11.5px; font-weight: 500; color: var(--ink-3);
-    letter-spacing: 0.4px; cursor: pointer;
-    padding: 0 14px 0 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--fp-surface-soft);
+    border: 1px solid transparent;
+    border-radius: var(--fp-r-control);
+    min-height: var(--fp-control-sm);
+    font-size: var(--fp-fs-support);
+    font-weight: 500;
+    color: var(--fp-text-muted);
+    letter-spacing: 0;
+    cursor: pointer;
+    padding: 0 24px 0 8px;
     font-family: inherit;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23a3a3a3' stroke-width='1.5' stroke-linecap='round'><polyline points='3 5 6 8 9 5'/></svg>");
-    background-repeat: no-repeat; background-position: right 0 center; background-size: 10px 10px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%2398A2B3' stroke-width='1.5' stroke-linecap='round'><polyline points='3 5 6 8 9 5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px 12px;
+    box-shadow: var(--fp-elevation-base);
     outline: none;
   }
   .term-card__term-dd:hover, .term-card__term-dd:focus { color: var(--ink-1); }
@@ -2501,9 +2525,12 @@ render();
     flex-shrink: 0;
   }
   .term-card__check-cap {
-    font-size: 10px; color: var(--ink-4); font-weight: 400;
-    letter-spacing: -0.1px; line-height: 1;
-    transition: color var(--t-fast);
+    font-size: var(--fp-fs-support);
+    color: var(--fp-text-3);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1;
+    transition: color var(--fp-motion-state);
   }
   .term-card__check:hover { background: var(--bg-soft); }
   .term-card__check.is-checked .term-card__check-cap { color: var(--brand); font-weight: 500; }
@@ -2606,9 +2633,16 @@ render();
     border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff;
   }
   .customer-output__head {
-    display: flex; align-items: center; gap: 8px;
-    padding: 10px 14px; background: #fafafa; border-bottom: 1px solid #eee;
-    font-size: 11px; color: #999; font-weight: 600; letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: var(--fp-sp-2);
+    padding: var(--fp-sp-3) var(--fp-sp-4);
+    background: var(--fp-surface-soft);
+    border-bottom: 0;
+    font-size: var(--fp-fs-support);
+    color: var(--fp-text-muted);
+    font-weight: 600;
+    letter-spacing: 0;
   }
   .customer-output__head b { color: var(--brand); }
   .customer-output__head .actions { margin-left: auto; display: flex; gap: 6px; }
