@@ -67,17 +67,6 @@
     --brand-50: var(--fp-primary-weak);
     --welrix-red: #e1141e;
 
-function optionRuleContext() {
-  const variant = getVariant();
-  return {
-    selected: state.options,
-    optionsMaster: getOptionsMaster(),
-    exclusiveGroups: variant?.exclusive_groups || [],
-    optionExcludes: variant?.option_excludes || {},
-    trimId: state.trim,
-  };
-}
-
     --ink-1: var(--fp-text);
     --ink-2: var(--fp-text-2);
     --ink-3: var(--fp-text-muted);
@@ -1181,6 +1170,17 @@ function getOptionPrice(opt, trimId) {
     return opt.trim_prices[trimId];
   }
   return opt?.price ?? 0;
+}
+
+function optionRuleContext() {
+  const variant = getVariant();
+  return {
+    selected: state.options,
+    optionsMaster: getOptionsMaster(),
+    exclusiveGroups: variant?.exclusive_groups || [],
+    optionExcludes: variant?.option_excludes || {},
+    trimId: state.trim,
+  };
 }
 
 // 트림 base_price: state.tax_rate에 따라 5% 또는 3.5% 가격 반환
