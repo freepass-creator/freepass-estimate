@@ -80,7 +80,31 @@ const request = {
       선택옵션: [{ id: 'legacy_opt_1', stableId: 'opt_runtime', name: '옵션', price_won: 500000 }],
     },
   },
-  조건: { 주행: '2만km' },
+  조건: {
+    신용: '중신용',
+    주행: '2만km',
+    정비: '웰스 Basic',
+    대물: '1억',
+    추가운전자: '없음',
+    탁송비: 120000,
+    썬팅비: 105000,
+    블박비: 180000,
+    내비비: 0,
+    하이패스비: 0,
+    비용: {
+      contract: 'freepass-quote-condition-costs/v1',
+      policyId: 'freepass-estimate-condition-costs/2026-09-26',
+      deliveryFee: 120000,
+      tintFee: 105000,
+      dashcamFee: 180000,
+      naviFee: 0,
+      hipassFee: 0,
+      accessoryFee: 180000,
+      totalPrepFee: 405000,
+      basis: {},
+    },
+    수수료율: 5,
+  },
   안들: [
     { 기간: 36, 보증금: 10, 선납: 0 },
     { 기간: 60, 보증금: 20, 선납: 5 },
@@ -97,6 +121,7 @@ const engine = {
 };
 
 const calculation = {
+  공급자: 'standard',
   pricingEngine: engine,
   priceBasis: {
     contract: 'freepass-price-basis/v1',
