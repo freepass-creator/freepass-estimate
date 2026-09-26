@@ -92,6 +92,7 @@ await assert.rejects(
 const defaultPolicy=resolveEstimateWriteAccessPolicy({});
 assert.equal(defaultPolicy.serverVerifiedFirebaseIdTokenRequired,true);
 assert.equal(defaultPolicy.anonymousWritesAllowed,false);
+assert.deepEqual(defaultPolicy.allowedUids,[]);
 
 assert.throws(
   ()=>assertEstimateWriteIdentity({
@@ -104,6 +105,7 @@ assert.throws(
 
 const anonAllowed=resolveEstimateWriteAccessPolicy({
   FREEPASS_ESTIMATE_ALLOW_ANONYMOUS_WRITES:'true',
+  FREEPASS_ESTIMATE_ALLOWED_WRITE_UIDS:'anon_1',
 });
 const anonIdentity=assertEstimateWriteIdentity({
   uid:'anon_1',
@@ -111,6 +113,16 @@ const anonIdentity=assertEstimateWriteIdentity({
   claims:{firebase:{sign_in_provider:'anonymous'}},
 },anonAllowed);
 assert.equal(anonIdentity.anonymous,true);
+assert.equal(anonIdentity.authorization,'UID_ALLOWLIST');
+
+assert.throws(
+  ()=>assertEstimateWriteIdentity({
+    uid:'anon_other',
+    isAnonymous:true,
+    claims:{firebase:{sign_in_provider:'anonymous'}},
+  },anonAllowed),
+  (error)=>error?.code==='ESTIMATE_WRITE_ANONYMOUS_UID_FORBIDDEN'
+);
 
 const rolePolicy=resolveEstimateWriteAccessPolicy({
   FREEPASS_ESTIMATE_REQUIRED_WRITE_ROLES:'staff,admin',
