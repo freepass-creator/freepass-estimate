@@ -120,13 +120,14 @@ function conditionSnapshot(value, fallbackMileage) {
     throw codedError('conditionSnapshot.costs is required', 'QUOTE_V2_INVALID');
   }
   const normalizedCosts = {
+    policyId: requiredString(costs.policyId, 'conditionSnapshot.costs.policyId'),
     deliveryFee: nonNegativeNumber(costs.deliveryFee ?? 0, 'conditionSnapshot.costs.deliveryFee'),
     tintFee: nonNegativeNumber(costs.tintFee ?? 0, 'conditionSnapshot.costs.tintFee'),
     dashcamFee: nonNegativeNumber(costs.dashcamFee ?? 0, 'conditionSnapshot.costs.dashcamFee'),
     naviFee: nonNegativeNumber(costs.naviFee ?? 0, 'conditionSnapshot.costs.naviFee'),
     hipassFee: nonNegativeNumber(costs.hipassFee ?? 0, 'conditionSnapshot.costs.hipassFee'),
   };
-  const expectedTotal = Object.values(normalizedCosts).reduce((sum, amount) => sum + amount, 0);
+  const expectedTotal = ['deliveryFee','tintFee','dashcamFee','naviFee','hipassFee'].reduce((sum, key) => sum + normalizedCosts[key], 0);
   if (costs.totalPrepFee != null && normalizeNumber(costs.totalPrepFee, 'conditionSnapshot.costs.totalPrepFee') !== expectedTotal) {
     throw codedError('conditionSnapshot.costs.totalPrepFee mismatch', 'QUOTE_V2_INVALID');
   }
