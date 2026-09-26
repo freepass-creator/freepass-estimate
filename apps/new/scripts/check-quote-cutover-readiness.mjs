@@ -17,12 +17,14 @@ const secureWriteAccessPolicy = {
   serverVerifiedFirebaseIdTokenRequired: true,
   anonymousWritesAllowed: false,
   requiredRoles: ['staff', 'admin'],
+  allowedUids: [],
 };
 const weakWriteAccessPolicy = {
   contract: 'freepass-estimate-write-access/v1',
   serverVerifiedFirebaseIdTokenRequired: true,
   anonymousWritesAllowed: true,
   requiredRoles: [],
+  allowedUids: [],
 };
 
 const blockedPolicy = {
