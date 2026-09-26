@@ -1,7 +1,8 @@
 <script setup>
 import { computed, ref, onMounted } from 'vue';
 import { vehicleState, quoteState } from '../../store.js';
-import { 담당자인가 } from '../../lib/role.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
 import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
@@ -358,7 +359,7 @@ function selectTrim(t) {
 
 function goBack(target) { subStep.value = target; }
 
-const 담당자 = 담당자인가();   // ★손님이면 수수료 칸을 아예 안 그린다
+const 담당자 = rolePolicy(역할()).canEditInternalFinanceTerms;   // ★손님이면 수수료/보증금/선납금 내부 입력을 아예 안 그린다
 
 // 시작 조건 — 제조사 화면에서 수수료/보증금/선납금 선입력 (StepConditions 와 동일 SSOT·클램프)
 function onDepChange() {
