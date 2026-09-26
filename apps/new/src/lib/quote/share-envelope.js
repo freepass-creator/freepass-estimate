@@ -120,3 +120,17 @@ export function assertShareEnvelope(envelope) {
   }
   return envelope;
 }
+
+
+export async function verifyShareEnvelopeIntegrity(envelope) {
+  const value = assertShareEnvelope(envelope);
+  const snapshot = buildShareEnvelopeSnapshot({
+    quoteRefs: value.quoteRefs,
+    expiresAt: value.expiresAt,
+  });
+  const expectedHash = await sha256Hex(snapshot);
+  if (expectedHash !== value.snapshotHash) {
+    throw codedError('Share Envelope snapshotHash does not match content', 'SHARE_ENVELOPE_INTEGRITY_MISMATCH');
+  }
+  return value;
+}
