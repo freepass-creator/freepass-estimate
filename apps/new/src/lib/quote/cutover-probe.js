@@ -34,6 +34,7 @@ export async function runCutoverProbe({
   envelopeExpiresAt,
   canonicalViewerReady = false,
   legacyWritePolicy = null,
+  writeAccessPolicy = null,
 } = {}) {
   if (typeof loadMaster !== 'function') {
     throw codedError('FreePass Data master loader is required', 'CUTOVER_PROBE_INVALID');
@@ -83,6 +84,7 @@ export async function runCutoverProbe({
     envelopeReadProbe: envelopeProof.readProbe,
     canonicalViewerReady,
     legacyWritePolicy,
+    writeAccessPolicy,
   });
 
   return Object.freeze({
