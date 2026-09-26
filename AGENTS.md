@@ -63,13 +63,25 @@ Before material structural changes:
 - compare against the canonical FreePass Estimate baseline,
 - obtain user approval where required,
 - then propagate downstream.
+
 ## Branch discipline
 
-1. `main` is the stable baseline. Do not run parallel long-lived product development lines from it.
-2. At any point there may be only one active cross-cutting integration line. For the current consolidation that line is `integration/canonical-20260926`.
-3. Short-lived specialist branches (UI/UX, engine, adapter, data-contract, QA) are allowed, but they must target the active integration line and stop after their changes are absorbed.
-4. A specialist branch must never become a second source of truth. Do not continue feature work on a branch once a canonical integration branch contains its work.
-5. Web and mobile may use different presentation components, but they share one token authority, one selection/domain rule set, one Quote contract, and one provider/adapter contract.
-6. Historical/prototype branches and files are reference-only unless explicitly reactivated. Never infer canonical behavior from branch age or file names.
-7. The canonical external-provider path is the provider abstraction (`external` -> adapter). Legacy Welrix-direct paths are migration debt, not a second supported architecture.
-8. Before starting work, compare the intended base branch with `main` and the active integration branch. If the work already exists on the integration line, continue there instead of recreating it.
+Before starting any change, read `docs/DEVELOPMENT_BRANCH_MODEL.md` and `registry/branch-status.json`.
+
+Regular product work has exactly four lanes:
+- `work/ui-ux/<task>`
+- `work/feature/<task>`
+- `work/engine/<task>`
+- `work/integration/<task>`
+
+Rules:
+1. `main` is the only long-lived product truth.
+2. Until PR #17 is merged, `integration/canonical-20260926` is the single temporary consolidation line.
+3. A page or device is never a branch authority. Do not create branches for new-car, used-car, result, desktop, mobile, etc.
+4. AI/vendor names are not branch roles.
+5. At most one active product branch per lane.
+6. Do not branch from a work branch. Start from the current canonical line and merge back to it.
+7. Tests and QA belong to the branch they verify; do not create a permanent QA branch.
+8. Any branch marked `DEPRECATED_*` or `ARCHIVE_*` in `registry/branch-status.json` is read-only history.
+9. `work/canon/<task>` is repository-governance-only and may not contain product functionality.
+10. After PR #17 merges, retire `integration/canonical-20260926` and start all new work from updated `main`.
