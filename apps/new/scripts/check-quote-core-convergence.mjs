@@ -1,0 +1,72 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const ROOT = path.resolve('src');
+const LEGACY_DIRECT_ALLOWLIST = new Set([
+  'src/components/StandardPriceTable.vue',
+]);
+
+function walk(dir) {
+  const out = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...walk(full));
+    else if (/\.(?:js|mjs|vue)$/.test(entry.name)) out.push(full);
+  }
+  return out;
+}
+
+function rel(file) {
+  return path.relative(process.cwd(), file).split(path.sep).join('/');
+}
+
+const files = walk(ROOT);
+const directCalc = [];
+const directWelrix = [];
+
+for (const file of files) {
+  const source = fs.readFileSync(file, 'utf8');
+  const name = rel(file);
+
+  const importsLegacyCalc =
+    /import\s*\{[^}]*\bcalcQuote\b[^}]*\}\s*from\s*['"][^'"]*lib\/calc\.js['"]/.test(source);
+  if (importsLegacyCalc) directCalc.push(name);
+
+  if (/from\s*['"][^'"]*quote\/engines\/welrix\.js['"]/.test(source)) {
+    directWelrix.push(name);
+  }
+}
+
+const unexpectedCalc = directCalc.filter((file) => !LEGACY_DIRECT_ALLOWLIST.has(file));
+if (unexpectedCalc.length) {
+  console.error('[quote-core-convergence] direct legacy calcQuote imports are forbidden:');
+  for (const file of unexpectedCalc) console.error(' - ' + file);
+  process.exit(1);
+}
+
+if (directWelrix.length) {
+  console.error('[quote-core-convergence] direct legacy Welrix engine imports are forbidden:');
+  for (const file of directWelrix) console.error(' - ' + file);
+  process.exit(1);
+}
+
+const homeWidget = fs.readFileSync(path.resolve('src/components/home/QuoteWidget.vue'), 'utf8');
+for (const required of [
+  "from '../../lib/quote/calculate.js'",
+  "from '../../lib/quote/preview-request.js'",
+]) {
+  if (!homeWidget.includes(required)) {
+    console.error('[quote-core-convergence] QuoteWidget must use canonical Quote Core: ' + required);
+    process.exit(1);
+  }
+}
+if (/\bcalcQuote\b/.test(homeWidget)) {
+  console.error('[quote-core-convergence] QuoteWidget regressed to calcQuote');
+  process.exit(1);
+}
+
+console.log(JSON.stringify({
+  status: 'PASS',
+  canonicalized: ['src/components/home/QuoteWidget.vue'],
+  remainingMigrationDebt: [...LEGACY_DIRECT_ALLOWLIST],
+}));
