@@ -9,6 +9,9 @@ import SelectionSummary from './SelectionSummary.vue';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
 import { applyScenarioPercent, normalizeFeeRate } from '../../lib/feature/conditions.js';
 
+const optionRules = globalThis.FreePassFeatureOptions;
+if (!optionRules) throw new Error('FreePassFeatureOptions runtime is required');
+
 const props = defineProps({
   vehicles: { type: Array, default: () => [] },
 });
@@ -143,27 +146,23 @@ function trimPrice(t, taxRate) {
 const optionsMaster = computed(() => selectedVariant.value?.options_master || {});
 const exclusiveGroups = computed(() => selectedVariant.value?.exclusive_groups || []);
 
+function optionContext() {
+  return {
+    selected: vehicleState.options,
+    optionsMaster: optionsMaster.value,
+    exclusiveGroups: exclusiveGroups.value,
+    optionExcludes: selectedVariant.value?.option_excludes || {},
+    trimId: vehicleState.trim,
+  };
+}
 function getGroup(optId) {
-  return exclusiveGroups.value.find(g => g.members.includes(optId)) || null;
+  return optionRules.getExclusiveGroup(exclusiveGroups.value, optId);
 }
 function isEnabled(optId) {
-  const opt = optionsMaster.value[optId];
-  if (!opt) return false;
-  if (opt.requires && !opt.requires.every(req => vehicleState.options.has(req))) return false;
-  if (opt.requires_in_trim?.[vehicleState.trim] &&
-      !opt.requires_in_trim[vehicleState.trim].every(req => vehicleState.options.has(req))) return false;
-  // option_excludes
-  if (selectedVariant.value?.option_excludes) {
-    for (const [parentId, excluded] of Object.entries(selectedVariant.value.option_excludes)) {
-      if (vehicleState.options.has(parentId) && excluded.includes(optId)) return false;
-    }
-  }
-  return true;
+  return optionRules.isOptionEnabled({ ...optionContext(), optionId: optId });
 }
 function getRequires(optId) {
-  const opt = optionsMaster.value[optId];
-  if (!opt) return [];
-  return opt.requires || opt.requires_in_trim?.[vehicleState.trim] || [];
+  return optionRules.requiredOptionIds(optionsMaster.value, vehicleState.trim, optId);
 }
 
 // trim 의 available_options
@@ -179,16 +178,11 @@ const exteriorColors = computed(() => exteriorColorsFor(selectedModel.value, sel
 
 // 옵션 토글
 function toggleOption(optId) {
-  if (!isEnabled(optId) && !vehicleState.options.has(optId)) return;
-  if (vehicleState.options.has(optId)) {
-    vehicleState.options.delete(optId);
-  } else {
-    // 같은 배타 그룹 다른 옵션 자동 해제
-    const g = getGroup(optId);
-    if (g) g.members.forEach(m => { if (m !== optId) vehicleState.options.delete(m); });
-    vehicleState.options.add(optId);
-  }
-  syncVehicle();
+  const result = optionRules.toggleOptionSelection({
+    ...optionContext(),
+    optionId: optId,
+  });
+  if (result.changed) syncVehicle();
 }
 
 function pickExtColor(idx) {
