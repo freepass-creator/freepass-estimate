@@ -76,3 +76,11 @@ test('trim advances to colors only when color data exists', () => {
   assert.equal(rules.nextStepAfterSelection('trim', { trim: { _exterior_colors: [{ name: 'white' }] } }), 'colors');
   assert.equal(rules.nextStepAfterSelection('trim', { trim: {}, model: {} }), 'options');
 });
+
+
+test('vehicle sub-step sequence omits spec when there is no real branch', () => {
+  const one = { trims: [{ group: '5인승 2WD' }, { group: '5인승 2WD' }] };
+  const many = { trims: [{ group: '5인승 2WD' }, { group: '7인승 4WD' }] };
+  assert.deepEqual([...rules.vehicleSubSteps(one)], ['brand', 'model', 'variant', 'trim', 'colors', 'options']);
+  assert.deepEqual([...rules.vehicleSubSteps(many)], ['brand', 'model', 'variant', 'spec', 'trim', 'colors', 'options']);
+});
