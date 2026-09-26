@@ -14,6 +14,10 @@ export const USED_QUOTE_MODE = Object.freeze({
 
 const USED_MODES = new Set(Object.values(USED_QUOTE_MODE));
 
+export function isKnownVehicleKind(value) {
+  return value === VEHICLE_KIND.NEW || value === VEHICLE_KIND.USED;
+}
+
 export function normalizeVehicleKind(value) {
   if (value === VEHICLE_KIND.USED) return VEHICLE_KIND.USED;
   return VEHICLE_KIND.NEW;
