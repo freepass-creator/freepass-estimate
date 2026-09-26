@@ -5098,6 +5098,102 @@ render();
       box-shadow: var(--fp-elevation-0);
       transform: translateY(var(--fp-press-y));
     }
+
+    /* Quote fact rows: spacing and alignment replace dashed separators. */
+    .qp-terms__title,
+    .qp-terms__title small,
+    .term-card__row,
+    .term-card__row b,
+    .term-card__row .resid-pct,
+    .term-card__cond .pct-cell--static {
+      font-size: var(--fp-fs-support) !important;
+    }
+    .term-card__row {
+      padding: var(--fp-sp-1) 0 !important;
+    }
+    .term-card__row + .term-card__row {
+      border-top: 0 !important;
+    }
+    .term-card__row .resid-pct {
+      border-radius: var(--fp-r-pill) !important;
+      background: var(--fp-primary-weak) !important;
+      color: var(--fp-primary) !important;
+    }
+    .term-card__cond .pct-cell--static {
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    /* Accordion hierarchy is expressed with spacing/surface, not dashed lines. */
+    details.qp-extras > summary {
+      border: 0 !important;
+      border-radius: var(--fp-r-control);
+      font-size: var(--fp-fs-body);
+    }
+    details.qp-extras[open] > summary {
+      border-bottom: 0 !important;
+      background: var(--fp-surface-soft);
+    }
+    details.qp-extras > summary .caret {
+      font-size: var(--fp-fs-support) !important;
+      color: var(--fp-text-3) !important;
+    }
+
+    /* Runtime preview shell follows Admin surfaces; the exported quote document
+       inside it keeps its own document layout. */
+    .customer-output {
+      border: 1px solid transparent !important;
+      border-radius: var(--fp-r-panel) !important;
+      background: var(--fp-surface) !important;
+      box-shadow: var(--fp-elevation-base);
+    }
+    .customer-output__head {
+      border-bottom: 0 !important;
+      background: var(--fp-surface-soft) !important;
+      color: var(--fp-text-muted) !important;
+      font-size: var(--fp-fs-support) !important;
+      letter-spacing: 0 !important;
+    }
+    .customer-output__head button {
+      min-height: var(--fp-control-sm) !important;
+      height: var(--fp-control-sm) !important;
+      padding-inline: var(--fp-sp-2) !important;
+      border-radius: var(--fp-r-control) !important;
+      font-size: var(--fp-fs-support) !important;
+    }
+
+    /* Modal chrome uses the same PanelHead / PanelFoot grammar. */
+    .quote-modal {
+      border-radius: var(--fp-r-panel) !important;
+      box-shadow: var(--fp-elevation-float) !important;
+    }
+    .quote-modal__head {
+      min-height: var(--fp-panel-head);
+      padding: var(--fp-sp-2) var(--fp-sp-4) !important;
+      border-bottom: 0 !important;
+      background: var(--fp-surface-soft) !important;
+      font-size: var(--fp-fs-body) !important;
+      color: var(--fp-text) !important;
+      letter-spacing: 0 !important;
+    }
+    .quote-modal__foot {
+      min-height: var(--fp-panel-foot) !important;
+      padding: var(--fp-sp-2) var(--fp-sp-3) !important;
+      border-top: 0 !important;
+      background: var(--fp-surface) !important;
+    }
+    .quote-modal__foot button,
+    .quote-modal__head button {
+      min-height: var(--fp-control-sm) !important;
+      height: var(--fp-control-sm) !important;
+      border: 1px solid transparent !important;
+      border-radius: var(--fp-r-control) !important;
+      font-size: var(--fp-fs-support) !important;
+    }
+    .quote-modal__foot button {
+      box-shadow: var(--fp-elevation-base);
+    }
   }
 
   @media (min-width: 1440px) {
