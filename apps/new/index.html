@@ -1279,42 +1279,27 @@ document.addEventListener('click', (e) => {
   }
   const mfrBtn = e.target.closest('[data-mfr]');
   if (mfrBtn && !mfrBtn.disabled) {
-    if (state.manufacturer !== mfrBtn.dataset.mfr) {
-      state.manufacturer = mfrBtn.dataset.mfr;
-      state.model = state.variant = state.trim = state.color = null;
-      state.options.clear();
-    }
+    window.FreePassVehicleSelection.applySelection(state, 'manufacturer', mfrBtn.dataset.mfr);
     render(); return;
   }
   const modelBtn = e.target.closest('[data-model]');
   if (modelBtn) {
-    if (state.model !== modelBtn.dataset.model) {
-      state.model = modelBtn.dataset.model;
-      state.variant = state.trim = state.color = null;
-      state.options.clear();
-    }
+    window.FreePassVehicleSelection.applySelection(state, 'model', modelBtn.dataset.model);
     render(); return;
   }
   const variantBtn = e.target.closest('[data-variant]');
   if (variantBtn) {
-    if (state.variant !== variantBtn.dataset.variant) {
-      state.variant = variantBtn.dataset.variant;
-      state.trim = state.color = null;
-      state.options.clear();
-    }
+    window.FreePassVehicleSelection.applySelection(state, 'variant', variantBtn.dataset.variant);
     render(); return;
   }
   const trimRow = e.target.closest('[data-trim]');
   if (trimRow) {
-    if (state.trim !== trimRow.dataset.trim) {
-      state.trim = trimRow.dataset.trim;
-      state.options.clear();
-    }
+    window.FreePassVehicleSelection.applySelection(state, 'trim', trimRow.dataset.trim);
     render(); return;
   }
   const colorCard = e.target.closest('[data-color]');
   if (colorCard) {
-    state.color = parseInt(colorCard.dataset.color);
+    window.FreePassVehicleSelection.applySelection(state, 'color', colorCard.dataset.color);
     render(); return;
   }
 });
@@ -1708,32 +1693,8 @@ function syncToVueStore() {
 
 // Vue → cascade 선택 위임
 window.__welrix_pick = function(stepKey, value) {
-  if (stepKey === 'manufacturer') {
-    state.manufacturer = value || null;
-    state.model = state.variant = state.trim = state.color = null;
-    state.options.clear();
-    if (state.manufacturer) $('sec-model').classList.remove('hidden');
-  } else if (stepKey === 'model') {
-    state.model = value || null;
-    state.variant = state.trim = state.color = null;
-    state.options.clear();
-    if (state.model) $('sec-variant').classList.remove('hidden');
-  } else if (stepKey === 'variant') {
-    state.variant = value || null;
-    state.trim = state.color = null;
-    state.options.clear();
-    if (state.variant) $('sec-trim').classList.remove('hidden');
-  } else if (stepKey === 'trim') {
-    state.trim = value || null;
-    state.color = null;
-    state.options.clear();
-    if (state.trim) {
-      $('sec-options').classList.remove('hidden');
-      $('sec-color').classList.remove('hidden');
-    }
-  } else if (stepKey === 'colorExt') {
-    state.color = value !== '' && value != null ? +value : null;
-  }
+  const mappedStep = stepKey === 'colorExt' ? 'color' : stepKey;
+  window.FreePassVehicleSelection.applySelection(state, mappedStep, value);
   render();
 };
 
