@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import handler from '../api/external-quote.js';
 import { QUOTE_REQUEST_CONTRACT } from '../src/lib/quote/contracts.js';
 import { EXTERNAL_PROVIDER_POLICY } from '../src/lib/quote/provider-policy.js';
+import { createQuoteConditionCosts } from '../src/lib/quote/condition-cost-contract.js';
 
 assert.equal(EXTERNAL_PROVIDER_POLICY.timeout_ms, 12000);
 assert.equal(EXTERNAL_PROVIDER_POLICY.max_attempts, 1);
@@ -42,6 +43,7 @@ const masterPayload = {
 };
 
 function makeReq(adapterId = 'welrix') {
+  const costs=createQuoteConditionCosts();
   return {
     method: 'POST',
     body: {
@@ -65,7 +67,7 @@ function makeReq(adapterId = 'welrix') {
         조건: {
           신용: '중신용', 주행: '2만km', 정비: '웰스 Basic',
           대물: '1억', 추가운전자: '없음',
-          탁송비: 0, 썬팅비: 0, 블박비: 0, 수수료율: 5,
+          탁송비: costs.deliveryFee, 썬팅비: costs.tintFee, 블박비: costs.dashcamFee, 내비비:0, 하이패스비:0, 비용:costs, 수수료율: 5,
         },
         안들: [{ 기간: 60, 보증금: 0, 선납: 0 }],
       },
