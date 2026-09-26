@@ -2,8 +2,12 @@ import {
   QUOTE_READ_RECEIPT_CONTRACT,
   QUOTE_WRITE_RECEIPT_CONTRACT,
 } from './quote-repository.js';
+import {
+  SHARE_ENVELOPE_READ_RECEIPT_CONTRACT,
+  SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
+} from './share-envelope-repository.js';
 
-export const QUOTE_CUTOVER_READINESS_CONTRACT = 'freepass-estimate-quote-cutover-readiness/v1';
+export const QUOTE_CUTOVER_READINESS_CONTRACT = 'freepass-estimate-quote-cutover-readiness/v2';
 
 function blocker(code, detail = null) {
   return Object.freeze({ code, detail });
@@ -30,7 +34,7 @@ function validMasterEvidence(master) {
   );
 }
 
-function validWriteProbe(probe) {
+function validQuoteWriteProbe(probe) {
   const r = probe?.receipt;
   return !!(
     probe?.verified === true &&
@@ -44,7 +48,7 @@ function validWriteProbe(probe) {
   );
 }
 
-function validReadProbe(probe) {
+function validQuoteReadProbe(probe) {
   const r = probe?.receipt;
   return !!(
     probe?.verified === true &&
@@ -61,7 +65,7 @@ function validReadProbe(probe) {
   );
 }
 
-function sameProbeQuote(writeProbe, readProbe) {
+function sameQuoteRoundTrip(writeProbe, readProbe) {
   const w = writeProbe?.receipt;
   const r = readProbe?.receipt;
   return !!(
@@ -72,16 +76,75 @@ function sameProbeQuote(writeProbe, readProbe) {
   );
 }
 
+function validEnvelopeWriteProbe(probe) {
+  const r = probe?.receipt;
+  return !!(
+    probe?.verified === true &&
+    validIso(probe?.verifiedAt) &&
+    r?.contract === SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT &&
+    ['CREATED', 'EXISTING'].includes(r.status) &&
+    typeof r.envelopeId === 'string' && r.envelopeId &&
+    Number.isSafeInteger(Number(r.envelopeVersion)) && Number(r.envelopeVersion) > 0 &&
+    typeof r.snapshotHash === 'string' && /^[a-f0-9]{64}$/i.test(r.snapshotHash) &&
+    typeof r.idempotencyKey === 'string' && r.idempotencyKey
+  );
+}
+
+function validEnvelopeReadProbe(probe) {
+  const r = probe?.receipt;
+  const e = r?.envelope;
+  return !!(
+    probe?.verified === true &&
+    validIso(probe?.verifiedAt) &&
+    r?.contract === SHARE_ENVELOPE_READ_RECEIPT_CONTRACT &&
+    r.status === 'FOUND' &&
+    typeof r.envelopeId === 'string' && r.envelopeId &&
+    Number.isSafeInteger(Number(r.envelopeVersion)) && Number(r.envelopeVersion) > 0 &&
+    typeof r.snapshotHash === 'string' && /^[a-f0-9]{64}$/i.test(r.snapshotHash) &&
+    e?.contract === 'freepass-share-envelope/v1' &&
+    e.envelopeId === r.envelopeId &&
+    Number(e.envelopeVersion) === Number(r.envelopeVersion) &&
+    e.snapshotHash === r.snapshotHash &&
+    Array.isArray(e.quoteRefs) &&
+    e.quoteRefs.length > 0
+  );
+}
+
+function sameEnvelopeRoundTrip(writeProbe, readProbe) {
+  const w = writeProbe?.receipt;
+  const r = readProbe?.receipt;
+  return !!(
+    w && r &&
+    w.envelopeId === r.envelopeId &&
+    Number(w.envelopeVersion) === Number(r.envelopeVersion) &&
+    w.snapshotHash === r.snapshotHash
+  );
+}
+
+function envelopeReferencesQuote(envelopeReadProbe, quoteReadProbe) {
+  const refs = envelopeReadProbe?.receipt?.envelope?.quoteRefs;
+  const q = quoteReadProbe?.receipt;
+  if (!Array.isArray(refs) || !q) return false;
+  return refs.some((ref) =>
+    ref?.quoteId === q.quoteId &&
+    Number(ref?.quoteVersion) === Number(q.quoteVersion) &&
+    ref?.snapshotHash === q.snapshotHash
+  );
+}
+
 /**
  * Pure cutover gate.
  *
- * It does not perform network calls and does not enable a runtime switch.
- * Operations must feed it real shadow evidence collected from FreePass Data.
+ * READY means the entire canonical delivery path is evidenced:
+ * ACTIVE master -> Quote write/read round-trip -> Share Envelope write/read
+ * round-trip -> Envelope references the verified Quote -> viewer/write-block gates.
  */
 export function evaluateQuoteCutoverReadiness({
   master = null,
-  writeProbe = null,
-  readProbe = null,
+  quoteWriteProbe = null,
+  quoteReadProbe = null,
+  envelopeWriteProbe = null,
+  envelopeReadProbe = null,
   canonicalViewerReady = false,
   legacyWriteBlockReady = false,
 } = {}) {
@@ -90,15 +153,33 @@ export function evaluateQuoteCutoverReadiness({
   if (!validMasterEvidence(master)) {
     blockers.push(blocker('MASTER_ACTIVE_RELEASE_REQUIRED'));
   }
-  if (!validWriteProbe(writeProbe)) {
+  if (!validQuoteWriteProbe(quoteWriteProbe)) {
     blockers.push(blocker('QUOTE_WRITE_SHADOW_PROOF_REQUIRED'));
   }
-  if (!validReadProbe(readProbe)) {
+  if (!validQuoteReadProbe(quoteReadProbe)) {
     blockers.push(blocker('QUOTE_READ_SHADOW_PROOF_REQUIRED'));
   }
-  if (validWriteProbe(writeProbe) && validReadProbe(readProbe) && !sameProbeQuote(writeProbe, readProbe)) {
+  if (validQuoteWriteProbe(quoteWriteProbe) && validQuoteReadProbe(quoteReadProbe) &&
+      !sameQuoteRoundTrip(quoteWriteProbe, quoteReadProbe)) {
     blockers.push(blocker('QUOTE_SHADOW_ROUNDTRIP_MISMATCH'));
   }
+
+  if (!validEnvelopeWriteProbe(envelopeWriteProbe)) {
+    blockers.push(blocker('SHARE_ENVELOPE_WRITE_SHADOW_PROOF_REQUIRED'));
+  }
+  if (!validEnvelopeReadProbe(envelopeReadProbe)) {
+    blockers.push(blocker('SHARE_ENVELOPE_READ_SHADOW_PROOF_REQUIRED'));
+  }
+  if (validEnvelopeWriteProbe(envelopeWriteProbe) && validEnvelopeReadProbe(envelopeReadProbe) &&
+      !sameEnvelopeRoundTrip(envelopeWriteProbe, envelopeReadProbe)) {
+    blockers.push(blocker('SHARE_ENVELOPE_SHADOW_ROUNDTRIP_MISMATCH'));
+  }
+
+  if (validQuoteReadProbe(quoteReadProbe) && validEnvelopeReadProbe(envelopeReadProbe) &&
+      !envelopeReferencesQuote(envelopeReadProbe, quoteReadProbe)) {
+    blockers.push(blocker('SHARE_ENVELOPE_QUOTE_REFERENCE_MISMATCH'));
+  }
+
   if (canonicalViewerReady !== true) {
     blockers.push(blocker('CANONICAL_VIEWER_CUTOVER_NOT_READY'));
   }
@@ -111,11 +192,22 @@ export function evaluateQuoteCutoverReadiness({
     status: blockers.length ? 'HOLD' : 'READY',
     gates: Object.freeze({
       masterActiveRelease: validMasterEvidence(master),
-      writeShadowVerified: validWriteProbe(writeProbe),
-      readShadowVerified: validReadProbe(readProbe),
-      shadowRoundTripMatched: validWriteProbe(writeProbe) && validReadProbe(readProbe)
-        ? sameProbeQuote(writeProbe, readProbe)
-        : false,
+      quoteWriteShadowVerified: validQuoteWriteProbe(quoteWriteProbe),
+      quoteReadShadowVerified: validQuoteReadProbe(quoteReadProbe),
+      quoteShadowRoundTripMatched:
+        validQuoteWriteProbe(quoteWriteProbe) && validQuoteReadProbe(quoteReadProbe)
+          ? sameQuoteRoundTrip(quoteWriteProbe, quoteReadProbe)
+          : false,
+      envelopeWriteShadowVerified: validEnvelopeWriteProbe(envelopeWriteProbe),
+      envelopeReadShadowVerified: validEnvelopeReadProbe(envelopeReadProbe),
+      envelopeShadowRoundTripMatched:
+        validEnvelopeWriteProbe(envelopeWriteProbe) && validEnvelopeReadProbe(envelopeReadProbe)
+          ? sameEnvelopeRoundTrip(envelopeWriteProbe, envelopeReadProbe)
+          : false,
+      envelopeReferencesVerifiedQuote:
+        validQuoteReadProbe(quoteReadProbe) && validEnvelopeReadProbe(envelopeReadProbe)
+          ? envelopeReferencesQuote(envelopeReadProbe, quoteReadProbe)
+          : false,
       canonicalViewerReady: canonicalViewerReady === true,
       legacyWriteBlockReady: legacyWriteBlockReady === true,
     }),
