@@ -105,6 +105,8 @@ jobs:
         run: node scripts/check-legacy-quote-write-policy.mjs
       - name: Legacy RTDB cutover boundary
         run: node scripts/check-legacy-rtdb-cutover.mjs
+      - name: Legacy Quote RTDB inventory
+        run: node scripts/check-legacy-quote-inventory.mjs
       - name: Quote shadow round-trip
         run: node scripts/check-quote-shadow-roundtrip.mjs
       - name: Share Envelope authority boundary
