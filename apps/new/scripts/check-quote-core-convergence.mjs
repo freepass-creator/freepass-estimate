@@ -2,9 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve('src');
-const LEGACY_DIRECT_ALLOWLIST = new Set([
-  'src/components/StandardPriceTable.vue',
-]);
+const LEGACY_DIRECT_ALLOWLIST = new Set();
 
 function walk(dir) {
   const out = [];
@@ -65,8 +63,26 @@ if (/\bcalcQuote\b/.test(homeWidget)) {
   process.exit(1);
 }
 
+const standardPriceTable = fs.readFileSync(path.resolve('src/components/StandardPriceTable.vue'), 'utf8');
+for (const required of [
+  "from '../lib/quote/preview-request.js'",
+  "from '../lib/quote/preview-calculate.js'",
+]) {
+  if (!standardPriceTable.includes(required)) {
+    console.error('[quote-core-convergence] StandardPriceTable must use canonical Quote Core: ' + required);
+    process.exit(1);
+  }
+}
+if (/\bcalcQuote\b/.test(standardPriceTable)) {
+  console.error('[quote-core-convergence] StandardPriceTable regressed to calcQuote');
+  process.exit(1);
+}
+
 console.log(JSON.stringify({
   status: 'PASS',
-  canonicalized: ['src/components/home/QuoteWidget.vue'],
-  remainingMigrationDebt: [...LEGACY_DIRECT_ALLOWLIST],
+  canonicalized: [
+    'src/components/home/QuoteWidget.vue',
+    'src/components/StandardPriceTable.vue',
+  ],
+  remainingMigrationDebt: [],
 }));
