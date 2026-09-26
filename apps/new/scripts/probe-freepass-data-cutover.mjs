@@ -19,6 +19,7 @@ import {
 } from '../src/lib/quote/share-envelope-repository.js';
 import { runCutoverProbe } from '../src/lib/quote/cutover-probe.js';
 import { legacyQuoteWriteBlockEvidence } from '../src/lib/quote/legacy-write-policy.js';
+import { resolveEstimateWriteAccessPolicy } from '../api/_auth/estimate-write-access.js';
 
 function fail(message, code = 'CUTOVER_PROBE_CONFIG_INVALID') {
   const error = new Error(message);
@@ -122,6 +123,7 @@ try {
       globalMode: process.env.FREEPASS_QUOTE_WRITE_MODE,
       viteMode: '',
     }),
+    writeAccessPolicy: resolveEstimateWriteAccessPolicy(process.env),
   });
 
   // Deliberately emit only IDs, hashes, release evidence and gate results.
