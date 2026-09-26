@@ -10,6 +10,20 @@ import SelectionSummary from './SelectionSummary.vue';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
 import { applyScenarioPercent, normalizeFeeRate } from '../../lib/feature/conditions.js';
 
+function resetQuoteVehicleWhenSelectionChanges(result) {
+  if (result.changed) quoteState.vehicle = null;
+  return result.changed;
+}
+
+function optionContext() {
+  return {
+    selected: vehicleState.options,
+    optionsMaster: optionsMaster.value,
+    exclusiveGroups: exclusiveGroups.value,
+    optionExcludes: selectedVariant.value?.option_excludes || {},
+    trimId: vehicleState.trim,
+  };
+}
 const optionRules = globalThis.FreePassFeatureOptions;
 if (!optionRules) throw new Error('FreePassFeatureOptions runtime is required');
 const vehicleSelection = globalThis.FreePassVehicleSelection;
@@ -149,15 +163,6 @@ function trimPrice(t, taxRate) {
 const optionsMaster = computed(() => selectedVariant.value?.options_master || {});
 const exclusiveGroups = computed(() => selectedVariant.value?.exclusive_groups || []);
 
-function optionContext() {
-  return {
-    selected: vehicleState.options,
-    optionsMaster: optionsMaster.value,
-    exclusiveGroups: exclusiveGroups.value,
-    optionExcludes: selectedVariant.value?.option_excludes || {},
-    trimId: vehicleState.trim,
-  };
-}
 function getGroup(optId) {
   return optionRules.getExclusiveGroup(exclusiveGroups.value, optId);
 }
@@ -315,11 +320,6 @@ function syncVehicle() {
     })),
     _src: canonicalSrc,
   };
-}
-
-function resetQuoteVehicleWhenSelectionChanges(result) {
-  if (result.changed) quoteState.vehicle = null;
-  return result.changed;
 }
 
 function selectBrand(b) {
@@ -566,7 +566,7 @@ function onFeeChange() {
     <div v-else-if="subStep === 'options'" class="sv-section">
       <h2 class="sv-title">옵션을<br>선택해 주세요</h2>
 
-      <div v-if="!availableOptions.length" class="sv-empty">선택 가능한 옵션이 없습니다.</div>
+      <div v-if="!availableOptions.length" class="sv-empty" role="status">선택 가능한 옵션이 없습니다.</div>
       <div v-else class="sv-opts">
         <button
           v-for="o in availableOptions" :key="o.id"
@@ -795,12 +795,12 @@ function onFeeChange() {
 .sv-brand-card.is-selected .sv-brand-card__name { color: var(--brand); font-weight: var(--fw-bold); }
 
 .sv-debug {
-  padding: 12px 14px;
-  background: #fff8e1;
-  border: 1px solid #f4d35e;
-  border-radius: var(--r-md);
-  font-size: var(--fs-sm); color: #936916;
-  margin-bottom: 12px;
+  padding: var(--sp-3);
+  background: var(--fp-warn-bg);
+  border: 0;
+  border-radius: var(--r-card);
+  font-size: var(--fs-sm); color: var(--fp-warn);
+  margin-bottom: var(--sp-3);
 }
 
 /* 리스트 */
@@ -896,10 +896,14 @@ function onFeeChange() {
 }
 
 .sv-empty {
-  padding: 18px; text-align: center;
-  background: var(--bg-soft);
-  border-radius: var(--r-md);
-  color: var(--ink-4); font-size: var(--fs-md);
+  padding: var(--sp-4);
+  text-align: center;
+  background: var(--fp-surface-soft);
+  border-radius: var(--r-card);
+  box-shadow: var(--fp-elevation-base);
+  color: var(--fp-text-muted);
+  font-size: var(--fs-base);
+  line-height: 1.5;
 }
 
 /* 할인 — 접힘 disclosure */
@@ -987,7 +991,7 @@ function onFeeChange() {
 .sv-opt__group i { font-size: 12px; }
 .sv-opt__req {
   display: inline-flex; align-items: center; gap: 4px;
-  font-size: var(--fs-xs); color: #c62828; margin-top: 2px;
+  font-size: var(--fs-xs); color: var(--fp-err); margin-top: 2px;
 }
 .sv-opt:active { background: var(--brand-50); }
 .sv-opt.is-selected {

@@ -5,7 +5,7 @@ const BASE = process.env.BASE_URL || 'http://127.0.0.1:5173';
 const OUT = process.env.ARTIFACT_DIR || 'artifacts/ui-visual-audit';
 fs.mkdirSync(OUT, { recursive: true });
 
-const report = { generatedAt: new Date().toISOString(), mobile: [], desktop: [] };
+const report = { generatedAt: new Date().toISOString(), mobile: [], desktop: [], responsive: [] };
 
 function ok(condition, message) {
   if (!condition) throw new Error(message);
@@ -162,6 +162,12 @@ try {
     await page.locator('.m-footer .m-btn--primary:visible').click();
     await page.waitForSelector('.sc-title');
     const conditions = await metrics(page, `mobile-${width}-conditions`);
+    const selectedCondition = await page.evaluate(() => {
+      const el = document.querySelector('.sc-chip.is-selected');
+      if (!el) return null;
+      const s = getComputedStyle(el);
+      return { background: s.backgroundColor, color: s.color, fontWeight: s.fontWeight };
+    });
     const stickyA11y = await page.evaluate(() => {
       const summary = document.querySelector('.sq-summary');
       const check = document.querySelector('.sq-term-card__check-btn');
@@ -174,15 +180,47 @@ try {
     });
     await capture(page, `mobile-${width}-03-conditions`);
 
+    let stickyExpanded = null;
+    if (await page.locator('.sq-summary').count()) {
+      await page.locator('.sq-summary').click();
+      await page.waitForSelector('.sq-detail');
+      stickyExpanded = await page.evaluate(() => {
+        const detail = document.querySelector('.sq-detail');
+        const cell = document.querySelector('.sq-table tbody td');
+        const head = document.querySelector('.sq-table thead th');
+        const style = (el) => el ? getComputedStyle(el) : null;
+        return {
+          detailBorderTop: style(detail)?.borderTopWidth || null,
+          cellBorderBottom: style(cell)?.borderBottomWidth || null,
+          headBorderBottom: style(head)?.borderBottomWidth || null,
+          headFontSize: style(head)?.fontSize || null,
+        };
+      });
+      await capture(page, `mobile-${width}-03b-livequote-expanded`);
+      await page.locator('.sq-summary').click();
+    }
+
     await page.locator('.m-footer .m-btn--primary:visible').click();
     await page.waitForSelector('.se-title');
     const extras = await metrics(page, `mobile-${width}-extras`);
+    const selectedExtra = await page.evaluate(() => {
+      const el = document.querySelector('.se-chip.is-selected');
+      if (!el) return null;
+      const s = getComputedStyle(el);
+      return { background: s.backgroundColor, color: s.color, fontWeight: s.fontWeight };
+    });
     await capture(page, `mobile-${width}-04-extras`);
 
     await page.locator('.m-footer .m-btn--primary:visible').click();
     await page.waitForSelector('.sr-title');
     await page.waitForTimeout(250);
     const result = await metrics(page, `mobile-${width}-result`);
+    const resultSurface = await page.evaluate(() => {
+      const el = document.querySelector('.sr-term');
+      if (!el) return null;
+      const s = getComputedStyle(el);
+      return { background: s.backgroundColor, color: s.color, boxShadow: s.boxShadow };
+    });
     await capture(page, `mobile-${width}-05-result`);
 
     report.mobile.push({
@@ -192,14 +230,42 @@ try {
       conditions,
       extras,
       result,
+      resultSurface,
+      selectedCondition,
+      selectedExtra,
       stickyA11y,
+      stickyExpanded,
       consoleErrors: consoleErrors.filter((x) => !x.includes('Failed to load resource')),
     });
 
     await context.close();
   }
 
-  for (const width of [1280, 1440]) {
+  // Single responsive shell boundary: <=1024 mobile, >=1025 desktop.
+  for (const width of [834, 1024]) {
+    const context = await browser.newContext({ viewport: { width, height: 900 }, locale: 'ko-KR' });
+    const page = await context.newPage();
+    await page.goto(`${BASE}/index.html`, { waitUntil: 'domcontentloaded' });
+    await page.waitForURL(/mobile\.html/, { timeout: 10000 });
+    const path = new URL(page.url()).pathname;
+    ok(path.endsWith('/mobile.html'), `responsive-${width}: index did not converge to mobile shell: ${path}`);
+    report.responsive.push({ width, path });
+    await context.close();
+  }
+
+    {
+    const width = 1025;
+    const context = await browser.newContext({ viewport: { width, height: 900 }, locale: 'ko-KR' });
+    const page = await context.newPage();
+    await page.goto(`${BASE}/index.html`, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('.global-topbar');
+    const path = new URL(page.url()).pathname;
+    ok(path.endsWith('/index.html'), `responsive-${width}: desktop shell unexpectedly redirected: ${path}`);
+    report.responsive.push({ width, path });
+    await context.close();
+  }
+
+    for (const width of [1280, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, locale: 'ko-KR' });
     const page = await context.newPage();
     const consoleErrors = [];
@@ -208,6 +274,16 @@ try {
 
     await page.goto(`${BASE}/index.html`, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('.global-topbar');
+    // Static shell appears before the vehicle builder is hydrated. A screenshot of
+    // that intermediate state is not a valid visual receipt.
+    await page.waitForFunction(() => {
+      const nodes = document.querySelectorAll('.wrap .card, .wrap .step-dd, .wrap .cdd__btn');
+      return [...nodes].some((el) => {
+        const r = el.getBoundingClientRect();
+        const s = getComputedStyle(el);
+        return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+      });
+    }, null, { timeout: 10000 });
     const data = await page.evaluate(() => {
       const root = document.documentElement;
       const firstVisible = (selector) => [...document.querySelectorAll(selector)].find((el) => {
@@ -218,6 +294,8 @@ try {
       const action = firstVisible('.bottom-action');
       const select = firstVisible('.cdd__btn, .step-dd');
       const card = firstVisible('.card, .trim-row, .color-card');
+      const vehicleLabel = firstVisible('.wrap .step-title, .wrap .step-title-text');
+      const vehiclePanel = firstVisible('.wrap');
       const rect = (el) => el ? el.getBoundingClientRect() : null;
       const css = (el) => el ? getComputedStyle(el) : null;
       return {
@@ -225,9 +303,23 @@ try {
           html: [root.scrollWidth, root.clientWidth],
           body: [document.body.scrollWidth, document.body.clientWidth],
         },
+        shell: {
+          columns: getComputedStyle(document.body).gridTemplateColumns,
+          hiddenContractDisplay: getComputedStyle(document.getElementById('contract-panel-root')).display,
+        },
         action: action ? { height: rect(action).height, fontSize: css(action).fontSize, radius: css(action).borderRadius } : null,
         select: select ? { height: rect(select).height, fontSize: css(select).fontSize, radius: css(select).borderRadius } : null,
         card: card ? { radius: css(card).borderRadius, padding: css(card).padding } : null,
+        vehicleLabel: vehicleLabel ? {
+          fontSize: css(vehicleLabel).fontSize,
+          fontWeight: css(vehicleLabel).fontWeight,
+          color: css(vehicleLabel).color,
+        } : null,
+        vehiclePanel: vehiclePanel ? {
+          radius: css(vehiclePanel).borderRadius,
+          background: css(vehiclePanel).backgroundColor,
+          boxShadow: css(vehiclePanel).boxShadow,
+        } : null,
         topbarActions: document.querySelectorAll('.global-topbar button, .global-topbar a[href]').length,
         topbarBrand: {
           src: document.querySelector('.global-topbar__brand img')?.getAttribute('src') || '',
@@ -238,6 +330,16 @@ try {
     });
     ok(data.overflow.html[0] <= data.overflow.html[1] + 1, `desktop-${width}: html horizontal overflow`);
     ok(data.overflow.body[0] <= data.overflow.body[1] + 1, `desktop-${width}: body horizontal overflow`);
+    const shellCols = data.shell.columns
+      .split(/\s+/)
+      .map((value) => Number.parseFloat(value))
+      .filter(Number.isFinite);
+    ok(shellCols.length === 2, `desktop-${width}: expected two grid columns, got ${data.shell.columns}`);
+    const shellRatio = shellCols[0] / shellCols[1];
+    ok(shellRatio > 0.37 && shellRatio < 0.41,
+      `desktop-${width}: 28:72 shell ratio drift ${shellRatio.toFixed(3)} from ${data.shell.columns}`);
+    ok(data.shell.hiddenContractDisplay === 'none',
+      `desktop-${width}: hidden contract/chat surface reappeared`);
     ok(data.title.startsWith('프리패스모빌리티'), `desktop-${width}: stale browser title ${data.title}`);
     await capture(page, `desktop-${width}-01-initial`);
     report.desktop.push({ width, ...data, consoleErrors: consoleErrors.filter((x) => !x.includes('Failed to load resource')) });
@@ -249,7 +351,7 @@ try {
   // These are the current Admin-derived UI contracts; fail the visual job if
   // the rendered CSS silently drifts from them.
   for (const entry of report.mobile) {
-    ok(entry.initial.tokens.title === '18px', `mobile-${entry.width}: title token drift ${entry.initial.tokens.title}`);
+    ok(entry.initial.tokens.title === '20px', `mobile-${entry.width}: title token drift ${entry.initial.tokens.title}`);
     ok(entry.initial.tokens.body === '14px', `mobile-${entry.width}: body token drift ${entry.initial.tokens.body}`);
     ok(entry.initial.tokens.support === '12px', `mobile-${entry.width}: support token drift ${entry.initial.tokens.support}`);
     ok(entry.initial.tokens.input === '44px', `mobile-${entry.width}: input token drift`);
@@ -262,24 +364,60 @@ try {
       `mobile-${entry.width}: condition sub-44px target(s): ${JSON.stringify(entry.conditions.smallTargets)}`);
     ok(entry.extras.smallTargets.length === 0,
       `mobile-${entry.width}: extras sub-44px target(s): ${JSON.stringify(entry.extras.smallTargets)}`);
+    if (entry.selectedCondition) {
+      ok(entry.selectedCondition.background === 'rgb(27, 42, 74)',
+        `mobile-${entry.width}: selected condition control is not solid FreePass primary: ${entry.selectedCondition.background}`);
+      ok(entry.selectedCondition.color === 'rgb(255, 255, 255)',
+        `mobile-${entry.width}: selected condition control text contrast drift: ${entry.selectedCondition.color}`);
+    }
+    if (entry.selectedExtra) {
+      ok(entry.selectedExtra.background === 'rgb(27, 42, 74)',
+        `mobile-${entry.width}: selected extra control is not solid FreePass primary: ${entry.selectedExtra.background}`);
+      ok(entry.selectedExtra.color === 'rgb(255, 255, 255)',
+        `mobile-${entry.width}: selected extra control text contrast drift: ${entry.selectedExtra.color}`);
+    }
+    if (entry.resultSurface) {
+      ok(entry.resultSurface.background === 'rgb(247, 249, 252)',
+        `mobile-${entry.width}: result cards must stay neutral, got ${entry.resultSurface.background}`);
+    }
     ok(entry.stickyA11y.summaryTabIndex === 0, `mobile-${entry.width}: live quote summary is not keyboard-focusable`);
     if (entry.stickyA11y.summary) ok(entry.stickyA11y.summary.height >= 44, `mobile-${entry.width}: live quote summary <44px`);
     if (entry.stickyA11y.check) {
       ok(entry.stickyA11y.check.width >= 44 && entry.stickyA11y.check.height >= 44,
         `mobile-${entry.width}: term send toggle <44px`);
     }
+    if (entry.stickyExpanded) {
+      ok(entry.stickyExpanded.detailBorderTop === '0px',
+        `mobile-${entry.width}: expanded quote detail divider reappeared`);
+      ok(entry.stickyExpanded.cellBorderBottom === '0px',
+        `mobile-${entry.width}: expanded quote row lines reappeared`);
+      ok(entry.stickyExpanded.headBorderBottom === '0px',
+        `mobile-${entry.width}: expanded quote header line reappeared`);
+      ok(entry.stickyExpanded.headFontSize === '12px',
+        `mobile-${entry.width}: expanded quote header support scale drift ${entry.stickyExpanded.headFontSize}`);
+    }
   }
 
   for (const entry of report.desktop) {
     if (entry.action) {
-      ok(Math.round(entry.action.height) === 44, `desktop-${entry.width}: bottom action height drift ${entry.action.height}`);
+      ok(Math.round(entry.action.height) === 36, `desktop-${entry.width}: bottom action height drift ${entry.action.height}`);
       ok(entry.action.fontSize === '14px', `desktop-${entry.width}: bottom action font drift ${entry.action.fontSize}`);
       ok(entry.action.radius === '6px', `desktop-${entry.width}: bottom action radius drift ${entry.action.radius}`);
     }
     if (entry.select) {
-      ok(Math.round(entry.select.height) === 44, `desktop-${entry.width}: select height drift ${entry.select.height}`);
+      ok(Math.round(entry.select.height) === 36, `desktop-${entry.width}: select height drift ${entry.select.height}`);
       ok(entry.select.fontSize === '14px', `desktop-${entry.width}: select font drift ${entry.select.fontSize}`);
       ok(entry.select.radius === '6px', `desktop-${entry.width}: select radius drift ${entry.select.radius}`);
+    }
+    if (entry.vehicleLabel) {
+      ok(entry.vehicleLabel.fontSize === '12px',
+        `desktop-${entry.width}: vehicle step label must use support scale, got ${entry.vehicleLabel.fontSize}`);
+    }
+    if (entry.vehiclePanel) {
+      ok(entry.vehiclePanel.radius === '8px',
+        `desktop-${entry.width}: vehicle panel radius drift ${entry.vehiclePanel.radius}`);
+      ok(entry.vehiclePanel.background === 'rgb(255, 255, 255)',
+        `desktop-${entry.width}: vehicle panel surface drift ${entry.vehiclePanel.background}`);
     }
     ok(entry.topbarActions === 0, `desktop-${entry.width}: topbar action reappeared`);
     ok(entry.topbarBrand.src === '/freepass-wordmark.svg' && entry.topbarBrand.alt === '프리패스모빌리티',

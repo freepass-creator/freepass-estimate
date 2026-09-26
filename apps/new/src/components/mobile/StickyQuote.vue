@@ -140,12 +140,14 @@ const cards = computed(() => {
       <table class="sq-table">
         <thead>
           <tr>
-            <th class="sq-table__rowlabel">구분</th>
+            <th scope="col" class="sq-table__rowlabel">구분</th>
             <th v-for="c in cards" :key="c.idx"
+                scope="col"
                 :class="{ 'is-dim': !c.sent }">
               <select
                 class="sq-table__term-select"
                 :value="c.term"
+                :aria-label="`${c.term}개월 기간 선택`"
                 @change="onTermChange(c.idx, $event)"
               >
                 <option v-for="t in TERM_OPTIONS" :key="t" :value="t">{{ t }}개월</option>
@@ -156,7 +158,7 @@ const cards = computed(() => {
         <tbody>
           <!-- 대여료 (기간 헤더 바로 밑) — 펼침 시 첫 눈에 보이는 핵심 정보 -->
           <tr class="sq-table__monthly-row">
-            <th class="sq-table__rowlabel">대여료</th>
+            <th scope="row" class="sq-table__rowlabel">대여료</th>
             <td v-for="c in cards" :key="c.idx" class="sq-table__monthly">
               <template v-if="c.monthly">
                 <b>{{ fmt(c.monthly) }}</b><small>원/월</small>
@@ -165,17 +167,17 @@ const cards = computed(() => {
             </td>
           </tr>
           <tr v-if="quoteState.cond.discount">
-            <th class="sq-table__rowlabel">추가 할인</th>
+            <th scope="row" class="sq-table__rowlabel">추가 할인</th>
             <td v-for="c in cards" :key="c.idx" class="sq-table__discount">
               −{{ fmt(quoteState.cond.discount) }}만원
             </td>
           </tr>
           <tr>
-            <th class="sq-table__rowlabel">약정주행</th>
+            <th scope="row" class="sq-table__rowlabel">약정주행</th>
             <td v-for="c in cards" :key="c.idx">{{ quoteState.cond.km || 2 }}만km/년</td>
           </tr>
           <tr>
-            <th class="sq-table__rowlabel">만기인수</th>
+            <th scope="row" class="sq-table__rowlabel">만기인수</th>
             <td v-for="c in cards" :key="c.idx">
               <template v-if="c.residualAmt">
                 {{ (c.residualPct * 100).toFixed(0) }}%<br>
@@ -185,13 +187,13 @@ const cards = computed(() => {
             </td>
           </tr>
           <tr>
-            <th class="sq-table__rowlabel">정비서비스</th>
+            <th scope="row" class="sq-table__rowlabel">정비서비스</th>
             <td v-for="c in cards" :key="c.idx">{{ quoteState.cond.svc || '웰스 Basic' }}</td>
           </tr>
           <!-- ★보증금·선납금은 «담당자만» 만진다. 손님에게는 심사 뒤에 정해지는 값이라
                여기서 묻지 않는다(대표 2026-09-17). -->
           <tr v-if="담당자">
-            <th class="sq-table__rowlabel">보증금</th>
+            <th scope="row" class="sq-table__rowlabel">보증금</th>
             <td v-for="c in cards" :key="c.idx">
               <span class="sq-pct-cell">
                 <input
@@ -201,6 +203,7 @@ const cards = computed(() => {
                   maxlength="3"
                   class="sq-pct-input"
                   :value="c.dep"
+                  :aria-label="`${c.term}개월 보증금 비율`"
                   @input="stripNonDigits($event)"
                   @change="onDepChange(c.idx, $event)"
                 />%
@@ -209,7 +212,7 @@ const cards = computed(() => {
             </td>
           </tr>
           <tr v-if="담당자">
-            <th class="sq-table__rowlabel">선납금</th>
+            <th scope="row" class="sq-table__rowlabel">선납금</th>
             <td v-for="c in cards" :key="c.idx">
               <span class="sq-pct-cell">
                 <input
@@ -219,6 +222,7 @@ const cards = computed(() => {
                   maxlength="3"
                   class="sq-pct-input"
                   :value="c.pre"
+                  :aria-label="`${c.term}개월 선납금 비율`"
                   @input="stripNonDigits($event)"
                   @change="onPreChange(c.idx, $event)"
                 />%
@@ -352,6 +356,11 @@ const cards = computed(() => {
   width: 100%;
 }
 .sq-table__term-select:focus { color: var(--brand); }
+.sq-table__term-select:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: -3px;
+  border-radius: var(--r-control);
+}
 .sq-table thead th.is-dim .sq-table__term-select { color: var(--ink-4); }
 .sq-term-card__monthly {
   white-space: nowrap;
@@ -382,6 +391,10 @@ const cards = computed(() => {
   padding: 0 2px;
 }
 .sq-pct-input:focus { border-color: var(--brand); }
+.sq-pct-input:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
 /* 숫자 input 화살표 제거 */
 .sq-pct-input::-webkit-outer-spin-button,
 .sq-pct-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
@@ -395,7 +408,7 @@ const cards = computed(() => {
 
 /* 펼침 표 — PC 견적표 형태 */
 .sq-detail {
-  border-top: 1px solid var(--line);
+  border-top: 0;
   padding: 12px 16px;
 }
 .sq-table {
@@ -407,20 +420,20 @@ const cards = computed(() => {
 .sq-table th, .sq-table td {
   padding: 7px 4px;
   text-align: center;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 0;
   vertical-align: middle;
   line-height: 1.3;
 }
 .sq-table thead th {
   background: var(--bg-soft);
   font-weight: 600; color: var(--ink-1);
-  font-size: 11.5px;
-  border-bottom: 1.5px solid var(--brand);
+  font-size: var(--fs-sm);
+  border-bottom: 0;
 }
 .sq-table__rowlabel {
   text-align: left !important;
   color: var(--ink-3); font-weight: 500;
-  font-size: 11px;
+  font-size: var(--fs-sm);
   background: var(--bg-soft);
   width: 60px;
   padding-left: 8px !important;
@@ -443,11 +456,11 @@ const cards = computed(() => {
   background: var(--brand-50);
 }
 .sq-table__monthly b {
-  font-size: 13px; font-weight: 700; color: var(--brand);
+  font-size: var(--fs-base); font-weight: 700; color: var(--brand);
   letter-spacing: -0.3px;
 }
 .sq-table__monthly small {
-  font-size: 10px; color: var(--ink-3); font-weight: 400;
+  font-size: var(--fs-sm); color: var(--ink-3); font-weight: 400;
   margin-left: 2px;
 }
 
