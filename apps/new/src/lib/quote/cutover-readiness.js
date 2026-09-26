@@ -142,15 +142,20 @@ function validLegacyWritePolicy(policy) {
 }
 
 function validWriteAccessPolicy(policy) {
-  return !!(
-    policy &&
-    policy.contract === 'freepass-estimate-write-access/v1' &&
-    policy.serverVerifiedFirebaseIdTokenRequired === true &&
-    policy.anonymousWritesAllowed === false &&
-    Array.isArray(policy.requiredRoles) &&
-    policy.requiredRoles.length > 0 &&
-    policy.requiredRoles.every((role) => typeof role === 'string' && role.trim())
-  );
+  if (!policy ||
+      policy.contract !== 'freepass-estimate-write-access/v1' ||
+      policy.serverVerifiedFirebaseIdTokenRequired !== true ||
+      !Array.isArray(policy.requiredRoles) ||
+      !Array.isArray(policy.allowedUids)) {
+    return false;
+  }
+
+  const rolesValid = policy.requiredRoles.every((role) => typeof role === 'string' && role.trim());
+  const uidsValid = policy.allowedUids.every((uid) => typeof uid === 'string' && uid.trim());
+  const hasSelector = policy.requiredRoles.length > 0 || policy.allowedUids.length > 0;
+  const anonymousSafe = policy.anonymousWritesAllowed !== true || policy.allowedUids.length > 0;
+
+  return rolesValid && uidsValid && hasSelector && anonymousSafe;
 }
 
 /**
