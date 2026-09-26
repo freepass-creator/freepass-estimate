@@ -64,14 +64,7 @@ jobs:
         working-directory: apps/new
     steps:
       - uses: actions/checkout@v4
-      - name: Checkout pinned historical UI reference
-        uses: actions/checkout@v4
-        with:
-          repository: freepass-creator/welrixtable
-          ref: 707a57f8f97aed28eaab7f1fa7e42cd0bff9ee2d
-          path: .ui-reference
-          persist-credentials: false
-      - name: UI structure guard
+      - name: FreePass Estimate UI structure guard
         working-directory: apps/new
         run: node scripts/check-ui-parity.mjs
       - name: Action placement standard
