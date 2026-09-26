@@ -344,148 +344,89 @@
   .step-dd:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-50); }
   .step-dd:disabled { color: var(--ink-4); cursor: not-allowed; background-color: var(--bg-muted); border-color: transparent; }
   @media (min-width: 1025px) {
-    /* 좌:차량 / 중:견적 / 우:계약+채팅 — 미니멀 톤 (canvas만) */
-    body { background: var(--bg); }
-    .quote-panel { background: transparent !important; padding: 8px 24px 24px !important; }
-
-    /* breadcrumb — 차량 선택 후만 의미. 비어 보이면 숨김 (JS 가 조정) */
-    .breadcrumb {
-      background: #fff !important; border: 1px solid var(--line) !important;
-      border-radius: 8px !important; padding: 5px 12px !important; margin-bottom: 6px !important;
-      font-size: 10.5px !important; min-height: 0 !important;
-    }
+    /* Desktop Estimate structure only.
+       Visual authority lives in #freepass-control-grammar (Admin PR #92). */
     .breadcrumb:empty { display: none !important; }
-    .crumb { padding: 2px 8px !important; }
-    /* 옵션 카드 — 트림 미선택 시 안내 */
+
     #sec-options:has(#options:empty) .step-title::after {
-      content: ' (트림 선택 후 표시)'; color: #ccc; font-weight: 400; font-size: 9px;
+      content: ' (트림 선택 후 표시)';
+      font-size: var(--fp-fs-support);
+      font-weight: 400;
+      color: var(--fp-text-3);
     }
-    /* 색상 카드 — 모델 미선택 시 안내 */
     #sec-color:has(#colors:empty) .step-title::after {
-      content: ' (모델 선택 후 표시)'; color: #ccc; font-weight: 400; font-size: 9px;
+      content: ' (모델 선택 후 표시)';
+      font-size: var(--fp-fs-support);
+      font-weight: 400;
+      color: var(--fp-text-3);
     }
 
-    /* 좌측 통합 패널 — 카드 chrome 제거, 세로 hairline만 (우측 컬럼과 구분) */
     .wrap {
-      background: transparent !important;
-      border: none !important;
-      border-right: 1px solid var(--line) !important;
-      border-radius: 0 !important;
-      padding: 8px 20px 20px !important;
-      margin: 0 !important;
       overflow-y: auto;
       height: 100% !important;
     }
-    /* 모든 섹션 동일 여백 — 라인 없음, 위아래 12px 여백만 */
-    section {
-      background: transparent !important;
-      border: none !important;
-      border-radius: 0 !important;
-      padding: 12px 0 !important;
-      margin-bottom: 0 !important;
-      transition: opacity .25s;
-    }
-    /* 첫 번째/마지막 섹션은 위/아래 여백 절반 — 패널 끝과의 간격 */
-    .wrap > section:first-of-type { padding-top: 8px !important; }
-    .wrap > section:last-of-type { padding-bottom: 8px !important; }
-    /* 미해제 cascade 섹션 — 흐리게 (제조사 → 모델 → 세부모델 → 트림 진행 표시) */
-    section.hidden { display: block !important; opacity: 0.48; pointer-events: none; }
-    /* 다음에 입력해야 할 섹션 — 브랜드 컬러 강조 */
-    section.is-current .step-title {
-      color: var(--brand);
-      font-weight: 600;
-    }
-    .step-title {
-      font-size: 11.5px; margin-bottom: 6px;
-      letter-spacing: 0; color: var(--ink-3); font-weight: 500;
-      text-transform: none;
+    .wrap > section:first-of-type { padding-top: var(--fp-sp-2) !important; }
+    .wrap > section:last-of-type { padding-bottom: var(--fp-sp-2) !important; }
+
+    section.hidden {
+      display: block !important;
+      pointer-events: none;
     }
     .group-title { display: none; }
 
-    /* 입력/드롭다운은 FreePass 공통 control 규격 */
-    .step-dd { display: block; height: 44px; font-size: 14px; padding: 0 32px 0 12px; }
-
-    /* 모든 섹션 padding 12px 0 으로 통일 (위 section 규칙으로 일괄) */
-    .colors { gap: 5px !important; }
-    .color { padding: 4px 8px !important; font-size: 11px !important; }
-    /* 색상 카드 swatch 그리드 숨김 (dropdown 만 사용) */
+    .step-dd { display: block; }
     #sec-color #colors { display: none !important; }
-    .color-wrap .step-dd { padding-left: 30px !important; }
-    .color-wrap:has(.step-dd:disabled) .color-swatch-mini { opacity: 0.3; }
-    /* accordion summary (좌측 STEP 9 용품) */
+    .color-wrap:has(.step-dd:disabled) .color-swatch-mini { opacity: .3; }
+
     .step-title-summary {
-      list-style: none; cursor: pointer; user-select: none;
-      display: flex; align-items: center; gap: 6px;
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: var(--fp-sp-2);
     }
     .step-title-summary::-webkit-details-marker { display: none; }
     .step-title-summary .caret {
       margin-left: auto;
-      width: 11px; height: 11px;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23a3a3a3' stroke-width='1.5' stroke-linecap='round'><polyline points='3 5 6 8 9 5'/></svg>");
-      background-repeat: no-repeat; background-position: center; background-size: 11px 11px;
-      transition: transform .15s;
+      width: 12px;
+      height: 12px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%2398A2B3' stroke-width='1.5' stroke-linecap='round'><polyline points='3 5 6 8 9 5'/></svg>");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 12px 12px;
+      transition: transform var(--fp-motion-state) var(--fp-motion-ease);
     }
     details[open] > .step-title-summary .caret { transform: rotate(180deg); }
-    .step-title-text { font-size: 11.5px; letter-spacing: 0; color: var(--ink-3); font-weight: 500; }
-    .step-title-text b { color: var(--brand); font-weight: 500; }
 
-    /* 하단바 숨김 */
     .total-bar { display: none !important; }
+    .quote-panel .customer-output { margin-bottom: var(--fp-sp-2); }
 
-    /* 우측 패널 카드 — customer-output만 살아있음 */
-    .quote-panel .customer-output { margin-bottom: 8px; }
-
-    /* 차량 미선택 상태를 큰 빈 공간으로 두지 않고 다음 행동을 짧게 안내한다. */
     .qp-empty-guide { display: none; }
     .quote-panel:has(.qp-vehicle.empty) .qp-empty-guide {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 14px 16px; margin: 10px 0 16px;
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-    }
-    .qp-empty-guide__copy { min-width: 0; }
-    .qp-empty-guide__title {
-      font-size: 13px; font-weight: 600; color: var(--ink-1);
-      margin-bottom: 3px;
-    }
-    .qp-empty-guide__sub {
-      font-size: 11.5px; color: var(--ink-3); line-height: 1.45;
-    }
-    .qp-empty-guide__flow {
-      flex-shrink: 0;
-      font-size: 10.5px; font-weight: 500; color: var(--brand);
-      padding: 5px 8px;
-      background: var(--brand-50);
-      border-radius: var(--radius-pill);
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--fp-sp-4);
     }
 
-    /* 5기간 카드 — 폭에 맞춰 auto-fit */
     .terms-grid {
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
-      gap: 6px !important; margin-bottom: 8px !important;
     }
-    .term-card { padding: 10px 10px 8px !important; }
-    .term-card__monthly { font-size: 18px !important; }
-    .term-card__row { font-size: 10.5px !important; }
 
-    /* ===== 필드 row — 라벨 좌측 / 인풋 우측 가로 레이아웃 (단일 인풋 섹션만) ===== */
     #sec-manufacturer, #sec-model, #sec-variant, #sec-trim,
     #sec-color, #sec-delivery, #sec-tint {
       display: grid !important;
-      grid-template-columns: 96px 1fr;
+      grid-template-columns: 96px minmax(0, 1fr);
       align-items: center;
-      column-gap: 12px;
-      row-gap: 4px;
-      padding: 12px 0 !important;  /* 다른 섹션과 동일 여백 */
+      column-gap: var(--fp-sp-3);
+      row-gap: var(--fp-sp-1);
     }
     #sec-manufacturer > .step-title, #sec-model > .step-title,
     #sec-variant > .step-title, #sec-trim > .step-title,
     #sec-color > .step-title, #sec-delivery > .step-title,
     #sec-tint > .step-title {
       grid-column: 1;
-      margin-bottom: 0 !important;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
