@@ -159,3 +159,33 @@ html .m-shell :is(
 html .m-shell :is(.m-btn, .sv-brand-card, .sv-row, .sv-trim-card, .sv-color-card, .sv-opt, .sc-chip, .se-chip, .se-card):disabled {
   box-shadow: none;
 }
+
+
+/* Admin PR #92 line-free mobile field grammar.
+ * Inputs remain clearly editable through neutral surface + elevation + focus halo.
+ */
+html .m-shell :is(.sv-pc__in, .sc-pct, .se-discount) {
+  border-color: transparent !important;
+  background: var(--fp-surface-soft) !important;
+  box-shadow: var(--fp-elevation-base);
+}
+
+html .m-shell :is(.se-select, .sq-pct-input) {
+  border-color: transparent !important;
+  background-color: var(--fp-surface-soft) !important;
+  box-shadow: var(--fp-elevation-base);
+}
+
+html .m-shell :is(.sv-pc__in, .sc-pct, .se-discount):focus-within,
+html .m-shell :is(.se-select, .sq-pct-input):focus-visible {
+  outline: none !important;
+  border-color: transparent !important;
+  background-color: var(--fp-surface) !important;
+  box-shadow: var(--fp-focus-halo), var(--fp-elevation-hover) !important;
+}
+
+html .m-shell :is(.se-select, .sq-pct-input):disabled {
+  background-color: var(--fp-neutral) !important;
+  box-shadow: none !important;
+  color: var(--fp-text-3) !important;
+}
