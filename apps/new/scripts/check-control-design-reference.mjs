@@ -57,6 +57,16 @@ assert.match(mobileHtml, /window\.innerWidth > 1024/,
   'mobile entry must hand >1024px viewports to the desktop shell');
 assert.match(desktop, /<style id="freepass-control-grammar">[\s\S]*grid-template-rows:\s*var\(--fp-topbar\)[\s\S]*column-gap:\s*12px;/,
   'desktop workspace must project the PR92 shell density');
+const quoteRuntimeStart = desktop.indexOf('<!-- ===== wel 견적 계산');
+const quoteDocumentStart = desktop.indexOf('/* 실제 견적서 영역 */', quoteRuntimeStart);
+assert.ok(quoteRuntimeStart >= 0 && quoteDocumentStart > quoteRuntimeStart,
+  'runtime quote style boundary markers must remain discoverable');
+const quoteRuntimeCss = desktop.slice(quoteRuntimeStart, quoteDocumentStart);
+assert.doesNotMatch(
+  quoteRuntimeCss,
+  /font-size:\s*(?:10|10\.5|11|11\.5|12\.5|13|13\.5|15|17|22|30)px\s*;/,
+  'runtime Estimate UI must use the canonical PR92 typography scale; exported quote document is exempt'
+);
 assert.match(desktop, /\.cdd \.cdd__btn\s*\{[\s\S]*height:\s*var\(--fp-control\)[\s\S]*border-color:\s*transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\)/,
   'desktop dropdowns must use the 36px line-free control grammar');
 assert.match(desktop, /\.wrap \.step-dd\s*\{[\s\S]*height:\s*var\(--fp-control\) !important;[\s\S]*border:\s*1px solid transparent !important;[\s\S]*font-size:\s*var\(--fp-fs-body\) !important;/,
