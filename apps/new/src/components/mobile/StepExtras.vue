@@ -1,7 +1,8 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 담당자인가 } from '../../lib/role.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { 썬팅들, 블박들, 탁송, 탁송권역, 탁송표시, 썬팅값, 블박값 } from '../../lib/welrix-rates.js';
 import { DELIVERY_REGIONS, ACCESSORIES, TINT_AREAS, TINT_PRICES } from '../../data/lookups.js';
 import { fmt } from '../../lib/format.js';
@@ -25,7 +26,7 @@ const EXTRA = [
   { value: '3명', label: '3명' },
 ];
 
-const 담당자 = 담당자인가();   // 손님이면 탁송 권역을 안 묻는다 (기본 서울)
+const 담당자 = rolePolicy(역할()).canEditDeliveryRegion;   // 손님이면 탁송 권역을 안 묻는다 (기본 서울)
 
 // 탁송 지역/도시 — native select
 /* ★웰릭스 10권역 — 우리 시군 표(200여 개)는 안 쓴다.
