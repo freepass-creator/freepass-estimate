@@ -180,6 +180,26 @@ try {
     });
     await capture(page, `mobile-${width}-03-conditions`);
 
+    let stickyExpanded = null;
+    if (await page.locator('.sq-summary').count()) {
+      await page.locator('.sq-summary').click();
+      await page.waitForSelector('.sq-detail');
+      stickyExpanded = await page.evaluate(() => {
+        const detail = document.querySelector('.sq-detail');
+        const cell = document.querySelector('.sq-table tbody td');
+        const head = document.querySelector('.sq-table thead th');
+        const style = (el) => el ? getComputedStyle(el) : null;
+        return {
+          detailBorderTop: style(detail)?.borderTopWidth || null,
+          cellBorderBottom: style(cell)?.borderBottomWidth || null,
+          headBorderBottom: style(head)?.borderBottomWidth || null,
+          headFontSize: style(head)?.fontSize || null,
+        };
+      });
+      await capture(page, `mobile-${width}-03b-livequote-expanded`);
+      await page.locator('.sq-summary').click();
+    }
+
     await page.locator('.m-footer .m-btn--primary:visible').click();
     await page.waitForSelector('.se-title');
     const extras = await metrics(page, `mobile-${width}-extras`);
@@ -214,6 +234,7 @@ try {
       selectedCondition,
       selectedExtra,
       stickyA11y,
+      stickyExpanded,
       consoleErrors: consoleErrors.filter((x) => !x.includes('Failed to load resource')),
     });
 
@@ -338,6 +359,16 @@ try {
     if (entry.stickyA11y.check) {
       ok(entry.stickyA11y.check.width >= 44 && entry.stickyA11y.check.height >= 44,
         `mobile-${entry.width}: term send toggle <44px`);
+    }
+    if (entry.stickyExpanded) {
+      ok(entry.stickyExpanded.detailBorderTop === '0px',
+        `mobile-${entry.width}: expanded quote detail divider reappeared`);
+      ok(entry.stickyExpanded.cellBorderBottom === '0px',
+        `mobile-${entry.width}: expanded quote row lines reappeared`);
+      ok(entry.stickyExpanded.headBorderBottom === '0px',
+        `mobile-${entry.width}: expanded quote header line reappeared`);
+      ok(entry.stickyExpanded.headFontSize === '12px',
+        `mobile-${entry.width}: expanded quote header support scale drift ${entry.stickyExpanded.headFontSize}`);
     }
   }
 
