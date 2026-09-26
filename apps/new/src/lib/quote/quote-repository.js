@@ -1,4 +1,4 @@
-import { QUOTE_CONTRACT_V2, quoteIdempotencyKey } from './quote-v2.js';
+import { QUOTE_CONTRACT_V2, quoteIdempotencyKey, verifyIssuedQuoteIntegrity } from './quote-v2.js';
 
 export const QUOTE_REPOSITORY_CONTRACT = 'freepass-quote-repository/v1';
 export const QUOTE_WRITE_RECEIPT_CONTRACT = 'freepass-quote-write-receipt/v1';
@@ -42,7 +42,7 @@ export function assertQuoteReader(repository) {
 
 export async function persistIssuedQuote(repository, quote) {
   const repo = assertQuoteRepository(repository);
-  const issued = assertIssuedQuote(quote);
+  const issued = await verifyIssuedQuoteIntegrity(assertIssuedQuote(quote));
   const idempotencyKey = quoteIdempotencyKey(issued);
   const receipt = await repo.put({ quote: issued, idempotencyKey });
 
@@ -94,7 +94,7 @@ export async function readIssuedQuote(repository, {
   }
   if (receipt.status === 'NOT_FOUND') return null;
 
-  const quote = assertIssuedQuote(receipt.quote);
+  const quote = await verifyIssuedQuoteIntegrity(assertIssuedQuote(receipt.quote));
   if (quote.quoteId !== id ||
       receipt.snapshotHash !== quote.snapshotHash ||
       Number(receipt.quoteVersion) !== quote.quoteVersion) {

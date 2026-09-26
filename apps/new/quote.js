@@ -1,5 +1,4 @@
 // wel2 견적 모듈 — wel 의 데이터/로직 활용 + estimator_4 톤
-import { setCompanyConfig } from './src/lib/calc.js';
 import { 요청만들기 } from './src/lib/quote/build-request.js';
 import { applyProductTheme } from './src/lib/brand-theme.js';
 import { 견적계산 } from './src/lib/quote/calculate.js';
@@ -58,7 +57,6 @@ async function loadCompanyConfig() {
     const r = await fetch(`./data/company-config/${id}.json?t=${Date.now()}`, { cache: 'no-store' });
     if (r.ok) {
       const cfg = await r.json();
-      setCompanyConfig(cfg);
       window.__welrix_companyConfig = cfg;
       applyProductTheme(cfg);
       applyExcelVersion(cfg);
@@ -241,13 +239,10 @@ async function recomputeProvider(내순번) {
   if (!요청) { renderEmpty(); return; }
 
   const v = state.vehicle;
-  const tintPrice = TINT_PRICES[state.tint.product] || {};
-  const tintFee = [...state.tint.areas].reduce((sum, k) => sum + (tintPrice[k] || 0), 0);
-  const deliveryFee = FLAT_DELIVERY[state.cond.deliveryCity] || 0;
-  const blackboxFee = ACCESSORIES.blackbox[state.extras.blackbox] || 0;
-  const naviFee = ACCESSORIES.navi[state.extras.navi] || 0;
-  const hipassFee = ACCESSORIES.hipass[state.extras.hipass] || 0;
-  const itemsFee = tintFee + blackboxFee + naviFee + hipassFee;
+  const conditionCosts = 요청.조건?.비용;
+  const tintFee = conditionCosts?.tintFee ?? 0;
+  const deliveryFee = conditionCosts?.deliveryFee ?? 0;
+  const accessoryFee = conditionCosts?.accessoryFee ?? 0;
   const totalKrw = v.total_manwon * 10000 + state.cond.colorIntPrice;
 
   const refDep = +state.cond.dep || 0;
@@ -270,7 +265,8 @@ async function recomputeProvider(내순번) {
     state.quoteProvider = 답.공급자;
     state.quoteEngine = 답.계산기;
     state.quotePricingEngine = 답.pricingEngine || null;
-    renderQuoteDoc(monthly, totalKrw, tintFee, deliveryFee, itemsFee - tintFee);
+    state.quoteConditionCosts = conditionCosts;
+    renderQuoteDoc(monthly, totalKrw, tintFee, deliveryFee, accessoryFee);
   } catch (e) {
     if (내순번 !== __quoteSeq) return;
     console.error('[quote-provider]', e);
@@ -279,6 +275,7 @@ async function recomputeProvider(내순번) {
     state.quoteProvider = null;
     state.quoteEngine = null;
     state.quotePricingEngine = null;
+    state.quoteConditionCosts = null;
     const doc = $('quote-doc');
     if (doc) doc.innerHTML = '<div class="quote-doc__empty">지금은 견적을 계산할 수 없습니다.<br><small>' +
       String(e?.message || e) + '</small></div>';
@@ -292,13 +289,11 @@ window.__welrix_recompute = recompute;
 function snapshotCurrentVehicle() {
   if (!state.vehicle || !state.vehicle.total_manwon || !state.monthly?.length) return null;
   const v = state.vehicle;
-  const tintPrice = TINT_PRICES[state.tint.product] || {};
-  const tintFee = [...state.tint.areas].reduce((s, k) => s + (tintPrice[k] || 0), 0);
-  const deliveryFee = FLAT_DELIVERY[state.cond.deliveryCity] || 0;
-  const blackboxFee = ACCESSORIES.blackbox[state.extras.blackbox] || 0;
-  const naviFee = ACCESSORIES.navi[state.extras.navi] || 0;
-  const hipassFee = ACCESSORIES.hipass[state.extras.hipass] || 0;
-  const accessoryFee = blackboxFee + naviFee + hipassFee;
+  const conditionCosts = state.quoteConditionCosts;
+  if (!conditionCosts) return null;
+  const tintFee = conditionCosts.tintFee;
+  const deliveryFee = conditionCosts.deliveryFee;
+  const accessoryFee = conditionCosts.accessoryFee;
   const totalKrw = v.total_manwon * 10000 + (state.cond.colorIntPrice || 0);
   return {
     brand: v.brand, model: v.model, variant: v.variant, trim_name: v.trim_name,
@@ -315,6 +310,7 @@ function snapshotCurrentVehicle() {
       extras: { ...state.extras },
       deliveryFee, deliveryCity: state.cond.deliveryCity,
       tintFee, accessoryFee,
+      conditionCosts: { ...conditionCosts, basis: { ...(conditionCosts.basis || {}) } },
     },
   };
 }

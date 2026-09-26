@@ -2,12 +2,13 @@
 // 프리패스 표준 가격표 — 제조사별 전 차종 × 12/24/36/48/60 월 대여료
 // 표준 조건: 중신용 / 보증금 10% / 선납 0% / 2만km / 자동차보험 1억 기본
 // 선택된 행만 PDF (브라우저 인쇄→PDF 저장) 로 출력
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { quoteState } from '../store.js';
-import { calcQuote } from '../lib/calc.js';
 import { fmt, fmtTel } from '../lib/format.js';
 import { buildStandardPriceHtml, STANDARD_PRICE_CSS } from '../lib/build-standard-price-html.js';
 import { QUOTE_TERMS } from '../lib/quote/terms.js';
+import { buildCatalogPreviewRequest, resolveCatalogPreviewContext } from '../lib/quote/preview-request.js';
+import { calculateStandardPreviewBatch } from '../lib/quote/preview-calculate.js';
 
 const BRANDS = ['현대', '기아', '제네시스'];
 const STANDARD_TERMS = QUOTE_TERMS;
@@ -75,37 +76,122 @@ const filteredRows = computed(() => {
     .filter(v => !selectedModel.value || v.model === selectedModel.value);
 });
 
-// 표준 견적 계산 — FreePass 표준 다섯 기간 각각 calcQuote
-// monthlies: 화면 표시용 숫자 배열, quoteTerms: 견적서 빌더용 상세(월대여료/만기인수/잔가율)
-function calcForRow(v) {
-  const quoteTerms = STANDARD_TERMS.map((term, idx) => {
-    try {
-      const r = calcQuote({
-        vehicle: v,
-        options: { optPrice: 0, discount: 0, deliveryFee: 0, itemsFee: 0, etc: 0 },
-        contract: { term, km: STD.km, dep: STD.dep, pre: STD.pre },
-        customer: { creditGrade: STD.credit },
-        insurance: {
-          property: STD.insProperty, extraDriver: STD.extraDriver,
-          exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
-          deductible: '30만원~', emergency: '가입',
-        },
-        fees: { feeRatePct: STD.feeRatePct, svc: STD.svc },
-      });
-      return { idx, term, dep: STD.dep, pre: STD.pre, monthly: r.monthly, residualAmt: r.residualAmt, residualPct: r.residualPct };
-    } catch {
-      return { idx, term, dep: STD.dep, pre: STD.pre, monthly: null, residualAmt: 0, residualPct: 0 };
-    }
+// 표준 가격표도 화면별 계산식을 갖지 않는다.
+// legacy vehicles.json 행은 선택용으로만 쓰고 stable product identity를 해석한 뒤
+// FreePass Data authoritative 가격 + FreePass Standard Quote Core로 배치 계산한다.
+const quoteRows = ref(new Map());
+let quoteBatchSequence = 0;
+
+function emptyQuoteTerms() {
+  return STANDARD_TERMS.map((term, idx) => ({
+    idx, term, dep: STD.dep, pre: STD.pre,
+    monthly: null, residualAmt: 0, residualPct: 0,
+  }));
+}
+
+function mappedQuoteTerms(item) {
+  if (!item?.ok || !Array.isArray(item.결과)) return emptyQuoteTerms();
+  return STANDARD_TERMS.map((term, idx) => {
+    const row = item.결과[idx];
+    return {
+      idx,
+      term,
+      dep: STD.dep,
+      pre: STD.pre,
+      monthly: row?.월대여료 ?? null,
+      residualAmt: row?.인수가 ?? 0,
+      residualPct: row?._잔가율 ?? 0,
+    };
   });
-  return { monthlies: quoteTerms.map(t => t.monthly), quoteTerms };
+}
+
+async function refreshVisibleQuotes() {
+  const sequence = ++quoteBatchSequence;
+  if (!open.value || !vehicles.value.length || !globalThis.window?.VEHICLE_DB) return;
+
+  const pendingRows = filteredRows.value.filter((row) => !quoteRows.value.has(row.idx));
+  if (!pendingRows.length) return;
+
+  const requestSlots = [];
+  const next = new Map(quoteRows.value);
+
+  for (const row of pendingRows) {
+    try {
+      const context = resolveCatalogPreviewContext(row, window.VEHICLE_DB);
+      const request = buildCatalogPreviewRequest({
+        ...context,
+        selectedOptionIds: [],
+        scenarios: STANDARD_TERMS.map((term) => ({
+          term,
+          depositPct: STD.dep,
+          prepaymentPct: STD.pre,
+        })),
+        conditions: {
+          credit: STD.credit,
+          mileage: STD.km,
+          maintenance: STD.svc,
+          liability: STD.insProperty,
+          extraDriver: STD.extraDriver,
+          feeRatePct: STD.feeRatePct,
+          deliveryFee: 0,
+          tintFee: 0,
+          dashcamFee: 0,
+        },
+      });
+      requestSlots.push({ row, request });
+    } catch (error) {
+      next.set(row.idx, {
+        monthlies: emptyQuoteTerms().map((item) => item.monthly),
+        quoteTerms: emptyQuoteTerms(),
+        errorCode: error?.code || 'QUOTE_PREVIEW_IDENTITY_UNRESOLVED',
+      });
+    }
+  }
+
+  if (requestSlots.length) {
+    try {
+      const answers = await calculateStandardPreviewBatch(requestSlots.map((slot) => slot.request));
+      if (sequence !== quoteBatchSequence) return;
+      answers.forEach((answer, index) => {
+        const terms = mappedQuoteTerms(answer);
+        next.set(requestSlots[index].row.idx, {
+          monthlies: terms.map((item) => item.monthly),
+          quoteTerms: terms,
+          errorCode: answer?.ok ? '' : (answer?.code || 'STANDARD_QUOTE_INVALID'),
+        });
+      });
+    } catch (error) {
+      if (sequence !== quoteBatchSequence) return;
+      for (const slot of requestSlots) {
+        const terms = emptyQuoteTerms();
+        next.set(slot.row.idx, {
+          monthlies: terms.map((item) => item.monthly),
+          quoteTerms: terms,
+          errorCode: error?.code || 'STANDARD_QUOTE_BATCH_INVALID',
+        });
+      }
+    }
+  }
+
+  if (sequence === quoteBatchSequence) quoteRows.value = next;
 }
 
 const computedRows = computed(() => {
-  return filteredRows.value.map(v => {
-    const { monthlies, quoteTerms } = calcForRow(v);
-    return { ...v, monthlies, quoteTerms };
+  return filteredRows.value.map((v) => {
+    const cached = quoteRows.value.get(v.idx);
+    const quoteTerms = cached?.quoteTerms || emptyQuoteTerms();
+    return {
+      ...v,
+      monthlies: cached?.monthlies || quoteTerms.map((item) => item.monthly),
+      quoteTerms,
+    };
   });
 });
+
+watch(
+  [open, selectedBrand, selectedModel, () => vehicles.value.length],
+  () => { refreshVisibleQuotes(); }
+);
 
 // === 체크박스 다중 선택 — vehicles.json 의 idx 를 키로 사용(필터 무관 유지) ===
 const selectedIdx = ref(new Set());
@@ -132,18 +218,18 @@ function toggleSelectAll() {
 }
 function clearSelection() { selectedIdx.value = new Set(); }
 
-// 선택된 트림 → 가격표 행 배열 (필터와 무관하게 전체에서 수집, vehicles.json 순서 유지)
+// 선택된 트림 → 이미 canonical Quote Core로 계산된 가격표 행을 사용한다.
 function buildSelectedRows() {
   const out = [];
   vehicles.value.forEach((v, idx) => {
     if (!selectedIdx.value.has(idx)) return;
-    const { monthlies } = calcForRow(v);
+    const cached = quoteRows.value.get(idx);
     out.push({
       brand: v.brand,
       model: v.model,
       trim: v.trim,
       price: v.price,
-      monthlies,   // [m36, m48, m60]
+      monthlies: cached?.monthlies || STANDARD_TERMS.map(() => null),
     });
   });
   return out;

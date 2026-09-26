@@ -2,10 +2,9 @@
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
 import { 담당자인가 } from '../../lib/role.js';
-import { 썬팅들, 블박들, 탁송, 탁송권역, 탁송표시, 썬팅값, 블박값 } from '../../lib/welrix-rates.js';
-import { DELIVERY_REGIONS, ACCESSORIES, TINT_AREAS, TINT_PRICES } from '../../data/lookups.js';
+import { 썬팅들, 블박들, 탁송권역 } from '../../lib/welrix-rates.js';
 import { fmt } from '../../lib/format.js';
-import * as Fees from '../../lib/compute-fees.js';
+import { resolveDeliveryCost, resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
 
 // 짧은 옵션은 chip 유지
 const SVC = [
@@ -27,46 +26,22 @@ const EXTRA = [
 
 const 담당자 = 담당자인가();   // 손님이면 탁송 권역을 안 묻는다 (기본 서울)
 
-// 탁송 지역/도시 — native select
-/* ★웰릭스 10권역 — 우리 시군 표(200여 개)는 안 쓴다.
-   표가 다르면 «같은 조건»이 안 되고, 그러면 값이 0 으로 안 맞는다. */
+// 탁송 UI는 기존 10권역을 유지하되 금액은 canonical resolver가 결정한다.
 const regions = 탁송권역;
-const deliveryFee = computed(() => 탁송[quoteState.cond.deliveryRegion] || 0);
+const currentCosts = computed(() => resolveQuoteConditionCosts(quoteState));
+const deliveryFee = computed(() => currentCosts.value.deliveryFee);
+const tintFee = computed(() => currentCosts.value.tintFee);
+const dashcamFee = computed(() => currentCosts.value.dashcamFee);
+function deliveryLabel(region) {
+  const { amount } = resolveDeliveryCost({ deliveryRegion: region, deliveryCity: region });
+  return amount ? `${fmt(amount)}원` : '별도협의';
+}
 function onRegionChange(e) {
   const r = e.target.value;
   quoteState.cond.deliveryRegion = r;
   quoteState.cond.deliveryCity = r;      // 권역 하나로 쓴다
 }
 
-// 선팅 제품 — native select
-const tintProducts = Object.keys(TINT_PRICES);
-const TINT_EXCLUSIVE = {
-  side_rear_no_coupon: 'side_rear_with_coupon',
-  side_rear_with_coupon: 'side_rear_no_coupon',
-  sunroof_normal: 'sunroof_pano',
-  sunroof_pano: 'sunroof_normal',
-};
-function toggleTintArea(key) {
-  if (!quoteState.tint.areas) quoteState.tint.areas = new Set();
-  const set = quoteState.tint.areas;
-  if (set.has(key)) {
-    set.delete(key);
-  } else {
-    set.add(key);
-    const ex = TINT_EXCLUSIVE[key];
-    if (ex && set.has(ex)) set.delete(ex);
-  }
-}
-const tintFee = computed(() => 썬팅값(quoteState.tint?.product));
-
-// 용품 — native select 옵션 빌드
-function buildOpts(map) {
-  return [{ value: '', label: '없음 — 무료' }]
-    .concat(Object.entries(map).map(([k, v]) => ({ value: k, label: `${k} (+${fmt(v)}원)` })));
-}
-const blackboxOpts = buildOpts(ACCESSORIES.blackbox);
-const naviOpts = buildOpts(ACCESSORIES.navi);
-const hipassOpts = buildOpts(ACCESSORIES.hipass);
 </script>
 
 <template>
@@ -123,7 +98,7 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
         <span v-if="deliveryFee" class="se-label__val">+{{ fmt(deliveryFee) }}원</span>
       </div>
       <select class="se-select" :value="quoteState.cond.deliveryRegion" @change="onRegionChange">
-        <option v-for="r in regions" :key="r" :value="r">{{ r }} · {{ 탁송표시(r) }}</option>
+        <option v-for="r in regions" :key="r" :value="r">{{ r }} · {{ deliveryLabel(r) }}</option>
       </select>
     </div>
 
@@ -146,8 +121,8 @@ const hipassOpts = buildOpts(ACCESSORIES.hipass);
     <div class="se-field">
       <div class="se-label">
         블랙박스
-        <span v-if="블박값(quoteState.extras.blackbox)" class="se-label__val">
-          +{{ fmt(블박값(quoteState.extras.blackbox)) }}원</span>
+        <span v-if="dashcamFee" class="se-label__val">
+          +{{ fmt(dashcamFee) }}원</span>
       </div>
       <div class="se-chips">
         <button

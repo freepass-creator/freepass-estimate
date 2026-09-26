@@ -4,7 +4,7 @@
 // ============================================================================
 import { quoteState, vehicleState } from '../../store.js';
 import * as Fees from '../compute-fees.js';
-import { 탁송, 썬팅값, 블박값 } from '../welrix-rates.js';
+import { resolveQuoteConditionCosts } from './condition-costs.js';
 import { 담당자인가 } from '../role.js';
 import { QUOTE_REQUEST_CONTRACT, LEGACY_QUOTE_VERSION } from './contracts.js';
 
@@ -36,6 +36,7 @@ export function 요청만들기() {
   const 내장색 = c.colorIntPrice || 0;
   const 할인 = 담당자인가() ? (c.discount || 0) * 10000 : 0;
   const 트림가 = (v.trim_price_manwon || 0) * 10000;
+  const 비용 = resolveQuoteConditionCosts(quoteState);
 
   // 차량가 기준은 상품마스터 한 기준으로 다시 조립한다.
   // 트림 + 일반옵션 + 외/내장색 - 할인. 구성축(AWD/인승)이 외부 provider 완성차에
@@ -104,9 +105,12 @@ export function 요청만들기() {
       정비: c.svc || '웰스 Basic',
       대물: c.insProperty || '1억',
       추가운전자: c.extraDriver || '없음',
-      탁송비: 탁송[c.deliveryCity] ?? 탁송['서울'],
-      썬팅비: 썬팅값(quoteState.tint?.product),
-      블박비: 블박값(quoteState.extras?.blackbox),
+      탁송비: 비용.deliveryFee,
+      썬팅비: 비용.tintFee,
+      블박비: 비용.dashcamFee,
+      내비비: 비용.naviFee,
+      하이패스비: 비용.hipassFee,
+      비용,
       수수료율: +c.feeRatePct || 0,
     },
     안들: (quoteState.scenarios || []).map((sc) => ({

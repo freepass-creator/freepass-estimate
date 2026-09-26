@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { resolveCanonicalIdentity } from '../src/lib/newcar/configuration-resolver.js';
 import { calculateStandardQuote } from '../api/_standard/standard-service.js';
+import { createQuoteConditionCosts } from '../src/lib/quote/condition-cost-contract.js';
 
 const ctx={window:{},console:{log(){},warn(){},error(){}}};
 vm.createContext(ctx);
@@ -16,6 +17,7 @@ function addMaker(name,key){byMaker[name]||={total:0,ok:0,fail:0};byMaker[name].
 for(const mf of db.manufacturers||[])for(const md of mf.models||[])for(const v of md.variants||[])for(const t of v.trims||[]){
   const canonical=resolveCanonicalIdentity(t,v.options_master||{},[]);
   const trimWon=Math.round(Number(t.base_price_5||0)*10000);
+  const costs=createQuoteConditionCosts({deliveryFee:250000});
   const req={
     버전:1,
     차:{
@@ -30,7 +32,7 @@ for(const mf of db.manufacturers||[])for(const md of mf.models||[])for(const v o
       },
       구성:{기본축:t._base_axes||{},canonical,선택옵션:[]},
     },
-    조건:{신용:'중신용',주행:'2만km',정비:'웰스 Basic',대물:'1억',추가운전자:'없음',탁송비:250000,썬팅비:0,블박비:0,수수료율:3},
+    조건:{신용:'중신용',주행:'2만km',정비:'웰스 Basic',대물:'1억',추가운전자:'없음',탁송비:costs.deliveryFee,썬팅비:0,블박비:0,내비비:0,하이패스비:0,비용:costs,수수료율:3},
     안들:[{기간:48,보증금:0,선납:0}],
   };
   try{
