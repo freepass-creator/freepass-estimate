@@ -48,8 +48,7 @@ function guardFreePassOwnedSurface(rel,src){
 
   if(rel==='mobile/StepVehicle.vue'){
     // Estimate owns this one-screen-one-choice vehicle journey. Guard its
-    // semantic stages and data-driven controls instead of forcing an obsolete
-    // Welrix template byte-for-byte.
+    // semantic stages and data-driven controls from the current Estimate contract.
     requireTokens(template,[
       'class="selection-anchor"',
       "subStep === 'brand'",
@@ -144,8 +143,7 @@ function guardFreePassOwnedSurface(rel,src){
   if(rel==='mobile/StickyQuote.vue'){
     // The live quote sheet is FreePass-owned: term count follows the shared
     // quote-term contract and its height follows the actual footer/safe area.
-    // Guard the user-facing controls and calculated outputs rather than the old
-    // fixed three-term Welrix markup.
+    // Guard the user-facing controls and calculated outputs from the current Estimate contract.
     requireTokens(template,[
       'class="sq-summary"',
       ':aria-expanded="expanded"',
