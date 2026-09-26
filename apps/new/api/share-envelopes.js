@@ -4,6 +4,7 @@ import {
   shareEnvelopeIdempotencyKey,
 } from '../src/lib/quote/share-envelope-repository.js';
 import { verifyShareEnvelopeIntegrity } from '../src/lib/quote/share-envelope.js';
+import { authorizeEstimateWriteRequest } from './_auth/estimate-write-access.js';
 
 const DEFAULT_COMMAND_PATH = '/v1/commands/freepass-estimate/share-envelopes';
 
@@ -132,7 +133,7 @@ function sendError(res, error) {
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  res.setHeader('Access-Control-Allow-Headers', 'content-type, idempotency-key');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type, idempotency-key, authorization');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
 
   if (req.method === 'OPTIONS') { res.status(204).end(); return; }
@@ -142,6 +143,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    await authorizeEstimateWriteRequest(req);
     const receipt = await forwardShareEnvelopeCommand({
       body: req.body,
       requestIdempotencyKey: req.headers?.['idempotency-key'],
