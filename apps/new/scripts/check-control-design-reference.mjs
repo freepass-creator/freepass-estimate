@@ -54,6 +54,14 @@ assert.match(desktop, /<style id="freepass-control-grammar">[\s\S]*grid-template
   'desktop workspace must project the PR92 shell density');
 assert.match(desktop, /\.cdd \.cdd__btn\s*\{[\s\S]*height:\s*var\(--fp-control\)[\s\S]*border-color:\s*transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\)/,
   'desktop dropdowns must use the 36px line-free control grammar');
+assert.match(desktop, /\.wrap \.step-dd\s*\{[\s\S]*height:\s*var\(--fp-control\) !important;[\s\S]*border:\s*1px solid transparent !important;[\s\S]*font-size:\s*var\(--fp-fs-body\) !important;/,
+  'vehicle configuration dropdowns must use PR92 desktop density');
+assert.match(desktop, /\.wrap :is\(\.step-title, \.step-title-text\)\s*\{[\s\S]*font-size:\s*var\(--fp-fs-support\) !important;[\s\S]*color:\s*var\(--fp-text-muted\) !important;/,
+  'vehicle configuration labels must use the PR92 support scale');
+assert.match(desktop, /\.wrap \.option-row \.o-name\s*\{[\s\S]*font-size:\s*var\(--fp-fs-body\) !important;/,
+  'vehicle option identities must use the PR92 body scale');
+assert.match(desktop, /\.wrap \.footnote\s*\{[\s\S]*border-top:\s*0 !important;[\s\S]*font-size:\s*var\(--fp-fs-support\) !important;/,
+  'vehicle panel footnotes must use spacing instead of dividers');
 assert.match(desktop, /\.bottom-action\s*\{[\s\S]*height:\s*var\(--fp-control\)[\s\S]*border:\s*1px solid transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\)/,
   'desktop actions must use Admin PR92 line-free controls');
 assert.match(desktop, /section\.is-current \.step-dd,[\s\S]*border-bottom-color:\s*transparent !important;[\s\S]*animation:\s*none !important;/,
