@@ -7,6 +7,11 @@ import * as Fees from '../compute-fees.js';
 import { 탁송, 썬팅값, 블박값 } from '../welrix-rates.js';
 import { 담당자인가 } from '../role.js';
 import { QUOTE_REQUEST_CONTRACT, LEGACY_QUOTE_VERSION } from './contracts.js';
+import {
+  VEHICLE_KIND,
+  normalizeVehicleKind,
+  validateVehicleKindSelection,
+} from '../feature/vehicle-kind.js';
 
 function 색추가금() {
   const v = quoteState.vehicle || {};
@@ -28,6 +33,21 @@ export function 요청만들기() {
   const c = quoteState.cond || {};
   const v = quoteState.vehicle || {};
   const src = v._src || {};
+  const 종류 = normalizeVehicleKind(vehicleState.kind);
+
+  if (종류 === VEHICLE_KIND.USED) {
+    const selection = validateVehicleKindSelection({
+      kind: 종류,
+      vehicleAssetId: vehicleState.vehicleAssetId,
+      quoteMode: vehicleState.quoteMode,
+    });
+    if (!selection.valid) return null;
+
+    const error = new Error('중고차 견적 파이프라인이 아직 연결되지 않았습니다');
+    error.code = 'USEDCAR_QUOTE_PIPELINE_NOT_CONNECTED';
+    throw error;
+  }
+
   const 키 = vehicleState.trim;
   if (!키) return null;
 
@@ -52,7 +72,7 @@ export function 요청만들기() {
     계약: QUOTE_REQUEST_CONTRACT,
     버전: LEGACY_QUOTE_VERSION,
     차: {
-      종류: '신차',
+      종류,
       키,                              // FreePass product id. 외부 adapter가 자기 key로 번역한다.
       상품키: v._product_id || 키,
       브랜드: v.brand || src.brand || '',
