@@ -11,6 +11,13 @@ import {
   SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
 } from '../src/lib/quote/share-envelope-repository.js';
 
+const secureWriteAccessPolicy={
+  contract:'freepass-estimate-write-access/v1',
+  serverVerifiedFirebaseIdTokenRequired:true,
+  anonymousWritesAllowed:false,
+  requiredRoles:['staff'],
+};
+
 const blockedPolicy={
   contract:'freepass-legacy-quote-write-policy/v1',
   mode:'CANONICAL_ONLY',
@@ -109,6 +116,7 @@ const ready=await runCutoverProbe({
   envelopeExpiresAt:'2026-10-03T06:01:02.000Z',
   canonicalViewerReady:true,
   legacyWritePolicy:blockedPolicy,
+  writeAccessPolicy:secureWriteAccessPolicy,
 });
 
 assert.equal(ready.contract,'freepass-estimate-cutover-probe/v1');
@@ -134,6 +142,7 @@ const hold=await runCutoverProbe({
   envelopeExpiresAt:'2026-10-03T06:02:02.000Z',
   canonicalViewerReady:false,
   legacyWritePolicy:allowedPolicy,
+  writeAccessPolicy:secureWriteAccessPolicy,
 });
 assert.equal(hold.status,'HOLD');
 assert.deepEqual(
@@ -157,4 +166,4 @@ await assert.rejects(
 );
 assert.equal(envelopeTouched,false);
 
-console.log('PASS full cutover probe: master -> Quote round-trip -> Envelope round-trip -> readiness v3');
+console.log('PASS full cutover probe: master -> Quote round-trip -> Envelope round-trip -> readiness v4');
