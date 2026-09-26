@@ -1,9 +1,7 @@
 import { fetchFreePassDataMaster } from './freepass-data-master.js';
 import { canonicalizeQuoteRequestFromMaster } from './_master/authoritative-request.js';
 import { calculateStandardQuote } from './_standard/standard-service.js';
-import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
-
-export const STANDARD_QUOTE_BATCH_CONTRACT = 'freepass-standard-quote-batch/v1';
+import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT, STANDARD_QUOTE_BATCH_CONTRACT } from '../src/lib/quote/contracts.js';
 const MAX_BATCH = 120;
 
 function errorPayload(error) {
