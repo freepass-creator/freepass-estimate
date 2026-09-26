@@ -7,6 +7,10 @@ import {
   QUOTE_READ_RECEIPT_CONTRACT,
   QUOTE_WRITE_RECEIPT_CONTRACT,
 } from '../src/lib/quote/quote-repository.js';
+import {
+  SHARE_ENVELOPE_READ_RECEIPT_CONTRACT,
+  SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
+} from '../src/lib/quote/share-envelope-repository.js';
 
 const master = {
   meta: {
@@ -30,7 +34,7 @@ const quote = {
   snapshotHash: 'c'.repeat(64),
 };
 
-const writeProbe = {
+const quoteWriteProbe = {
   verified: true,
   verifiedAt: '2026-09-26T05:21:00.000Z',
   receipt: {
@@ -43,7 +47,7 @@ const writeProbe = {
   },
 };
 
-const readProbe = {
+const quoteReadProbe = {
   verified: true,
   verifiedAt: '2026-09-26T05:22:00.000Z',
   receipt: {
@@ -56,6 +60,48 @@ const readProbe = {
   },
 };
 
+const envelope = {
+  contract: 'freepass-share-envelope/v1',
+  envelopeId: 'se_probe_001',
+  envelopeVersion: 1,
+  createdAt: '2026-09-26T05:23:00.000Z',
+  expiresAt: '2026-10-03T05:23:00.000Z',
+  quoteRefs: [
+    {
+      quoteId: quote.quoteId,
+      quoteVersion: quote.quoteVersion,
+      snapshotHash: quote.snapshotHash,
+    },
+  ],
+  snapshotHash: 'd'.repeat(64),
+};
+
+const envelopeWriteProbe = {
+  verified: true,
+  verifiedAt: '2026-09-26T05:24:00.000Z',
+  receipt: {
+    contract: SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
+    status: 'CREATED',
+    envelopeId: envelope.envelopeId,
+    envelopeVersion: envelope.envelopeVersion,
+    snapshotHash: envelope.snapshotHash,
+    idempotencyKey: `${envelope.envelopeId}:v1:${envelope.snapshotHash}`,
+  },
+};
+
+const envelopeReadProbe = {
+  verified: true,
+  verifiedAt: '2026-09-26T05:25:00.000Z',
+  receipt: {
+    contract: SHARE_ENVELOPE_READ_RECEIPT_CONTRACT,
+    status: 'FOUND',
+    envelopeId: envelope.envelopeId,
+    envelopeVersion: envelope.envelopeVersion,
+    snapshotHash: envelope.snapshotHash,
+    envelope,
+  },
+};
+
 const empty = evaluateQuoteCutoverReadiness();
 assert.equal(empty.contract, QUOTE_CUTOVER_READINESS_CONTRACT);
 assert.equal(empty.status, 'HOLD');
@@ -65,6 +111,8 @@ assert.deepEqual(
     'MASTER_ACTIVE_RELEASE_REQUIRED',
     'QUOTE_WRITE_SHADOW_PROOF_REQUIRED',
     'QUOTE_READ_SHADOW_PROOF_REQUIRED',
+    'SHARE_ENVELOPE_WRITE_SHADOW_PROOF_REQUIRED',
+    'SHARE_ENVELOPE_READ_SHADOW_PROOF_REQUIRED',
     'CANONICAL_VIEWER_CUTOVER_NOT_READY',
     'LEGACY_WRITE_BLOCK_NOT_READY',
   ]
@@ -72,40 +120,88 @@ assert.deepEqual(
 
 const partial = evaluateQuoteCutoverReadiness({
   master,
-  writeProbe,
-  readProbe,
+  quoteWriteProbe,
+  quoteReadProbe,
+  envelopeWriteProbe,
+  envelopeReadProbe,
 });
 assert.equal(partial.status, 'HOLD');
 assert.equal(partial.gates.masterActiveRelease, true);
-assert.equal(partial.gates.writeShadowVerified, true);
-assert.equal(partial.gates.readShadowVerified, true);
-assert.equal(partial.gates.shadowRoundTripMatched, true);
+assert.equal(partial.gates.quoteShadowRoundTripMatched, true);
+assert.equal(partial.gates.envelopeShadowRoundTripMatched, true);
+assert.equal(partial.gates.envelopeReferencesVerifiedQuote, true);
 assert.deepEqual(
   partial.blockers.map((x) => x.code),
   ['CANONICAL_VIEWER_CUTOVER_NOT_READY', 'LEGACY_WRITE_BLOCK_NOT_READY']
 );
 
-const mismatch = evaluateQuoteCutoverReadiness({
+const quoteMismatch = evaluateQuoteCutoverReadiness({
   master,
-  writeProbe,
-  readProbe: {
-    ...readProbe,
+  quoteWriteProbe,
+  quoteReadProbe: {
+    ...quoteReadProbe,
     receipt: {
-      ...readProbe.receipt,
+      ...quoteReadProbe.receipt,
       quoteId: 'q_other',
       quote: { ...quote, quoteId: 'q_other' },
+    },
+  },
+  envelopeWriteProbe,
+  envelopeReadProbe,
+  canonicalViewerReady: true,
+  legacyWriteBlockReady: true,
+});
+assert.equal(quoteMismatch.status, 'HOLD');
+assert.ok(quoteMismatch.blockers.some((x) => x.code === 'QUOTE_SHADOW_ROUNDTRIP_MISMATCH'));
+
+const envelopeMismatch = evaluateQuoteCutoverReadiness({
+  master,
+  quoteWriteProbe,
+  quoteReadProbe,
+  envelopeWriteProbe,
+  envelopeReadProbe: {
+    ...envelopeReadProbe,
+    receipt: {
+      ...envelopeReadProbe.receipt,
+      envelopeId: 'se_other',
+      envelope: { ...envelope, envelopeId: 'se_other' },
     },
   },
   canonicalViewerReady: true,
   legacyWriteBlockReady: true,
 });
-assert.equal(mismatch.status, 'HOLD');
-assert.ok(mismatch.blockers.some((x) => x.code === 'QUOTE_SHADOW_ROUNDTRIP_MISMATCH'));
+assert.equal(envelopeMismatch.status, 'HOLD');
+assert.ok(envelopeMismatch.blockers.some((x) => x.code === 'SHARE_ENVELOPE_SHADOW_ROUNDTRIP_MISMATCH'));
+
+const refMismatch = evaluateQuoteCutoverReadiness({
+  master,
+  quoteWriteProbe,
+  quoteReadProbe,
+  envelopeWriteProbe,
+  envelopeReadProbe: {
+    ...envelopeReadProbe,
+    receipt: {
+      ...envelopeReadProbe.receipt,
+      envelope: {
+        ...envelope,
+        quoteRefs: [
+          { quoteId: 'q_other', quoteVersion: 1, snapshotHash: 'e'.repeat(64) },
+        ],
+      },
+    },
+  },
+  canonicalViewerReady: true,
+  legacyWriteBlockReady: true,
+});
+assert.equal(refMismatch.status, 'HOLD');
+assert.ok(refMismatch.blockers.some((x) => x.code === 'SHARE_ENVELOPE_QUOTE_REFERENCE_MISMATCH'));
 
 const ready = evaluateQuoteCutoverReadiness({
   master,
-  writeProbe,
-  readProbe,
+  quoteWriteProbe,
+  quoteReadProbe,
+  envelopeWriteProbe,
+  envelopeReadProbe,
   canonicalViewerReady: true,
   legacyWriteBlockReady: true,
 });
@@ -115,12 +211,14 @@ assert.ok(Object.values(ready.gates).every(Boolean));
 
 const badMaster = evaluateQuoteCutoverReadiness({
   master: { meta: { ...master.meta, authority: 'STATIC' } },
-  writeProbe,
-  readProbe,
+  quoteWriteProbe,
+  quoteReadProbe,
+  envelopeWriteProbe,
+  envelopeReadProbe,
   canonicalViewerReady: true,
   legacyWriteBlockReady: true,
 });
 assert.equal(badMaster.status, 'HOLD');
 assert.ok(badMaster.blockers.some((x) => x.code === 'MASTER_ACTIVE_RELEASE_REQUIRED'));
 
-console.log('PASS Quote cutover readiness: ACTIVE master + round-trip shadow + viewer/write-block gates');
+console.log('PASS cutover readiness v2: master + Quote round-trip + Envelope round-trip + viewer/write-block gates');
