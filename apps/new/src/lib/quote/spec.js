@@ -1,4 +1,5 @@
 import { QUOTE_REQUEST_CONTRACT } from './contracts.js';
+import { isKnownVehicleKind } from '../feature/vehicle-kind.js';
 
 // ============================================================================
 //  견적 규격 — 뼈대와 계산기가 주고받는 «말»
@@ -45,6 +46,7 @@ import { QUOTE_REQUEST_CONTRACT } from './contracts.js';
 /** 요청이 규격에 맞나 — 계산기를 부르기 전에 뼈대가 스스로 본다 */
 export function 요청검사(요청) {
   if (요청?.계약 && 요청.계약 !== QUOTE_REQUEST_CONTRACT) return `지원하지 않는 견적 요청 계약입니다: ${요청.계약}`;
+  if (!isKnownVehicleKind(요청?.차?.종류)) return '차량 종류가 올바르지 않습니다';
   if (!요청?.차?.키) return '차를 아직 고르지 않았습니다';
   if (!Array.isArray(요청?.안들) || !요청.안들.length) return '기간이 정해지지 않았습니다';
   for (const a of 요청.안들) {
