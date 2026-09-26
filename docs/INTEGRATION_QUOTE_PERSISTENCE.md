@@ -256,3 +256,37 @@ These namespaces must never be mixed.
 
 A missing or failed canonical Share Envelope read does not authorize fallback to the legacy RTDB reader.
 Legacy reads occur only when the incoming URL explicitly uses the historical `?q=` namespace.
+
+
+## Live cutover probe CLI
+
+When the FreePass Data upstream contracts are deployed, run:
+
+`node scripts/probe-freepass-data-cutover.mjs`
+
+Required server environment:
+- `FREEPASS_DATA_ESTIMATE_TOKEN`
+- `FREEPASS_DATA_CONSUMER_BASE_URL`
+- optional explicit Quote/Envelope write/read URLs already documented above
+- `FREEPASS_ESTIMATE_SHADOW_QUOTE_JSON` = one complete issued `freepass-quote/v2` fixture
+
+Optional:
+- `FREEPASS_ESTIMATE_SHADOW_ENVELOPE_EXPIRES_AT`
+- `FREEPASS_CANONICAL_VIEWER_READY=1`
+- `FREEPASS_LEGACY_WRITE_BLOCK_READY=1`
+- `FREEPASS_REQUIRE_CUTOVER_READY=1`
+
+The probe executes, in order:
+
+1. FreePass Data ACTIVE Estimate master read,
+2. Quote v2 canonical write,
+3. Quote v2 canonical read of the same identity/hash,
+4. Share Envelope creation from the persisted Quote receipt,
+5. Share Envelope canonical write,
+6. Share Envelope canonical read of the same identity/hash,
+7. readiness v2 evaluation.
+
+The output intentionally excludes service tokens and full Quote/Envelope payloads.
+Only release evidence, IDs, hashes, receipt status, and readiness gates are emitted.
+
+With `FREEPASS_REQUIRE_CUTOVER_READY=1`, HOLD exits non-zero so deployment promotion can fail closed.
