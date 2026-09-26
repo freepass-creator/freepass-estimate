@@ -39,6 +39,9 @@ const 담당자 = 담당자인가();
 const 공유됨 = ref(false);
 const 공유중 = ref(false);
 const 공유견적 = computed(() => !!quoteState.sharedSnapshot);
+
+const vehicleSelection = globalThis.FreePassVehicleSelection;
+if (!vehicleSelection) throw new Error('FreePassVehicleSelection runtime is required');
 const 견적준비됨 = computed(() => !!vehicleState.trim && (공유견적.value || 견적상태.상태 === 'ok'));
 
 /* ── 조건이 바뀌면 웰릭스에 다시 묻는다 ────────────────────────────────
@@ -141,21 +144,16 @@ const currentStep = computed(() => STEPS[stepIdx.value]);
      현대 hyundai.com/kr/ko/e/vehicles/estimation: 01 모델(엔진·구동·트림) → 02 색상 → 옵션 → 완료.
      ★'spec'(인승·구동) 은 그 파워트레인 안에서 실제로 갈릴 때만 있는 걸음이다 — 대표 2026-09-18
        「그 인승 구동 방식 그거를 어떻게 나눌지」. 갈리지 않는 차(그랜저 2.5, K5 등)는 이 걸음이 아예 없다. */
-const VEHICLE_SUB_STEPS_ALL = ['brand', 'model', 'variant', 'spec', 'trim', 'colors', 'options'];
-
-/* 지금 고른 파워트레인이 인승·구동으로 갈리는가 — StepVehicle.vue 의 specGroups 와 같은 기준.
-   그 컴포넌트 안 값이라 여기서는 DB 를 직접 다시 본다(전역 window.VEHICLE_DB, 같은 데이터). */
-const 파워트레인갈래있나 = computed(() => {
+const VEHICLE_SUB_STEPS = computed(() => {
   try {
-    const b = window.VEHICLE_DB?.manufacturers?.find((x) => x.manufacturer_id === vehicleState.manufacturer);
-    const m = b?.models?.find((x) => x.model_id === vehicleState.model);
-    const v = m?.variants?.find((x) => x.variant_id === vehicleState.variant);
-    return new Set((v?.trims || []).map((t) => t.group).filter(Boolean)).size > 1;
-  } catch { return false; }
+    const brand = window.VEHICLE_DB?.manufacturers?.find((x) => x.manufacturer_id === vehicleState.manufacturer);
+    const model = brand?.models?.find((x) => x.model_id === vehicleState.model);
+    const variant = model?.variants?.find((x) => x.variant_id === vehicleState.variant);
+    return vehicleSelection.vehicleSubSteps(variant);
+  } catch {
+    return vehicleSelection.vehicleSubSteps(null);
+  }
 });
-const VEHICLE_SUB_STEPS = computed(() => (
-  파워트레인갈래있나.value ? VEHICLE_SUB_STEPS_ALL : VEHICLE_SUB_STEPS_ALL.filter((s) => s !== 'spec')
-));
 
 // 전체 페이지 (sub-step 포함) — progress bar 세그먼트 수. 'spec' 유무에 따라 차마다 다르다.
 const TOTAL_PAGES = computed(() => VEHICLE_SUB_STEPS.value.length + (STEPS.length - 1));
