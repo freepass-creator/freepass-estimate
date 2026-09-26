@@ -76,7 +76,7 @@ const found = await fetchIssuedQuoteReceipt({
 assert.equal(found.status, 'FOUND');
 assert.equal(captured.init.headers.authorization, `Bearer ${token}`);
 assert.ok(captured.url.includes('/issued-quotes/' + encodeURIComponent(quote.quoteId)));
-assert.ok(captured.url.includes('quoteVersion=${quote.quoteVersion}'));
+assert.ok(captured.url.includes('quoteVersion=' + quote.quoteVersion));
 
 const missing = await fetchIssuedQuoteReceipt({
   quoteId: 'q_missing',
@@ -127,7 +127,7 @@ const viaAdapter = await readIssuedQuote(browserRepo, { quoteId: quote.quoteId, 
 assert.equal(viaAdapter.quoteVersion, quote.quoteVersion);
 assert.ok(readUrl.startsWith('/api/issued-quote?'));
 assert.ok(readUrl.includes('quoteId=' + encodeURIComponent(quote.quoteId)));
-assert.ok(readUrl.includes('quoteVersion=${quote.quoteVersion}'));
+assert.ok(readUrl.includes('quoteVersion=' + quote.quoteVersion));
 
 await assert.rejects(
   () => readIssuedQuote({
