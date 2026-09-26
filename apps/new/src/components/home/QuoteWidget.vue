@@ -1,9 +1,10 @@
 <script setup>
-// 손님 셀프 견적 — ERP 카스케이드 로직(vehicle-db.js + vehicles.json 매칭) 그대로 활용.
+// 손님 셀프 견적 — FreePass 카탈로그 선택값을 canonical Quote Core로 계산한다.
 // 4단계: 제조사 → 모델 → 세부모델(variant) → 트림 → 기간 → 결과.
-// operating !== false 필터, Hybrid 모델명 접미사 매칭, calc.js 표준 조건 호출.
-import { ref, computed, onMounted } from 'vue';
-import { calcQuote } from '../../lib/calc.js';
+// 차량 가격은 브라우저 값을 신뢰하지 않고 /api/standard-quote가 FreePass Data에서 다시 확정한다.
+import { ref, computed, onMounted, watch } from 'vue';
+import { 견적계산 } from '../../lib/quote/calculate.js';
+import { buildCatalogPreviewRequest } from '../../lib/quote/preview-request.js';
 import { fmt } from '../../lib/format.js';
 import { DELIVERY_REGIONS, TINT_PRICES } from '../../data/lookups.js';
 import { QUOTE_TERMS } from '../../lib/quote/terms.js';
@@ -21,9 +22,8 @@ const TERMS = QUOTE_TERMS;
 const DEPOSIT_PRESETS = [0, 10, 20, 30];
 const PREPAY_PRESETS = [0, 10, 20, 30];
 
-// vehicle-db (카탈로그) + vehicles.json (calc 데이터)
+// vehicle-db는 선택용 카탈로그다. 계산 가격의 권위는 FreePass Data에 있다.
 const db = ref(null);
-const vehicles = ref([]);
 const loading = ref(true);
 const error = ref('');
 
@@ -46,8 +46,6 @@ onMounted(async () => {
     }
     if (!window.VEHICLE_DB) throw new Error('VEHICLE_DB 미로드');
     db.value = window.VEHICLE_DB;
-    const r = await fetch('/data/vehicles.json?t=' + Date.now());
-    vehicles.value = await r.json();
     // 첫 브랜드 자동 선택 — 브랜드 탭은 항상 노출, 카스케이드는 모델부터 시작
     const first = db.value.manufacturers?.[0];
     if (first) brandId.value = first.manufacturer_id;
@@ -138,81 +136,76 @@ const selectedVariantName = computed(() => selectedVariant.value?.variant_name |
 const selectedTrimName = computed(() => trim.value?.name || '');
 const selectedTrimPriceKrw = computed(() => (trim.value?.base_price_5 || 0) * 10000);
 
-// vehicles.json 에서 해당 트림 row 찾기 (ERP quote.js findVehicleMeta 동일 로직)
-const matchedRow = computed(() => {
-  const t = trim.value;
-  const v = selectedVariant.value;
-  const m = selectedModel.value;
-  const mfr = selectedManufacturer.value;
-  if (!t || !v || !m || !mfr) return null;
-  const brand = mfr.manufacturer_name;
-  const model = m.model_name;
-  const priceWon = (t.base_price_5 || 0) * 10000;
-  // HEV variant 면 model + ' Hybrid' 도 시도
-  const isHEV = /하이브리드|HEV/i.test(v.variant_name || '');
-  const candidates = isHEV ? [`${model} Hybrid`, model] : [model];
-  for (const mm of candidates) {
-    const exact = vehicles.value.filter(x =>
-      x.brand === brand && x.model === mm && x.price === priceWon
-    );
-    if (exact.length === 1) return exact[0];
-    if (exact.length > 1) {
-      // 트림명 토큰 매칭
-      const tokens = [...(v.variant_name || '').split(/[\s·,()/]+/), ...(t.name || '').split(/[\s·,()/]+/)]
-        .filter(s => s && s.length >= 1).map(s => s.toLowerCase());
-      const scored = exact.map(row => ({
-        row, score: tokens.reduce((s, tok) => s + ((row.trim || '').toLowerCase().includes(tok) ? 1 : 0), 0)
-      }));
-      scored.sort((a, b) => b.score - a.score);
-      return scored[0].row;
-    }
-  }
-  // 폴백 — brand+model 만
-  for (const mm of candidates) {
-    const f = vehicles.value.find(x => x.brand === brand && x.model === mm);
-    if (f) return f;
-  }
-  return null;
-});
+// 표준 견적 계산 — 화면별 계산식을 두지 않고 canonical Quote Core만 호출한다.
+const result = ref(null);
+let quoteSequence = 0;
 
-// 표준 견적 계산
-const result = computed(() => {
-  const row = matchedRow.value;
-  if (!row) return null;
-  try {
-    const r = calcQuote({
-      vehicle: row,
-      options: {
-        optPrice: optionsPriceWon.value,
-        discount: 0,
-        deliveryFee: DEFAULT_DELIVERY_FEE,  // 서울 기본 (UI 표시 X)
-        itemsFee: DEFAULT_TINT_FEE,         // 기본 썬팅 (UI 표시 X)
-        etc: 0,
-      },
-      contract: { term: selectedTerm.value, km: '2만km', dep: +deposit.value || 0, pre: +prepay.value || 0 },
-      customer: { creditGrade: '중신용' },
-      insurance: {
-        property: '1억', extraDriver: '없음',
-        exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
-        deductible: '30만원~', emergency: '가입',
-      },
-      fees: { feeRatePct: 5.0, svc: '웰스 Basic' },
-    });
-    return {
-      monthly: r.monthly,
-      depAmt: r.depositAmt,
-      preAmt: r.prePayAmt,
-      residualPct: r.residualPct,
-      residualAmt: r.residualAmt,
-    };
-  } catch (e) {
-    return null;
+async function recomputeQuotePreview() {
+  const sequence = ++quoteSequence;
+  const manufacturer = selectedManufacturer.value;
+  const model = selectedModel.value;
+  const variant = selectedVariant.value;
+  const selectedTrim = trim.value;
+
+  if (!manufacturer || !model || !variant || !selectedTrim) {
+    result.value = null;
+    return;
   }
-});
+
+  try {
+    const request = buildCatalogPreviewRequest({
+      manufacturer,
+      model,
+      variant,
+      trim: selectedTrim,
+      selectedOptionIds: [...selectedOptions.value],
+      scenarios: [{
+        term: selectedTerm.value,
+        depositPct: +deposit.value || 0,
+        prepaymentPct: +prepay.value || 0,
+      }],
+      conditions: {
+        credit: '중신용',
+        mileage: '2만km',
+        maintenance: '웰스 Basic',
+        liability: '1억',
+        extraDriver: '없음',
+        feeRatePct: 5.0,
+        deliveryFee: DEFAULT_DELIVERY_FEE,
+        tintFee: DEFAULT_TINT_FEE,
+        dashcamFee: 0,
+      },
+    });
+    const answer = await 견적계산(request, { 강제계산기: '표준' });
+    if (sequence !== quoteSequence) return;
+    const row = answer?.결과?.[0];
+    result.value = row ? {
+      monthly: row.월대여료,
+      depAmt: row.보증금,
+      preAmt: row.선납금,
+      residualPct: row._잔가율 ?? null,
+      residualAmt: row.인수가,
+    } : null;
+  } catch {
+    if (sequence === quoteSequence) result.value = null;
+  }
+}
+
+watch(
+  [
+    trim,
+    selectedTerm,
+    deposit,
+    prepay,
+    () => [...selectedOptions.value].sort().join('|'),
+  ],
+  recomputeQuotePreview,
+  { immediate: true }
+);
 
 // 상담 신청 점프
 function goToContact() {
-  if (trim.value && matchedRow.value) {
+  if (trim.value && result.value) {
     const params = new URLSearchParams({
       vehicle: `${selectedBrandName.value} ${selectedModelName.value} ${selectedVariantName.value} ${selectedTrimName.value}`.trim(),
       term: selectedTerm.value,
