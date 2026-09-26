@@ -5047,6 +5047,57 @@ render();
       height: var(--fp-control-sm) !important;
       min-height: var(--fp-control-sm) !important;
     }
+
+    /* Empty guidance is a quiet information surface, not an outlined callout. */
+    .quote-panel:has(.qp-vehicle.empty) .qp-empty-guide {
+      padding: var(--fp-sp-3) var(--fp-sp-4) !important;
+      margin: var(--fp-sp-2) 0 var(--fp-sp-4) !important;
+      border: 1px solid transparent !important;
+      border-radius: var(--fp-r-panel) !important;
+      background: var(--fp-surface-soft) !important;
+      box-shadow: var(--fp-elevation-base);
+    }
+    .qp-empty-guide__title {
+      font-size: var(--fp-fs-body) !important;
+      font-weight: 600 !important;
+    }
+    .qp-empty-guide__sub,
+    .qp-empty-guide__flow {
+      font-size: var(--fp-fs-support) !important;
+    }
+
+    /* Tint choices follow the same selection-control grammar as other choices. */
+    .tint-chip {
+      border: 1px solid transparent !important;
+      border-radius: var(--fp-r-control) !important;
+      background: var(--fp-surface-soft) !important;
+      box-shadow: var(--fp-elevation-base);
+      transition:
+        transform var(--fp-motion-press) var(--fp-motion-ease),
+        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
+        background-color var(--fp-motion-state) var(--fp-motion-ease);
+    }
+    .tint-chip :is(.tn, .tp) {
+      font-size: var(--fp-fs-support) !important;
+    }
+    .tint-chip.on {
+      border-color: transparent !important;
+      background: var(--fp-selected) !important;
+      box-shadow: inset 0 1px 2px rgba(29, 78, 216, 0.10);
+      transform: translateY(var(--fp-press-y));
+    }
+    @media (hover: hover) {
+      .tint-chip:not(.on):hover {
+        border-color: transparent !important;
+        background: var(--fp-surface-hover) !important;
+        box-shadow: var(--fp-elevation-hover);
+        transform: translateY(-1px);
+      }
+    }
+    .tint-chip:active {
+      box-shadow: var(--fp-elevation-0);
+      transform: translateY(var(--fp-press-y));
+    }
   }
 
   @media (min-width: 1440px) {
