@@ -2395,13 +2395,12 @@ render();
   }
   /* 손님 발송용 — brand 색 강조로 시각 구분 */
   .qp-terms__title--customer {
-    margin-top: 18px;
-    padding: 12px 14px 8px;
-    background: var(--brand-50);
-    border: 1px solid var(--brand-100);
-    border-bottom: 0;
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
-    color: var(--brand); font-weight: 600;
+    margin-top: var(--fp-sp-4);
+    padding: var(--fp-sp-3) var(--fp-sp-3) var(--fp-sp-2);
+    background: var(--fp-surface-soft);
+    border: 0;
+    border-radius: var(--fp-r-panel) var(--fp-r-panel) 0 0;
+    color: var(--fp-primary); font-weight: 600;
   }
   .qp-terms__title--customer small { color: var(--brand); opacity: 0.7; }
   .qp-terms__title--customer::before {
@@ -2410,12 +2409,12 @@ render();
     background: var(--brand);
   }
   .terms-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-bottom: 14px;
-    background: var(--brand-50);
-    border: 1px solid var(--brand-100);
-    border-top: 0;
-    border-radius: 0 0 var(--radius-md) var(--radius-md);
-    padding: 0 12px 8px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: var(--fp-sp-3); margin-bottom: var(--fp-sp-3);
+    background: var(--fp-surface-soft);
+    border: 0;
+    border-radius: 0 0 var(--fp-r-panel) var(--fp-r-panel);
+    padding: 0 var(--fp-sp-3) var(--fp-sp-3);
   }
   /* 기본 견적 — 5 컬럼 (12/24/36/48/60 고정) */
   .reference-grid {
@@ -2582,7 +2581,11 @@ render();
 
   /* 손님 견적서 (진짜 견적서 디자인) */
   .customer-output {
-    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff;
+    border: 0;
+    border-radius: var(--fp-r-panel);
+    overflow: hidden;
+    background: var(--fp-surface);
+    box-shadow: var(--fp-elevation-base);
   }
   .customer-output__head {
     display: flex;
