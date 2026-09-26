@@ -4,7 +4,16 @@ import {
   QUOTE_REPOSITORY_CONTRACT,
   QUOTE_WRITE_RECEIPT_CONTRACT,
 } from '../src/lib/quote/quote-repository.js';
-import { verifyQuoteShadowRoundTrip } from '../src/lib/quote/shadow-roundtrip.js';
+import {
+  SHARE_ENVELOPE_READ_RECEIPT_CONTRACT,
+  SHARE_ENVELOPE_REPOSITORY_CONTRACT,
+  SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
+} from '../src/lib/quote/share-envelope-repository.js';
+import { buildShareEnvelope } from '../src/lib/quote/share-envelope.js';
+import {
+  verifyQuoteShadowRoundTrip,
+  verifyShareEnvelopeShadowRoundTrip,
+} from '../src/lib/quote/shadow-roundtrip.js';
 import { evaluateQuoteCutoverReadiness } from '../src/lib/quote/cutover-readiness.js';
 
 const quote = {
@@ -14,11 +23,11 @@ const quote = {
   snapshotHash: 'd'.repeat(64),
 };
 
-let stored = null;
-const repository = {
+let storedQuote = null;
+const quoteRepository = {
   contract: QUOTE_REPOSITORY_CONTRACT,
   async put({ quote: value, idempotencyKey }) {
-    stored = value;
+    storedQuote = value;
     return {
       contract: QUOTE_WRITE_RECEIPT_CONTRACT,
       status: 'CREATED',
@@ -29,7 +38,7 @@ const repository = {
     };
   },
   async get({ quoteId, quoteVersion }) {
-    if (!stored || stored.quoteId !== quoteId || stored.quoteVersion !== quoteVersion) {
+    if (!storedQuote || storedQuote.quoteId !== quoteId || storedQuote.quoteVersion !== quoteVersion) {
       return {
         contract: QUOTE_READ_RECEIPT_CONTRACT,
         status: 'NOT_FOUND',
@@ -42,26 +51,87 @@ const repository = {
       status: 'FOUND',
       quoteId,
       quoteVersion,
-      snapshotHash: stored.snapshotHash,
-      quote: stored,
+      snapshotHash: storedQuote.snapshotHash,
+      quote: storedQuote,
     };
   },
 };
 
-const times = [
+const quoteTimes = [
   '2026-09-26T05:30:00.000Z',
   '2026-09-26T05:30:01.000Z',
 ];
-const proof = await verifyQuoteShadowRoundTrip({
-  repository,
+const quoteProof = await verifyQuoteShadowRoundTrip({
+  repository: quoteRepository,
   quote,
-  now: () => times.shift(),
+  now: () => quoteTimes.shift(),
 });
 
-assert.equal(proof.quoteId, quote.quoteId);
-assert.equal(proof.writeProbe.verified, true);
-assert.equal(proof.readProbe.verified, true);
-assert.equal(proof.readProbe.receipt.quote.snapshotHash, quote.snapshotHash);
+assert.equal(quoteProof.quoteId, quote.quoteId);
+assert.equal(quoteProof.writeProbe.verified, true);
+assert.equal(quoteProof.readProbe.verified, true);
+assert.equal(quoteProof.readProbe.receipt.quote.snapshotHash, quote.snapshotHash);
+
+const envelope = await buildShareEnvelope({
+  quoteRefs: [{
+    quoteId: quote.quoteId,
+    quoteVersion: quote.quoteVersion,
+    snapshotHash: quote.snapshotHash,
+  }],
+  createdAt: '2026-09-26T05:31:00.000Z',
+  expiresAt: '2026-10-03T05:31:00.000Z',
+});
+
+let storedEnvelope = null;
+const envelopeRepository = {
+  contract: SHARE_ENVELOPE_REPOSITORY_CONTRACT,
+  async put({ envelope: value, idempotencyKey }) {
+    storedEnvelope = value;
+    return {
+      contract: SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
+      status: 'CREATED',
+      envelopeId: value.envelopeId,
+      envelopeVersion: value.envelopeVersion,
+      snapshotHash: value.snapshotHash,
+      idempotencyKey,
+    };
+  },
+  async get({ envelopeId, envelopeVersion }) {
+    if (!storedEnvelope ||
+        storedEnvelope.envelopeId !== envelopeId ||
+        storedEnvelope.envelopeVersion !== envelopeVersion) {
+      return {
+        contract: SHARE_ENVELOPE_READ_RECEIPT_CONTRACT,
+        status: 'NOT_FOUND',
+        envelopeId,
+        envelopeVersion,
+      };
+    }
+    return {
+      contract: SHARE_ENVELOPE_READ_RECEIPT_CONTRACT,
+      status: 'FOUND',
+      envelopeId,
+      envelopeVersion,
+      snapshotHash: storedEnvelope.snapshotHash,
+      envelope: storedEnvelope,
+    };
+  },
+};
+
+const envelopeTimes = [
+  '2026-09-26T05:32:00.000Z',
+  '2026-09-26T05:32:01.000Z',
+];
+const envelopeProof = await verifyShareEnvelopeShadowRoundTrip({
+  repository: envelopeRepository,
+  envelope,
+  now: () => envelopeTimes.shift(),
+});
+
+assert.equal(envelopeProof.envelopeId, envelope.envelopeId);
+assert.equal(envelopeProof.writeProbe.verified, true);
+assert.equal(envelopeProof.readProbe.verified, true);
+assert.equal(envelopeProof.readProbe.receipt.envelope.snapshotHash, envelope.snapshotHash);
 
 const master = {
   meta: {
@@ -80,14 +150,17 @@ const master = {
 
 const readiness = evaluateQuoteCutoverReadiness({
   master,
-  writeProbe: proof.writeProbe,
-  readProbe: proof.readProbe,
+  quoteWriteProbe: quoteProof.writeProbe,
+  quoteReadProbe: quoteProof.readProbe,
+  envelopeWriteProbe: envelopeProof.writeProbe,
+  envelopeReadProbe: envelopeProof.readProbe,
   canonicalViewerReady: true,
   legacyWriteBlockReady: true,
 });
 assert.equal(readiness.status, 'READY');
+assert.equal(readiness.gates.envelopeReferencesVerifiedQuote, true);
 
-let legacyCalled = false;
+let quoteLegacyCalled = false;
 await assert.rejects(
   () => verifyQuoteShadowRoundTrip({
     repository: {
@@ -98,7 +171,7 @@ await assert.rejects(
         });
       },
       async get() {
-        legacyCalled = true;
+        quoteLegacyCalled = true;
         throw new Error('must not read after failed write');
       },
     },
@@ -106,7 +179,7 @@ await assert.rejects(
   }),
   (error) => error?.code === 'QUOTE_REPOSITORY_UNAVAILABLE'
 );
-assert.equal(legacyCalled, false);
+assert.equal(quoteLegacyCalled, false);
 
 await assert.rejects(
   () => verifyQuoteShadowRoundTrip({
@@ -136,4 +209,53 @@ await assert.rejects(
   (error) => error?.code === 'QUOTE_SHADOW_ROUNDTRIP_FAILED'
 );
 
-console.log('PASS Quote shadow round-trip: canonical write -> canonical read -> readiness evidence');
+let envelopeLegacyCalled = false;
+await assert.rejects(
+  () => verifyShareEnvelopeShadowRoundTrip({
+    repository: {
+      contract: SHARE_ENVELOPE_REPOSITORY_CONTRACT,
+      async put() {
+        throw Object.assign(new Error('canonical envelope write unavailable'), {
+          code: 'SHARE_ENVELOPE_REPOSITORY_UNAVAILABLE',
+        });
+      },
+      async get() {
+        envelopeLegacyCalled = true;
+        throw new Error('must not read after failed write');
+      },
+    },
+    envelope,
+  }),
+  (error) => error?.code === 'SHARE_ENVELOPE_REPOSITORY_UNAVAILABLE'
+);
+assert.equal(envelopeLegacyCalled, false);
+
+await assert.rejects(
+  () => verifyShareEnvelopeShadowRoundTrip({
+    repository: {
+      contract: SHARE_ENVELOPE_REPOSITORY_CONTRACT,
+      async put({ envelope: value, idempotencyKey }) {
+        return {
+          contract: SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
+          status: 'CREATED',
+          envelopeId: value.envelopeId,
+          envelopeVersion: value.envelopeVersion,
+          snapshotHash: value.snapshotHash,
+          idempotencyKey,
+        };
+      },
+      async get({ envelopeId, envelopeVersion }) {
+        return {
+          contract: SHARE_ENVELOPE_READ_RECEIPT_CONTRACT,
+          status: 'NOT_FOUND',
+          envelopeId,
+          envelopeVersion,
+        };
+      },
+    },
+    envelope,
+  }),
+  (error) => error?.code === 'SHARE_ENVELOPE_SHADOW_ROUNDTRIP_FAILED'
+);
+
+console.log('PASS canonical shadow round-trips: Quote + Share Envelope -> readiness v2 evidence');
