@@ -1,6 +1,7 @@
 import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import { createQuoteConditionCosts } from '../src/lib/quote/condition-cost-contract.js';
 
 const idx=JSON.parse(fs.readFileSync(new URL('../public/data/freepass-newcar/product-index.json',import.meta.url),'utf8'));
 const products=idx.products||{};
@@ -50,6 +51,7 @@ const masterPayload={
 };
 
 function makeReq(productId){
+  const costs=createQuoteConditionCosts();
   return {
     method:'POST',
     body:{
@@ -72,7 +74,7 @@ function makeReq(productId){
         },
         조건:{
           신용:'중신용',주행:'2만km',정비:'웰스 Basic',대물:'1억',추가운전자:'없음',
-          탁송비:0,썬팅비:0,블박비:0,수수료율:5,
+          탁송비:0,썬팅비:0,블박비:0,내비비:0,하이패스비:0,비용:costs,수수료율:5,
         },
         안들:[{기간:60,보증금:0,선납:0}],
       },
