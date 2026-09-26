@@ -8,6 +8,9 @@ import {
   normalizeKm,
   normalizePercent,
   toggleQuoteTerm,
+  setScenarioIncluded,
+  setScenarioPercent,
+  setScenarioTerm,
 } from '../src/lib/feature/conditions.js';
 
 test('deposit and prepayment share the same 0..30 rule', () => {
@@ -61,4 +64,40 @@ test('last remaining term cannot be removed', () => {
   };
   assert.equal(toggleQuoteTerm(state, 36), false);
   assert.equal(state.scenarios.length, 1);
+});
+
+
+test('scenario-specific deposit/prepayment obey the same 0..30 rule', () => {
+  const state = { cond: {}, scenarios: [{ term: 36, dep: 10, pre: 0 }], send: [true] };
+  assert.deepEqual(setScenarioPercent(state, 0, 'dep', 100), { changed: true, value: 30 });
+  assert.equal(state.scenarios[0].dep, 30);
+  assert.deepEqual(setScenarioPercent(state, 0, 'pre', -5), { changed: false, value: 0 });
+});
+
+test('scenario terms stay canonical and unique', () => {
+  const state = {
+    cond: {},
+    scenarios: [{ term: 12 }, { term: 36 }, { term: 60 }],
+    send: [true, true, true],
+  };
+  assert.equal(setScenarioTerm(state, 1, 60).accepted, false);
+  assert.equal(state.scenarios[1].term, 36);
+  assert.equal(setScenarioTerm(state, 1, 24).accepted, true);
+  assert.equal(state.scenarios[1].term, 24);
+  assert.equal(setScenarioTerm(state, 1, 18).accepted, false);
+  assert.equal(state.scenarios[1].term, 24);
+});
+
+test('at least one quote term must remain included for send/share', () => {
+  const state = {
+    cond: {},
+    scenarios: [{ term: 12 }, { term: 36 }],
+    send: [true, true],
+  };
+  assert.equal(setScenarioIncluded(state, 0, false).accepted, true);
+  assert.deepEqual(state.send, [false, true]);
+  assert.equal(setScenarioIncluded(state, 1, false).accepted, false);
+  assert.deepEqual(state.send, [false, true]);
+  assert.equal(setScenarioIncluded(state, 0, true).accepted, true);
+  assert.deepEqual(state.send, [true, true]);
 });
