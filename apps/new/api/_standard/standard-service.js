@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { computeTerm } from './calc.js';
 import { QUOTE_TERMS } from '../../src/lib/quote/terms.js';
 import { conditionCostsFromRequest } from '../../src/lib/quote/condition-cost-contract.js';
+import { assertStandardConditionSupport } from './condition-policy.js';
 
 const DEFAULTS = JSON.parse(readFileSync(new URL('./standard-quote-defaults.snapshot.json', import.meta.url), 'utf8'));
 const DELTA = JSON.parse(readFileSync(new URL('./data/residual-delta.json', import.meta.url), 'utf8'));
@@ -270,6 +271,7 @@ function buildInput(request, scenario) {
 export async function calculateStandardQuote(request) {
   if (!request?.차?.상품키 && !request?.차?.키) throw new Error('신차 상품ID가 없습니다');
   if (!Array.isArray(request?.안들) || !request.안들.length) throw new Error('견적 기간이 없습니다');
+  const conditionPolicy = assertStandardConditionSupport(request);
   if (DEFAULTS?.live_override_present) {
     throw new Error('회사 공용 원가설정 override를 FreePass Estimate로 먼저 이관해야 합니다');
   }
@@ -305,6 +307,7 @@ export async function calculateStandardQuote(request) {
       config_source: DEFAULTS?.source || null,
       config_generated_at: DEFAULTS?.generated_at || null,
       live_override_present: !!DEFAULTS?.live_override_present,
+      condition_policy: conditionPolicy.contract,
     },
   };
 }
