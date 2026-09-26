@@ -56,6 +56,12 @@ assert.match(desktop, /\.cdd \.cdd__btn\s*\{[\s\S]*height:\s*var\(--fp-control\)
   'desktop dropdowns must use the 36px line-free control grammar');
 assert.match(desktop, /\.bottom-action\s*\{[\s\S]*height:\s*var\(--fp-control\)[\s\S]*border:\s*1px solid transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\)/,
   'desktop actions must use Admin PR92 line-free controls');
+assert.match(desktop, /section\.is-current \.step-dd,[\s\S]*border-bottom-color:\s*transparent !important;[\s\S]*animation:\s*none !important;/,
+  'legacy current-field underline pulse must stay disabled under PR92 line-free grammar');
+assert.match(desktop, /\.term-card__monthly\s*\{[\s\S]*font-size:\s*var\(--fp-fs-kpi\) !important;/,
+  'desktop monthly quote hero must use the PR92 KPI scale');
+assert.match(desktop, /\.terms-grid\s*\{[\s\S]*border:\s*1px solid transparent !important;[\s\S]*background:\s*var\(--fp-primary-weak\) !important;/,
+  'customer quote block must remain a tinted line-free surface');
 assert.match(desktop, /\.quote-panel :is\(input:not\(\[type="checkbox"\]\):not\(\[type="radio"\]\), select\),[\s\S]*min-height:\s*var\(--fp-control\);[\s\S]*border:\s*1px solid transparent !important;[\s\S]*background:\s*var\(--fp-surface-soft\) !important;/,
   'desktop fields must use surface/elevation rather than visible borders');
 
