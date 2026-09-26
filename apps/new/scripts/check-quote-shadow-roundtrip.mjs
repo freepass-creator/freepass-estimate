@@ -15,6 +15,7 @@ import {
   verifyShareEnvelopeShadowRoundTrip,
 } from '../src/lib/quote/shadow-roundtrip.js';
 import { evaluateQuoteCutoverReadiness } from '../src/lib/quote/cutover-readiness.js';
+import { makeIssuedQuote } from './fixtures/issued-quote.mjs';
 
 const secureWriteAccessPolicy = {
   contract: 'freepass-estimate-write-access/v1',
@@ -30,12 +31,10 @@ const blockedPolicy = {
   legacyNewQuoteWriteBlocked: true,
 };
 
-const quote = {
-  contract: 'freepass-quote/v2',
-  quoteId: 'q_shadow_001',
-  quoteVersion: 1,
-  snapshotHash: 'd'.repeat(64),
-};
+const quote = await makeIssuedQuote({
+  contractTerm: 36,
+  createdAt: '2026-09-26T05:28:00.000Z',
+});
 
 let storedQuote = null;
 const quoteRepository = {
