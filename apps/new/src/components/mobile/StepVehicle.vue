@@ -7,6 +7,7 @@ import { fmt, guessColor } from '../../lib/format.js';
 import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
 import SelectionSummary from './SelectionSummary.vue';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
+import { applyScenarioPercent, normalizeFeeRate } from '../../lib/feature/conditions.js';
 
 const props = defineProps({
   vehicles: { type: Array, default: () => [] },
@@ -378,18 +379,13 @@ const 담당자 = 담당자인가();   // ★손님이면 수수료 칸을 아�
 
 // 시작 조건 — 제조사 화면에서 수수료/보증금/선납금 선입력 (StepConditions 와 동일 SSOT·클램프)
 function onDepChange() {
-  const v = Math.max(0, Math.min(30, +quoteState.cond.dep || 0));
-  quoteState.cond.dep = v;
-  (quoteState.scenarios || []).forEach(s => { s.dep = v; });
+  applyScenarioPercent(quoteState, 'dep', quoteState.cond.dep);
 }
 function onPreChange() {
-  const v = Math.max(0, Math.min(30, +quoteState.cond.pre || 0));
-  quoteState.cond.pre = v;
-  (quoteState.scenarios || []).forEach(s => { s.pre = v; });
+  applyScenarioPercent(quoteState, 'pre', quoteState.cond.pre);
 }
 function onFeeChange() {
-  const v = Math.max(-10, Math.min(7, Math.round((+quoteState.cond.feeRatePct || 0) * 10) / 10));
-  quoteState.cond.feeRatePct = v;
+  quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
 }
 </script>
 
