@@ -7,6 +7,8 @@ import MobileApp from './components/mobile/MobileApp.vue';
 import { setCompanyConfig } from './lib/calc.js';
 import { quoteState } from './store.js';
 import { 담당자인가, 담당자로, 담당자로들어왔나 } from './lib/role.js';
+import { conditionDefaultsForRole } from './lib/feature/roles.js';
+import { 웰릭스기본 } from './lib/welrix-rates.js';
 import { 풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
 import { applyProductTheme } from './lib/brand-theme.js';
@@ -84,7 +86,18 @@ function 담당자문(){
     const 틀림 = 벽.querySelector('#gate-err');
     const 닫기 = () => { 벽.remove(); 끝(); };
     const 해보기 = () => {
-      if (담당자로(칸.value)) return 닫기();
+      if (담당자로(칸.value)) {
+        const 기본 = conditionDefaultsForRole('staff', {
+          staffDeposit: 웰릭스기본.dep,
+          guestDeposit: 0,
+          prepay: 웰릭스기본.pre,
+          credit: 웰릭스기본.credit,
+        });
+        quoteState.cond.credit = 기본.credit;
+        quoteState.cond.dep = 기본.dep;
+        quoteState.cond.pre = 기본.pre;
+        return 닫기();
+      }
       틀림.style.display = 'block'; 칸.value = ''; 칸.focus();
     };
     벽.querySelector('#gate-submit').onclick = 해보기;

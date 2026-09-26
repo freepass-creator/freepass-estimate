@@ -1,7 +1,8 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 담당자인가 } from '../../lib/role.js';
+import { 역할 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { 썬팅들, 블박들, 탁송권역 } from '../../lib/welrix-rates.js';
 import { fmt } from '../../lib/format.js';
 import { resolveDeliveryCost, resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
@@ -24,7 +25,7 @@ const EXTRA = [
   { value: '3명', label: '3명' },
 ];
 
-const 담당자 = 담당자인가();   // 손님이면 탁송 권역을 안 묻는다 (기본 서울)
+const 담당자 = rolePolicy(역할()).canEditDeliveryRegion;   // 손님이면 탁송 권역을 안 묻는다 (기본 서울)
 
 // 탁송 UI는 기존 10권역을 유지하되 금액은 canonical resolver가 결정한다.
 const regions = 탁송권역;
