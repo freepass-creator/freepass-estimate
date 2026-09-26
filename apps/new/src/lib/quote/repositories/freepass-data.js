@@ -10,12 +10,15 @@ function codedError(message, code) {
 }
 
 /**
- * FreePass Data / server command adapter.
- * This is intentionally HTTP-contract based: browser code must not know Firestore
- * collection paths or write directly to Firestore.
+ * Browser-side QuoteRepository adapter.
+ *
+ * The default endpoint is the same-origin Estimate gateway. Browser code must
+ * never receive the FreePass Data service token or know Firestore paths.
+ * authToken, when supplied, is only a caller/session token for the Estimate
+ * gateway; it must never be FREEPASS_DATA_ESTIMATE_TOKEN.
  */
 export function createFreePassDataQuoteRepository({
-  endpoint,
+  endpoint = '/api/issued-quotes',
   fetchImpl = globalThis.fetch,
   authToken = null,
 } = {}) {
