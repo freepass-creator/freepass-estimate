@@ -23,6 +23,9 @@ import { reactive } from 'vue';
 // === 차량 선택 (cascade) 상태 ===
 // index.html 인라인 스크립트 'state' 와 syncToVueStore() 로 동기화됨
 export const vehicleState = reactive({
+  kind: '신차',
+  vehicleAssetId: null,
+  quoteMode: null,
   manufacturer: null,
   model: null,
   variant: null,
