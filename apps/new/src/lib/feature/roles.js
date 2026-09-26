@@ -46,3 +46,18 @@ export function rolePolicy(role) {
     canShareSignatureLink: roleCan(normalized, 'share_signature_link'),
   });
 }
+
+
+export function conditionDefaultsForRole(role, {
+  staffDeposit = 10,
+  guestDeposit = 0,
+  prepay = 0,
+  credit = '중신용',
+} = {}) {
+  const normalized = normalizeRole(role);
+  return Object.freeze({
+    credit,
+    dep: normalized === ROLE_STAFF ? staffDeposit : guestDeposit,
+    pre: prepay,
+  });
+}
