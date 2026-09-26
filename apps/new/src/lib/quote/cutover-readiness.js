@@ -7,7 +7,7 @@ import {
   SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
 } from './share-envelope-repository.js';
 
-export const QUOTE_CUTOVER_READINESS_CONTRACT = 'freepass-estimate-quote-cutover-readiness/v2';
+export const QUOTE_CUTOVER_READINESS_CONTRACT = 'freepass-estimate-quote-cutover-readiness/v3';
 
 function blocker(code, detail = null) {
   return Object.freeze({ code, detail });
@@ -132,12 +132,18 @@ function envelopeReferencesQuote(envelopeReadProbe, quoteReadProbe) {
   );
 }
 
+function validLegacyWritePolicy(policy) {
+  return !!(
+    policy &&
+    policy.contract === 'freepass-legacy-quote-write-policy/v1' &&
+    policy.mode === 'CANONICAL_ONLY' &&
+    policy.legacyNewQuoteWriteBlocked === true
+  );
+}
+
 /**
- * Pure cutover gate.
- *
- * READY means the entire canonical delivery path is evidenced:
- * ACTIVE master -> Quote write/read round-trip -> Share Envelope write/read
- * round-trip -> Envelope references the verified Quote -> viewer/write-block gates.
+ * READY means the entire canonical delivery path is evidenced and the actual
+ * legacy writer policy is already in CANONICAL_ONLY mode.
  */
 export function evaluateQuoteCutoverReadiness({
   master = null,
@@ -146,30 +152,20 @@ export function evaluateQuoteCutoverReadiness({
   envelopeWriteProbe = null,
   envelopeReadProbe = null,
   canonicalViewerReady = false,
-  legacyWriteBlockReady = false,
+  legacyWritePolicy = null,
 } = {}) {
   const blockers = [];
 
-  if (!validMasterEvidence(master)) {
-    blockers.push(blocker('MASTER_ACTIVE_RELEASE_REQUIRED'));
-  }
-  if (!validQuoteWriteProbe(quoteWriteProbe)) {
-    blockers.push(blocker('QUOTE_WRITE_SHADOW_PROOF_REQUIRED'));
-  }
-  if (!validQuoteReadProbe(quoteReadProbe)) {
-    blockers.push(blocker('QUOTE_READ_SHADOW_PROOF_REQUIRED'));
-  }
+  if (!validMasterEvidence(master)) blockers.push(blocker('MASTER_ACTIVE_RELEASE_REQUIRED'));
+  if (!validQuoteWriteProbe(quoteWriteProbe)) blockers.push(blocker('QUOTE_WRITE_SHADOW_PROOF_REQUIRED'));
+  if (!validQuoteReadProbe(quoteReadProbe)) blockers.push(blocker('QUOTE_READ_SHADOW_PROOF_REQUIRED'));
   if (validQuoteWriteProbe(quoteWriteProbe) && validQuoteReadProbe(quoteReadProbe) &&
       !sameQuoteRoundTrip(quoteWriteProbe, quoteReadProbe)) {
     blockers.push(blocker('QUOTE_SHADOW_ROUNDTRIP_MISMATCH'));
   }
 
-  if (!validEnvelopeWriteProbe(envelopeWriteProbe)) {
-    blockers.push(blocker('SHARE_ENVELOPE_WRITE_SHADOW_PROOF_REQUIRED'));
-  }
-  if (!validEnvelopeReadProbe(envelopeReadProbe)) {
-    blockers.push(blocker('SHARE_ENVELOPE_READ_SHADOW_PROOF_REQUIRED'));
-  }
+  if (!validEnvelopeWriteProbe(envelopeWriteProbe)) blockers.push(blocker('SHARE_ENVELOPE_WRITE_SHADOW_PROOF_REQUIRED'));
+  if (!validEnvelopeReadProbe(envelopeReadProbe)) blockers.push(blocker('SHARE_ENVELOPE_READ_SHADOW_PROOF_REQUIRED'));
   if (validEnvelopeWriteProbe(envelopeWriteProbe) && validEnvelopeReadProbe(envelopeReadProbe) &&
       !sameEnvelopeRoundTrip(envelopeWriteProbe, envelopeReadProbe)) {
     blockers.push(blocker('SHARE_ENVELOPE_SHADOW_ROUNDTRIP_MISMATCH'));
@@ -180,12 +176,8 @@ export function evaluateQuoteCutoverReadiness({
     blockers.push(blocker('SHARE_ENVELOPE_QUOTE_REFERENCE_MISMATCH'));
   }
 
-  if (canonicalViewerReady !== true) {
-    blockers.push(blocker('CANONICAL_VIEWER_CUTOVER_NOT_READY'));
-  }
-  if (legacyWriteBlockReady !== true) {
-    blockers.push(blocker('LEGACY_WRITE_BLOCK_NOT_READY'));
-  }
+  if (canonicalViewerReady !== true) blockers.push(blocker('CANONICAL_VIEWER_CUTOVER_NOT_READY'));
+  if (!validLegacyWritePolicy(legacyWritePolicy)) blockers.push(blocker('LEGACY_WRITE_BLOCK_NOT_READY'));
 
   return Object.freeze({
     contract: QUOTE_CUTOVER_READINESS_CONTRACT,
@@ -209,7 +201,7 @@ export function evaluateQuoteCutoverReadiness({
           ? envelopeReferencesQuote(envelopeReadProbe, quoteReadProbe)
           : false,
       canonicalViewerReady: canonicalViewerReady === true,
-      legacyWriteBlockReady: legacyWriteBlockReady === true,
+      legacyWriteBlocked: validLegacyWritePolicy(legacyWritePolicy),
     }),
     blockers: Object.freeze(blockers),
   });
