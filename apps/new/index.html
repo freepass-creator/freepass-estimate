@@ -2065,7 +2065,7 @@ render();
     min-width: 0;
   }
   @media (max-width: 1024px) {
-    .quote-panel { position: static; max-height: none; padding-top: 20px; border-top: 8px solid #f5f5f5; }
+    .quote-panel { position: static; max-height: none; padding-top: var(--fp-sp-5); border-top: 0; }
   }
   .quote-panel .qp-header { display: none; }
   .qp-summary-mini[hidden] { display: none !important; }
@@ -2309,64 +2309,13 @@ render();
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  /* ===== 입력/드롭다운 3가지 상태 =====
-     1) 입력 완료 (default, blurred):  var(--ink-4) 중간 회색 — 차분
-     2) 미입력 (empty / cascade 현재): var(--brand) 브랜드 컬러 — 주의 끔
-     3) 입력중 (focus):                var(--ink-1) 거의 검정 + 1.5px — 강조
-  */
-  /* (1) 기본 = 입력 완료 상태 */
-  .qc-field > input,
-  .qc-field > select,
-  .qc-field > .qc-pct,
-  .step-dd,
-  .cdd .cdd__btn,
-  .contract-memo,
-  .chat-input {
-    border-bottom-color: var(--ink-4);
-  }
-  /* (2) 미입력 / cascade 현재 — brand 컬러 */
-  .qc-field:has(input:placeholder-shown) > input,
-  section.is-current .step-dd,
-  section.is-current .cdd .cdd__btn {
-    border-bottom-color: var(--brand) !important;
-  }
-  /* (3) 입력중 (focus) — 1px 라인 그대로, 색만 진한 검정으로 (규격 통일) */
-  .qc-field > input:focus,
-  .qc-field > select:focus,
-  .qc-field > .qc-pct:focus-within,
-  .step-dd:focus,
-  .cdd--open .cdd__btn,
-  .contract-memo:focus,
-  .chat-input:focus {
-    border-bottom-color: var(--ink-1) !important;
-  }
+  /* Current/incomplete fields use semantic label emphasis.
+     Input surfaces/focus are owned by the PR #92 line-free field grammar. */
   .qc-field:has(input:placeholder-shown) > label {
-    color: var(--brand);
+    color: var(--fp-primary);
+    font-weight: 600;
   }
-  /* hover/focus — 입력해야 할 곳에 호버시 옅은 brand 배경 + 진해진 라인 */
-  .qc-field:has(input:placeholder-shown) > input:hover,
-  .qc-field:has(input:placeholder-shown) > input:focus,
-  section.is-current .step-dd:hover,
-  section.is-current .step-dd:focus,
-  section.is-current .cdd:not(.cdd--open) .cdd__btn:hover {
-    background-color: var(--brand-50);
-    border-bottom-color: var(--brand-700) !important;
-  }
-  /* 진행하라는 subtle pulse — 입력 underline 살짝 깜빡 */
-  @keyframes wel-input-pulse {
-    0%, 100% { box-shadow: 0 1px 0 0 transparent; }
-    50%      { box-shadow: 0 1px 0 0 rgba(13,78,139,0.35); }
-  }
-  .qc-field:has(input:placeholder-shown) > input,
-  section.is-current .step-dd,
-  section.is-current .cdd .cdd__btn {
-    animation: wel-input-pulse 2.4s ease-in-out infinite;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .qc-field:has(input:placeholder-shown) > input,
-    section.is-current .step-dd,
-    section.is-current .cdd .cdd__btn { animation: none; }
-  }
+
   /* % 입력 — input + % 라벨 wrap (full width로 underline 일관 유지) */
   .qc-pct {
     display: flex; align-items: center; gap: var(--fp-sp-1);
@@ -2410,8 +2359,11 @@ render();
     background-repeat: no-repeat; background-position: right 4px center; background-size: 11px 11px;
     padding-right: 20px; cursor: pointer;
   }
-  .qc-field > select:hover, .qc-field > input:hover { border-bottom-color: var(--ink-3); }
-  .qc-field > select:focus, .qc-field > input:focus { border-bottom-color: var(--ink-1); }
+  .qc-field > select:hover, .qc-field > input:hover { background: var(--fp-surface-hover); }
+  .qc-field > select:focus, .qc-field > input:focus {
+    background: var(--fp-surface);
+    box-shadow: var(--fp-focus-halo), var(--fp-elevation-hover);
+  }
   .qc-field .pct {
     display: flex; align-items: center; gap: var(--fp-sp-1);
     height: var(--fp-control);
@@ -2428,8 +2380,8 @@ render();
     border: none; height: 100%; padding: 0; flex: 1; min-width: 0;
     font-size: var(--fp-fs-body); text-align: right;
   }
-  .qc-field .pct input:hover { border-bottom: none; }
-  .qc-field .pct input:focus { outline: none; border-bottom: none; }
+  .qc-field .pct input:hover { background: transparent; }
+  .qc-field .pct input:focus { outline: none; background: transparent; }
 
   /* 기간별 견적 */
   .qp-terms__title {
