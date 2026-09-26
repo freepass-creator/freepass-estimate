@@ -1,3 +1,5 @@
+import { QUOTE_LIFECYCLE, deriveQuoteLifecycle } from './history.js';
+
 // Quote action/readiness rules shared by mobile and desktop.
 // This layer decides whether a finished quote may be previewed/shared/sent.
 // It does not calculate prices and does not persist anything.
@@ -52,36 +54,42 @@ export function quoteActionReadiness({
   calculationResults = null,
   surface = 'mobile',
 } = {}) {
-  if (!vehicleSelected) {
-    return { ready: false, reason: 'vehicle_required', source: null, terms: [] };
-  }
-
   const sharedTerms = selectedSharedQuoteTerms(quoteState?.sharedSnapshot);
-  if (quoteState?.sharedSnapshot) {
-    if (!sharedTerms.length) {
-      return { ready: false, reason: 'shared_terms_required', source: 'shared', terms: [] };
-    }
-    return { ready: true, reason: null, source: 'shared', terms: sharedTerms };
-  }
-
-  if (calculationStatus && calculationStatus !== 'ok') {
-    return {
-      ready: false,
-      reason: calculationStatus === 'pending' ? 'calculation_pending' : 'calculation_required',
-      source: 'live',
-      terms: [],
-    };
-  }
-
-  const terms = surface === 'desktop'
+  const liveTerms = surface === 'desktop'
     ? selectedDesktopQuoteTerms(quoteState)
     : selectedLiveQuoteTerms(quoteState, calculationResults);
 
-  if (!terms.length) {
-    return { ready: false, reason: 'included_result_required', source: 'live', terms: [] };
+  const lifecycle = deriveQuoteLifecycle({
+    vehicleSelected,
+    sharedSnapshot: quoteState?.sharedSnapshot,
+    calculationStatus,
+    hasReadyTerms: liveTerms.length > 0,
+  });
+
+  if (lifecycle === QUOTE_LIFECYCLE.EMPTY) {
+    return { ready: false, reason: 'vehicle_required', source: null, terms: [], lifecycle };
   }
 
-  return { ready: true, reason: null, source: 'live', terms };
+  if (lifecycle === QUOTE_LIFECYCLE.SHARED) {
+    if (!sharedTerms.length) {
+      return { ready: false, reason: 'shared_terms_required', source: 'shared', terms: [], lifecycle };
+    }
+    return { ready: true, reason: null, source: 'shared', terms: sharedTerms, lifecycle };
+  }
+
+  if (lifecycle === QUOTE_LIFECYCLE.CALCULATING) {
+    return { ready: false, reason: 'calculation_pending', source: 'live', terms: [], lifecycle };
+  }
+
+  if (lifecycle === QUOTE_LIFECYCLE.ERROR || lifecycle === QUOTE_LIFECYCLE.CONFIGURING) {
+    return { ready: false, reason: 'calculation_required', source: 'live', terms: [], lifecycle };
+  }
+
+  if (!liveTerms.length) {
+    return { ready: false, reason: 'included_result_required', source: 'live', terms: [], lifecycle };
+  }
+
+  return { ready: true, reason: null, source: 'live', terms: liveTerms, lifecycle };
 }
 
 export function resetForRequote(quoteState) {
