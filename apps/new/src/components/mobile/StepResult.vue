@@ -232,7 +232,7 @@ const 공유시각 = computed(() => {
   letter-spacing: -0.5px; font-variant-numeric: tabular-nums;
 }
 .sr-muted { color: var(--ink-3); }
-.sr-error { margin: var(--sp-1) 0 0; font-size: var(--fs-base); color: #c62828; overflow-wrap: anywhere; }
+.sr-error { margin: var(--sp-1) 0 0; font-size: var(--fs-base); color: var(--fp-err); overflow-wrap: anywhere; }
 
 .sr-cond__title {
   margin: var(--sp-4) 0 var(--sp-2);
