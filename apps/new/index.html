@@ -4738,116 +4738,44 @@ render();
 </html>
 
 <style id="freepass-control-grammar">
-  /* FreePass Admin PR #92 canonical desktop grammar.
-     Estimate keeps its own flow; only the visual/control language is inherited. */
+  /* FreePass Admin PR #92 desktop guardrails.
+     Base visual values already live in tokens.css and the canonical runtime CSS.
+     This layer only protects desktop composition, high-specificity legacy surfaces,
+     and breakpoint-dependent interaction behavior. */
   @media (min-width: 1025px) {
-    body {
-      grid-template-rows: var(--fp-topbar) minmax(0, 1fr) var(--fp-panel-foot) !important;
-      column-gap: 12px;
-      background: var(--fp-canvas) !important;
-    }
-    .global-topbar {
-      height: var(--fp-topbar) !important;
-      padding-inline: 16px;
-      border-bottom-color: transparent !important;
-      background: var(--fp-nav) !important;
-      color: #fff;
-    }
-    .global-topbar__brand { color: #fff !important; font-size: var(--fp-fs-body); font-weight: 600; }
-    .global-topbar__brand .ci {
-      filter: brightness(0) invert(1);
-      opacity: .96;
-    }
-    .global-topbar__hint { color: var(--fp-nav-text) !important; font-size: var(--fp-fs-support); }
-    .global-topbar__ver {
-      color: var(--fp-nav-text) !important;
-      background: var(--fp-nav-raised) !important;
-      font-size: var(--fp-fs-support);
-    }
+    body { column-gap: 12px; }
+
+    .global-topbar { padding-inline: 16px; }
 
     .wrap {
       height: auto !important;
-      min-height: 0;
       margin: 12px 0 12px 16px !important;
-      border: 1px solid transparent !important;
-      border-right-color: transparent !important;
-      border-radius: var(--fp-r-panel) !important;
-      background: var(--fp-surface) !important;
-      box-shadow: var(--fp-elevation-base) !important;
     }
     .quote-panel {
-      min-height: 0;
       margin: 12px 16px 12px 0 !important;
-      border: 1px solid transparent !important;
-      border-radius: var(--fp-r-panel) !important;
-      background: var(--fp-surface) !important;
-      box-shadow: var(--fp-elevation-base) !important;
-    }
-    .desktop-action-bar {
-      border-top-color: transparent !important;
-      background: var(--fp-canvas) !important;
     }
     .desktop-action-bar__inner { padding-inline: 16px; }
 
-    .cdd .cdd__btn {
-      height: var(--fp-control) !important;
-      padding: 0 32px 0 12px;
-      border-color: transparent !important;
-      border-radius: var(--fp-r-control) !important;
-      background: var(--fp-surface-soft) !important;
-      box-shadow: var(--fp-elevation-base) !important;
-      font-size: var(--fp-fs-body);
-      transition:
-        transform var(--fp-motion-press) var(--fp-motion-ease),
-        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
-        background-color var(--fp-motion-state) var(--fp-motion-ease);
-    }
-    .cdd .cdd__menu {
-      border-color: transparent !important;
-      border-radius: var(--fp-r-panel) !important;
-      background: var(--fp-surface) !important;
-      box-shadow: var(--fp-elevation-float) !important;
-    }
-
     .bottom-action {
-      height: var(--fp-control) !important;
-      padding-inline: 14px;
-      border: 1px solid transparent !important;
-      border-radius: var(--fp-r-control) !important;
-      box-shadow: var(--fp-elevation-base);
-      font-size: var(--fp-fs-body);
-      font-weight: 600;
       transition:
         transform var(--fp-motion-press) var(--fp-motion-ease),
         box-shadow var(--fp-motion-state) var(--fp-motion-ease),
         background-color var(--fp-motion-state) var(--fp-motion-ease);
     }
-    .bottom-action.secondary {
-      background: var(--fp-surface-soft) !important;
-      color: var(--fp-text-2) !important;
-    }
-    .bottom-action.primary {
-      background: var(--fp-primary) !important;
-      color: #fff !important;
-    }
 
+    /* Protect editable quote controls from legacy inline specificity. */
     .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select),
     .qc-field > input, .qc-field > select, .cs-field input,
     .qc-pct {
       min-height: var(--fp-control);
       height: var(--fp-control);
-      padding: 0 30px 0 12px;
       border: 1px solid transparent !important;
       border-radius: var(--fp-r-control) !important;
       background: var(--fp-surface-soft) !important;
       box-shadow: var(--fp-elevation-base) !important;
       font-size: var(--fp-fs-body);
-      transition:
-        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
-        background-color var(--fp-motion-state) var(--fp-motion-ease);
     }
-    .qc-field > input, .cs-field input { padding: 0 12px !important; }
-    .qc-pct { padding: 0 10px 0 12px; }
+    .qc-field > input, .cs-field input { padding: 0 var(--fp-sp-3) !important; }
     .quote-panel .qc-pct input:not([type="checkbox"]):not([type="radio"]) {
       min-height: 0 !important;
       height: 100% !important;
@@ -4858,21 +4786,12 @@ render();
       box-shadow: none !important;
       font-size: var(--fp-fs-body);
     }
-    .term-card__term-dd {
-      min-height: var(--fp-control-sm) !important;
-      height: var(--fp-control-sm) !important;
-      padding: 0 12px 0 4px !important;
-      border: 1px solid transparent !important;
-      border-radius: var(--fp-r-control) !important;
-      background: var(--fp-surface-soft) !important;
-      box-shadow: var(--fp-elevation-base) !important;
-      font-size: var(--fp-fs-support) !important;
-    }
 
     .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select):focus,
     .qc-field > input:focus, .qc-field > select:focus, .cs-field input:focus,
     .qc-pct:focus-within,
-    .cdd .cdd__btn:focus-visible {
+    .cdd .cdd__btn:focus-visible,
+    .wrap .step-dd:focus-visible {
       outline: none !important;
       border-color: transparent !important;
       background: var(--fp-surface) !important;
@@ -4880,7 +4799,8 @@ render();
     }
 
     .quote-panel :is(input, select):disabled,
-    .qc-field > input:disabled, .qc-field > select:disabled, .cs-field input:disabled {
+    .qc-field > input:disabled, .qc-field > select:disabled, .cs-field input:disabled,
+    .wrap .step-dd:disabled {
       background: var(--fp-neutral) !important;
       border-color: transparent !important;
       box-shadow: none !important;
@@ -4889,7 +4809,8 @@ render();
 
     @media (hover: hover) {
       .cdd .cdd__btn:not(:disabled):hover,
-      .bottom-action:not(:disabled):hover {
+      .bottom-action:not(:disabled):hover,
+      .wrap .step-dd:not(:disabled):hover {
         box-shadow: var(--fp-elevation-hover);
         transform: translateY(-1px);
       }
@@ -4905,8 +4826,7 @@ render();
       transform: translateY(var(--fp-press-y));
     }
 
-    /* Vehicle configuration panel — PR #92 desktop density.
-       Estimate keeps its cascade flow; labels/controls inherit Admin visual grammar. */
+    /* Vehicle configuration composition. */
     .wrap section {
       border: 0 !important;
       background: transparent !important;
@@ -4924,57 +4844,24 @@ render();
       color: var(--fp-primary) !important;
       font-weight: 600 !important;
     }
-    .wrap section.hidden {
-      opacity: .46;
-    }
+    .wrap section.hidden { opacity: .46; }
 
     .wrap .step-dd {
       display: block !important;
       width: 100%;
       height: var(--fp-control) !important;
       min-height: var(--fp-control) !important;
-      padding: 0 32px 0 12px !important;
-      border: 1px solid transparent !important;
-      border-radius: var(--fp-r-control) !important;
-      background-color: var(--fp-surface-soft) !important;
-      box-shadow: var(--fp-elevation-base) !important;
-      color: var(--fp-text) !important;
       font-size: var(--fp-fs-body) !important;
-      font-weight: 500;
-      transition:
-        transform var(--fp-motion-press) var(--fp-motion-ease),
-        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
-        background-color var(--fp-motion-state) var(--fp-motion-ease);
     }
-    .wrap .step-dd:focus-visible {
-      outline: none !important;
-      border-color: transparent !important;
-      background-color: var(--fp-surface) !important;
-      box-shadow: var(--fp-focus-halo), var(--fp-elevation-hover) !important;
-    }
-    .wrap .step-dd:disabled {
-      background-color: var(--fp-neutral) !important;
-      box-shadow: none !important;
-      color: var(--fp-text-3) !important;
-    }
-    @media (hover: hover) {
-      .wrap .step-dd:not(:disabled):hover {
-        border-color: transparent !important;
-        background-color: var(--fp-surface-hover) !important;
-        box-shadow: var(--fp-elevation-hover) !important;
-        transform: translateY(-1px);
-      }
-    }
-
-    .wrap .color-wrap .step-dd {
-      padding-left: 36px !important;
-    }
+    .wrap .color-wrap .step-dd { padding-left: 36px !important; }
     .wrap .color-swatch-mini {
       left: 12px !important;
       width: 16px !important;
       height: 16px !important;
       border: 0 !important;
-      box-shadow: 0 0 0 1px rgba(16, 24, 40, .16), inset 0 0 0 1px rgba(255,255,255,.45) !important;
+      box-shadow:
+        0 0 0 1px rgba(16, 24, 40, .16),
+        inset 0 0 0 1px rgba(255,255,255,.45) !important;
     }
 
     .wrap .step-title-summary {
@@ -5008,7 +4895,6 @@ render();
       line-height: 1.5;
     }
 
-    /* PR #92 component surfaces: default floats lightly, selected stays pressed. */
     :is(.card, .trim-row, .color-card, .option-row) {
       border: 1px solid transparent !important;
       border-radius: var(--fp-r-control) !important;
@@ -5021,7 +4907,7 @@ render();
     }
     :is(.card.active, .trim-row.active, .color-card.active, .option-row.active) {
       background: var(--fp-selected) !important;
-      box-shadow: inset 0 1px 2px rgba(29, 78, 216, 0.10);
+      box-shadow: inset 0 1px 2px rgba(29, 78, 216, .10);
       transform: translateY(var(--fp-press-y));
     }
     :is(.card.disabled, .trim-row.disabled, .color-card.disabled, .option-row.disabled) {
@@ -5036,7 +4922,7 @@ render();
       }
     }
 
-    /* Breadcrumb is context, not another outlined card. */
+    /* Context and non-input state surfaces. */
     .breadcrumb {
       border: 1px solid transparent !important;
       border-radius: var(--fp-r-control) !important;
@@ -5056,80 +4942,6 @@ render();
       font-weight: 600;
     }
 
-    /* Quote context uses spacing rather than a horizontal divider. */
-    .qp-summary-mini {
-      padding: 12px 0 !important;
-      border: 0 !important;
-      background: transparent !important;
-      font-size: var(--fp-fs-body) !important;
-    }
-
-    /* Remove the legacy Welrix "current field underline pulse". Current state is
-       communicated by surface/focus halo, not a blinking line. */
-    html body section.is-current .step-dd,
-    html body section.is-current .cdd .cdd__btn,
-    html body .quote-panel .qc-field:has(input:placeholder-shown) > input {
-      border-bottom-color: transparent !important;
-      border-color: transparent !important;
-      animation: none !important;
-    }
-    html body section.is-current :is(.step-dd, .cdd .cdd__btn):hover,
-    html body section.is-current :is(.step-dd, .cdd .cdd__btn):focus {
-      border-bottom-color: transparent !important;
-      border-color: transparent !important;
-    }
-
-    /* Customer quote block is one tinted surface, not an outlined box. */
-    .qp-terms__title--customer {
-      margin-top: var(--fp-sp-4) !important;
-      padding: var(--fp-sp-3) var(--fp-sp-3) var(--fp-sp-2) !important;
-      border: 1px solid transparent !important;
-      border-bottom: 0 !important;
-      border-radius: var(--fp-r-panel) var(--fp-r-panel) 0 0 !important;
-      background: var(--fp-surface-soft) !important;
-      color: var(--fp-primary) !important;
-    }
-    .terms-grid {
-      gap: var(--fp-sp-3) !important;
-      border: 1px solid transparent !important;
-      border-top: 0 !important;
-      border-radius: 0 0 var(--fp-r-panel) var(--fp-r-panel) !important;
-      background: var(--fp-surface-soft) !important;
-      padding: 0 var(--fp-sp-3) var(--fp-sp-3) !important;
-    }
-    .term-card {
-      border: 0 !important;
-      background: transparent !important;
-    }
-    .term-card:hover {
-      background: var(--fp-surface-hover) !important;
-    }
-
-    /* Normalized quote typography/density from Admin PR #92. */
-    .term-card__monthly {
-      font-size: var(--fp-fs-kpi) !important;
-    }
-    .term-card__term-dd,
-    .term-card__check-cap,
-    .term-card__cond label > span:first-child,
-    .term-card__cond .pct-cell,
-    .term-card__cond .pct-cell input {
-      font-size: var(--fp-fs-support) !important;
-    }
-    .term-card__cond .pct-cell {
-      min-height: var(--fp-control-sm);
-      border: 1px solid transparent !important;
-      border-radius: var(--fp-r-control);
-      background: var(--fp-surface-soft);
-      box-shadow: var(--fp-elevation-base);
-      padding: 0 var(--fp-sp-2);
-    }
-    .term-card__cond .pct-cell input {
-      height: var(--fp-control-sm) !important;
-      min-height: var(--fp-control-sm) !important;
-    }
-
-    /* Empty guidance is a quiet information surface, not an outlined callout. */
     .quote-panel:has(.qp-vehicle.empty) .qp-empty-guide {
       padding: var(--fp-sp-3) var(--fp-sp-4) !important;
       margin: var(--fp-sp-2) 0 var(--fp-sp-4) !important;
@@ -5147,66 +4959,6 @@ render();
       font-size: var(--fp-fs-support) !important;
     }
 
-    /* Tint choices follow the same selection-control grammar as other choices. */
-    .tint-chip {
-      border: 1px solid transparent !important;
-      border-radius: var(--fp-r-control) !important;
-      background: var(--fp-surface-soft) !important;
-      box-shadow: var(--fp-elevation-base);
-      transition:
-        transform var(--fp-motion-press) var(--fp-motion-ease),
-        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
-        background-color var(--fp-motion-state) var(--fp-motion-ease);
-    }
-    .tint-chip :is(.tn, .tp) {
-      font-size: var(--fp-fs-support) !important;
-    }
-    .tint-chip.on {
-      border-color: transparent !important;
-      background: var(--fp-selected) !important;
-      box-shadow: inset 0 1px 2px rgba(29, 78, 216, 0.10);
-      transform: translateY(var(--fp-press-y));
-    }
-    @media (hover: hover) {
-      .tint-chip:not(.on):hover {
-        border-color: transparent !important;
-        background: var(--fp-surface-hover) !important;
-        box-shadow: var(--fp-elevation-hover);
-        transform: translateY(-1px);
-      }
-    }
-    .tint-chip:active {
-      box-shadow: var(--fp-elevation-0);
-      transform: translateY(var(--fp-press-y));
-    }
-
-    /* Quote fact rows: spacing and alignment replace dashed separators. */
-    .qp-terms__title,
-    .qp-terms__title small,
-    .term-card__row,
-    .term-card__row b,
-    .term-card__row .resid-pct,
-    .term-card__cond .pct-cell--static {
-      font-size: var(--fp-fs-support) !important;
-    }
-    .term-card__row {
-      padding: var(--fp-sp-1) 0 !important;
-    }
-    .term-card__row + .term-card__row {
-      border-top: 0 !important;
-    }
-    .term-card__row .resid-pct {
-      border-radius: var(--fp-r-pill) !important;
-      background: var(--fp-primary-weak) !important;
-      color: var(--fp-primary) !important;
-    }
-    .term-card__cond .pct-cell--static {
-      border: 0 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-    }
-
-    /* Accordion hierarchy is expressed with spacing/surface, not dashed lines. */
     details.qp-extras > summary {
       border: 0 !important;
       border-radius: var(--fp-r-control);
@@ -5221,21 +4973,7 @@ render();
       color: var(--fp-text-3) !important;
     }
 
-    /* Runtime preview shell follows Admin surfaces; the exported quote document
-       inside it keeps its own document layout. */
-    .customer-output {
-      border: 1px solid transparent !important;
-      border-radius: var(--fp-r-panel) !important;
-      background: var(--fp-surface) !important;
-      box-shadow: var(--fp-elevation-base);
-    }
-    .customer-output__head {
-      border-bottom: 0 !important;
-      background: var(--fp-surface-soft) !important;
-      color: var(--fp-text-muted) !important;
-      font-size: var(--fp-fs-support) !important;
-      letter-spacing: 0 !important;
-    }
+    /* Runtime chrome: exported quote document remains a separate document contract. */
     .customer-output__head button {
       min-height: var(--fp-control-sm) !important;
       height: var(--fp-control-sm) !important;
@@ -5244,26 +4982,6 @@ render();
       font-size: var(--fp-fs-support) !important;
     }
 
-    /* Modal chrome uses the same PanelHead / PanelFoot grammar. */
-    .quote-modal {
-      border-radius: var(--fp-r-panel) !important;
-      box-shadow: var(--fp-elevation-float) !important;
-    }
-    .quote-modal__head {
-      min-height: var(--fp-panel-head);
-      padding: var(--fp-sp-2) var(--fp-sp-4) !important;
-      border-bottom: 0 !important;
-      background: var(--fp-surface-soft) !important;
-      font-size: var(--fp-fs-body) !important;
-      color: var(--fp-text) !important;
-      letter-spacing: 0 !important;
-    }
-    .quote-modal__foot {
-      min-height: var(--fp-panel-foot) !important;
-      padding: var(--fp-sp-2) var(--fp-sp-3) !important;
-      border-top: 0 !important;
-      background: var(--fp-surface) !important;
-    }
     .quote-modal__foot button,
     .quote-modal__head button {
       min-height: var(--fp-control-sm) !important;
