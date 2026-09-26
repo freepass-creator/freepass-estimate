@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { resolveCanonicalIdentity } from '../src/lib/newcar/configuration-resolver.js';
 import { calculateStandardQuote } from '../api/_standard/standard-service.js';
 import { QUOTE_TERMS } from '../src/lib/quote/terms.js';
+import { createQuoteConditionCosts } from '../src/lib/quote/condition-cost-contract.js';
 
 const ctx={window:{},console:{log(){},warn(){},error(){}}};
 vm.createContext(ctx);
@@ -22,6 +23,7 @@ function req(id,credit='중신용'){
   const {mf,md,v,t}=findProduct(id);
   const canonical=resolveCanonicalIdentity(t,v.options_master||{},[]);
   const trimWon=Math.round(Number(t.base_price_5||0)*10000);
+  const costs=createQuoteConditionCosts({deliveryFee:250000});
   return {
     버전:1,
     차:{
@@ -42,7 +44,7 @@ function req(id,credit='중신용'){
     },
     조건:{
       신용:credit,주행:'2만km',정비:'웰스 Basic',대물:'1억',추가운전자:'없음',
-      탁송비:250000,썬팅비:0,블박비:0,수수료율:3,
+      탁송비:costs.deliveryFee,썬팅비:costs.tintFee,블박비:costs.dashcamFee,내비비:0,하이패스비:0,비용:costs,수수료율:3,
     },
     안들:QUOTE_TERMS.map((기간)=>({기간,보증금:0,선납:0})),
   };
