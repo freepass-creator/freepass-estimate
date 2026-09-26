@@ -358,3 +358,33 @@ I-01 now provides two UI-independent read seams:
 This layer returns only canonical data.
 It does not render the customer view, choose typography, or add customer/staff presentation fields.
 F/U owns rendering after this verified bundle is returned.
+
+
+## Final F/UI delivery facade
+
+F/UI should not assemble QuoteRepository, ShareEnvelopeRepository, or Firebase caller-token plumbing.
+
+Use:
+
+`createFirebaseCanonicalQuoteDelivery(...)`
+
+This facade internally composes:
+- Firebase caller ID token provider
+- authenticated Quote repository
+- authenticated Share Envelope repository
+- Quote v2 persistence runtime
+- Share Envelope delivery runtime
+
+Input remains business/calculation state:
+- request
+- calculation
+- selected vehicle/condition context
+- createdAt / expiresAt
+- location context
+
+Output:
+- immutable Quote v2 records + receipts
+- immutable Share Envelope + receipt
+- canonical customer `?share=` URL
+
+Canonical delivery failure never falls back to legacy RTDB.
