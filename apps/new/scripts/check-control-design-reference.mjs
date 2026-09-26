@@ -84,6 +84,12 @@ assert.match(finalUi, /\.sq-table__term-select\s*\{[\s\S]*min-height:\s*var\(--h
   'mobile quote controls must preserve the 44px touch floor');
 assert.match(finalUi, /#gate-submit,[\s\S]*#gate-admin\s*\{[\s\S]*height:\s*var\(--h-cta\);/,
   'staff gate actions must remain mobile 44px controls');
+assert.match(finalUi, /\.sv-pc__in, \.sc-pct, \.se-discount\)\s*\{[\s\S]*border-color:\s*transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\);/,
+  'mobile composite fields must use PR92 line-free surfaces');
+assert.match(finalUi, /\.se-select, \.sq-pct-input\)\s*\{[\s\S]*border-color:\s*transparent !important;[\s\S]*background-color:\s*var\(--fp-surface-soft\) !important;/,
+  'mobile select and quote inputs must use neutral surfaces instead of visible borders');
+assert.match(finalUi, /\.sv-pc__in, \.sc-pct, \.se-discount\):focus-within,[\s\S]*box-shadow:\s*var\(--fp-focus-halo\), var\(--fp-elevation-hover\) !important;/,
+  'mobile fields must preserve visible focus through the shared halo');
 assert.doesNotMatch(finalUi, /:root\s*\{[\s\S]*--fp-/,
   'alignment stylesheet must not create a second token authority');
 
