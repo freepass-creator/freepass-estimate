@@ -195,6 +195,12 @@ try {
     await page.waitForSelector('.sr-title');
     await page.waitForTimeout(250);
     const result = await metrics(page, `mobile-${width}-result`);
+    const resultSurface = await page.evaluate(() => {
+      const el = document.querySelector('.sr-term');
+      if (!el) return null;
+      const s = getComputedStyle(el);
+      return { background: s.backgroundColor, color: s.color, boxShadow: s.boxShadow };
+    });
     await capture(page, `mobile-${width}-05-result`);
 
     report.mobile.push({
@@ -204,6 +210,7 @@ try {
       conditions,
       extras,
       result,
+      resultSurface,
       selectedCondition,
       selectedExtra,
       stickyA11y,
@@ -297,6 +304,10 @@ try {
         `mobile-${entry.width}: selected extra control is not solid FreePass primary: ${entry.selectedExtra.background}`);
       ok(entry.selectedExtra.color === 'rgb(255, 255, 255)',
         `mobile-${entry.width}: selected extra control text contrast drift: ${entry.selectedExtra.color}`);
+    }
+    if (entry.resultSurface) {
+      ok(entry.resultSurface.background === 'rgb(247, 249, 252)',
+        `mobile-${entry.width}: result cards must stay neutral, got ${entry.resultSurface.background}`);
     }
     ok(entry.stickyA11y.summaryTabIndex === 0, `mobile-${entry.width}: live quote summary is not keyboard-focusable`);
     if (entry.stickyA11y.summary) ok(entry.stickyA11y.summary.height >= 44, `mobile-${entry.width}: live quote summary <44px`);
