@@ -16,6 +16,7 @@ const secureWriteAccessPolicy={
   serverVerifiedFirebaseIdTokenRequired:true,
   anonymousWritesAllowed:false,
   requiredRoles:['staff'],
+  allowedUids:[],
 };
 
 const blockedPolicy={
