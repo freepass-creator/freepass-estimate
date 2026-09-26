@@ -37,26 +37,111 @@
     }
   ],
   "do_not_develop": [
-    {"branch":"automation/estimate-uiux-admin-sync-20260925-2108","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
-    {"branch":"backup/new-provider-refactor-20260919","status":"DEPRECATED_DO_NOT_USE","disposition":"historical backup"},
-    {"branch":"c-adoption/core-contract-shadow","status":"DEPRECATED_DO_NOT_USE","disposition":"superseded by later adoption"},
-    {"branch":"c-adoption/core-contract-shadow-v2","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
-    {"branch":"claude/ai-core-integration-standardization-ntmoli","status":"DEPRECATED_DO_NOT_USE","disposition":"main-equivalent historical session branch"},
-    {"branch":"claude/pr-17-adversarial-audit-21e94m","status":"ARCHIVE_DO_NOT_DEVELOP","disposition":"audit evidence only"},
-    {"branch":"codex/align-sales-control-design","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
-    {"branch":"codex/fix-five-term-local-quotes","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
-    {"branch":"codex/fix-freepass-refresh-identity","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
-    {"branch":"codex/fix-tint-state-invariant","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
-    {"branch":"codex/refresh-ai-core-kit-v2-20260922","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed/superseded"},
-    {"branch":"docs/ai-core-ui-reference-20260919","status":"DEPRECATED_DO_NOT_USE","disposition":"historical documentation line"},
-    {"branch":"feat/manual-release-normalization-20260920","status":"DEPRECATED_REVIEW_ONLY","disposition":"do not develop; recover any still-valid unique behavior into canonical line only"},
-    {"branch":"work/canon/registry-cleanup","status":"DEPRECATED_DO_NOT_USE","disposition":"PR #21 merged"},
-    {"branch":"work/gpt/admin-ui-alignment-20260925","status":"DEPRECATED_DO_NOT_USE","disposition":"superseded"},
-    {"branch":"work/gpt/ai-core-qa-p0-shadow-20260920","status":"DEPRECATED_DO_NOT_USE","disposition":"superseded"},
-    {"branch":"work/gpt/quote-core-v2-20260925","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed into PR #17"},
-    {"branch":"work/replay-qa-shadow-main-20260920","status":"DEPRECATED_DO_NOT_USE","disposition":"historical replay"},
-    {"branch":"work/ui-admin-alignment-20260925","status":"DEPRECATED_DO_NOT_USE","disposition":"absorbed into PR #17"},
-    {"branch":"work/ui-baseline","status":"DEPRECATED_REVIEW_ONLY","disposition":"do not develop; historical data/QA reference only"}
+    {
+      "branch": "automation/estimate-uiux-admin-sync-20260925-2108",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed/superseded"
+    },
+    {
+      "branch": "backup/new-provider-refactor-20260919",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "historical backup"
+    },
+    {
+      "branch": "c-adoption/core-contract-shadow",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "superseded by later adoption"
+    },
+    {
+      "branch": "c-adoption/core-contract-shadow-v2",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed/superseded"
+    },
+    {
+      "branch": "claude/ai-core-integration-standardization-ntmoli",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "main-equivalent historical session branch"
+    },
+    {
+      "branch": "claude/pr-17-adversarial-audit-21e94m",
+      "status": "ARCHIVE_DO_NOT_DEVELOP",
+      "disposition": "audit evidence only"
+    },
+    {
+      "branch": "codex/align-sales-control-design",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed/superseded"
+    },
+    {
+      "branch": "codex/fix-five-term-local-quotes",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed/superseded"
+    },
+    {
+      "branch": "codex/fix-freepass-refresh-identity",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed/superseded"
+    },
+    {
+      "branch": "codex/fix-tint-state-invariant",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed/superseded"
+    },
+    {
+      "branch": "codex/refresh-ai-core-kit-v2-20260922",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed/superseded"
+    },
+    {
+      "branch": "docs/ai-core-ui-reference-20260919",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "historical documentation line"
+    },
+    {
+      "branch": "feat/manual-release-normalization-20260920",
+      "status": "DEPRECATED_REVIEW_ONLY",
+      "disposition": "do not develop; recover any still-valid unique behavior into canonical line only"
+    },
+    {
+      "branch": "work/canon/registry-cleanup",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "PR #21 merged"
+    },
+    {
+      "branch": "work/gpt/admin-ui-alignment-20260925",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "superseded"
+    },
+    {
+      "branch": "work/gpt/ai-core-qa-p0-shadow-20260920",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "superseded"
+    },
+    {
+      "branch": "work/gpt/quote-core-v2-20260925",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed into PR #17"
+    },
+    {
+      "branch": "work/replay-qa-shadow-main-20260920",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "historical replay"
+    },
+    {
+      "branch": "work/ui-admin-alignment-20260925",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "absorbed into PR #17"
+    },
+    {
+      "branch": "work/ui-baseline",
+      "status": "DEPRECATED_REVIEW_ONLY",
+      "disposition": "do not develop; historical data/QA reference only"
+    },
+    {
+      "branch": "work/canon/branch-model",
+      "status": "DEPRECATED_DO_NOT_USE",
+      "disposition": "branch policy PR #22 merged; governance task complete"
+    }
   ],
   "rules": {
     "page_branches_forbidden": true,
