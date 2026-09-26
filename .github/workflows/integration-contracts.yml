@@ -22,6 +22,7 @@ on:
       - 'apps/new/src/lib/quote/share-envelope*.js'
       - 'apps/new/scripts/check-quote-*.mjs'
       - 'apps/new/scripts/check-share-envelope*.mjs'
+      - 'apps/new/scripts/check-legacy-*.mjs'
       - 'apps/new/scripts/probe-freepass-data-cutover.mjs'
       - 'docs/INTEGRATION_QUOTE_PERSISTENCE.md'
       - '.github/workflows/integration-contracts.yml'
