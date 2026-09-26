@@ -6,34 +6,35 @@
     "status": "CANONICAL",
     "rule": "only long-lived product truth"
   },
-  "temporary_active": [
-    {
-      "branch": "integration/canonical-20260926",
-      "status": "ACTIVE_INTEGRATION_TEMPORARY",
-      "purpose": "PR #17 consolidation only",
-      "retire_when": "PR #17 merged to main"
-    }
-  ],
+  "temporary_active": [],
   "future_lanes": [
     {
       "lane": "UI_UX",
       "pattern": "work/ui-ux/<task>",
-      "max_active": 1
+      "max_active": 1,
+      "current_branch": "work/ui-ux/canonical-hardening",
+      "status": "READY_FROM_MAIN"
     },
     {
       "lane": "FEATURE",
       "pattern": "work/feature/<task>",
-      "max_active": 1
+      "max_active": 1,
+      "current_branch": "work/feature/domain-rule-unification",
+      "status": "READY_FROM_MAIN"
     },
     {
       "lane": "ENGINE",
       "pattern": "work/engine/<task>",
-      "max_active": 1
+      "max_active": 1,
+      "current_branch": "work/engine/standard-condition-semantics",
+      "status": "READY_FROM_MAIN"
     },
     {
       "lane": "INTEGRATION",
       "pattern": "work/integration/<task>",
-      "max_active": 1
+      "max_active": 1,
+      "current_branch": "work/integration/quote-persistence",
+      "status": "READY_FROM_MAIN"
     }
   ],
   "do_not_develop": [
@@ -150,5 +151,12 @@
     "child_branches_from_work_branch_forbidden": true,
     "qa_is_separate_branch": false,
     "max_regular_active_product_branches": 4
+  },
+  "last_consolidation": {
+    "branch": "integration/canonical-20260926",
+    "pr": 17,
+    "status": "MERGED_RETIRED",
+    "merged_at": "2026-09-26",
+    "merge_commit": "b44fc482bae6efb882b378ad366ec03e04c46b8d"
   }
 }
