@@ -9,6 +9,7 @@ on:
       - 'apps/new/api/issued-quotes.js'
       - 'apps/new/api/share-envelope*.js'
       - 'apps/new/src/lib/quote/cutover-readiness.js'
+      - 'apps/new/src/lib/quote/cutover-probe.js'
       - 'apps/new/src/lib/quote/persistence-runtime.js'
       - 'apps/new/src/lib/quote/quote-repository.js'
       - 'apps/new/src/lib/quote/repositories/freepass-data.js'
@@ -71,6 +72,7 @@ jobs:
           node --check src/lib/quote/share-envelope-repository.js
           node --check src/lib/quote/repositories/freepass-data-share-envelope.js
           node --check src/lib/quote/cutover-readiness.js
+          node --check src/lib/quote/cutover-probe.js
           node --check src/lib/quote/shadow-roundtrip.js
       - name: Quote persistence gateway
         run: node scripts/check-quote-persistence-gateway.mjs
@@ -82,6 +84,8 @@ jobs:
         run: node scripts/check-quote-share-migration.mjs
       - name: Quote cutover readiness
         run: node scripts/check-quote-cutover-readiness.mjs
+      - name: Full canonical cutover probe
+        run: node scripts/check-cutover-probe.mjs
       - name: Quote shadow round-trip
         run: node scripts/check-quote-shadow-roundtrip.mjs
       - name: Share Envelope authority boundary
