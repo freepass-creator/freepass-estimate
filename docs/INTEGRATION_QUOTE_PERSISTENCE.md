@@ -290,3 +290,26 @@ The output intentionally excludes service tokens and full Quote/Envelope payload
 Only release evidence, IDs, hashes, receipt status, and readiness gates are emitted.
 
 With `FREEPASS_REQUIRE_CUTOVER_READY=1`, HOLD exits non-zero so deployment promotion can fail closed.
+
+
+## Canonical delivery runtime
+
+`src/lib/quote/delivery-runtime.js` is the I-01 handoff seam for F/UI.
+
+Input:
+- already-issued Quote v2 records
+- matching successful Quote write receipts
+- Share Envelope repository
+- createdAt / expiresAt
+- current origin/pathname
+
+Output:
+- immutable Share Envelope
+- Share Envelope write receipt
+- canonical public `?share=` URL
+- ordered Quote references
+
+The runtime refuses to build a public share from Quote records that do not have matching canonical write receipts.
+It does not own customer/staff copy, button behavior, or UI rendering.
+
+This lets F/UI later call one integration function after canonical cutover approval instead of writing directly to RTDB.
