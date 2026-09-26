@@ -414,7 +414,7 @@ const cards = computed(() => {
 
 /* 펼침 표 — PC 견적표 형태 */
 .sq-detail {
-  border-top: 1px solid var(--line);
+  border-top: 0;
   padding: 12px 16px;
 }
 .sq-table {
@@ -426,20 +426,20 @@ const cards = computed(() => {
 .sq-table th, .sq-table td {
   padding: 7px 4px;
   text-align: center;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 0;
   vertical-align: middle;
   line-height: 1.3;
 }
 .sq-table thead th {
   background: var(--bg-soft);
   font-weight: 600; color: var(--ink-1);
-  font-size: 11.5px;
-  border-bottom: 1.5px solid var(--brand);
+  font-size: var(--fs-sm);
+  border-bottom: 0;
 }
 .sq-table__rowlabel {
   text-align: left !important;
   color: var(--ink-3); font-weight: 500;
-  font-size: 11px;
+  font-size: var(--fs-sm);
   background: var(--bg-soft);
   width: 60px;
   padding-left: 8px !important;
@@ -462,11 +462,11 @@ const cards = computed(() => {
   background: var(--brand-50);
 }
 .sq-table__monthly b {
-  font-size: 13px; font-weight: 700; color: var(--brand);
+  font-size: var(--fs-base); font-weight: 700; color: var(--brand);
   letter-spacing: -0.3px;
 }
 .sq-table__monthly small {
-  font-size: 10px; color: var(--ink-3); font-weight: 400;
+  font-size: var(--fs-sm); color: var(--ink-3); font-weight: 400;
   margin-left: 2px;
 }
 
