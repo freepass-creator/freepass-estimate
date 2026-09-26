@@ -4,6 +4,7 @@ import { configurationAxes, resolveProviderCandidate, absorbedAxisOptionIds } fr
 import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from '../src/lib/quote/contracts.js';
 import { EXTERNAL_PROVIDER_POLICY, providerPublicMessage, providerRetryable } from '../src/lib/quote/provider-policy.js';
 import { authoritativeQuoteRequest } from './_master/authoritative-request.js';
+import { conditionCostsFromRequest } from '../src/lib/quote/condition-cost-contract.js';
 
 // Server-side external quote adapter router.
 // Never exposes partner Excel files, ERP credentials or upstream auth to the browser.
@@ -155,6 +156,13 @@ function welrixBody(request) {
   const 조건 = request?.조건 || {};
   const 안들 = request?.안들 || [];
   const resolved = welrixProviderResolution(request);
+  const conditionCosts = conditionCostsFromRequest(request);
+
+  // Welrix upstream exposes one dashcam/prep fee input and has no explicit
+  // navi/hipass fields. Never silently fold unsupported money into another field.
+  if (conditionCosts.naviFee > 0 || conditionCosts.hipassFee > 0) {
+    throw new ProviderUnsupportedError();
+  }
 
   return {
     model: resolved.candidate.api_model,
@@ -170,9 +178,9 @@ function welrixBody(request) {
       // AWD/인승처럼 provider의 완성차 row에 이미 포함된 구성 옵션은 다시 더하지 않는다.
       optionPrice: externalOptionPrice(가격, 차, resolved.absorbedWon),
       stockDiscount: 가격.할인 || 차.할인 || 0,
-      deliveryFee: 조건.탁송비,
-      tintFee: 조건.썬팅비,
-      dashcamFee: 조건.블박비,
+      deliveryFee: conditionCosts.deliveryFee,
+      tintFee: conditionCosts.tintFee,
+      dashcamFee: conditionCosts.dashcamFee,
       deposit_pct: (a.보증금 || 0) / 100,
       prepay_pct: (a.선납 || 0) / 100,
       liability: 조건.대물,

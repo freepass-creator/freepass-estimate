@@ -1,6 +1,7 @@
 import { buildIssuedQuote } from './quote-v2.js';
 import { normalizePricingEngineEvidence } from './pricing-engine.js';
 import { normalizePriceBasis } from './price-basis.js';
+import { conditionCostsFromRequest } from './condition-cost-contract.js';
 
 function required(value, field) {
   const v = String(value ?? '').trim();
@@ -126,6 +127,7 @@ function assertMasterSnapshot(master, request) {
 
 function conditionSnapshotFromRequest(request) {
   const cond = request?.조건 || {};
+  const costs = conditionCostsFromRequest(request);
   return Object.freeze({
     credit: required(cond.신용, 'condition.credit'),
     mileageCondition: required(cond.주행, 'condition.mileage'),
@@ -134,11 +136,12 @@ function conditionSnapshotFromRequest(request) {
     extraDriver: required(cond.추가운전자, 'condition.extraDriver'),
     feeRatePct: finite(cond.수수료율, 'condition.feeRatePct'),
     costs: Object.freeze({
-      deliveryFee: finite(cond.탁송비 ?? 0, 'condition.deliveryFee'),
-      tintFee: finite(cond.썬팅비 ?? 0, 'condition.tintFee'),
-      dashcamFee: finite(cond.블박비 ?? 0, 'condition.dashcamFee'),
-      naviFee: finite(cond.내비비 ?? cond.naviFee ?? 0, 'condition.naviFee'),
-      hipassFee: finite(cond.하이패스비 ?? cond.hipassFee ?? 0, 'condition.hipassFee'),
+      policyId: costs.policyId,
+      deliveryFee: costs.deliveryFee,
+      tintFee: costs.tintFee,
+      dashcamFee: costs.dashcamFee,
+      naviFee: costs.naviFee,
+      hipassFee: costs.hipassFee,
     }),
   });
 }
