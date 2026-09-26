@@ -121,12 +121,20 @@ html .m-shell :is(
   .sv-trim-card.is-selected,
   .sv-color-card.is-selected,
   .sv-opt.is-selected,
-  .sc-chip.is-selected,
-  .se-chip.is-selected,
   .se-card.is-selected
 ) {
   background: var(--fp-selected) !important;
   box-shadow: inset 0 1px 2px rgba(29, 78, 216, 0.10);
+}
+
+/* Admin PR #92: compact selection controls may use solid primary.
+ * Keep this distinct from selected entity cards, which use a locked tint surface.
+ */
+html .m-shell :is(.sc-chip.is-selected, .se-chip.is-selected) {
+  background: var(--fp-primary) !important;
+  color: #fff !important;
+  font-weight: var(--fw-semi);
+  box-shadow: inset 0 1px 2px rgba(16, 24, 40, 0.14);
 }
 
 html .m-shell :is(.m-btn, .sq-term-card):active {
