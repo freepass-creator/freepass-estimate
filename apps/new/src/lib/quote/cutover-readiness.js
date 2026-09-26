@@ -7,7 +7,7 @@ import {
   SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
 } from './share-envelope-repository.js';
 
-export const QUOTE_CUTOVER_READINESS_CONTRACT = 'freepass-estimate-quote-cutover-readiness/v3';
+export const QUOTE_CUTOVER_READINESS_CONTRACT = 'freepass-estimate-quote-cutover-readiness/v4';
 
 function blocker(code, detail = null) {
   return Object.freeze({ code, detail });
@@ -141,6 +141,18 @@ function validLegacyWritePolicy(policy) {
   );
 }
 
+function validWriteAccessPolicy(policy) {
+  return !!(
+    policy &&
+    policy.contract === 'freepass-estimate-write-access/v1' &&
+    policy.serverVerifiedFirebaseIdTokenRequired === true &&
+    policy.anonymousWritesAllowed === false &&
+    Array.isArray(policy.requiredRoles) &&
+    policy.requiredRoles.length > 0 &&
+    policy.requiredRoles.every((role) => typeof role === 'string' && role.trim())
+  );
+}
+
 /**
  * READY means the entire canonical delivery path is evidenced and the actual
  * legacy writer policy is already in CANONICAL_ONLY mode.
@@ -153,6 +165,7 @@ export function evaluateQuoteCutoverReadiness({
   envelopeReadProbe = null,
   canonicalViewerReady = false,
   legacyWritePolicy = null,
+  writeAccessPolicy = null,
 } = {}) {
   const blockers = [];
 
@@ -178,6 +191,7 @@ export function evaluateQuoteCutoverReadiness({
 
   if (canonicalViewerReady !== true) blockers.push(blocker('CANONICAL_VIEWER_CUTOVER_NOT_READY'));
   if (!validLegacyWritePolicy(legacyWritePolicy)) blockers.push(blocker('LEGACY_WRITE_BLOCK_NOT_READY'));
+  if (!validWriteAccessPolicy(writeAccessPolicy)) blockers.push(blocker('CANONICAL_WRITE_AUTH_POLICY_NOT_READY'));
 
   return Object.freeze({
     contract: QUOTE_CUTOVER_READINESS_CONTRACT,
@@ -202,6 +216,7 @@ export function evaluateQuoteCutoverReadiness({
           : false,
       canonicalViewerReady: canonicalViewerReady === true,
       legacyWriteBlocked: validLegacyWritePolicy(legacyWritePolicy),
+      canonicalWriteAuthPolicyReady: validWriteAccessPolicy(writeAccessPolicy),
     }),
     blockers: Object.freeze(blockers),
   });
