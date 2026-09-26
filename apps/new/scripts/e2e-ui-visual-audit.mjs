@@ -249,6 +249,8 @@ try {
       const action = firstVisible('.bottom-action');
       const select = firstVisible('.cdd__btn, .step-dd');
       const card = firstVisible('.card, .trim-row, .color-card');
+      const vehicleLabel = firstVisible('.wrap .step-title, .wrap .step-title-text');
+      const vehiclePanel = firstVisible('.wrap');
       const rect = (el) => el ? el.getBoundingClientRect() : null;
       const css = (el) => el ? getComputedStyle(el) : null;
       return {
@@ -259,6 +261,16 @@ try {
         action: action ? { height: rect(action).height, fontSize: css(action).fontSize, radius: css(action).borderRadius } : null,
         select: select ? { height: rect(select).height, fontSize: css(select).fontSize, radius: css(select).borderRadius } : null,
         card: card ? { radius: css(card).borderRadius, padding: css(card).padding } : null,
+        vehicleLabel: vehicleLabel ? {
+          fontSize: css(vehicleLabel).fontSize,
+          fontWeight: css(vehicleLabel).fontWeight,
+          color: css(vehicleLabel).color,
+        } : null,
+        vehiclePanel: vehiclePanel ? {
+          radius: css(vehiclePanel).borderRadius,
+          background: css(vehiclePanel).backgroundColor,
+          boxShadow: css(vehiclePanel).boxShadow,
+        } : null,
         topbarActions: document.querySelectorAll('.global-topbar button, .global-topbar a[href]').length,
         topbarBrand: {
           src: document.querySelector('.global-topbar__brand img')?.getAttribute('src') || '',
@@ -327,6 +339,16 @@ try {
       ok(Math.round(entry.select.height) === 36, `desktop-${entry.width}: select height drift ${entry.select.height}`);
       ok(entry.select.fontSize === '14px', `desktop-${entry.width}: select font drift ${entry.select.fontSize}`);
       ok(entry.select.radius === '6px', `desktop-${entry.width}: select radius drift ${entry.select.radius}`);
+    }
+    if (entry.vehicleLabel) {
+      ok(entry.vehicleLabel.fontSize === '12px',
+        `desktop-${entry.width}: vehicle step label must use support scale, got ${entry.vehicleLabel.fontSize}`);
+    }
+    if (entry.vehiclePanel) {
+      ok(entry.vehiclePanel.radius === '8px',
+        `desktop-${entry.width}: vehicle panel radius drift ${entry.vehiclePanel.radius}`);
+      ok(entry.vehiclePanel.background === 'rgb(255, 255, 255)',
+        `desktop-${entry.width}: vehicle panel surface drift ${entry.vehiclePanel.background}`);
     }
     ok(entry.topbarActions === 0, `desktop-${entry.width}: topbar action reappeared`);
     ok(entry.topbarBrand.src === '/freepass-wordmark.svg' && entry.topbarBrand.alt === '프리패스모빌리티',
