@@ -22,6 +22,12 @@ const files = walk(ROOT);
 const directCalc = [];
 const directWelrix = [];
 
+const runtimeEntrypoint = fs.readFileSync(path.resolve('quote.js'), 'utf8');
+if (/from\s*['"]\.\/src\/lib\/calc\.js['"]/.test(runtimeEntrypoint)) {
+  console.error('[quote-core-convergence] runtime quote.js must not import legacy calc.js');
+  process.exit(1);
+}
+
 for (const file of files) {
   const source = fs.readFileSync(file, 'utf8');
   const name = rel(file);
