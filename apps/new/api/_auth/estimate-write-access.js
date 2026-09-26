@@ -53,6 +53,13 @@ export function assertEstimateWriteIdentity(identity, policy = resolveEstimateWr
   const uidMatch = policy.allowedUids.includes(identity.uid);
   const selectorConfigured = policy.requiredRoles.length > 0 || policy.allowedUids.length > 0;
 
+  if (identity.isAnonymous && !uidMatch) {
+    throw codedError(
+      'anonymous Firebase writes require an explicit UID allowlist match',
+      'ESTIMATE_WRITE_ANONYMOUS_UID_FORBIDDEN'
+    );
+  }
+
   if (selectorConfigured && !roleMatch && !uidMatch) {
     throw codedError(
       'Firebase user is not authorized for Estimate canonical writes',
