@@ -5,6 +5,7 @@ import { applyProductTheme } from './src/lib/brand-theme.js';
 import { 견적계산 } from './src/lib/quote/calculate.js';
 import { resolveCanonicalIdentity } from './src/lib/newcar/configuration-resolver.js';
 import { QUOTE_TERMS } from './src/lib/quote/terms.js';
+import { quoteActionReadiness } from './src/lib/feature/actions.js';
 import { applyScenarioPercent } from './src/lib/feature/conditions.js';
 // 룩업 데이터 SSOT — Vue 컴포넌트와 공유 (이전에는 quote.js 에 박혀있고 window.__welrix_data 로 노출,
 // 모듈 로드 순서로 컴포넌트가 빈 옵션 보던 문제 → 직접 import 으로 해결)
@@ -291,34 +292,49 @@ window.__welrix_recompute = recompute;
 
 // === 현재 차량 → 장바구니 담기 ===
 function snapshotCurrentVehicle() {
-  if (!state.vehicle || !state.vehicle.total_manwon || !state.monthly?.length) return null;
+  const readiness = quoteActionReadiness({
+    quoteState: state,
+    vehicleSelected: !!state.vehicle?.total_manwon,
+    surface: 'desktop',
+  });
+  if (!readiness.ready) return null;
+
   const v = state.vehicle;
   const tintPrice = TINT_PRICES[state.tint.product] || {};
-  const tintFee = [...state.tint.areas].reduce((s, k) => s + (tintPrice[k] || 0), 0);
+  const tintFee = [...state.tint.areas].reduce((sum, key) => sum + (tintPrice[key] || 0), 0);
   const deliveryFee = FLAT_DELIVERY[state.cond.deliveryCity] || 0;
   const blackboxFee = ACCESSORIES.blackbox[state.extras.blackbox] || 0;
   const naviFee = ACCESSORIES.navi[state.extras.navi] || 0;
   const hipassFee = ACCESSORIES.hipass[state.extras.hipass] || 0;
   const accessoryFee = blackboxFee + naviFee + hipassFee;
   const totalKrw = v.total_manwon * 10000 + (state.cond.colorIntPrice || 0);
+
   return {
-    brand: v.brand, model: v.model, variant: v.variant, trim_name: v.trim_name,
+    brand: v.brand,
+    model: v.model,
+    variant: v.variant,
+    trim_name: v.trim_name,
     options: [...(v.options || [])],
-    colorExt: v.colorExt, colorInt: state.cond.colorInt,
+    colorExt: v.colorExt,
+    colorInt: state.cond.colorInt,
     tax_rate: v.tax_rate,
     total_manwon: v.total_manwon,
     trim_price_manwon: v.trim_price_manwon,
     options_price_manwon: v.options_price_manwon,
     totalKrw,
-    monthly: state.monthly.map(m => ({ ...m })),
+    monthly: state.monthly.map((item) => ({ ...item })),
+    send: [...state.send],
     snapshot: {
       tint: { product: state.tint.product, areas: [...state.tint.areas] },
       extras: { ...state.extras },
-      deliveryFee, deliveryCity: state.cond.deliveryCity,
-      tintFee, accessoryFee,
+      deliveryFee,
+      deliveryCity: state.cond.deliveryCity,
+      tintFee,
+      accessoryFee,
     },
   };
 }
+
 /**
  * 현재 차량을 견적바구니에 담기.
  * @param {object} opts.silent — true 면 중복 confirm 안 띄우고 바로 갱신
