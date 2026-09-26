@@ -815,12 +815,12 @@ function onFeeChange() {
 .sv-brand-card.is-selected .sv-brand-card__name { color: var(--brand); font-weight: var(--fw-bold); }
 
 .sv-debug {
-  padding: 12px 14px;
-  background: #fff8e1;
-  border: 1px solid #f4d35e;
-  border-radius: var(--r-md);
-  font-size: var(--fs-sm); color: #936916;
-  margin-bottom: 12px;
+  padding: var(--sp-3);
+  background: var(--fp-warn-bg);
+  border: 0;
+  border-radius: var(--r-card);
+  font-size: var(--fs-sm); color: var(--fp-warn);
+  margin-bottom: var(--sp-3);
 }
 
 /* 리스트 */
@@ -1007,7 +1007,7 @@ function onFeeChange() {
 .sv-opt__group i { font-size: 12px; }
 .sv-opt__req {
   display: inline-flex; align-items: center; gap: 4px;
-  font-size: var(--fs-xs); color: #c62828; margin-top: 2px;
+  font-size: var(--fs-xs); color: var(--fp-err); margin-top: 2px;
 }
 .sv-opt:active { background: var(--brand-50); }
 .sv-opt.is-selected {
