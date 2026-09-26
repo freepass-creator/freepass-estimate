@@ -152,3 +152,38 @@ Still required:
 - successful shadow write/read round-trip
 
 Tracked upstream in FreePass Data issue #65.
+
+
+## Share Envelope v1
+
+A Quote v2 is exactly one vehicle configuration + one contract scenario.
+A customer-facing delivery can contain multiple terms or vehicles, so the integration layer needs a separate immutable grouping unit.
+
+Contract:
+
+`freepass-share-envelope/v1`
+
+Snapshot contract:
+
+`freepass-share-envelope-snapshot/v1`
+
+The envelope contains only:
+- envelopeId / envelopeVersion
+- createdAt / expiresAt
+- ordered Quote references:
+  - quoteId
+  - quoteVersion
+  - snapshotHash
+- envelope snapshotHash
+
+It deliberately does **not** contain:
+- customer/staff presentation data
+- vehicle master facts
+- duplicated prices
+- calculation formulas
+- UI labels
+
+Those remain owned by their authoritative domains.
+
+The order of Quote references is sealed because delivery order is meaningful.
+The expiry timestamp is also sealed into the envelope identity.
