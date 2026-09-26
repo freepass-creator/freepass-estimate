@@ -8,17 +8,16 @@ import {
   classifyQuoteLink,
   loadQuoteFromMigratingLink,
 } from '../src/lib/quote/share-migration.js';
+import { makeIssuedQuote } from './fixtures/issued-quote.mjs';
 
-const quote = {
-  contract: 'freepass-quote/v2',
-  quoteId: 'q_share_test',
-  quoteVersion: 2,
-  snapshotHash: 'a'.repeat(64),
-};
+const quote = await makeIssuedQuote({
+  contractTerm: 36,
+  createdAt: '2026-09-26T02:00:00.000Z',
+});
 
 assert.deepEqual(
-  classifyQuoteLink('?quote=q_share_test&quoteVersion=2'),
-  { kind: 'CANONICAL_V2', quoteId: 'q_share_test', quoteVersion: 2 }
+  classifyQuoteLink(`?quote=${quote.quoteId}&quoteVersion=${quote.quoteVersion}`),
+  { kind: 'CANONICAL_V2', quoteId: quote.quoteId, quoteVersion: quote.quoteVersion }
 );
 assert.deepEqual(
   classifyQuoteLink('?q=abc123'),
@@ -41,7 +40,7 @@ const built = buildCanonicalQuoteUrl({
 });
 assert.equal(
   built,
-  'https://estimate.example.test/mobile.html?quote=q_share_test&quoteVersion=2'
+  `https://estimate.example.test/mobile.html?quote=${quote.quoteId}&quoteVersion=${quote.quoteVersion}`
 );
 
 let legacyCalls = 0;
@@ -60,7 +59,7 @@ const canonicalRepo = {
 };
 
 const canonical = await loadQuoteFromMigratingLink({
-  search: '?quote=q_share_test&quoteVersion=2',
+  search: `?quote=${quote.quoteId}&quoteVersion=${quote.quoteVersion}`,
   repository: canonicalRepo,
   legacyLoader: async () => {
     legacyCalls += 1;
