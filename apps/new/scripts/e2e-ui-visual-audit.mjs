@@ -162,6 +162,12 @@ try {
     await page.locator('.m-footer .m-btn--primary:visible').click();
     await page.waitForSelector('.sc-title');
     const conditions = await metrics(page, `mobile-${width}-conditions`);
+    const selectedCondition = await page.evaluate(() => {
+      const el = document.querySelector('.sc-chip.is-selected');
+      if (!el) return null;
+      const s = getComputedStyle(el);
+      return { background: s.backgroundColor, color: s.color, fontWeight: s.fontWeight };
+    });
     const stickyA11y = await page.evaluate(() => {
       const summary = document.querySelector('.sq-summary');
       const check = document.querySelector('.sq-term-card__check-btn');
@@ -177,6 +183,12 @@ try {
     await page.locator('.m-footer .m-btn--primary:visible').click();
     await page.waitForSelector('.se-title');
     const extras = await metrics(page, `mobile-${width}-extras`);
+    const selectedExtra = await page.evaluate(() => {
+      const el = document.querySelector('.se-chip.is-selected');
+      if (!el) return null;
+      const s = getComputedStyle(el);
+      return { background: s.backgroundColor, color: s.color, fontWeight: s.fontWeight };
+    });
     await capture(page, `mobile-${width}-04-extras`);
 
     await page.locator('.m-footer .m-btn--primary:visible').click();
@@ -192,6 +204,8 @@ try {
       conditions,
       extras,
       result,
+      selectedCondition,
+      selectedExtra,
       stickyA11y,
       consoleErrors: consoleErrors.filter((x) => !x.includes('Failed to load resource')),
     });
@@ -272,6 +286,18 @@ try {
       `mobile-${entry.width}: condition sub-44px target(s): ${JSON.stringify(entry.conditions.smallTargets)}`);
     ok(entry.extras.smallTargets.length === 0,
       `mobile-${entry.width}: extras sub-44px target(s): ${JSON.stringify(entry.extras.smallTargets)}`);
+    if (entry.selectedCondition) {
+      ok(entry.selectedCondition.background === 'rgb(27, 42, 74)',
+        `mobile-${entry.width}: selected condition control is not solid FreePass primary: ${entry.selectedCondition.background}`);
+      ok(entry.selectedCondition.color === 'rgb(255, 255, 255)',
+        `mobile-${entry.width}: selected condition control text contrast drift: ${entry.selectedCondition.color}`);
+    }
+    if (entry.selectedExtra) {
+      ok(entry.selectedExtra.background === 'rgb(27, 42, 74)',
+        `mobile-${entry.width}: selected extra control is not solid FreePass primary: ${entry.selectedExtra.background}`);
+      ok(entry.selectedExtra.color === 'rgb(255, 255, 255)',
+        `mobile-${entry.width}: selected extra control text contrast drift: ${entry.selectedExtra.color}`);
+    }
     ok(entry.stickyA11y.summaryTabIndex === 0, `mobile-${entry.width}: live quote summary is not keyboard-focusable`);
     if (entry.stickyA11y.summary) ok(entry.stickyA11y.summary.height >= 44, `mobile-${entry.width}: live quote summary <44px`);
     if (entry.stickyA11y.check) {
