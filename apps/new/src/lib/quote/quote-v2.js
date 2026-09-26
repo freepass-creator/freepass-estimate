@@ -338,7 +338,20 @@ export async function verifyIssuedQuoteIntegrity(quote) {
       throw codedError('revision must reference the immediately previous version', 'QUOTE_REVISION_INVALID');
     }
     sha256String(quote.revision.previousSnapshotHash, 'revision.previousSnapshotHash');
-    sha256String(quote.revisionHash, 'revisionHash');
+    if (quote.revision.previousRevisionHash != null) {
+      sha256String(quote.revision.previousRevisionHash, 'revision.previousRevisionHash');
+    }
+    const actualRevisionHash = sha256String(quote.revisionHash, 'revisionHash');
+    const expectedRevisionHash = await sha256Hex({
+      contract: QUOTE_REVISION_CONTRACT_V1,
+      quoteId: quote.quoteId,
+      quoteVersion: version,
+      snapshotHash: snapshot.snapshotHash,
+      revision: quote.revision,
+    });
+    if (actualRevisionHash !== expectedRevisionHash) {
+      throw codedError('Quote revisionHash does not match lineage', 'QUOTE_REVISION_INVALID');
+    }
   }
   return Object.freeze({ ...quote });
 }
