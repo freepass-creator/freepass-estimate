@@ -1,10 +1,14 @@
 import assert from 'node:assert/strict';
 import {
-  QUOTE_CONDITION_COSTS_CONTRACT,
-  QUOTE_CONDITION_COST_POLICY,
   resolveDeliveryCost,
   resolveQuoteConditionCosts,
 } from '../src/lib/quote/condition-costs.js';
+import {
+  QUOTE_CONDITION_COSTS_CONTRACT,
+  QUOTE_CONDITION_COST_POLICY,
+  assertQuoteConditionCosts,
+  conditionCostsFromRequest,
+} from '../src/lib/quote/condition-cost-contract.js';
 
 const mobileDefault = resolveQuoteConditionCosts({
   cond: { deliveryRegion: '서울', deliveryCity: '서울' },
@@ -20,6 +24,17 @@ assert.equal(mobileDefault.naviFee, 0);
 assert.equal(mobileDefault.hipassFee, 0);
 assert.equal(mobileDefault.accessoryFee, 180000);
 assert.equal(mobileDefault.totalPrepFee, 384000);
+assert.equal(assertQuoteConditionCosts(mobileDefault).totalPrepFee, 384000);
+assert.equal(conditionCostsFromRequest({
+  조건: {
+    탁송비: mobileDefault.deliveryFee,
+    썬팅비: mobileDefault.tintFee,
+    블박비: mobileDefault.dashcamFee,
+    내비비: mobileDefault.naviFee,
+    하이패스비: mobileDefault.hipassFee,
+    비용: mobileDefault,
+  },
+}).totalPrepFee, 384000);
 
 const desktop = resolveQuoteConditionCosts({
   cond: { deliveryRegion: '경기도', deliveryCity: '수원' },
@@ -58,6 +73,20 @@ assert.throws(
     extras: {},
   }),
   (error) => error?.code === 'QUOTE_CONDITION_COST_UNRESOLVED'
+);
+
+assert.throws(
+  () => conditionCostsFromRequest({
+    조건: {
+      탁송비: 120000,
+      썬팅비: mobileDefault.tintFee,
+      블박비: mobileDefault.dashcamFee,
+      내비비: 0,
+      하이패스비: 0,
+      비용: mobileDefault,
+    },
+  }),
+  /alias mismatch/
 );
 
 console.log('PASS canonical Quote condition cost resolution');
