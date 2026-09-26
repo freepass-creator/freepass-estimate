@@ -30,7 +30,7 @@
   }
 </script>
 <script>
-  // 모바일 viewport(≤768px) 이면 모바일 전용 페이지로 자동 이동
+  // 모바일/태블릿 viewport(≤1024px) 이면 모바일 전용 shell로 자동 이동
   // 영업이 PC 에서 강제로 모바일 확인 시: /mobile.html?force=mobile
   // 모바일에서 PC 강제: /index.html?force=desktop
   (function () {
@@ -39,7 +39,7 @@
     // 손님 견적 링크(?q)·관리자(?admin)는 index.html 이 직접 처리(customer-view/admin-view, 모바일 레이아웃 포함)
     // → mobile.html 로 튕기면 ?q 미처리로 빈 견적 빌더가 뜨므로 리다이렉트 제외
     if (params.get('q') || params.get('admin')) return;
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       var target = location.pathname.replace(/index\.html$/, 'mobile.html');
       if (target === location.pathname) target = target.replace(/\/$/, '') + '/mobile.html';
       location.replace(target + location.search + location.hash);
