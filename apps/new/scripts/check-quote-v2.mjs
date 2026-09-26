@@ -159,6 +159,23 @@ assert.equal(sameContentRevision.snapshotHash, q1.snapshotHash, 'explicit busine
 assert.equal(sameContentRevision.quoteVersion, 2);
 await verifyQuoteRevision(q1, sameContentRevision);
 
+const revision3 = await reviseIssuedQuote({
+  previousQuote: revised,
+  nextSnapshotInput: { ...base, monthlyRental: 748000 },
+  createdAt: '2026-09-25T10:00:00.000Z',
+});
+assert.equal(revision3.quoteId, q1.quoteId);
+assert.equal(revision3.quoteVersion, 3);
+assert.equal(revision3.revision.previousQuoteVersion, 2);
+assert.equal(revision3.revision.previousSnapshotHash, revised.snapshotHash);
+assert.equal(revision3.revision.previousRevisionHash, revised.revisionHash);
+await verifyQuoteRevision(revised, revision3);
+
+await assert.rejects(
+  () => verifyIssuedQuoteIntegrity({ ...revision3, revisionHash: '0'.repeat(64) }),
+  /revisionHash/
+);
+
 await assert.rejects(
   () => verifyIssuedQuoteIntegrity({ ...q1, snapshotHash: '0'.repeat(64) }),
   /snapshotHash does not match content/
