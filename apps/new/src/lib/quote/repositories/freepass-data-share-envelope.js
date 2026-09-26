@@ -15,6 +15,7 @@ export function createFreePassDataShareEnvelopeRepository({
   readEndpoint = '/api/share-envelope',
   fetchImpl = globalThis.fetch,
   authToken = null,
+  authTokenProvider = null,
 } = {}) {
   const writeUrl = String(endpoint ?? '').trim();
   const readUrl = String(readEndpoint ?? '').trim();
@@ -25,7 +26,13 @@ export function createFreePassDataShareEnvelopeRepository({
     throw codedError('fetch is unavailable', 'SHARE_ENVELOPE_REPOSITORY_UNAVAILABLE');
   }
 
-  const authHeaders = () => authToken ? { authorization: `Bearer ${authToken}` } : {};
+  const authHeaders = async () => {
+    const supplied = String(authToken ?? '').trim();
+    const token = supplied || (typeof authTokenProvider === 'function'
+      ? String(await authTokenProvider() ?? '').trim()
+      : '');
+    return token ? { authorization: `Bearer ${token}` } : {};
+  };
 
   return Object.freeze({
     contract: SHARE_ENVELOPE_REPOSITORY_CONTRACT,
@@ -38,7 +45,7 @@ export function createFreePassDataShareEnvelopeRepository({
           headers: {
             'content-type': 'application/json',
             'idempotency-key': idempotencyKey,
-            ...authHeaders(),
+            ...(await authHeaders()),
           },
           body: JSON.stringify({
             command: 'PUT_SHARE_ENVELOPE',
