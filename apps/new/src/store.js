@@ -104,6 +104,8 @@ export const quoteState = reactive({
   quoteProvider: null,
   quoteEngine: null,
   quotePricingEngine: null,
+  // 마지막으로 성공한 QuoteRequest에서 확정된 조건비용. 문서/장바구니는 재계산하지 않고 이 값을 재사용한다.
+  quoteConditionCosts: null,
   myContracts: loadMyContracts(),  // 내가 제출한 계약 심사 요청 id 들
   /* ★웰릭스 표로 바꿨다 — 썬팅 3택 · 블박 2택. 우리 옛 표(루마 6종 × 부위 5개)는 안 쓴다.
      표가 다르면 «같은 조건»을 만들 수 없고, 그러면 값이 0 으로 안 맞는다. */
