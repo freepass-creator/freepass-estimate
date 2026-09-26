@@ -19,6 +19,7 @@ on:
       - 'apps/new/src/lib/quote/share-envelope*.js'
       - 'apps/new/scripts/check-quote-*.mjs'
       - 'apps/new/scripts/check-share-envelope*.mjs'
+      - 'apps/new/scripts/probe-freepass-data-cutover.mjs'
       - 'docs/INTEGRATION_QUOTE_PERSISTENCE.md'
       - '.github/workflows/integration-contracts.yml'
   pull_request:
@@ -74,6 +75,7 @@ jobs:
           node --check src/lib/quote/cutover-readiness.js
           node --check src/lib/quote/cutover-probe.js
           node --check src/lib/quote/shadow-roundtrip.js
+          node --check scripts/probe-freepass-data-cutover.mjs
       - name: Quote persistence gateway
         run: node scripts/check-quote-persistence-gateway.mjs
       - name: Quote persistence runtime
