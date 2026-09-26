@@ -48,6 +48,7 @@
 </script>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" href="/src/styles/tokens.css" />
 <link rel="stylesheet" href="/src/styles/admin-desktop-alignment.css" />
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- 차량 DB (제조사/모델/세부모델/트림/옵션/색상) — PC 와 모바일 공유 SSOT -->
@@ -59,79 +60,91 @@
    * brand 색은 회사 config 의 brand_color 로 동적 override 가능
    * ================================================================ */
   :root {
-    /* Brand UI 색 — 인터랙티브/액센트는 네이비 톤 (텍스트·호버·선택).
-       welrix CI 로고는 PNG 빨강 그대로, CSS 액센트만 분리. */
-    --brand: #1b2a4a;
-    --brand-700: #0f1b35;
-    --brand-100: #c8d4e4;
-    --brand-50:  #e6ecf5;
-    /* 원본 빨강 (필요 시 사용) — welrix-ci.png 와 매칭 */
+    /* Compatibility aliases only. Numeric visual truth lives in src/styles/tokens.css
+       and follows FreePass Admin PR #92 actual-route authority. */
+    --brand: var(--fp-primary);
+    --brand-700: var(--fp-primary-hover);
+    --brand-100: var(--fp-focus-ring);
+    --brand-50: var(--fp-primary-weak);
     --welrix-red: #e1141e;
 
-    /* Ink scale (텍스트 위계) */
-    --ink-1: #212529;
-    --ink-2: #5c6268;
-    --ink-3: #737980;
-    --ink-4: #9aa1a8;
-    --ink-5: #c9ced3;
+    --ink-1: var(--fp-text);
+    --ink-2: var(--fp-text-2);
+    --ink-3: var(--fp-text-muted);
+    --ink-4: var(--fp-text-3);
+    --ink-5: var(--fp-line-strong);
 
-    /* Line (구분선 / 보더) */
-    --line:   #eceef0;
-    --line-2: #d9dde1;
-    --line-3: #c8cdd2;
+    --line: var(--fp-line);
+    --line-2: var(--fp-line-strong);
+    --line-3: var(--fp-text-3);
 
-    /* Background */
-    --bg:        #ffffff;
-    --bg-soft:   #f7f8fa;
-    --bg-muted:  #f2f3f5;
-    --bg-grey:   #f7f8fa;
+    --bg: var(--fp-surface);
+    --bg-soft: var(--fp-surface-soft);
+    --bg-muted: var(--fp-neutral);
+    --bg-grey: var(--fp-bg);
 
-    /* Accent (legacy) */
-    --accent: #0a0a0a;
-    --accent-soft: #f5f5f5;
+    --accent: var(--fp-text);
+    --accent-soft: var(--fp-surface-soft);
 
-    /* Radius */
-    --radius-sm: 4px;
-    --radius:    6px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-pill: 999px;
+    --radius-sm: var(--fp-r-sm);
+    --radius: var(--fp-r-control);
+    --radius-md: var(--fp-r-panel);
+    --radius-lg: var(--fp-r-panel);
+    --radius-pill: var(--fp-r-pill);
 
-    /* Spacing scale (4 단계) */
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 16px;
-    --space-5: 20px;
-    --space-6: 24px;
-    --space-8: 32px;
+    --space-1: var(--fp-sp-1);
+    --space-2: var(--fp-sp-2);
+    --space-3: var(--fp-sp-3);
+    --space-4: var(--fp-sp-4);
+    --space-5: var(--fp-sp-5);
+    --space-6: var(--fp-sp-6);
+    --space-8: var(--fp-sp-7);
 
-    /* Typography */
-    --font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-size-xs:   10px;   /* meta / hint */
-    --font-size-sm:   11.5px; /* 보조 텍스트 */
-    --font-size-base: 12.5px; /* 기본 입력/표 */
-    --font-size-md:   13.5px; /* 일반 본문 */
-    --font-size-lg:   16px;   /* 강조 본문 */
-    --font-size-xl:   20px;   /* 차종명 등 카드 헤더 */
-    --font-size-2xl:  24px;   /* 견적서 메인 타이틀 */
+    --font-family: var(--font);
+    --font-size-xs: var(--fp-fs-support);
+    --font-size-sm: var(--fp-fs-support);
+    --font-size-base: var(--fp-fs-body);
+    --font-size-md: var(--fp-fs-body);
+    --font-size-lg: var(--fp-fs-section);
+    --font-size-xl: var(--fp-fs-panel);
+    --font-size-2xl: var(--fp-fs-screen);
 
-    /* Shadow */
-    --shadow-sm:  0 1px 2px rgba(0,0,0,0.04);
-    --shadow:     0 2px 8px rgba(0,0,0,0.08);
-    --shadow-md:  0 4px 16px rgba(0,0,0,0.10);
-    --shadow-lg:  0 8px 24px rgba(0,0,0,0.12);
-    --shadow-xl:  0 20px 60px rgba(0,0,0,0.20);
+    --shadow-sm: var(--fp-elevation-base);
+    --shadow: var(--fp-elevation-base);
+    --shadow-md: var(--fp-elevation-hover);
+    --shadow-lg: var(--fp-elevation-float);
+    --shadow-xl: var(--fp-elevation-float);
 
-    /* 공유 토큰 정본 별칭 — 손오공 견적기와 동일 네이밍(값 동일, 컴포넌트 이식 호환). src/styles/tokens.css 규격. */
-    --fs-xs: var(--font-size-xs); --fs-sm: var(--font-size-sm); --fs-base: var(--font-size-base); --fs-md: var(--font-size-md); --fs-lg: var(--font-size-lg); --fs-xl: var(--font-size-xl); --fs-2xl: var(--font-size-2xl);
-    --r-sm: var(--radius-sm); --r: var(--radius); --r-md: var(--radius-md); --r-lg: var(--radius-lg); --r-pill: var(--radius-pill);
-    --sh-sm: var(--shadow-sm); --sh: var(--shadow); --sh-md: var(--shadow-md); --sh-lg: var(--shadow-lg); --sh-xl: var(--shadow-xl);
-    --sp-1: var(--space-1); --sp-2: var(--space-2); --sp-3: var(--space-3); --sp-4: var(--space-4); --sp-5: var(--space-5); --sp-6: var(--space-6); --sp-8: var(--space-8);
+    --fs-xs: var(--fp-fs-support);
+    --fs-sm: var(--fp-fs-support);
+    --fs-base: var(--fp-fs-body);
+    --fs-md: var(--fp-fs-body);
+    --fs-lg: var(--fp-fs-section);
+    --fs-xl: var(--fp-fs-panel);
+    --fs-2xl: var(--fp-fs-screen);
 
-    /* Transitions */
-    --t-fast: .12s;
-    --t-base: .15s;
+    --r-sm: var(--fp-r-sm);
+    --r: var(--fp-r-control);
+    --r-md: var(--fp-r-panel);
+    --r-lg: var(--fp-r-panel);
+    --r-pill: var(--fp-r-pill);
+
+    --sh-sm: var(--fp-elevation-base);
+    --sh: var(--fp-elevation-base);
+    --sh-md: var(--fp-elevation-hover);
+    --sh-lg: var(--fp-elevation-float);
+    --sh-xl: var(--fp-elevation-float);
+
+    --sp-1: var(--fp-sp-1);
+    --sp-2: var(--fp-sp-2);
+    --sp-3: var(--fp-sp-3);
+    --sp-4: var(--fp-sp-4);
+    --sp-5: var(--fp-sp-5);
+    --sp-6: var(--fp-sp-6);
+    --sp-8: var(--fp-sp-7);
+
+    --t-fast: var(--fp-motion-state);
+    --t-base: var(--fp-motion-float);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -4750,60 +4763,175 @@ render();
 </html>
 
 <style id="freepass-control-grammar">
-  /* Temporary visual reference: FreePass Sales controls until the shared UI
-     standard is published. Estimate structure and behavior remain unchanged. */
-  .cdd .cdd__btn {
-    height: 44px;
-    padding: 0 34px 0 14px;
-    font-size: 14px;
+  /* FreePass Admin PR #92 canonical desktop grammar.
+     Estimate keeps its own flow; only the visual/control language is inherited. */
+  @media (min-width: 1025px) {
+    body {
+      grid-template-rows: var(--fp-topbar) minmax(0, 1fr) var(--fp-panel-foot) !important;
+      column-gap: 12px;
+      background: var(--fp-canvas) !important;
+    }
+    .global-topbar {
+      height: var(--fp-topbar) !important;
+      padding-inline: 16px;
+      border-bottom-color: transparent !important;
+      background: var(--fp-nav) !important;
+      color: #fff;
+    }
+    .global-topbar__brand { color: #fff !important; font-size: var(--fp-fs-body); font-weight: 600; }
+    .global-topbar__hint { color: var(--fp-nav-text) !important; font-size: var(--fp-fs-support); }
+    .global-topbar__ver {
+      color: var(--fp-nav-text) !important;
+      background: var(--fp-nav-raised) !important;
+      font-size: var(--fp-fs-support);
+    }
+
+    .wrap {
+      height: auto !important;
+      min-height: 0;
+      margin: 12px 0 12px 16px !important;
+      border: 1px solid transparent !important;
+      border-right-color: transparent !important;
+      border-radius: var(--fp-r-panel) !important;
+      background: var(--fp-surface) !important;
+      box-shadow: var(--fp-elevation-base) !important;
+    }
+    .quote-panel {
+      min-height: 0;
+      margin: 12px 16px 12px 0 !important;
+      border: 1px solid transparent !important;
+      border-radius: var(--fp-r-panel) !important;
+      background: var(--fp-surface) !important;
+      box-shadow: var(--fp-elevation-base) !important;
+    }
+    .desktop-action-bar {
+      border-top-color: transparent !important;
+      background: var(--fp-canvas) !important;
+    }
+    .desktop-action-bar__inner { padding-inline: 16px; }
+
+    .cdd .cdd__btn {
+      height: var(--fp-control) !important;
+      padding: 0 32px 0 12px;
+      border-color: transparent !important;
+      border-radius: var(--fp-r-control) !important;
+      background: var(--fp-surface-soft) !important;
+      box-shadow: var(--fp-elevation-base) !important;
+      font-size: var(--fp-fs-body);
+      transition:
+        transform var(--fp-motion-press) var(--fp-motion-ease),
+        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
+        background-color var(--fp-motion-state) var(--fp-motion-ease);
+    }
+    .cdd .cdd__menu {
+      border-color: transparent !important;
+      border-radius: var(--fp-r-panel) !important;
+      background: var(--fp-surface) !important;
+      box-shadow: var(--fp-elevation-float) !important;
+    }
+
+    .bottom-action {
+      height: var(--fp-control) !important;
+      padding-inline: 14px;
+      border: 1px solid transparent !important;
+      border-radius: var(--fp-r-control) !important;
+      box-shadow: var(--fp-elevation-base);
+      font-size: var(--fp-fs-body);
+      font-weight: 600;
+      transition:
+        transform var(--fp-motion-press) var(--fp-motion-ease),
+        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
+        background-color var(--fp-motion-state) var(--fp-motion-ease);
+    }
+    .bottom-action.secondary {
+      background: var(--fp-surface-soft) !important;
+      color: var(--fp-text-2) !important;
+    }
+    .bottom-action.primary {
+      background: var(--fp-primary) !important;
+      color: #fff !important;
+    }
+
+    .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select),
+    .qc-field > input, .qc-field > select, .cs-field input,
+    .qc-pct {
+      min-height: var(--fp-control);
+      height: var(--fp-control);
+      padding: 0 30px 0 12px;
+      border: 1px solid transparent !important;
+      border-radius: var(--fp-r-control) !important;
+      background: var(--fp-surface-soft) !important;
+      box-shadow: var(--fp-elevation-base) !important;
+      font-size: var(--fp-fs-body);
+      transition:
+        box-shadow var(--fp-motion-state) var(--fp-motion-ease),
+        background-color var(--fp-motion-state) var(--fp-motion-ease);
+    }
+    .qc-field > input, .cs-field input { padding: 0 12px !important; }
+    .qc-pct { padding: 0 10px 0 12px; }
+    .quote-panel .qc-pct input:not([type="checkbox"]):not([type="radio"]) {
+      min-height: 0 !important;
+      height: 100% !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      font-size: var(--fp-fs-body);
+    }
+    .term-card__term-dd {
+      min-height: var(--fp-control-sm) !important;
+      height: var(--fp-control-sm) !important;
+      padding: 0 12px 0 4px !important;
+      border: 1px solid transparent !important;
+      border-radius: var(--fp-r-control) !important;
+      background: var(--fp-surface-soft) !important;
+      box-shadow: var(--fp-elevation-base) !important;
+      font-size: var(--fp-fs-support) !important;
+    }
+
+    .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select):focus,
+    .qc-field > input:focus, .qc-field > select:focus, .cs-field input:focus,
+    .qc-pct:focus-within,
+    .cdd .cdd__btn:focus-visible {
+      outline: none !important;
+      border-color: transparent !important;
+      background: var(--fp-surface) !important;
+      box-shadow: var(--fp-focus-halo), var(--fp-elevation-hover) !important;
+    }
+
+    .quote-panel :is(input, select):disabled,
+    .qc-field > input:disabled, .qc-field > select:disabled, .cs-field input:disabled {
+      background: var(--fp-neutral) !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      color: var(--fp-text-3) !important;
+    }
+
+    @media (hover: hover) {
+      .cdd .cdd__btn:not(:disabled):hover,
+      .bottom-action:not(:disabled):hover {
+        box-shadow: var(--fp-elevation-hover);
+        transform: translateY(-1px);
+      }
+      .quote-panel :is(input:not(:disabled), select:not(:disabled)):hover,
+      .qc-pct:hover {
+        background: var(--fp-surface-hover) !important;
+        box-shadow: var(--fp-elevation-hover) !important;
+      }
+    }
+    .cdd .cdd__btn:not(:disabled):active,
+    .bottom-action:not(:disabled):active {
+      box-shadow: var(--fp-elevation-0);
+      transform: translateY(var(--fp-press-y));
+    }
   }
-  .bottom-action {
-    height: 40px;
-    padding-inline: 14px;
-    font-size: 14px;
-  }
-  /* Only value-entry controls own a visible boundary. */
-  .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select),
-  .qc-field > input, .qc-field > select, .cs-field input,
-  .qc-pct {
-    min-height: 44px;
-    padding: 0 30px 0 14px;
-    border: 1px solid var(--line-2) !important;
-    border-radius: 12px !important;
-    background: var(--bg) !important;
-    box-shadow: none !important;
-    font-size: 14px;
-  }
-  .qc-field > input, .cs-field input { padding: 0 14px !important; }
-  .qc-pct { padding: 0 10px 0 14px; }
-  .quote-panel .qc-pct input:not([type="checkbox"]):not([type="radio"]) {
-    min-height: 0 !important;
-    height: 100% !important;
-    padding: 0 !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    font-size: 14px;
-  }
-  .term-card__term-dd {
-    min-height: 40px !important;
-    height: 40px;
-    padding: 0 14px 0 4px !important;
-    border-radius: 6px !important;
-    font-size: 12.5px !important;
-  }
-  .quote-panel :is(input:not([type="checkbox"]):not([type="radio"]), select):focus,
-  .qc-field > input:focus, .qc-field > select:focus, .cs-field input:focus,
-  .qc-pct:focus-within {
-    outline: none;
-    border-color: var(--brand) !important;
-    box-shadow: 0 0 0 3px var(--brand-50) !important;
-  }
-  .quote-panel :is(input, select):disabled,
-  .qc-field > input:disabled, .qc-field > select:disabled, .cs-field input:disabled {
-    background: var(--bg-muted) !important;
-    border-color: transparent !important;
-    color: var(--ink-4) !important;
+
+  @media (min-width: 1440px) {
+    body { column-gap: 16px; }
+    .wrap { margin: 16px 0 16px 20px !important; }
+    .quote-panel { margin: 16px 20px 16px 0 !important; }
+    .global-topbar { padding-inline: 20px; }
+    .desktop-action-bar__inner { padding-inline: 20px; }
   }
 </style>
