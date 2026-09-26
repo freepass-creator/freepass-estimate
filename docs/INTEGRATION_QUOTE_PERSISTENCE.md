@@ -273,7 +273,8 @@ Required server environment:
 Optional:
 - `FREEPASS_ESTIMATE_SHADOW_ENVELOPE_EXPIRES_AT`
 - `FREEPASS_CANONICAL_VIEWER_READY=1`
-- `FREEPASS_LEGACY_WRITE_BLOCK_READY=1`
+- `FREEPASS_QUOTE_WRITE_MODE=CANONICAL_ONLY` for live cutover proof
+- browser build/runtime equivalent: `VITE_FREEPASS_QUOTE_WRITE_MODE=CANONICAL_ONLY` or injected `globalThis.__FREEPASS_QUOTE_WRITE_MODE`
 - `FREEPASS_REQUIRE_CUTOVER_READY=1`
 
 The probe executes, in order:
@@ -313,3 +314,29 @@ The runtime refuses to build a public share from Quote records that do not have 
 It does not own customer/staff copy, button behavior, or UI rendering.
 
 This lets F/UI later call one integration function after canonical cutover approval instead of writing directly to RTDB.
+
+
+## Legacy RTDB new-write policy
+
+`src/lib/quote/legacy-write-policy.js` controls creation of new legacy RTDB Quote roots.
+
+Modes:
+- `LEGACY_ALLOWED` — default compatibility mode before cutover
+- `CANONICAL_ONLY` — `saveQuote()` throws `LEGACY_QUOTE_WRITE_BLOCKED` before Firebase auth or RTDB access
+
+Unknown modes fail closed as configuration errors. There is deliberately no dual-write mode.
+
+The guard applies only to creation of new `welrix_quotes/*` roots.
+Historical `loadQuote()` remains available during the migration window so existing `?q=` links keep working.
+
+Readiness v3 does not accept a human boolean for this gate. It requires:
+
+```
+{
+  contract: "freepass-legacy-quote-write-policy/v1",
+  mode: "CANONICAL_ONLY",
+  legacyNewQuoteWriteBlocked: true
+}
+```
+
+The live cutover probe derives this evidence from `FREEPASS_QUOTE_WRITE_MODE`.
