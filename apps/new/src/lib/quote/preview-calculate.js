@@ -1,8 +1,6 @@
-import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT } from './contracts.js';
+import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT, STANDARD_QUOTE_BATCH_CONTRACT } from './contracts.js';
 import { normalizePricingEngineEvidence } from './pricing-engine.js';
 import { normalizePriceBasis } from './price-basis.js';
-
-export const STANDARD_QUOTE_BATCH_CONTRACT = 'freepass-standard-quote-batch/v1';
 
 export async function calculateStandardPreviewBatch(requests, { signal } = {}) {
   if (!Array.isArray(requests) || !requests.length) return [];
