@@ -1,7 +1,8 @@
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import { quoteState, vehicleState } from '../../store.js';
-import { 담당자인가, 손님링크 } from '../../lib/role.js';
+import { 역할, 손님링크 } from '../../lib/role.js';
+import { rolePolicy } from '../../lib/feature/roles.js';
 import { 지금주소 } from '../../lib/share-link.js';
 import { quoteActionReadiness, resetForRequote } from '../../lib/feature/actions.js';
 import StepVehicle from './StepVehicle.vue';
@@ -36,7 +37,8 @@ const STEPS = [
   { key: 'result',     label: '견적',     comp: StepResult     },
 ];
 
-const 담당자 = 담당자인가();
+const 역할정책 = rolePolicy(역할());
+const 담당자 = 역할정책.isStaff;
 const 공유됨 = ref(false);
 const 공유중 = ref(false);
 const 공유견적 = computed(() => !!quoteState.sharedSnapshot);
@@ -273,13 +275,14 @@ const vehicles = ref(window.__welrix_vehicles || []);
 // 발송 sheet
 const sendOpen = ref(false);
 function openSend() {
-  if (!견적준비됨.value) return;
+  if (!역할정책.canSendOfficialQuote || !견적준비됨.value) return;
   sendOpen.value = true;
 }
 
 // 조회동의 링크 — 헤더 [동의링크] 누르면 OS 시스템 공유시트(복사·카톡 등). 회사 설정의 signature_link.
 const signCopied = ref(false);
 async function shareSignLink() {
+  if (!역할정책.canShareSignatureLink) return;
   const url = cfg.value.signature_link;
   if (!url) { alert('이 회사는 조회동의 링크가 설정되어 있지 않습니다.'); return; }
   const text = '[' + (cfg.value.name || '프리패스모빌리티') + '] 조회 동의 부탁드립니다. 아래 링크에서 진행해 주세요.';
