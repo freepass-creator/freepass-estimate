@@ -17,7 +17,7 @@
       "notes": [
         "견적 대여료 계산식 정본은 FreePass Estimate main 의 apps/new/api/_standard/calc.js다. 약정 기간은 apps/new/src/lib/quote/terms.js QUOTE_TERMS = [12, 24, 36, 48, 60] 한 곳에서 받는다.",
         "freepasserp4 및 과거 work/ui-baseline 의 calc.js 사본은 정본이 아니다. 외부 시스템은 FreePass Estimate 정본을 소비해야 한다.",
-        "integration/canonical-20260926 은 main 병합 전 단일 통합 후보일 뿐 별도 장기 정본이 아니다."
+        "integration/canonical-20260926 은 PR #17 병합으로 종료된 통합 브랜치이며 더 이상 개발 정본이 아니다."
       ]
     },
     {
@@ -81,11 +81,6 @@
         "work/gemini/"
       ],
       "legacy_head_exceptions": [
-        {
-          "branch": "integration/canonical-20260926",
-          "expires": "2026-10-07",
-          "reason": "PR #17 단일 통합 후보. 병합 후 폐기 대상."
-        },
         {
           "branch": "claude/ai-core-integration-standardization-ntmoli",
           "expires": "2026-10-07",
