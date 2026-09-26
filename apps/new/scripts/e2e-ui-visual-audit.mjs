@@ -208,6 +208,16 @@ try {
 
     await page.goto(`${BASE}/index.html`, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('.global-topbar');
+    // Static shell appears before the vehicle builder is hydrated. A screenshot of
+    // that intermediate state is not a valid visual receipt.
+    await page.waitForFunction(() => {
+      const nodes = document.querySelectorAll('.wrap .card, .wrap .step-dd, .wrap .cdd__btn');
+      return [...nodes].some((el) => {
+        const r = el.getBoundingClientRect();
+        const s = getComputedStyle(el);
+        return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+      });
+    }, null, { timeout: 10000 });
     const data = await page.evaluate(() => {
       const root = document.documentElement;
       const firstVisible = (selector) => [...document.querySelectorAll(selector)].find((el) => {
