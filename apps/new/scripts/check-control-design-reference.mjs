@@ -9,6 +9,7 @@ const conditions = read('src/components/mobile/StepConditions.vue');
 const extras = read('src/components/mobile/StepExtras.vue');
 const result = read('src/components/mobile/StepResult.vue');
 const desktop = read('index.html');
+const mobileHtml = read('mobile.html');
 const desktopAlignment = read('src/styles/admin-desktop-alignment.css');
 const finalUi = read('src/styles/admin-alignment.css');
 
@@ -50,6 +51,10 @@ assert.match(extras, /\.se-chip\s*\{[\s\S]*min-height:\s*var\(--h-chip\);[\s\S]*
 
 assert.match(desktop, /<link rel="stylesheet" href="\/src\/styles\/tokens\.css"\s*\/>/,
   'desktop must consume the same canonical token authority as mobile');
+assert.match(desktop, /window\.innerWidth <= 1024/,
+  'desktop entry must hand <=1024px viewports to the mobile shell');
+assert.match(mobileHtml, /window\.innerWidth > 1024/,
+  'mobile entry must hand >1024px viewports to the desktop shell');
 assert.match(desktop, /<style id="freepass-control-grammar">[\s\S]*grid-template-rows:\s*var\(--fp-topbar\)[\s\S]*column-gap:\s*12px;/,
   'desktop workspace must project the PR92 shell density');
 assert.match(desktop, /\.cdd \.cdd__btn\s*\{[\s\S]*height:\s*var\(--fp-control\)[\s\S]*border-color:\s*transparent !important;[\s\S]*box-shadow:\s*var\(--fp-elevation-base\)/,
