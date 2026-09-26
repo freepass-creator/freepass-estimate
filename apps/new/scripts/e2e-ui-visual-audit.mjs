@@ -303,6 +303,10 @@ try {
           html: [root.scrollWidth, root.clientWidth],
           body: [document.body.scrollWidth, document.body.clientWidth],
         },
+        shell: {
+          columns: getComputedStyle(document.body).gridTemplateColumns,
+          hiddenContractDisplay: getComputedStyle(document.getElementById('contract-panel-root')).display,
+        },
         action: action ? { height: rect(action).height, fontSize: css(action).fontSize, radius: css(action).borderRadius } : null,
         select: select ? { height: rect(select).height, fontSize: css(select).fontSize, radius: css(select).borderRadius } : null,
         card: card ? { radius: css(card).borderRadius, padding: css(card).padding } : null,
@@ -326,6 +330,13 @@ try {
     });
     ok(data.overflow.html[0] <= data.overflow.html[1] + 1, `desktop-${width}: html horizontal overflow`);
     ok(data.overflow.body[0] <= data.overflow.body[1] + 1, `desktop-${width}: body horizontal overflow`);
+    const shellCols = data.shell.columns.split(/\s+/).map(Number).filter(Number.isFinite);
+    ok(shellCols.length === 2, `desktop-${width}: expected two grid columns, got ${data.shell.columns}`);
+    const shellRatio = shellCols[0] / shellCols[1];
+    ok(shellRatio > 0.37 && shellRatio < 0.41,
+      `desktop-${width}: 28:72 shell ratio drift ${shellRatio.toFixed(3)} from ${data.shell.columns}`);
+    ok(data.shell.hiddenContractDisplay === 'none',
+      `desktop-${width}: hidden contract/chat surface reappeared`);
     ok(data.title.startsWith('프리패스모빌리티'), `desktop-${width}: stale browser title ${data.title}`);
     await capture(page, `desktop-${width}-01-initial`);
     report.desktop.push({ width, ...data, consoleErrors: consoleErrors.filter((x) => !x.includes('Failed to load resource')) });
