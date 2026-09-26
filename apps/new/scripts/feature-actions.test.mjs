@@ -35,16 +35,15 @@ test('desktop readiness requires an included calculated term', () => {
     monthly: [{ monthly: 100 }, { monthly: null }],
   };
   assert.equal(selectedDesktopQuoteTerms(state).length, 0);
-  assert.deepEqual(quoteActionReadiness({
+  const readiness = quoteActionReadiness({
     quoteState: state,
     vehicleSelected: true,
     surface: 'desktop',
-  }), {
-    ready: false,
-    reason: 'included_result_required',
-    source: 'live',
-    terms: [],
   });
+  assert.equal(readiness.ready, false);
+  assert.equal(readiness.reason, 'calculation_required');
+  assert.equal(readiness.source, 'live');
+  assert.deepEqual(readiness.terms, []);
 });
 
 test('shared snapshot is ready only when it contains a valid term', () => {
@@ -77,4 +76,24 @@ test('requote clears snapshot and normalizes send length without allowing zero i
   assert.equal(result.changed, true);
   assert.equal(state.sharedSnapshot, null);
   assert.deepEqual(state.send, [true, false]);
+});
+
+
+test('readiness reports the lifecycle used for action decisions', () => {
+  const ready = quoteActionReadiness({
+    quoteState: {
+      scenarios: [{ term: 36 }],
+      send: [true],
+    },
+    vehicleSelected: true,
+    calculationStatus: 'ok',
+    calculationResults: [{ 월대여료: 300 }],
+  });
+  assert.equal(ready.lifecycle, 'ready');
+
+  const shared = quoteActionReadiness({
+    quoteState: { sharedSnapshot: { terms: [{ term: 36, monthly: 300 }] } },
+    vehicleSelected: true,
+  });
+  assert.equal(shared.lifecycle, 'shared');
 });
