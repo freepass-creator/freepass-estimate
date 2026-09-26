@@ -187,3 +187,52 @@ Those remain owned by their authoritative domains.
 
 The order of Quote references is sealed because delivery order is meaningful.
 The expiry timestamp is also sealed into the envelope identity.
+
+
+### Share Envelope persistence
+
+Estimate-side canonical transport:
+
+```
+buildShareEnvelope
+  -> ShareEnvelopeRepository
+     -> /api/share-envelopes
+        -> FreePass Data command
+           -> durable envelope receipt
+```
+
+Expected upstream write route:
+
+`POST /v1/commands/freepass-estimate/share-envelopes`
+
+Command:
+
+`PUT_SHARE_ENVELOPE`
+
+Repository contract:
+
+`freepass-share-envelope-repository/v1`
+
+Write receipt:
+
+`freepass-share-envelope-write-receipt/v1`
+
+Read flow:
+
+```
+ShareEnvelopeRepository.get
+  -> /api/share-envelope?envelopeId=...
+     -> FreePass Data consumer read
+        -> FOUND / NOT_FOUND
+```
+
+Expected upstream read route:
+
+`GET /v1/consumers/freepass-estimate/share-envelopes/:envelopeId`
+
+Read receipt:
+
+`freepass-share-envelope-read-receipt/v1`
+
+Both write and read re-verify the immutable envelope snapshot hash.
+The browser never receives the FreePass Data service token and never knows Firestore paths.
