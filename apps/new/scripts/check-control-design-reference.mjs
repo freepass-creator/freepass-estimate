@@ -80,6 +80,12 @@ assert.match(mobileHtml, /window\.innerWidth > 1024/,
   'mobile entry must hand >1024px viewports to the desktop shell');
 assert.match(desktop, /body\s*\{[\s\S]*grid-template-rows:\s*var\(--fp-topbar\) minmax\(0, 1fr\) var\(--fp-panel-foot\);/,
   'desktop base shell must own the PR92 row density');
+assert.match(desktop, /grid-template-columns:\s*minmax\(0, 28fr\) minmax\(0, 72fr\);/,
+  'desktop base shell must own the canonical 28:72 two-panel composition');
+assert.doesNotMatch(desktop, /grid-template-columns:\s*400px\s+minmax\(0, 52fr\)\s+minmax\(0, 20fr\)/,
+  'legacy three-column shell must not return');
+assert.doesNotMatch(desktop, /simple-mode-overrides/,
+  'two-panel composition must not depend on a late simple-mode override');
 assert.match(desktop, /<style id="freepass-control-grammar">[\s\S]*body\s*\{\s*column-gap:\s*12px;/,
   'desktop guardrails must only refine viewport composition');
 const quoteRuntimeStart = desktop.indexOf('<!-- ===== wel 견적 계산');
