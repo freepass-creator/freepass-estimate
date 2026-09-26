@@ -33,7 +33,7 @@ export async function runCutoverProbe({
   now = () => new Date().toISOString(),
   envelopeExpiresAt,
   canonicalViewerReady = false,
-  legacyWriteBlockReady = false,
+  legacyWritePolicy = null,
 } = {}) {
   if (typeof loadMaster !== 'function') {
     throw codedError('FreePass Data master loader is required', 'CUTOVER_PROBE_INVALID');
@@ -82,7 +82,7 @@ export async function runCutoverProbe({
     envelopeWriteProbe: envelopeProof.writeProbe,
     envelopeReadProbe: envelopeProof.readProbe,
     canonicalViewerReady,
-    legacyWriteBlockReady,
+    legacyWritePolicy,
   });
 
   return Object.freeze({
