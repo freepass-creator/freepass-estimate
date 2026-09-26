@@ -1,0 +1,133 @@
+{
+  "schema": "ai-core-canonical-development-lines/v1",
+  "updated_at": "2026-09-26",
+  "policy": {
+    "one_canonical_line_per_concern": true,
+    "historical_assets_must_not_claim_authority": true,
+    "superseded_branches_are_not_runtime_authority": true
+  },
+  "lines": [
+    {
+      "id": "pricing-formula",
+      "canonical_entrypoint": "apps/new/api/_standard/calc.js",
+      "canonical_roots": [
+        "apps/new/api/_standard/",
+        "apps/new/src/lib/quote/terms.js"
+      ],
+      "notes": [
+        "견적 대여료 계산식 정본은 FreePass Estimate main 의 apps/new/api/_standard/calc.js(blob acf3427a)다. 약정 기간은 apps/new/src/lib/quote/terms.js QUOTE_TERMS = [12, 24, 36, 48, 60] 한 곳에서 받는다.",
+        "저장소 밖 갈림: freepasserp4 main lib/domain/estimate/calc.js 와 이 저장소 work/ui-baseline 가지의 calc.js(blob 2cf6a0e2)는 TERMS = [24, 36, 48, 60] 로 12개월을 계산하지 않는다. 그 사본은 정본이 아니다 — 소비자로 돌리거나 지운다(ERP4 담당과 조율). 12개월 포함 여부 자체는 사업 규칙이라 대표 확인 대상이다.",
+        "work/ui-baseline 가지는 동기 봇(sync-freepass-newcar-source.yml) 전용이며 계산식·데이터의 정본이 아니다."
+      ]
+    },
+    {
+      "id": "estimator-architecture",
+      "canonical_entrypoint": "docs/NEW_CAR_ARCHITECTURE.md",
+      "canonical_roots": [
+        "docs/NEW_CAR_ARCHITECTURE.md",
+        "PROJECT.md"
+      ],
+      "notes": [
+        "견적 기능 소유권(Estimate = upstream)은 PROJECT.md·NEW_CAR_ARCHITECTURE.md 가 정한다. README.md·AGENTS.md 는 그 요약이다."
+      ]
+    },
+    {
+      "id": "ui-ux",
+      "canonical_entrypoint": "docs/UI_BASELINE.md",
+      "canonical_roots": [
+        "docs/UI_BASELINE.md",
+        "docs/UI_ACTION_PLACEMENT.md",
+        "apps/new/src/styles/tokens.css"
+      ],
+      "notes": [
+        "디자인 토큰은 apps/new/src/styles/tokens.css 한 곳. PR #17 이 기준을 FreePass Admin 규격으로 바꾸는 중이며(그 규격은 admin 쪽에서 재검증 중), 이 등록부는 main 기준만 적는다."
+      ]
+    },
+    {
+      "id": "color-contract",
+      "canonical_entrypoint": "docs/COLOR_CONTRACT_2026-09-21.md",
+      "canonical_roots": [
+        "docs/COLOR_CONTRACT_2026-09-21.md"
+      ]
+    }
+  ],
+  "repository_guards": {
+    "workflow_refs": {
+      "allow": [
+        "main"
+      ],
+      "why": "예약·운영 작업은 main 에서만 돈다."
+    },
+    "pull_request": {
+      "max_behind_main": 30,
+      "single_open_pr_per_canonical_path": true,
+      "why": "묵은 가지·같은 정본을 동시에 고치는 PR 이 갈림의 원인이다(2026-09-25 점검: 동기 봇이 work/ui-baseline 에 쓰고, calc.js 가 main 과 갈림).",
+      "allowed_head_patterns": [
+        "^work/[a-z0-9._-]+/[a-z0-9._-]+$",
+        "^dependabot/",
+        "^renovate/"
+      ],
+      "forbidden_actor_prefixes": [
+        "gpt/",
+        "claude/",
+        "codex/",
+        "cursor/",
+        "gemini/",
+        "work/gpt/",
+        "work/claude/",
+        "work/codex/",
+        "work/cursor/",
+        "work/gemini/"
+      ],
+      "legacy_head_exceptions": [
+        {
+          "branch": "integration/canonical-20260926",
+          "expires": "2026-10-07"
+        },
+        {
+          "branch": "claude/ai-core-integration-standardization-ntmoli",
+          "expires": "2026-10-07",
+          "reason": "이 Claude 세션에 배정된 가지 이름이라 세션이 바꿀 수 없다."
+        }
+      ]
+    }
+  },
+  "baseline": [
+    {
+      "guard": "workflow-ref-pin",
+      "path": ".github/workflows/sync-freepass-newcar-source.yml",
+      "expires": "2026-10-31",
+      "reason": "6시간마다 work/ui-baseline 에 쓰는 신차 동기 봇(workflow_refs 위반). PR #17 이 이 워크플로를 고치거나 지우는 중이라(먼저 연 PR 이 쥔다) 이 PR 에서 안 고친다. #17 병합 뒤 main 기준으로 다시 잰다. (#17 은 이 파일을 지운다)"
+    },
+    {
+      "guard": "workflow-ref-pin",
+      "path": ".github/workflows/build-freepass-newcar-db.yml",
+      "expires": "2026-10-31",
+      "reason": "work/ui-baseline checkout. PR #17 이 이 워크플로를 고치거나 지우는 중이라(먼저 연 PR 이 쥔다) 이 PR 에서 안 고친다. #17 병합 뒤 main 기준으로 다시 잰다."
+    },
+    {
+      "guard": "workflow-ref-pin",
+      "path": ".github/workflows/build-freepass-newcar-maps.yml",
+      "expires": "2026-10-31",
+      "reason": "work/ui-baseline checkout. PR #17 이 이 워크플로를 고치거나 지우는 중이라(먼저 연 PR 이 쥔다) 이 PR 에서 안 고친다. #17 병합 뒤 main 기준으로 다시 잰다."
+    },
+    {
+      "guard": "workflow-ref-pin",
+      "path": ".github/workflows/import-newcar-baseline.yml",
+      "expires": "2026-10-31",
+      "reason": "work/ui-baseline·커밋 고정 checkout. PR #17 이 이 워크플로를 고치거나 지우는 중이라(먼저 연 PR 이 쥔다) 이 PR 에서 안 고친다. #17 병합 뒤 main 기준으로 다시 잰다."
+    },
+    {
+      "guard": "workflow-ref-pin",
+      "path": ".github/workflows/sync-newcar-master-map.yml",
+      "expires": "2026-10-31",
+      "reason": "work/ui-baseline checkout. PR #17 이 이 워크플로를 고치거나 지우는 중이라(먼저 연 PR 이 쥔다) 이 PR 에서 안 고친다. #17 병합 뒤 main 기준으로 다시 잰다."
+    },
+    {
+      "guard": "workflow-ref-pin",
+      "path": ".github/workflows/newcar-ci.yml",
+      "expires": "2026-10-31",
+      "reason": "다른 저장소를 커밋으로 고정 checkout. PR #17 이 이 워크플로를 고치거나 지우는 중이라(먼저 연 PR 이 쥔다) 이 PR 에서 안 고친다. #17 병합 뒤 main 기준으로 다시 잰다."
+    }
+  ]
+}
