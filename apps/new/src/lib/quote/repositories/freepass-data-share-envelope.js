@@ -80,7 +80,7 @@ export function createFreePassDataShareEnvelopeRepository({
           method: 'GET',
           headers: {
             accept: 'application/json',
-            ...authHeaders(),
+            ...(await authHeaders()),
           },
           cache: 'no-store',
         });
