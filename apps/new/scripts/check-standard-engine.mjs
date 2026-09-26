@@ -64,7 +64,7 @@ for(const [label,id] of cases){
   const answer=await calculateStandardQuote(request);
   assert.equal(answer.결과.length,5,label+' result length');
   assert.equal(answer.pricingEngine?.verified,true,label+' engine evidence verified');
-  assert.match(answer.pricingEngine?.version||'',/^freepass-standard\/newcar@1\.1\.0\+src\.[a-f0-9]{12}\.policy\.[a-f0-9]{12}$/,label+' engine version');
+  assert.match(answer.pricingEngine?.version||'',/^freepass-standard\/newcar@1\.2\.0\+src\.[a-f0-9]{12}\.policy\.[a-f0-9]{12}$/,label+' engine version');
   for(const row of answer.결과){
     assert.ok(Number.isFinite(row.월대여료)&&row.월대여료>0,label+' monthly');
     assert.ok(Number.isFinite(row.보증금)&&row.보증금>=0,label+' deposit');
@@ -109,6 +109,36 @@ for(const [label,id] of cases){
   console.log('PASS STANDARD credit-risk separation',JSON.stringify({
     normal48:normal.결과[term48].월대여료,low48:low.결과[term48].월대여료,
   }));
+}
+
+// Standard는 아직 정책이 없는 선택조건을 조용히 무시하면 안 된다.
+{
+  const id='kia_niro_하이브리드_시그니처';
+  const baseline=req(id);
+  const unsupported=[
+    ['주행','1만km'],
+    ['주행','3만km'],
+    ['주행','4만km'],
+    ['정비','웰스 Self'],
+    ['대물','2억'],
+    ['대물','3억'],
+    ['대물','5억'],
+    ['추가운전자','1명'],
+    ['추가운전자','2명'],
+    ['추가운전자','3명'],
+  ];
+  for(const [field,value] of unsupported){
+    const changed=structuredClone(baseline);
+    changed.조건[field]=value;
+    await assert.rejects(
+      ()=>calculateStandardQuote(changed),
+      (error)=>error?.code==='STANDARD_CONDITION_UNSUPPORTED',
+      `${field}=${value} must fail closed until Standard policy exists`
+    );
+  }
+  const ok=await calculateStandardQuote(baseline);
+  assert.equal(ok.메타.condition_policy,'freepass-standard-condition-policy/v1');
+  console.log('PASS STANDARD unsupported-condition fail-closed');
 }
 
 // 수소차는 정책 미확정 상태에서 가솔린처럼 조용히 계산하면 안 된다.
