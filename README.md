@@ -118,3 +118,12 @@ PC 화면을 줄여 쓰지 않는다.
 4. 정본 확정 후 FreePass Sales / 파트너 화면에 반영한다.
 
 **FreePass Data는 차량 사실의 근원지이고, FreePass Estimate는 견적 계산의 근원지다.**
+
+## Local Windows / Vercel deployment
+
+배포 정본은 `apps/new`다. Windows에 저장소를 clone한 뒤 로컬 Vite 개발 서버와 Vercel Functions가 **같은 `apps/new/api/*.js` handler**를 사용하도록 구성되어 있다.
+
+Vercel 프로젝트를 만들 때 **Root Directory를 반드시 `apps/new`로 지정**한다. 환경변수, 로컬 실행, Preview/Production 배포 순서는 [docs/LOCAL-VERCEL-DEPLOYMENT.md](docs/LOCAL-VERCEL-DEPLOYMENT.md)를 따른다.
+
+Production/Preview Vercel build는 FreePass Data 서비스 경계, Firebase 쓰기 권한, `CANONICAL_ONLY` Quote write mode가 빠지면 fail-closed 한다. `VITE_AGENT_PIN`은 브라우저에 노출되는 UI gate 값이며 인증수단이 아니다.
+
