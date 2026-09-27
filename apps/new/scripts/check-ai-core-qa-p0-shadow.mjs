@@ -29,9 +29,9 @@ for(const entry of manifest.contracts){
 fail(typeof pkg.scripts?.verify === 'string','ESTIMATE_VERIFY_ENTRYPOINT_MISSING');
 fail(pkg.scripts.verify.includes('check:verification'),'ESTIMATE_VERIFY_OMITS_VERIFICATION_FRESHNESS');
 fail(typeof pkg.scripts?.['check:verification'] === 'string','ESTIMATE_VERIFICATION_SCRIPT_MISSING');
-fail(workflow.includes('Verification manifest freshness'),'ESTIMATE_CI_VERIFICATION_STEP_MISSING');
-fail(workflow.includes('npm run check:verification'),'ESTIMATE_CI_VERIFICATION_COMMAND_MISSING');
-fail(workflow.includes('Release revision proof contract'),'ESTIMATE_RELEASE_PROOF_STEP_MISSING');
+fail(workflow.includes('Canonical UFE verification and production build'),'ESTIMATE_CI_VERIFICATION_STEP_MISSING');
+fail(workflow.includes('npm run verify'),'ESTIMATE_CI_VERIFICATION_COMMAND_MISSING');
+fail(pkg.scripts.verify.includes('check:release'),'ESTIMATE_RELEASE_PROOF_STEP_MISSING');
 
 const releaseChecker = read('scripts/check-release-proof.mjs');
 fail(releaseChecker.includes('/api/version') || releaseChecker.includes('api/version'),'ESTIMATE_RELEASE_REVISION_ENDPOINT_NOT_CHECKED');
