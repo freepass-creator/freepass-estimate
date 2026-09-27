@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 
@@ -149,7 +149,16 @@ function injectGatePins() {
 
 const BUILD_REVISION = process.env.VERCEL_GIT_COMMIT_SHA || process.env.GITHUB_SHA || process.env.COMMIT_SHA || null;
 
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  // Vite only exposes VITE_* values to browser code. Local server handlers also need
+  // server-only FREEPASS_* values from .env.local, so load all keys into this Node
+  // process without overriding variables already supplied by the shell/CI.
+  const localEnv = loadEnv(mode, process.cwd(), '');
+  for (const [key, value] of Object.entries(localEnv)) {
+    if (process.env[key] == null) process.env[key] = value;
+  }
+
+  return {
   root: '.',
   define: {
     __FREEPASS_BUILD_REVISION__: JSON.stringify(BUILD_REVISION),
@@ -177,4 +186,5 @@ export default defineConfig({
       },
     },
   },
+  };
 });
