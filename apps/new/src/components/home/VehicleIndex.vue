@@ -2,17 +2,24 @@
 // 전체 차종 인덱스 — 25 베이스 모델, 브랜드별 그룹화
 // 카드 클릭 → /guide/{slug}.html 정적 페이지로 이동
 import { ref, computed, onMounted } from 'vue';
-import { calcQuote } from '../../lib/calc.js';
+import { calculateLegacyStandardPreviews, legacyVehiclePreviewKey } from '../../lib/quote/legacy-preview.js';
 import { fmt } from '../../lib/format.js';
 import { SLUG_META, SLUG_BASE_MODEL, ALL_SLUGS, imageOf } from '../../lib/slug.js';
 
 const vehicles = ref([]);
 const loading = ref(true);
+const previews = ref(new Map());
 
 onMounted(async () => {
   try {
     const r = await fetch('/data/vehicles.json?t=' + Date.now());
     vehicles.value = await r.json();
+    const previewRows = ALL_SLUGS.map((slug) => {
+      const baseModel = SLUG_BASE_MODEL[slug];
+      const rows = vehicles.value.filter((v) => v.model === baseModel || v.model === baseModel + ' Hybrid');
+      return rows.reduce((best, row) => (!best || row.price < best.price) ? row : best, null);
+    }).filter(Boolean);
+    previews.value = await calculateLegacyStandardPreviews(previewRows);
   } catch {}
   loading.value = false;
 });
@@ -32,21 +39,8 @@ const items = computed(() => {
     if (rows.length) {
       const cheapest = rows.reduce((m, c) => (!m || c.price < m.price) ? c : m, null);
       price = cheapest.price;
-      try {
-        const r = calcQuote({
-          vehicle: cheapest,
-          options: { optPrice: 0, discount: 0, deliveryFee: 0, itemsFee: 0, etc: 0 },
-          contract: { term: 60, km: '2만km', dep: 10, pre: 0 },
-          customer: { creditGrade: '중신용' },
-          insurance: {
-            property: '1억', extraDriver: '없음',
-            exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
-            deductible: '30만원~', emergency: '가입',
-          },
-          fees: { feeRatePct: 5.0, svc: '웰스 Basic' },
-        });
-        monthly = r.monthly;
-      } catch {}
+      const preview = previews.value.get(legacyVehiclePreviewKey(cheapest));
+      monthly = preview?.monthly ?? null;
     }
     return {
       slug,

@@ -3,7 +3,7 @@
 // 다요소 가중합 점수 → top 1 hero + 2 alt
 // 개인화 narrative + 매치 %
 import { ref, computed, onMounted } from 'vue';
-import { calcQuote } from '../../lib/calc.js';
+import { calculateLegacyStandardPreviews, legacyVehiclePreviewKey } from '../../lib/quote/legacy-preview.js';
 import { DELIVERY_REGIONS, TINT_PRICES } from '../../data/lookups.js';
 import { fmt } from '../../lib/format.js';
 import { MODEL_SLUG } from '../../lib/slug.js';
@@ -106,30 +106,24 @@ const income = ref(400);
 const submitted = ref(false);
 
 const vehicles = ref([]);
+const previews = ref(new Map());
 onMounted(async () => {
   try {
     const r = await fetch('/data/vehicles.json?t=' + Date.now());
     vehicles.value = await r.json();
+    const byModel = new Map();
+    for (const vehicle of vehicles.value) {
+      if (!MODEL_META[vehicle.model]) continue;
+      if (!byModel.has(vehicle.model) || vehicle.price < byModel.get(vehicle.model).price) {
+        byModel.set(vehicle.model, vehicle);
+      }
+    }
+    previews.value = await calculateLegacyStandardPreviews(Array.from(byModel.values()), {
+      deliveryFee: DEFAULT_DELIVERY_FEE,
+      tintFee: DEFAULT_TINT_FEE,
+    });
   } catch {}
 });
-
-function calcMonthly(row, depPct) {
-  try {
-    const r = calcQuote({
-      vehicle: row,
-      options: { optPrice: 0, discount: 0, deliveryFee: DEFAULT_DELIVERY_FEE, itemsFee: DEFAULT_TINT_FEE, etc: 0 },
-      contract: { term: 60, km: '2만km', dep: depPct, pre: 0 },
-      customer: { creditGrade: '중신용' },
-      insurance: {
-        property: '1억', extraDriver: '없음',
-        exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
-        deductible: '30만원~', emergency: '가입',
-      },
-      fees: { feeRatePct: 5.0, svc: '웰스 Basic' },
-    });
-    return r;
-  } catch { return null; }
-}
 
 const budgetKrw = computed(() => Math.round((+income.value || 0) * 10000 * 0.33));
 
@@ -154,7 +148,7 @@ const scored = computed(() => {
 
   const arr = candidates.value.map(row => {
     const meta = MODEL_META[row.model];
-    const r = calcMonthly(row, 10);
+    const r = previews.value.get(legacyVehiclePreviewKey(row));
     if (!r) return null;
     const monthly = r.monthly;
 

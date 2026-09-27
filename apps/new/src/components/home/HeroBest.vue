@@ -2,7 +2,7 @@
 // 히어로 우측 — BEST 인기 차종 4종 슬라이드 (자동 회전)
 // 각 슬라이드: 차량 이미지 + 월 가격으로 "이만큼만 내면 신차" 즉시 증명
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
-import { calcQuote } from '../../lib/calc.js';
+import { calculateLegacyStandardPreviews, legacyVehiclePreviewKey } from '../../lib/quote/legacy-preview.js';
 import { fmt } from '../../lib/format.js';
 import { MODEL_SLUG, imageOf } from '../../lib/slug.js';
 
@@ -16,12 +16,18 @@ const AUTO_MS = 4500;
 
 const vehicles = ref([]);
 const activeIndex = ref(0);
+const previews = ref(new Map());
 let timer = null;
 
 onMounted(async () => {
   try {
     const r = await fetch('/data/vehicles.json?t=' + Date.now());
     vehicles.value = await r.json();
+    const previewRows = FEATURED.map((item) => {
+      const matches = vehicles.value.filter((v) => v.brand === item.brand && v.model === item.model);
+      return matches.reduce((best, row) => (!best || row.price < best.price) ? row : best, null);
+    }).filter(Boolean);
+    previews.value = await calculateLegacyStandardPreviews(previewRows);
   } catch {}
   startAuto();
 });
@@ -53,23 +59,8 @@ const slides = computed(() => FEATURED.map(f => {
   const candidates = vehicles.value.filter(v => v.brand === f.brand && v.model === f.model);
   if (!candidates.length) return { ...f, slug, image, monthly: null };
   const cheapest = candidates.reduce((m, c) => (!m || c.price < m.price) ? c : m, null);
-  try {
-    const r = calcQuote({
-      vehicle: cheapest,
-      options: { optPrice: 0, discount: 0, deliveryFee: 0, itemsFee: 0, etc: 0 },
-      contract: { term: 60, km: '2만km', dep: 10, pre: 0 },
-      customer: { creditGrade: '중신용' },
-      insurance: {
-        property: '1억', extraDriver: '없음',
-        exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
-        deductible: '30만원~', emergency: '가입',
-      },
-      fees: { feeRatePct: 5.0, svc: '웰스 Basic' },
-    });
-    return { ...f, slug, image, monthly: r.monthly };
-  } catch {
-    return { ...f, slug, image, monthly: null };
-  }
+  const preview = previews.value.get(legacyVehiclePreviewKey(cheapest));
+  return { ...f, slug, image, monthly: preview?.monthly ?? null };
 }));
 
 const current = computed(() => slides.value[activeIndex.value]);

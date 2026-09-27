@@ -2,7 +2,7 @@
 // 인기 차종 카드 (hana-car / kbrentcardirect 스타일) — 4종 추천
 // 표준 조건(중신용/보증금10%/선납0%/2만km/60개월)으로 월대여료 즉시 계산
 import { ref, computed, onMounted } from 'vue';
-import { calcQuote } from '../../lib/calc.js';
+import { calculateLegacyStandardPreviews, legacyVehiclePreviewKey } from '../../lib/quote/legacy-preview.js';
 import { fmt } from '../../lib/format.js';
 import { MODEL_SLUG, imageOf } from '../../lib/slug.js';
 
@@ -34,11 +34,17 @@ const PICKS = [
 
 const vehicles = ref([]);
 const loading = ref(true);
+const previews = ref(new Map());
 
 onMounted(async () => {
   try {
     const r = await fetch('/data/vehicles.json?t=' + Date.now());
     vehicles.value = await r.json();
+    const previewRows = PICKS.map((item) => {
+      const matches = vehicles.value.filter((v) => v.brand === item.brand && v.model === item.model);
+      return matches.reduce((best, row) => (!best || row.price < best.price) ? row : best, null);
+    }).filter(Boolean);
+    previews.value = await calculateLegacyStandardPreviews(previewRows);
   } catch {}
   loading.value = false;
 });
@@ -53,23 +59,8 @@ const cards = computed(() => {
       .filter(v => v.model === pick.model);
     if (!candidates.length) return { ...pick, image, monthly: null, price: null };
     const cheapest = candidates.reduce((m, c) => (!m || c.price < m.price) ? c : m, null);
-    try {
-      const r = calcQuote({
-        vehicle: cheapest,
-        options: { optPrice: 0, discount: 0, deliveryFee: 0, itemsFee: 0, etc: 0 },
-        contract: { term: 60, km: '2만km', dep: 10, pre: 0 },
-        customer: { creditGrade: '중신용' },
-        insurance: {
-          property: '1억', extraDriver: '없음',
-          exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
-          deductible: '30만원~', emergency: '가입',
-        },
-        fees: { feeRatePct: 5.0, svc: '웰스 Basic' },
-      });
-      return { ...pick, image, monthly: r.monthly, price: cheapest.price, trim: cheapest.trim };
-    } catch {
-      return { ...pick, image, monthly: null, price: cheapest.price, trim: cheapest.trim };
-    }
+    const preview = previews.value.get(legacyVehiclePreviewKey(cheapest));
+    return { ...pick, image, monthly: preview?.monthly ?? null, price: cheapest.price, trim: cheapest.trim };
   });
 });
 
