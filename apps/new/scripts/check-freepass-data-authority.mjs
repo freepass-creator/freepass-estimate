@@ -9,6 +9,7 @@ const legacyDebt = new Set([
   'src/firebase/chat.js',
   'src/admin-view.js',
   'src/components/home/LeadForm.vue',
+  'src/admin-view.js',
 ]);
 
 function walk(dir) {
