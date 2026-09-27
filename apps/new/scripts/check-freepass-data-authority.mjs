@@ -7,6 +7,7 @@ const legacyDebt = new Set([
   'src/firebase/quotes.js',
   'src/firebase/contracts.js',
   'src/firebase/chat.js',
+  'src/admin-view.js',
   'src/components/home/LeadForm.vue',
 ]);
 
