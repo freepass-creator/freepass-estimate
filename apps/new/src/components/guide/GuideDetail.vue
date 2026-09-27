@@ -2,7 +2,7 @@
 // 차종 상세 가이드 페이지
 // 섹션 스택: hero / 트림 비교 / 페르소나 / 차종 썰 / 연비·세금·보험 / 유튜브 / 경쟁 / FAQ / CTA
 import { ref, computed, onMounted } from 'vue';
-import { calcQuote } from '../../lib/calc.js';
+import { calculateLegacyStandardPreviews, legacyVehiclePreviewKey } from '../../lib/quote/legacy-preview.js';
 import { fmt } from '../../lib/format.js';
 import { SLUG_META, SLUG_BASE_MODEL, imageOf } from '../../lib/slug.js';
 import { groupBySubModel } from '../../lib/trim.js';
@@ -13,11 +13,17 @@ const props = defineProps({ slug: String });
 
 const vehicles = ref([]);
 const loading = ref(true);
+const previews = ref(new Map());
 
 onMounted(async () => {
   try {
     const r = await fetch('/data/vehicles.json?t=' + Date.now());
     vehicles.value = await r.json();
+    const base = meta.value?.model;
+    if (base) {
+      const previewRows = vehicles.value.filter((v) => v.model === base || v.model === base + ' Hybrid');
+      previews.value = await calculateLegacyStandardPreviews(previewRows);
+    }
   } catch {}
   loading.value = false;
   // 타이틀 업데이트
@@ -44,25 +50,10 @@ const trims = computed(() => {
   const base = meta.value.model;
   const rows = vehicles.value.filter(v => v.model === base || v.model === base + ' Hybrid');
   return rows.map(v => {
-    let monthly = null;
-    try {
-      const r = calcQuote({
-        vehicle: v,
-        options: { optPrice: 0, discount: 0, deliveryFee: 0, itemsFee: 0, etc: 0 },
-        contract: { term: 60, km: '2만km', dep: 10, pre: 0 },
-        customer: { creditGrade: '중신용' },
-        insurance: {
-          property: '1억', extraDriver: '없음',
-          exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
-          deductible: '30만원~', emergency: '가입',
-        },
-        fees: { feeRatePct: 5.0, svc: '웰스 Basic' },
-      });
-      monthly = r.monthly;
-    } catch {}
+    const preview = previews.value.get(legacyVehiclePreviewKey(v));
     return {
       ...v,
-      monthly,
+      monthly: preview?.monthly ?? null,
       isHybrid: v.model.includes('Hybrid'),
     };
   }).sort((a, b) => a.price - b.price);
