@@ -33,8 +33,8 @@
       "lane": "INTEGRATION",
       "pattern": "work/integration/<task>",
       "max_active": 1,
-      "current_branch": "work/integration/quote-persistence",
-      "status": "READY_FROM_MAIN"
+      "current_branch": "work/integration/estimate-writer-runtime",
+      "status": "ACTIVE"
     }
   ],
   "do_not_develop": [

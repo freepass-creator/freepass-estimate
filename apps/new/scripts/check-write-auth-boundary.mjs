@@ -96,6 +96,15 @@ assert.deepEqual(defaultPolicy.allowedUids,[]);
 
 assert.throws(
   ()=>assertEstimateWriteIdentity({
+    uid:'verified_but_unconfigured',
+    isAnonymous:false,
+    claims:{},
+  },defaultPolicy),
+  (error)=>error?.code==='ESTIMATE_WRITE_POLICY_UNAVAILABLE' && error?.status===503
+);
+
+assert.throws(
+  ()=>assertEstimateWriteIdentity({
     uid:'anon_1',
     isAnonymous:true,
     claims:{firebase:{sign_in_provider:'anonymous'}},

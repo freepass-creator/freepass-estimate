@@ -5,6 +5,7 @@ import {
 } from '../src/lib/quote/share-envelope-repository.js';
 import { verifyShareEnvelopeIntegrity } from '../src/lib/quote/share-envelope.js';
 import { authorizeEstimateWriteRequest } from './_auth/estimate-write-access.js';
+import { createFreePassDataHeaders } from './_auth/freepass-data-cloud-run.js';
 
 const DEFAULT_COMMAND_PATH = '/v1/commands/freepass-estimate/share-envelopes';
 
@@ -22,7 +23,7 @@ function normalizedUrl(value) {
 export function resolveShareEnvelopeWriteConfig(env = process.env) {
   const token = String(env.FREEPASS_DATA_ESTIMATE_TOKEN ?? '').trim();
   const explicitUrl = normalizedUrl(env.FREEPASS_DATA_SHARE_ENVELOPE_COMMAND_URL);
-  const baseUrl = normalizedUrl(env.FREEPASS_DATA_CONSUMER_BASE_URL);
+  const baseUrl = normalizedUrl(env.FREEPASS_DATA_WRITE_BASE_URL || env.FREEPASS_DATA_CONSUMER_BASE_URL);
   const url = explicitUrl || (baseUrl ? baseUrl + DEFAULT_COMMAND_PATH : '');
 
   if (!url) throw codedError('Share Envelope command URL is not configured', 'SHARE_ENVELOPE_REPOSITORY_UNAVAILABLE');
@@ -89,12 +90,17 @@ export async function forwardShareEnvelopeCommand({
 
   let response;
   try {
+    const headers = await createFreePassDataHeaders({
+      url: config.url,
+      consumerToken: config.token,
+      env,
+      fetchImpl,
+    });
     response = await fetchImpl(config.url, {
       method: 'POST',
       headers: {
-        accept: 'application/json',
+        ...headers,
         'content-type': 'application/json',
-        authorization: `Bearer ${config.token}`,
         'idempotency-key': expected.idempotencyKey,
       },
       body: JSON.stringify({
@@ -107,6 +113,7 @@ export async function forwardShareEnvelopeCommand({
       signal: AbortSignal.timeout ? AbortSignal.timeout(5000) : undefined,
     });
   } catch (error) {
+    if (String(error?.code || '').startsWith('FREEPASS_DATA_CLOUD_RUN_')) throw error;
     throw codedError(error?.message || 'Share Envelope command failed', 'SHARE_ENVELOPE_REPOSITORY_UNAVAILABLE');
   }
 

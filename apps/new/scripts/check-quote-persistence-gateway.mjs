@@ -56,6 +56,12 @@ assert.equal(
   'https://data.example.test/v1/commands/freepass-estimate/issued-quotes'
 );
 assert.equal(cfg.token, token);
+assert.equal(resolveQuotePersistenceConfig({
+  NODE_ENV: 'production',
+  FREEPASS_DATA_CONSUMER_BASE_URL: 'https://read.example.test',
+  FREEPASS_DATA_WRITE_BASE_URL: 'https://writer.example.test/',
+  FREEPASS_DATA_ESTIMATE_TOKEN: token,
+}).url, 'https://writer.example.test/v1/commands/freepass-estimate/issued-quotes');
 
 assert.equal(
   assertQuotePersistenceCommand(command, key).idempotencyKey,
@@ -91,7 +97,8 @@ const forwarded = await forwardIssuedQuoteCommand({
   body: command,
   requestIdempotencyKey: key,
   env: {
-    NODE_ENV: 'production',
+    NODE_ENV: 'test',
+    FREEPASS_DATA_CLOUD_RUN_ID_TOKEN: 'cloud-run-test-token',
     FREEPASS_DATA_QUOTE_COMMAND_URL: 'https://data.example.test/v1/quote-command',
     FREEPASS_DATA_ESTIMATE_TOKEN: token,
   },
@@ -122,7 +129,8 @@ await assert.rejects(
     body: command,
     requestIdempotencyKey: key,
     env: {
-      NODE_ENV: 'production',
+      NODE_ENV: 'test',
+      FREEPASS_DATA_CLOUD_RUN_ID_TOKEN: 'cloud-run-test-token',
       FREEPASS_DATA_QUOTE_COMMAND_URL: 'https://data.example.test/v1/quote-command',
       FREEPASS_DATA_ESTIMATE_TOKEN: token,
     },
@@ -133,6 +141,37 @@ await assert.rejects(
     }),
   }),
   (error) => error?.code === 'QUOTE_REPOSITORY_CONFLICT' && error?.status === 409
+);
+
+await assert.rejects(
+  () => forwardIssuedQuoteCommand({
+    body: command,
+    requestIdempotencyKey: key,
+    env: {
+      NODE_ENV: 'production',
+      FREEPASS_DATA_QUOTE_COMMAND_URL: 'https://data.example.test/v1/quote-command',
+      FREEPASS_DATA_ESTIMATE_TOKEN: token,
+    },
+    fetchImpl: async () => { throw new Error('destination fetch must not run'); },
+  }),
+  (error) => error?.code === 'FREEPASS_DATA_CLOUD_RUN_IDENTITY_UNAVAILABLE' && error?.status === 503
+);
+
+await assert.rejects(
+  () => forwardIssuedQuoteCommand({
+    body: command,
+    requestIdempotencyKey: key,
+    env: {
+      NODE_ENV: 'production',
+      FREEPASS_DATA_QUOTE_COMMAND_URL: 'https://data.example.test/v1/quote-command',
+      FREEPASS_DATA_ESTIMATE_TOKEN: token,
+      FREEPASS_DATA_GCP_WIF_AUDIENCE: 'wif-audience',
+      FREEPASS_DATA_GCP_CALLER_SERVICE_ACCOUNT_EMAIL: 'caller@example.iam.gserviceaccount.com',
+      VERCEL_OIDC_TOKEN: 'fallback.oidc.token',
+    },
+    fetchImpl: async () => { throw new DOMException('timed out', 'TimeoutError'); },
+  }),
+  (error) => error?.code === 'FREEPASS_DATA_CLOUD_RUN_STS_UNAVAILABLE' && error?.status === 503
 );
 
 console.log('PASS Quote persistence gateway: server-only token + idempotent receipt boundary');

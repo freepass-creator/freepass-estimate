@@ -49,6 +49,12 @@ assert.equal(
   cfg.url,
   'https://data.example.test/v1/consumers/freepass-estimate/issued-quotes'
 );
+assert.equal(resolveQuoteReadConfig({
+  NODE_ENV: 'production',
+  FREEPASS_DATA_CONSUMER_BASE_URL: 'https://read.example.test',
+  FREEPASS_DATA_WRITE_BASE_URL: 'https://writer.example.test/',
+  FREEPASS_DATA_ESTIMATE_TOKEN: token,
+}).url, 'https://writer.example.test/v1/consumers/freepass-estimate/issued-quotes');
 
 assert.equal(
   assertQuoteReadReceipt(receipt, { quoteId: quote.quoteId, quoteVersion: quote.quoteVersion }).quote.quoteId,
@@ -64,7 +70,8 @@ const found = await fetchIssuedQuoteReceipt({
   quoteId: quote.quoteId,
   quoteVersion: quote.quoteVersion,
   env: {
-    NODE_ENV: 'production',
+    NODE_ENV: 'test',
+    FREEPASS_DATA_CLOUD_RUN_ID_TOKEN: 'cloud-run-test-token',
     FREEPASS_DATA_QUOTE_READ_BASE_URL: 'https://data.example.test/issued-quotes',
     FREEPASS_DATA_ESTIMATE_TOKEN: token,
   },
@@ -80,8 +87,9 @@ assert.ok(captured.url.includes('quoteVersion=' + quote.quoteVersion));
 
 const missing = await fetchIssuedQuoteReceipt({
   quoteId: 'q_missing',
-  env: {
-    NODE_ENV: 'production',
+    env: {
+      NODE_ENV: 'test',
+      FREEPASS_DATA_CLOUD_RUN_ID_TOKEN: 'cloud-run-test-token',
     FREEPASS_DATA_QUOTE_READ_BASE_URL: 'https://data.example.test/issued-quotes',
     FREEPASS_DATA_ESTIMATE_TOKEN: token,
   },

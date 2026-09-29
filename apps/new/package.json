@@ -33,7 +33,7 @@
     "check:condition-cost-authority": "node scripts/check-condition-cost-authority.mjs",
     "check:feature": "node --test scripts/feature-conditions.test.mjs scripts/feature-options.test.mjs scripts/feature-vehicle-selection.test.mjs scripts/feature-actions.test.mjs scripts/feature-roles.test.mjs scripts/feature-history.test.mjs scripts/feature-vehicle-kind.test.mjs",
     "check:deploy-env": "node scripts/check-deploy-env.mjs",
-    "check:deployment": "node scripts/check-deployment-wiring.mjs",
+    "check:deployment": "node scripts/check-deployment-wiring.mjs && node scripts/check-freepass-data-cloud-run-auth.mjs",
     "build:vercel": "node scripts/check-deploy-env.mjs --strict && vite build",
     "check:data-authority": "node scripts/check-freepass-data-authority.mjs"
   },
@@ -41,6 +41,7 @@
     "vite": "^8.0.4"
   },
   "dependencies": {
+    "@vercel/oidc": "3.8.9",
     "@vitejs/plugin-vue": "^6.0.7",
     "firebase": "^12.12.0",
     "vue": "^3.5.34"

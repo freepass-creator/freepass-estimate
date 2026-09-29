@@ -1,3 +1,5 @@
+import { createFreePassDataHeaders } from './_auth/freepass-data-cloud-run.js';
+
 const CONTRACT = 'estimate-newcar-master/v1';
 const AUTHORITY = 'CANONICAL_ACTIVE';
 const CONSUMER_PATH = '/v1/consumers/freepass-estimate/estimate-newcar-master';
@@ -56,16 +58,20 @@ export async function fetchFreePassDataMaster({
 
   let response;
   try {
+    const headers = await createFreePassDataHeaders({
+      url: config.url,
+      consumerToken: config.token,
+      env,
+      fetchImpl,
+    });
     response = await fetchImpl(config.url, {
       method: 'GET',
-      headers: {
-        accept: 'application/json',
-        authorization: `Bearer ${config.token}`,
-      },
+      headers,
       cache: 'no-store',
       signal: AbortSignal.timeout ? AbortSignal.timeout(5000) : undefined,
     });
   } catch (error) {
+    if (String(error?.code || '').startsWith('FREEPASS_DATA_CLOUD_RUN_')) throw error;
     throw codedError(error?.message || 'FreePass Data master request failed', 'FREEPASS_DATA_MASTER_UNAVAILABLE');
   }
 
