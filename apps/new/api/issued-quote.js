@@ -2,6 +2,7 @@ import {
   QUOTE_READ_RECEIPT_CONTRACT,
   assertIssuedQuote,
 } from '../src/lib/quote/quote-repository.js';
+import { createFreePassDataHeaders } from './_auth/freepass-data-cloud-run.js';
 
 const DEFAULT_READ_PATH = '/v1/consumers/freepass-estimate/issued-quotes';
 
@@ -34,7 +35,7 @@ function normalizedVersion(value) {
 export function resolveQuoteReadConfig(env = process.env) {
   const token = String(env.FREEPASS_DATA_ESTIMATE_TOKEN ?? '').trim();
   const explicitUrl = normalizedUrl(env.FREEPASS_DATA_QUOTE_READ_BASE_URL);
-  const baseUrl = normalizedUrl(env.FREEPASS_DATA_CONSUMER_BASE_URL);
+  const baseUrl = normalizedUrl(env.FREEPASS_DATA_WRITE_BASE_URL || env.FREEPASS_DATA_CONSUMER_BASE_URL);
   const url = explicitUrl || (baseUrl ? baseUrl + DEFAULT_READ_PATH : '');
 
   if (!url) {
@@ -113,16 +114,20 @@ export async function fetchIssuedQuoteReceipt({
 
   let response;
   try {
+    const headers = await createFreePassDataHeaders({
+      url: url.toString(),
+      consumerToken: config.token,
+      env,
+      fetchImpl,
+    });
     response = await fetchImpl(url.toString(), {
       method: 'GET',
-      headers: {
-        accept: 'application/json',
-        authorization: `Bearer ${config.token}`,
-      },
+      headers,
       cache: 'no-store',
       signal: AbortSignal.timeout ? AbortSignal.timeout(5000) : undefined,
     });
   } catch (error) {
+    if (String(error?.code || '').startsWith('FREEPASS_DATA_CLOUD_RUN_')) throw error;
     throw codedError(error?.message || 'FreePass Data quote read request failed', 'QUOTE_REPOSITORY_UNAVAILABLE');
   }
 

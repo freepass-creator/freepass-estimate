@@ -27,6 +27,18 @@ if (baseUrl && !/^https:\/\//i.test(baseUrl)) {
 }
 
 required('FREEPASS_DATA_ESTIMATE_TOKEN', { secret: true });
+const writeBaseUrl = required('FREEPASS_DATA_WRITE_BASE_URL');
+if (writeBaseUrl && !/^https:\/\//i.test(writeBaseUrl)) {
+  errors.push('FREEPASS_DATA_WRITE_BASE_URL must use HTTPS');
+}
+required('FREEPASS_DATA_GCP_WIF_AUDIENCE');
+required('FREEPASS_DATA_GCP_CALLER_SERVICE_ACCOUNT_EMAIL');
+if (!enabled(value('FREEPASS_DATA_REQUIRE_CLOUD_RUN_ID_TOKEN'))) {
+  errors.push('FREEPASS_DATA_REQUIRE_CLOUD_RUN_ID_TOKEN must be enabled for deployed environments');
+}
+if (value('FREEPASS_DATA_CLOUD_RUN_ID_TOKEN')) {
+  errors.push('FREEPASS_DATA_CLOUD_RUN_ID_TOKEN must not be configured for deployed environments');
+}
 required('FREEPASS_FIREBASE_PROJECT_ID');
 
 const roles = value('FREEPASS_ESTIMATE_REQUIRED_WRITE_ROLES');

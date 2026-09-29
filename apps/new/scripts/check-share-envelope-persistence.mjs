@@ -91,6 +91,12 @@ const writeCfg=resolveShareEnvelopeWriteConfig({
   FREEPASS_DATA_ESTIMATE_TOKEN:token,
 });
 assert.equal(writeCfg.url,'https://data.example.test/v1/commands/freepass-estimate/share-envelopes');
+assert.equal(resolveShareEnvelopeWriteConfig({
+  NODE_ENV:'production',
+  FREEPASS_DATA_CONSUMER_BASE_URL:'https://read.example.test',
+  FREEPASS_DATA_WRITE_BASE_URL:'https://writer.example.test/',
+  FREEPASS_DATA_ESTIMATE_TOKEN:token,
+}).url,'https://writer.example.test/v1/commands/freepass-estimate/share-envelopes');
 
 const readCfg=resolveShareEnvelopeReadConfig({
   NODE_ENV:'production',
@@ -98,6 +104,12 @@ const readCfg=resolveShareEnvelopeReadConfig({
   FREEPASS_DATA_ESTIMATE_TOKEN:token,
 });
 assert.equal(readCfg.url,'https://data.example.test/v1/consumers/freepass-estimate/share-envelopes');
+assert.equal(resolveShareEnvelopeReadConfig({
+  NODE_ENV:'production',
+  FREEPASS_DATA_CONSUMER_BASE_URL:'https://read.example.test',
+  FREEPASS_DATA_WRITE_BASE_URL:'https://writer.example.test/',
+  FREEPASS_DATA_ESTIMATE_TOKEN:token,
+}).url,'https://writer.example.test/v1/consumers/freepass-estimate/share-envelopes');
 
 const expectedWriteReceipt={
   contract:SHARE_ENVELOPE_WRITE_RECEIPT_CONTRACT,
@@ -118,7 +130,8 @@ const forwarded=await forwardShareEnvelopeCommand({
   },
   requestIdempotencyKey:key,
   env:{
-    NODE_ENV:'production',
+    NODE_ENV:'test',
+    FREEPASS_DATA_CLOUD_RUN_ID_TOKEN:'cloud-run-test-token',
     FREEPASS_DATA_SHARE_ENVELOPE_COMMAND_URL:'https://data.example.test/envelopes',
     FREEPASS_DATA_ESTIMATE_TOKEN:token,
   },
@@ -144,7 +157,8 @@ const fetched=await fetchShareEnvelopeReceipt({
   envelopeId:envelope.envelopeId,
   envelopeVersion:1,
   env:{
-    NODE_ENV:'production',
+    NODE_ENV:'test',
+    FREEPASS_DATA_CLOUD_RUN_ID_TOKEN:'cloud-run-test-token',
     FREEPASS_DATA_SHARE_ENVELOPE_READ_BASE_URL:'https://data.example.test/envelopes',
     FREEPASS_DATA_ESTIMATE_TOKEN:token,
   },
@@ -160,7 +174,8 @@ assert.ok(readCaptured.url.includes(encodeURIComponent(envelope.envelopeId)));
 const missing=await fetchShareEnvelopeReceipt({
   envelopeId:'se_missing',
   env:{
-    NODE_ENV:'production',
+    NODE_ENV:'test',
+    FREEPASS_DATA_CLOUD_RUN_ID_TOKEN:'cloud-run-test-token',
     FREEPASS_DATA_SHARE_ENVELOPE_READ_BASE_URL:'https://data.example.test/envelopes',
     FREEPASS_DATA_ESTIMATE_TOKEN:token,
   },

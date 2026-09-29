@@ -53,6 +53,14 @@ export function assertEstimateWriteIdentity(identity, policy = resolveEstimateWr
   const uidMatch = policy.allowedUids.includes(identity.uid);
   const selectorConfigured = policy.requiredRoles.length > 0 || policy.allowedUids.length > 0;
 
+  if (!selectorConfigured) {
+    throw codedError(
+      'Estimate write authorization policy is not configured',
+      'ESTIMATE_WRITE_POLICY_UNAVAILABLE',
+      503
+    );
+  }
+
   if (identity.isAnonymous && !uidMatch) {
     throw codedError(
       'anonymous Firebase writes require an explicit UID allowlist match',
@@ -72,7 +80,7 @@ export function assertEstimateWriteIdentity(identity, policy = resolveEstimateWr
     uid: identity.uid,
     anonymous: identity.isAnonymous === true,
     role: role || null,
-    authorization: uidMatch ? 'UID_ALLOWLIST' : roleMatch ? 'ROLE_CLAIM' : 'VERIFIED_USER',
+    authorization: uidMatch ? 'UID_ALLOWLIST' : 'ROLE_CLAIM',
     policy,
   });
 }

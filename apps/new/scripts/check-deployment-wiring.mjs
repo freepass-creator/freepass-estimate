@@ -35,6 +35,10 @@ expect(vite.includes("'/api/share-envelopes': './api/share-envelopes.js'"), 'loc
 expect(!vite.includes("process.env.VITE_AGENT_PIN || '1234'"), 'deployed gate PIN must not silently default to 1234');
 expect(envCheck.includes("VITE_FREEPASS_QUOTE_WRITE_MODE must be CANONICAL_ONLY"), 'deploy env guard must block new legacy RTDB Quote writes');
 expect(envCheck.includes('FREEPASS_DATA_ESTIMATE_TOKEN'), 'deploy env guard must require FreePass Data token');
+expect(envCheck.includes('FREEPASS_DATA_WRITE_BASE_URL'), 'deploy env guard must require the dedicated writer URL');
+expect(envCheck.includes('FREEPASS_DATA_GCP_WIF_AUDIENCE'), 'deploy env guard must require Vercel-to-GCP WIF');
+expect(envCheck.includes('FREEPASS_DATA_GCP_CALLER_SERVICE_ACCOUNT_EMAIL'), 'deploy env guard must require the dedicated caller identity');
+expect(envCheck.includes('FREEPASS_DATA_REQUIRE_CLOUD_RUN_ID_TOKEN'), 'deploy env guard must require private Cloud Run identity');
 expect(envCheck.includes('FREEPASS_ESTIMATE_REQUIRED_WRITE_ROLES'), 'deploy env guard must require a write authorization selector');
 for (const workflow of workflows) {
   expect(!/node-version:\s*['"]22['"]/.test(workflow.content), `${workflow.path} must not use Node 22`);

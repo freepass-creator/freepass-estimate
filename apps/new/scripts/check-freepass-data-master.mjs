@@ -63,7 +63,8 @@ assert.equal(cfg.token,token);
 let captured=null;
 const serverResult=await fetchFreePassDataMaster({
   env:{
-    NODE_ENV:'production',
+    NODE_ENV:'test',
+    FREEPASS_DATA_CLOUD_RUN_ID_TOKEN:'cloud-run-test-token',
     FREEPASS_DATA_CONSUMER_BASE_URL:'https://data.example.test',
     FREEPASS_DATA_ESTIMATE_TOKEN:token,
   },
