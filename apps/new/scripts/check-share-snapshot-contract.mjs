@@ -151,9 +151,11 @@ if (process.env.FREEPASS_LEGACY_RUNTIME_ROOT) {
   const entry = [...html.matchAll(/<script>[\s\S]*?<\/script>/g)].map(m => m[0]).find(t => t.includes('PC viewport'));
   assert.ok(entry, 'desktop entry guard present');
   const script = entry.replace(/^<script>|<\/script>$/g, '');
-  for (const pathname of ['/s/abcd1234', '/mobile.html']) {
+  for (const pathname of ['/s/abcd1234', '/s/ABCD1234', '/s/abcd1234/', '/s/zzz', '/mobile.html']) {
     const redirects = [];
-    runInNewContext(script, { URLSearchParams, location: { pathname, search: '', hash: '', replace: url => redirects.push(url) }, window: { innerWidth: 1280 }, document: { documentElement: { classList: { add() {} } } } });
+    const classes = [];
+    runInNewContext(script, { URLSearchParams, location: { pathname, search: '', hash: '', replace: url => redirects.push(url) }, window: { innerWidth: 1280 }, document: { documentElement: { classList: { add(name) { classes.push(name); } } } } });
     assert.deepEqual(redirects, pathname.startsWith('/s/') ? [] : ['/index.html']);
+    assert.deepEqual(classes, pathname.startsWith('/s/') ? ['force-mobile'] : []);
   }
 }
