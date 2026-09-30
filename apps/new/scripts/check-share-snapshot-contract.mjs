@@ -142,3 +142,20 @@ if (process.env.FREEPASS_LEGACY_RUNTIME_ROOT) {
   assert.deepEqual(selected[1].terms.map(t => t.term), [60]);
   console.log('operational share interoperability: PASS — v2, original trim/options, re-share and selected periods');
 }
+
+// Run the real inline entry guard: bare /s paths must not redirect to themselves.
+{
+  const { readFileSync } = await import('node:fs');
+  const { runInNewContext } = await import('node:vm');
+  const html = readFileSync(new URL('../mobile.html', import.meta.url), 'utf8');
+  const entry = [...html.matchAll(/<script>[\s\S]*?<\/script>/g)].map(m => m[0]).find(t => t.includes('PC viewport'));
+  assert.ok(entry, 'desktop entry guard present');
+  const script = entry.replace(/^<script>|<\/script>$/g, '');
+  for (const pathname of ['/s/abcd1234', '/s/ABCD1234', '/s/abcd1234/', '/s/zzz', '/mobile.html']) {
+    const redirects = [];
+    const classes = [];
+    runInNewContext(script, { URLSearchParams, location: { pathname, search: '', hash: '', replace: url => redirects.push(url) }, window: { innerWidth: 1280 }, document: { documentElement: { classList: { add(name) { classes.push(name); } } } } });
+    assert.deepEqual(redirects, pathname.startsWith('/s/') ? [] : ['/index.html']);
+    assert.deepEqual(classes, pathname.startsWith('/s/') ? ['force-mobile'] : []);
+  }
+}

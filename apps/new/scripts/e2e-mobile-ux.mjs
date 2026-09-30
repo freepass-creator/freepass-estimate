@@ -33,6 +33,32 @@ try {
     try { Object.defineProperty(navigator, 'share', { value: undefined, configurable: true }); } catch {}
   });
 
+  // Deterministic transport fixture: exercise the real UI/snapshot routing without
+  // creating operational documents in CI. Real SDK/rules are checked by emulator/live readback.
+  const shares = new Map();
+  let nextShare = 0;
+  await context.route('**/src/firebase/self-quote-share.js*', route => route.fulfill({
+    contentType: 'application/javascript',
+    body: `export async function saveSelfQuote(bundle) {
+      const response = await fetch('/__test-self-quote', { method: 'POST', headers: {'content-type':'application/json'}, body: JSON.stringify(bundle) });
+      const {id} = await response.json(); return 'https://freepass-estimator.vercel.app/s/' + id;
+    }
+    export async function loadSelfQuote(id) {
+      const response = await fetch('/__test-self-quote?id=' + id); return response.json();
+    }`,
+  }));
+  await context.route('**/__test-self-quote*', async route => {
+    const request = route.request();
+    if (request.method() === 'POST') {
+      const id = (++nextShare).toString(36).padStart(8, '0');
+      shares.set(id, request.postDataJSON());
+      await route.fulfill({ json: { id } });
+    } else {
+      const id = new URL(request.url()).searchParams.get('id');
+      await route.fulfill({ json: shares.get(id) || null });
+    }
+  });
+
   const page = await context.newPage();
   const consoleErrors = [];
   const requestFailures = [];
@@ -169,20 +195,21 @@ try {
   await page.screenshot({ path: `${out}/01-result-390.png`, fullPage: true });
 
   // 공유 URL 생성 — 업무 액션은 하단에서 실행
+  await page.evaluate(() => navigator.clipboard.writeText(''));
   await shareButton.click();
-  await page.waitForTimeout(200);
+  await page.locator('.m-footer button').filter({hasText:'공유됨'}).waitFor();
   const sharedUrl = await page.evaluate(() => navigator.clipboard.readText());
-  ok(sharedUrl.includes('qs='), '공유 URL에 Snapshot(qs) 없음');
-  ok(sharedUrl.includes('force=mobile'), '공유 URL에 force=mobile 없음');
+  ok(/^https:\/\/freepass-estimator\.vercel\.app\/s\/[a-z0-9]{8}$/.test(sharedUrl), '공유 URL이 단축 링크가 아님');
+  ok(new URL(sharedUrl).search === '', '공유 URL에 견적 쿼리가 노출됨');
   ok(!sharedUrl.includes('staff='), '공유 URL에 staff 권한 누출');
-  ok(sharedUrl.length < 4000, '공유 URL이 지나치게 김: ' + sharedUrl.length);
+  ok(sharedUrl.length < 50, '공유 URL이 지나치게 김: ' + sharedUrl.length);
 
   // 받은 사람이 열었을 때 API 재계산 없이 같은 금액
   const page2 = await context.newPage();
   let estimateCalls = 0;
   const isQuoteApi = (url) => /\/api\/(?:estimate|standard-quote|external-quote)(?:[/?]|$)/.test(url);
   page2.on('request', (r) => { if (isQuoteApi(r.url())) estimateCalls++; });
-  await page2.goto(sharedUrl, { waitUntil: 'networkidle' });
+  await page2.goto(new URL(new URL(sharedUrl).pathname, BASE).href, { waitUntil: 'networkidle' });
   await page2.waitForSelector('.sr-snapshot');
   await page2.waitForTimeout(500);
   const received = await page2.locator('.sr-term__monthly b').allTextContents();
@@ -206,10 +233,11 @@ try {
   await page2.screenshot({ path: `${out}/02-shared-snapshot.png`, fullPage: true });
 
   // 공유받은 것을 다시 공유해도 Snapshot 유지 — 공유 CTA도 하단
+  await page2.evaluate(() => navigator.clipboard.writeText(''));
   await page2.locator('.m-footer button').filter({ hasText: '공유' }).first().click();
-  await page2.waitForTimeout(150);
+  await page2.locator('.m-footer button').filter({hasText:'공유됨'}).waitFor();
   const reShared = await page2.evaluate(() => navigator.clipboard.readText());
-  ok(reShared.includes('qs='), '재공유 시 Snapshot 유실');
+  ok(JSON.stringify(shares.get(new URL(reShared).pathname.split('/').pop())) === JSON.stringify(shares.get(new URL(sharedUrl).pathname.split('/').pop())), '재공유 시 Snapshot 유실');
 
   // 조건 변경을 누른 뒤에만 새 계산
   await page2.locator('.m-footer .m-btn--soft').filter({ hasText: '조건 변경' }).click();

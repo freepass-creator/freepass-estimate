@@ -179,6 +179,7 @@
       if (params.get('force') === 'mobile') { document.documentElement.classList.add('force-mobile'); return; }
       if (window.innerWidth > 1024) {
         const target = location.pathname.replace(/mobile\.html$/, 'index.html');
+        if (target === location.pathname) { document.documentElement.classList.add('force-mobile'); return; }
         location.replace(target + location.search + location.hash);
       }
     })();
