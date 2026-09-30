@@ -164,7 +164,15 @@ export default defineConfig(({ mode }) => {
     __FREEPASS_BUILD_REVISION__: JSON.stringify(BUILD_REVISION),
   },
   publicDir: 'public',
-  plugins: [vue(), injectGatePins(), localVercelApi()],
+  plugins: [vue(), injectGatePins(), localVercelApi(), {
+    name: 'self-quote-short-route',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (/^\/s\/[^/?]+\/?(?:\?.*)?$/.test(req.url || '')) req.url = '/mobile.html';
+        next();
+      });
+    },
+  }],
   server: {
     port: 5173,
     open: '/index.html',

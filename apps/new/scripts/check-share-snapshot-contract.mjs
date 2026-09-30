@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { 지금주소, 풀기 } from '../src/lib/share-link.js';
+import { 지금주소, 풀기, 공유주소, 공유풀기 } from '../src/lib/share-link.js';
 import {
   SHARE_SNAPSHOT_CONTRACT,
   QUOTE_REQUEST_CONTRACT,
@@ -87,3 +87,58 @@ const unknownQuote = { cond: {}, scenarios: [], tint: {}, extras: {}, vehicle: {
 assert.equal(unknownQuote.sharedSnapshot, null, 'unknown future snapshot contract must fail closed');
 
 console.log('share snapshot contract: PASS — v2 provenance + v1 compatibility + unknown-version fail-closed');
+
+let stored;
+quoteState.cust = { name: 'PRIVATE_CUSTOMER', tel: 'PRIVATE_PHONE' };
+quoteState.cond.credit = 'PRIVATE_CREDIT';
+quoteState.cond.fee = 'PRIVATE_FEE';
+const shortUrl = await 공유주소(vehicleState, quoteState, quoteRuntime, async bundle => {
+  stored = structuredClone(bundle);
+  return 'https://welrixtable.vercel.app/s/abcd1234';
+});
+assert.equal(shortUrl.length, 41);
+assert.equal(new URL(shortUrl).search, '');
+assert.ok(!JSON.stringify(stored).includes('PRIVATE_'));
+location.pathname = '/s/abcd1234';
+const restoredVehicle = { options: new Set() };
+const restoredQuote = { cond: {}, scenarios: [], tint: {}, extras: {} };
+assert.equal(await 공유풀기(restoredVehicle, restoredQuote, async id => {
+  assert.equal(id, 'abcd1234');
+  return stored;
+}), true);
+assert.equal(restoredVehicle.trim, vehicleState.trim);
+assert.deepEqual(restoredQuote.sharedSnapshot, stored[1]);
+assert.equal(restoredQuote.sharedSnapshot.terms[0].monthly, 500000);
+const reshared = await 공유주소(restoredVehicle, restoredQuote, null, async bundle => bundle);
+assert.deepEqual(reshared[1], stored[1], 're-sharing must retain original snapshot');
+await assert.rejects(공유주소(vehicleState, quoteState, quoteRuntime, async () => { throw new Error('offline'); }), /offline/);
+await assert.rejects(공유풀기({}, {}, async () => null), /저장된/);
+await assert.rejects(공유풀기({}, {}, async () => ['b=x', { ...legacy, v: 999 }]), /저장된/);
+location.pathname = '/s/invalid';
+await assert.rejects(공유풀기({}, {}), /올바르지/);
+location.pathname = '/mobile.html';
+console.log('short self quote: PASS — immutable snapshot round-trip, privacy, re-share, failure states');
+
+if (process.env.FREEPASS_LEGACY_RUNTIME_ROOT) {
+  const { pathToFileURL } = await import('node:url');
+  const { resolve } = await import('node:path');
+  const runtime = await import(pathToFileURL(resolve(process.env.FREEPASS_LEGACY_RUNTIME_ROOT, 'src/lib/share-link.js')).href);
+  location.pathname = '/s/abcd1234';
+  const targetVehicle = { options: new Set() };
+  const targetQuote = { cond: {}, scenarios: [], tint: {}, extras: {} };
+  window.__FREEPASS_SALES_MAIN_AXIS_BRIDGE = {
+    redirect_provider_trim_ids: { 'trim-1': { base_provider_trim_id: 'changed-trim', axis_option_ids: ['changed-option'] } },
+  };
+  await runtime.공유풀기(targetVehicle, targetQuote, async () => stored);
+  assert.deepEqual(targetQuote.sharedSnapshot, stored[1], 'canonical v2 must open unchanged in operational runtime');
+  assert.equal(targetVehicle.trim, 'trim-1', 'frozen share must not redirect its original trim');
+  assert.deepEqual([...targetVehicle.options], [], 'frozen share must not add bridge options');
+  const backToCanonical = await runtime.공유주소(targetVehicle, targetQuote, null, async bundle => bundle);
+  const roundtripQuote = { cond: {}, scenarios: [], tint: {}, extras: {} };
+  await 공유풀기({ options: new Set() }, roundtripQuote, async () => backToCanonical);
+  assert.deepEqual(roundtripQuote.sharedSnapshot, stored[1]);
+  const selectedQuote = { ...quoteState, sharedSnapshot: null, scenarios: [{ term: 36 }, { term: 60 }], send: [false, true] };
+  const selected = await runtime.공유주소(vehicleState, selectedQuote, { ...quoteRuntime, 결과: [quoteRuntime.결과[0], quoteRuntime.결과[0]] }, async bundle => bundle);
+  assert.deepEqual(selected[1].terms.map(t => t.term), [60]);
+  console.log('operational share interoperability: PASS — v2, original trim/options, re-share and selected periods');
+}
