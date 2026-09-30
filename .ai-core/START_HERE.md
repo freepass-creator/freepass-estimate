@@ -1,6 +1,6 @@
 # AI 작업 시작 키트
 
-> AI Core revision: 2ca825b4bdad366fad42afc9eacf5a36ac698381 · target revision: 5fa8f7f44b9f18dae1261c8f3a49e449701eddbb
+> AI Core revision: b1a4eb2cfd39e97ff840db70607f716cc5e905f8 · target revision: f05c4b997bc6268f5526db74bbc65d0ed7cf0f8e
 
 1. 프로젝트 루트에서 `node .ai-core/session-bootstrap.mjs`를 실행해 정체성·정본·GitHub 연결·원격 최신성·검증 명령을 한 번에 확인한다.
 2. 원격보다 뒤처졌고 작업 트리가 깨끗하면 `node .ai-core/session-bootstrap.mjs --sync`로 현재 브랜치를 fast-forward only 방식으로 갱신한다. dirty·diverged·접근 실패 상태에서는 자동 반영하지 않는다.
