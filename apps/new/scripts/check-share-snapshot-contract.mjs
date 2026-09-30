@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { 지금주소, 풀기 } from '../src/lib/share-link.js';
+import { 지금주소, 풀기, 공유주소, 공유풀기 } from '../src/lib/share-link.js';
 import {
   SHARE_SNAPSHOT_CONTRACT,
   QUOTE_REQUEST_CONTRACT,
@@ -87,3 +87,34 @@ const unknownQuote = { cond: {}, scenarios: [], tint: {}, extras: {}, vehicle: {
 assert.equal(unknownQuote.sharedSnapshot, null, 'unknown future snapshot contract must fail closed');
 
 console.log('share snapshot contract: PASS — v2 provenance + v1 compatibility + unknown-version fail-closed');
+
+let stored;
+quoteState.cust = { name: 'PRIVATE_CUSTOMER', tel: 'PRIVATE_PHONE' };
+quoteState.cond.credit = 'PRIVATE_CREDIT';
+quoteState.cond.fee = 'PRIVATE_FEE';
+const shortUrl = await 공유주소(vehicleState, quoteState, quoteRuntime, async bundle => {
+  stored = structuredClone(bundle);
+  return 'https://welrixtable.vercel.app/s/abcd1234';
+});
+assert.equal(shortUrl.length, 41);
+assert.equal(new URL(shortUrl).search, '');
+assert.ok(!JSON.stringify(stored).includes('PRIVATE_'));
+location.pathname = '/s/abcd1234';
+const restoredVehicle = { options: new Set() };
+const restoredQuote = { cond: {}, scenarios: [], tint: {}, extras: {} };
+assert.equal(await 공유풀기(restoredVehicle, restoredQuote, async id => {
+  assert.equal(id, 'abcd1234');
+  return stored;
+}), true);
+assert.equal(restoredVehicle.trim, vehicleState.trim);
+assert.deepEqual(restoredQuote.sharedSnapshot, stored[1]);
+assert.equal(restoredQuote.sharedSnapshot.terms[0].monthly, 500000);
+const reshared = await 공유주소(restoredVehicle, restoredQuote, null, async bundle => bundle);
+assert.deepEqual(reshared[1], stored[1], 're-sharing must retain original snapshot');
+await assert.rejects(공유주소(vehicleState, quoteState, quoteRuntime, async () => { throw new Error('offline'); }), /offline/);
+await assert.rejects(공유풀기({}, {}, async () => null), /저장된/);
+await assert.rejects(공유풀기({}, {}, async () => ['b=x', { ...legacy, v: 999 }]), /저장된/);
+location.pathname = '/s/invalid';
+await assert.rejects(공유풀기({}, {}), /올바르지/);
+location.pathname = '/mobile.html';
+console.log('short self quote: PASS — immutable snapshot round-trip, privacy, re-share, failure states');

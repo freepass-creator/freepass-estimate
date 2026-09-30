@@ -54,3 +54,12 @@ Classify findings as:
 - P2: stale/dead/history cleanup or documentation ambiguity
 
 Every finding should include file/branch evidence and a concrete reproduction or reference path.
+
+
+## 2026-09-30 — Short self-quote share candidate (HOLD)
+- 목적: replace long inline snapshot links with /s/<8-character-id> links.
+- 대상 revision: main 002888556428f8e3f40e116a975c9e0715145fcb, work/feature/short-self-quote.
+- 변경: existing Sales welrix_quote_shares Firestore adapter extracted from historical welrixtable 1b4604d without RTDB imports; async sharing, snapshot restoration, route rewrite, visible failure states. New adapter justified because historical quotes.js imports retired RTDB. No operational writes or rules/deployment changes.
+- 검증: snapshot/privacy/re-share/failure regression PASS; build PASS; real browser + local Firestore emulator persisted/restored 500000 monthly amount PASS; Sales rules emulator suite PASS. Operational downstream candidate also built and shared a 41-character URL in the browser at 390px; 1280px restored result PASS.
+- 남음: HOLD. Existing I-01 contract prohibits browser collection paths; authority guard intentionally remains unchanged and rejects this candidate adapter. Need explicit approval of the existing Sales share-store exception or a FreePass Data transport solution. Full verify also encounters existing engine digest drift reproduced in original checkout. Claude produced architectural objections, but process exit 1 / UNAVAILABLE_RESET_UNKNOWN, so mandatory independent review is not PASS. No merge or production deployment.
+- next_start_here: resolve share-store ownership exception, then rerun authority guard/review and authorize deployment to welrixtable.vercel.app. Operational candidate C:/dev/worktrees/welrixtable/short-self-quote is a selected propagation, not a whole old-branch restoration.

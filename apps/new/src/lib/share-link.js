@@ -285,3 +285,38 @@ export function 지금주소(vehicleState, quoteState, 견적상태 = null) {
   u.searchParams.set('force', 'mobile');
   return u.toString();
 }
+
+export async function 공유주소(vehicleState, quoteState, 견적상태, save = null) {
+  const snap = 안전한스냅샷(quoteState?.sharedSnapshot || 스냅샷만들기(quoteState, 견적상태));
+  if (!snap) throw new Error('견적 계산이 끝난 뒤 다시 공유해주세요.');
+  const store = save || (await import('../firebase/self-quote-share.js')).saveSelfQuote;
+  return store([담기(vehicleState, quoteState), snap]);
+}
+
+export async function 공유풀기(vehicleState, quoteState, load = null) {
+  const path = location.pathname || '';
+  if (!path.startsWith('/s/')) return 풀기(vehicleState, quoteState);
+  const match = path.match(/^\/s\/([a-z0-9]{8})\/?$/i);
+  if (!match) throw new Error('올바르지 않은 견적 링크입니다.');
+  const reader = load || (await import('../firebase/self-quote-share.js')).loadSelfQuote;
+  const bundle = await reader(match[1].toLowerCase());
+  if (!Array.isArray(bundle) || typeof bundle[0] !== 'string') throw new Error('저장된 견적을 읽을 수 없습니다.');
+  let snapshot = bundle[1];
+  // Historical /s/ links used a compact v1 array.
+  if (Array.isArray(snapshot) && snapshot[0] === 1 && Array.isArray(snapshot[5])) {
+    const a = snapshot, car = a[4] || [], c = a[6] || [];
+    snapshot = {
+      v: 1, at: a[1] ? new Date(a[1] * 60000).toISOString() : null,
+      engine: a[2] || '웰릭스', vehiclePrice: a[3],
+      vehicle: { brand: car[0], model: car[1], variant: car[2], trim_name: car[3], options: car[4], colorExt: car[5], colorInt: car[6] },
+      terms: a[5].map(t => ({ term: t[0], monthly: t[1], acquire: t[2], totalCarPrice: t[3], deposit: t[4], prepay: t[5], depPct: t[6], prePct: t[7] })),
+      conditions: { km: c[0], svc: c[1], insProperty: c[2], extraDriver: c[3], deliveryCity: c[4], tint: c[5], blackbox: c[6] },
+    };
+  }
+  const snap = 안전한스냅샷(snapshot);
+  if (!snap) throw new Error('저장된 견적을 읽을 수 없습니다.');
+  const params = new URLSearchParams(bundle[0]);
+  params.set('qs', 인코드(snap));
+  if (!풀기(vehicleState, quoteState, params.toString())) throw new Error('저장된 차량 선택을 읽을 수 없습니다.');
+  return true;
+}
