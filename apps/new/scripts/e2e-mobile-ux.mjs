@@ -195,8 +195,9 @@ try {
   await page.screenshot({ path: `${out}/01-result-390.png`, fullPage: true });
 
   // 공유 URL 생성 — 업무 액션은 하단에서 실행
+  await page.evaluate(() => navigator.clipboard.writeText(''));
   await shareButton.click();
-  await page.waitForTimeout(200);
+  await page.locator('.m-footer button').filter({hasText:'공유됨'}).waitFor();
   const sharedUrl = await page.evaluate(() => navigator.clipboard.readText());
   ok(/^https:\/\/freepass-estimator\.vercel\.app\/s\/[a-z0-9]{8}$/.test(sharedUrl), '공유 URL이 단축 링크가 아님');
   ok(new URL(sharedUrl).search === '', '공유 URL에 견적 쿼리가 노출됨');
@@ -232,8 +233,9 @@ try {
   await page2.screenshot({ path: `${out}/02-shared-snapshot.png`, fullPage: true });
 
   // 공유받은 것을 다시 공유해도 Snapshot 유지 — 공유 CTA도 하단
+  await page2.evaluate(() => navigator.clipboard.writeText(''));
   await page2.locator('.m-footer button').filter({ hasText: '공유' }).first().click();
-  await page2.waitForTimeout(150);
+  await page2.locator('.m-footer button').filter({hasText:'공유됨'}).waitFor();
   const reShared = await page2.evaluate(() => navigator.clipboard.readText());
   ok(JSON.stringify(shares.get(new URL(reShared).pathname.split('/').pop())) === JSON.stringify(shares.get(new URL(sharedUrl).pathname.split('/').pop())), '재공유 시 Snapshot 유실');
 
