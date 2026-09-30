@@ -176,7 +176,7 @@
     // PC viewport 로 들어오면 데스크탑 페이지로 redirect (단, ?force=mobile 이면 유지)
     (function () {
       const params = new URLSearchParams(location.search);
-      if (params.get('force') === 'mobile') { document.documentElement.classList.add('force-mobile'); return; }
+      if (params.get('force') === 'mobile' || /^\/s\/[a-z0-9]{8}$/.test(location.pathname)) { document.documentElement.classList.add('force-mobile'); return; }
       if (window.innerWidth > 1024) {
         const target = location.pathname.replace(/mobile\.html$/, 'index.html');
         location.replace(target + location.search + location.hash);

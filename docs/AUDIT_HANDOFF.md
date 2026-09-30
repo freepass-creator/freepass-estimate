@@ -71,3 +71,11 @@ Every finding should include file/branch evidence and a concrete reproduction or
 - 검증: Estimate full verify PASS after matching original LF checkout bytes; no engine/source content or manifest changes. Operational check:quote-contract, check and build PASS. Cross-runtime v2 restore/re-share and selected-period regression PASS. Initial Claude review found these defects; fixes require final read-only review before production.
 - 남음: final independent review, main publication, production deploy and live short-link write/readback.
 - next_start_here: release work/feature/short-self-quote; previous HOLD entry is historical and superseded by the direct approval.
+
+## 2026-09-30 — Bare short-link desktop entry
+- 목적: prevent /s/8id self-redirect at >1024px.
+- 대상 revision: main 00d8bac7845e08ef8d13eaa227e77a69c5f06594.
+- 변경: validated short paths use existing force-mobile entry guard; ordinary desktop entry remains unchanged.
+- 검증: share snapshot contract PASS including executing actual inline guard at 1280px for short path and ordinary mobile.html; build PASS. Operational full browser test includes bare-link 1280px coverage.
+- 남음: CI and independent review; operational deployment/live verification tracked in welrixtable WORK_RESULT.
+- next_start_here: apps/new/mobile.html and check-share-snapshot-contract.mjs.
