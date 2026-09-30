@@ -4,6 +4,9 @@ import path from 'node:path';
 const root = process.cwd();
 const legacyDebt = new Set([
   'src/firebase/config.js',
+  // 2026-09-30 direct user approval: existing operational self-quote share store only.
+  // This does not authorize canonical Quote v2/master persistence or other collections.
+  'src/firebase/self-quote-share.js',
   'src/firebase/quotes.js',
   'src/firebase/contracts.js',
   'src/firebase/chat.js',
@@ -34,6 +37,14 @@ const patterns = [
 
 const violations = [];
 const debtSeen = [];
+const shareAdapter = fs.readFileSync(path.join(root, 'src/firebase/self-quote-share.js'), 'utf8');
+const sharePaths = [...shareAdapter.matchAll(/doc\(db\(\),\s*'([^']+)'/g)].map(match => match[1]);
+if (/firebase\/database|getDatabase|databaseURL|firebase\/storage|getStorage/.test(shareAdapter)
+    || !shareAdapter.includes("projectId: 'welrixtable'")
+    || sharePaths.length !== 2 || sharePaths.some(value => value !== 'welrix_quote_shares')) {
+  console.error('Approved self-quote adapter must stay in the existing welrixtable Firestore share collection.');
+  process.exit(1);
+}
 
 for (const scope of ['src', 'api']) {
   const base = path.join(root, scope);

@@ -118,3 +118,27 @@ location.pathname = '/s/invalid';
 await assert.rejects(공유풀기({}, {}), /올바르지/);
 location.pathname = '/mobile.html';
 console.log('short self quote: PASS — immutable snapshot round-trip, privacy, re-share, failure states');
+
+if (process.env.FREEPASS_LEGACY_RUNTIME_ROOT) {
+  const { pathToFileURL } = await import('node:url');
+  const { resolve } = await import('node:path');
+  const runtime = await import(pathToFileURL(resolve(process.env.FREEPASS_LEGACY_RUNTIME_ROOT, 'src/lib/share-link.js')).href);
+  location.pathname = '/s/abcd1234';
+  const targetVehicle = { options: new Set() };
+  const targetQuote = { cond: {}, scenarios: [], tint: {}, extras: {} };
+  window.__FREEPASS_SALES_MAIN_AXIS_BRIDGE = {
+    redirect_provider_trim_ids: { 'trim-1': { base_provider_trim_id: 'changed-trim', axis_option_ids: ['changed-option'] } },
+  };
+  await runtime.공유풀기(targetVehicle, targetQuote, async () => stored);
+  assert.deepEqual(targetQuote.sharedSnapshot, stored[1], 'canonical v2 must open unchanged in operational runtime');
+  assert.equal(targetVehicle.trim, 'trim-1', 'frozen share must not redirect its original trim');
+  assert.deepEqual([...targetVehicle.options], [], 'frozen share must not add bridge options');
+  const backToCanonical = await runtime.공유주소(targetVehicle, targetQuote, null, async bundle => bundle);
+  const roundtripQuote = { cond: {}, scenarios: [], tint: {}, extras: {} };
+  await 공유풀기({ options: new Set() }, roundtripQuote, async () => backToCanonical);
+  assert.deepEqual(roundtripQuote.sharedSnapshot, stored[1]);
+  const selectedQuote = { ...quoteState, sharedSnapshot: null, scenarios: [{ term: 36 }, { term: 60 }], send: [false, true] };
+  const selected = await runtime.공유주소(vehicleState, selectedQuote, { ...quoteRuntime, 결과: [quoteRuntime.결과[0], quoteRuntime.결과[0]] }, async bundle => bundle);
+  assert.deepEqual(selected[1].terms.map(t => t.term), [60]);
+  console.log('operational share interoperability: PASS — v2, original trim/options, re-share and selected periods');
+}

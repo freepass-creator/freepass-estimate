@@ -10,6 +10,17 @@ Status: **IMPLEMENTATION / CUTOVER NOT YET ENABLED**
 - Browser code must not know Firestore collection paths or the FreePass Data service token.
 - RTDB is not a valid target for new Quote v2 writes.
 
+### Operational self-quote exception — user approved 2026-09-30
+
+The direct instruction to apply and deploy the reviewed short-link candidate authorizes
+the existing Sales `welrixtable` Firestore `welrix_quote_shares` store for public self-quote
+snapshots only. `src/firebase/self-quote-share.js` is the bounded operational adapter;
+Sales retains its existing rules. The adapter stores only the public selection and
+share snapshot, uses immutable random 8-character IDs, and expires links after 30 days.
+It does not persist canonical Quote v2 records or master data, enable RTDB, add another
+collection, or declare I-01 cutover. Canonical Quote/Share Envelope transport remains
+governed by the boundary above. The authority guard verifies this exception separately.
+
 ## New Quote v2 write path
 
 ```
