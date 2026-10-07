@@ -5,7 +5,18 @@ import {
   resolveCanonicalIdentity,
   configurationAxes,
   driveClass,
+  configurationGroupLabel,
 } from '../src/lib/newcar/configuration-resolver.js';
+
+// Ray van has explicit seats on only one branch. Missing seats are unknown,
+// not a reason to merge its group with the explicitly one-seat branch.
+assert.notEqual(configurationGroupLabel('밴'), configurationGroupLabel('밴 1인승'));
+assert.equal(configurationGroupLabel('밴 1인승'), '밴 1인승');
+assert.equal(configurationGroupLabel('밴 1인승', { seatsModeled: true }), '밴');
+assert.equal(configurationGroupLabel('5인승 4WD'), '5인승 4WD');
+assert.equal(configurationGroupLabel('5인승 4WD', { seatsModeled: true }), '4WD');
+assert.equal(configurationGroupLabel('5인승 4WD', { drivetrainModeled: true }), '5인승');
+assert.equal(configurationGroupLabel('5인승 4WD', { seatsModeled: true, drivetrainModeled: true }), '');
 
 const ctx={window:{},console:{log(){},warn(){},error(){}}};
 vm.createContext(ctx);
