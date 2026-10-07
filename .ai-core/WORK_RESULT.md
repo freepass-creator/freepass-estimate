@@ -8,7 +8,7 @@
 - 변경: canonical configurationGroupLabel preserves seat/drive identity unless that axis is explicitly represented elsewhere; extend existing configuration regression. Consumer welrixtable imports the same helper into its existing bridge.
 - 검증: full npm run verify and build PASS using exact Git bytes for unchanged engine digest inputs (Windows checkout CRLF initially caused digest mismatch; engine files restored to original checkout after validation). Consumer 443 trims/53 variants, options and quote checks PASS; live-data audit before 3 duplicate names (Ray only), after 0. Browser 360/390px verifies van and one-seat each have 3 unique cards; desktop initial state PASS. Prices/provider IDs unchanged.
 - 독립 검토: Claude FAILED organization subscription restriction, not PASS; alternate Codex read-only review exit 0, no critical/high findings. Missing browser coverage suggestion addressed by focused Ray browser regression.
-- 남음: downstream release/readback; existing complete consumer browser suite is stale at removed header share selector, not counted PASS. This change does not certify current vehicle prices against FreePass Data.
+- 남음: downstream release/readback; complete consumer browser suite PASS after aligning stale test selectors with already-approved footer sharing and trim auto-advance. This change does not certify current vehicle prices against FreePass Data.
 - next_start_here: canonical helper and consumer bridge must remain paired; run consumer RAY_GROUPS_ONLY=1 browser test and full catalogue duplicate-group audit before release. No customer writes/messages.
 
 - 목적: AI Core starter kit compat 3 redistribution
