@@ -79,3 +79,12 @@ Every finding should include file/branch evidence and a concrete reproduction or
 - 검증: share snapshot contract PASS including executing actual inline guard at 1280px for short path and ordinary mobile.html; build PASS. Operational full browser test includes bare-link 1280px coverage.
 - 남음: CI and independent review; operational deployment/live verification tracked in welrixtable WORK_RESULT.
 - next_start_here: apps/new/mobile.html and check-share-snapshot-contract.mjs.
+
+## 2026-10-07 — Provider miscellaneous-fee contract repair
+- 목적: restore self-quote calculation and result sharing without changing prices/formulas.
+- 대상 revision: main 58f785648078c11fb8b9cb2db241e7b372f10523.
+- 변경: external provider adapter sends etcFee=0; legacy proxy defaults only an absent etcFee and preserves explicit values. Downstream welrixtable removes mobile header share, retaining result share (canonical action placement already matches).
+- 검증: real provider omitted etcFee -> HTTP400; identical request with zero -> HTTP200. Full apps/new verify PASS after restoring checkout-only LF bytes for unchanged manifest inputs; no engine/manifest change. Downstream quote/proxy regression, options, sync and build PASS. Browser option 1,200,000 -> total 43,650,000; 60/48/36 monthly 883,000/944,000/1,072,000; saved share c19d0499 restores all values.
+- 독립 검토: Codex read-only reviewer found no critical/high additions; undefined-only default suggestion applied and regression tested. Claude unavailable (organization disabled), not counted PASS.
+- 남음: production alias promotion/readback tracked by consumer WORK_RESULT; phone OS share-sheet selection not observed in IAB.
+- next_start_here: apps/new/api/external-quote.js and apps/new/api/estimate.js; keep provider failure visible, no substitute calculator.

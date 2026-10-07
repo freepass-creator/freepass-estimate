@@ -38,7 +38,11 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') { res.status(405).json({ ok: false, error: 'POST 만 받는다' }); return; }
 
   try {
-    const 몸통 = typeof req.body === 'string' ? req.body : JSON.stringify(req.body || {});
+    const 입력 = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+    // Legacy consumers have no miscellaneous-fee control. Preserve explicit fees;
+    // send zero for an absent field required by the current provider contract.
+    const 몸통 = JSON.stringify({ ...입력, inputs: Array.isArray(입력.inputs)
+      ? 입력.inputs.map(input => ({ ...input, etcFee: input.etcFee === undefined ? 0 : input.etcFee })) : 입력.inputs });
     const 끊개 = AbortSignal.timeout ? AbortSignal.timeout(12000) : undefined;
     const r = await fetch(위, {
       method: 'POST',

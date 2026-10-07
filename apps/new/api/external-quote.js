@@ -181,6 +181,8 @@ function welrixBody(request) {
       deliveryFee: conditionCosts.deliveryFee,
       tintFee: conditionCosts.tintFee,
       dashcamFee: conditionCosts.dashcamFee,
+      // Provider requires this field even when no miscellaneous fee is selected.
+      etcFee: 0,
       deposit_pct: (a.보증금 || 0) / 100,
       prepay_pct: (a.선납 || 0) / 100,
       liability: 조건.대물,

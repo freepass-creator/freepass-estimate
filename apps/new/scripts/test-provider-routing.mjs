@@ -131,6 +131,7 @@ try{
   assert.ok((supportedMeta.providerCandidates||[]).some(c=>c.api_model===outbound.model),
     'translated model must come from provider candidates');
   assert.equal(outbound.manualPrice,30000000,'provider must receive FreePass Data canonical base price');
+  assert.equal(outbound.inputs[0].etcFee,0,'provider requires explicit zero miscellaneous fee');
   assert.equal(res1.state.body?.vehiclePrice,30000000,'canonical configured price must remain ours');
   assert.equal(res1.state.body?.results?.[0]?.totalCarPrice,30000000,
     'provider-reported totalCarPrice must not replace FreePass canonical total');
