@@ -4,6 +4,15 @@
 
 const S = (v) => String(v ?? '').trim();
 
+// Remove an identity axis from a group label only when another UI control or
+// an explicit group axis represents it. Partial metadata must not erase it.
+export function configurationGroupLabel(group, { seatsModeled = false, drivetrainModeled = false } = {}) {
+  let label = S(group);
+  if (seatsModeled) label = label.replace(/\d{1,2}\s*인(?:승)?/gi, ' ');
+  if (drivetrainModeled) label = label.replace(/(?:2WD|4WD|AWD|FWD|RWD|HTRAC)/gi, ' ');
+  return label.replace(/(?:일반|선구매|렌터카)/gi, ' ').replace(/\s+/g, ' ').trim();
+}
+
 export function driveClass(v) {
   const s = S(v).toUpperCase();
   if (/AWD|4WD|4MATIC|4MOTION|XDRIVE|QUATTRO|HTRAC|사륜/.test(s)) return 'all';
