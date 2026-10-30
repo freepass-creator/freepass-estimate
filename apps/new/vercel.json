@@ -11,10 +11,6 @@
   },
   "rewrites": [
     {
-      "source": "/guide/:slug",
-      "destination": "/guide.html?slug=:slug"
-    },
-    {
       "source": "/s/:id",
       "destination": "/mobile.html"
     }

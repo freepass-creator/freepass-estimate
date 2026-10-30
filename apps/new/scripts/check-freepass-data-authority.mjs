@@ -7,11 +7,6 @@ const legacyDebt = new Set([
   // 2026-09-30 direct user approval: existing operational self-quote share store only.
   // This does not authorize canonical Quote v2/master persistence or other collections.
   'src/firebase/self-quote-share.js',
-  'src/firebase/quotes.js',
-  'src/firebase/contracts.js',
-  'src/firebase/chat.js',
-  'src/admin-view.js',
-  'src/components/home/LeadForm.vue',
 ]);
 
 function walk(dir) {

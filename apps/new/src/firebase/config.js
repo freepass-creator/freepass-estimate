@@ -1,13 +1,11 @@
-// freepasserp3 Firebase 프로젝트 공유 — Realtime DB (asia-southeast1)
+// freepasserp3 Firebase 프로젝트 — 익명 인증·저장소 (Realtime Database 는 폐기, 쓰지 않는다)
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA0q_6yo9YRkpNeNaawH1AFPZx1IMgj-dY',
   authDomain: 'freepasserp3.firebaseapp.com',
-  databaseURL: 'https://freepasserp3-default-rtdb.asia-southeast1.firebasedatabase.app',
   projectId: 'freepasserp3',
   storageBucket: 'freepasserp3.firebasestorage.app',
   messagingSenderId: '172664197996',
@@ -17,7 +15,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getDatabase(app);
 export const storage = getStorage(app);
 
 // 견적 발송용 — 영업사원 로그인 안 한 상태에서도 익명으로 쓸 수 있도록.
