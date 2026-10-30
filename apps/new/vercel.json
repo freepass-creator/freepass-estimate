@@ -9,6 +9,13 @@
       "maxDuration": 30
     }
   },
+  "redirects": [
+    {
+      "source": "/home.html",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/guide/:slug",
