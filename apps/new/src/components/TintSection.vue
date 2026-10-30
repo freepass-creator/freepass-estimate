@@ -26,7 +26,7 @@ const chips = computed(() => {
 
 function onProductChange(v) {
   quoteState.tint.product = v;
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 // 배타 그룹 — 한 그룹 내 동시 선택 불가 (다른 멤버 자동 해제)
 const EXCLUSIVE_GROUPS = [
@@ -41,7 +41,7 @@ function toggleArea(key, e) {
   } else {
     quoteState.tint.areas.delete(key);
   }
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 </script>
 

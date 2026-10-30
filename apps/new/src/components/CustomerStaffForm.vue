@@ -8,7 +8,7 @@ const FEE_MAX = CONDITION_LIMITS.feeRatePct.max;
 
 function onFeeChange() {
   quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 
 function onTelInput(e) {

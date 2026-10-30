@@ -88,7 +88,7 @@ async function buildQuoteBlob() {
     cond: { ...quoteState.cond },
     send: [...quoteState.send],
     quoteMeta: { quoteNo: today.toISOString().slice(0,10).replace(/-/g,'') + '-M' + String(Date.now()).slice(-4), todayStr, expireStr },
-    companyConfig: window.__welrix_companyConfig || {},
+    companyConfig: window.__estimate_companyConfig || {},
     showLogo: quoteState.send_options.showLogo !== false,
   });
   const wrap = document.createElement('div');

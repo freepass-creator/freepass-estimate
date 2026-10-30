@@ -6,7 +6,7 @@ import { resolveCanonicalIdentity } from './src/lib/newcar/configuration-resolve
 import { QUOTE_TERMS } from './src/lib/quote/terms.js';
 import { quoteActionReadiness } from './src/lib/feature/actions.js';
 import { applyScenarioPercent } from './src/lib/feature/conditions.js';
-// 룩업 데이터 SSOT — Vue 컴포넌트와 공유 (이전에는 quote.js 에 박혀있고 window.__welrix_data 로 노출,
+// 룩업 데이터 SSOT — Vue 컴포넌트와 공유 (이전에는 quote.js 에 박혀있고 window.__estimate_data 로 노출,
 // 모듈 로드 순서로 컴포넌트가 빈 옵션 보던 문제 → 직접 import 으로 해결)
 import {
   DELIVERY_REGIONS, FLAT_DELIVERY,
@@ -27,12 +27,12 @@ function setSwatch(el, hex) {
   }
 }
 // 외장 swatch 갱신 (estimator_4 의 state.color 인덱스 기반)
-window.__welrix_updateExtSwatch = (name) => setSwatch($('swatch-ext'), guessColor(name));
-window.__welrix_updateIntSwatch = (name) => setSwatch($('swatch-int'), guessColor(name));
+window.__estimate_updateExtSwatch = (name) => setSwatch($('swatch-ext'), guessColor(name));
+window.__estimate_updateIntSwatch = (name) => setSwatch($('swatch-int'), guessColor(name));
 // 색상 hex 추정기를 글로벌로 노출 (CustomDropdown 에서 사용)
-window.__welrix_guessColor = guessColor;
+window.__estimate_guessColor = guessColor;
 // Vue 컴포넌트가 사용할 데이터 상수
-window.__welrix_data = {
+window.__estimate_data = {
   get DELIVERY_REGIONS() { return DELIVERY_REGIONS; },
   get FLAT_DELIVERY() { return FLAT_DELIVERY; },
   get TINT_AREAS() { return TINT_AREAS; },
@@ -57,7 +57,7 @@ async function loadCompanyConfig() {
     const r = await fetch(`./data/company-config/${id}.json?t=${Date.now()}`, { cache: 'no-store' });
     if (r.ok) {
       const cfg = await r.json();
-      window.__welrix_companyConfig = cfg;
+      window.__estimate_companyConfig = cfg;
       applyProductTheme(cfg);
       applyExcelVersion(cfg);
       return cfg;
@@ -174,7 +174,7 @@ function renderTintChips() {
 }
 
 // ============ estimator_4 가격 변경 hook ============
-window.__welrix_onPriceChange = (data) => {
+window.__estimate_onPriceChange = (data) => {
   const canonical = data?._trim_meta
     ? resolveCanonicalIdentity(data._trim_meta, data._options_master || {}, data._selected_option_ids || [])
     : null;
@@ -283,7 +283,7 @@ async function recomputeProvider(내순번) {
 }
 
 // 외부(Vue 컴포넌트)에서 호출 가능하도록 노출
-window.__welrix_recompute = recompute;
+window.__estimate_recompute = recompute;
 
 // === 현재 차량 → 장바구니 담기 ===
 function snapshotCurrentVehicle() {
@@ -337,7 +337,7 @@ function snapshotCurrentVehicle() {
  *   - updated: 같은 차종 있어서 옵션/조건 갱신
  *   - id: cart 안 항목 id
  */
-window.__welrix_addCurrentToCart = (opts = {}) => {
+window.__estimate_addCurrentToCart = (opts = {}) => {
   const snap = snapshotCurrentVehicle();
   if (!snap) { alert('차량을 선택하고 견적이 산출된 후 담을 수 있습니다'); return null; }
   const existing = findCartItem(snap);
@@ -352,8 +352,8 @@ window.__welrix_addCurrentToCart = (opts = {}) => {
   const result = addToCart(snap);
   return { ...result, skipped: false };
 };
-window.__welrix_removeCart = removeFromCart;
-window.__welrix_clearCart = clearCart;
+window.__estimate_removeCart = removeFromCart;
+window.__estimate_clearCart = clearCart;
 
 function renderEmpty() {
   // 카드는 Vue TermsGrid / ReferenceGrid 가 자동 렌더 (state.monthly 비면 placeholder)
@@ -389,7 +389,7 @@ function renderQuoteDoc(monthly, totalKrw, tintFee, deliveryFee, accessoryFee = 
   const extColorHex = guessColor(v.colorExt);
   const intColorHex = guessColor(state.cond.colorInt);
 
-  const cfg = window.__welrix_companyConfig || {};
+  const cfg = window.__estimate_companyConfig || {};
   const logoUrl = cfg.logo_url;
   const showLogo = state.send_options?.showLogo !== false; // 기본 true, "CI 제외" 체크 시 false
   const html = `
@@ -535,7 +535,7 @@ function renderQuoteDoc(monthly, totalKrw, tintFee, deliveryFee, accessoryFee = 
 // 다중 차종: 차량정보+월대여료 블록을 차종마다 반복
 // ============================================================
 function renderOfficialQuoteDoc(vehicles) {
-  window.__welrix_lastQuoteSnaps = vehicles;
+  window.__estimate_lastQuoteSnaps = vehicles;
   const today = new Date();
   const todayStr = today.toLocaleDateString('ko-KR');
   const expire = new Date(today.getTime() + 7*86400000);
@@ -549,7 +549,7 @@ function renderOfficialQuoteDoc(vehicles) {
     cond:     state.cond,
     send:     state.send,
     quoteMeta:{ quoteNo, todayStr, expireStr },
-    companyConfig: window.__welrix_companyConfig || {},
+    companyConfig: window.__estimate_companyConfig || {},
     showLogo: state.send_options?.showLogo !== false,
   });
 }
@@ -673,7 +673,7 @@ function attach() {
   setInterval(syncCartBadge, 250);
 
   $('btn-add-to-cart')?.addEventListener('click', () => {
-    const result = window.__welrix_addCurrentToCart?.();
+    const result = window.__estimate_addCurrentToCart?.();
     if (!result) return;  // 차량 미선택
     const btn = $('btn-add-to-cart');
     const orig = btn._origHTML || (btn._origHTML = btn.innerHTML);
@@ -705,8 +705,8 @@ function attach() {
 
   // === [견적바구니] 열기 — CartPanel.vue ===
   $('btn-open-cart')?.addEventListener('click', () => {
-    if (typeof window.__welrix_openCart === 'function') {
-      window.__welrix_openCart();
+    if (typeof window.__estimate_openCart === 'function') {
+      window.__estimate_openCart();
     } else {
       console.warn('[cart] CartPanel not ready yet');
     }
@@ -714,7 +714,7 @@ function attach() {
 
   // === CartPanel 에서 호출: 통합 발송 액션 핸들러 ===
   // action: 'preview' | 'image-save' | 'image-copy' | 'text-copy'
-  window.__welrix_cartAction = async (action, selectedVehicles) => {
+  window.__estimate_cartAction = async (action, selectedVehicles) => {
     if (!selectedVehicles || !selectedVehicles.length) {
       alert('발송할 차종을 1개 이상 체크하세요');
       return;
@@ -805,7 +805,7 @@ img { display: block; width: ${imgW}mm; height: ${imgH}mm; margin: 0 auto; }
       // 현재 모달이 열려있으면 즉시 재렌더
       if ($('quote-modal-bd').classList.contains('open')) {
         // cart 또는 single preview 어느 쪽이든 마지막 source 로 재렌더
-        const snap = window.__welrix_lastQuoteSnaps || (state.vehicle ? [snapshotCurrentVehicle()].filter(Boolean) : []);
+        const snap = window.__estimate_lastQuoteSnaps || (state.vehicle ? [snapshotCurrentVehicle()].filter(Boolean) : []);
         if (snap.length) renderOfficialQuoteDoc(snap);
       }
     });
@@ -899,7 +899,7 @@ img { display: block; width: ${imgW}mm; height: ${imgH}mm; margin: 0 auto; }
   // 조회동의 링크 복사 — 매번 호출 가능, 명확한 피드백 (영업 도구로 자주 씀)
   let signLinkResetTimer = null;
   $('btn-copy-sign-link')?.addEventListener('click', async () => {
-    const url = window.__welrix_companyConfig?.signature_link;
+    const url = window.__estimate_companyConfig?.signature_link;
     if (!url) { alert('이 회사는 조회동의 링크가 설정되어 있지 않습니다.'); return; }
     const btn = $('btn-copy-sign-link');
     if (!btn._origHTML) btn._origHTML = btn.innerHTML;
@@ -926,7 +926,7 @@ img { display: block; width: ${imgW}mm; height: ${imgH}mm; margin: 0 auto; }
     const [name, price] = v.split('|');
     state.cond.colorInt = name || '';
     state.cond.colorIntPrice = +price || 0;
-    window.__welrix_updateIntSwatch?.(name);
+    window.__estimate_updateIntSwatch?.(name);
     recompute();
   });
   // 외장 색상 swatch 갱신 (estimator_4 가 dd-color-ext change 처리하므로 hook 추가)
@@ -934,7 +934,7 @@ img { display: block; width: ${imgW}mm; height: ${imgH}mm; margin: 0 auto; }
     const sel = $('dd-color-ext');
     const text = sel.options[sel.selectedIndex]?.text || '';
     const name = text.split('·')[0].trim();
-    window.__welrix_updateExtSwatch?.(name);
+    window.__estimate_updateExtSwatch?.(name);
   });
   // 복사 (텍스트)
   $('btn-copy-text')?.addEventListener('click', async () => {

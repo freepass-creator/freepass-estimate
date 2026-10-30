@@ -18,7 +18,7 @@ const stepStatus = computed(() => ({
 }));
 
 function onPick(stepKey, value) {
-  window.__welrix_pick?.(stepKey, value);
+  window.__estimate_pick?.(stepKey, value);
 }
 </script>
 

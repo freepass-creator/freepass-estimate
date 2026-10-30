@@ -29,7 +29,7 @@ const cards = computed(() => {
 function onTermChange(idx, e) {
   const result = setScenarioTerm(state, idx, e.target.value);
   e.target.value = result.value ?? state.scenarios[idx]?.term ?? '';
-  if (result.changed) window.__welrix_recompute?.();
+  if (result.changed) window.__estimate_recompute?.();
 }
 // 숫자만 허용 (한글/영문/기호 입력 시 즉시 제거)
 function stripNonDigits(e) {
@@ -39,12 +39,12 @@ function stripNonDigits(e) {
 function onDepChange(idx, e) {
   const result = setScenarioPercent(state, idx, 'dep', e.target.value.replace(/\D/g, ''));
   e.target.value = result.value ?? 0;
-  if (result.changed) window.__welrix_recompute?.();
+  if (result.changed) window.__estimate_recompute?.();
 }
 function onPreChange(idx, e) {
   const result = setScenarioPercent(state, idx, 'pre', e.target.value.replace(/\D/g, ''));
   e.target.value = result.value ?? 0;
-  if (result.changed) window.__welrix_recompute?.();
+  if (result.changed) window.__estimate_recompute?.();
 }
 function onSendToggle(idx, e) {
   const result = setScenarioIncluded(state, idx, e.target.checked);

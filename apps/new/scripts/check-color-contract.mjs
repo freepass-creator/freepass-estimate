@@ -3,7 +3,7 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import { normalizeExteriorPaint, colorPriceLabel } from '../src/lib/exterior-paint.js';
 const context = {window:{}};
-vm.runInNewContext(fs.readFileSync('public/welrix-db.js','utf8'),context);
+vm.runInNewContext(fs.readFileSync('public/vehicle-db.js','utf8'),context);
 const db=context.window.VEHICLE_DB;
 const before=JSON.stringify(db);
 assert.equal(normalizeExteriorPaint(db).length,0,'canonical catalog must already classify paint');

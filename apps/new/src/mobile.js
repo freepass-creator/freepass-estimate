@@ -7,7 +7,7 @@ import MobileApp from './components/mobile/MobileApp.vue';
 import { quoteState } from './store.js';
 import { 담당자인가, 담당자로, 담당자로들어왔나 } from './lib/role.js';
 import { conditionDefaultsForRole } from './lib/feature/roles.js';
-import { 웰릭스기본 } from './lib/welrix-rates.js';
+import { 기본조건 } from './lib/condition-defaults.js';
 import { 공유풀기 } from './lib/share-link.js';
 import { vehicleState } from './store.js';
 import { applyProductTheme } from './lib/brand-theme.js';
@@ -17,7 +17,7 @@ async function loadCompanyConfig() {
   try {
     const res = await fetch('/data/company-config/freepass.json');
     const cfg = await res.json();
-    window.__welrix_companyConfig = cfg;
+    window.__estimate_companyConfig = cfg;
     applyProductTheme(cfg);
   } catch (e) {
     console.warn('[mobile] company config 로드 실패:', e);
@@ -28,10 +28,10 @@ async function loadCompanyConfig() {
 async function loadVehicles() {
   try {
     const res = await fetch('/data/vehicles.json');
-    window.__welrix_vehicles = await res.json();
+    window.__estimate_vehicles = await res.json();
   } catch (e) {
     console.warn('[mobile] vehicles 로드 실패:', e);
-    window.__welrix_vehicles = [];
+    window.__estimate_vehicles = [];
   }
 }
 
@@ -41,10 +41,10 @@ async function loadStock() {
     const res = await fetch('/api/stock');
     if (!res.ok) throw new Error('http ' + res.status);
     const json = await res.json();
-    window.__welrix_stock = json.data || [];
+    window.__estimate_stock = json.data || [];
   } catch (e) {
     console.warn('[mobile] stock 로드 실패:', e);
-    window.__welrix_stock = [];
+    window.__estimate_stock = [];
   }
 }
 
@@ -86,10 +86,10 @@ function 담당자문(){
     const 해보기 = () => {
       if (담당자로(칸.value)) {
         const 기본 = conditionDefaultsForRole('staff', {
-          staffDeposit: 웰릭스기본.dep,
+          staffDeposit: 기본조건.dep,
           guestDeposit: 0,
-          prepay: 웰릭스기본.pre,
-          credit: 웰릭스기본.credit,
+          prepay: 기본조건.pre,
+          credit: 기본조건.credit,
         });
         quoteState.cond.credit = 기본.credit;
         quoteState.cond.dep = 기본.dep;
@@ -133,5 +133,5 @@ async function boot() {
 
 boot();
 
-// 모바일에서도 window.__welrix_recompute 가 호출되니 noop 으로 등록 (Vue 컴포넌트가 reactive 로 재계산)
-window.__welrix_recompute = () => {};
+// 모바일에서도 window.__estimate_recompute 가 호출되니 noop 으로 등록 (Vue 컴포넌트가 reactive 로 재계산)
+window.__estimate_recompute = () => {};

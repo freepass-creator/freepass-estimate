@@ -37,7 +37,7 @@ export const 블박들 = [
 ];
 
 /** ★웰릭스 견적기를 새로 열었을 때의 값 — 여기에 맞춘다 */
-export const 웰릭스기본 = {
+export const 기본조건 = {
   credit: '중신용',
   km: 2,                       // 만km/년
   svc: '웰스 Basic',

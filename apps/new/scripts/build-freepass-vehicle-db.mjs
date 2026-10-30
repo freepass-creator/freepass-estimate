@@ -9,8 +9,8 @@ const hash=v=>crypto.createHash('sha1').update(String(v)).digest('hex').slice(0,
 const feed=JSON.parse(fs.readFileSync('public/data/freepass-newcar/current-feed.snapshot.json','utf8'));
 const master=JSON.parse(fs.readFileSync('public/data/freepass-newcar/vehicle-trim-master.json','utf8'));
 const aliases=JSON.parse(fs.readFileSync('public/data/freepass-newcar/model-aliases.json','utf8'));
-const legacyWelrixMap=JSON.parse(fs.readFileSync('public/data/freepass-newcar/welrix-id-map.json','utf8')).map||{};
-const providerPath=process.env.WELRIX_DB_PATH;
+const legacyIdMap=JSON.parse(fs.readFileSync('public/data/freepass-newcar/vehicle-id-map.json','utf8')).map||{};
+const providerPath=process.env.VEHICLE_DB_PATH;
 let providerDb={manufacturers:[]};
 if(providerPath&&fs.existsSync(providerPath)){
   const ctx={window:{},console:{log(){},warn(){},error(){}}};
@@ -199,7 +199,7 @@ const masterCandidates=(r,name,engine,trimName)=>{
 function providerCandidates(r,name,engine,trimName){
  const out=[];const seen=new Set();
  const wantMaker=S(r.maker),wantModel=N(name),forms=new Set(trimForms(trimName)),engineKeys=new Set([engineKey(engine)].filter(Boolean));
- const legacy=legacyWelrixMap[S(r.id)];
+ const legacy=legacyIdMap[S(r.id)];
  if(legacy?._label){
    const parts=legacy._label.split('|').map(S);
    if(parts[2])engineKeys.add(engineKey(parts[2]));
@@ -401,7 +401,6 @@ const js='/* AUTO-GENERATED from FreePass new_car_trim snapshot '+(feed.data_as_
   +'window.VEHICLE_DB='+JSON.stringify(out)+';\n'
   +'window.__FREEPASS_NEW_CAR_META='+JSON.stringify(meta)+';\n';
 fs.writeFileSync('public/vehicle-db.js',js);
-fs.writeFileSync('public/welrix-db.js',js);
 fs.writeFileSync('public/data/freepass-newcar/product-index.json',JSON.stringify({v:1,data_as_of:feed.data_as_of,count:Object.keys(productIndex).length,products:productIndex},null,2)+'\n');
 
 const models=out.manufacturers.reduce((n,m)=>n+m.models.length,0);

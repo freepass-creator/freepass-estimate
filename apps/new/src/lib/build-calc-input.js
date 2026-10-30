@@ -104,7 +104,7 @@ function itemsFeeForCalc(state) {
 // === calcQuote 입력 객체 1벌 생성 (quote.js recompute 와 100% 동일) ===
 // @param state    quoteState (웹·모바일 공유 store)
 // @param sc       시나리오 { term, dep, pre }
-// @param vehicles vehicles.json 배열 (웹=VEHICLES, 모바일=window.__welrix_vehicles)
+// @param vehicles vehicles.json 배열 (웹=VEHICLES, 모바일=window.__estimate_vehicles)
 export function buildCalcInput(state, sc, vehicles) {
   const v = state.vehicle || {};
   const cond = state.cond || {};

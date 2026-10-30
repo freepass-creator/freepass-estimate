@@ -1,5 +1,5 @@
 import { FLAT_DELIVERY, TINT_PRICES, ACCESSORIES } from '../../data/lookups.js';
-import { 탁송, 썬팅들, 블박들 } from '../welrix-rates.js';
+import { 탁송, 썬팅들, 블박들 } from '../condition-defaults.js';
 import { createQuoteConditionCosts } from './condition-cost-contract.js';
 
 function codedError(message, code = 'QUOTE_CONDITION_COST_UNRESOLVED') {

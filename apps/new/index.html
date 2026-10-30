@@ -753,7 +753,7 @@
 <body>
 <!-- 진입 게이트 우회 (단순 견적 모드) -->
 <script>
-  sessionStorage.setItem('welrix_mode', 'agent');
+  sessionStorage.setItem('estimate_mode', 'agent');
 </script>
 <!-- 전체 폭 상단바 -->
 <div class="global-topbar">
@@ -775,7 +775,7 @@
       <i class="ph ph-signature"></i>조회동의
     </button>
     <button class="bottom-action secondary" id="btn-standard-price" title="제조사별 표준 견적"
-            onclick="window.__welrix_openStandardPriceTable && window.__welrix_openStandardPriceTable()">
+            onclick="window.__estimate_openStandardPriceTable && window.__estimate_openStandardPriceTable()">
       <i class="ph ph-file-text"></i>표준 견적
     </button>
     <span class="desktop-action-bar__spacer"></span>
@@ -1489,13 +1489,13 @@ function renderTotal() {
   $('selected-summary').textContent = summary;
   $('total').textContent = state.trim ? `${total.toLocaleString()} 만원` : '— 만원';
   // wel 4기간 계산 hook
-  if (window.__welrix_onPriceChange) {
+  if (window.__estimate_onPriceChange) {
     const m = getManufacturer();
     const model = getModel();
     const variant = getVariant();
     const trim = getTrim();
     const om = getOptionsMaster();
-    window.__welrix_onPriceChange({
+    window.__estimate_onPriceChange({
       brand: m?.manufacturer_name,
       model: model?.model_name,
       variant: variant?.variant_name,
@@ -1541,7 +1541,7 @@ function render() {
   syncToVueStore();  // Vue 컴포넌트가 reactive 읽도록 state 미러링
 }
 // Vue 마이그레이션 후 main.js가 mount 끝나면 한 번 더 호출해서 store 초기화
-window.__welrix_render = render;
+window.__estimate_render = render;
 
 // Vue store에 cascade state 동기화 (Vue 컴포넌트가 vehicleState 읽음)
 const BRAND_LOGOS_MAP = {
@@ -1551,7 +1551,7 @@ const BRAND_LOGOS_MAP = {
 };
 
 function syncToVueStore() {
-  const vs = window.__welrix_store?.vehicleState;
+  const vs = window.__estimate_store?.vehicleState;
   if (!vs) return;
   vs.manufacturer = state.manufacturer;
   vs.model = state.model;
@@ -1627,7 +1627,7 @@ function syncToVueStore() {
       return {
         value: `${name}|${won}|${encodeURIComponent(stableId)}`,
         label: won > 0 ? `${name} (+${won.toLocaleString()}원)` : name,
-        swatch: c?.hex || window.__welrix_guessColor?.(name) || '#d9dde1',
+        swatch: c?.hex || window.__estimate_guessColor?.(name) || '#d9dde1',
         stableId: stableId || null,
         sourceCode: c?._source_color_code || null,
       };
@@ -1661,14 +1661,14 @@ function syncToVueStore() {
 }
 
 // Vue → cascade 선택 위임
-window.__welrix_pick = function(stepKey, value) {
+window.__estimate_pick = function(stepKey, value) {
   const mappedStep = stepKey === 'colorExt' ? 'color' : stepKey;
   window.FreePassVehicleSelection.applySelection(state, mappedStep, value);
   render();
 };
 
 // Vue 컴포넌트에서 옵션 토글 — 인라인 로직 그대로 호출
-window.__welrix_toggleOption = function(id) {
+window.__estimate_toggleOption = function(id) {
   const result = window.FreePassFeatureOptions.toggleOptionSelection({
     ...optionRuleContext(),
     optionId: id,
@@ -1847,7 +1847,7 @@ function attachDropdownHandlers() {
     const sel = e.target;
     const text = sel.options[sel.selectedIndex]?.text || '';
     const name = text.split('·')[0].trim();
-    window.__welrix_updateExtSwatch?.(name);
+    window.__estimate_updateExtSwatch?.(name);
   });
 }
 attachDropdownHandlers();
@@ -1957,14 +1957,14 @@ function _initCustomDropdowns() {
   const colorEx = $('dd-color-ext');
   if (colorEx) _CDD_INSTANCES.push(new CustomDropdown(colorEx, (opt) => {
     const name = (opt.textContent || '').split('·')[0].trim();
-    const hex = (window.__welrix_guessColor ? window.__welrix_guessColor(name) : '#e5e5e5');
+    const hex = (window.__estimate_guessColor ? window.__estimate_guessColor(name) : '#e5e5e5');
     return { swatch: opt.value === '' ? null : hex, label: opt.textContent };
   }));
   // 내장 색상 — label 형식: "블랙 (기본)" / "투톤 (+500,000원)" → 첫 단어가 색명
   const colorIn = $('dd-color-int');
   if (colorIn) _CDD_INSTANCES.push(new CustomDropdown(colorIn, (opt) => {
     const name = (opt.textContent || '').split(/[\s(]/)[0].trim();
-    const hex = (window.__welrix_guessColor ? window.__welrix_guessColor(name) : '#e5e5e5');
+    const hex = (window.__estimate_guessColor ? window.__estimate_guessColor(name) : '#e5e5e5');
     const noSwatch = !opt.value || opt.value.startsWith('|');
     return { swatch: noSwatch ? null : hex, label: opt.textContent };
   }));

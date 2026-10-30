@@ -7,7 +7,7 @@ function need(condition, message) {
 }
 
 globalThis.window = {
-  __welrix_companyConfig: {
+  __estimate_companyConfig: {
     company_id: 'freepass',
     quote_provider: { mode: 'standard', adapter_id: 'freepass-standard' },
   },

@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const masterPath = process.env.MASTER_PATH || path.resolve(root, '../../.master-reference/public/data/vehicle-trim-master.json');
-const welrixDbPath = process.env.WELRIX_DB_PATH || path.resolve(root, 'public/welrix-db.js');
+const vehicleDbPath = process.env.VEHICLE_DB_PATH || path.resolve(root, 'public/vehicle-db.js');
 const catalogPath = process.env.CATALOG_PATH || path.resolve(root, '../../.welrix-reference/_audit/welrix-netlify-20260917/catalog.json');
 const vehiclesPath = process.env.WELRIX_VEHICLES_PATH || path.resolve(root, '../../.welrix-reference/_audit/welrix-netlify-20260917/vehicles-508.json');
 
@@ -14,7 +14,7 @@ const sourceVehicles = JSON.parse(fs.readFileSync(vehiclesPath, 'utf8')).filter(
 
 const ctx = { window: {}, console: { log(){}, warn(){}, error(){} } };
 vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(welrixDbPath, 'utf8'), ctx);
+vm.runInContext(fs.readFileSync(vehicleDbPath, 'utf8'), ctx);
 const db = ctx.window.VEHICLE_DB;
 
 const S = v => String(v ?? '').trim();

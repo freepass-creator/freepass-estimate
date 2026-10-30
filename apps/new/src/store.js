@@ -2,7 +2,7 @@
 // 기존 state 객체 구조 유지, Vue의 reactive() 로 감싸서 양방향 자동 동기화
 import { 역할 } from './lib/role.js';
 import { conditionDefaultsForRole } from './lib/feature/roles.js';
-import { 웰릭스기본 } from './lib/welrix-rates.js';
+import { 기본조건 } from './lib/condition-defaults.js';
 import { quoteScenarios } from './lib/quote/terms.js';
 import { normalizeFeeRate } from './lib/feature/conditions.js';
 
@@ -12,10 +12,10 @@ import { normalizeFeeRate } from './lib/feature/conditions.js';
    ⚠ 수수료율만 7% 다 — 그건 «우리가 받는 몫»이라 웰릭스 화면 기본값(5%)과 무관하다
      (대표 2026-09-17 「7% 수수료 7% 기준으로」). */
 const 역할조건기본 = conditionDefaultsForRole(역할(), {
-  staffDeposit: 웰릭스기본.dep,
+  staffDeposit: 기본조건.dep,
   guestDeposit: 0,
-  prepay: 웰릭스기본.pre,
-  credit: 웰릭스기본.credit,
+  prepay: 기본조건.pre,
+  credit: 기본조건.credit,
 });
 const 기본보증금 = 역할조건기본.dep;
 import { reactive } from 'vue';
@@ -48,9 +48,9 @@ export const vehicleState = reactive({
 // === 견적 조건 / 사용자 정보 / 기타 ===
 // quote.js의 'state' 와 동일 모양
 // 담당자 정보(이름·연락처·수수료율) — 영업자 본인 거라 매번 입력 번거로움 → localStorage 영속화
-const STAFF_KEY = 'welrix_staff_v1';
-const FEE_KEY = 'welrix_fee_v1';
-const SEND_OPTS_KEY = 'welrix_send_opts_v1';
+const STAFF_KEY = 'estimate_staff_v1';
+const FEE_KEY = 'estimate_fee_v1';
+const SEND_OPTS_KEY = 'estimate_send_opts_v1';
 function loadSendOpts() {
   try {
     const raw = localStorage.getItem(SEND_OPTS_KEY);
@@ -71,7 +71,7 @@ function persistStaff(s) {
 }
 
 // 영업이 제출한 계약 심사 요청 ID 목록 — 영업 브라우저에서 자기 요청 추적
-const MY_CONTRACTS_KEY = 'welrix_my_contracts_v1';
+const MY_CONTRACTS_KEY = 'estimate_my_contracts_v1';
 function loadMyContracts() {
   try {
     const raw = localStorage.getItem(MY_CONTRACTS_KEY);
@@ -82,12 +82,12 @@ function persistMyContracts(arr) {
   try { localStorage.setItem(MY_CONTRACTS_KEY, JSON.stringify(arr)); } catch {}
 }
 function loadFeeRate() {
-  /* ★기본 수수료율은 welrix-rates.js 한 곳에서 정한다(지금 5% · 확인되면 7%).
+  /* ★기본 수수료율은 condition-defaults.js 한 곳에서 정한다(지금 5% · 확인되면 7%).
      담당자가 화면에서 바꾼 값은 localStorage 에 남아 그게 이긴다. */
   try {
     const v = parseFloat(localStorage.getItem(FEE_KEY));
-    return isFinite(v) ? normalizeFeeRate(v) : normalizeFeeRate(웰릭스기본.feeRatePct);
-  } catch { return normalizeFeeRate(웰릭스기본.feeRatePct); }
+    return isFinite(v) ? normalizeFeeRate(v) : normalizeFeeRate(기본조건.feeRatePct);
+  } catch { return normalizeFeeRate(기본조건.feeRatePct); }
 }
 function persistFeeRate(v) {
   try { localStorage.setItem(FEE_KEY, String(v)); } catch {}
@@ -102,12 +102,12 @@ export const quoteState = reactive({
     /* ★보증금·선납금 기본 — 손님은 0, 담당자는 10/0.
        손님에게 «보증금 10%» 로 계산해 보여 주면 실제(무보증)보다 싸게 보인다.
        0 에서 시작해야 손님이 본 값보다 실제가 싸지, 비싸지지 않는다. */
-    credit: 역할조건기본.credit, km: 웰릭스기본.km,
+    credit: 역할조건기본.credit, km: 기본조건.km,
     dep: 기본보증금,
     pre: 역할조건기본.pre,
     feeRatePct: loadFeeRate(),
-    deliveryRegion: 웰릭스기본.deliveryRegion, deliveryCity: 웰릭스기본.deliveryRegion,   // 웰릭스는 10권역 — 권역 하나로 쓴다
-    svc: 웰릭스기본.svc, insProperty: 웰릭스기본.insProperty, extraDriver: 웰릭스기본.extraDriver,
+    deliveryRegion: 기본조건.deliveryRegion, deliveryCity: 기본조건.deliveryRegion,   // 웰릭스는 10권역 — 권역 하나로 쓴다
+    svc: 기본조건.svc, insProperty: 기본조건.insProperty, extraDriver: 기본조건.extraDriver,
     colorInt: '', colorIntPrice: 0, colorIntId: null,
     discount: 0,
   },
@@ -120,8 +120,8 @@ export const quoteState = reactive({
   myContracts: loadMyContracts(),  // 내가 제출한 계약 심사 요청 id 들
   /* ★웰릭스 표로 바꿨다 — 썬팅 3택 · 블박 2택. 우리 옛 표(루마 6종 × 부위 5개)는 안 쓴다.
      표가 다르면 «같은 조건»을 만들 수 없고, 그러면 값이 0 으로 안 맞는다. */
-  tint: { product: 웰릭스기본.tint, areas: new Set() },
-  extras: { blackbox: 웰릭스기본.blackbox },
+  tint: { product: 기본조건.tint, areas: new Set() },
+  extras: { blackbox: 기본조건.blackbox },
   cust:  { name: '', tel: '' },
   staff: loadStaff(),  // ← 영업 본인 정보 자동 로드
   send: [true, true, true, true, true],
@@ -159,18 +159,18 @@ watch(() => quoteState.cond.dep, (raw) => {
   const v = +raw;
   if (!isFinite(v)) return;
   quoteState.scenarios.forEach((sc) => { sc.dep = v; });
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 });
 watch(() => quoteState.cond.pre, (raw) => {
   const v = +raw;
   if (!isFinite(v)) return;
   quoteState.scenarios.forEach((sc) => { sc.pre = v; });
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 });
 
 // === 견적 장바구니 — 한 손님에게 N차종 보낼 때 ===
 // localStorage 영속화 (수동 삭제 전까지 유지)
-const CART_KEY = 'welrix_cart_v1';
+const CART_KEY = 'estimate_cart_v1';
 function loadCart() {
   try {
     const raw = localStorage.getItem(CART_KEY);
@@ -229,8 +229,8 @@ export function setCartAllSelected(val) {
   persistCart();
 }
 
-// 글로벌 노출 — 기존 vanilla JS 코드에서 window.__welrix_store 로 접근
+// 글로벌 노출 — 기존 vanilla JS 코드에서 window.__estimate_store 로 접근
 if (typeof window !== 'undefined') {
-  window.__welrix_store = { vehicleState, quoteState, cartStore };
-  window.__welrix_cart = { addToCart, removeFromCart, clearCart, toggleCartItem, setCartAllSelected, findCartItem, cartStore };
+  window.__estimate_store = { vehicleState, quoteState, cartStore };
+  window.__estimate_cart = { addToCart, removeFromCart, clearCart, toggleCartItem, setCartAllSelected, findCartItem, cartStore };
 }

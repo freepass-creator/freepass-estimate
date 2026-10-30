@@ -10,11 +10,11 @@ const isOpen = computed(() => open.value || (quoteState.cond.discount || 0) > 0)
 function onChange() {
   const v = Math.max(0, +quoteState.cond.discount || 0);
   quoteState.cond.discount = v;
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 function clearDiscount() {
   quoteState.cond.discount = 0;
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 function onToggle(e) { open.value = e.target.open; }
 </script>

@@ -1,5 +1,5 @@
 // 탁송/선팅/용품/내장색상 룩업 — Vue 컴포넌트와 quote.js 양쪽에서 import.
-// 이전엔 quote.js 에 const 로 박혀 있고 window.__welrix_data 로 노출 → 모듈 로드 순서 문제로
+// 이전엔 quote.js 에 const 로 박혀 있고 window.__estimate_data 로 노출 → 모듈 로드 순서 문제로
 // 컴포넌트 mount 시점에 빈 객체일 수 있었음. 별도 모듈로 분리해서 import 동시성 보장.
 
 export const DELIVERY_REGIONS = {

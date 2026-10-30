@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const masterPath = process.env.MASTER_PATH || path.resolve(root, '../../.master-reference/public/data/vehicle-trim-master.json');
-const dbPath = process.env.WELRIX_DB_PATH || path.resolve(root, 'public/welrix-db.js');
+const dbPath = process.env.VEHICLE_DB_PATH || path.resolve(root, 'public/vehicle-db.js');
 const outPath = process.env.OUT_PATH || path.resolve(root, 'public/data/canonical-newcar-map.json');
 
 const master = JSON.parse(fs.readFileSync(masterPath,'utf8'));

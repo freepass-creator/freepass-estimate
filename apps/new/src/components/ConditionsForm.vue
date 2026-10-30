@@ -5,7 +5,7 @@ import { applyScenarioPercent } from '../lib/feature/conditions.js';
 const CREDITS = CREDIT_OPTIONS;
 const KMS = KM_OPTIONS;
 
-function recompute() { window.__welrix_recompute?.(); }
+function recompute() { window.__estimate_recompute?.(); }
 
 function onDepChange() {
   applyScenarioPercent(quoteState, 'dep', quoteState.cond.dep);
