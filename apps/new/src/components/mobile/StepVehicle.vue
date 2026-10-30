@@ -8,7 +8,7 @@ import { fmt, guessColor } from '../../lib/format.js';
 import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
 import SelectionSummary from './SelectionSummary.vue';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
-import { applyScenarioPercent, normalizeFeeRate } from '../../lib/feature/conditions.js';
+import { applyScenarioPercent } from '../../lib/feature/conditions.js';
 
 function resetQuoteVehicleWhenSelectionChanges(result) {
   if (result.changed) quoteState.vehicle = null;
@@ -368,9 +368,6 @@ function onDepChange() {
 function onPreChange() {
   applyScenarioPercent(quoteState, 'pre', quoteState.cond.pre);
 }
-function onFeeChange() {
-  quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
-}
 </script>
 
 <template>
@@ -395,20 +392,12 @@ function onFeeChange() {
     <div v-if="subStep === 'brand'" class="sv-section">
       <h2 class="sv-title">어떤 제조사를<br>선택할까요?</h2>
 
-      <!-- ★시작 조건(수수료·보증금·선납금) — «담당자만» 본다.
+      <!-- ★시작 조건(보증금·선납금) — «담당자만» 본다.
            대표 2026-09-17 「보증금 선납금도 그냥 없어. 제조사에 대해 그 어설픈 거 빼.
            그냥 누르고 누르고 누르고 하면 월 대여료가 얼마 나온다인 거야.
            보증금은 어차피 심사받아서 그거 해야 되니까」
            → 손님 화면은 첫 화면부터 «차만 고른다». 보증금 0 · 선납 0 · 수수료 7% 로 계산된다. -->
       <div class="sv-precond" v-if="담당자">
-        <label class="sv-pc" v-if="담당자">
-          <span class="sv-pc__lab">수수료</span>
-          <span class="sv-pc__in">
-            <input type="number" min="-10" max="7" step="0.1" inputmode="decimal"
-                   v-model.number="quoteState.cond.feeRatePct" @change="onFeeChange" placeholder="0" />
-            <em>%</em>
-          </span>
-        </label>
         <label class="sv-pc">
           <span class="sv-pc__lab">보증금</span>
           <span class="sv-pc__in">
@@ -742,7 +731,7 @@ function onFeeChange() {
 
 /* 시작 조건 — 수수료·보증금·선납금 3-up */
 .sv-precond {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
   margin-bottom: 20px;
 }
 .sv-pc { display: flex; flex-direction: column; gap: 6px; }
