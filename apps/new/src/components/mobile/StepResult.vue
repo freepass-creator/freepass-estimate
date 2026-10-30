@@ -9,9 +9,13 @@ import { quoteState, vehicleState } from '../../store.js';
 import { 견적상태 } from '../../lib/quote/index.js';
 import { 담당자인가 } from '../../lib/role.js';
 import { fmt } from '../../lib/format.js';
+import { normalizeFeeRate } from '../../lib/feature/conditions.js';
 import { exteriorColorsFor } from '../../lib/exterior-paint.js';
 
 const 담당자 = 담당자인가();
+function 수수료바뀜() {
+  quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
+}
 const 공유견적 = computed(() => !!quoteState.sharedSnapshot);
 const snapshot = computed(() => quoteState.sharedSnapshot || null);
 
@@ -89,7 +93,6 @@ const 조건들 = computed(() => {
     ...(공유견적.value ? [] : 담당자 ? [
       ['보증금', `${c.value.dep ?? 0}%`],
       ['선납금', `${c.value.pre ?? 0}%`],
-      ['수수료', `${c.value.feeRatePct ?? 0}%`],
     ] : []),
   ];
 });
@@ -149,6 +152,16 @@ const 공유시각 = computed(() => {
       <p v-if="계산못함" class="sr-error" role="alert">지금 계산할 수 없습니다. 잠시 뒤 다시 열거나 상담으로 문의해 주세요.</p>
     </section>
 
+    <!-- 영업 수수료 — 담당자만 보이는 마지막 입력. 바꾸면 위 금액이 바로 다시 계산된다(공유 링크·손님 화면엔 없음) -->
+    <label class="sr-fee" v-if="담당자 && !공유견적">
+      <span class="sr-fee__lab">영업 수수료 <small>-10 ~ 7%</small></span>
+      <span class="sr-fee__in">
+        <input type="number" min="-10" max="7" step="0.1" inputmode="decimal"
+               v-model.number="quoteState.cond.feeRatePct" @change="수수료바뀜" placeholder="0" />
+        <em>%</em>
+      </span>
+    </label>
+
     <!-- 조건 — 결과의 보조정보이므로 2열 요약으로 압축 -->
     <div class="sr-cond__title">이용 조건</div>
     <section class="sr-cond">
@@ -169,6 +182,25 @@ const 공유시각 = computed(() => {
 </template>
 
 <style scoped>
+.sr-fee {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: var(--sp-3) 0;
+  padding: 0 14px; height: var(--h-input);
+  background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--r-md);
+}
+.sr-fee:focus-within { border-color: var(--brand); }
+.sr-fee__lab { font-size: var(--fs-sm); font-weight: var(--fw-semi); color: var(--ink-2); }
+.sr-fee__lab small { font-weight: 400; color: var(--ink-4); margin-left: 4px; }
+.sr-fee__in { display: flex; align-items: baseline; gap: 3px; }
+.sr-fee__in input {
+  width: 72px; border: 0; background: transparent; outline: none; padding: 0;
+  font-family: inherit; font-size: var(--fs-lg); color: var(--ink-1);
+  font-variant-numeric: tabular-nums; text-align: right; -moz-appearance: textfield;
+}
+.sr-fee__in input::-webkit-outer-spin-button,
+.sr-fee__in input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.sr-fee__in em { font-style: normal; font-size: var(--fs-md); color: var(--ink-4); }
+
 .sr-title {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
   color: var(--ink-1); margin: 0 0 var(--sp-4);
