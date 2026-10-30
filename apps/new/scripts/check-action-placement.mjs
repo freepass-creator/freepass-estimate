@@ -27,7 +27,7 @@ const modalHead=between(index,'<div class="quote-modal__head">','<div class="quo
 assert.ok(!/<button\b/i.test(modalHead),'quote modal header must be display-only; CTA button found');
 
 const modalFoot=between(index,'<div class="quote-modal__foot"','</div>','quote modal footer');
-for(const id of ['btn-modal-close','btn-modal-copy-text','btn-modal-save-image','btn-modal-copy-image','btn-modal-print','btn-modal-send-link']){
+for(const id of ['btn-modal-close','btn-modal-copy-text','btn-modal-save-image','btn-modal-copy-image','btn-modal-print']){
   assert.ok(modalFoot.includes(`id="${id}"`), 'modal footer action missing: '+id);
 }
 

@@ -4,9 +4,7 @@ import SummaryPanel from './components/SummaryPanel.vue';
 import TermsGrid from './components/TermsGrid.vue';
 import ReferenceGrid from './components/ReferenceGrid.vue';
 import StandardPriceTable from './components/StandardPriceTable.vue';
-import TodayHistory from './components/TodayHistory.vue';
 import OptionsList from './components/OptionsList.vue';
-import RightPanel from './components/RightPanel.vue';
 import VehicleCascade from './components/VehicleCascade.vue';
 import ColorSection from './components/ColorSection.vue';
 import DiscountSection from './components/DiscountSection.vue';
@@ -42,9 +40,7 @@ function mountAll() {
   mountOne('standard-price-root', StandardPriceTable, 'StandardPriceTable');
   mountOne('reference-grid', ReferenceGrid, 'ReferenceGrid');
   mountOne('terms-grid', TermsGrid, 'TermsGrid');
-  mountOne('today-history-root', TodayHistory, 'TodayHistory');
   mountOne('options', OptionsList, 'OptionsList');
-  mountOne('contract-panel-root', RightPanel, 'RightPanel');
   mountOne('cart-panel-root', CartPanel, 'CartPanel');
   // Vue mount 직후 inline render 한 번 더 — Vue store가 이제 살아있으니 옵션 데이터 채워짐
   if (typeof window.__welrix_render === 'function') {

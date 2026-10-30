@@ -9,8 +9,6 @@ for (const file of [
   'src/components/VehicleCascade.vue',
   'src/components/mobile/StepVehicle.vue',
   'src/store.js',
-  'src/vehicles.js',
-  'src/components/home/VehicleIndex.vue',
 ]) {
   const text = fs.readFileSync(file, 'utf8');
   assert.ok(!/\.year\b/.test(text), `${file} unexpectedly depends on legacy model.year`);

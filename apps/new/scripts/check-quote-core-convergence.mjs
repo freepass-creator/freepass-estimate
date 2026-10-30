@@ -60,21 +60,6 @@ if (fs.existsSync(retiredWelrixEngine)) {
   process.exit(1);
 }
 
-const homeWidget = fs.readFileSync(path.resolve('src/components/home/QuoteWidget.vue'), 'utf8');
-for (const required of [
-  "from '../../lib/quote/calculate.js'",
-  "from '../../lib/quote/preview-request.js'",
-]) {
-  if (!homeWidget.includes(required)) {
-    console.error('[quote-core-convergence] QuoteWidget must use canonical Quote Core: ' + required);
-    process.exit(1);
-  }
-}
-if (/\bcalcQuote\b/.test(homeWidget)) {
-  console.error('[quote-core-convergence] QuoteWidget regressed to calcQuote');
-  process.exit(1);
-}
-
 const standardPriceTable = fs.readFileSync(path.resolve('src/components/StandardPriceTable.vue'), 'utf8');
 for (const required of [
   "from '../lib/quote/preview-request.js'",
@@ -93,7 +78,6 @@ if (/\bcalcQuote\b/.test(standardPriceTable)) {
 console.log(JSON.stringify({
   status: 'PASS',
   canonicalized: [
-    'src/components/home/QuoteWidget.vue',
     'src/components/StandardPriceTable.vue',
   ],
   remainingMigrationDebt: [],

@@ -42,9 +42,7 @@ window.__welrix_data = {
 
 // ============ 상태 — Vue 반응형 store와 공유 (마이그레이션 1단계) ============
 import { quoteState as state, cartStore, addToCart, removeFromCart, clearCart, findCartItem } from './src/store.js';
-import { saveQuote, buildQuoteUrl } from './src/firebase/quotes.js';
 import { buildOfficialQuoteHtml } from './src/lib/build-quote-html.js';
-import { logQuoteSent } from './src/firebase/chat.js';
 import { initEmbedBridge } from './src/lib/embed-bridge.js';
 let VEHICLES = [];
 // ERP4 임베드 브리지 핸들 (스탠드얼론이면 no-op) + 임베드 프리필 딜코드
@@ -715,7 +713,7 @@ function attach() {
   });
 
   // === CartPanel 에서 호출: 통합 발송 액션 핸들러 ===
-  // action: 'preview' | 'image-save' | 'image-copy' | 'text-copy' | 'link-send'
+  // action: 'preview' | 'image-save' | 'image-copy' | 'text-copy'
   window.__welrix_cartAction = async (action, selectedVehicles) => {
     if (!selectedVehicles || !selectedVehicles.length) {
       alert('발송할 차종을 1개 이상 체크하세요');
@@ -739,13 +737,6 @@ function attach() {
         break;
       case 'text-copy':
         $('btn-modal-copy-text')?.click();
-        break;
-      case 'link-send':
-        $('btn-modal-send-link')?.click();
-        setTimeout(() => {
-          const sendBtn = $('btn-modal-send-link');
-          if (sendBtn) sendBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 200);
         break;
     }
   };
@@ -877,61 +868,6 @@ img { display: block; width: ${imgW}mm; height: ${imgH}mm; margin: 0 auto; }
   });
 
   // 링크 발송 — Firebase 저장 → URL + 카톡 메시지 클립보드 복사
-  $('btn-modal-send-link')?.addEventListener('click', async () => {
-    const btn = $('btn-modal-send-link');
-    const orig = btn.innerHTML;
-    btn.innerHTML = '<i class="ph ph-spinner"></i> 저장 중...';
-    btn.disabled = true;
-    try {
-      // payload 구성: 현재 cart 또는 현재 차량 1대
-      const cartHas = cartStore.vehicles.length > 0;
-      const currentSnap = snapshotCurrentVehicle();
-      const vehicles = cartHas ? cartStore.vehicles : (currentSnap ? [currentSnap] : []);
-      if (!vehicles.length) { alert('차량을 먼저 선택하세요'); return; }
-      const payload = {
-        customer: { name: state.cust.name || '', tel: state.cust.tel || '' },
-        staff:    { name: state.staff.name || '', tel: state.staff.tel || '' },
-        cond:     { ...state.cond },
-        scenarios: state.scenarios.map(s => ({ ...s })),
-        send:     [...state.send],
-        vehicles,
-      };
-      const { id, url } = await saveQuote(payload);
-      // 채팅에 시스템 메시지 자동 push — "📤 견적 발송 — ..."
-      const summary = vehicles.map(v => `${v.model} ${v.trim_name}`).join(', ');
-      logQuoteSent(id, summary).catch(() => {});
-      // ERP4 임베드 시 결과 전달 (id/url/dealCode/summary) — 스탠드얼론이면 no-op
-      __embed.emitQuote({ id, url, dealCode: __embedDealCode, summary });
-      // 카톡 메시지 본문 — 손님이 받는 텍스트
-      const custName = state.cust.name || 'VIP 고객';
-      const vNames = vehicles.map(v => `· ${v.model} ${v.trim_name}`).join('\n');
-      const text =
-`[프리패스 테이블 견적서]
-${custName}님, 안녕하세요. 요청하신 견적을 보내드립니다.
-
-${vNames}
-
-상세 견적 확인하기 ↓
-${url}
-
-— ${state.staff.name || '프리패스 테이블'} (${state.staff.tel || ''})`;
-      await navigator.clipboard.writeText(text);
-      btn.innerHTML = '<i class="ph ph-check-circle"></i> 카톡 메시지 복사됨';
-      btn.style.color = '#10b981';
-      // 발송 후 견적 ID 표시 (영업사원 확인용)
-      const noteEl = document.createElement('div');
-      noteEl.style.cssText = 'padding:10px 14px; background:#10b98115; color:#0e8d62; font-size:11.5px; border-bottom:1px solid #d6f0e3;';
-      noteEl.innerHTML = `<b>발송 준비 완료</b> · ID: <code>${id}</code> · 카톡에 붙여넣기(Ctrl+V) 하세요`;
-      const body = $('quote-modal-body');
-      body.insertBefore(noteEl, body.firstChild);
-      setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; btn.disabled = false; }, 3000);
-    } catch (e) {
-      console.error('[send-link]', e);
-      alert('링크 발송 실패: ' + (e.message || e));
-      btn.innerHTML = orig; btn.disabled = false;
-    }
-  });
-
   // 이미지 클립보드 복사 (카톡 붙여넣기용)
   $('btn-modal-copy-image')?.addEventListener('click', async () => {
     const btn = $('btn-modal-copy-image');

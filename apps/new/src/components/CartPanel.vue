@@ -164,12 +164,6 @@ if (typeof window !== 'undefined') {
             <i class="ph ph-text-aa"></i><span>텍스트</span>
           </button>
         </div>
-
-        <!-- 메인 액션: 링크 발송 (한 번에 N견적 가는 가장 빠른 방법) -->
-        <button class="action send" :disabled="selectedCount === 0" @click="doAction('link-send')">
-          <i class="ph ph-paper-plane-tilt"></i>
-          손님 카톡으로 링크 발송 <em>{{ selectedCount }}건</em>
-        </button>
       </div>
     </div>
   </div>

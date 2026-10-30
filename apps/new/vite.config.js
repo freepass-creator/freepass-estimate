@@ -188,9 +188,6 @@ export default defineConfig(({ mode }) => {
       input: {
         index: resolve(__dirname, 'index.html'),
         mobile: resolve(__dirname, 'mobile.html'),
-        home: resolve(__dirname, 'home.html'),
-        vehicles: resolve(__dirname, 'vehicles.html'),
-        guide: resolve(__dirname, 'guide.html'),
       },
     },
   },

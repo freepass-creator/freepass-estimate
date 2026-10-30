@@ -64,12 +64,9 @@ jobs:
           node --check src/lib/quote/delivery-runtime.js
           node --check src/lib/quote/canonical-delivery-session.js
           node --check src/lib/quote/firebase-canonical-delivery.js
-          node --check src/lib/quote/legacy-write-policy.js
-          node --check src/firebase/quotes.js
           node --check src/firebase/id-token.js
           node --check src/lib/quote/repositories/firebase-authenticated.js
           node --check src/lib/quote/shadow-roundtrip.js
-          node --check scripts/probe-freepass-data-cutover.mjs
       - name: Quote persistence gateway
         run: node scripts/check-quote-persistence-gateway.mjs
       - name: Quote persistence runtime
@@ -88,12 +85,6 @@ jobs:
         run: node scripts/check-canonical-delivery-session.mjs
       - name: Firebase canonical delivery facade
         run: node scripts/check-firebase-canonical-delivery.mjs
-      - name: Legacy Quote write policy
-        run: node scripts/check-legacy-quote-write-policy.mjs
-      - name: Legacy RTDB cutover boundary
-        run: node scripts/check-legacy-rtdb-cutover.mjs
-      - name: Legacy Quote RTDB inventory
-        run: node scripts/check-legacy-quote-inventory.mjs
       - name: Canonical write authentication boundary
         run: node scripts/check-write-auth-boundary.mjs
       - name: Browser canonical write authentication

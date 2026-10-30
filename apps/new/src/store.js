@@ -229,40 +229,8 @@ export function setCartAllSelected(val) {
   persistCart();
 }
 
-// === 계약 접수 (서류 업로드) ===
-export const docStore = reactive({
-  license: null,           // File | null
-  attachments: [],         // File[]
-});
-
-// === 채팅 대화명 — 자동 부여 후 영속 (사용자가 직접 바꾸기 전까지 동일)
-// 패턴: '영업담당자' + 4자리 random (예: 영업담당자4821)
-const CHAT_NICK_KEY = 'welrix_chat_nick_v1';
-function loadChatNick() {
-  try {
-    const v = localStorage.getItem(CHAT_NICK_KEY);
-    if (v) return v;
-  } catch {}
-  // 첫 접속 — 자동 부여 + 영속
-  const n = String(Math.floor(1000 + Math.random() * 9000));
-  const generated = `영업담당자${n}`;
-  try { localStorage.setItem(CHAT_NICK_KEY, generated); } catch {}
-  return generated;
-}
-function persistChatNick(v) {
-  try { localStorage.setItem(CHAT_NICK_KEY, v); } catch {}
-}
-export const chatStore = reactive({
-  messages: [],            // [{ id, sender, name, text, at, uid }]
-  nickname: loadChatNick(),
-});
-// 변경 즉시 저장
-watch(() => chatStore.nickname, (v) => {
-  if (v && typeof v === 'string') persistChatNick(v.trim());
-});
-
 // 글로벌 노출 — 기존 vanilla JS 코드에서 window.__welrix_store 로 접근
 if (typeof window !== 'undefined') {
-  window.__welrix_store = { vehicleState, quoteState, docStore, chatStore, cartStore };
+  window.__welrix_store = { vehicleState, quoteState, cartStore };
   window.__welrix_cart = { addToCart, removeFromCart, clearCart, toggleCartItem, setCartAllSelected, findCartItem, cartStore };
 }
