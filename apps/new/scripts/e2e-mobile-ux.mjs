@@ -41,7 +41,7 @@ try {
     contentType: 'application/javascript',
     body: `export async function saveSelfQuote(bundle) {
       const response = await fetch('/__test-self-quote', { method: 'POST', headers: {'content-type':'application/json'}, body: JSON.stringify(bundle) });
-      const {id} = await response.json(); return 'https://newcar.freepasserp.com/s/' + id;
+      const {id} = await response.json(); return 'https://rent.freepasserp.com/s/' + id;
     }
     export async function loadSelfQuote(id) {
       const response = await fetch('/__test-self-quote?id=' + id); return response.json();
