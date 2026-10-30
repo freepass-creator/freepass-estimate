@@ -16,7 +16,7 @@ const COLOR_INT = [
 ];
 
 function guessColor(name) {
-  return window.__welrix_guessColor ? window.__welrix_guessColor(name) : '#e5e5e5';
+  return window.__estimate_guessColor ? window.__estimate_guessColor(name) : '#e5e5e5';
 }
 
 // 외장 색상 옵션은 store에서 (모델 변경시 자동 갱신)
@@ -39,7 +39,7 @@ const intOptions = computed(() => {
 
 const extValue = computed({
   get: () => vehicleState.color != null ? String(vehicleState.color) : '',
-  set: (v) => window.__welrix_pick?.('colorExt', v),
+  set: (v) => window.__estimate_pick?.('colorExt', v),
 });
 // 내장은 quote.js의 dd-color-int change 핸들러가 처리 — value/price split
 const intCurrentValue = computed(() => {
@@ -55,7 +55,7 @@ function onIntChange(value) {
   quoteState.cond.colorIntPrice = +price || 0;
   quoteState.cond.colorIntId = stableEncoded ? decodeURIComponent(stableEncoded) : null;
   // 외부 hook (renderQuoteDoc 등)
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 
 </script>

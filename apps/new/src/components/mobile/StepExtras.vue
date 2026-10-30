@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import { quoteState } from '../../store.js';
 import { 역할 } from '../../lib/role.js';
 import { rolePolicy } from '../../lib/feature/roles.js';
-import { 썬팅들, 블박들, 탁송권역 } from '../../lib/welrix-rates.js';
+import { 썬팅들, 블박들, 탁송권역 } from '../../lib/condition-defaults.js';
 import { fmt } from '../../lib/format.js';
 import { resolveDeliveryCost, resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
 

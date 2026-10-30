@@ -23,11 +23,11 @@ const cityOptions = computed(() => {
 function onRegionChange(v) {
   quoteState.cond.deliveryRegion = v;
   quoteState.cond.deliveryCity = '';
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 function onCityChange(v) {
   quoteState.cond.deliveryCity = v;
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 </script>
 

@@ -3,7 +3,6 @@ import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 
 const LOCAL_API_MODULES = Object.freeze({
-  '/api/estimate': './api/estimate.js',
   '/api/external-quote': './api/external-quote.js',
   '/api/freepass-data-master': './api/freepass-data-master.js',
   '/api/issued-quote': './api/issued-quote.js',

@@ -33,9 +33,9 @@ const EXTRA_OPTS = [
   { value: '3명', label: '추가운전자 3명' },
 ];
 
-function onSvc(v)   { quoteState.cond.svc = v;          window.__welrix_recompute?.(); }
-function onIns(v)   { quoteState.cond.insProperty = v;  window.__welrix_recompute?.(); }
-function onExtra(v) { quoteState.cond.extraDriver = v;  window.__welrix_recompute?.(); }
+function onSvc(v)   { quoteState.cond.svc = v;          window.__estimate_recompute?.(); }
+function onIns(v)   { quoteState.cond.insProperty = v;  window.__estimate_recompute?.(); }
+function onExtra(v) { quoteState.cond.extraDriver = v;  window.__estimate_recompute?.(); }
 </script>
 
 <template>

@@ -31,7 +31,7 @@ const hipassOpts   = computed(() => buildOpts(ACCESSORIES.hipass, '하이패스'
 
 function onChange(key, v) {
   quoteState.extras[key] = v;
-  window.__welrix_recompute?.();
+  window.__estimate_recompute?.();
 }
 </script>
 

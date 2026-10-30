@@ -10,7 +10,7 @@ function isChecked(id) { return vehicleState.options.has(id); }
 
 function toggle(opt) {
   if (!opt.enabled && !isChecked(opt.id)) return;
-  window.__welrix_toggleOption?.(opt.id);
+  window.__estimate_toggleOption?.(opt.id);
 }
 </script>
 

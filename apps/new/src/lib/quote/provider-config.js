@@ -11,7 +11,7 @@ export const EXTERNAL_KIND = Object.freeze({
   ERP: 'erp',
 });
 
-export function 공급자설정(cfg = globalThis.window?.__welrix_companyConfig) {
+export function 공급자설정(cfg = globalThis.window?.__estimate_companyConfig) {
   const p = cfg?.quote_provider;
   if (!p) {
     const error = new Error('견적 공급자 설정이 없습니다');

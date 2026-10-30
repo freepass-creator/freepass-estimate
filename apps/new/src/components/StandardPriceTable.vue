@@ -52,7 +52,7 @@ function closePanel() { open.value = false; }
 
 // 상단바 버튼이 외부에서 열도록
 if (typeof window !== 'undefined') {
-  window.__welrix_openStandardPriceTable = openPanel;
+  window.__estimate_openStandardPriceTable = openPanel;
 }
 
 // 브랜드 별 모델 목록 (드롭다운용) — 중복 제거, 등장 순서 유지
@@ -266,7 +266,7 @@ function todayStr() {
 function buildSelectedQuoteBody() {
   const rows = buildSelectedRows();
   if (!rows.length) return '';
-  const cfg = (typeof window !== 'undefined' && window.__welrix_companyConfig) || {};
+  const cfg = (typeof window !== 'undefined' && window.__estimate_companyConfig) || {};
   return buildStandardPriceHtml({
     rows,
     cond: { credit: STD.credit, km: parseInt(STD.km, 10) || 2, dep: STD.dep, pre: STD.pre, insProperty: STD.insProperty, svc: STD.svc },

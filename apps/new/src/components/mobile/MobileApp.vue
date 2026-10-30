@@ -24,7 +24,7 @@ onMounted(() => {
 });
 onBeforeUnmount(() => footerObserver?.disconnect());
 
-const cfg = computed(() => window.__welrix_companyConfig || {});
+const cfg = computed(() => window.__estimate_companyConfig || {});
 const 헤더브랜드 = computed(() => '프리패스모빌리티');
 const 공유제목 = computed(() => '프리패스모빌리티 견적');
 
@@ -272,7 +272,7 @@ function goHome() {
   if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-const vehicles = ref(window.__welrix_vehicles || []);
+const vehicles = ref(window.__estimate_vehicles || []);
 
 // 발송 sheet
 const sendOpen = ref(false);

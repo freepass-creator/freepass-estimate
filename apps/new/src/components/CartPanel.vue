@@ -21,7 +21,7 @@ function doAction(action) {
   if (selectedCount.value === 0) return;
   const selected = cartStore.vehicles.filter(v => v.selected !== false);
   // preview 는 모달 열어두고 결과 확인, 나머지는 자동 트리거
-  window.__welrix_cartAction?.(action, selected);
+  window.__estimate_cartAction?.(action, selected);
   // preview 만 패널 닫음 (다른 액션은 견적서 모달에서 진행 상황/결과 확인)
   closePanel();
 }
@@ -29,7 +29,7 @@ function clearAll() {
   if (confirm('견적바구니를 모두 비우시겠습니까?')) clearCart();
 }
 function addCurrent() {
-  const result = window.__welrix_addCurrentToCart?.();
+  const result = window.__estimate_addCurrentToCart?.();
   if (!result || result.skipped) return;
   // 새로 추가된 경우 마지막 항목으로 스크롤
   if (!result.updated) {
@@ -42,7 +42,7 @@ function addCurrent() {
 
 // 외부에서 열기
 if (typeof window !== 'undefined') {
-  window.__welrix_openCart = openPanel;
+  window.__estimate_openCart = openPanel;
 }
 </script>
 

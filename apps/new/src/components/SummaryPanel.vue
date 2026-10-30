@@ -10,7 +10,7 @@ const BRAND_LOGOS = {
 };
 
 function guessColor(name) {
-  if (window.__welrix_guessColor) return window.__welrix_guessColor(name);
+  if (window.__estimate_guessColor) return window.__estimate_guessColor(name);
   return '#e5e5e5';
 }
 

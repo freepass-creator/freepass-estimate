@@ -43,8 +43,8 @@ function mountAll() {
   mountOne('options', OptionsList, 'OptionsList');
   mountOne('cart-panel-root', CartPanel, 'CartPanel');
   // Vue mount 직후 inline render 한 번 더 — Vue store가 이제 살아있으니 옵션 데이터 채워짐
-  if (typeof window.__welrix_render === 'function') {
-    window.__welrix_render();
+  if (typeof window.__estimate_render === 'function') {
+    window.__estimate_render();
     console.log('[Vue] post-mount render() 완료');
   }
 }

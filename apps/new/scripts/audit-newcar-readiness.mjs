@@ -6,7 +6,7 @@ const S=v=>String(v??'').trim();
 const idx=JSON.parse(fs.readFileSync('public/data/freepass-newcar/product-index.json','utf8'));
 const feed=JSON.parse(fs.readFileSync('public/data/freepass-newcar/current-feed.snapshot.json','utf8'));
 const master=JSON.parse(fs.readFileSync('public/data/freepass-newcar/vehicle-trim-master.json','utf8'));
-const legacyMap=JSON.parse(fs.readFileSync('public/data/freepass-newcar/welrix-id-map.json','utf8')).map||{};
+const legacyMap=JSON.parse(fs.readFileSync('public/data/freepass-newcar/vehicle-id-map.json','utf8')).map||{};
 
 const ctx={window:{},console:{log(){},warn(){},error(){}}};
 vm.createContext(ctx);
