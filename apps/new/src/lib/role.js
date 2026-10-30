@@ -7,9 +7,7 @@
 //    담당자는 `?staff=1` 로 한 번 들어와 PIN 을 넣으면 그 «폰에» 기억된다.
 //    다음부터는 그냥 열어도 담당자 화면이고, 손님 폰에는 아무 일도 안 생긴다.
 //
-//  ★PIN 은 빌드 때 심는다 — `vite.config.js` 의 injectGatePins 가
-//    `window.__GATE_PINS = { agent: '…' }` 를 넣는다(환경변수 VITE_AGENT_PIN).
-//    이건 «담을 치는 자물쇠»가 아니라 «손님이 실수로 들어오지 않게 하는 빗장»이다 —
+//  ★PIN 은 서버(api/staff-gate.js, 환경변수 AGENT_PIN)에서만 확인한다 — 화면(HTML)에 심지 않는다.
 //    원가·마진은 이 화면에 애초에 안 나온다. 가리는 건 수수료율·신용·탁송뿐이다.
 //
 //  ★공유 링크에는 담당자 표시를 «절대» 붙이지 않는다(→ 손님링크()).
@@ -31,10 +29,15 @@ export function 역할() {
 
 export const 담당자인가 = () => 역할() === 'staff';
 
-/** PIN 을 맞히면 이 폰을 담당자로 기억한다 */
-export function 담당자로(핀) {
-  const 정답 = String(window.__GATE_PINS?.agent ?? '');
-  if (!정답 || String(핀).trim() !== 정답) return false;
+/** PIN 을 서버에서 확인해 맞으면 이 폰을 담당자로 기억한다 (PIN 은 화면에 없다) */
+export async function 담당자로(핀) {
+  try {
+    const r = await fetch('/api/staff-gate', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ pin: String(핀).trim() }),
+    });
+    if (!r.ok || !(await r.json())?.ok) return false;
+  } catch { return false; }
   세션역할 = 'staff';
   try { localStorage.setItem(열쇠, 'staff'); } catch { /* 못 적어도 이번 세션은 담당자 */ }
   return true;

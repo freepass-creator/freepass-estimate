@@ -83,8 +83,8 @@ function 담당자문(){
     const 칸 = 벽.querySelector('#gate-pin');
     const 틀림 = 벽.querySelector('#gate-err');
     const 닫기 = () => { 벽.remove(); 끝(); };
-    const 해보기 = () => {
-      if (담당자로(칸.value)) {
+    const 해보기 = async () => {
+      if (await 담당자로(칸.value)) {
         const 기본 = conditionDefaultsForRole('staff', {
           staffDeposit: 웰릭스기본.dep,
           guestDeposit: 0,
