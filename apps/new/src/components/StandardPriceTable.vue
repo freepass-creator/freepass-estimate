@@ -347,7 +347,7 @@ async function copyAsImage() {
     } else {
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `welrix-견적서-${Date.now()}.png`;
+      a.download = `freepass-견적서-${Date.now()}.png`;
       a.click();
       URL.revokeObjectURL(a.href);
     }

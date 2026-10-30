@@ -865,7 +865,7 @@ img { display: block; width: ${imgW}mm; height: ${imgH}mm; margin: 0 auto; }
         const name = state.cust.name || '견적서';
         const today = new Date().toISOString().slice(0,10).replace(/-/g,'');
         a.href = url;
-        a.download = `welrix_견적서_${name}_${today}.png`;
+        a.download = `freepass_견적서_${name}_${today}.png`;
         document.body.appendChild(a); a.click(); a.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
       }, 'image/png');
