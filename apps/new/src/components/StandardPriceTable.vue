@@ -284,7 +284,7 @@ async function buildQuoteDocHtml() {
   return `<!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>웰릭스 표준 가격표</title>
+<title>프리패스 표준 가격표</title>
 <style>
   ${QUOTE_DOC_VARS}
   * { box-sizing: border-box; }
@@ -376,7 +376,7 @@ function openManufacturerPdf() {
       <div class="spt-head">
         <h3>
           <i class="ph ph-file-text"></i>
-          웰릭스 표준 견적
+          프리패스 표준 견적
         </h3>
         <button class="spt-close" @click="closePanel" aria-label="닫기">
           <i class="ph ph-x"></i>
