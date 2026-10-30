@@ -55,11 +55,11 @@ if (legacyMode !== 'CANONICAL_ONLY') {
   errors.push('VITE_FREEPASS_QUOTE_WRITE_MODE must be CANONICAL_ONLY; new RTDB Quote writes are forbidden');
 }
 
-const agentPin = value('VITE_AGENT_PIN');
+const agentPin = value('AGENT_PIN') || value('VITE_AGENT_PIN');
 if (!agentPin) {
-  errors.push('VITE_AGENT_PIN must be explicitly configured for deployed UI gate behavior');
+  errors.push('AGENT_PIN (server-only) must be explicitly configured for the staff gate');
 } else {
-  warnings.push('VITE_AGENT_PIN is client-visible and must never be treated as server authentication');
+  warnings.push('VITE_AGENT_PIN is client-visible at build time; use server-only AGENT_PIN instead');
 }
 
 if (!strict) {

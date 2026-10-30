@@ -132,21 +132,6 @@ function localVercelApi() {
   };
 }
 
-// 영업자 PIN은 UX gate일 뿐 보안 인증 수단이 아니다.
-// Vercel Production에서는 check-deploy-env가 명시 설정을 요구하며,
-// 로컬 개발에서만 편의를 위해 1234를 fallback으로 사용한다.
-function injectGatePins() {
-  return {
-    name: 'inject-gate-pins',
-    transformIndexHtml(html) {
-      const configured = String(process.env.VITE_AGENT_PIN || '').trim();
-      const agent = configured || (process.env.VERCEL_ENV ? '' : '1234');
-      const tag = `<script>window.__GATE_PINS={agent:${JSON.stringify(agent)}};</script>`;
-      return html.replace(/<head>/, '<head>\n' + tag);
-    },
-  };
-}
-
 const BUILD_REVISION = process.env.VERCEL_GIT_COMMIT_SHA || process.env.GITHUB_SHA || process.env.COMMIT_SHA || null;
 
 export default defineConfig(({ mode }) => {
@@ -164,7 +149,7 @@ export default defineConfig(({ mode }) => {
     __FREEPASS_BUILD_REVISION__: JSON.stringify(BUILD_REVISION),
   },
   publicDir: 'public',
-  plugins: [vue(), injectGatePins(), localVercelApi(), {
+  plugins: [vue(), localVercelApi(), {
     name: 'self-quote-short-route',
     configureServer(server) {
       server.middlewares.use((req, _res, next) => {
