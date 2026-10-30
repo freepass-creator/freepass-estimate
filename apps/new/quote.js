@@ -561,7 +561,7 @@ function renderOfficialQuoteDoc(vehicles) {
 function buildPlainText(monthly, totalKrw) {
   const v = state.vehicle;
   const lines = [];
-  lines.push('【 프리패스 테이블 견적 】');
+  lines.push('【 프리패스 신차견적 견적 】');
   lines.push('');
   lines.push(`▣ 차량: ${v.brand} ${v.model} ${v.variant || ''}`);
   lines.push(`▣ 트림: ${v.trim_name}`);
@@ -576,7 +576,7 @@ function buildPlainText(monthly, totalKrw) {
     lines.push(`  · ${m.term}개월 (보${m.dep}%/선${m.pre}%): ${fmt(m.monthly)}원 (만기 ${fmt(m.residualAmt)})`);
   });
   lines.push('');
-  lines.push('— 프리패스 테이블');
+  lines.push('— 프리패스 신차견적');
   return lines.join('\n');
 }
 
@@ -906,7 +906,7 @@ img { display: block; width: ${imgW}mm; height: ${imgH}mm; margin: 0 auto; }
       const custName = state.cust.name || 'VIP 고객';
       const vNames = vehicles.map(v => `· ${v.model} ${v.trim_name}`).join('\n');
       const text =
-`[프리패스 테이블 견적서]
+`[프리패스 신차견적 견적서]
 ${custName}님, 안녕하세요. 요청하신 견적을 보내드립니다.
 
 ${vNames}
@@ -914,7 +914,7 @@ ${vNames}
 상세 견적 확인하기 ↓
 ${url}
 
-— ${state.staff.name || '프리패스 테이블'} (${state.staff.tel || ''})`;
+— ${state.staff.name || '프리패스 신차견적'} (${state.staff.tel || ''})`;
       await navigator.clipboard.writeText(text);
       btn.innerHTML = '<i class="ph ph-check-circle"></i> 카톡 메시지 복사됨';
       btn.style.color = '#10b981';
