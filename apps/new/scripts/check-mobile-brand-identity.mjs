@@ -56,7 +56,7 @@ assert.doesNotMatch(desktopHead, /웰릭스|welrix-icon|og-image\.png|\[email pr
 assert.doesNotMatch(desktopHtml.match(/<div class="global-topbar">[\s\S]*?<\/div>\s*<div class="desktop-action-bar"/)?.[0] || '', /웰릭스|welrix-ci/,
   'desktop visible topbar must not expose Welrix identity');
 assert.equal(desktopManifest.name, '프리패스모빌리티 — 신차 장기렌터카 견적');
-assert.equal(desktopManifest.short_name, '프리패스 견적');
+assert.equal(desktopManifest.short_name, '프리패스 신차견적');
 assert.equal(desktopManifest.start_url, '/index.html');
 assert.equal(desktopManifest.theme_color, '#1b2a4a');
 

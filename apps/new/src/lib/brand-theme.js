@@ -23,7 +23,7 @@ export function applyProductTheme(cfg={}){
   const ogSite=document.querySelector('meta[property="og:site_name"]');
   if(ogSite) ogSite.setAttribute('content',displayName);
   const appleTitle=document.querySelector('meta[name="apple-mobile-web-app-title"]');
-  if(appleTitle) appleTitle.setAttribute('content','프리패스 견적');
+  if(appleTitle) appleTitle.setAttribute('content','프리패스 신차견적');
   const manifest=document.querySelector('link[rel="manifest"]');
   if(manifest) manifest.setAttribute('href','/freepass-manifest.webmanifest');
 

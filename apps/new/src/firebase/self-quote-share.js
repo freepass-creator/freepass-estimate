@@ -39,7 +39,7 @@ export async function saveSelfQuote(bundle) {
   await setDoc(doc(db(), 'welrix_quote_shares', id), {
     quote_id: id, kind: 'self', created_at: now, expires_at: now + 30 * 86400000, payload,
   });
-  return `https://freepass-estimator.vercel.app/s/${id}`;
+  return `https://newcar.freepasserp.com/s/${id}`;
 }
 export async function loadSelfQuote(id) {
   if (!/^[a-z0-9]{8}$/.test(id)) throw new Error('올바르지 않은 견적 링크입니다.');
