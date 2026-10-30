@@ -15,14 +15,8 @@ assert.deepEqual(공급자설정(standardCfg), {
 });
 assert.equal(공급자키(standardCfg), 'standard');
 
-const excelCfg = { quote_provider: { mode: 'external', kind: 'excel', adapter_id: 'welrix' } };
-assert.deepEqual(공급자설정(excelCfg), {
-  mode: 'external', kind: 'excel', adapter_id: 'welrix',
-});
-assert.equal(공급자키(excelCfg), 'external:excel:welrix');
-
-const erpCfg = { quote_provider: { mode: 'external', kind: 'erp', adapter_id: 'partner-erp' } };
-assert.equal(공급자키(erpCfg), 'external:erp:partner-erp');
+// 외부 연동 산식은 폐기 — 표준 외 설정은 받아들이지 않는다.
+assert.throws(() => 공급자설정({ quote_provider: { mode: 'external', kind: 'excel', adapter_id: 'x' } }), /올바르지 않습니다/);
 
 const request = {
   계약: QUOTE_REQUEST_CONTRACT,
@@ -40,13 +34,12 @@ assert.equal(normalizePricingEngineEvidence({
   evidence:'LOCAL_SOURCE_POLICY_MANIFEST',verified:true,
 }).verified,true);
 assert.throws(()=>normalizePricingEngineEvidence({
-  id:'welrix-excel',version:'welrix-excel/v6.1',evidence:'ADAPTER_PIN_ONLY',verified:false,
+  id:'unknown-engine',version:'unknown/v1',evidence:'ADAPTER_PIN_ONLY',verified:false,
 },{requireVerified:true}),/not verified/);
 assert.throws(()=>normalizePricingEngineEvidence(null),/required/);
 
 // Calculation implementations are tested separately:
 // - server-side FreePass standard: check-standard-engine.mjs
-// - external adapters: regression/probe scripts.
 // This contract test only locks the shared request/result shape and provider routing.
 
 // Provider choice is configuration, never a user-facing quote-screen control.
@@ -57,4 +50,4 @@ for (const file of ['index.html', 'mobile.html']) {
     `${file}: provider selection leaked into quote UI`);
 }
 
-console.log('✓ quote provider contract — standard/external Excel/external ERP share one UI contract');
+console.log('✓ quote provider contract — standard only, external rejected');

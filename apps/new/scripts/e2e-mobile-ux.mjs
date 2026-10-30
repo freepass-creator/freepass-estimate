@@ -207,7 +207,7 @@ try {
   // 받은 사람이 열었을 때 API 재계산 없이 같은 금액
   const page2 = await context.newPage();
   let estimateCalls = 0;
-  const isQuoteApi = (url) => /\/api\/(?:estimate|standard-quote|external-quote)(?:[/?]|$)/.test(url);
+  const isQuoteApi = (url) => /\/api\/(?:standard-quote)(?:[/?]|$)/.test(url);
   page2.on('request', (r) => { if (isQuoteApi(r.url())) estimateCalls++; });
   await page2.goto(new URL(new URL(sharedUrl).pathname, BASE).href, { waitUntil: 'networkidle' });
   await page2.waitForSelector('.sr-snapshot');
@@ -243,7 +243,7 @@ try {
   await page2.locator('.m-footer .m-btn--soft').filter({ hasText: '조건 변경' }).click();
   await page2.waitForFunction(() => document.querySelector('.sv-title')?.textContent?.includes('옵션'));
   await page2.waitForFunction(() => performance.getEntriesByType('resource').some((x) =>
-    /\/api\/(?:estimate|standard-quote|external-quote)(?:[/?]|$)/.test(x.name)
+    /\/api\/(?:standard-quote)(?:[/?]|$)/.test(x.name)
   ), null, { timeout: 10000 });
   ok(estimateCalls >= 1, '조건 변경 후 새 견적 API가 호출되지 않음');
 
