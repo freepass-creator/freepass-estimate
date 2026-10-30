@@ -1,10 +1,5 @@
 import assert from 'node:assert/strict';
 import { 계산차량가 } from '../src/lib/quote/build-request.js';
-import {
-  externalCanonicalVehiclePrice,
-  externalManualVehiclePrice,
-  externalOptionPrice,
-} from '../api/external-quote.js';
 import { canonicalizeQuoteRequestFromMaster } from '../api/_master/authoritative-request.js';
 
 const master = {
@@ -119,22 +114,6 @@ assert.equal(
   'request price assembly must include paid interior color'
 );
 
-const absorbedWon = 200000;
-const manualPrice = externalManualVehiclePrice(canonical.차.가격, absorbedWon);
-const providerOptionPrice = externalOptionPrice(canonical.차.가격, {}, absorbedWon);
-const canonicalTotal = externalCanonicalVehiclePrice(canonical.차.가격);
-
-assert.equal(manualPrice, 35200000,
-  'provider manual base must be canonical trim plus axis price absorbed in provider row');
-assert.equal(providerOptionPrice, 1400000,
-  'external provider option price must include colors and subtract absorbed axis option');
-assert.equal(
-  manualPrice + providerOptionPrice - canonical.차.가격.할인,
-  canonicalTotal,
-  'provider input equation must exactly reproduce FreePass Data canonical configured vehicle price'
-);
-assert.equal(canonicalTotal, 36100000);
-
 assert.throws(
   () => 계산차량가({ trimPrice: Number.NaN }),
   /가격 구성값이 올바르지 않습니다/
@@ -150,4 +129,4 @@ assert.throws(
   /colorExtId/
 );
 
-console.log('PASS FreePass Data authoritative new-car price assembly + external provider price equation');
+console.log('PASS FreePass Data authoritative new-car price assembly');

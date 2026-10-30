@@ -3,11 +3,10 @@ import { 공급자설정, 공급자키 } from './provider-config.js';
 import { createQuoteExecution, attachQuoteExecution } from './execution-result.js';
 import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT, QUOTE_EXECUTION_CONTRACT, buildRevision } from './contracts.js';
 import * as 표준 from './engines/freepass-standard.js';
-import * as 외부 from './engines/external.js';
 import { normalizePricingEngineEvidence } from './pricing-engine.js';
 import { normalizePriceBasis } from './price-basis.js';
 
-export const 계산기들 = Object.freeze({ 표준, 외부 });
+export const 계산기들 = Object.freeze({ 표준 });
 
 export function 활성계산기이름(강제계산기 = null) {
   if (강제계산기) {
@@ -18,7 +17,8 @@ export function 활성계산기이름(강제계산기 = null) {
     }
     return 강제계산기;
   }
-  return 공급자설정().mode === 'standard' ? '표준' : '외부';
+  공급자설정(); // 표준 산식만 지원 — 다른 모드 설정이면 여기서 코드 있는 오류로 멈춘다
+  return '표준';
 }
 
 function codedError(message, code) {

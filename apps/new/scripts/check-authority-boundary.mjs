@@ -35,25 +35,12 @@ for (const name of workflowNames) {
 }
 
 const standardApi = fs.readFileSync(path.join(process.cwd(), 'api', 'standard-quote.js'), 'utf8');
-const externalApi = fs.readFileSync(path.join(process.cwd(), 'api', 'external-quote.js'), 'utf8');
 const requestBuilder = fs.readFileSync(path.join(process.cwd(), 'src', 'lib', 'quote', 'build-request.js'), 'utf8');
 const authoritative = fs.readFileSync(path.join(process.cwd(), 'api', '_master', 'authoritative-request.js'), 'utf8');
 
 assert.ok(
   standardApi.includes("authoritativeQuoteRequest"),
   'Standard pricing must resolve FreePass Data master before calculation'
-);
-assert.ok(
-  externalApi.includes("authoritativeQuoteRequest"),
-  'External pricing must resolve FreePass Data master before provider calculation'
-);
-assert.ok(
-  !/manualPrice\s*:\s*0\b/.test(externalApi),
-  'External provider must not calculate from provider-owned default vehicle price'
-);
-assert.ok(
-  externalApi.includes('PROVIDER_PRICE_OVERRIDE_REJECTED'),
-  'External provider must fail closed when canonical manual price is ignored'
 );
 assert.ok(
   requestBuilder.includes('colorExtId') && requestBuilder.includes('colorIntId'),

@@ -47,15 +47,10 @@ jobs:
           node --check api/standard-quote.js
           node --check api/external-quote.js
           node --check src/lib/quote/build-request.js
-          node --check src/lib/quote/provider-policy.js
       - name: Estimate/Data authority boundary
         run: npm run check:authority-boundary
       - name: FreePass Data price authority
         run: npm run check:pricing
-      - name: External provider routing
-        run: node scripts/test-provider-routing.mjs
-      - name: External provider failure policy
-        run: npm run check:provider-policy
       - name: Standard pricing regression
         run: node scripts/check-standard-engine.mjs
       - name: Quote execution carries canonical PriceBasis
@@ -103,8 +98,6 @@ jobs:
           node --check api/_master/authoritative-request.js
           node --check src/lib/quote/engines/freepass-standard.js
           node --check src/lib/quote/engines/external.js
-          node --check src/lib/quote/provider-policy.js
-          node --check scripts/check-provider-runtime-policy.mjs
           node --check src/lib/share-link.js
           node --check api/external-quote.js
           node --check api/standard-quote.js
