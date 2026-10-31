@@ -1,7 +1,7 @@
 {
   "contract": "freepass-pricing-engine-manifest/v1",
   "engine_id": "freepass-standard-newcar",
-  "algorithm_version": "1.2.0",
+  "algorithm_version": "1.3.0",
   "source_files": [
     "apps/new/api/_standard/calc.js",
     "apps/new/api/_standard/standard-service.js",
@@ -12,7 +12,7 @@
     "apps/new/api/_standard/data/residual-delta.json",
     "apps/new/api/_standard/data/engine-facts.json"
   ],
-  "source_digest": "c6dbb58048dd665d079cab350021e4f02614e36f1e9123f3f71602f5c983aad0",
+  "source_digest": "d79dc9746b44fce0b774356e3b1a25e55fe3a680c38bc8c1ffaa29c97929469d",
   "policy_digest": "dde4ea76ad37031118c32289e8320f567a25817d3d87a55264b2c26ed11c7492",
-  "version": "freepass-standard/newcar@1.2.0+src.c6dbb58048dd.policy.dde4ea76ad37"
+  "version": "freepass-standard/newcar@1.3.0+src.d79dc9746b44.policy.dde4ea76ad37"
 }

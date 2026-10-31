@@ -1,3 +1,4 @@
+import { COMMISSION_POLICY, DEFAULT_AGENT_POINTS, commissionForAgent } from './commission-policy.js';
 import { QUOTE_REQUEST_CONTRACT, LEGACY_QUOTE_VERSION } from './contracts.js';
 import { createQuoteConditionCosts } from './condition-cost-contract.js';
 
@@ -203,7 +204,7 @@ export function buildCatalogPreviewRequest({
     조건: {
       신용: conditions.credit || '중신용',
       주행: conditions.mileage || '2만km',
-      정비: conditions.maintenance || '웰스 Basic',
+      정비: '정비 제외',
       대물: conditions.liability || '1억',
       추가운전자: conditions.extraDriver || '없음',
       탁송비: 비용.deliveryFee,
@@ -212,7 +213,9 @@ export function buildCatalogPreviewRequest({
       내비비: 비용.naviFee,
       하이패스비: 비용.hipassFee,
       비용,
-      수수료율: Number(conditions.feeRatePct || 0),
+      수수료정책: COMMISSION_POLICY,
+      영업수수료P: commissionForAgent(Number(conditions.feeRatePct ?? DEFAULT_AGENT_POINTS)).agentPoints,
+      수수료율: commissionForAgent(Number(conditions.feeRatePct ?? DEFAULT_AGENT_POINTS)).totalPoints,
     },
     안들: scenarios.map((scenario) => Object.freeze({
       기간: Number(scenario.term),

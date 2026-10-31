@@ -1,6 +1,8 @@
 // 모바일 전용 entry — index.js 와 분리된 별도 번들
 // store/firebase 는 공유하되 견적 계산은 Quote Core만 사용한다.
 import { createApp } from 'vue';
+import { loadEstimateNewcarMaster } from './lib/master/freepass-data-master.js';
+import { buildVehicleDbFromEstimateMaster } from './lib/master/vehicle-db-projection.js';
 import { installMobileHaptics } from './lib/haptics.js';
 import { normalizeExteriorPaint, restorePaintSelection } from './lib/exterior-paint.js';
 import MobileApp from './components/mobile/MobileApp.vue';
@@ -71,7 +73,7 @@ function 담당자문(){
     벽.className = 'gate-bg';
     벽.innerHTML = `
       <div class="gate-card">
-        <img class="gate-ci" src="/freepass-wordmark.svg" alt="프리패스모빌리티">
+        <img class="gate-ci" src="/freepass-wordmark.svg" alt="freepass">
         <h1 class="gate-title">담당자 확인</h1>
         <p class="gate-sub">이 기기를 담당자용으로 기억합니다</p>
         <input id="gate-pin" inputmode="numeric" autocomplete="off" placeholder="PIN">
@@ -109,8 +111,25 @@ async function boot() {
   // 정체성을 먼저 확정해야 새로고침 직후 담당자 게이트에도 잘못된 브랜드가 노출되지 않는다.
   await loadCompanyConfig();
   if (담당자로들어왔나() && !담당자인가()) await 담당자문();
+  try {
+    const master = await loadEstimateNewcarMaster();
+    const projection = buildVehicleDbFromEstimateMaster(master);
+    window.VEHICLE_DB = projection.vehicleDb;
+    window.__freepassEstimateMaster = projection.meta;
+  } catch (error) {
+    // A saved customer snapshot remains readable without claiming current prices.
+    const saved = location.pathname.startsWith('/s/') || new URLSearchParams(location.search).has('qs');
+    if (!saved) {
+      const alert = document.createElement('p');
+      alert.setAttribute('role', 'alert');
+      alert.style.cssText = 'padding:24px;line-height:1.7;';
+      alert.textContent = '제조사 기준 차량가격과 옵션 정보를 불러오지 못했습니다. 최신 가격 확인 전에는 견적을 계산하지 않습니다.';
+      document.getElementById('m-app').replaceChildren(alert);
+      return;
+    }
+  }
   await waitForVehicleDb();
-  normalizeExteriorPaint(window.VEHICLE_DB);
+  if (!window.__freepassEstimateMaster) normalizeExteriorPaint(window.VEHICLE_DB);
   await loadVehicles();
   // 재고는 비동기 — mount 후에도 늦게 도착해도 OK
   loadStock();

@@ -1,3 +1,4 @@
+import { commissionFromConditions } from '../src/lib/quote/commission-policy.js';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { configurationAxes, resolveProviderCandidate, absorbedAxisOptionIds } from '../src/lib/newcar/configuration-resolver.js';
@@ -150,7 +151,7 @@ export function externalCanonicalVehiclePrice(price = {}) {
   return Math.round(total);
 }
 
-function welrixBody(request) {
+export function welrixBody(request) {
   const 차 = request?.차 || {};
   const 가격 = 차.가격 || {};
   const 조건 = request?.조건 || {};
@@ -166,7 +167,9 @@ function welrixBody(request) {
 
   return {
     model: resolved.candidate.api_model,
-    old: false,
+    // The provider activates its manual-price field through this UI flag.
+    // Same-price parity is verified; our product remains a new-car quote.
+    old: true,
     // External providers supply formulas, not vehicle price authority.
     // Base row price is always the FreePass Data canonical base plus any option axis
     // already absorbed into the provider's completed vehicle row.
@@ -187,8 +190,8 @@ function welrixBody(request) {
       prepay_pct: (a.선납 || 0) / 100,
       liability: 조건.대물,
       extraDriver: 조건.추가운전자,
-      maintenance: 조건.정비,
-      feeRate: (조건.수수료율 || 0) / 100,
+      maintenance: '웰스 Self', // Provider code for maintenance excluded; never displayed as a product name.
+      feeRate: (조건.수수료정책 ? commissionFromConditions(조건).totalPoints : 조건.수수료율 || 0) / 100,
     })),
   };
 }

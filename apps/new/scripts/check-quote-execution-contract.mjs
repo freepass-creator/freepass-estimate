@@ -178,4 +178,44 @@ need(failed.quoteExecution?.status === 'FAILED', 'failure execution proof missin
 need(failed.quoteExecution?.request_id?.startsWith('quote-'), 'failure request id missing');
 need(failed.quoteExecution?.blockers?.includes('PROVIDER_UNAVAILABLE'), 'failure blocker missing');
 
+// Credit routing must select the same provider for execution and provenance.
+const fs = await import('node:fs');
+globalThis.window.__welrix_companyConfig = JSON.parse(fs.readFileSync(
+  new URL('../public/data/company-config/freepass.json', import.meta.url), 'utf8',
+));
+const routedCalls = [];
+globalThis.fetch = async (url, options) => {
+  routedCalls.push({ url, body: JSON.parse(options.body) });
+  return { ok: true, status: 200, json: async () => ({
+    ok: true,
+    contract: QUOTE_RESULT_CONTRACT,
+    providerContract: QUOTE_PROVIDER_CONTRACT,
+    priceBasis: success.priceBasis,
+    pricingEngine: { id: 'welrix-excel', version: 'welrix-excel/v6.1', evidence: 'UPSTREAM_CONTRACT', verified: true },
+    vehiclePrice: 30000000,
+    results: [{ monthlyRent: 777000, deposit: 0, prepay: 0, acquirePrice: 0, totalCarPrice: 30000000, payFee: 0 }],
+  }) };
+};
+const mediumRequest = { ...request, 조건: { 신용: '중신용' } };
+const mediumResult = await 견적계산(mediumRequest);
+need(routedCalls.length === 1 && routedCalls[0].url === '/api/external-quote', 'medium credit must execute the external adapter');
+need(routedCalls[0].body.adapterId === 'welrix', 'medium credit must select Welrix');
+need(mediumResult.공급자 === 'external:excel:welrix', 'credit route provenance must match execution');
+need(mediumResult.결과[0].월대여료 === 777000, 'Welrix result must reach the quote');
+routedCalls.length = 0;
+globalThis.fetch = async (url) => {
+  routedCalls.push({ url });
+  return { ok: false, status: 503, json: async () => ({ ok: false, code: 'PROVIDER_UNAVAILABLE' }) };
+};
+let mediumFailure;
+try { await 견적계산(mediumRequest); } catch (error) { mediumFailure = error; }
+need(mediumFailure?.code === 'PROVIDER_UNAVAILABLE', 'Welrix failure must remain visible');
+need(routedCalls.length === 1 && routedCalls[0].url === '/api/external-quote', 'Welrix failure must not fall back to standard');
+
+const { calculateStandardPreviewBatch } = await import('../src/lib/quote/preview-calculate.js');
+routedCalls.length = 0;
+const previewFailures = await calculateStandardPreviewBatch([mediumRequest]);
+need(previewFailures[0]?.code === 'PROVIDER_UNAVAILABLE', 'preview must surface the Welrix error');
+need(routedCalls.length === 1 && routedCalls[0].url === '/api/external-quote', 'medium-credit preview must not use the standard batch API');
+
 console.log('quote execution contract: PASS');

@@ -1,3 +1,5 @@
+import { QUOTE_DELIVERY_FEE } from './quote/launch-region.js';
+import { DEFAULT_AGENT_POINTS, commissionForAgent } from './quote/commission-policy.js';
 // 견적 입력 조립 — 단일 SSOT
 // 웹 ERP(quote.js recompute)·모바일(StickyQuote/SendSheet)·홈(QuoteWidget) 가
 // calcQuote 에 넘기는 입력 객체를 각자 따로 만들던 것을 통합.
@@ -136,7 +138,7 @@ export function buildCalcInput(state, sc, vehicles) {
     options: {
       optPrice: 0,
       discount: (cond.discount || 0) * 10000,
-      deliveryFee: FLAT_DELIVERY[cond.deliveryCity] || 0,
+      deliveryFee: QUOTE_DELIVERY_FEE,
       itemsFee: itemsFeeForCalc(state),
       etc: 0,
     },
@@ -153,6 +155,6 @@ export function buildCalcInput(state, sc, vehicles) {
       exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
       deductible: '30만원~', emergency: '가입',
     },
-    fees: { feeRatePct: cond.feeRatePct ?? 5.0, svc: cond.svc || '웰스 Basic' },
+    fees: { feeRatePct: commissionForAgent(cond.feeRatePct ?? DEFAULT_AGENT_POINTS).totalPoints, svc: '정비 제외' },
   };
 }

@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "check:comparison": "node scripts/check-quote-comparison.mjs",
+    "check:welrix-comparison": "node scripts/check-welrix-comparison.mjs",
+    "check:customer-reference": "node --test scripts/customer-reference.test.mjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
@@ -35,7 +38,12 @@
     "check:deploy-env": "node scripts/check-deploy-env.mjs",
     "check:deployment": "node scripts/check-deployment-wiring.mjs && node scripts/check-freepass-data-cloud-run-auth.mjs",
     "build:vercel": "node scripts/check-deploy-env.mjs --strict && vite build",
-    "check:data-authority": "node scripts/check-freepass-data-authority.mjs"
+    "check:data-authority": "node scripts/check-freepass-data-authority.mjs",
+    "check:kamatch": "node --test scripts/kamatch-formula.test.mjs scripts/kamatch-rates.test.mjs scripts/kamatch-comparison.test.mjs",
+    "check:commission": "node --test scripts/commission-policy.test.mjs",
+    "check:standard-inference": "node --test scripts/standard-inference.test.mjs scripts/quote-benchmark.test.mjs scripts/manufacturer-parity.test.mjs",
+    "test:workspace": "node scripts/e2e-unified-workspace.mjs",
+    "check:live": "node scripts/check-live-estimator.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"
@@ -44,6 +52,7 @@
     "@vercel/oidc": "3.8.9",
     "@vitejs/plugin-vue": "^6.0.7",
     "firebase": "^12.12.0",
+    "html2canvas": "^1.4.1",
     "vue": "^3.5.34"
   },
   "description": "FreePass Estimate new-car app — canonical estimator upstream / SSOT",

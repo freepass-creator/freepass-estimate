@@ -1,15 +1,12 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 역할 } from '../../lib/role.js';
-import { rolePolicy } from '../../lib/feature/roles.js';
-import { QUOTE_TERMS } from '../../lib/quote/terms.js';
-import { CREDIT_OPTIONS, KM_OPTIONS, toggleQuoteTerm } from '../../lib/feature/conditions.js';
+import { KM_OPTIONS, toggleQuoteTerm, applyScenarioPercent } from '../../lib/feature/conditions.js';
+import FeeControl from '../FeeControl.vue';
+import StepExtras from './StepExtras.vue';
 
-const 담당자 = rolePolicy(역할()).canEditInternalCredit;
-const TERMS = QUOTE_TERMS;
+const TERMS = [36, 48, 60];
 const KMS = KM_OPTIONS;
-const CREDITS = CREDIT_OPTIONS;
 
 const selectedTerms = computed(() => (quoteState.scenarios || []).map(s => s.term));
 
@@ -22,6 +19,13 @@ function toggleTerm(t) {
 <template>
   <div class="sc">
     <h2 class="sc-title">계약 조건을<br>설정해 주세요</h2>
+
+    <div class="sc-finance">
+      <label class="sc-finance__field"><span>보증금</span><span class="sc-finance__input"><input aria-label="보증금" type="number" inputmode="decimal" :value="quoteState.cond.dep" min="0" max="30" step="1" @input="applyScenarioPercent(quoteState, 'dep', $event.target.value)" /><span>%</span></span></label>
+      <label class="sc-finance__field"><span>선납금</span><span class="sc-finance__input"><input aria-label="선납금" type="number" inputmode="decimal" :value="quoteState.cond.pre" min="0" max="30" step="1" @input="applyScenarioPercent(quoteState, 'pre', $event.target.value)" /><span>%</span></span></label>
+      <div class="sc-finance__fees"><FeeControl compact /></div>
+    </div>
+    <p class="sc-note">영업 수수료 기본 풀피 5.0P · 회사 고정 1.0P 별도 합산. 위 조건을 정한 뒤 견적을 확인하세요.</p>
 
     <div class="sc-field">
       <div class="sc-label">
@@ -47,31 +51,15 @@ function toggleTerm(t) {
       </div>
     </div>
 
-    <!-- 신용은 «담당자만» 고른다. 손님이 「저신용」을 고르면 값이 확 뛴다 —
-         손님 화면은 중신용 고정이고 아래 고지로 알린다. -->
-    <div class="sc-field" v-if="담당자">
-      <div class="sc-label">신용</div>
-      <div class="sc-chips">
-        <button
-          v-for="c in CREDITS" :key="c.value"
-          type="button" class="sc-chip" :class="{ 'is-selected': quoteState.cond.credit === c.value }" :aria-pressed="quoteState.cond.credit === c.value"
-          @click="quoteState.cond.credit = c.value"
-        >{{ c.label }}</button>
-      </div>
-    </div>
-
-    <!-- ★손님에게는 등급 이름을 보이지 않는다 — 「신용점수 무관」 (대표 2026-09-18).
-         계산은 여전히 중신용으로 한다(웰릭스는 고·중·저만 받는다). -->
-    <p v-if="!담당자" class="sc-note">
-      <b>신용점수 무관</b> 기준입니다. 심사 결과에 따라 달라질 수 있습니다.
-    </p>
-
-    <!-- 보증금·선납금·수수료는 시작(제조사) 화면에서 입력 — 단일 입력처로 통일.
-         ★손님에게는 그 칸 자체가 없으므로 이 안내도 안 보인다. -->
-    <p v-if="담당자" class="sc-note">
-      보증금·선납금·수수료는 <b>시작 화면</b>에서 설정합니다.
-      <span class="sc-note__cur">현재 수수료 {{ quoteState.cond.feeRatePct }}% · 보증금 {{ quoteState.cond.dep }}% · 선납금 {{ quoteState.cond.pre }}%</span>
-    </p>
+    <details class="sc-extra-conditions">
+      <summary>기본 조건 · 수도권 · 만 26세 이상 · 정비 제외 <span>변경</span></summary>
+      <StepExtras embedded />
+    </details>
+    <details class="sc-staff">
+      <summary>담당자 정보 <span>{{ quoteState.staff.name || '입력' }}</span></summary>
+      <label class="sc-finance__field"><span>담당자 이름</span><input v-model.trim="quoteState.staff.name" aria-label="담당자 이름" type="text" autocomplete="name" maxlength="40" placeholder="이름 또는 직함" /></label>
+      <label class="sc-finance__field"><span>담당자 연락처</span><input v-model.trim="quoteState.staff.tel" aria-label="담당자 연락처" type="tel" autocomplete="tel" maxlength="30" placeholder="010-0000-0000" /></label>
+    </details>
   </div>
 </template>
 
@@ -82,6 +70,11 @@ function toggleTerm(t) {
   line-height: 1.35; letter-spacing: -0.5px;
 }
 .sc-field { margin-bottom: 16px; }
+.sc-finance { margin: 24px 0; }
+.sc-finance__field { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 320px; margin: 16px 0; font-size: 14px; color: var(--fp-text-2); }
+.sc-finance__input { display: flex; align-items: center; gap: 8px; background: var(--fp-surface-soft); border-radius: 6px; padding: 0 12px; }
+.sc-finance__input input { width: 88px; min-height: 44px; border: 0; background: transparent; font: inherit; color: var(--fp-text); text-align: right; }
+.sc-finance__input input:focus-visible { outline: 3px solid var(--fp-focus-ring); border-radius: 4px; }
 .sc-label {
   display: flex; align-items: baseline; justify-content: space-between;
   font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-2);
@@ -151,4 +144,17 @@ function toggleTerm(t) {
   font-style: normal; font-size: var(--fs-md);
   color: var(--ink-4); flex-shrink: 0;
 }
+</style>
+
+<style scoped>
+.sc-finance { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:16px 0 12px; align-items:start; }
+.sc-finance > .sc-finance__field { display:flex; flex-direction:column; align-items:stretch; margin:0; gap:8px; min-width:0; font-size:13px; }
+.sc-finance__input { padding-inline:8px; gap:3px; min-height:56px; }
+.sc-finance__input input { width:100%; min-width:0; text-align:center; }
+.sc-finance__fees { min-width:0; }
+.sc-extra-conditions,.sc-staff { margin:24px 0; font-size:13px; }
+summary { cursor:pointer; line-height:1.8; color:var(--ink-2); }
+summary span { color:var(--ink-3); margin-left:8px; }
+.sc-extra-conditions[open] > summary,.sc-staff[open] > summary { margin-bottom:20px; }
+.sc-note { margin-bottom:24px; }
 </style>

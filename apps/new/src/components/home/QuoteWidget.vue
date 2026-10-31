@@ -1,4 +1,5 @@
 <script setup>
+import { DEFAULT_AGENT_POINTS } from '../../lib/quote/commission-policy.js';
 // 손님 셀프 견적 — FreePass 카탈로그 선택값을 canonical Quote Core로 계산한다.
 // 4단계: 제조사 → 모델 → 세부모델(variant) → 트림 → 기간 → 결과.
 // 차량 가격은 브라우저 값을 신뢰하지 않고 /api/standard-quote가 FreePass Data에서 다시 확정한다.
@@ -47,7 +48,7 @@ onMounted(async () => {
     if (!window.VEHICLE_DB) throw new Error('VEHICLE_DB 미로드');
     db.value = window.VEHICLE_DB;
     // 첫 브랜드 자동 선택 — 브랜드 탭은 항상 노출, 카스케이드는 모델부터 시작
-    const first = db.value.manufacturers?.[0];
+    const first = window.FreePassNewcarLaunch.manufacturers(db.value.manufacturers)[0];
     if (first) brandId.value = first.manufacturer_id;
   } catch (e) {
     error.value = '차량 데이터 로드 실패';
@@ -57,7 +58,7 @@ onMounted(async () => {
 });
 
 // 카스케이드 옵션
-const manufacturers = computed(() => db.value?.manufacturers || []);
+const manufacturers = computed(() => window.FreePassNewcarLaunch.manufacturers(db.value?.manufacturers));
 const selectedManufacturer = computed(() =>
   manufacturers.value.find(m => m.manufacturer_id === brandId.value)
 );
@@ -167,16 +168,16 @@ async function recomputeQuotePreview() {
       conditions: {
         credit: '중신용',
         mileage: '2만km',
-        maintenance: '웰스 Basic',
+        maintenance: '정비 제외',
         liability: '1억',
         extraDriver: '없음',
-        feeRatePct: 5.0,
+        feeRatePct: DEFAULT_AGENT_POINTS,
         deliveryFee: DEFAULT_DELIVERY_FEE,
         tintFee: DEFAULT_TINT_FEE,
         dashcamFee: 0,
       },
     });
-    const answer = await 견적계산(request, { 강제계산기: '표준' });
+    const answer = await 견적계산(request);
     if (sequence !== quoteSequence) return;
     const row = answer?.결과?.[0];
     result.value = row ? {

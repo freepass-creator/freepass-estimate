@@ -1,13 +1,16 @@
 <script setup>
+import { QUOTE_REGION } from '../../lib/quote/launch-region.js';
 /* ── 견적 페이지 — 마지막 걸음 ────────────────────────────────────────────
  * ★대표 2026-09-18 「옵션 고르기 전까지는 하단에 견적 보여주지 말고, 견적도 별도 페이지로 보이게」
  *   고른 차·옵션·조건을 한 장에 모으고, 기간별 월 렌트료를 크게 보인다.
  *   숫자는 하단 금액바와 «같은 곳»(견적상태 = 웰릭스 계산)에서 읽는다 — 따로 계산하지 않는다.
  */
 import { computed } from 'vue';
+import { PUBLIC_OFFERS,publicOfferDefinition } from '../../lib/quote/public-offers.js';
 import { quoteState, vehicleState } from '../../store.js';
-import { 견적상태 } from '../../lib/quote/index.js';
+import { 표시견적 as 견적상태 } from '../../lib/quote/display-runtime.js';
 import { 담당자인가 } from '../../lib/role.js';
+import { vehiclePriceBreakdown } from '../../lib/vehicle-price-breakdown.js';
 import { fmt } from '../../lib/format.js';
 import { exteriorColorsFor } from '../../lib/exterior-paint.js';
 
@@ -34,29 +37,16 @@ function 목록에서() {
   } catch { return {}; }
 }
 const v = computed(() => (snapshot.value?.vehicle?.trim_name ? snapshot.value.vehicle : (quoteState.vehicle?.trim_name ? quoteState.vehicle : 목록에서())));
+const 연락담당자 = computed(() => 공유견적.value ? snapshot.value?.staff : quoteState.staff);
 const c = computed(() => quoteState.cond || {});
 
 const 계산중 = computed(() => !공유견적.value && 견적상태.상태 === 'pending');
 const 계산못함 = computed(() => !공유견적.value && 견적상태.상태 === 'error');
-
-const 기간들 = computed(() => {
-  if (snapshot.value?.terms?.length) {
-    return snapshot.value.terms.map((t) => ({
-      term: t.term,
-      monthly: t.monthly ?? null,
-      인수가: t.acquire ?? null,
-      depPct: t.depPct ?? 0,
-      prePct: t.prePct ?? 0,
-    }));
-  }
-  const r = 견적상태.상태 === 'ok' ? (견적상태.결과 || []) : [];
-  return (quoteState.scenarios || []).map((sc, i) => ({
-    term: sc.term,
-    monthly: r[i]?.월대여료 ?? null,
-    인수가: r[i]?.인수가 ?? null,
-    depPct: sc.dep ?? 0,
-    prePct: sc.pre ?? 0,
-  }));
+const 견적종류들 = computed(() => {
+  if (snapshot.value?.offers?.length) return snapshot.value.offers.map(offer => ({...publicOfferDefinition(offer.id), status:offer.status, estimated:offer.id==='no-credit', terms:offer.terms}));
+  if (snapshot.value?.terms?.length) return [{id:'legacy',label:'저장된 견적',status:'ready',terms:snapshot.value.terms}];
+  const offers = 견적상태.견적들?.length ? 견적상태.견적들 : PUBLIC_OFFERS.map(offer=>({...offer,status:'pending',results:[]}));
+  return offers.map(offer=>({...offer,terms:(quoteState.scenarios||[]).map((sc,i)=>({term:sc.term,monthly:offer.results[i]?.월대여료??null,acquire:offer.results[i]?.인수가??null,depPct:sc.dep??0,prePct:sc.pre??0,deposit:offer.results[i]?.보증금??0,prepay:offer.results[i]?.선납금??0}))}));
 });
 
 /* 총 차량가 — 공유 Snapshot 이 있으면 «보낸 당시» 총차량가가 우선이다. */
@@ -66,6 +56,10 @@ const 총차량가 = computed(() => {
   return (견적상태.결과 || []).find((g) => g?.총차량가)?.총차량가 ?? ((v.value.total_manwon || 0) * 10000);
 });
 
+const 가격구성 = computed(() => vehiclePriceBreakdown(!공유견적.value && 견적상태.가격구성 ? { priceBreakdown: 견적상태.가격구성 } : v.value, c.value.colorIntPrice, 총차량가.value));
+
+const 추가금액 = computed(() => 가격구성.value ? 가격구성.value.options + 가격구성.value.exterior + 가격구성.value.interior - 가격구성.value.discount : 0);
+
 const 신용글 = computed(() => (담당자 && !공유견적.value ? (c.value.credit || '중신용') : '신용점수 무관'));
 const 조건들 = computed(() => {
   const sc = snapshot.value?.conditions || {};
@@ -73,24 +67,17 @@ const 조건들 = computed(() => {
   const svc = 공유견적.value ? sc.svc : c.value.svc;
   const ins = 공유견적.value ? sc.insProperty : c.value.insProperty;
   const driver = 공유견적.value ? sc.extraDriver : c.value.extraDriver;
-  const delivery = 공유견적.value ? sc.deliveryCity : c.value.deliveryCity;
+  const delivery = 공유견적.value ? sc.deliveryCity : QUOTE_REGION;
   const tint = 공유견적.value ? sc.tint : quoteState.tint?.product;
   const blackbox = 공유견적.value ? sc.blackbox : quoteState.extras?.blackbox;
 
   return [
-    ['신용', 신용글.value],
-    ['약정주행', `연 ${km ?? 2}만km`],
-    ['정비', svc || '웰스 Basic'],
-    ['대물', ins || '1억'],
-    ['추가 운전자', driver || '없음'],
-    ['탁송', delivery || '서울'],
-    ['썬팅', tint || '없음'],
-    ['블랙박스', blackbox || '미설치'],
-    ...(공유견적.value ? [] : 담당자 ? [
-      ['보증금', `${c.value.dep ?? 0}%`],
-      ['선납금', `${c.value.pre ?? 0}%`],
-      ['수수료', `${c.value.feeRatePct ?? 0}%`],
-    ] : []),
+    ['약정 주행거리', `연 ${km ?? 2}만km`],
+    ['운전자 연령', '만 26세 이상'],
+    ['보험', `대물 ${ins || '1억'}`],
+    ['정비', 공유견적.value && !['정비 제외', '웰스 Self'].includes(sc.svc) ? '기존 조건 · 재계산 필요' : '제외'],
+    ['부가세', '포함'],
+    ['탁송 기준', delivery || QUOTE_REGION],
   ];
 });
 
@@ -107,8 +94,14 @@ const 공유시각 = computed(() => {
 </script>
 
 <template>
-  <div class="sr">
-    <h2 class="sr-title">월 렌트료 견적</h2>
+  <div class="sr" style="background: #fff; padding: 16px; border-radius: 8px;">
+    <div class="sr-header">
+      <h2 class="sr-title">신차 장기렌트 견적</h2>
+      <div v-if="연락담당자?.name || 연락담당자?.tel" class="sr-contact">
+        <span>{{ 연락담당자.name ? '담당자 ' + 연락담당자.name : '담당자' }}</span>
+        <span v-if="연락담당자.tel">{{ 연락담당자.tel }}</span>
+      </div>
+    </div>
 
     <div v-if="공유견적" class="sr-snapshot">
       <b>공유받은 견적</b>
@@ -126,28 +119,37 @@ const 공유시각 = computed(() => {
       <div class="sr-car__color">
         외장 {{ v.colorExt || '미선택' }} · 내장 {{ v.colorInt || '미선택' }}
       </div>
+      <div v-if="가격구성" class="sr-car__breakdown">
+        <div><span>트림 가격</span><b>{{ fmt(가격구성.base) }}원</b></div>
+        <div><span>{{ 추가금액 < 0 ? '−' : '+' }} {{ 가격구성.discount ? '추가금·할인' : '옵션·색상 추가금' }}</span><b>{{ fmt(Math.abs(추가금액)) }}원</b></div>
+      </div>
+      <p v-else class="sr-car__color">차량 가격 구성 확인이 필요합니다.</p>
       <div class="sr-car__total">
-        <span>총 차량가격</span><b>{{ fmt(총차량가) }}원</b>
+        <span>= 신차 총가격</span><b>{{ fmt(총차량가) }}원</b>
       </div>
     </section>
 
-    <!-- 기간별 월 렌트료 -->
-    <section class="sr-terms" :aria-busy="계산중">
-      <div v-for="t in 기간들" :key="t.term" class="sr-term">
-        <div class="sr-term__left">
-          <div class="sr-term__label">{{ t.term }}개월</div>
-          <div v-if="공유견적 || t.인수가" class="sr-term__sub">
-            <template v-if="공유견적">보증금 {{ t.depPct }}% · 선납 {{ t.prePct }}%</template>
-            <template v-if="t.인수가">{{ 공유견적 ? ' · ' : '' }}만기 인수가 {{ fmt(t.인수가) }}원</template>
+    <div class="sr-offers" :aria-busy="계산중">
+      <section v-for="offer in 견적종류들" :key="offer.id" class="sr-offer" :data-offer="offer.id">
+        <h3 class="sr-offer__title">{{ offer.label }}</h3>
+        <p v-if="!offer.terms.length" class="sr-muted">조건 확인 후 안내</p>
+        <div class="sr-terms">
+          <div v-for="t in offer.terms" :key="t.term" class="sr-term">
+            <div class="sr-term__left">
+              <div class="sr-term__label">{{ t.term }}개월</div>
+              <div class="sr-term__sub">보증금 {{ t.depPct }}% · 선납금 {{ t.prePct }}%</div>
+              <div v-if="t.monthly != null" class="sr-term__sub">보증금 {{ fmt(t.deposit) }}원 · 선납금 {{ fmt(t.prepay) }}원</div>
+              <div v-if="t.acquire" class="sr-term__sub">만기 인수가 {{ fmt(t.acquire) }}원</div>
+            </div>
+            <div class="sr-term__monthly">
+              <template v-if="t.monthly != null">월 <b>{{ fmt(t.monthly) }}</b>원</template>
+              <span v-else class="sr-muted">{{ 계산중 ? '계산 중…' : '조건 확인 후 안내' }}</span>
+            </div>
           </div>
         </div>
-        <div class="sr-term__monthly">
-          <template v-if="t.monthly">월 <b>{{ fmt(t.monthly) }}</b>원</template>
-          <span v-else class="sr-muted">{{ 계산중 ? '계산 중…' : '—' }}</span>
-        </div>
-      </div>
-      <p v-if="계산못함" class="sr-error" role="alert">지금 계산할 수 없습니다. 잠시 뒤 다시 열거나 상담으로 문의해 주세요.</p>
-    </section>
+      </section>
+    </div>
+    <p v-if="계산못함" class="sr-error" role="alert">{{ 견적상태.오류 }}</p>
 
     <!-- 조건 — 결과의 보조정보이므로 2열 요약으로 압축 -->
     <div class="sr-cond__title">이용 조건</div>
@@ -169,6 +171,18 @@ const 공유시각 = computed(() => {
 </template>
 
 <style scoped>
+.sr-offer { --offer-bg:#eef4ff; --offer-ink:#2459a6; }
+.sr-offer[data-offer="income-check"] { --offer-bg:#edf7f1; --offer-ink:#28704b; }
+.sr-offer[data-offer="credit-required"] { --offer-bg:#f4effb; --offer-ink:#6c459c; }
+.sr-offer .sr-term { background:var(--offer-bg); }
+.sr-offer .sr-offer__title,.sr-offer .sr-term__monthly b { color:var(--offer-ink); }
+.sr-offer__title { font-size:18px;margin:20px 0 8px;color:var(--ink-1); }
+.sr-offer__hint { font-size:12px;color:var(--ink-2);margin:0 0 8px; }
+.sr-estimate { font-size:12px;color:#667085;margin:0 0 12px; }
+.sr-header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:16px; }
+.sr-header .sr-title { flex:1; margin-bottom:0; }
+.sr-contact { max-width:50%; text-align:right; font-size:12px; line-height:1.6; color:var(--ink-2); overflow-wrap:anywhere; }
+.sr-contact span { display:block; }
 .sr-title {
   font-size: var(--fs-2xl); font-weight: var(--fw-bold);
   color: var(--ink-1); margin: 0 0 var(--sp-4);
@@ -200,6 +214,10 @@ const 공유시각 = computed(() => {
   padding: var(--sp-1) var(--sp-2); background: var(--bg); border-radius: var(--r-chip);
 }
 .sr-car__color { margin-top: var(--sp-2); font-size: var(--fs-sm); color: var(--ink-2); }
+.sr-car__breakdown { margin-top:12px; font-size:13px; color:var(--ink-2); }
+.sr-car__breakdown > div { display:flex; justify-content:space-between; gap:12px; padding:3px 0; }
+.sr-car__breakdown b { white-space:nowrap; font-weight:500; }
+.sr-car__breakdown .sr-price-option { padding-left:12px; font-size:12px; }
 .sr-car__total {
   display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
   gap: var(--sp-1) var(--sp-2); margin-top: var(--sp-3);

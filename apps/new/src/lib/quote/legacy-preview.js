@@ -1,3 +1,4 @@
+import { DEFAULT_AGENT_POINTS } from './commission-policy.js';
 import { resolveCatalogPreviewContext, buildCatalogPreviewRequest } from './preview-request.js';
 import { calculateStandardPreviewBatch } from './preview-calculate.js';
 
@@ -18,10 +19,10 @@ export async function calculateLegacyStandardPreviews(
     prepaymentPct = 0,
     credit = '중신용',
     mileage = '2만km',
-    maintenance = '웰스 Basic',
+    maintenance = '정비 제외',
     liability = '1억',
     extraDriver = '없음',
-    feeRatePct = 5,
+    feeRatePct = DEFAULT_AGENT_POINTS,
     deliveryFee = 0,
     tintFee = 0,
     dashcamFee = 0,

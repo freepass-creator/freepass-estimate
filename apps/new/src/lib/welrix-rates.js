@@ -1,3 +1,4 @@
+import { DEFAULT_AGENT_POINTS } from './quote/commission-policy.js';
 // ============================================================================
 //  웰릭스 요금표·기본값 — «그쪽 것 그대로»
 // ----------------------------------------------------------------------------
@@ -40,10 +41,10 @@ export const 블박들 = [
 export const 웰릭스기본 = {
   credit: '중신용',
   km: 2,                       // 만km/년
-  svc: '웰스 Basic',
+  svc: '정비 제외',
   insProperty: '1억',
   extraDriver: '없음',
-  deliveryRegion: '서울',
+  deliveryRegion: '수도권',
   tint: '루마 일반',            // 105,000
   blackbox: '파인뷰 SF500',     // 180,000
   dep: 10,                     // %  ★웰릭스 기본 보증금이 10% 다
@@ -54,8 +55,10 @@ export const 웰릭스기본 = {
      (대표 「우리도 5%로 맞춰놓고 … 최종 맞으면 7%로 올려」).
      ⚠ scripts/check-welrix.mjs 는 실측이 5% 기준이라 «검사 때만» 5% 로 돈다 — 그대로 둔다.
      이 값은 «우리가 받는 몫»이라 웰릭스 화면 기본값(5%)과 성격이 다르다. */
-  feeRatePct: 7.0,
+  feeRatePct: DEFAULT_AGENT_POINTS,
 };
 
 export const 썬팅값 = (이름) => 썬팅들.find((x) => x.name === 이름)?.price || 0;
 export const 블박값 = (이름) => 블박들.find((x) => x.name === 이름)?.price || 0;
+
+export const 기본용품표시 = name => ({'루마 일반':'기본 선팅','파인뷰 SF500':'기본 블랙박스'}[name] || name);

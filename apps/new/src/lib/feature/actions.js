@@ -1,3 +1,4 @@
+import { DEFAULT_AGENT_POINTS } from '../quote/commission-policy.js';
 import { QUOTE_LIFECYCLE, deriveQuoteLifecycle } from './history.js';
 
 // Quote action/readiness rules shared by mobile and desktop.
@@ -96,6 +97,7 @@ export function resetForRequote(quoteState) {
   if (!quoteState) throw new Error('quoteState is required');
   const hadSnapshot = Boolean(quoteState.sharedSnapshot);
   quoteState.sharedSnapshot = null;
+  if (hadSnapshot && quoteState.cond) quoteState.cond.feeRatePct = DEFAULT_AGENT_POINTS;
 
   const scenarioCount = Array.isArray(quoteState.scenarios) ? quoteState.scenarios.length : 0;
   if (!Array.isArray(quoteState.send)) quoteState.send = [];

@@ -68,6 +68,7 @@ const args = {
 };
 
 const first = buildCatalogPreviewRequest(args);
+assert.equal(first.조건.정비, '정비 제외', 'all new previews must exclude maintenance');
 const second = buildCatalogPreviewRequest(args);
 assert.deepEqual(first, second);
 assert.equal(first.차.상품키, 'product-1');

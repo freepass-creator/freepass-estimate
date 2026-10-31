@@ -1,17 +1,12 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 역할 } from '../../lib/role.js';
-import { rolePolicy } from '../../lib/feature/roles.js';
-import { 썬팅들, 블박들, 탁송권역 } from '../../lib/welrix-rates.js';
+import { 썬팅들, 블박들, 기본용품표시 } from '../../lib/welrix-rates.js';
 import { fmt } from '../../lib/format.js';
-import { resolveDeliveryCost, resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
+import { resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
 
-// 짧은 옵션은 chip 유지
-const SVC = [
-  { value: '웰스 Basic', label: '웰스 Basic', sub: '방문 점검' },
-  { value: '웰스 Self',  label: '웰스 Self',  sub: '자체 정비' },
-];
+defineProps({ embedded: { type:Boolean, default:false } });
+
 const INS = [
   { value: '1억', label: '1억' },
   { value: '2억', label: '2억' },
@@ -25,44 +20,17 @@ const EXTRA = [
   { value: '3명', label: '3명' },
 ];
 
-const 담당자 = rolePolicy(역할()).canEditDeliveryRegion;   // 손님이면 탁송 권역을 안 묻는다 (기본 서울)
-
-// 탁송 UI는 기존 10권역을 유지하되 금액은 canonical resolver가 결정한다.
-const regions = 탁송권역;
 const currentCosts = computed(() => resolveQuoteConditionCosts(quoteState));
 const deliveryFee = computed(() => currentCosts.value.deliveryFee);
 const tintFee = computed(() => currentCosts.value.tintFee);
 const dashcamFee = computed(() => currentCosts.value.dashcamFee);
-function deliveryLabel(region) {
-  const { amount } = resolveDeliveryCost({ deliveryRegion: region, deliveryCity: region });
-  return amount ? `${fmt(amount)}원` : '별도협의';
-}
-function onRegionChange(e) {
-  const r = e.target.value;
-  quoteState.cond.deliveryRegion = r;
-  quoteState.cond.deliveryCity = r;      // 권역 하나로 쓴다
-}
-
 </script>
 
 <template>
   <div class="se">
-    <h2 class="se-title">옵션·서비스를<br>선택해 주세요</h2>
+    <h2 v-if="!embedded" class="se-title">추가 조건을<br>선택해 주세요</h2>
 
-    <!-- 차량 케어 -->
-    <div class="se-field">
-      <div class="se-label">차량 케어</div>
-      <div class="se-cards">
-        <button
-          v-for="s in SVC" :key="s.value"
-          type="button" class="se-card" :class="{ 'is-selected': quoteState.cond.svc === s.value }" :aria-pressed="quoteState.cond.svc === s.value"
-          @click="quoteState.cond.svc = s.value"
-        >
-          <span class="se-card__label">{{ s.label }}</span>
-          <span class="se-card__sub">{{ s.sub }}</span>
-        </button>
-      </div>
-    </div>
+    <p class="se-maintenance">정비 제외</p>
 
     <!-- 대물 보험 -->
     <div class="se-field">
@@ -90,31 +58,22 @@ function onRegionChange(e) {
 
     <div class="se-divider"></div>
 
-    <!-- 탁송 지역/도시 — drop-down -->
-    <!-- 손님에게는 안 묻는다. store.js 기본값이 이미 「광역시 · 서울」이라
-         서울 기준으로 계산된다. 지역이 다르면 상담에서 맞춘다. -->
-    <div class="se-field" v-if="담당자">
-      <div class="se-label">
-        탁송 지역
-        <span v-if="deliveryFee" class="se-label__val">+{{ fmt(deliveryFee) }}원</span>
-      </div>
-      <select class="se-select" :value="quoteState.cond.deliveryRegion" @change="onRegionChange">
-        <option v-for="r in regions" :key="r" :value="r">{{ r }} · {{ deliveryLabel(r) }}</option>
-      </select>
+    <div class="se-field">
+      <div class="se-label">탁송 기준 <span class="se-label__val">수도권 · {{ fmt(deliveryFee) }}원</span></div>
     </div>
 
     <!-- 선팅 — ★웰릭스와 똑같이 3택. 기본은 「루마 일반」 -->
     <div class="se-field">
       <div class="se-label">
         선팅
-        <span v-if="tintFee" class="se-label__val">+{{ fmt(tintFee) }}원</span>
+        <span v-if="tintFee && quoteState.tint.product !== '루마 일반'" class="se-label__val">+{{ fmt(tintFee) }}원</span>
       </div>
       <div class="se-chips">
         <button
           v-for="t in 썬팅들" :key="t.name"
           type="button" class="se-chip" :class="{ 'is-selected': quoteState.tint.product === t.name }" :aria-pressed="quoteState.tint.product === t.name"
           @click="quoteState.tint.product = t.name"
-        >{{ t.name }}<small v-if="t.price"> +{{ fmt(t.price) }}</small></button>
+        >{{ 기본용품표시(t.name) }}<small v-if="t.price && t.name !== '루마 일반'"> +{{ fmt(t.price) }}</small></button>
       </div>
     </div>
 
@@ -122,7 +81,7 @@ function onRegionChange(e) {
     <div class="se-field">
       <div class="se-label">
         블랙박스
-        <span v-if="dashcamFee" class="se-label__val">
+        <span v-if="dashcamFee && quoteState.extras.blackbox !== '파인뷰 SF500'" class="se-label__val">
           +{{ fmt(dashcamFee) }}원</span>
       </div>
       <div class="se-chips">
@@ -130,7 +89,7 @@ function onRegionChange(e) {
           v-for="b in 블박들" :key="b.name"
           type="button" class="se-chip" :class="{ 'is-selected': quoteState.extras.blackbox === b.name }" :aria-pressed="quoteState.extras.blackbox === b.name"
           @click="quoteState.extras.blackbox = b.name"
-        >{{ b.name }}<small v-if="b.price"> +{{ fmt(b.price) }}</small></button>
+        >{{ 기본용품표시(b.name) }}<small v-if="b.price && b.name !== '파인뷰 SF500'"> +{{ fmt(b.price) }}</small></button>
       </div>
     </div>
 

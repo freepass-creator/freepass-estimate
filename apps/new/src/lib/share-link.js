@@ -1,3 +1,7 @@
+import { QUOTE_REGION } from './quote/launch-region.js';
+import { publicOfferDefinition } from './quote/public-offers.js';
+import { isCommissionMark } from './commission-mark.js';
+import { vehiclePriceBreakdown } from './vehicle-price-breakdown.js';
 import { SHARE_SNAPSHOT_CONTRACT, CURRENT_SHARE_SNAPSHOT_VERSION, LEGACY_SHARE_SNAPSHOT_VERSION, QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_EXECUTION_CONTRACT } from './quote/contracts.js';
 import { includedScenarioIndexes, selectedLiveQuoteTerms } from './feature/actions.js';
 
@@ -42,22 +46,22 @@ function 디코드(글) {
   } catch { return null; }
 }
 
+function publicTerms(values) {
+  const money = value => value != null && Number.isFinite(Number(value)) && Number(value) >= 0 ? Number(value) : null;
+  return (Array.isArray(values) ? values : []).slice(0, 5).filter(x => x && Number.isFinite(+x.term)).map(x => ({term:+x.term,monthly:money(x.monthly),acquire:money(x.acquire),totalCarPrice:money(x.totalCarPrice),deposit:money(x.deposit),prepay:money(x.prepay),depPct:Number.isFinite(+x.depPct)?+x.depPct:0,prePct:Number.isFinite(+x.prePct)?+x.prePct:0}));
+}
+function publicOfferSnapshots(values) {
+  return (Array.isArray(values) ? values : []).slice(0,3).filter(offer => publicOfferDefinition(offer?.id)).map(offer => ({id:offer.id,status:offer.status==='ready'?'ready':'unavailable',terms:publicTerms(offer.terms)}));
+}
+function liveTerms(quoteState, results) {
+  return selectedLiveQuoteTerms(quoteState, results).map(({scenario:sc,result:r})=>({term:+sc.term,monthly:r.월대여료??null,acquire:r.인수가??null,totalCarPrice:r.총차량가??null,deposit:r.보증금??null,prepay:r.선납금??null,depPct:+sc.dep||0,prePct:+sc.pre||0}));
+}
+
 function 안전한스냅샷(값) {
   const legacy = 값?.v === LEGACY_SHARE_SNAPSHOT_VERSION && !값?.contract;
   const current = 값?.v === CURRENT_SHARE_SNAPSHOT_VERSION && 값?.contract === SHARE_SNAPSHOT_CONTRACT;
   if (!값 || (!legacy && !current) || !Array.isArray(값.terms) || !값.terms.length) return null;
-  const terms = 값.terms
-    .filter((x) => x && Number.isFinite(+x.term))
-    .map((x) => ({
-      term: +x.term,
-      monthly: Number.isFinite(+x.monthly) ? +x.monthly : null,
-      acquire: Number.isFinite(+x.acquire) ? +x.acquire : null,
-      totalCarPrice: Number.isFinite(+x.totalCarPrice) ? +x.totalCarPrice : null,
-      deposit: Number.isFinite(+x.deposit) ? +x.deposit : null,
-      prepay: Number.isFinite(+x.prepay) ? +x.prepay : null,
-      depPct: Number.isFinite(+x.depPct) ? +x.depPct : 0,
-      prePct: Number.isFinite(+x.prePct) ? +x.prePct : 0,
-    }));
+  const terms = publicTerms(값.terms);
   if (!terms.some((x) => x.monthly != null)) return null;
 
   const c = 값.conditions || {};
@@ -70,10 +74,14 @@ function 안전한스냅샷(값) {
     executionContract: current && typeof 값.executionContract === 'string' ? 값.executionContract : null,
     sourceRevision: current && /^[0-9a-f]{40}$/i.test(값.sourceRevision || '') ? 값.sourceRevision : null,
     providerMode: current && ['standard','external','forced'].includes(값.providerMode) ? 값.providerMode : null,
+    commissionMark: isCommissionMark(값.commissionMark) ? 값.commissionMark : null,
+    staff: { name: typeof 값.staff?.name === 'string' ? 값.staff.name.slice(0, 40) : '', tel: typeof 값.staff?.tel === 'string' ? 값.staff.tel.slice(0, 30) : '' },
     at: typeof 값.at === 'string' ? 값.at : null,
-    engine: typeof 값.engine === 'string' ? 값.engine : '웰릭스',
+    engine: 'freepass',
+    offers: publicOfferSnapshots(값.offers),
     vehiclePrice: 값.vehiclePrice != null && Number.isFinite(+값.vehiclePrice) ? +값.vehiclePrice : null,
     vehicle: {
+      priceBreakdown: vehiclePriceBreakdown(car, 0, terms.find(t => t.totalCarPrice)?.totalCarPrice),
       brand: typeof car.brand === 'string' ? car.brand : '',
       model: typeof car.model === 'string' ? car.model : '',
       variant: typeof car.variant === 'string' ? car.variant : '',
@@ -98,17 +106,8 @@ function 안전한스냅샷(값) {
 /** 지금 웰릭스 계산 결과를 «고객에게 공개 가능한» Snapshot 으로 만든다. */
 function 스냅샷만들기(quoteState, 견적상태) {
   if (!견적상태 || 견적상태.상태 !== 'ok' || !Array.isArray(견적상태.결과)) return null;
-  const selected = selectedLiveQuoteTerms(quoteState, 견적상태.결과);
-  const terms = selected.map(({ scenario: sc, result: r }) => ({
-    term: +sc.term,
-    monthly: r.월대여료 ?? null,
-    acquire: r.인수가 ?? null,
-    totalCarPrice: r.총차량가 ?? null,
-    deposit: r.보증금 ?? null,
-    prepay: r.선납금 ?? null,
-    depPct: +sc.dep || 0,
-    prePct: +sc.pre || 0,
-  }));
+  const terms = liveTerms(quoteState, 견적상태.결과);
+  const offers = publicOfferSnapshots((견적상태.견적들 || []).map(offer=>({id:offer.id,status:offer.status,terms:liveTerms(quoteState,offer.results||[])})));
   if (!terms.length) return null;
 
   const c = quoteState?.cond || {};
@@ -125,10 +124,14 @@ function 스냅샷만들기(quoteState, 견적상태) {
     executionContract: 견적상태.계약?.execution || QUOTE_EXECUTION_CONTRACT,
     sourceRevision: 견적상태.실행?.subject_revision || null,
     providerMode,
+    commissionMark: isCommissionMark(quoteState.commissionMark) ? quoteState.commissionMark : null,
+    staff: { name: String(quoteState.staff?.name || '').slice(0, 40), tel: String(quoteState.staff?.tel || '').slice(0, 30) },
     at: new Date().toISOString(),
-    engine: 견적상태.계산기 || '웰릭스',
+    engine: 'freepass',
+    offers,
     vehiclePrice: 견적상태.차량가 ?? null,
     vehicle: {
+      priceBreakdown: vehiclePriceBreakdown(견적상태.가격구성 ? { priceBreakdown: 견적상태.가격구성 } : car, c.colorIntPrice, terms.find(t => t.totalCarPrice)?.totalCarPrice),
       brand: car.brand || '',
       model: car.model || '',
       variant: car.variant || '',
@@ -143,7 +146,7 @@ function 스냅샷만들기(quoteState, 견적상태) {
       svc: c.svc || '웰스 Basic',
       insProperty: c.insProperty || '1억',
       extraDriver: c.extraDriver || '없음',
-      deliveryCity: c.deliveryCity || '서울',
+      deliveryCity: QUOTE_REGION,
       tint: quoteState?.tint?.product || '없음',
       blackbox: quoteState?.extras?.blackbox || '미설치',
     },

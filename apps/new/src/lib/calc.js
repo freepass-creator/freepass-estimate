@@ -307,8 +307,7 @@ export function calcQuote(input) {
   const I14 = CFG.costs.repair_rate_annual;                 // 자동차 수리 (회사 config)
   const I15 = autoTax(v.disp || 1600);
   const I16 = inspectionFee(termCode);
-  const I17 = fees.svc === '웰스 Self' ? CFG.services.wells_self_yearly
-                                       : CFG.services.wells_basic_monthly * 12;
+  const I17 = 0; // freepass 표준: 정비 제외
   const I18 = o.deliveryFee || 0;
   const I19 = CFG.services.gps_monthly * 12;                // GPS (회사 config)
   const feeRatePct = fees.feeRatePct ?? CFG.fees.default_fee_rate_pct;

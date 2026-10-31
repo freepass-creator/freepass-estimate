@@ -18,7 +18,7 @@ export function 계산기고르기(이름 = null) {
   다시계산();
 }
 
-export function 지금계산기() { return 활성계산기이름(강제계산기); }
+export function 지금계산기() { return 활성계산기이름(강제계산기, 요청만들기()?.조건?.신용); }
 
 export const 견적상태 = reactive({
   상태: 'idle',
@@ -45,8 +45,8 @@ async function 보내기() {
   let 이름;
   let providerKey;
   try {
-    이름 = 활성계산기이름(강제계산기);
-    providerKey = 강제계산기 ? `forced:${강제계산기}` : 공급자키();
+    이름 = 활성계산기이름(강제계산기, 요청.조건?.신용);
+    providerKey = 강제계산기 ? `forced:${강제계산기}` : 공급자키(undefined, 요청.조건?.신용);
   } catch (e) {
     비우기('error', e?.message || '견적 공급자 설정을 확인해 주세요');
     return;

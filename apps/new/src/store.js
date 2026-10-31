@@ -4,7 +4,7 @@ import { 역할 } from './lib/role.js';
 import { conditionDefaultsForRole } from './lib/feature/roles.js';
 import { 웰릭스기본 } from './lib/welrix-rates.js';
 import { quoteScenarios } from './lib/quote/terms.js';
-import { normalizeFeeRate } from './lib/feature/conditions.js';
+import { DEFAULT_AGENT_POINTS } from './lib/quote/commission-policy.js';
 
 /* ★기본값은 «웰릭스 견적기를 새로 열었을 때»와 똑같이 둔다.
    대표 2026-09-18 「다 완전히 똑같이 맞추라고. 웰릭스도 기본값 있잖아, 그 기본값에 맞추자고」
@@ -49,7 +49,6 @@ export const vehicleState = reactive({
 // quote.js의 'state' 와 동일 모양
 // 담당자 정보(이름·연락처·수수료율) — 영업자 본인 거라 매번 입력 번거로움 → localStorage 영속화
 const STAFF_KEY = 'welrix_staff_v1';
-const FEE_KEY = 'welrix_fee_v1';
 const SEND_OPTS_KEY = 'welrix_send_opts_v1';
 function loadSendOpts() {
   try {
@@ -81,18 +80,6 @@ function loadMyContracts() {
 function persistMyContracts(arr) {
   try { localStorage.setItem(MY_CONTRACTS_KEY, JSON.stringify(arr)); } catch {}
 }
-function loadFeeRate() {
-  /* ★기본 수수료율은 welrix-rates.js 한 곳에서 정한다(지금 5% · 확인되면 7%).
-     담당자가 화면에서 바꾼 값은 localStorage 에 남아 그게 이긴다. */
-  try {
-    const v = parseFloat(localStorage.getItem(FEE_KEY));
-    return isFinite(v) ? normalizeFeeRate(v) : normalizeFeeRate(웰릭스기본.feeRatePct);
-  } catch { return normalizeFeeRate(웰릭스기본.feeRatePct); }
-}
-function persistFeeRate(v) {
-  try { localStorage.setItem(FEE_KEY, String(v)); } catch {}
-}
-
 export const quoteState = reactive({
   vehicle: null,            // {brand, model, variant, trim_name, total_manwon, ...}
   /* 공유받은 «확정 견적» Snapshot. 값이 있으면 받은 금액을 그대로 보여 주고 자동 재계산하지 않는다.
@@ -105,7 +92,7 @@ export const quoteState = reactive({
     credit: 역할조건기본.credit, km: 웰릭스기본.km,
     dep: 기본보증금,
     pre: 역할조건기본.pre,
-    feeRatePct: loadFeeRate(),
+    feeRatePct: DEFAULT_AGENT_POINTS, // 신규 견적은 영업 풀피 5P, 회사 1P 별도 합산
     deliveryRegion: 웰릭스기본.deliveryRegion, deliveryCity: 웰릭스기본.deliveryRegion,   // 웰릭스는 10권역 — 권역 하나로 쓴다
     svc: 웰릭스기본.svc, insProperty: 웰릭스기본.insProperty, extraDriver: 웰릭스기본.extraDriver,
     colorInt: '', colorIntPrice: 0, colorIntId: null,
@@ -137,13 +124,11 @@ export const quoteState = reactive({
   referenceMonthly: [],
 });
 
-// 담당자 정보(이름/연락처) + 수수료율 + 발송옵션 자동 저장
+// 담당자 정보(이름/연락처) + 발송옵션 자동 저장. 수수료는 새 견적마다 풀피로 시작.
 import { watch } from 'vue';
 watch(() => ({ name: quoteState.staff.name, tel: quoteState.staff.tel }),
       (newVal) => persistStaff(newVal),
       { deep: true });
-watch(() => quoteState.cond.feeRatePct,
-      (v) => { if (typeof v === 'number' && isFinite(v)) persistFeeRate(v); });
 watch(() => ({ ...quoteState.send_options }),
       (v) => persistSendOpts(v),
       { deep: true });

@@ -28,14 +28,14 @@
   "excel_version": "",
   "excel_version_date": "",
   "company_id": "freepass",
-  "name": "프리패스모빌리티",
+  "name": "freepass",
   "logo_url": "/freepass-wordmark.svg",
   "brand_color": "#1B2A4A",
   "brand_color_logo": "#1B2A4A",
   "accent_color": "#9EC5F3",
   "signature_link": "https://app.modusign.co.kr/magic-link/link/665f4cd0-fb5c-11f0-8c47-897ef2e93d12/authentication?shareType=URL",
   "company_info": {
-    "full_name": "프리패스모빌리티 주식회사",
+    "full_name": "freepass 주식회사",
     "biz_no": "000-00-00000",
     "ceo": "대표이사명",
     "address": "주소 입력",
@@ -81,7 +81,7 @@
     },
     "fees": {
       "deposit_discount_rate": 0.03,
-      "default_fee_rate_pct": 5,
+      "default_fee_rate_pct": 0,
       "payback_table": [
         {
           "rate": 0,
@@ -208,7 +208,25 @@
     "deposit_buckets_max": 10000000
   },
   "quote_provider": {
-    "mode": "standard",
-    "adapter_id": "freepass-standard"
+    "mode": "external",
+    "kind": "excel",
+    "adapter_id": "welrix",
+    "by_credit": {
+      "저신용": {
+        "mode": "external",
+        "kind": "erp",
+        "adapter_id": "kamatch"
+      },
+      "중신용": {
+        "mode": "external",
+        "kind": "excel",
+        "adapter_id": "welrix"
+      },
+      "고신용": {
+        "mode": "external",
+        "kind": "excel",
+        "adapter_id": "welrix"
+      }
+    }
   }
 }

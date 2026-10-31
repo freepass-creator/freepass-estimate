@@ -27,7 +27,7 @@ onMounted(async () => {
   } catch {}
   loading.value = false;
   // 타이틀 업데이트
-  if (meta.value) document.title = `${meta.value.model} 가이드 · 프리패스모빌리티`;
+  if (meta.value) document.title = `${meta.value.model} 가이드 · freepass`;
 });
 
 const meta = computed(() => {

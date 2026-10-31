@@ -10,7 +10,7 @@ export const 이름 = '외부 연동';
 export const 다루는차 = ['신차'];
 
 export async function 계산(요청, { 신호 } = {}) {
-  const provider = 공급자설정();
+  const provider = 공급자설정(undefined, 요청.조건?.신용);
   if (provider.mode !== 'external') {
     const error = new Error('외부 견적 공급자가 아닙니다');
     error.code = 'PROVIDER_MODE_MISMATCH';

@@ -1,5 +1,6 @@
 import { FLAT_DELIVERY, TINT_PRICES, ACCESSORIES } from '../../data/lookups.js';
 import { 탁송, 썬팅들, 블박들 } from '../welrix-rates.js';
+import { QUOTE_DELIVERY_FEE, QUOTE_DELIVERY_BASIS } from './launch-region.js';
 import { createQuoteConditionCosts } from './condition-cost-contract.js';
 
 function codedError(message, code = 'QUOTE_CONDITION_COST_UNRESOLVED') {
@@ -101,21 +102,14 @@ export function resolveAccessoryCost(kind, selection) {
 }
 
 export function resolveQuoteConditionCosts(state) {
-  const cond = state?.cond || {};
   const tint = state?.tint || {};
   const extras = state?.extras || {};
 
-  const delivery = resolveDeliveryCost({
-    deliveryRegion: cond.deliveryRegion,
-    deliveryCity: cond.deliveryCity,
-  });
+  const delivery = { amount: QUOTE_DELIVERY_FEE, basis: QUOTE_DELIVERY_BASIS };
   const tintCost = resolveTintCost({ product: tint.product, areas: tint.areas });
   const dashcam = resolveAccessoryCost('blackbox', extras.blackbox);
   const navi = resolveAccessoryCost('navi', extras.navi);
   const hipass = resolveAccessoryCost('hipass', extras.hipass);
-
-  const accessoryFee = dashcam.amount + navi.amount + hipass.amount;
-  const totalPrepFee = delivery.amount + tintCost.amount + accessoryFee;
 
   return createQuoteConditionCosts({
     deliveryFee: delivery.amount,

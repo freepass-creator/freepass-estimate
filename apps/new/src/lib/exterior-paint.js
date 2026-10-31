@@ -60,3 +60,16 @@ export function restorePaintSelection(db, state) {
   }
   for (const id of selectedPaint) state.options.delete(id);
 }
+
+// Basic means no surcharge where available; otherwise the least expensive
+// selectable color in source order. Never infer a color from its display name.
+export function defaultColorIndex(colors = []) {
+  let best = null;
+  let bestPrice = Infinity;
+  colors.forEach((color,index) => {
+    const amount = Number(color?._price_won ?? color?.price);
+    if (color?._paintUnavailable || !Number.isFinite(amount) || amount < 0) return;
+    if (amount < bestPrice) { best = index; bestPrice = amount; }
+  });
+  return best;
+}

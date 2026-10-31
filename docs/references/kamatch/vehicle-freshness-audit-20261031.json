@@ -1,0 +1,1362 @@
+{
+  "observedAt": "2026-10-31",
+  "source": "https://welrixmobility.netlify.app/",
+  "status": "REFERENCE_AUDIT_ONLY",
+  "snapshotAsOf": {
+    "vehicleMaster": "2026-08-15",
+    "providerMapping": "2026-09-18"
+  },
+  "counts": {
+    "liveRows": 511,
+    "localProducts": 535,
+    "matchedPriceMappings": 482,
+    "changedPriceMappings": 12,
+    "missingProviderMappings": 16,
+    "providerRowsWithoutMapping": 295
+  },
+  "changedPrices": [
+    {
+      "productId": "DNJS4RCT7",
+      "providerModel": "쏘나타 디 엣지 1.6 터보 가솔린 Exclusive",
+      "snapshotPrice": 33730000,
+      "livePrice": 33880000
+    },
+    {
+      "productId": "DNJS4RET7",
+      "providerModel": "쏘나타 디 엣지 1.6 터보 가솔린 Inspiration",
+      "snapshotPrice": 36660000,
+      "livePrice": 36810000
+    },
+    {
+      "productId": "DNJS4RBT7",
+      "providerModel": "쏘나타 디 엣지 1.6 터보 가솔린 Premium",
+      "snapshotPrice": 29330000,
+      "livePrice": 29430000
+    },
+    {
+      "productId": "DNJS4RUT7",
+      "providerModel": "쏘나타 디 엣지 1.6 터보 가솔린 S",
+      "snapshotPrice": 30650000,
+      "livePrice": 30950000
+    },
+    {
+      "productId": "DNJS4SCT7",
+      "providerModel": "쏘나타 디 엣지 2.0 가솔린 Exclusive",
+      "snapshotPrice": 33060000,
+      "livePrice": 33210000
+    },
+    {
+      "productId": "DNJS4SET7",
+      "providerModel": "쏘나타 디 엣지 2.0 가솔린 Inspiration",
+      "snapshotPrice": 36000000,
+      "livePrice": 36150000
+    },
+    {
+      "productId": "DNJS4SBT7",
+      "providerModel": "쏘나타 디 엣지 2.0 가솔린 Premium",
+      "snapshotPrice": 28660000,
+      "livePrice": 28760000
+    },
+    {
+      "productId": "DNJS4SUT7",
+      "providerModel": "쏘나타 디 엣지 2.0 가솔린 S",
+      "snapshotPrice": 29980000,
+      "livePrice": 30280000
+    },
+    {
+      "productId": "DNJS4ZCT7",
+      "providerModel": "쏘나타 디 엣지 2.0 하이브리드 Exclusive",
+      "snapshotPrice": 38270000,
+      "livePrice": 38420000
+    },
+    {
+      "productId": "DNJS4ZET7",
+      "providerModel": "쏘나타 디 엣지 2.0 하이브리드 Inspiration",
+      "snapshotPrice": 41370000,
+      "livePrice": 41520000
+    },
+    {
+      "productId": "DNJS4ZBT7",
+      "providerModel": "쏘나타 디 엣지 2.0 하이브리드 Premium",
+      "snapshotPrice": 34180000,
+      "livePrice": 34280000
+    },
+    {
+      "productId": "DNJS4ZUT7",
+      "providerModel": "쏘나타 디 엣지 2.0 하이브리드 S",
+      "snapshotPrice": 35200000,
+      "livePrice": 35500000
+    }
+  ],
+  "missingProviderModels": [
+    {
+      "productId": "kia_sportage_lpg2.0_노블레스",
+      "providerModel": "스포티지 2.0 LPG 노블레스",
+      "snapshotPrice": 33870000
+    },
+    {
+      "productId": "kia_sportage_lpg2.0_시그니처",
+      "providerModel": "스포티지 2.0 LPG 시그니처",
+      "snapshotPrice": 36220000
+    },
+    {
+      "productId": "kia_sportage_lpg2.0_프레스티지",
+      "providerModel": "스포티지 2.0 LPG 프레스티지",
+      "snapshotPrice": 30090000
+    },
+    {
+      "productId": "kia_k5_lpg2.0_노블레스",
+      "providerModel": "K5 2.0 Lpi 노블레스",
+      "snapshotPrice": 33230000
+    },
+    {
+      "productId": "kia_k5_lpg2.0_시그니처",
+      "providerModel": "K5 2.0 Lpi 시그니처",
+      "snapshotPrice": 35480000
+    },
+    {
+      "productId": "kia_k5_lpg2.0_프레스티지",
+      "providerModel": "K5 2.0 Lpi 프레스티지",
+      "snapshotPrice": 29610000
+    },
+    {
+      "productId": "kia_k5_lpg2.0_프레스티지",
+      "providerModel": "K5 2.0 Lpi 렌터카 프레스티지",
+      "snapshotPrice": 27840000
+    },
+    {
+      "productId": "kia_k8_lpg3.5_노블레스",
+      "providerModel": "The new K8 3.5 Lpi 2WD 노블레스",
+      "snapshotPrice": 41610000
+    },
+    {
+      "productId": "kia_k8_lpg3.5_노블레스",
+      "providerModel": "The new K8 3.5 Lpi 렌터카 2WD 노블레스",
+      "snapshotPrice": 39550000
+    },
+    {
+      "productId": "kia_k8_lpg3.5_프레스티지",
+      "providerModel": "The new K8 3.5 Lpi 2WD 프레스티지",
+      "snapshotPrice": 37770000
+    },
+    {
+      "productId": "kia_k8_lpg3.5_프레스티지",
+      "providerModel": "The new K8 3.5 Lpi 렌터카 2WD 프레스티지",
+      "snapshotPrice": 35910000
+    },
+    {
+      "productId": "GNJS4LBT4",
+      "providerModel": "더 뉴 그랜저 3.5 LPG 2WD Exclusive",
+      "snapshotPrice": 48420000
+    },
+    {
+      "productId": "GNJS4LAT4",
+      "providerModel": "더 뉴 그랜저 3.5 LPG 2WD Premium",
+      "snapshotPrice": 43930000
+    },
+    {
+      "productId": "DNJS4LCT7",
+      "providerModel": "쏘나타 디 엣지 2.0 LPG Exclusive",
+      "snapshotPrice": 33560000
+    },
+    {
+      "productId": "DNJS4LET7",
+      "providerModel": "쏘나타 디 엣지 2.0 LPG Inspiration",
+      "snapshotPrice": 36250000
+    },
+    {
+      "productId": "DNJS4LBT7",
+      "providerModel": "쏘나타 디 엣지 2.0 LPG Premium",
+      "snapshotPrice": 29510000
+    }
+  ],
+  "unmappedProviderRows": [
+    {
+      "providerModel": "캐스퍼 1.0 가솔린 스마트",
+      "price": 15460000
+    },
+    {
+      "providerModel": "캐스퍼 1.0 가솔린 디 에센셜",
+      "price": 17920000
+    },
+    {
+      "providerModel": "캐스퍼 1.0 가솔린 인스퍼레이션",
+      "price": 20350000
+    },
+    {
+      "providerModel": "캐스퍼 밴 1.0 가솔린 스마트",
+      "price": 14700000
+    },
+    {
+      "providerModel": "캐스퍼 밴 1.0 가솔린 스마트 초이스",
+      "price": 15700000
+    },
+    {
+      "providerModel": "더 뉴 아반떼 1.6 가솔린 Smart",
+      "price": 20620000
+    },
+    {
+      "providerModel": "더 뉴 아반떼 1.6 가솔린 Modern",
+      "price": 23880000
+    },
+    {
+      "providerModel": "더 뉴 아반떼 1.6 가솔린 Inspiration",
+      "price": 27560000
+    },
+    {
+      "providerModel": "더 뉴 아반떼 1.6 하이브리드 Smart",
+      "price": 26550000
+    },
+    {
+      "providerModel": "더 뉴 아반떼 1.6 하이브리드 Modern Lite",
+      "price": 26820000
+    },
+    {
+      "providerModel": "더 뉴 아반떼 1.6 하이브리드 Modern",
+      "price": 29300000
+    },
+    {
+      "providerModel": "더 뉴 아반떼 1.6 하이브리드 Inspiration",
+      "price": 32610000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 2.5 가솔린 2WD Premium",
+      "price": 38570000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 2.5 가솔린 2WD Exclusive",
+      "price": 43530000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 2.5 가솔린 2WD Honors",
+      "price": 45830000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 2.5 가솔린 2WD Calligraphy",
+      "price": 47830000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 2.5 가솔린 2WD Black Exterior",
+      "price": 47830000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 2.5 가솔린 2WD Black Ink",
+      "price": 49120000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 2WD Premium",
+      "price": 41040000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 2WD Exclusive",
+      "price": 46000000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 2WD Honors",
+      "price": 48300000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 2WD Calligraphy",
+      "price": 50300000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 2WD Black Exterior",
+      "price": 50300000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 2WD Black Ink",
+      "price": 51590000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 4WD Premium",
+      "price": 43220000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 4WD Exclusive",
+      "price": 48180000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 4WD Honors",
+      "price": 50480000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 4WD Calligraphy",
+      "price": 52480000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 4WD Black Exterior",
+      "price": 52480000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 3.5 가솔린 4WD Black Ink",
+      "price": 53770000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 1.6 하이브리드 2WD Premium",
+      "price": 45230000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 1.6 하이브리드 2WD Exclusive",
+      "price": 50190000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 1.6 하이브리드 2WD Honors",
+      "price": 52490000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 1.6 하이브리드 2WD Calligraphy",
+      "price": 54490000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 1.6 하이브리드 2WD Black Exterior",
+      "price": 54490000
+    },
+    {
+      "providerModel": "디 올 뉴 그랜저 1.6 하이브리드 2WD Black Ink",
+      "price": 55780000
+    },
+    {
+      "providerModel": "더 뉴 그랜저 1.6 하이브리드 2WD Premium",
+      "price": 49330000
+    },
+    {
+      "providerModel": "더 뉴 그랜저 1.6 하이브리드 2WD Exclusive",
+      "price": 53820000
+    },
+    {
+      "providerModel": "더 뉴 그랜저 1.6 하이브리드 2WD Calligraphy",
+      "price": 59990000
+    },
+    {
+      "providerModel": "디 올 뉴 코나 1.6 가솔린 터보 2WD Black Exterior",
+      "price": 31810000
+    },
+    {
+      "providerModel": "디 올 뉴 코나 2.0 가솔린 터보 2WD Modern",
+      "price": 23930000
+    },
+    {
+      "providerModel": "디 올 뉴 코나 2.0 가솔린 터보 2WD H-Pick",
+      "price": 26250000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD Black Exterior",
+      "price": 42440000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 2WD Black Ink",
+      "price": 45470000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD Black Exterior",
+      "price": 44670000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 5인승 2.5 가솔린 터보 4WD Black Ink",
+      "price": 47700000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD H-Pick Black Exterior",
+      "price": 43480000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 2WD 캘리그래피 Black Ink",
+      "price": 46510000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD Black Exterior",
+      "price": 45710000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 6인승 2.5 가솔린 터보 4WD Black Ink",
+      "price": 48740000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD Black Exterior",
+      "price": 43130000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 2WD Black Ink",
+      "price": 46160000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD Black Exterior",
+      "price": 45360000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 7인승 2.5 가솔린 터보 4WD Black Ink",
+      "price": 48390000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD Black Exterior",
+      "price": 47080000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 5인승 1.6 하이브리드 2WD Black Ink",
+      "price": 49770000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD Black Exterior",
+      "price": 49310000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 5인승 1.6 하이브리드 4WD Black Ink",
+      "price": 52000000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD Black Exterior",
+      "price": 48120000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 6인승 1.6 하이브리드 2WD Black Ink",
+      "price": 50810000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD Black Exterior",
+      "price": 50350000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 6인승 1.6 하이브리드 4WD Black Ink",
+      "price": 53040000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD Black Exterior",
+      "price": 47770000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 7인승 1.6 하이브리드 2WD Black Ink",
+      "price": 50460000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD Black Exterior",
+      "price": 50000000
+    },
+    {
+      "providerModel": "디 올 뉴 싼타페 7인승 1.6 하이브리드 4WD Black Ink",
+      "price": 52690000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Exclusive",
+      "price": 46100000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Prestige",
+      "price": 50930000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD Calligraphy",
+      "price": 58070000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Exclusive",
+      "price": 48500000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Prestige",
+      "price": 53330000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD Calligraphy",
+      "price": 60470000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Exclusive",
+      "price": 44780000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Prestige",
+      "price": 49360000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD Calligraphy",
+      "price": 56060000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Exclusive",
+      "price": 47060000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Prestige",
+      "price": 51640000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD Calligraphy",
+      "price": 58340000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Exclusive",
+      "price": 52400000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Prestige",
+      "price": 57220000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD Calligraphy",
+      "price": 64360000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Exclusive",
+      "price": 54800000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Prestige",
+      "price": 59620000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD Calligraphy",
+      "price": 66760000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Exclusive",
+      "price": 50770000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Prestige",
+      "price": 55360000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD Calligraphy",
+      "price": 62060000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Exclusive",
+      "price": 53050000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Prestige",
+      "price": 57640000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD Calligraphy",
+      "price": 64340000
+    },
+    {
+      "providerModel": "K9 3.3 가솔린 터보 AWD 플래티넘+베스트셀렉션1",
+      "price": 74750000
+    },
+    {
+      "providerModel": "K9 3.3 가솔린 터보 AWD 마스터즈+베스트셀렉션2",
+      "price": 87030000
+    },
+    {
+      "providerModel": "K9 3.8 가솔린 터보 2WD 플래티넘",
+      "price": 60340000
+    },
+    {
+      "providerModel": "K9 3.8 가솔린 터보 AWD 플래티넘",
+      "price": 62810000
+    },
+    {
+      "providerModel": "K9 3.8 가솔린 터보 AWD 플래티넘+베스트셀렉션1",
+      "price": 68990000
+    },
+    {
+      "providerModel": "K9 3.8 가솔린 터보 AWD 마스터즈",
+      "price": 75200000
+    },
+    {
+      "providerModel": "K9 3.8 가솔린 터보 AWD 마스터즈+베스트셀렉션2",
+      "price": 82290000
+    },
+    {
+      "providerModel": "셀토스 1.6 가솔린 2WD 트렌디",
+      "price": 25120000
+    },
+    {
+      "providerModel": "셀토스 1.6 가솔린 2WD 프레스티지",
+      "price": 28800000
+    },
+    {
+      "providerModel": "셀토스 1.6 가솔린 2WD 시그니처",
+      "price": 31450000
+    },
+    {
+      "providerModel": "셀토스 1.6 가솔린 2WD X-Line",
+      "price": 32630000
+    },
+    {
+      "providerModel": "셀토스 1.6 가솔린 4WD 트렌디",
+      "price": 27100000
+    },
+    {
+      "providerModel": "셀토스 1.6 가솔린 4WD 프레스티지",
+      "price": 30780000
+    },
+    {
+      "providerModel": "셀토스 1.6 가솔린 4WD 시그니처",
+      "price": 33430000
+    },
+    {
+      "providerModel": "셀토스 1.6 가솔린 4WD X-Line",
+      "price": 34610000
+    },
+    {
+      "providerModel": "스포티지 1.6 가솔린 터보 2WD X-Line",
+      "price": 36220000
+    },
+    {
+      "providerModel": "스포티지 1.6 가솔린 터보 4WD X-Line",
+      "price": 38450000
+    },
+    {
+      "providerModel": "스포티지 1.6 하이브리드 2WD X-Line",
+      "price": 42030000
+    },
+    {
+      "providerModel": "스포티지 1.6 하이브리드 4WD X-Line",
+      "price": 44260000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 2.2 디젤 2WD 프레스티지",
+      "price": 38040000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 2.2 디젤 2WD 노블레스",
+      "price": 41190000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 2.2 디젤 2WD 시그니처",
+      "price": 44000000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 2.2 디젤 2WD X-Line",
+      "price": 44940000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 2.2 디젤 4WD 프레스티지",
+      "price": 40360000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 2.2 디젤 4WD 노블레스",
+      "price": 43510000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 2.2 디젤 4WD 시그니처",
+      "price": 46320000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 2.2 디젤 4WD X-Line",
+      "price": 47260000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 2.2 디젤 2WD 프레스티지",
+      "price": 38880000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 2.2 디젤 2WD 노블레스",
+      "price": 42030000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 2.2 디젤 2WD 시그니처",
+      "price": 44840000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 2.2 디젤 2WD X-Line",
+      "price": 45780000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 2.2 디젤 4WD 프레스티지",
+      "price": 41200000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 2.2 디젤 4WD 노블레스",
+      "price": 44350000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 2.2 디젤 4WD 시그니처",
+      "price": 47160000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 2.2 디젤 4WD X-Line",
+      "price": 48100000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 2.2 디젤 2WD 프레스티지",
+      "price": 38730000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 2.2 디젤 2WD 노블레스",
+      "price": 41880000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 2.2 디젤 2WD 시그니처",
+      "price": 44690000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 2.2 디젤 2WD X-Line",
+      "price": 45630000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 2.2 디젤 4WD 프레스티지",
+      "price": 41050000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 2.2 디젤 4WD 노블레스",
+      "price": 44200000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 2.2 디젤 4WD 시그니처",
+      "price": 47010000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 2.2 디젤 4WD X-Line",
+      "price": 47950000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 2WD 프레스티지",
+      "price": 40630000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 2WD 노블레스",
+      "price": 43990000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 2WD 시그니처",
+      "price": 46760000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 2WD X-Line",
+      "price": 47700000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 4WD 프레스티지",
+      "price": 42950000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 4WD 노블레스",
+      "price": 46310000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 4WD 시그니처",
+      "price": 49080000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 4WD X-Line",
+      "price": 50020000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 2WD 프레스티지",
+      "price": 41470000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 2WD 노블레스",
+      "price": 44830000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 2WD 시그니처",
+      "price": 47600000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 2WD X-Line",
+      "price": 48540000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 4WD 프레스티지",
+      "price": 43790000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 4WD 노블레스",
+      "price": 47150000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 4WD 시그니처",
+      "price": 49920000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 4WD X-Line",
+      "price": 50860000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 2WD 프레스티지",
+      "price": 41320000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 2WD 노블레스",
+      "price": 44680000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 2WD 시그니처",
+      "price": 47450000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 2WD X-Line",
+      "price": 48390000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 4WD 프레스티지",
+      "price": 43640000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 4WD 노블레스",
+      "price": 47000000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 4WD 시그니처",
+      "price": 49770000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 4WD X-Line",
+      "price": 50710000
+    },
+    {
+      "providerModel": "카니발 7인승 3.5 가솔린 아웃도어",
+      "price": 42830000
+    },
+    {
+      "providerModel": "카니발 7인승 3.5 가솔린 X-Line",
+      "price": 47910000
+    },
+    {
+      "providerModel": "카니발 9인승 3.5 가솔린 프레스티지",
+      "price": 36860000
+    },
+    {
+      "providerModel": "카니발 9인승 3.5 가솔린 X-Line",
+      "price": 45320000
+    },
+    {
+      "providerModel": "카니발 7인승 1.6 하이브리드 아웃도어",
+      "price": 47330000
+    },
+    {
+      "providerModel": "카니발 7인승 1.6 하이브리드 노블레스",
+      "price": 48320000
+    },
+    {
+      "providerModel": "카니발 7인승 1.6 하이브리드 시그니처",
+      "price": 51880000
+    },
+    {
+      "providerModel": "카니발 7인승 1.6 하이브리드 X-Line",
+      "price": 52410000
+    },
+    {
+      "providerModel": "카니발 9인승 1.6 하이브리드 프레스티지",
+      "price": 41410000
+    },
+    {
+      "providerModel": "카니발 9인승 1.6 하이브리드 노블레스",
+      "price": 45760000
+    },
+    {
+      "providerModel": "카니발 9인승 1.6 하이브리드 시그니처",
+      "price": 49110000
+    },
+    {
+      "providerModel": "카니발 9인승 1.6 하이브리드 X-Line",
+      "price": 49870000
+    },
+    {
+      "providerModel": "G70 2.5 가솔린 터보 2WD 기본 모델",
+      "price": 45000000
+    },
+    {
+      "providerModel": "G70 2.5 가솔린 터보 2WD 스포츠 패키지",
+      "price": 48560000
+    },
+    {
+      "providerModel": "G70 2.5 가솔린 터보 AWD 기본 모델",
+      "price": 47470000
+    },
+    {
+      "providerModel": "G70 2.5 가솔린 터보 AWD 스포츠 패키지",
+      "price": 50830000
+    },
+    {
+      "providerModel": "G70 3.3 가솔린 터보 2WD 기본 모델",
+      "price": 49950000
+    },
+    {
+      "providerModel": "G70 3.3 가솔린 터보 2WD 스포츠 패키지",
+      "price": 52320000
+    },
+    {
+      "providerModel": "G70 3.3 가솔린 터보 AWD 기본 모델",
+      "price": 52420000
+    },
+    {
+      "providerModel": "G70 3.3 가솔린 터보 AWD 스포츠 패키지",
+      "price": 54790000
+    },
+    {
+      "providerModel": "G80 2.5 가솔린 터보 2WD 기본 모델",
+      "price": 60630000
+    },
+    {
+      "providerModel": "G80 2.5 가솔린 터보 2WD 스포츠 패키지",
+      "price": 64630000
+    },
+    {
+      "providerModel": "G80 2.5 가솔린 터보 AWD 기본 모델",
+      "price": 63430000
+    },
+    {
+      "providerModel": "G80 2.5 가솔린 터보 AWD 스포츠 패키지",
+      "price": 67430000
+    },
+    {
+      "providerModel": "G80 3.5 가솔린 터보 2WD 기본 모델",
+      "price": 67230000
+    },
+    {
+      "providerModel": "G80 3.5 가솔린 터보 2WD 스포츠 패키지",
+      "price": 72830000
+    },
+    {
+      "providerModel": "G80 3.5 가솔린 터보 AWD 기본 모델",
+      "price": 70030000
+    },
+    {
+      "providerModel": "G80 3.5 가솔린 터보 AWD 스포츠 패키지",
+      "price": 75630000
+    },
+    {
+      "providerModel": "G80 BLACK 2.5 가솔린 터보 AWB",
+      "price": 83600000
+    },
+    {
+      "providerModel": "G80 BLACK 3.5 가솔린 터보 AWB",
+      "price": 87900000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 2WD (5인승)",
+      "price": 97480000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 AWD (5인승)",
+      "price": 100980000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 2WD (4인승) + 뒷좌석 컴포트 패키지Ⅰ",
+      "price": 104380000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 AWD (4인승) + 뒷좌석 컴포트 패키지Ⅰ",
+      "price": 107880000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 2WD (5인승)",
+      "price": 103480000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 AWD (5인승)",
+      "price": 106980000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 2WD (4인승) + 뒷좌석 컴포트 패키지Ⅰ",
+      "price": 110380000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 AWD (4인승) + 뒷좌석 컴포트 패키지Ⅰ",
+      "price": 113880000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 BLACK AWD (5인승)",
+      "price": 135640000
+    },
+    {
+      "providerModel": "G90 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 BLACK AWD (4인승)",
+      "price": 139040000
+    },
+    {
+      "providerModel": "G90 LONG WHEEL BASE 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 AWD (5인승)",
+      "price": 167690000
+    },
+    {
+      "providerModel": "G90 LONG WHEEL BASE 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 AWD (4인승) + 뒷좌석 컴포트 패키지",
+      "price": 176590000
+    },
+    {
+      "providerModel": "New GV70 2.5 가솔린 터보 2WD 기본모델",
+      "price": 54730000
+    },
+    {
+      "providerModel": "New GV70 2.5 가솔린 터보 2WD 스포츠 패키지",
+      "price": 57530000
+    },
+    {
+      "providerModel": "New GV70 2.5 가솔린 터보 AWD 기본모델",
+      "price": 57730000
+    },
+    {
+      "providerModel": "New GV70 2.5 가솔린 터보 AWD 스포츠 패키지",
+      "price": 60530000
+    },
+    {
+      "providerModel": "New GV70 3.5 가솔린 터보 2WD 기본모델",
+      "price": 60230000
+    },
+    {
+      "providerModel": "New GV70 3.5 가솔린 터보 2WD 스포츠 패키지",
+      "price": 63580000
+    },
+    {
+      "providerModel": "New GV70 3.5 가솔린 터보 AWD 기본모델",
+      "price": 63230000
+    },
+    {
+      "providerModel": "New GV70 3.5 가솔린 터보 AWD 스포츠 패키지",
+      "price": 66580000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 19인치휠 5인승",
+      "price": 68860000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 19인치휠 6인승",
+      "price": 71360000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 19인치휠 7인승",
+      "price": 69860000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 20인치휠 5인승",
+      "price": 70160000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 20인치휠 6인승",
+      "price": 72660000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 20인치휠 7인승",
+      "price": 71160000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 22인치휠 5인승",
+      "price": 71360000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 22인치휠 6인승",
+      "price": 73860000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 2WD 22인치휠 7인승",
+      "price": 72360000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 19인치휠 5인승",
+      "price": 71860000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 19인치휠 6인승",
+      "price": 74360000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 19인치휠 7인승",
+      "price": 72860000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 20인치휠 5인승",
+      "price": 73160000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 20인치휠 6인승",
+      "price": 75660000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 20인치휠 7인승",
+      "price": 74160000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 22인치휠 5인승",
+      "price": 74360000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 22인치휠 6인승",
+      "price": 76860000
+    },
+    {
+      "providerModel": "GV80 2.5 가솔린 터보 AWD with E-LSD 22인치휠 7인승",
+      "price": 75360000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 2WD 20인치휠 5인승",
+      "price": 74360000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 2WD 20인치휠 6인승",
+      "price": 76860000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 2WD 20인치휠 7인승",
+      "price": 75360000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 2WD 22인치휠 5인승",
+      "price": 75560000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 2WD 22인치휠 6인승",
+      "price": 78060000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 2WD 22인치휠 7인승",
+      "price": 76560000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 AWD with E-LSD 20인치휠 5인승",
+      "price": 77360000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 AWD with E-LSD 20인치휠 6인승",
+      "price": 79860000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 AWD with E-LSD 20인치휠 7인승",
+      "price": 78360000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 AWD with E-LSD 22인치휠 5인승",
+      "price": 78560000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 AWD with E-LSD 22인치휠 6인승",
+      "price": 81060000
+    },
+    {
+      "providerModel": "GV80 3.5 가솔린 터보 AWD with E-LSD 22인치휠 7인승",
+      "price": 79560000
+    },
+    {
+      "providerModel": "GV80 COUPE 2.5 가솔린 터보 AWD with E-LSD 20인치휠",
+      "price": 81300000
+    },
+    {
+      "providerModel": "GV80 COUPE 2.5 가솔린 터보 AWD with E-LSD 22인치휠",
+      "price": 82500000
+    },
+    {
+      "providerModel": "GV80 COUPE 3.5 가솔린 터보 AWD with E-LSD 20인치휠",
+      "price": 85500000
+    },
+    {
+      "providerModel": "GV80 COUPE 3.5 가솔린 터보 AWD with E-LSD 22인치휠",
+      "price": 86700000
+    },
+    {
+      "providerModel": "GV80 COUPE 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 AWD with E-LSD 22인치휠",
+      "price": 91850000
+    },
+    {
+      "providerModel": "GV80 COUPE 3.5 가솔린 터보 48V 일렉트릭 슈퍼차저 AWD Black",
+      "price": 110330000
+    },
+    {
+      "providerModel": "포터2 초장축 슈퍼캡 2.5 LPI 오토 SMART",
+      "price": 22650000
+    },
+    {
+      "providerModel": "포터2 초장축 슈퍼캡 2.5 LPI 오토 Modern",
+      "price": 23700000
+    },
+    {
+      "providerModel": "포터2 초장축 더블캡 2.5 LPI 오토 SMART",
+      "price": 24080000
+    },
+    {
+      "providerModel": "포터2 초장축 더블캡 2.5 LPI 오토 Modern",
+      "price": 25110000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD H-Pick",
+      "price": 50400000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD H-Pick",
+      "price": 52680000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 2WD XRT",
+      "price": 52110000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 가솔린 터보 4WD XRT",
+      "price": 54390000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD H-Pick",
+      "price": 52030000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD H-Pick",
+      "price": 54430000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 2WD XRT",
+      "price": 53820000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 가솔린 터보 4WD XRT",
+      "price": 56220000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 2WD H-Pick",
+      "price": 56400000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 9인승 2.5 터보 하이브리드 4WD H-Pick",
+      "price": 58680000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 2WD H-Pick",
+      "price": 58320000
+    },
+    {
+      "providerModel": "디 올 뉴 팰리세이드 7인승 2.5 터보 하이브리드 4WD H-Pick",
+      "price": 60720000
+    },
+    {
+      "providerModel": "카니발 9인승 3.5 가솔린 블랙 에디션",
+      "price": 45920000
+    },
+    {
+      "providerModel": "카니발 9인승 1.6 하이브리드 블랙 에디션",
+      "price": 50470000
+    },
+    {
+      "providerModel": "카니발 7인승 3.5 가솔린 블랙 에디션",
+      "price": 48510000
+    },
+    {
+      "providerModel": "카니발 7인승 1.6 하이브리드 블랙 에디션",
+      "price": 53010000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 2WD 블랙 에디션",
+      "price": 48950000
+    },
+    {
+      "providerModel": "쏘렌토 5인승 1.6 하이브리드 4WD 블랙 에디션",
+      "price": 51270000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 2WD 블랙 에디션",
+      "price": 49790000
+    },
+    {
+      "providerModel": "쏘렌토 6인승 1.6 하이브리드 4WD 블랙 에디션",
+      "price": 52110000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 2WD 블랙 에디션",
+      "price": 49640000
+    },
+    {
+      "providerModel": "쏘렌토 7인승 1.6 하이브리드 4WD 블랙 에디션",
+      "price": 51960000
+    },
+    {
+      "providerModel": "스포티지 1.6 하이브리드 2WD 블랙 에디션",
+      "price": 41680000
+    },
+    {
+      "providerModel": "2026 테슬라 모델 Y RWD",
+      "price": 49900000
+    },
+    {
+      "providerModel": "2025 코나 일렉트릭 스탠다드 E-Value+",
+      "price": 43680000
+    },
+    {
+      "providerModel": "2025 코나 일렉트릭 스탠다드 프리미엄",
+      "price": 45830000
+    },
+    {
+      "providerModel": "2025 코나 일렉트릭 롱레인지 모던 플러스",
+      "price": 48030000
+    },
+    {
+      "providerModel": "2025 코나 일렉트릭 롱레인지 프리미엄",
+      "price": 48990000
+    },
+    {
+      "providerModel": "2025 코나 일렉트릭 롱레인지 인스퍼레이션",
+      "price": 52520000
+    },
+    {
+      "providerModel": "2025 코나 일렉트릭 롱레인지 블랙 익스테리어",
+      "price": 52870000
+    },
+    {
+      "providerModel": "레이 EV 4인승 승용 라이트",
+      "price": 28520000
+    },
+    {
+      "providerModel": "레이 EV 4인승 승용 에어",
+      "price": 30620000
+    },
+    {
+      "providerModel": "EV3 스탠다드 에어",
+      "price": 42030000
+    },
+    {
+      "providerModel": "EV3 스탠다드 어스",
+      "price": 46180000
+    },
+    {
+      "providerModel": "EV3 롱레인지 에어",
+      "price": 46450000
+    },
+    {
+      "providerModel": "EV3 롱레인지 어스",
+      "price": 50600000
+    },
+    {
+      "providerModel": "EV5 에어 스탠다드",
+      "price": 43710000
+    },
+    {
+      "providerModel": "EV5 어스 스탠다드",
+      "price": 47660000
+    },
+    {
+      "providerModel": "EV5 에어 롱레인지",
+      "price": 48130000
+    },
+    {
+      "providerModel": "EV5 어스 롱레인지",
+      "price": 52070000
+    },
+    {
+      "providerModel": "디 올 뉴 투싼 1.6 가솔린 터보 H-Pick",
+      "price": 31400000
+    },
+    {
+      "providerModel": "디 올 뉴 투싼 1.6 가솔린 터보 Exclusive",
+      "price": 35300000
+    },
+    {
+      "providerModel": "디 올 뉴 투싼 1.6 가솔린 터보 XRT",
+      "price": 36800000
+    },
+    {
+      "providerModel": "디 올 뉴 투싼 1.6 가솔린 터보 Inspiration",
+      "price": 37900000
+    },
+    {
+      "providerModel": "디 올 뉴 투싼 1.6 하이브리드 H-Pick",
+      "price": 37150000
+    },
+    {
+      "providerModel": "디 올 뉴 투싼 1.6 하이브리드 Exclusive",
+      "price": 40900000
+    },
+    {
+      "providerModel": "디 올 뉴 투싼 1.6 하이브리드 XRT",
+      "price": 42650000
+    },
+    {
+      "providerModel": "디 올 뉴 투싼 1.6 하이브리드 Inspiration",
+      "price": 43700000
+    }
+  ],
+  "sourceHtmlSha256": "280fef79d3b3bb3d5cc930588b1671f31b3ed957b3be3ff708c17ee8c3f0aeb6",
+  "notes": [
+    "Counts describe exact provider-key mappings, not unique models or confirmed discontinuations.",
+    "Unmapped provider rows include imports and other existing lines; do not call them all new vehicles.",
+    "No operational CANONICAL_ACTIVE release was read.",
+    "No master facts or local catalogue prices have been overwritten."
+  ]
+}

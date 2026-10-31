@@ -43,7 +43,7 @@ function req(id,credit='중신용'){
       구성:{기본축:t._base_axes||{},canonical,선택옵션:[]},
     },
     조건:{
-      신용:credit,주행:'2만km',정비:'웰스 Basic',대물:'1억',추가운전자:'없음',
+      신용:credit,주행:'2만km',정비:'정비 제외',대물:'1억',추가운전자:'없음',
       탁송비:costs.deliveryFee,썬팅비:costs.tintFee,블박비:costs.dashcamFee,내비비:0,하이패스비:0,비용:costs,수수료율:3,
     },
     안들:QUOTE_TERMS.map((기간)=>({기간,보증금:0,선납:0})),
@@ -64,7 +64,7 @@ for(const [label,id] of cases){
   const answer=await calculateStandardQuote(request);
   assert.equal(answer.결과.length,5,label+' result length');
   assert.equal(answer.pricingEngine?.verified,true,label+' engine evidence verified');
-  assert.match(answer.pricingEngine?.version||'',/^freepass-standard\/newcar@1\.2\.0\+src\.[a-f0-9]{12}\.policy\.[a-f0-9]{12}$/,label+' engine version');
+  assert.match(answer.pricingEngine?.version||'',/^freepass-standard\/newcar@1\.3\.0\+src\.[a-f0-9]{12}\.policy\.[a-f0-9]{12}$/,label+' engine version');
   for(const row of answer.결과){
     assert.ok(Number.isFinite(row.월대여료)&&row.월대여료>0,label+' monthly');
     assert.ok(Number.isFinite(row.보증금)&&row.보증금>=0,label+' deposit');
@@ -120,6 +120,7 @@ for(const [label,id] of cases){
     ['주행','3만km'],
     ['주행','4만km'],
     ['정비','웰스 Self'],
+    ['정비','웰스 Basic'],
     ['대물','2억'],
     ['대물','3억'],
     ['대물','5억'],

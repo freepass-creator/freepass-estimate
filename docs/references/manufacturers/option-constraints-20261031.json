@@ -1,0 +1,753 @@
+{
+  "schema": "freepass-official-option-research/v1",
+  "observedDate": "2026-10-31",
+  "authority": "RESEARCH_REFERENCE_NOT_CANONICAL",
+  "productionReady": false,
+  "sourcePolicy": "Manufacturer evidence only. No Kamatch data imports. This reference is not a vehicle master or runtime policy.",
+  "snapshot": {
+    "repository": "freepass-creator/freepass-estimate",
+    "commit": "d483fd46f8b3b0c9ee334cc45a47ba71b9b25f3d",
+    "path": "apps/new/public/vehicle-db.js",
+    "dataAsOf": "2026-09-18",
+    "scope": "repository UI snapshot only; no operational ACTIVE release inspected"
+  },
+  "sources": {
+    "K5": {
+      "url": "https://www.kia.com/content/dam/kwp/kr/ko/vehicles/pdf/price/price_k5.pdf",
+      "edition": "2026-10",
+      "modelYear": 2027,
+      "inspection": "PDF text + p2/p9 visual inspection"
+    },
+    "SORENTO": {
+      "url": "https://www.kia.com/content/dam/kwp/kr/ko/vehicles/pdf/price/price_sorento.pdf",
+      "edition": "2026-10",
+      "modelYear": 2027,
+      "inspection": "PDF text + p1/p5 visual inspection"
+    },
+    "SPORTAGE": {
+      "url": "https://www.kia.com/content/dam/kwp/kr/ko/vehicles/pdf/price/price_sportage.pdf",
+      "edition": "2026-10",
+      "modelYear": null,
+      "inspection": "PDF text + p1/p3 visual inspection; do not infer model year"
+    },
+    "CARNIVAL": {
+      "url": "https://www.kia.com/content/dam/kwp/kr/ko/vehicles/pdf/price/price_carnival.pdf",
+      "edition": "2026-10",
+      "modelYear": null,
+      "inspection": "PDF text + p5/p11 visual inspection; do not infer model year"
+    },
+    "AVANTE": {
+      "url": "https://www.hyundai.com/kr/ko/e/vehicles/the-all-new-avante/price",
+      "edition": "2026-10-01",
+      "modelYear": null,
+      "inspection": "Official indexed price-page content; direct page returned only JS shell. Generation must be matched separately."
+    },
+    "G80": {
+      "url": "https://www.genesis.com/kr/ko/models/luxury-sedan-genesis/g80/bto/packages?code=BDBBCGG&packages=PP1",
+      "edition": null,
+      "modelYear": null,
+      "inspection": "Official indexed BTO content + 2026 G80 release announcement; actual option coexistence remains review"
+    },
+    "IONIQ5N_2025": {
+      "url": "https://www.hyundai.com/contents/repn-car/catalog/ioniq5-n-price.pdf",
+      "edition": "2025 model official document",
+      "modelYear": 2025,
+      "inspection": "Historical official PDF text; current 2026 document is a different release. Never auto-apply across model years."
+    }
+  },
+  "rules": [
+    {
+      "id": "sportage-prestige-style",
+      "sourceId": "SPORTAGE",
+      "page": 1,
+      "kind": "PRICE",
+      "match": {
+        "model": "스포티지",
+        "variant": "가솔린 1.6 터보",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "스타일 패키지",
+        "스타일"
+      ],
+      "expectedWon": 690000
+    },
+    {
+      "id": "sportage-noblesse-style",
+      "sourceId": "SPORTAGE",
+      "page": 1,
+      "kind": "PRICE",
+      "match": {
+        "model": "스포티지",
+        "variant": "가솔린 1.6 터보",
+        "trims": [
+          "노블레스"
+        ]
+      },
+      "subject": [
+        "스타일 패키지",
+        "스타일"
+      ],
+      "expectedWon": 890000
+    },
+    {
+      "id": "sportage-prestige-sunroof",
+      "sourceId": "SPORTAGE",
+      "page": 1,
+      "kind": "PRICE",
+      "match": {
+        "model": "스포티지",
+        "variant": "가솔린 1.6 터보",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "파노라마 선루프"
+      ],
+      "expectedWon": 1190000
+    },
+    {
+      "id": "sportage-prestige-4wd",
+      "sourceId": "SPORTAGE",
+      "page": 1,
+      "kind": "PRICE",
+      "match": {
+        "model": "스포티지",
+        "variant": "가솔린 1.6 터보",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "전자식 4WD"
+      ],
+      "expectedWon": 2230000
+    },
+    {
+      "id": "sportage-navigation-included",
+      "sourceId": "SPORTAGE",
+      "page": 1,
+      "kind": "INCLUDED",
+      "match": {
+        "model": "스포티지",
+        "variant": "가솔린 1.6 터보",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "12.3\" 내비게이션",
+        "12.3인치 내비게이션"
+      ],
+      "note": "해당 공식 기본 사양에 포함. 유료 선택 항목으로 다시 청구하지 않는지 점검."
+    },
+    {
+      "id": "sportage-matte-scope",
+      "sourceId": "SPORTAGE",
+      "page": 7,
+      "kind": "MANUAL",
+      "match": {
+        "model": "스포티지",
+        "variant": null,
+        "trims": null
+      },
+      "subject": [
+        "쉐도우 매트 그레이"
+      ],
+      "expectedWon": 300000,
+      "condition": {
+        "onlyTrim": "X-Line"
+      },
+      "note": "외장색 사용 가능 트림과 가격을 별도 축으로 매칭."
+    },
+    {
+      "id": "sorento-seat-choice",
+      "sourceId": "SORENTO",
+      "page": 1,
+      "kind": "MUTEX",
+      "match": {
+        "model": "쏘렌토",
+        "variant": "가솔린 2.5 터보",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "6인승"
+      ],
+      "target": [
+        "7인승"
+      ],
+      "selectionCardinality": "AT_MOST_ONE",
+      "note": "5인승 기본을 유지하는 무선택도 허용. 6/7인승 추가금 동시 합산 금지."
+    },
+    {
+      "id": "sorento-hud-prerequisite",
+      "sourceId": "SORENTO",
+      "page": 1,
+      "kind": "REQUIRES",
+      "match": {
+        "model": "쏘렌토",
+        "variant": "가솔린 2.5 터보",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "HUD + 빌트인 캠 2"
+      ],
+      "target": [
+        "12.3\" 클러스터",
+        "12.3인치 클러스터"
+      ]
+    },
+    {
+      "id": "sorento-style-prestige",
+      "sourceId": "SORENTO",
+      "page": 1,
+      "kind": "PRICE",
+      "match": {
+        "model": "쏘렌토",
+        "variant": "가솔린 2.5 터보",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "스타일 패키지",
+        "스타일"
+      ],
+      "expectedWon": 1240000
+    },
+    {
+      "id": "sorento-step-trailer",
+      "sourceId": "SORENTO",
+      "page": 5,
+      "kind": "MUTEX",
+      "match": {
+        "model": "쏘렌토",
+        "variant": null,
+        "trims": null
+      },
+      "subject": [
+        "사이드 스텝"
+      ],
+      "target": [
+        "트레일러 패키지"
+      ],
+      "selectionCardinality": "AT_MOST_ONE"
+    },
+    {
+      "id": "sorento-suspension-restriction",
+      "sourceId": "SORENTO",
+      "page": 5,
+      "kind": "MANUAL",
+      "match": {
+        "model": "쏘렌토",
+        "variant": null,
+        "trims": null
+      },
+      "subject": [
+        "서스펜션 패키지"
+      ],
+      "condition": {
+        "powertrain": "2.5 가솔린 터보",
+        "requires": "스타일(20인치 휠)",
+        "notFor": "하이브리드"
+      },
+      "note": "차종 전역 배타가 아니라 파워트레인+휠 조합 조건."
+    },
+    {
+      "id": "sorento-hev-4wd-tax",
+      "sourceId": "SORENTO",
+      "page": 3,
+      "kind": "MANUAL",
+      "match": {
+        "model": "쏘렌토",
+        "variant": "하이브리드 1.6 터보",
+        "trims": null
+      },
+      "subject": [
+        "전자식 4WD"
+      ],
+      "condition": {
+        "taxBenefitLost": true
+      },
+      "note": "구동 선택으로 세제혜택 적용 여부가 바뀜. 단순 옵션가 합산 금지, 세제 기준 재검증."
+    },
+    {
+      "id": "carnival-prestige-style",
+      "sourceId": "CARNIVAL",
+      "page": 5,
+      "kind": "PRICE",
+      "match": {
+        "model": "카니발",
+        "variant": "가솔린 3.5",
+        "trims": [
+          "프레스티지(9인)"
+        ]
+      },
+      "subject": [
+        "스타일 패키지",
+        "스타일"
+      ],
+      "expectedWon": 700000
+    },
+    {
+      "id": "carnival-prestige-drivewise",
+      "sourceId": "CARNIVAL",
+      "page": 5,
+      "kind": "PRICE",
+      "match": {
+        "model": "카니발",
+        "variant": "가솔린 3.5",
+        "trims": [
+          "프레스티지(9인)"
+        ]
+      },
+      "subject": [
+        "드라이브 와이즈"
+      ],
+      "expectedWon": 750000
+    },
+    {
+      "id": "carnival-prestige-monitoring",
+      "sourceId": "CARNIVAL",
+      "page": 5,
+      "kind": "PRICE",
+      "match": {
+        "model": "카니발",
+        "variant": "가솔린 3.5",
+        "trims": [
+          "프레스티지(9인)"
+        ]
+      },
+      "subject": [
+        "모니터링 팩"
+      ],
+      "expectedWon": 1200000
+    },
+    {
+      "id": "carnival-prestige-hud-price",
+      "sourceId": "CARNIVAL",
+      "page": 5,
+      "kind": "PRICE",
+      "match": {
+        "model": "카니발",
+        "variant": "가솔린 3.5",
+        "trims": [
+          "프레스티지(9인)"
+        ]
+      },
+      "subject": [
+        "HUD + 빌트인 캠 2"
+      ],
+      "expectedWon": 1200000
+    },
+    {
+      "id": "carnival-prestige-hud-requires",
+      "sourceId": "CARNIVAL",
+      "page": 5,
+      "kind": "REQUIRES",
+      "match": {
+        "model": "카니발",
+        "variant": "가솔린 3.5",
+        "trims": [
+          "프레스티지(9인)"
+        ]
+      },
+      "subject": [
+        "HUD + 빌트인 캠 2"
+      ],
+      "target": [
+        "12.3\" 클러스터",
+        "12.3인치 클러스터"
+      ]
+    },
+    {
+      "id": "carnival-prestige-rear-entertainment",
+      "sourceId": "CARNIVAL",
+      "page": 12,
+      "kind": "NOT_AVAILABLE",
+      "match": {
+        "model": "카니발",
+        "variant": "가솔린 3.5",
+        "trims": [
+          "프레스티지(9인)"
+        ]
+      },
+      "subject": [
+        "후석 스마트 엔터테인먼트 시스템"
+      ],
+      "note": "프레스티지 및 7인승 아웃도어 제외."
+    },
+    {
+      "id": "carnival-noblesse-rear-price",
+      "sourceId": "CARNIVAL",
+      "page": 11,
+      "kind": "PRICE",
+      "match": {
+        "model": "카니발",
+        "variant": "가솔린 3.5",
+        "trims": [
+          "노블레스(9인)"
+        ]
+      },
+      "subject": [
+        "후석 스마트 엔터테인먼트 시스템"
+      ],
+      "expectedWon": 2730000
+    },
+    {
+      "id": "carnival-seats-package-price",
+      "sourceId": "CARNIVAL",
+      "page": 11,
+      "kind": "MANUAL",
+      "match": {
+        "model": "카니발",
+        "variant": null,
+        "trims": null
+      },
+      "subject": [
+        "마이컴포트 패키지"
+      ],
+      "condition": {
+        "seatsPriceWon": {
+          "7": 1330000,
+          "9": 1260000
+        }
+      },
+      "note": "7/9인승 가격을 모델 공통 단가로 합치지 않음."
+    },
+    {
+      "id": "carnival-pearl-body-price",
+      "sourceId": "CARNIVAL",
+      "page": 12,
+      "kind": "MANUAL",
+      "match": {
+        "model": "카니발",
+        "variant": null,
+        "trims": null
+      },
+      "subject": [
+        "스노우 화이트 펄"
+      ],
+      "condition": {
+        "normalWon": 80000,
+        "highRoofWon": 100000
+      },
+      "note": "색상 이름이 같아도 하이루프 구조에 따른 가격 차이 보존."
+    },
+    {
+      "id": "carnival-color-body-restriction",
+      "sourceId": "CARNIVAL",
+      "page": 11,
+      "kind": "MANUAL",
+      "match": {
+        "model": "카니발",
+        "variant": null,
+        "trims": null
+      },
+      "subject": [
+        "네이비 그레이"
+      ],
+      "condition": {
+        "powertrain": "하이브리드",
+        "excludedBodies": [
+          "블랙 에디션",
+          "하이루프"
+        ]
+      },
+      "note": "색상-파워트레인-차체 조건. PDF 지면 정렬을 확인하고 개별 색상 ID에 매핑."
+    },
+    {
+      "id": "k5-rent-sunroof-price",
+      "sourceId": "K5",
+      "page": 9,
+      "kind": "PRICE",
+      "match": {
+        "model": "K5",
+        "variant": "LPG 렌터카 2.0",
+        "trims": [
+          "트렌디",
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "파노라마 선루프"
+      ],
+      "expectedWon": 1030000
+    },
+    {
+      "id": "k5-rent-wise-sbw",
+      "sourceId": "K5",
+      "page": 9,
+      "kind": "REQUIRES",
+      "match": {
+        "model": "K5",
+        "variant": "LPG 렌터카 2.0",
+        "trims": [
+          "트렌디",
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "드라이브 와이즈"
+      ],
+      "target": [
+        "SBW 팩"
+      ]
+    },
+    {
+      "id": "k5-rent-roof-aftermarket",
+      "sourceId": "K5",
+      "page": 9,
+      "kind": "MUTEX",
+      "match": {
+        "model": "K5",
+        "variant": "LPG 렌터카 2.0",
+        "trims": [
+          "트렌디",
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "파노라마 선루프"
+      ],
+      "target": [
+        "애프터마켓용 컬렉션"
+      ],
+      "selectionCardinality": "AT_MOST_ONE"
+    },
+    {
+      "id": "k5-rent-smart-cluster",
+      "sourceId": "K5",
+      "page": 9,
+      "kind": "REQUIRES",
+      "match": {
+        "model": "K5",
+        "variant": "LPG 렌터카 2.0",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "스마트 커넥트"
+      ],
+      "target": [
+        "12.3\" 클러스터 팩",
+        "12.3인치 클러스터 팩"
+      ]
+    },
+    {
+      "id": "k5-rent-cluster-price",
+      "sourceId": "K5",
+      "page": 9,
+      "kind": "PRICE",
+      "match": {
+        "model": "K5",
+        "variant": "LPG 렌터카 2.0",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "12.3\" 클러스터 팩",
+        "12.3인치 클러스터 팩"
+      ],
+      "expectedWon": 700000
+    },
+    {
+      "id": "k5-hev-style-black",
+      "sourceId": "K5",
+      "page": 2,
+      "kind": "MUTEX",
+      "match": {
+        "model": "K5",
+        "variant": "하이브리드 2.0",
+        "trims": [
+          "시그니처"
+        ]
+      },
+      "subject": [
+        "스타일 패키지",
+        "스타일"
+      ],
+      "target": [
+        "블랙핏",
+        "블랙 핏"
+      ],
+      "selectionCardinality": "AT_MOST_ONE"
+    },
+    {
+      "id": "k5-hev-hud-cluster",
+      "sourceId": "K5",
+      "page": 2,
+      "kind": "REQUIRES",
+      "match": {
+        "model": "K5",
+        "variant": "하이브리드 2.0",
+        "trims": [
+          "프레스티지"
+        ]
+      },
+      "subject": [
+        "HUD + 빌트인 캠 2"
+      ],
+      "target": [
+        "12.3\" 클러스터 팩",
+        "12.3인치 클러스터 팩"
+      ]
+    },
+    {
+      "id": "k5-black-interior-restriction",
+      "sourceId": "K5",
+      "page": 2,
+      "kind": "MANUAL",
+      "match": {
+        "model": "K5",
+        "variant": "하이브리드 2.0",
+        "trims": [
+          "시그니처"
+        ]
+      },
+      "subject": [
+        "블랙 핏"
+      ],
+      "condition": {
+        "excludedInteriorColors": [
+          "마션 브라운",
+          "샌드"
+        ]
+      },
+      "note": "옵션-옵션 배타와 옵션-내장색 배타를 구분."
+    },
+    {
+      "id": "g80-package-overrestriction",
+      "sourceId": "G80",
+      "page": null,
+      "kind": "BUNDLE_REVIEW",
+      "match": {
+        "model": "G80",
+        "variant": null,
+        "trims": [
+          "스탠다드"
+        ]
+      },
+      "subject": [
+        "파퓰러 패키지"
+      ],
+      "children": [
+        [
+          "드라이빙 어시스턴스 패키지Ⅰ"
+        ],
+        [
+          "드라이빙 어시스턴스 패키지Ⅱ"
+        ],
+        [
+          "빌트인 캠 패키지"
+        ]
+      ],
+      "confidence": "REVIEW_REQUIRED",
+      "note": "공식 BTO는 세 개별 패키지를 번들 구성으로 설명. 이것만으로 자식들끼리 택일이라고 확정할 수 없음. 같은 택일 그룹이 자식 상호선택까지 차단하는지 재현하고, 공식 BTO의 개별 동시선택 최종 확인 전 데이터 수정 보류."
+    },
+    {
+      "id": "g80-suspension-scope",
+      "sourceId": "G80",
+      "page": null,
+      "kind": "MANUAL",
+      "match": {
+        "model": "G80",
+        "variant": null,
+        "trims": null
+      },
+      "subject": [
+        "프리뷰 전자제어 서스펜션"
+      ],
+      "additionalSourceUrl": "https://www.genesis.com/kr/ko/models/luxury-sedan-genesis/g80/bto/packages2?code=BBBBBHH&packages=PP1",
+      "condition": {
+        "optionalWhen": {
+          "engine": "2.5 터보",
+          "wheelsInches": [
+            18,
+            19
+          ]
+        },
+        "baseWhen": {
+          "engine": "3.5 터보"
+        }
+      },
+      "confidence": "REVIEW_REQUIRED"
+    },
+    {
+      "id": "avante-parking-choice",
+      "sourceId": "AVANTE",
+      "page": null,
+      "kind": "MANUAL",
+      "match": {
+        "model": "디 올 뉴 아반떼",
+        "variant": "스마트스트림 가솔린 2.0",
+        "trims": [
+          "인스퍼레이션"
+        ]
+      },
+      "subject": [
+        "파킹 어시스트Ⅰ"
+      ],
+      "target": [
+        "파킹 어시스트Ⅱ"
+      ],
+      "selectionCardinality": "AT_MOST_ONE",
+      "note": "신형 세대 식별 전 기존 CN7 아반떼에 매핑 금지. 미선택 가능인 선택품목으로, 필수 정확히 하나로 해석하지 않음."
+    },
+    {
+      "id": "avante-parking-prices",
+      "sourceId": "AVANTE",
+      "page": null,
+      "kind": "MANUAL",
+      "match": {
+        "model": "디 올 뉴 아반떼",
+        "variant": "스마트스트림 가솔린 2.0",
+        "trims": [
+          "인스퍼레이션"
+        ]
+      },
+      "subject": [
+        "파킹 어시스트Ⅰ",
+        "파킹 어시스트Ⅱ"
+      ],
+      "condition": {
+        "pricesWon": [
+          800000,
+          1300000
+        ]
+      },
+      "note": "같은 이름 계열이라는 이유로 합산·단일 가격화하지 않음."
+    },
+    {
+      "id": "ioniq5n-2025-cam-mirror-exclusion",
+      "sourceId": "IONIQ5N_2025",
+      "page": 1,
+      "kind": "MUTEX",
+      "match": {
+        "model": "아이오닉 5 N",
+        "variant": "전기",
+        "trims": [
+          "IONIQ 5 N"
+        ]
+      },
+      "subject": [
+        "빌트인 캠 2, 증강현실 내비게이션"
+      ],
+      "target": [
+        "디지털 센터 미러"
+      ],
+      "selectionCardinality": "AT_MOST_ONE",
+      "confidence": "HISTORICAL_RULE_REQUIRES_MODEL_YEAR_ALIGNMENT",
+      "note": "공식 2025 가격표는 양자 동시 선택 금지. snapshot은 서로 requires로 연결해 초기 선택을 막는 순환을 만듦. 2026 가격표가 별도로 있으므로 운영 연식 확인 없이 전용 금액/조건을 수정하지 않음."
+    }
+  ]
+}

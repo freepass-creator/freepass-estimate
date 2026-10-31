@@ -5,10 +5,9 @@ import { 역할 } from '../../lib/role.js';
 import { rolePolicy } from '../../lib/feature/roles.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
-import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
+import { colorPriceLabel, exteriorColorsFor, defaultColorIndex } from '../../lib/exterior-paint.js';
 import SelectionSummary from './SelectionSummary.vue';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
-import { applyScenarioPercent, normalizeFeeRate } from '../../lib/feature/conditions.js';
 
 function resetQuoteVehicleWhenSelectionChanges(result) {
   if (result.changed) quoteState.vehicle = null;
@@ -20,7 +19,7 @@ function optionContext() {
     selected: vehicleState.options,
     optionsMaster: optionsMaster.value,
     exclusiveGroups: exclusiveGroups.value,
-    optionExcludes: selectedVariant.value?.option_excludes || {},
+    optionExcludes: selectedTrim.value?._option_excludes || selectedVariant.value?.option_excludes || {},
     trimId: vehicleState.trim,
   };
 }
@@ -37,6 +36,9 @@ const BRAND_LOGOS = {
   hyundai:  '/hyundai.svg',
   kia:      '/kia.svg',
   genesis:  '/genesis.svg',
+  renault:  '/renault.svg',
+  chevrolet: '/chevrolet.svg',
+  kgm:      '/kgm.svg',
 };
 
 // 내장 색상 — lookups.js 와 동일 (PC 와 일치) + swatch 자동 계산
@@ -77,7 +79,7 @@ onMounted(() => {
   /* ★공유 링크로 들어온 경우 — 트림은 이미 정해져 있는데 «트림을 고를 때 도는 뒷일»
      (syncVehicle)이 안 돌아서 월 대여료가 «—» 로 남는다. 여기서 한 번 돌려 준다.
      손으로 고른 경우엔 selectTrim 이 이미 돌렸으므로 다시 돌아도 값이 같다. */
-  if (vehicleState.trim) syncVehicle();
+  if (vehicleState.trim) { ensureDefaultColors(); syncVehicle(); }
 });
 
 // sub-step — vehicleState.subStep 에 저장 (MobileApp next() 와 통합)
@@ -89,12 +91,12 @@ const subStep = computed({
 // 제조사 — 판매량순
 const brands = computed(() => {
   if (!db.value) return [];
-  return sortByRank(db.value.manufacturers, (m) => m.manufacturer_name, POPULAR_BRAND);
+  return sortByRank(window.FreePassNewcarLaunch.manufacturers(db.value.manufacturers), (m) => m.manufacturer_name, POPULAR_BRAND);
 });
 
 const selectedBrand = computed(() => {
   if (!db.value || !vehicleState.manufacturer) return null;
-  return db.value.manufacturers.find(m => m.manufacturer_id === vehicleState.manufacturer);
+  return brands.value.find(m => m.manufacturer_id === vehicleState.manufacturer);
 });
 
 // 모델 — 인기순
@@ -160,8 +162,8 @@ function trimPrice(t, taxRate) {
 }
 
 // === 옵션 master / 배타 그룹 / 선행 요건 (PC 와 동일 로직) ===
-const optionsMaster = computed(() => selectedVariant.value?.options_master || {});
-const exclusiveGroups = computed(() => selectedVariant.value?.exclusive_groups || []);
+const optionsMaster = computed(() => selectedTrim.value?._options_master || selectedVariant.value?.options_master || {});
+const exclusiveGroups = computed(() => selectedTrim.value?._exclusive_groups || selectedVariant.value?.exclusive_groups || []);
 
 function getGroup(optId) {
   return optionRules.getExclusiveGroup(exclusiveGroups.value, optId);
@@ -342,6 +344,20 @@ function selectSpec(g) {
   resetQuoteVehicleWhenSelectionChanges(result);
   subStep.value = vehicleSelection.nextStepAfterSelection('trimGroup');
 }
+function ensureDefaultColors() {
+  if (!exteriorColors.value[vehicleState.color] || exteriorColors.value[vehicleState.color]?._paintUnavailable) {
+    vehicleState.color = defaultColorIndex(exteriorColors.value);
+  }
+  const current = 내장색들.value.find(color => color.stableId && color.stableId === quoteState.cond.colorIntId || color.value === quoteState.cond.colorInt);
+  if (!current) {
+    const index = defaultColorIndex(내장색들.value);
+    const color = index == null ? null : 내장색들.value[index];
+    quoteState.cond.colorInt = color?.value || '';
+    quoteState.cond.colorIntPrice = color?.price || 0;
+    quoteState.cond.colorIntId = color?.stableId || null;
+  }
+}
+
 function selectTrim(t) {
   const result = vehicleSelection.applySelection(vehicleState, 'trim', t.trim_id);
   if (result.changed) {
@@ -349,8 +365,10 @@ function selectTrim(t) {
     quoteState.cond.colorIntPrice = 0;
     quoteState.cond.colorIntId = null;
     quoteState.vehicle = null;
+    ensureDefaultColors();
     syncVehicle();
   } else if (!quoteState.vehicle) {
+    ensureDefaultColors();
     syncVehicle();
   }
 
@@ -359,18 +377,8 @@ function selectTrim(t) {
 
 function goBack(target) { subStep.value = target; }
 
-const 담당자 = rolePolicy(역할()).canEditInternalFinanceTerms;   // ★손님이면 수수료/보증금/선납금 내부 입력을 아예 안 그린다
+const 담당자 = rolePolicy(역할()).canEditInternalFinanceTerms;   // 내부 보증금/선납금 입력 권한. 수수료율은 견적 확인 사용자에게 제공한다.
 
-// 시작 조건 — 제조사 화면에서 수수료/보증금/선납금 선입력 (StepConditions 와 동일 SSOT·클램프)
-function onDepChange() {
-  applyScenarioPercent(quoteState, 'dep', quoteState.cond.dep);
-}
-function onPreChange() {
-  applyScenarioPercent(quoteState, 'pre', quoteState.cond.pre);
-}
-function onFeeChange() {
-  quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
-}
 </script>
 
 <template>
@@ -394,38 +402,6 @@ function onFeeChange() {
     <!-- 1) 제조사 -->
     <div v-if="subStep === 'brand'" class="sv-section">
       <h2 class="sv-title">어떤 제조사를<br>선택할까요?</h2>
-
-      <!-- ★시작 조건(수수료·보증금·선납금) — «담당자만» 본다.
-           대표 2026-09-17 「보증금 선납금도 그냥 없어. 제조사에 대해 그 어설픈 거 빼.
-           그냥 누르고 누르고 누르고 하면 월 대여료가 얼마 나온다인 거야.
-           보증금은 어차피 심사받아서 그거 해야 되니까」
-           → 손님 화면은 첫 화면부터 «차만 고른다». 보증금 0 · 선납 0 · 수수료 7% 로 계산된다. -->
-      <div class="sv-precond" v-if="담당자">
-        <label class="sv-pc" v-if="담당자">
-          <span class="sv-pc__lab">수수료</span>
-          <span class="sv-pc__in">
-            <input type="number" min="-10" max="7" step="0.1" inputmode="decimal"
-                   v-model.number="quoteState.cond.feeRatePct" @change="onFeeChange" placeholder="0" />
-            <em>%</em>
-          </span>
-        </label>
-        <label class="sv-pc">
-          <span class="sv-pc__lab">보증금</span>
-          <span class="sv-pc__in">
-            <input type="number" min="0" max="30" step="1" inputmode="numeric"
-                   v-model.number="quoteState.cond.dep" @change="onDepChange" placeholder="0" />
-            <em>%</em>
-          </span>
-        </label>
-        <label class="sv-pc">
-          <span class="sv-pc__lab">선납금</span>
-          <span class="sv-pc__in">
-            <input type="number" min="0" max="30" step="1" inputmode="numeric"
-                   v-model.number="quoteState.cond.pre" @change="onPreChange" placeholder="0" />
-            <em>%</em>
-          </span>
-        </label>
-      </div>
 
       <div v-if="!db" class="sv-debug">
         차량 DB 로드 중... (window.VEHICLE_DB: {{ typeof globalDB }})
@@ -788,6 +764,8 @@ function onFeeChange() {
   transition: transform .12s, background .12s;
 }
 .sv-brand-card img { width: 38px; height: 38px; object-fit: contain; }
+.sv-brand-card img[src*="kgm"] { width: 54px; height: 26px; }
+.sv-brand-card img[src*="chevrolet"] { width: 42px; height: 26px; }
 .sv-brand-card img[src*="genesis"] { width: auto; height: 18px; max-width: 70px; }
 .sv-brand-card__name { font-size: var(--fs-md); font-weight: var(--fw-semi); color: var(--ink-1); }
 .sv-brand-card:active { transform: scale(0.97); }
