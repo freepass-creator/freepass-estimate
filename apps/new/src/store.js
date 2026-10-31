@@ -4,7 +4,7 @@ import { 역할 } from './lib/role.js';
 import { conditionDefaultsForRole } from './lib/feature/roles.js';
 import { 기본조건 } from './lib/condition-defaults.js';
 import { quoteScenarios } from './lib/quote/terms.js';
-import { normalizeFeeRate } from './lib/feature/conditions.js';
+import { normalizeFeeRate, normalizeDeliveryType } from './lib/feature/conditions.js';
 
 /* ★기본값은 «웰릭스 견적기를 새로 열었을 때»와 똑같이 둔다.
    대표 2026-09-18 「다 완전히 똑같이 맞추라고. 웰릭스도 기본값 있잖아, 그 기본값에 맞추자고」
@@ -106,6 +106,7 @@ export const quoteState = reactive({
     dep: 기본보증금,
     pre: 역할조건기본.pre,
     feeRatePct: loadFeeRate(),
+    deliveryType: normalizeDeliveryType(기본조건.deliveryType),   // 'rental'(렌트사 출고) | 'agency'(대리점 출고) — 담당자 전용, 저장 안 함
     deliveryRegion: 기본조건.deliveryRegion, deliveryCity: 기본조건.deliveryRegion,   // 웰릭스는 10권역 — 권역 하나로 쓴다
     svc: 기본조건.svc, insProperty: 기본조건.insProperty, extraDriver: 기본조건.extraDriver,
     colorInt: '', colorIntPrice: 0, colorIntId: null,

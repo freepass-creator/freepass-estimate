@@ -12,6 +12,7 @@
 //      (웹 quote.js 가 과거 미전달이라 신용 견적이 엑셀보다 높았음 → 같이 forward 로 교정)
 
 import { FLAT_DELIVERY, TINT_PRICES, ACCESSORIES } from '../data/lookups.js';
+import { appliedFeeRate } from './feature/conditions.js';
 
 // === 차량 메타 정확 매칭 ===
 // 가격(trim_price_won) 정확 매칭 최우선 → 텍스트 매칭 → brand+model 폴백
@@ -153,6 +154,6 @@ export function buildCalcInput(state, sc, vehicles) {
       exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
       deductible: '30만원~', emergency: '가입',
     },
-    fees: { feeRatePct: cond.feeRatePct ?? 5.0, svc: cond.svc || '웰스 Basic' },
+    fees: { feeRatePct: appliedFeeRate(cond.feeRatePct), svc: cond.svc || '웰스 Basic' },
   };
 }
