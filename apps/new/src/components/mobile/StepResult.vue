@@ -9,10 +9,13 @@ import { quoteState, vehicleState } from '../../store.js';
 import { 견적상태 } from '../../lib/quote/index.js';
 import { 담당자인가 } from '../../lib/role.js';
 import { fmt } from '../../lib/format.js';
-import { normalizeFeeRate } from '../../lib/feature/conditions.js';
+import { normalizeFeeRate, appliedFeeRate, CONDITION_LIMITS, DELIVERY_TYPES } from '../../lib/feature/conditions.js';
 import { exteriorColorsFor } from '../../lib/exterior-paint.js';
 
 const 담당자 = 담당자인가();
+const 수수료한도 = CONDITION_LIMITS.feeRatePct;
+const 적용수수료 = computed(() => appliedFeeRate(quoteState.cond.feeRatePct, quoteState.cond.deliveryType));
+function 출고고름(종류) { quoteState.cond.deliveryType = 종류; }
 function 수수료바뀜() {
   quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
 }
@@ -153,14 +156,23 @@ const 공유시각 = computed(() => {
     </section>
 
     <!-- 영업 수수료 — 담당자만 보이는 마지막 입력. 바꾸면 위 금액이 바로 다시 계산된다(공유 링크·손님 화면엔 없음) -->
-    <label class="sr-fee" v-if="담당자 && !공유견적">
-      <span class="sr-fee__lab">영업 수수료 <small>-10 ~ 7%</small></span>
-      <span class="sr-fee__in">
-        <input type="number" min="-10" max="7" step="0.1" inputmode="decimal"
-               v-model.number="quoteState.cond.feeRatePct" @change="수수료바뀜" placeholder="0" />
-        <em>%</em>
-      </span>
-    </label>
+    <div class="sr-fee-box" v-if="담당자 && !공유견적">
+      <div class="sr-seg" role="group" aria-label="출고 구분">
+        <button type="button" :class="{ on: quoteState.cond.deliveryType !== DELIVERY_TYPES.AGENCY }"
+                @click="출고고름(DELIVERY_TYPES.RENTAL)">렌트사 출고</button>
+        <button type="button" :class="{ on: quoteState.cond.deliveryType === DELIVERY_TYPES.AGENCY }"
+                @click="출고고름(DELIVERY_TYPES.AGENCY)">대리점 출고</button>
+      </div>
+      <label class="sr-fee">
+        <span class="sr-fee__lab">영업 수수료 <small>{{ 수수료한도.min }} ~ {{ 수수료한도.max }}%</small></span>
+        <span class="sr-fee__in">
+          <input type="number" :min="수수료한도.min" :max="수수료한도.max" step="0.1" inputmode="decimal"
+                 v-model.number="quoteState.cond.feeRatePct" @change="수수료바뀜" placeholder="0" />
+          <em>%</em>
+        </span>
+      </label>
+      <p class="sr-fee__note">견적 반영 수수료 {{ 적용수수료 }}% (프리패스 1%{{ quoteState.cond.deliveryType === DELIVERY_TYPES.AGENCY ? ' − 대리점 3%p' : '' }} + 영업 수수료)</p>
+    </div>
 
     <!-- 조건 — 결과의 보조정보이므로 2열 요약으로 압축 -->
     <div class="sr-cond__title">이용 조건</div>
@@ -182,6 +194,13 @@ const 공유시각 = computed(() => {
 </template>
 
 <style scoped>
+.sr-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: var(--sp-3) 0 0; }
+.sr-seg button {
+  height: var(--h-input); border: 1px solid var(--line-2); border-radius: var(--r-md);
+  background: var(--bg); color: var(--ink-2); font: inherit; font-weight: var(--fw-semi); cursor: pointer;
+}
+.sr-seg button.on { border-color: var(--brand); color: var(--brand); background: var(--bg-soft); }
+.sr-fee__note { margin: 0 0 var(--sp-3); font-size: var(--fs-sm); color: var(--ink-3); }
 .sr-fee {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   margin: var(--sp-3) 0;

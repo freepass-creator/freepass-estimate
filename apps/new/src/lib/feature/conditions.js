@@ -6,8 +6,21 @@ import { QUOTE_TERMS } from '../quote/terms.js';
 export const CONDITION_LIMITS = Object.freeze({
   dep: Object.freeze({ min: 0, max: 30 }),
   pre: Object.freeze({ min: 0, max: 30 }),
-  feeRatePct: Object.freeze({ min: -10, max: 7, step: 0.1 }),
+  // 영업자 몫(입력) 0~5%. 견적에 들어가는 «적용 수수료율» 은 아래 FEE_RULE 로 계산한다.
+  feeRatePct: Object.freeze({ min: 0, max: 5, step: 0.1 }),
 });
+
+/* ★수수료 규칙(대표 2026-10-31): 프리패스 수수료 1% 고정 + 영업자 0~5%.
+   «대리점 출고» 를 고르면 적용 수수료가 3%p 낮아진다(영업자는 그 몫을 대리점에게서 따로 받는다). */
+export const FEE_RULE = Object.freeze({
+  freepassPct: 1,
+  agencyCutPct: 3,
+  /* ★임시 — 대표 확인 전. 적용 수수료율의 하한. 0 = 0% 아래로 안 내림.
+     음수(대여료 추가 할인)를 허용하려면 이 한 줄만 -10 같은 값으로 바꾼다. */
+  appliedFloorPct: 0,
+});
+
+export const DELIVERY_TYPES = Object.freeze({ RENTAL: 'rental', AGENCY: 'agency' });
 
 export const CREDIT_OPTIONS = Object.freeze([
   Object.freeze({ value: '고신용', label: '고신용' }),
@@ -41,6 +54,17 @@ export function normalizeFeeRate(value) {
   const rule = CONDITION_LIMITS.feeRatePct;
   const rounded = Math.round(finiteNumber(value, 0) / rule.step) * rule.step;
   return clamp(Number(rounded.toFixed(1)), rule.min, rule.max);
+}
+
+export function normalizeDeliveryType(value) {
+  return value === DELIVERY_TYPES.AGENCY ? DELIVERY_TYPES.AGENCY : DELIVERY_TYPES.RENTAL;
+}
+
+/** 견적(월 대여료)에 실제로 들어가는 수수료율(%) = 프리패스 1 + 영업자 몫 − (대리점 출고면 3) */
+export function appliedFeeRate(salesPct, deliveryType) {
+  const cut = normalizeDeliveryType(deliveryType) === DELIVERY_TYPES.AGENCY ? FEE_RULE.agencyCutPct : 0;
+  const raw = FEE_RULE.freepassPct + normalizeFeeRate(salesPct) - cut;
+  return Number(Math.max(FEE_RULE.appliedFloorPct, raw).toFixed(1));
 }
 
 export function normalizeCredit(value, fallback = '중신용') {

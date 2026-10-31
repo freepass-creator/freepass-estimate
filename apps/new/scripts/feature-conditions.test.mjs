@@ -5,6 +5,7 @@ import {
   applyScenarioPercent,
   normalizeCredit,
   normalizeFeeRate,
+  appliedFeeRate,
   normalizeKm,
   normalizePercent,
   toggleQuoteTerm,
@@ -19,10 +20,21 @@ test('deposit and prepayment share the same 0..30 rule', () => {
   assert.equal(normalizePercent('pre', '12.5'), 12.5);
 });
 
-test('fee rate is rounded to 0.1 and clamped', () => {
-  assert.equal(normalizeFeeRate(7.06), 7);
-  assert.equal(normalizeFeeRate(-10.7), -10);
+test('sales fee is rounded to 0.1 and clamped to 0..5', () => {
+  assert.equal(normalizeFeeRate(5.06), 5);
+  assert.equal(normalizeFeeRate(-3), 0);
   assert.equal(normalizeFeeRate(3.26), 3.3);
+  assert.equal(normalizeFeeRate(7), 5);
+});
+
+test('applied fee = FreePass 1% + sales share, agency delivery cuts 3%p (temporary 0% floor)', () => {
+  assert.equal(appliedFeeRate(0, 'rental'), 1);
+  assert.equal(appliedFeeRate(5, 'rental'), 6);
+  assert.equal(appliedFeeRate(5, 'agency'), 3);
+  assert.equal(appliedFeeRate(3, 'agency'), 1);
+  assert.equal(appliedFeeRate(1, 'agency'), 0);
+  assert.equal(appliedFeeRate(0, 'agency'), 0);
+  assert.equal(appliedFeeRate(2, 'unknown'), 3);
 });
 
 test('credit and annual mileage reject unsupported values', () => {

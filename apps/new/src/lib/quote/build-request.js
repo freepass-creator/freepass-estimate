@@ -6,6 +6,7 @@ import { quoteState, vehicleState } from '../../store.js';
 import * as Fees from '../compute-fees.js';
 import { resolveQuoteConditionCosts } from './condition-costs.js';
 import { 담당자인가 } from '../role.js';
+import { appliedFeeRate } from '../feature/conditions.js';
 import { QUOTE_REQUEST_CONTRACT, LEGACY_QUOTE_VERSION } from './contracts.js';
 import {
   VEHICLE_KIND,
@@ -131,7 +132,7 @@ export function 요청만들기() {
       내비비: 비용.naviFee,
       하이패스비: 비용.hipassFee,
       비용,
-      수수료율: +c.feeRatePct || 0,
+      수수료율: appliedFeeRate(c.feeRatePct, c.deliveryType),   // 프리패스 1% + 영업자 몫 (대리점 출고 −3%p)
     },
     안들: (quoteState.scenarios || []).map((sc) => ({
       기간: sc.term,
