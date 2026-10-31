@@ -12,7 +12,7 @@ const manifest = JSON.parse(fs.readFileSync('public/freepass-manifest.webmanifes
 const desktopManifest = JSON.parse(fs.readFileSync('public/manifest.webmanifest', 'utf8'));
 const desktopHead = desktopHtml.match(/<head>[\s\S]*?<\/head>/i)?.[0] || '';
 
-assert.match(html, /<title>프리패스모빌리티 · 신차 장기렌터카 견적<\/title>/,
+assert.match(html, /<title>freepass · 신차 장기렌터카 견적<\/title>/,
   'mobile static title must identify FreePass before JavaScript loads');
 assert.match(html, /<link rel="manifest" href="\/freepass-manifest\.webmanifest"/,
   'mobile default manifest must be FreePass');
@@ -22,7 +22,7 @@ assert.match(mobile, /fetch\('\/data\/company-config\/freepass\.json'\)/,
   'mobile must always load the FreePass product profile');
 assert.doesNotMatch(mobile, /companyProfileId|params\.get\('c'\)|welrix-ci\.png/,
   'query parameters must not switch the FreePass product identity');
-assert.match(mobile, /<img class="gate-ci" src="\/freepass-wordmark\.svg" alt="프리패스모빌리티">/,
+assert.match(mobile, /<img class="gate-ci" src="\/freepass-wordmark\.svg" alt="freepass">/,
   'staff gate must always show the FreePass wordmark');
 assert.ok(
   mobile.indexOf('await loadCompanyConfig();') < mobile.indexOf('if (담당자로들어왔나()'),
@@ -41,13 +41,13 @@ assert.doesNotMatch(result, /공유 당시 웰릭스 계산 결과/,
 assert.equal(manifest.start_url, '/mobile.html?force=mobile');
 assert.equal(manifest.theme_color, '#1b2a4a');
 
-assert.match(desktopHead, /<title>프리패스모빌리티 — 신차 장기렌터카 견적<\/title>/,
+assert.match(desktopHead, /<title>freepass — 신차 장기렌터카 견적<\/title>/,
   'desktop static title must identify FreePass');
-assert.match(desktopHead, /<meta property="og:site_name" content="프리패스모빌리티" \/>/,
+assert.match(desktopHead, /<meta property="og:site_name" content="freepass" \/>/,
   'desktop Open Graph identity must be FreePass');
 assert.match(desktopHead, /<link rel="icon" type="image\/svg\+xml" href="\/freepass-wordmark\.svg" \/>/,
   'desktop favicon must use a FreePass asset');
-assert.match(desktopHtml, /<div class="global-topbar__brand"><img class="ci" src="\/freepass-wordmark\.svg" alt="프리패스모빌리티" \/><\/div>/,
+assert.match(desktopHtml, /<div class="global-topbar__brand"><img class="ci" src="\/freepass-wordmark\.svg" alt="freepass" \/><\/div>/,
   'desktop visible topbar must use the FreePass wordmark');
 assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\/freepass-wordmark\.svg" \/>/,
   'mobile favicon must use a FreePass asset');
@@ -55,8 +55,8 @@ assert.doesNotMatch(desktopHead, /웰릭스|welrix-icon|og-image\.png|\[email pr
   'desktop head must not expose legacy Welrix branding or the broken font source');
 assert.doesNotMatch(desktopHtml.match(/<div class="global-topbar">[\s\S]*?<\/div>\s*<div class="desktop-action-bar"/)?.[0] || '', /웰릭스|welrix-ci/,
   'desktop visible topbar must not expose Welrix identity');
-assert.equal(desktopManifest.name, '프리패스모빌리티 — 신차 장기렌터카 견적');
-assert.equal(desktopManifest.short_name, '프리패스 견적');
+assert.equal(desktopManifest.name, 'freepass — 신차 장기렌터카 견적');
+assert.equal(desktopManifest.short_name, 'freepass 신차 장기렌터카 견적');
 assert.equal(desktopManifest.start_url, '/index.html');
 assert.equal(desktopManifest.theme_color, '#1b2a4a');
 

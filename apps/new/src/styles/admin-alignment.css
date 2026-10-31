@@ -8,7 +8,7 @@ html .m-shell .sr .sr-car__total { padding-top: 8px; border-top: 0; }
 html .m-shell .sr .sr-term {
   padding: 12px;
   border-radius: var(--r-panel);
-  background: var(--fp-surface-soft);
+  background: var(--offer-bg, var(--fp-surface-soft));
 }
 html .m-shell .sr .sr-term__monthly,
 html .m-shell .sr .sr-car__total b { text-align: right; }

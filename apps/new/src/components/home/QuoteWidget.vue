@@ -47,7 +47,7 @@ onMounted(async () => {
     if (!window.VEHICLE_DB) throw new Error('VEHICLE_DB 미로드');
     db.value = window.VEHICLE_DB;
     // 첫 브랜드 자동 선택 — 브랜드 탭은 항상 노출, 카스케이드는 모델부터 시작
-    const first = db.value.manufacturers?.[0];
+    const first = window.FreePassNewcarLaunch.manufacturers(db.value.manufacturers)[0];
     if (first) brandId.value = first.manufacturer_id;
   } catch (e) {
     error.value = '차량 데이터 로드 실패';
@@ -57,7 +57,7 @@ onMounted(async () => {
 });
 
 // 카스케이드 옵션
-const manufacturers = computed(() => db.value?.manufacturers || []);
+const manufacturers = computed(() => window.FreePassNewcarLaunch.manufacturers(db.value?.manufacturers));
 const selectedManufacturer = computed(() =>
   manufacturers.value.find(m => m.manufacturer_id === brandId.value)
 );
@@ -167,16 +167,16 @@ async function recomputeQuotePreview() {
       conditions: {
         credit: '중신용',
         mileage: '2만km',
-        maintenance: '웰스 Basic',
+        maintenance: '정비 제외',
         liability: '1억',
         extraDriver: '없음',
-        feeRatePct: 5.0,
+        feeRatePct: 0.0,
         deliveryFee: DEFAULT_DELIVERY_FEE,
         tintFee: DEFAULT_TINT_FEE,
         dashcamFee: 0,
       },
     });
-    const answer = await 견적계산(request, { 강제계산기: '표준' });
+    const answer = await 견적계산(request);
     if (sequence !== quoteSequence) return;
     const row = answer?.결과?.[0];
     result.value = row ? {

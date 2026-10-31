@@ -20,7 +20,7 @@ const STD = {
   insProperty: '1억',
   extraDriver: '없음',
   feeRatePct: 5.0,
-  svc: '웰스 Basic',
+  svc: '정비 제외',
 };
 
 const open = ref(false);
@@ -430,7 +430,7 @@ function openManufacturerPdf() {
             <input type="checkbox" :checked="allCurrentSelected" @change="toggleSelectAll" :disabled="!computedRows.length" />
             <span>현재 목록 전체선택</span>
           </label>
-          <span class="spt-cond-hint__txt">※ 표준 조건: <b>중신용 · 보증금 10% · 선납 0% · 약정 2만km/년 · 보험 대물 1억 · 웰스 Basic</b></span>
+          <span class="spt-cond-hint__txt">※ 표준 조건: <b>중신용 · 보증금 10% · 선납 0% · 약정 2만km/년 · 보험 대물 1억 · 정비 제외</b></span>
           <span class="spt-staff">
             <i class="ph ph-user-circle"></i>
             <input v-model="quoteState.staff.name" class="spt-staff__in spt-staff__in--name" placeholder="담당자명" />
@@ -470,7 +470,7 @@ function openManufacturerPdf() {
               </div>
             </div>
             <div class="spt-card__cond">
-              ※ 중신용 · 보증금 10% · 선납 0% · 약정 2만km/년 · 보험 대물 1억 · 웰스 Basic
+              ※ 중신용 · 보증금 10% · 선납 0% · 약정 2만km/년 · 보험 대물 1억 · 정비 제외
             </div>
           </article>
         </div>

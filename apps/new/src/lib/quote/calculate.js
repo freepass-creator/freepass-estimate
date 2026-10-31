@@ -1,5 +1,5 @@
 import { 요청검사, 결과검사 } from './spec.js';
-import { 공급자설정, 공급자키 } from './provider-config.js';
+import { 공급자설정, 공급자키, ensureProviderConfig } from './provider-config.js';
 import { createQuoteExecution, attachQuoteExecution } from './execution-result.js';
 import { QUOTE_REQUEST_CONTRACT, QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT, QUOTE_EXECUTION_CONTRACT, buildRevision } from './contracts.js';
 import * as 표준 from './engines/freepass-standard.js';
@@ -9,7 +9,7 @@ import { normalizePriceBasis } from './price-basis.js';
 
 export const 계산기들 = Object.freeze({ 표준, 외부 });
 
-export function 활성계산기이름(강제계산기 = null) {
+export function 활성계산기이름(강제계산기 = null, credit = null) {
   if (강제계산기) {
     if (!계산기들[강제계산기]) {
       const error = new Error(`그런 계산기가 없다: ${강제계산기}`);
@@ -18,7 +18,7 @@ export function 활성계산기이름(강제계산기 = null) {
     }
     return 강제계산기;
   }
-  return 공급자설정().mode === 'standard' ? '표준' : '외부';
+  return 공급자설정(undefined, credit).mode === 'standard' ? '표준' : '외부';
 }
 
 function codedError(message, code) {
@@ -43,9 +43,11 @@ export async function 견적계산(요청, { 신호, 강제계산기 = null, all
     const 탈 = 요청검사(요청);
     if (탈) throw codedError(탈, 'QUOTE_REQUEST_INVALID');
 
-    이름 = 활성계산기이름(강제계산기);
+    await ensureProviderConfig();
+
+    이름 = 활성계산기이름(강제계산기, 요청.조건?.신용);
     const 계산기 = 계산기들[이름];
-    providerKey = 강제계산기 ? `forced:${강제계산기}` : 공급자키();
+    providerKey = 강제계산기 ? `forced:${강제계산기}` : 공급자키(undefined, 요청.조건?.신용);
 
     if (!계산기.다루는차.includes(요청.차.종류)) {
       throw codedError(`${계산기.이름} 계산기는 ${요청.차.종류}를 다루지 않습니다`, 'QUOTE_ENGINE_UNSUPPORTED');

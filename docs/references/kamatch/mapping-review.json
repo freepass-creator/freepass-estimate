@@ -1,0 +1,123 @@
+{
+  "schema": "kamatch-mapping-review/v1",
+  "repositoryBaseCommit": "d483fd46f8b3b0c9ee334cc45a47ba71b9b25f3d",
+  "snapshotPath": "apps/new/public/data/freepass-newcar/vehicle-trim-master.json",
+  "snapshotDate": "2026-08-15",
+  "liveCanonicalReleaseChecked": false,
+  "snapshotCandidates": [
+    {
+      "trim_row_key": "mf-001.md-019.sm-cn7::v02::t01",
+      "master_id": "mf-001.md-019.sm-cn7",
+      "model": "아반떼",
+      "sub_model": "더 뉴 아반떼 CN7",
+      "powertrain": "가솔린 1.6 FWD",
+      "trim": "스마트",
+      "model_year_start": "2023",
+      "model_year_end": "현재"
+    },
+    {
+      "trim_row_key": "mf-001.md-019.sm-cn7::v02::t02",
+      "master_id": "mf-001.md-019.sm-cn7",
+      "model": "아반떼",
+      "sub_model": "더 뉴 아반떼 CN7",
+      "powertrain": "가솔린 1.6 FWD",
+      "trim": "모던",
+      "model_year_start": "2023",
+      "model_year_end": "현재"
+    },
+    {
+      "trim_row_key": "mf-001.md-019.sm-cn7::v02::t04",
+      "master_id": "mf-001.md-019.sm-cn7",
+      "model": "아반떼",
+      "sub_model": "더 뉴 아반떼 CN7",
+      "powertrain": "가솔린 1.6 FWD",
+      "trim": "인스퍼레이션",
+      "model_year_start": "2023",
+      "model_year_end": "현재"
+    },
+    {
+      "trim_row_key": "mf-001.md-019.sm-cn7::v02::t06",
+      "master_id": "mf-001.md-019.sm-cn7",
+      "model": "아반떼",
+      "sub_model": "더 뉴 아반떼 CN7",
+      "powertrain": "가솔린 1.6 FWD",
+      "trim": "N Line",
+      "model_year_start": "2023",
+      "model_year_end": "현재"
+    }
+  ],
+  "providerTrims": [
+    {
+      "model": "아반떼",
+      "lineup": "가솔린 1.6",
+      "trim": "스마트",
+      "menuPrice": 20620000,
+      "mappingStatus": "CANDIDATE_YEAR_OPTIONS_REVIEW",
+      "canonicalProductId": null
+    },
+    {
+      "model": "아반떼",
+      "lineup": "가솔린 1.6",
+      "trim": "모던",
+      "menuPrice": 23880000,
+      "mappingStatus": "CANDIDATE_YEAR_OPTIONS_REVIEW",
+      "canonicalProductId": null
+    },
+    {
+      "model": "아반떼",
+      "lineup": "가솔린 1.6",
+      "trim": "인스퍼레이션",
+      "menuPrice": 27560000,
+      "mappingStatus": "CANDIDATE_YEAR_OPTIONS_REVIEW",
+      "canonicalProductId": null
+    },
+    {
+      "model": "디 올 뉴 아반떼",
+      "lineup": "디 올 뉴 아반떼",
+      "trim": "모던",
+      "menuPrice": 23980000,
+      "mappingStatus": "UPSTREAM_REFRESH_CANDIDATE",
+      "canonicalProductId": null
+    },
+    {
+      "model": "디 올 뉴 아반떼",
+      "lineup": "디 올 뉴 아반떼",
+      "trim": "프리미엄",
+      "menuPrice": 27710000,
+      "mappingStatus": "UPSTREAM_REFRESH_CANDIDATE",
+      "canonicalProductId": null
+    },
+    {
+      "model": "디 올 뉴 아반떼",
+      "lineup": "디 올 뉴 아반떼",
+      "trim": "인스퍼레이션",
+      "menuPrice": 31520000,
+      "mappingStatus": "UPSTREAM_REFRESH_CANDIDATE",
+      "canonicalProductId": null
+    }
+  ],
+  "observedFactoryOptions": [
+    {
+      "model": "디 올 뉴 아반떼",
+      "trim": "프리미엄",
+      "name": "와이드 선루프",
+      "price": 900000,
+      "pricingExperimentRun": true
+    },
+    {
+      "model": "디 올 뉴 아반떼",
+      "trim": "프리미엄",
+      "name": "현대 스마트센스Ⅱ",
+      "price": 400000,
+      "pricingExperimentRun": true
+    },
+    {
+      "model": "디 올 뉴 아반떼",
+      "trim": "프리미엄",
+      "name": "라이팅 플러스 패키지",
+      "price": 150000,
+      "pricingExperimentRun": false
+    }
+  ],
+  "policy": "Use Kamatch as freshness comparison evidence per user; update vehicle facts in FreePass Data; no name-only canonical match, shadow master, or production price replacement."
+}

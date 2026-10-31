@@ -3,20 +3,19 @@ import { createApp } from 'vue';
 import SummaryPanel from './components/SummaryPanel.vue';
 import TermsGrid from './components/TermsGrid.vue';
 import ReferenceGrid from './components/ReferenceGrid.vue';
-import StandardPriceTable from './components/StandardPriceTable.vue';
 import TodayHistory from './components/TodayHistory.vue';
 import OptionsList from './components/OptionsList.vue';
 import RightPanel from './components/RightPanel.vue';
 import VehicleCascade from './components/VehicleCascade.vue';
 import ColorSection from './components/ColorSection.vue';
 import DiscountSection from './components/DiscountSection.vue';
-import CustomerStaffForm from './components/CustomerStaffForm.vue';
 import ConditionsForm from './components/ConditionsForm.vue';
 import DeliverySection from './components/DeliverySection.vue';
 import TintSection from './components/TintSection.vue';
 import ExtrasAccordion from './components/ExtrasAccordion.vue';
 import InsuranceAccordion from './components/InsuranceAccordion.vue';
 import CartPanel from './components/CartPanel.vue';
+import QuoteComparison from './components/QuoteComparison.vue';
 
 function mountOne(id, Component, label) {
   const target = document.getElementById(id);
@@ -37,15 +36,14 @@ function mountAll() {
   mountOne('extras-accordion-root', ExtrasAccordion, 'ExtrasAccordion');
   mountOne('insurance-accordion-root', InsuranceAccordion, 'InsuranceAccordion');
   mountOne('qp-summary-mini', SummaryPanel, 'SummaryPanel');
-  mountOne('customer-staff-root', CustomerStaffForm, 'CustomerStaffForm');
   mountOne('conditions-form-root', ConditionsForm, 'ConditionsForm');
-  mountOne('standard-price-root', StandardPriceTable, 'StandardPriceTable');
   mountOne('reference-grid', ReferenceGrid, 'ReferenceGrid');
   mountOne('terms-grid', TermsGrid, 'TermsGrid');
   mountOne('today-history-root', TodayHistory, 'TodayHistory');
   mountOne('options', OptionsList, 'OptionsList');
   mountOne('contract-panel-root', RightPanel, 'RightPanel');
   mountOne('cart-panel-root', CartPanel, 'CartPanel');
+  mountOne('quote-comparison-root', QuoteComparison, 'QuoteComparison');
   // Vue mount 직후 inline render 한 번 더 — Vue store가 이제 살아있으니 옵션 데이터 채워짐
   if (typeof window.__welrix_render === 'function') {
     window.__welrix_render();

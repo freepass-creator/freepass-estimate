@@ -4,9 +4,12 @@
 import { fmt, krw, fmtTel, guessColor } from './format.js';
 
 const MAKER_LOGOS = {
-  '현대': 'https://cdn.simpleicons.org/hyundai/002C5F',
-  '기아':  'https://cdn.simpleicons.org/kia/05141F',
+  '현대': '/hyundai.svg',
+  '기아':  '/kia.svg',
   '제네시스': '/genesis.svg',
+  '르노': '/renault.svg',
+  '쉐보레': '/chevrolet.svg',
+  'KG모빌리티': '/kgm.svg',
 };
 
 /**
@@ -121,7 +124,7 @@ export function buildOfficialQuoteHtml(a) {
               <tr><th class="row-label">약정주행</th>${sent.map(() => `<td>${cond.km}만km/년</td>`).join('')}</tr>
               <tr><th class="row-label">만기처리</th>${sent.map(() => `<td>만기 협의</td>`).join('')}</tr>
               <tr><th class="row-label">만기인수금액</th>${sent.map(m => `<td>${(m.residualPct*100).toFixed(0)}% · ${fmt(m.residualAmt)}원</td>`).join('')}</tr>
-              <tr><th class="row-label">정비서비스</th>${sent.map(() => `<td>${cond.svc}</td>`).join('')}</tr>
+              <tr><th class="row-label">정비서비스</th>${sent.map(() => `<td>정비 제외</td>`).join('')}</tr>
               <tr><th class="row-label">보증금</th>${sent.map(m => `<td>${m.dep}% · ${fmt(m.depAmt)}원</td>`).join('')}</tr>
               <tr><th class="row-label">선납금</th>${sent.map(m => `<td>${m.pre}% · ${fmt(m.preAmt)}원</td>`).join('')}</tr>
               <tr class="monthly">
@@ -190,31 +193,6 @@ export function buildOfficialQuoteHtml(a) {
       </div>
 
       <div class="ofq-section">
-        <div class="ofq-section__title"><i class="ph ph-wrench"></i>부가서비스 · 정비상품 (${cond.svc || '웰스 Basic'})</div>
-        <div class="ofq-table-wrap">
-          <table class="ofq-table ofq-svc-table">
-            <thead>
-              <tr>
-                <th>정비 방식</th><th>정비 주기</th><th>소모품 교환</th>
-                <th>사고처리</th><th>검사대행</th><th>사고대차</th><th>고장대차</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${cond.svc === '웰스 Self' ? `
-              <tr>
-                <td>정비제외 (고객 자체정비)</td><td>없음</td>
-                <td>없음</td><td>지원</td><td>O</td><td>X</td><td>X</td>
-              </tr>` : `
-              <tr>
-                <td>방문 점검 (정비사 방문)</td><td>6개월 1회</td>
-                <td>엔진오일 등 한정</td><td>지원</td><td>O</td><td>X</td><td>X</td>
-              </tr>`}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="ofq-section">
         <div class="ofq-section__title"><i class="ph ph-file-text"></i>제출서류 안내</div>
         <div class="ofq-table-wrap">
           <table class="ofq-table ofq-docs-table">
@@ -234,12 +212,10 @@ export function buildOfficialQuoteHtml(a) {
         <ol class="ofq-notes">
           <li>상기 견적은 제조사 사정, 조세정책 등에 의해 변경될 수 있습니다.</li>
           <li>당사 심사결과에 따라 신용 또는 보증계약(보증/선납금, 공동임차인)이 추가될 수 있습니다.</li>
-          <li>월 대여료에는 자동차 보험료, 정비서비스/차량검사비, 자동차세가 포함됩니다.</li>
+          <li>월 대여료에는 자동차 보험료와 자동차세가 포함되며 정비는 제외됩니다.</li>
           <li>중도해지 시 중도해지수수료가 발생되며, 기간별 상이합니다. (약정서 참고)</li>
         </ol>
-        ${showLogo ? `<div class="ofq-footer__bank">
-          <span>계약금 입금계좌</span> · <b>신한은행 140-013-750928 웰릭스모빌리티㈜</b>
-        </div>` : ''}
+
       </div>
 
       <div class="ofq-spacer"></div>

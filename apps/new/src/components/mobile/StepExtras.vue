@@ -7,11 +7,6 @@ import { 썬팅들, 블박들, 탁송권역 } from '../../lib/welrix-rates.js';
 import { fmt } from '../../lib/format.js';
 import { resolveDeliveryCost, resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
 
-// 짧은 옵션은 chip 유지
-const SVC = [
-  { value: '웰스 Basic', label: '웰스 Basic', sub: '방문 점검' },
-  { value: '웰스 Self',  label: '웰스 Self',  sub: '자체 정비' },
-];
 const INS = [
   { value: '1억', label: '1억' },
   { value: '2억', label: '2억' },
@@ -47,22 +42,9 @@ function onRegionChange(e) {
 
 <template>
   <div class="se">
-    <h2 class="se-title">옵션·서비스를<br>선택해 주세요</h2>
+    <h2 class="se-title">추가 조건을<br>선택해 주세요</h2>
 
-    <!-- 차량 케어 -->
-    <div class="se-field">
-      <div class="se-label">차량 케어</div>
-      <div class="se-cards">
-        <button
-          v-for="s in SVC" :key="s.value"
-          type="button" class="se-card" :class="{ 'is-selected': quoteState.cond.svc === s.value }" :aria-pressed="quoteState.cond.svc === s.value"
-          @click="quoteState.cond.svc = s.value"
-        >
-          <span class="se-card__label">{{ s.label }}</span>
-          <span class="se-card__sub">{{ s.sub }}</span>
-        </button>
-      </div>
-    </div>
+    <p class="se-maintenance">정비 제외</p>
 
     <!-- 대물 보험 -->
     <div class="se-field">

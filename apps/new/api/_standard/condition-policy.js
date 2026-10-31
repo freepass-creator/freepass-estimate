@@ -2,7 +2,7 @@ export const STANDARD_CONDITION_POLICY_CONTRACT = 'freepass-standard-condition-p
 
 export const STANDARD_BASELINE_CONDITIONS = Object.freeze({
   mileage: '2만km',
-  maintenance: '웰스 Basic',
+  maintenance: '정비 제외',
   liability: '1억',
   extraDriver: '없음',
 });

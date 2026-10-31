@@ -12,7 +12,7 @@ export function applyProductTheme(cfg={}){
   const meta=document.querySelector('meta[name="theme-color"]');
   if(meta) meta.setAttribute('content',brand);
 
-  const displayName='프리패스모빌리티';
+  const displayName='freepass';
   document.title=displayName+' · 신차 장기렌터카 견적';
   const description=document.querySelector('meta[name="description"]');
   if(description) description.setAttribute('content',displayName+' 신차 장기렌터카 견적 화면');
@@ -23,7 +23,7 @@ export function applyProductTheme(cfg={}){
   const ogSite=document.querySelector('meta[property="og:site_name"]');
   if(ogSite) ogSite.setAttribute('content',displayName);
   const appleTitle=document.querySelector('meta[name="apple-mobile-web-app-title"]');
-  if(appleTitle) appleTitle.setAttribute('content','프리패스 견적');
+  if(appleTitle) appleTitle.setAttribute('content','신용 무관 장기렌트');
   const manifest=document.querySelector('link[rel="manifest"]');
   if(manifest) manifest.setAttribute('href','/freepass-manifest.webmanifest');
 
@@ -31,6 +31,6 @@ export function applyProductTheme(cfg={}){
   if(brandName) brandName.textContent=displayName;
   document.querySelectorAll('img.ci, img.gate-ci').forEach((img)=>{
     img.setAttribute('src','/freepass-wordmark.svg');
-    img.setAttribute('alt','프리패스모빌리티');
+    img.setAttribute('alt','freepass');
   });
 }

@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-31",
+  "application": "https://kamatch.kr/assets/index-CHezQoaB.js",
+  "sha256": "63e50c4abf5b64ae7b80b826c0aa529a31c71cdfae0ab35e000f8e1acc38da22",
+  "bytes": 1773817,
+  "architecture": "client-side calculation with authenticated server rate tables",
+  "publicCalculationFunctions": [
+    "By: loan/rate/legacy calculation branches",
+    "N9: PMT-based rental formula with acquisition, registration, commission and residual rules",
+    "Z1: PMT",
+    "J1: gaeso index registration-rate lookup",
+    "Pm: driver-age surcharge"
+  ],
+  "rateReadStatus": 403,
+  "rateValuesAcquired": false,
+  "exactParityVerified": false,
+  "operatorCollector": "tools/kamatch/capture-browser-reference.js",
+  "secretsCollected": false
+}

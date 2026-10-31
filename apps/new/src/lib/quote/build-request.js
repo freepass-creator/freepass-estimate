@@ -1,3 +1,4 @@
+import { COMMISSION_POLICY, commissionForAgent } from './commission-policy.js';
 // ============================================================================
 // 화면 상태 → provider-neutral 견적 요청
 // UI는 계산 공급자를 모른다. 차량/조건의 사실만 싣고 provider가 자기 방식으로 해석한다.
@@ -120,9 +121,10 @@ export function 요청만들기() {
       할인,
     },
     조건: {
+      견적기: 'bundle',
       신용: c.credit || '중신용',
       주행: (c.km ?? 2) + '만km',
-      정비: c.svc || '웰스 Basic',
+      정비: '정비 제외',
       대물: c.insProperty || '1억',
       추가운전자: c.extraDriver || '없음',
       탁송비: 비용.deliveryFee,
@@ -131,7 +133,9 @@ export function 요청만들기() {
       내비비: 비용.naviFee,
       하이패스비: 비용.hipassFee,
       비용,
-      수수료율: +c.feeRatePct || 0,
+      수수료정책: COMMISSION_POLICY,
+      영업수수료P: commissionForAgent(+c.feeRatePct || 0).agentPoints,
+      수수료율: commissionForAgent(+c.feeRatePct || 0).totalPoints,
     },
     안들: (quoteState.scenarios || []).map((sc) => ({
       기간: sc.term,

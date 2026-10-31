@@ -1,9 +1,25 @@
 import { QUOTE_RESULT_CONTRACT, QUOTE_PROVIDER_CONTRACT, STANDARD_QUOTE_BATCH_CONTRACT } from './contracts.js';
 import { normalizePricingEngineEvidence } from './pricing-engine.js';
 import { normalizePriceBasis } from './price-basis.js';
+import { 공급자설정, ensureProviderConfig } from './provider-config.js';
+import { 견적계산 } from './calculate.js';
 
 export async function calculateStandardPreviewBatch(requests, { signal } = {}) {
   if (!Array.isArray(requests) || !requests.length) return [];
+  await ensureProviderConfig();
+
+  // Preview prices follow the same credit routing as a full quote.
+  // Keep standard-only batches efficient; external routes never use the standard batch endpoint.
+  if (requests.some((request) => 공급자설정(undefined, request.조건?.신용).mode !== 'standard')) {
+    return Promise.all(requests.map(async (request) => {
+      try {
+        const result = await 견적계산(request, { 신호: signal });
+        return Object.freeze({ ...result, ok: true });
+      } catch (error) {
+        return Object.freeze({ ok: false, code: error.code || 'QUOTE_PROVIDER_FAILED', error: error.message });
+      }
+    }));
+  }
 
   const response = await fetch('/api/standard-quote-batch', {
     method: 'POST',

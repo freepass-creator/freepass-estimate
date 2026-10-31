@@ -61,7 +61,7 @@ async function render(id) {
           cond:          quote.cond || {},
           send:          quote.send || [],
           quoteMeta:     { quoteNo, todayStr: today.toLocaleDateString('ko-KR'), expireStr: expireDate.toLocaleDateString('ko-KR') },
-          companyConfig: { name: '프리패스모빌리티', logo_url: '/freepass-wordmark.svg' },
+          companyConfig: { name: 'freepass', logo_url: '/freepass-wordmark.svg' },
           showLogo:      true,
         }) +
       `</div>`;
@@ -212,7 +212,7 @@ async function render(id) {
               </div>
               <div class="qd-people__col">
                 <h4>담당자</h4>
-                <div class="name">${staff.name || '프리패스모빌리티'}</div>
+                <div class="name">${staff.name || 'freepass'}</div>
                 <div class="tel">${staff.tel || ''}</div>
               </div>
             </div>
@@ -256,7 +256,7 @@ async function render(id) {
               <span class="label">계약금 입금</span> <b>신한은행 140-013-750928 웰릭스모빌리티㈜</b>
             </div>
             <div class="qd-footer__sign">
-              <div class="staff">담당 · <b>${staff.name || '프리패스모빌리티'}</b></div>
+              <div class="staff">담당 · <b>${staff.name || 'freepass'}</b></div>
               <div class="tel">${staff.tel || ''}</div>
             </div>
           </div>

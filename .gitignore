@@ -14,3 +14,6 @@ dist/
 Thumbs.db
 .vscode/
 .idea/
+
+# Authenticated provider rate packets and account policies (server only).
+apps/new/.private/

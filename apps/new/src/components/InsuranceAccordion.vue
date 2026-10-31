@@ -16,10 +16,6 @@ function onToggle(e) {
   }
 }
 
-const SVC_OPTS = [
-  { value: '웰스 Basic', label: '웰스 Basic' },
-  { value: '웰스 Self',  label: '웰스 Self' },
-];
 const INS_OPTS = [
   { value: '1억', label: '대물 1억' },
   { value: '2억', label: '대물 2억' },
@@ -33,7 +29,6 @@ const EXTRA_OPTS = [
   { value: '3명', label: '추가운전자 3명' },
 ];
 
-function onSvc(v)   { quoteState.cond.svc = v;          window.__welrix_recompute?.(); }
 function onIns(v)   { quoteState.cond.insProperty = v;  window.__welrix_recompute?.(); }
 function onExtra(v) { quoteState.cond.extraDriver = v;  window.__welrix_recompute?.(); }
 </script>
@@ -42,11 +37,10 @@ function onExtra(v) { quoteState.cond.extraDriver = v;  window.__welrix_recomput
   <section id="sec-insurance">
     <details class="qp-extras-inline" :open="open" @toggle="onToggle">
       <summary class="step-title-summary">
-        <span class="step-title-text">서비스 — 차량케어 · 대물보험 · 추가운전자</span>
+        <span class="step-title-text">보험 — 대물보험 · 추가운전자</span>
         <span class="caret"></span>
       </summary>
-      <div style="margin-top:8px; display:grid; grid-template-columns:repeat(3, 1fr); gap:6px;">
-        <CustomDropdown :options="SVC_OPTS"   :model-value="quoteState.cond.svc"          placeholder="웰스 Basic" :disabled="isDisabled" @change="onSvc" />
+      <div style="margin-top:8px; display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;">
         <CustomDropdown :options="INS_OPTS"   :model-value="quoteState.cond.insProperty"  placeholder="대물 1억"   :disabled="isDisabled" @change="onIns" />
         <CustomDropdown :options="EXTRA_OPTS" :model-value="quoteState.cond.extraDriver"  placeholder="추가운전자 없음" :disabled="isDisabled" @change="onExtra" />
       </div>

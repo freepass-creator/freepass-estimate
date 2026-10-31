@@ -1,0 +1,15 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {auditManufacturerRecord,auditProvidedQuote} from '../api/_master/manufacturer-parity.js';
+const args=process.argv.slice(2),arg=name=>args[args.indexOf(name)+1];
+if(!args.includes('--master')||!args.includes('--official'))throw new Error('--master <Data export> --official <official evidence packet> [--quotes <provided/calculated pairs>] [--out <report>]');
+const master=JSON.parse(await readFile(arg('--master'),'utf8')),evidence=JSON.parse(await readFile(arg('--official'),'utf8'));
+if(master?.meta?.authority!=='CANONICAL_ACTIVE'||!Array.isArray(master.data))throw new Error('Data CANONICAL_ACTIVE export가 필요합니다.');
+const records=master.data.filter(r=>r.status==='ACTIVE');
+const rows=records.map(record=>auditManufacturerRecord(record,(evidence.records||[]).find(e=>e.productId===record.productId)));
+const pairs=args.includes('--quotes')?JSON.parse(await readFile(arg('--quotes'),'utf8')):[];
+const quoteRows=pairs.map(pair=>({id:pair.id,provider:pair.provider,productId:pair.productId,...auditProvidedQuote(pair.provided,pair.calculated)}));
+const missingCoverage=records.flatMap(record=>['welrix','kamatch'].filter(provider=>!quoteRows.some(row=>row.productId===record.productId&&row.provider===provider&&row.status==='VERIFIED')).map(provider=>({productId:record.productId,provider})));
+const report={schema:'freepass-manufacturer-provider-parity/v1',checkedAt:new Date().toISOString(),sourceRevision:master.meta.releaseId,vehicleCount:rows.length,verifiedVehicleCount:rows.filter(r=>r.status==='VERIFIED').length,quoteCount:quoteRows.length,verifiedQuoteCount:quoteRows.filter(r=>r.status==='VERIFIED').length,complete:rows.length>0&&rows.every(r=>r.status==='VERIFIED')&&quoteRows.length>0&&quoteRows.every(r=>r.status==='VERIFIED')&&missingCoverage.length===0,fullOperationalParityVerified:false,scope:'SUPPLIED_EVIDENCE_CONFIGURATIONS_ONLY',missingCoverage,vehicles:rows,quotes:quoteRows};
+if(args.includes('--out'))await writeFile(arg('--out'),JSON.stringify(report,null,2),{mode:0o600});
+console.log(JSON.stringify({vehicleCount:report.vehicleCount,verifiedVehicleCount:report.verifiedVehicleCount,quoteCount:report.quoteCount,verifiedQuoteCount:report.verifiedQuoteCount,complete:report.complete}));
+if(!report.complete)process.exitCode=2;

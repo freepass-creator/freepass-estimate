@@ -11,8 +11,26 @@ export const EXTERNAL_KIND = Object.freeze({
   ERP: 'erp',
 });
 
-export function 공급자설정(cfg = globalThis.window?.__welrix_companyConfig) {
-  const p = cfg?.quote_provider;
+let loadingConfig;
+export async function ensureProviderConfig() {
+  if (globalThis.window?.__welrix_companyConfig) return;
+  if (!loadingConfig) {
+    loadingConfig = (async () => {
+      const response = await fetch('/data/company-config/freepass.json');
+      if (!response.ok) throw new Error('견적 공급자 설정을 불러오지 못했습니다');
+      const config = await response.json();
+      공급자설정(config);
+      if (globalThis.window && !window.__welrix_companyConfig) window.__welrix_companyConfig = config;
+    })().finally(() => { loadingConfig = null; });
+  }
+  await loadingConfig;
+}
+
+export function 공급자설정(cfg = globalThis.window?.__welrix_companyConfig, credit = null) {
+  const base = cfg?.quote_provider;
+  const p = credit != null && Object.hasOwn(base?.by_credit || {}, credit)
+    ? base.by_credit[credit]
+    : base;
   if (!p) {
     const error = new Error('견적 공급자 설정이 없습니다');
     error.code = 'PROVIDER_CONFIG_MISSING';
@@ -39,8 +57,8 @@ export function 공급자설정(cfg = globalThis.window?.__welrix_companyConfig)
   throw new Error('견적 공급자 설정이 올바르지 않습니다');
 }
 
-export function 공급자키(cfg) {
-  const p = 공급자설정(cfg);
+export function 공급자키(cfg, credit = null) {
+  const p = 공급자설정(cfg, credit);
   return p.mode === PROVIDER_MODE.STANDARD
     ? 'standard'
     : `external:${p.kind}:${p.adapter_id}`;

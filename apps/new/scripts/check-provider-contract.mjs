@@ -24,6 +24,17 @@ assert.equal(공급자키(excelCfg), 'external:excel:welrix');
 const erpCfg = { quote_provider: { mode: 'external', kind: 'erp', adapter_id: 'partner-erp' } };
 assert.equal(공급자키(erpCfg), 'external:erp:partner-erp');
 
+const productCfg = JSON.parse((await import('node:fs')).readFileSync(
+  new URL('../public/data/company-config/freepass.json', import.meta.url), 'utf8',
+));
+assert.equal(공급자키(productCfg, '중신용'), 'external:excel:welrix');
+assert.equal(공급자키(productCfg, '고신용'), 'external:excel:welrix');
+assert.equal(공급자키(productCfg, '저신용'), 'external:erp:kamatch');
+assert.throws(() => 공급자설정({ quote_provider: {
+  ...standardCfg.quote_provider, by_credit: { '중신용': null },
+} }, '중신용'), (error) => error.code === 'PROVIDER_CONFIG_MISSING',
+'an invalid credit-specific route must not fall back to standard');
+
 const request = {
   계약: QUOTE_REQUEST_CONTRACT,
   버전: 1,

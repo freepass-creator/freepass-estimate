@@ -40,7 +40,7 @@ export const 블박들 = [
 export const 웰릭스기본 = {
   credit: '중신용',
   km: 2,                       // 만km/년
-  svc: '웰스 Basic',
+  svc: '정비 제외',
   insProperty: '1억',
   extraDriver: '없음',
   deliveryRegion: '서울',
@@ -54,7 +54,7 @@ export const 웰릭스기본 = {
      (대표 「우리도 5%로 맞춰놓고 … 최종 맞으면 7%로 올려」).
      ⚠ scripts/check-welrix.mjs 는 실측이 5% 기준이라 «검사 때만» 5% 로 돈다 — 그대로 둔다.
      이 값은 «우리가 받는 몫»이라 웰릭스 화면 기본값(5%)과 성격이 다르다. */
-  feeRatePct: 7.0,
+  feeRatePct: 0.0,
 };
 
 export const 썬팅값 = (이름) => 썬팅들.find((x) => x.name === 이름)?.price || 0;

@@ -49,7 +49,7 @@ export const vehicleState = reactive({
 // quote.js의 'state' 와 동일 모양
 // 담당자 정보(이름·연락처·수수료율) — 영업자 본인 거라 매번 입력 번거로움 → localStorage 영속화
 const STAFF_KEY = 'welrix_staff_v1';
-const FEE_KEY = 'welrix_fee_v1';
+const FEE_KEY = 'freepass_agent_points_v2';
 const SEND_OPTS_KEY = 'welrix_send_opts_v1';
 function loadSendOpts() {
   try {
@@ -82,12 +82,12 @@ function persistMyContracts(arr) {
   try { localStorage.setItem(MY_CONTRACTS_KEY, JSON.stringify(arr)); } catch {}
 }
 function loadFeeRate() {
-  /* ★기본 수수료율은 welrix-rates.js 한 곳에서 정한다(지금 5% · 확인되면 7%).
-     담당자가 화면에서 바꾼 값은 localStorage 에 남아 그게 이긴다. */
+  /* 영업 조정분 0.0~5.0P만 저장한다. 회사 고정 1P는 계산 요청에서 합산한다.
+     과거 총수수료 저장값은 새 영업 P 저장키로 가져오지 않는다. */
   try {
     const v = parseFloat(localStorage.getItem(FEE_KEY));
-    return isFinite(v) ? normalizeFeeRate(v) : normalizeFeeRate(웰릭스기본.feeRatePct);
-  } catch { return normalizeFeeRate(웰릭스기본.feeRatePct); }
+    return isFinite(v) ? normalizeFeeRate(v) : normalizeFeeRate(0);
+  } catch { return normalizeFeeRate(0); }
 }
 function persistFeeRate(v) {
   try { localStorage.setItem(FEE_KEY, String(v)); } catch {}

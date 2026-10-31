@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import { resolve } from 'path';
+import { pathToFileURL } from 'node:url';
 import vue from '@vitejs/plugin-vue';
 
 const LOCAL_API_MODULES = Object.freeze({
@@ -15,6 +16,11 @@ const LOCAL_API_MODULES = Object.freeze({
   '/api/standard-quote-batch': './api/standard-quote-batch.js',
   '/api/stock': './api/stock.js',
   '/api/version': './api/version.js',
+  '/api/public-quotes': './api/public-quotes.js',
+  '/api/quote-benchmark': './api/quote-benchmark.js',
+  '/api/kamatch-comparison': './api/kamatch-comparison.js',
+  '/api/welrix-comparison': './api/welrix-comparison.js',
+  '/api/customer-quote-code': './api/customer-quote-code.js',
 });
 
 function queryObject(searchParams) {
@@ -95,7 +101,7 @@ function localVercelApi() {
           req.body = await readRequestBody(req);
           attachVercelResponseCompat(res);
 
-          const mod = await import(modulePath);
+          const mod = await import(pathToFileURL(resolve(__dirname, modulePath)).href);
           if (typeof mod.default !== 'function') {
             throw new Error(`Vercel handler default export missing: ${modulePath}`);
           }

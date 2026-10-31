@@ -183,10 +183,14 @@ export function buildVehicleDbFromEstimateMaster(master) {
     model.exterior_colors = unionColors(model.exterior_colors, exterior);
 
     const optionIds = [];
+    const trimOptions = {};
+    const trimExcludes = {};
     const groupMembers = new Map();
     for (const option of record.options || []) {
       const { optionId, value } = optionToUi(option, productId);
       optionIds.push(optionId);
+      trimOptions[optionId] = value;
+      trimExcludes[optionId] = [...(value.excludes || [])];
       variant.options_master[optionId] = mergeOption(variant.options_master[optionId], value, productId);
       for (const excluded of value.excludes || []) {
         const list = variant.option_excludes[optionId] || [];
@@ -219,6 +223,9 @@ export function buildVehicleDbFromEstimateMaster(master) {
       base_price_5: uiPrice(baseWon),
       base_price_3_5: uiPrice(baseWon),
       available_options: Object.freeze(optionIds),
+      _options_master: Object.freeze(trimOptions),
+      _option_excludes: Object.freeze(trimExcludes),
+      _exclusive_groups: Object.freeze([...groupMembers].map(([id, members]) => Object.freeze({ id, label: '택1', members: Object.freeze([...members]) }))),
       group: groupLabel(record.configuration),
       operating: true,
       _product_id: productId,

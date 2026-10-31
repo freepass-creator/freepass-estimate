@@ -209,10 +209,10 @@ export function buildMultiQuoteHtml({
             <div class="kv"><span class="k">선납금</span><span class="v">${cond.pre ?? ''}%</span></div>
           </div>
           <div class="qd-info-card">
-            <h5>보험 · 정비</h5>
+            <h5>공통 조건</h5>
             <div class="kv"><span class="k">대물</span><span class="v">${cond.insProperty || '1억'}</span></div>
             <div class="kv"><span class="k">추가운전자</span><span class="v">${cond.extraDriver || '없음'}</span></div>
-            <div class="kv"><span class="k">정비</span><span class="v">${cond.svc || ''}</span></div>
+            <div class="kv"><span class="k">정비</span><span class="v">정비 제외</span></div>
             <div class="kv"><span class="k">긴급출동</span><span class="v">5회/년</span></div>
           </div>
         </div>
@@ -228,7 +228,7 @@ export function buildMultiQuoteHtml({
         <ul class="qd-notes">
           <li>상기 견적은 제조사 사정·조세정책 등에 의해 변경될 수 있습니다.</li>
           <li>당사 심사결과에 따라 보증계약(보증/선납금, 공동임차인)이 추가될 수 있습니다.</li>
-          <li>월 대여료에 자동차보험·정비·검사·자동차세가 모두 포함됩니다.</li>
+          <li>월 대여료에 자동차보험·자동차세가 포함되며 정비는 제외됩니다.</li>
           <li>중도해지 시 수수료가 발생됩니다 (기간별 상이, 약정서 참고).</li>
         </ul>
       </div>

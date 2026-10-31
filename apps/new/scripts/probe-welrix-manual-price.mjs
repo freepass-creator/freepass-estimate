@@ -11,7 +11,7 @@ const baseInput={
   credit:'중신용',termMonths:60,mileage:'2만km',
   optionPrice:0,stockDiscount:0,deliveryFee:0,tintFee:0,dashcamFee:0,
   deposit_pct:0,prepay_pct:0,liability:'1억',extraDriver:'없음',
-  maintenance:'웰스 Basic',feeRate:0.05
+  maintenance:'웰스 Self',feeRate:0.05
 };
 async function call(name,body){
  const r=await fetch(URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});
@@ -31,7 +31,7 @@ if(!known.r.ok||!known.j?.ok||!known.j?.results?.[0]?.monthlyRent){
 
 const overridePrice=40000000;
 const manual=await call('KNOWN_MODEL_FREEPASS_PRICE_OVERRIDE',{
- model:knownModel,old:false,manualPrice:overridePrice,inputs:[baseInput]
+ model:knownModel,old:true,manualPrice:overridePrice,inputs:[baseInput]
 });
 if(!manual.r.ok||!manual.j?.ok||!manual.j?.results?.[0]?.monthlyRent){
  throw new Error('MANUAL_PRICE_CAPABILITY=NOT_SUPPORTED');

@@ -3,16 +3,21 @@ import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
 import { quoteState, vehicleState } from '../../store.js';
 import { 역할, 손님링크 } from '../../lib/role.js';
 import { rolePolicy } from '../../lib/feature/roles.js';
-import { 공유주소 } from '../../lib/share-link.js';
+import { 지금주소 } from '../../lib/share-link.js';
 import { quoteActionReadiness, resetForRequote } from '../../lib/feature/actions.js';
 import StepVehicle from './StepVehicle.vue';
 import StepConditions from './StepConditions.vue';
 import StepExtras from './StepExtras.vue';
 import StepResult from './StepResult.vue';
-import { 다시계산, 견적상태 } from '../../lib/quote/index.js';
+import { 다시표시계산 as 다시계산, 표시견적 as 견적상태 } from '../../lib/quote/display-runtime.js';
+import { requestCommissionMark } from '../../lib/commission-mark.js';
+import { copyQuoteImage } from '../../lib/copy-quote-image.js';
+import { prepareCustomerConditionsImage } from '../../lib/customer-conditions-image.js';
 import StickyQuote from './StickyQuote.vue';
 import SendSheet from './SendSheet.vue';
 import SelectionSummary from './SelectionSummary.vue';
+import QuoteComparison from '../QuoteComparison.vue';
+function openComparison() { window.dispatchEvent(new CustomEvent('freepass:open-comparison')); }
 const footer = ref(null);
 const footerHeight = ref(78);
 let footerObserver;
@@ -25,22 +30,55 @@ onMounted(() => {
 onBeforeUnmount(() => footerObserver?.disconnect());
 
 const cfg = computed(() => window.__welrix_companyConfig || {});
-const 헤더브랜드 = computed(() => '프리패스모빌리티');
-const 공유제목 = computed(() => '프리패스모빌리티 견적');
+const 헤더브랜드 = computed(() => 'freepass');
+const 공유제목 = computed(() => '신차 장기렌트 견적');
 
 // 발송/공유는 단계(step)가 아니다. 결과 화면의 하단 액션 영역에서만 노출한다.
 const STEPS = [
   { key: 'vehicle',    label: '차량',     comp: StepVehicle    },
-  { key: 'conditions', label: '계약 조건', comp: StepConditions },
   { key: 'extras',     label: '용품·서비스', comp: StepExtras   },
+  { key: 'conditions', label: '계약 조건', comp: StepConditions },
   /* ★견적은 별도 페이지로 (대표 2026-09-18) */
   { key: 'result',     label: '견적',     comp: StepResult     },
 ];
+
+// The public Welrix API accepts 36/48/60-month requests, not the standard
+// engine's 12/24-month periods. Preserve the selected conditions and send mask.
+watch(() => quoteState.cond.credit, (credit) => {
+  if (quoteState.sharedSnapshot) return;
+  const selected = quoteState.scenarios.map((scenario, index) => ({ scenario, included: quoteState.send[index] !== false }))
+    .filter(({ scenario }) => [36, 48, 60].includes(scenario.term));
+  if (selected.length !== quoteState.scenarios.length) {
+    quoteState.scenarios = selected.length ? selected.map(({ scenario }) => scenario) : [{ term: 60, dep: quoteState.cond.dep, pre: quoteState.cond.pre }];
+    quoteState.send = selected.length ? selected.map(({ included }) => included) : [true];
+  }
+}, { immediate: true });
 
 const 역할정책 = rolePolicy(역할());
 const 담당자 = 역할정책.isStaff;
 const 공유됨 = ref(false);
 const 공유중 = ref(false);
+const imageBusy = ref(false);
+const imageMessage = ref('');
+async function copyImage() {
+  if (imageBusy.value || !견적준비됨.value) return;
+  imageBusy.value = true; imageMessage.value = '';
+  const signature = 견적상태.서명;
+  const shared = quoteState.sharedSnapshot;
+  try {
+    const isCurrent = () => shared ? quoteState.sharedSnapshot === shared : 견적상태.상태 === 'ok' && 견적상태.서명 === signature;
+    const feeRatePct = shared ? shared.conditions?.feeRatePct : quoteState.cond.feeRatePct;
+    if (!shared && !Number.isFinite(feeRatePct)) throw new Error('이전 견적에는 내부 수수료가 저장되지 않았습니다. 조건을 다시 설정해 주세요.');
+    const result = await copyQuoteImage(document.querySelector('.sr'), {
+      isCurrent,
+      prepare: (source) => prepareCustomerConditionsImage(source, { agentPoints: feeRatePct, reference: shared?.commissionMark, isCurrent }),
+    });
+    const label = '견적 이미지';
+    imageMessage.value = result === 'copied' ? `${label}를 복사했습니다. 대화창에 붙여넣으세요.` : `이미지 복사를 지원하지 않아 ${label}를 저장했습니다.`;
+  } catch (error) { imageMessage.value = error.message; }
+  finally { imageBusy.value = false; }
+}
+
 const 공유견적 = computed(() => !!quoteState.sharedSnapshot);
 
 const vehicleSelection = globalThis.FreePassVehicleSelection;
@@ -52,7 +90,7 @@ const 견적준비 = computed(() => quoteActionReadiness({
   calculationResults: 견적상태.결과,
   surface: 'mobile',
 }));
-const 견적준비됨 = computed(() => 견적준비.value.ready);
+const 견적준비됨 = computed(() => 견적준비.value.ready && (!quoteState.sharedSnapshot || ['정비 제외', '웰스 Self'].includes(quoteState.sharedSnapshot.conditions?.svc)));
 
 /* ── 조건이 바뀌면 웰릭스에 다시 묻는다 ────────────────────────────────
  *  읽는 값이 하나라도 바뀌면 watch 가 걸린다. 연속 입력은 견적 뼈대가 묶는다. */
@@ -69,7 +107,7 @@ watch(
     JSON.stringify(quoteState.tint?.areas ? [...quoteState.tint.areas] : []),
     quoteState.tint?.product, JSON.stringify(quoteState.extras),
   ].join('|'),
-  () => { if (!quoteState.sharedSnapshot) 다시계산(); },
+  () => { imageMessage.value = ''; if (!quoteState.sharedSnapshot) 다시계산(); },
   { immediate: true },
 );
 
@@ -94,7 +132,14 @@ async function 공유하기() {
   공유중.value = true;
   try {
     /* ★고른 차·트림·옵션·색상과 확정 계산값을 주소에 담고, staff 표시는 떼어 낸다 */
-    const 주소 = 손님링크(await 공유주소(vehicleState, quoteState, 견적상태));
+    if (!quoteState.sharedSnapshot) {
+      const signature = 견적상태.서명;
+      const points = quoteState.cond.feeRatePct;
+      const mark = await requestCommissionMark(points);
+      if (견적상태.상태 !== 'ok' || 견적상태.서명 !== signature || quoteState.cond.feeRatePct !== points) throw new Error('견적이 변경됐습니다. 다시 공유해 주세요.');
+      quoteState.commissionMark = mark;
+    }
+    const 주소 = 손님링크(지금주소(vehicleState, quoteState, 견적상태));
     const 표시차 = quoteState.sharedSnapshot?.vehicle || quoteState.vehicle || {};
     const 글 = vehicleState.trim
       ? [표시차.brand, 표시차.model, 표시차.trim_name, '견적'].filter(Boolean).join(' ')
@@ -120,7 +165,7 @@ async function 공유하기() {
       window.prompt('이 주소를 복사하세요', 주소);
     }
   } catch {
-    window.alert('짧은 공유 링크를 만들지 못했습니다. 연결을 확인하고 다시 시도해주세요.');
+    window.alert('견적 공유 링크를 만들지 못했습니다. 다시 시도해주세요.');
   } finally {
     공유중.value = false;
   }
@@ -187,16 +232,7 @@ const canGoBack = computed(() => {
   return stepIdx.value > 0;
 });
 
-const 견적보기보임 = computed(() => {
-  if (!vehicleState.trim) return false;
-  const key = currentStep.value.key;
-  if (key === 'result') return false;
-  if (STEPS[stepIdx.value + 1]?.key === 'result') return false;   // 그 걸음의 「다음」이 이미 「견적 보기」다
-  if (key === 'vehicle') {
-    return VEHICLE_SUB_STEPS.value.indexOf(vehicleState.subStep || 'brand') >= VEHICLE_SUB_STEPS.value.indexOf('trim');
-  }
-  return true;
-});
+const 견적보기보임 = computed(() => false);
 
 const 자동전진단계 = computed(() => currentStep.value.key === 'vehicle'
   && ['brand', 'model', 'variant', 'spec', 'trim'].includes(vehicleState.subStep || 'brand'));
@@ -287,7 +323,7 @@ async function shareSignLink() {
   if (!역할정책.canShareSignatureLink) return;
   const url = cfg.value.signature_link;
   if (!url) { alert('이 회사는 조회동의 링크가 설정되어 있지 않습니다.'); return; }
-  const text = '[' + (cfg.value.name || '프리패스모빌리티') + '] 조회 동의 부탁드립니다. 아래 링크에서 진행해 주세요.';
+  const text = '[' + (cfg.value.name || 'freepass') + '] 조회 동의 부탁드립니다. 아래 링크에서 진행해 주세요.';
   if (navigator.share) {
     try { await navigator.share({ title: '조회 동의', text, url }); return; }   // OS 공유시트
     catch (e) { if (e && e.name === 'AbortError') return; }
@@ -308,7 +344,8 @@ async function shareSignLink() {
     <!-- 상단은 표시 전용: 브랜드/제목/상태만. CTA는 하단 액션 영역만 사용. -->
     <header class="m-header">
       <div class="m-header__brand">
-        <span class="m-brand">{{ 헤더브랜드 }}</span>
+        <img class="m-ci" src="/freepass-wordmark.svg" :alt="헤더브랜드" />
+        <span class="m-brand-description">신차 장기렌터카 견적기</span>
       </div>
     </header>
 
@@ -338,18 +375,17 @@ async function shareSignLink() {
     <footer
       ref="footer"
       class="m-footer"
-      v-show="!자동전진단계 || 하단내비.hasPrev || (공유견적 && currentStep.key === 'result')"
       :data-nav-mode="하단내비.mode"
     >
+      <button type="button" class="m-btn m-btn--soft m-comparison" @click="openComparison">견적 비교</button>
       <div class="m-footer__actions">
       <!-- 공유받은 확정견적은 먼저 «그대로» 보여 준다. 수정 버튼을 눌러야 새 계산이 시작된다. -->
       <template v-if="공유견적 && currentStep.key === 'result'">
         <button class="m-btn m-btn--soft" @click="수정하기">
           <i class="ph ph-pencil-simple"></i>조건 변경
         </button>
-        <button class="m-btn m-btn--primary" :disabled="공유중" @click="공유하기">
-          <i class="ph ph-share-network"></i>{{ 공유중 ? '준비 중…' : (공유됨 ? '공유됨' : '이 견적 공유') }}
-        </button>
+        <button class="m-btn m-btn--soft" :disabled="imageBusy || !견적준비됨" @click="copyImage()">견적 이미지 복사</button>
+        <button class="m-btn m-btn--primary" :disabled="공유중 || !견적준비됨" @click="공유하기">{{ 공유됨 ? '링크 복사 완료' : 공유중 ? '공유 준비 중…' : '상세 견적 공유' }}</button>
       </template>
       <template v-else>
         <button v-if="하단내비.hasPrev" class="m-btn m-btn--ghost"
@@ -367,34 +403,26 @@ async function shareSignLink() {
           >{{ 하단내비.nextLabel }}<i class="ph ph-arrow-right"></i></button>
         </template>
         <template v-else>
-          <button
-            class="m-btn m-btn--soft"
-            :disabled="!견적준비됨 || 공유중"
-            @click="공유하기"
-          ><i class="ph ph-share-network"></i>{{ 공유중 ? '준비 중…' : (공유됨 ? '공유됨' : '공유') }}</button>
-          <button
-            v-if="담당자"
-            class="m-btn m-btn--primary"
-            :disabled="!견적준비됨"
-            @click="openSend"
-          ><i class="ph ph-paper-plane-tilt"></i>견적 발송</button>
+          <button class="m-btn m-btn--soft" :disabled="imageBusy || !견적준비됨" @click="copyImage()">견적 이미지 복사</button>
+          <button class="m-btn m-btn--primary" :disabled="공유중 || !견적준비됨" @click="공유하기">{{ 공유됨 ? '링크 복사 완료' : 공유중 ? '공유 준비 중…' : '상세 견적 공유' }}</button>
         </template>
       </template>
       </div>
+      <p v-if="imageMessage" class="m-image-message" role="status">{{ imageMessage }}</p>
     </footer>
 
     <SendSheet :open="sendOpen" @close="sendOpen = false" />
+    <QuoteComparison />
   </div>
 </template>
 
 <style scoped>
-/* 상단 브랜드 한 줄 — 로고 대신 글자로 (대표 2026-09-17) */
-.m-brand {
-  display: inline-flex; align-items: center;
-  font: inherit; font-size: var(--fs-md); font-weight: 700; letter-spacing: -0.3px;
-  color: var(--brand); white-space: nowrap;
+/* 영문 워드마크와 상품 설명을 분리해 작은 화면에서도 읽기 쉽게 유지한다. */
+.m-brand-description {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  white-space: nowrap;
 }
-.m-brand__x { opacity: .55; margin: 0 1px; font-weight: 600; }
 
 .m-shell {
   display: flex; flex-direction: column;
@@ -415,7 +443,7 @@ async function shareSignLink() {
   display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;
 }
 .m-ci {
-  height: 20px; width: auto;
+  height: 18px; width: auto;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -478,6 +506,8 @@ async function shareSignLink() {
   z-index: 30;
 }
 .m-footer__actions { display: flex; gap: 8px; }
+.m-image-message { font-size: 12px; line-height: 1.5; margin: 8px 0 0; color: var(--ink-2); }
+.m-comparison { width: 100%; margin-bottom: 8px; }
 .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:first-child { flex: 3 1 0; }
 .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:last-child { flex: 7 1 0; }
 .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(1) { flex: 3 1 0; }

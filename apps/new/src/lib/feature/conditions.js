@@ -6,7 +6,7 @@ import { QUOTE_TERMS } from '../quote/terms.js';
 export const CONDITION_LIMITS = Object.freeze({
   dep: Object.freeze({ min: 0, max: 30 }),
   pre: Object.freeze({ min: 0, max: 30 }),
-  feeRatePct: Object.freeze({ min: -10, max: 7, step: 0.1 }),
+  feeRatePct: Object.freeze({ min: 0, max: 5, step: 0.1 }),
 });
 
 export const CREDIT_OPTIONS = Object.freeze([

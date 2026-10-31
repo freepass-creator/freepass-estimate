@@ -4,7 +4,7 @@ import { 담당자인가 } from '../../lib/role.js';
 import { quoteState } from '../../store.js';
 /* ★계산은 웰릭스가 한다. calc.js 는 검산용으로만 남긴다(scripts/check-promo.mjs).
      대표 2026-09-18 「몇천 원 차이가 나면 안 돼 … 내부는 똑같은 로직이어야 되는 거야」 */
-import { 견적상태 } from '../../lib/quote/index.js';
+import { 표시견적 as 견적상태 } from '../../lib/quote/display-runtime.js';
 import { vehicleState } from '../../store.js';
 import { fmt } from '../../lib/format.js';
 import { QUOTE_TERMS } from '../../lib/quote/terms.js';

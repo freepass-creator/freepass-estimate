@@ -1,9 +1,7 @@
 <script setup>
 import { quoteState } from '../store.js';
 import { applyScenarioPercent } from '../lib/feature/conditions.js';
-
-const CREDITS = CREDIT_OPTIONS;
-const KMS = KM_OPTIONS;
+import FeeControl from './FeeControl.vue';
 
 function recompute() { window.__welrix_recompute?.(); }
 
@@ -19,12 +17,6 @@ function onPreChange() {
 
 <template>
   <div class="qp-form qp-form--conds">
-    <div class="qc-field">
-      <label>신용</label>
-      <select v-model="quoteState.cond.credit" @change="recompute">
-        <option>고신용</option><option>중신용</option><option>저신용</option>
-      </select>
-    </div>
     <div class="qc-field">
       <label>약정주행</label>
       <select v-model="quoteState.cond.km" @change="recompute">
@@ -44,5 +36,6 @@ function onPreChange() {
         <input type="number" v-model.number="quoteState.cond.pre" min="0" max="30" @change="onPreChange" /><em>%</em>
       </span>
     </div>
+    <FeeControl />
   </div>
 </template>

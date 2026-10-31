@@ -20,8 +20,8 @@ test('deposit and prepayment share the same 0..30 rule', () => {
 });
 
 test('fee rate is rounded to 0.1 and clamped', () => {
-  assert.equal(normalizeFeeRate(7.06), 7);
-  assert.equal(normalizeFeeRate(-10.7), -10);
+  assert.equal(normalizeFeeRate(7.06), 5);
+  assert.equal(normalizeFeeRate(-10.7), 0);
   assert.equal(normalizeFeeRate(3.26), 3.3);
 });
 

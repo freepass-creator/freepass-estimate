@@ -143,3 +143,24 @@ test('rejects unverified release metadata and empty ACTIVE sets', () => {
     (error) => error?.code === 'ESTIMATE_MASTER_UI_PROJECTION_EMPTY'
   );
 });
+
+test('keeps option prices, prerequisites and exclusion groups scoped to the selected trim', () => {
+  const first = record({ productId: 'first', options: [
+    { optionId: 'pack', name: '패키지', price: money(500000), requires: ['base'], excludes: ['wheel'], exclusiveGroupId: 'first-only' },
+    { optionId: 'base', name: '기본 옵션', price: money(100000), requires: [], excludes: [], exclusiveGroupId: null },
+    { optionId: 'wheel', name: '휠', price: money(200000), requires: [], excludes: [], exclusiveGroupId: 'first-only' },
+  ] });
+  const second = record({ productId: 'second', trimId: 'second_trim', trimName: '다른 트림', options: [
+    { optionId: 'pack', name: '패키지', price: money(800000), requires: [], excludes: [], exclusiveGroupId: null },
+  ] });
+  const db = buildVehicleDbFromEstimateMaster({ meta, records: [first, second] });
+  const trims = db.vehicleDb.manufacturers[0].models[0].variants[0].trims;
+  const a = trims.find(t => t.trim_id === 'first');
+  const b = trims.find(t => t.trim_id === 'second');
+  assert.equal(a._options_master.pack.price, 50);
+  assert.equal(b._options_master.pack.price, 80);
+  assert.deepEqual(a._options_master.pack.requires, ['base']);
+  assert.deepEqual(b._options_master.pack.requires, []);
+  assert.deepEqual(b._option_excludes.pack, []);
+  assert.equal(b._exclusive_groups.length, 0);
+});

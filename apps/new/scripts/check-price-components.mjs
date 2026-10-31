@@ -151,3 +151,21 @@ assert.throws(
 );
 
 console.log('PASS FreePass Data authoritative new-car price assembly + external provider price equation');
+
+// Supplier adapters must never accept invalid factory configurations.
+for (const rule of [
+  { requires: ['missing_prerequisite'] },
+  { excludes: ['opt_b'] },
+  { exclusiveGroupId: 'same_group' },
+]) {
+  const m = structuredClone(master);
+  Object.assign(m.data[0].options[0], rule);
+  m.data[0].options.push({ optionId: 'opt_b', name: '옵션 B', price: { amount: 300000, currency: 'KRW' }, requires: [], excludes: [], exclusiveGroupId: 'same_group' });
+  const r = structuredClone(rawRequest);
+  r.차.구성.선택옵션.push({ id: 'ui_b', stableId: 'opt_b', price_won: 1 });
+  assert.throws(() => canonicalizeQuoteRequestFromMaster(r, m), e => e.code === 'FREEPASS_DATA_OPTION_RULE_VIOLATION');
+}
+const wrongTrimOption = structuredClone(rawRequest);
+wrongTrimOption.차.구성.선택옵션[0].stableId = 'another_trim_option';
+assert.throws(() => canonicalizeQuoteRequestFromMaster(wrongTrimOption, master), e => e.code === 'FREEPASS_DATA_SELECTION_MISMATCH');
+console.log('PASS factory prerequisites, explicit exclusions, exclusive group and trim availability');

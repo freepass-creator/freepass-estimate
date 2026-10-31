@@ -1,3 +1,4 @@
+import { commissionForAgent } from './quote/commission-policy.js';
 // 견적 입력 조립 — 단일 SSOT
 // 웹 ERP(quote.js recompute)·모바일(StickyQuote/SendSheet)·홈(QuoteWidget) 가
 // calcQuote 에 넘기는 입력 객체를 각자 따로 만들던 것을 통합.
@@ -153,6 +154,6 @@ export function buildCalcInput(state, sc, vehicles) {
       exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
       deductible: '30만원~', emergency: '가입',
     },
-    fees: { feeRatePct: cond.feeRatePct ?? 5.0, svc: cond.svc || '웰스 Basic' },
+    fees: { feeRatePct: commissionForAgent(cond.feeRatePct ?? 0).totalPoints, svc: '정비 제외' },
   };
 }

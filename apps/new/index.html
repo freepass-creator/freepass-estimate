@@ -6,13 +6,13 @@
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>프리패스모빌리티 — 신차 장기렌터카 견적</title>
-<meta name="description" content="프리패스모빌리티 신차 장기렌터카 견적" />
+<title>freepass — 신차 장기렌터카 견적</title>
+<meta name="description" content="freepass 신차 장기렌터카 견적" />
 <!-- Open Graph (카톡/페북/슬랙 등 링크 미리보기) -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="프리패스모빌리티 — 신차 장기렌터카 견적" />
-<meta property="og:description" content="프리패스모빌리티 신차 장기렌터카 견적" />
-<meta property="og:site_name" content="프리패스모빌리티" />
+<meta property="og:title" content="freepass — 신차 장기렌터카 견적" />
+<meta property="og:description" content="freepass 신차 장기렌터카 견적" />
+<meta property="og:site_name" content="freepass" />
 <meta name="twitter:card" content="summary" />
 <link rel="icon" type="image/svg+xml" href="/freepass-wordmark.svg" />
 <!-- PWA — 홈 화면에 추가 (앱처럼 설치) -->
@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#1b2a4a" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="프리패스 견적" />
+<meta name="apple-mobile-web-app-title" content="freepass 신차 장기렌터카 견적" />
 <script>
   // PWA 설치 자격 — service worker 등록 (prod 환경에서만)
   if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
@@ -54,6 +54,7 @@
 <link rel="stylesheet" href="/src/styles/tokens.css" />
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- 차량 DB (제조사/모델/세부모델/트림/옵션/색상) — PC 와 모바일 공유 SSOT -->
+<script src="/newcar-launch-policy.js"></script>
 <script src="/vehicle-db.js"></script>
 <script src="/feature-options.js"></script>
 <script src="/feature-vehicle-selection.js"></script>
@@ -183,8 +184,8 @@
   }
   .global-topbar__brand .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; }
   .global-topbar__brand .ci {
-    height: 24px; width: auto; display: block;
-    filter: brightness(0) invert(1); opacity: .96;
+    height: 20px; width: auto; display: block;
+    filter: brightness(0) invert(1); opacity: .55;
   }
   .global-topbar__hint {
     font-size: var(--fp-fs-support); color: var(--fp-nav-text); padding-left: var(--fp-sp-3);
@@ -754,13 +755,14 @@
 </style>
 </head>
 <body>
+<div id="quote-comparison-root"></div>
 <!-- 진입 게이트 우회 (단순 견적 모드) -->
 <script>
   sessionStorage.setItem('welrix_mode', 'agent');
 </script>
 <!-- 전체 폭 상단바 -->
 <div class="global-topbar">
-  <div class="global-topbar__brand"><img class="ci" src="/freepass-wordmark.svg" alt="프리패스모빌리티" /></div>
+  <div class="global-topbar__brand"><img class="ci" src="/freepass-wordmark.svg" alt="freepass" /></div>
   <span class="global-topbar__hint">신차 장기렌터카 견적기</span>
   <span class="global-topbar__ver" id="excel-ver-top" title="견적 계산에 적용된 엑셀 견적기 버전" hidden></span>
   <span class="spacer"></span>
@@ -771,15 +773,12 @@
 <!-- FreePass 공통 UI 규격: 행동 CTA는 하단 고정 액션바. 상단은 표시 전용. -->
 <div class="desktop-action-bar" role="toolbar" aria-label="견적 작업">
   <div class="desktop-action-bar__inner">
+    <button class="bottom-action secondary" id="btn-quote-comparison" onclick="window.dispatchEvent(new CustomEvent('freepass:open-comparison'))">견적 비교</button>
     <button class="bottom-action secondary" id="reset-btn" title="입력 초기화">
       <i class="ph ph-arrow-counter-clockwise"></i>초기화
     </button>
     <button class="bottom-action secondary" id="btn-copy-sign-link" title="조회 동의 페이지 링크 복사">
       <i class="ph ph-signature"></i>조회동의
-    </button>
-    <button class="bottom-action secondary" id="btn-standard-price" title="제조사별 표준 견적"
-            onclick="window.__welrix_openStandardPriceTable && window.__welrix_openStandardPriceTable()">
-      <i class="ph ph-file-text"></i>표준 견적
     </button>
     <span class="desktop-action-bar__spacer"></span>
     <button class="bottom-action secondary" id="btn-add-to-cart" title="현재 견적을 견적바구니에 담기">
@@ -1156,11 +1155,11 @@ const VEHICLE_DB = window.VEHICLE_DB;
 let state = { manufacturer: null, model: null, variant: null, trim: null, options: new Set(), color: null, tax_rate: '5' };
 const $ = (id) => document.getElementById(id);
 
-const getManufacturer = () => VEHICLE_DB.manufacturers.find(m => m.manufacturer_id === state.manufacturer);
+const getManufacturer = () => window.FreePassNewcarLaunch.manufacturers(VEHICLE_DB.manufacturers).find(m => m.manufacturer_id === state.manufacturer);
 const getModel = () => getManufacturer()?.models.find(x => x.model_id === state.model);
 const getVariant = () => getModel()?.variants.find(v => v.variant_id === state.variant);
 const getTrim = () => getVariant()?.trims.find(t => t.trim_id === state.trim);
-const getOptionsMaster = () => getVariant()?.options_master || {};
+const getOptionsMaster = () => getTrim()?._options_master || getVariant()?.options_master || {};
 // FreePass 신차 상품마스터는 색상이 트림별로 갈릴 수 있다.
 // 기존 Welrix UI 구조는 유지하되, 데이터는 선택 트림의 실제 제조사 색상이 우선한다.
 const getExteriorColors = () => {
@@ -1192,8 +1191,8 @@ function optionRuleContext() {
   return {
     selected: state.options,
     optionsMaster: getOptionsMaster(),
-    exclusiveGroups: variant?.exclusive_groups || [],
-    optionExcludes: variant?.option_excludes || {},
+    exclusiveGroups: getTrim()?._exclusive_groups || variant?.exclusive_groups || [],
+    optionExcludes: getTrim()?._option_excludes || variant?.option_excludes || {},
     trimId: state.trim,
   };
 }
@@ -1316,7 +1315,7 @@ function renderBreadcrumb() {
 
 function renderManufacturers() {
   if (!$('manufacturers')) return;  // Vue가 처리
-  $('manufacturers').innerHTML = VEHICLE_DB.manufacturers.map(m => {
+  $('manufacturers').innerHTML = window.FreePassNewcarLaunch.manufacturers(VEHICLE_DB.manufacturers).map(m => {
     const count = m.models.length;
     return `<button class="card ${state.manufacturer === m.manufacturer_id ? 'active' : ''} ${count === 0 ? 'disabled' : ''}" 
       data-mfr="${m.manufacturer_id}" ${count === 0 ? 'disabled' : ''}>
@@ -1565,7 +1564,7 @@ function syncToVueStore() {
   vs.options.clear();
   state.options.forEach((id) => vs.options.add(id));
   // === Cascade dropdown options ===
-  const sortedMfrs = sortByRank(VEHICLE_DB.manufacturers, (m) => m.manufacturer_name, POPULAR_BRAND);
+  const sortedMfrs = sortByRank(window.FreePassNewcarLaunch.manufacturers(VEHICLE_DB.manufacturers), (m) => m.manufacturer_name, POPULAR_BRAND);
   vs.manufacturerOptions = sortedMfrs.map((m) => ({
     value: m.manufacturer_id,
     label: m.manufacturer_name,
@@ -1665,6 +1664,7 @@ function syncToVueStore() {
 
 // Vue → cascade 선택 위임
 window.__welrix_pick = function(stepKey, value) {
+  if (stepKey === 'manufacturer' && !window.FreePassNewcarLaunch.manufacturerIds.includes(value)) return;
   const mappedStep = stepKey === 'colorExt' ? 'color' : stepKey;
   window.FreePassVehicleSelection.applySelection(state, mappedStep, value);
   render();
@@ -1735,7 +1735,7 @@ function syncDropdowns() {
   // 제조사 dropdown
   const ddM = $('dd-manufacturer');
   if (ddM) {
-    const manus = sortByRank(VEHICLE_DB.manufacturers, (m) => m.manufacturer_name, POPULAR_BRAND);
+    const manus = sortByRank(window.FreePassNewcarLaunch.manufacturers(VEHICLE_DB.manufacturers), (m) => m.manufacturer_name, POPULAR_BRAND);
     ddM.innerHTML = '<option value="">제조사 선택</option>' +
       manus.map((m) =>
         `<option value="${m.manufacturer_id}" ${m.manufacturer_id === state.manufacturer ? 'selected' : ''}>${m.manufacturer_name}</option>`
@@ -4641,8 +4641,6 @@ render();
 
 <!-- Vue 견적바구니 모달 mount root (영업 모드만, 손님은 customer-view가 body 재구성) -->
 <div id="cart-panel-root"></div>
-<!-- Vue 프리패스 표준 가격표 모달 mount root -->
-<div id="standard-price-root"></div>
 
 <!-- 현재 Estimate는 2-panel shell. 계약/채팅 root는 기능 보존용으로 mount하되 화면에서는 노출하지 않는다. -->
 <style id="estimate-hidden-surfaces">
