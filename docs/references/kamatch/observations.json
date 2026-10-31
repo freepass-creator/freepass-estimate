@@ -1,0 +1,802 @@
+{
+  "schema": "kamatch-observations/v1",
+  "source": "https://kamatch.kr/",
+  "observedDate": "2026-10-31",
+  "timezone": "Asia/Seoul",
+  "status": "OBSERVED_REFERENCE_ONLY",
+  "scope": "2 model labels; 13 configurations; 39 term results; not a complete catalogue or original formula",
+  "roundingPolicy": "unknown; displayed outputs preserved",
+  "rows": [
+    {
+      "id": "avante-smart-base",
+      "input": {
+        "maker": "현대",
+        "model": "아반떼",
+        "lineup": "가솔린 1.6",
+        "trim": "스마트",
+        "vehiclePrice": 20620000,
+        "exteriorColor": "어비스블랙펄",
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 580400,
+          "vatIncluded": true,
+          "acquisitionCost": 20620000,
+          "deposit": 1031000,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 15258800
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 552900,
+          "vatIncluded": true,
+          "acquisitionCost": 20620000,
+          "deposit": 1031000,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 13196800
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 533100,
+          "vatIncluded": true,
+          "acquisitionCost": 20620000,
+          "deposit": 1031000,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 11134800
+        }
+      ]
+    },
+    {
+      "id": "avante-smart-price-plus-1000000",
+      "input": {
+        "maker": "현대",
+        "model": "아반떼",
+        "lineup": "가솔린 1.6",
+        "trim": "스마트",
+        "vehiclePrice": 21620000,
+        "exteriorColor": "어비스블랙펄",
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 600800,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 1081000,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 15998800
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 572200,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 1081000,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 13836800
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 551600,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 1081000,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 11674800
+        }
+      ]
+    },
+    {
+      "id": "avante-smart-price-plus-1000000-deposit10",
+      "input": {
+        "maker": "현대",
+        "model": "아반떼",
+        "lineup": "가솔린 1.6",
+        "trim": "스마트",
+        "vehiclePrice": 21620000,
+        "exteriorColor": "어비스블랙펄",
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 10,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 584700,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 2162000,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 15998800
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 555900,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 2162000,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 13836800
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 535200,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 2162000,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 11674800
+        }
+      ]
+    },
+    {
+      "id": "avante-smart-price-plus-1000000-deposit10-prepay10",
+      "input": {
+        "maker": "현대",
+        "model": "아반떼",
+        "lineup": "가솔린 1.6",
+        "trim": "스마트",
+        "vehiclePrice": 21620000,
+        "exteriorColor": "어비스블랙펄",
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 10,
+        "prepayPercent": 10,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 524600,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 2162000,
+          "prepay": 2162000,
+          "residualPercent": 74,
+          "residualAmount": 15998800
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 510800,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 2162000,
+          "prepay": 2162000,
+          "residualPercent": 64,
+          "residualAmount": 13836800
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 499200,
+          "vatIncluded": true,
+          "acquisitionCost": 21620000,
+          "deposit": 2162000,
+          "prepay": 2162000,
+          "residualPercent": 54,
+          "residualAmount": 11674800
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-modern-base",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "모던",
+        "vehiclePrice": 23980000,
+        "exteriorColor": null,
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 649000,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 17745200
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 617900,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 15347200
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 595500,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 12949200
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-modern-no-dashcam",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "모던",
+        "vehiclePrice": 23980000,
+        "exteriorColor": null,
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": null,
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 644700,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 17745200
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 614700,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 15347200
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 592900,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 12949200
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-modern-no-dashcam-two-sunroof-tints",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "모던",
+        "vehiclePrice": 23980000,
+        "exteriorColor": null,
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": null,
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": [
+          "일반 레이노 모노카본",
+          "파노라마 레이노 모노카본"
+        ]
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 649600,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 17745200
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 618400,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 15347200
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 595800,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 12949200
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-modern-no-dashcam-panorama-tint",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "모던",
+        "vehiclePrice": 23980000,
+        "exteriorColor": null,
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": null,
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": [
+          "파노라마 레이노 모노카본"
+        ]
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 648100,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 17745200
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 617200,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 15347200
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 594900,
+          "vatIncluded": true,
+          "acquisitionCost": 23980000,
+          "deposit": 1199000,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 12949200
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-premium-base",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "프리미엄",
+        "vehiclePrice": 27709996,
+        "exteriorColor": "볼케닉 레드 펄",
+        "interiorColor": "블랙 모노톤_인조가죽 시트",
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 725100,
+          "vatIncluded": true,
+          "acquisitionCost": 27709996,
+          "deposit": 1385500,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 20505397
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 690100,
+          "vatIncluded": true,
+          "acquisitionCost": 27709996,
+          "deposit": 1385500,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 17734397
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 664700,
+          "vatIncluded": true,
+          "acquisitionCost": 27709996,
+          "deposit": 1385500,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 14963398
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-premium-wide-sunroof",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "프리미엄",
+        "vehiclePrice": 27709996,
+        "exteriorColor": "볼케닉 레드 펄",
+        "interiorColor": "블랙 모노톤_인조가죽 시트",
+        "factoryOptions": [
+          {
+            "name": "와이드 선루프",
+            "price": 900000
+          }
+        ],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 743500,
+          "vatIncluded": true,
+          "acquisitionCost": 28609996,
+          "deposit": 1430500,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 21171397
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 707600,
+          "vatIncluded": true,
+          "acquisitionCost": 28609996,
+          "deposit": 1430500,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 18310397
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 681400,
+          "vatIncluded": true,
+          "acquisitionCost": 28609996,
+          "deposit": 1430500,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 15449398
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-premium-sunroof-smartsense",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "프리미엄",
+        "vehiclePrice": 27709996,
+        "exteriorColor": "볼케닉 레드 펄",
+        "interiorColor": "블랙 모노톤_인조가죽 시트",
+        "factoryOptions": [
+          {
+            "name": "와이드 선루프",
+            "price": 900000
+          },
+          {
+            "name": "현대 스마트센스Ⅱ",
+            "price": 400000
+          }
+        ],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 751600,
+          "vatIncluded": true,
+          "acquisitionCost": 29009996,
+          "deposit": 1450500,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 21467397
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 715300,
+          "vatIncluded": true,
+          "acquisitionCost": 29009996,
+          "deposit": 1450500,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 18566397
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 688800,
+          "vatIncluded": true,
+          "acquisitionCost": 29009996,
+          "deposit": 1450500,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 15665398
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-premium-smartsense",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "프리미엄",
+        "vehiclePrice": 27709996,
+        "exteriorColor": "볼케닉 레드 펄",
+        "interiorColor": "블랙 모노톤_인조가죽 시트",
+        "factoryOptions": [
+          {
+            "name": "현대 스마트센스Ⅱ",
+            "price": 400000
+          }
+        ],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 733300,
+          "vatIncluded": true,
+          "acquisitionCost": 28109996,
+          "deposit": 1405500,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 20801397
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 697900,
+          "vatIncluded": true,
+          "acquisitionCost": 28109996,
+          "deposit": 1405500,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 17990397
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 672100,
+          "vatIncluded": true,
+          "acquisitionCost": 28109996,
+          "deposit": 1405500,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 15179398
+        }
+      ]
+    },
+    {
+      "id": "all-new-avante-inspiration-base",
+      "input": {
+        "maker": "현대",
+        "model": "디 올 뉴 아반떼",
+        "lineup": "디 올 뉴 아반떼",
+        "trim": "인스퍼레이션",
+        "vehiclePrice": 31520000,
+        "exteriorColor": "볼케닉 레드 펄",
+        "interiorColor": null,
+        "factoryOptions": [],
+        "credit": "저신용",
+        "deliveryMethod": "대리점",
+        "contractType": "개인",
+        "endTreatment": "반납/인수 선택형",
+        "annualKm": 30000,
+        "minDriverAge": 26,
+        "depositPercent": 5,
+        "prepayPercent": 0,
+        "discount": 0,
+        "delivery": "2차탁송 (안양출발) / 서울/경기/인천",
+        "dashcam": "뷰게라 808P (32G)",
+        "sideRearTint": "레이노 모노카본(쿠폰)",
+        "frontTint": "레이노 모노카본",
+        "sunroofTints": []
+      },
+      "results": [
+        {
+          "termMonths": 36,
+          "monthlyRent": 802800,
+          "vatIncluded": true,
+          "acquisitionCost": 31520000,
+          "deposit": 1576000,
+          "prepay": 0,
+          "residualPercent": 74,
+          "residualAmount": 23324800
+        },
+        {
+          "termMonths": 48,
+          "monthlyRent": 763900,
+          "vatIncluded": true,
+          "acquisitionCost": 31520000,
+          "deposit": 1576000,
+          "prepay": 0,
+          "residualPercent": 64,
+          "residualAmount": 20172800
+        },
+        {
+          "termMonths": 60,
+          "monthlyRent": 735500,
+          "vatIncluded": true,
+          "acquisitionCost": 31520000,
+          "deposit": 1576000,
+          "prepay": 0,
+          "residualPercent": 54,
+          "residualAmount": 17020800
+        }
+      ]
+    }
+  ]
+}
