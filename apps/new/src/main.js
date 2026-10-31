@@ -15,7 +15,6 @@ import TintSection from './components/TintSection.vue';
 import ExtrasAccordion from './components/ExtrasAccordion.vue';
 import InsuranceAccordion from './components/InsuranceAccordion.vue';
 import CartPanel from './components/CartPanel.vue';
-import QuoteComparison from './components/QuoteComparison.vue';
 
 function mountOne(id, Component, label) {
   const target = document.getElementById(id);
@@ -43,7 +42,6 @@ function mountAll() {
   mountOne('options', OptionsList, 'OptionsList');
   mountOne('contract-panel-root', RightPanel, 'RightPanel');
   mountOne('cart-panel-root', CartPanel, 'CartPanel');
-  mountOne('quote-comparison-root', QuoteComparison, 'QuoteComparison');
   // Vue mount 직후 inline render 한 번 더 — Vue store가 이제 살아있으니 옵션 데이터 채워짐
   if (typeof window.__welrix_render === 'function') {
     window.__welrix_render();

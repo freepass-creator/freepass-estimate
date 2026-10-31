@@ -755,7 +755,6 @@
 </style>
 </head>
 <body>
-<div id="quote-comparison-root"></div>
 <!-- 진입 게이트 우회 (단순 견적 모드) -->
 <script>
   sessionStorage.setItem('welrix_mode', 'agent');
@@ -773,7 +772,6 @@
 <!-- FreePass 공통 UI 규격: 행동 CTA는 하단 고정 액션바. 상단은 표시 전용. -->
 <div class="desktop-action-bar" role="toolbar" aria-label="견적 작업">
   <div class="desktop-action-bar__inner">
-    <button class="bottom-action secondary" id="btn-quote-comparison" onclick="window.dispatchEvent(new CustomEvent('freepass:open-comparison'))">견적 비교</button>
     <button class="bottom-action secondary" id="reset-btn" title="입력 초기화">
       <i class="ph ph-arrow-counter-clockwise"></i>초기화
     </button>

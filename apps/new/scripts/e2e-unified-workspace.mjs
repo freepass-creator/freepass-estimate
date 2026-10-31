@@ -36,6 +36,7 @@ try {
   await page.locator('.desktop-companion').waitFor({state:'visible'});
   assert.equal(new URL(page.url()).pathname,'/index.html');
   assert.equal(await page.locator('.m-shell').count(),1);
+  assert.equal(await page.getByRole('button',{name:'견적 비교',exact:true}).count(),0);
   await page.locator('.sv-brand-card').filter({hasText:'현대'}).click();
   assert.match(await page.locator('.dc-heading h2').innerText(),/현대/);
   await page.locator('.sv-row').filter({hasText:'디 올 뉴 아반떼'}).first().click();

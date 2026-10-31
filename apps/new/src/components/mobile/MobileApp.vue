@@ -15,9 +15,7 @@ import { prepareCustomerConditionsImage } from '../../lib/customer-conditions-im
 import StickyQuote from './StickyQuote.vue';
 import SendSheet from './SendSheet.vue';
 import SelectionSummary from './SelectionSummary.vue';
-import QuoteComparison from '../QuoteComparison.vue';
 import DesktopQuoteCompanion from '../DesktopQuoteCompanion.vue';
-function openComparison() { window.dispatchEvent(new CustomEvent('freepass:open-comparison')); }
 const footer = ref(null);
 const footerHeight = ref(78);
 let footerObserver;
@@ -377,7 +375,6 @@ async function shareSignLink() {
       class="m-footer"
       :data-nav-mode="하단내비.mode"
     >
-      <button type="button" class="m-btn m-btn--soft m-comparison" @click="openComparison">견적 비교</button>
       <div class="m-footer__actions">
       <!-- 공유받은 확정견적은 먼저 «그대로» 보여 준다. 수정 버튼을 눌러야 새 계산이 시작된다. -->
       <template v-if="공유견적 && currentStep.key === 'result'">
@@ -412,7 +409,6 @@ async function shareSignLink() {
     </footer>
 
     <SendSheet :open="sendOpen" @close="sendOpen = false" />
-    <QuoteComparison />
   </div>
   <DesktopQuoteCompanion />
   </div>
@@ -509,7 +505,6 @@ async function shareSignLink() {
 }
 .m-footer__actions { display: flex; gap: 8px; }
 .m-image-message { font-size: 12px; line-height: 1.5; margin: 8px 0 0; color: var(--ink-2); }
-.m-comparison { width: 100%; margin-bottom: 8px; }
 .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:first-child { flex: 3 1 0; }
 .m-footer__actions:has(> .m-btn:nth-child(2):last-child) > .m-btn:last-child { flex: 7 1 0; }
 .m-footer__actions:has(> .m-btn:nth-child(3):last-child) > .m-btn:nth-child(1) { flex: 3 1 0; }
