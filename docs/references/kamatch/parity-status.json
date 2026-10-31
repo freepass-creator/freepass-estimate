@@ -1,0 +1,48 @@
+{
+  "schema": "kamatch-parity-acceptance/v1",
+  "source": "https://kamatch.kr/",
+  "observedDate": "2026-10-31",
+  "userRequirement": "완전 동일해야함",
+  "status": "NOT_VERIFIED",
+  "productionIntegrated": false,
+  "maximumAbsoluteErrorWon": 0,
+  "acceptanceOutputs": [
+    "monthlyRent",
+    "deposit",
+    "prepay",
+    "residualAmount",
+    "acquisitionCost",
+    "totalVehiclePrice",
+    "displayedFees"
+  ],
+  "requiredInputAxes": [
+    "maker/model/generation/modelYear/powertrain/trim",
+    "factoryOptions and dependent/exclusive combinations",
+    "exteriorColor/interiorColor and surcharges",
+    "vehiclePrice/discount",
+    "termMonths",
+    "credit/deliveryMethod/contractType/endTreatment",
+    "depositPercent/manualDepositAmount",
+    "prepayPercent/manualPrepayAmount",
+    "annualKm/minDriverAge/insuranceCoverage",
+    "delivery/dashcam/tints/accessories",
+    "dealer/sales fees and account-specific settings",
+    "rateTableVersion/effectiveDate/roundingOrder"
+  ],
+  "observedCoverage": {
+    "modelLabels": 2,
+    "configurations": 13,
+    "termResults": 39,
+    "fullCatalogueCollected": false,
+    "independentFormulaValidationComplete": false,
+    "liveFreepassCanonicalReleaseCompared": false
+  },
+  "missingForExactProductionParity": [
+    "original formula or verified supported calculation integration",
+    "complete current vehicle/trim/factory-option catalogue and canonical mappings",
+    "model/term-specific residual, financing, insurance, tax and fee rules",
+    "manual-amount constraints and exact rounding order",
+    "independent unseen and boundary-condition regression results"
+  ],
+  "completionRule": "All supported input axes and outputs must match the same Kamatch policy version with zero won error. Never claim complete parity from fixture replay, sampled fit, or approximate interpolation."
+}
