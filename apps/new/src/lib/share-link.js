@@ -91,7 +91,6 @@ function 안전한스냅샷(값) {
       deliveryCity: typeof c.deliveryCity === 'string' ? c.deliveryCity : '서울',
       tint: typeof c.tint === 'string' ? c.tint : '없음',
       blackbox: typeof c.blackbox === 'string' ? c.blackbox : '미설치',
-      deliveryType: c.deliveryType === 'agency' ? 'agency' : 'rental',
     },
   };
 }
@@ -147,7 +146,6 @@ function 스냅샷만들기(quoteState, 견적상태) {
       deliveryCity: c.deliveryCity || '서울',
       tint: quoteState?.tint?.product || '없음',
       blackbox: quoteState?.extras?.blackbox || '미설치',
-      deliveryType: quoteState?.cond?.deliveryType === 'agency' ? 'agency' : 'rental',
     },
   };
 }
@@ -204,7 +202,6 @@ function 공개조건적용(quoteState, p, snap) {
   }
   const 썬팅 = snap ? sc.tint : p.get('ti');
   if (썬팅) quoteState.tint.product = 썬팅;
-  if (snap) quoteState.cond.deliveryType = sc.deliveryType === 'agency' ? 'agency' : 'rental';
   const 블박 = snap ? sc.blackbox : p.get('bb');
   if (블박) quoteState.extras.blackbox = 블박;
 
