@@ -2,7 +2,7 @@
 // Read-only: no quotes are saved, no applications or messages are submitted.
 (async () => {
   if (location.origin !== 'https://kamatch.kr') throw new Error('카매치 탭에서 실행해 주세요.');
-  const paths = ['/api/vehicles', '/api/fee-rates', '/api/commission-settings', '/api/model-fee-rates', '/api/residual-grade-rates', '/api/gaeso-reg-rates', '/api/residual-rates', '/api/supplies-prices'];
+  const paths = ['/api/vehicles', '/api/fee-rates', '/api/commission-settings', '/api/model-fee-rates', '/api/commission-rates', '/api/residual-grade-rates', '/api/gaeso-reg-rates', '/api/residual-rates', '/api/supplies-prices'];
   const tables = {};
   for (const path of paths) {
     const response = await fetch(path, { credentials: 'include', cache: 'no-store' });
