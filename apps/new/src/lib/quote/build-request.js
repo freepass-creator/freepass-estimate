@@ -132,7 +132,7 @@ export function 요청만들기() {
       내비비: 비용.naviFee,
       하이패스비: 비용.hipassFee,
       비용,
-      수수료율: appliedFeeRate(c.feeRatePct, c.deliveryType),   // 프리패스 1% + 영업자 몫 (대리점 출고 −3%p)
+      수수료율: appliedFeeRate(c.feeRatePct),   // 프리패스 1% + 영업자 몫 (출고 구분과 무관)
     },
     안들: (quoteState.scenarios || []).map((sc) => ({
       기간: sc.term,

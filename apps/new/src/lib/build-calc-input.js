@@ -154,6 +154,6 @@ export function buildCalcInput(state, sc, vehicles) {
       exec: '미가입', injury: '무한', self: '1억', uninsured: '2억',
       deductible: '30만원~', emergency: '가입',
     },
-    fees: { feeRatePct: appliedFeeRate(cond.feeRatePct, cond.deliveryType), svc: cond.svc || '웰스 Basic' },
+    fees: { feeRatePct: appliedFeeRate(cond.feeRatePct), svc: cond.svc || '웰스 Basic' },
   };
 }

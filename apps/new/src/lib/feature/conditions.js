@@ -10,14 +10,13 @@ export const CONDITION_LIMITS = Object.freeze({
   feeRatePct: Object.freeze({ min: 0, max: 5, step: 0.1 }),
 });
 
-/* ★수수료 규칙(대표 2026-10-31): 프리패스 수수료 1% 고정 + 영업자 0~5%.
-   «대리점 출고» 를 고르면 적용 수수료가 3%p 낮아진다(영업자는 그 몫을 대리점에게서 따로 받는다). */
+/* ★수수료 규칙(대표 2026-10-31): 견적 수수료 = 프리패스 1% 고정 + 영업자 몫 0~5%. 출고 구분과 무관(견적·월 대여료 동일).
+   «대리점 출고»는 영업자에게 지급되는 몫만 3%p 줄이고, 영업자는 그 몫을 대리점에서 따로 받는다(표시 전용, 계산 불변). */
 export const FEE_RULE = Object.freeze({
   freepassPct: 1,
   agencyCutPct: 3,
-  /* ★임시 — 대표 확인 전. 적용 수수료율의 하한. 0 = 0% 아래로 안 내림.
-     음수(대여료 추가 할인)를 허용하려면 이 한 줄만 -10 같은 값으로 바꾼다. */
-  appliedFloorPct: 0,
+  /* ★임시 — 대표 확인 전. 프리패스 지급 영업수수료의 하한. 음수를 허용하려면 이 한 줄만 바꾼다. */
+  payoutFloorPct: 0,
 });
 
 export const DELIVERY_TYPES = Object.freeze({ RENTAL: 'rental', AGENCY: 'agency' });
@@ -60,11 +59,16 @@ export function normalizeDeliveryType(value) {
   return value === DELIVERY_TYPES.AGENCY ? DELIVERY_TYPES.AGENCY : DELIVERY_TYPES.RENTAL;
 }
 
-/** 견적(월 대여료)에 실제로 들어가는 수수료율(%) = 프리패스 1 + 영업자 몫 − (대리점 출고면 3) */
-export function appliedFeeRate(salesPct, deliveryType) {
+/** 견적(월 대여료)에 들어가는 수수료율(%) = 프리패스 1 + 영업자 몫. 출고 구분과 무관하다. */
+export function appliedFeeRate(salesPct) {
+  return Number((FEE_RULE.freepassPct + normalizeFeeRate(salesPct)).toFixed(1));
+}
+
+/** 프리패스가 영업자에게 지급하는 영업수수료(%) — 표시 전용(계산에 쓰지 않는다).
+    렌트사 출고 = 영업자 몫, 대리점 출고 = 몫 − 3%p(하한 임시 0). */
+export function payoutFeeRate(salesPct, deliveryType) {
   const cut = normalizeDeliveryType(deliveryType) === DELIVERY_TYPES.AGENCY ? FEE_RULE.agencyCutPct : 0;
-  const raw = FEE_RULE.freepassPct + normalizeFeeRate(salesPct) - cut;
-  return Number(Math.max(FEE_RULE.appliedFloorPct, raw).toFixed(1));
+  return Number(Math.max(FEE_RULE.payoutFloorPct, normalizeFeeRate(salesPct) - cut).toFixed(1));
 }
 
 export function normalizeCredit(value, fallback = '중신용') {

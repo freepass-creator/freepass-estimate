@@ -13,6 +13,7 @@
     "check:provider": "node scripts/check-provider-contract.mjs",
     "check:runtime": "node scripts/check-quote-execution-contract.mjs",
     "check:release": "node scripts/check-release-proof.mjs",
+    "check:delivery-type": "node scripts/check-delivery-type-no-price-effect.mjs",
     "check:share-fixed": "node scripts/check-share-fixed-result.mjs",
     "check:snapshot": "node scripts/check-share-snapshot-contract.mjs",
     "check:quote-v2": "node scripts/check-quote-v2.mjs && node scripts/check-quote-factory.mjs && node scripts/check-master-context.mjs && node scripts/check-master-selection.mjs && node scripts/check-freepass-data-master.mjs && node --test scripts/estimate-master-vehicle-db.test.mjs && node scripts/check-quote-runtime-integrity.mjs && node scripts/check-quote-storage-boundary.mjs",

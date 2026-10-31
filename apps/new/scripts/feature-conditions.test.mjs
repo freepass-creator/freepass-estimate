@@ -6,6 +6,7 @@ import {
   normalizeCredit,
   normalizeFeeRate,
   appliedFeeRate,
+  payoutFeeRate,
   normalizeKm,
   normalizePercent,
   toggleQuoteTerm,
@@ -27,14 +28,19 @@ test('sales fee is rounded to 0.1 and clamped to 0..5', () => {
   assert.equal(normalizeFeeRate(7), 5);
 });
 
-test('applied fee = FreePass 1% + sales share, agency delivery cuts 3%p (temporary 0% floor)', () => {
-  assert.equal(appliedFeeRate(0, 'rental'), 1);
-  assert.equal(appliedFeeRate(5, 'rental'), 6);
-  assert.equal(appliedFeeRate(5, 'agency'), 3);
-  assert.equal(appliedFeeRate(3, 'agency'), 1);
-  assert.equal(appliedFeeRate(1, 'agency'), 0);
-  assert.equal(appliedFeeRate(0, 'agency'), 0);
-  assert.equal(appliedFeeRate(2, 'unknown'), 3);
+test('applied fee = FreePass 1% + sales share, independent of delivery type', () => {
+  assert.equal(appliedFeeRate(0), 1);
+  assert.equal(appliedFeeRate(5), 6);
+  assert.equal(appliedFeeRate(7), 6);
+  assert.equal(appliedFeeRate(2.5), 3.5);
+});
+
+test('payout fee: rental = sales share, agency = share - 3%p (temporary 0% floor)', () => {
+  assert.equal(payoutFeeRate(5, 'rental'), 5);
+  assert.equal(payoutFeeRate(5, 'agency'), 2);
+  assert.equal(payoutFeeRate(3, 'agency'), 0);
+  assert.equal(payoutFeeRate(1, 'agency'), 0);
+  assert.equal(payoutFeeRate(2, 'unknown'), 2);
 });
 
 test('credit and annual mileage reject unsupported values', () => {

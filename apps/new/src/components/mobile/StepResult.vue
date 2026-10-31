@@ -9,12 +9,13 @@ import { quoteState, vehicleState } from '../../store.js';
 import { 견적상태 } from '../../lib/quote/index.js';
 import { 담당자인가 } from '../../lib/role.js';
 import { fmt } from '../../lib/format.js';
-import { normalizeFeeRate, appliedFeeRate, CONDITION_LIMITS, DELIVERY_TYPES } from '../../lib/feature/conditions.js';
+import { normalizeFeeRate, appliedFeeRate, payoutFeeRate, CONDITION_LIMITS, DELIVERY_TYPES } from '../../lib/feature/conditions.js';
 import { exteriorColorsFor } from '../../lib/exterior-paint.js';
 
 const 담당자 = 담당자인가();
 const 수수료한도 = CONDITION_LIMITS.feeRatePct;
-const 적용수수료 = computed(() => appliedFeeRate(quoteState.cond.feeRatePct, quoteState.cond.deliveryType));
+const 적용수수료 = computed(() => appliedFeeRate(quoteState.cond.feeRatePct));
+const 지급수수료 = computed(() => payoutFeeRate(quoteState.cond.feeRatePct, quoteState.cond.deliveryType));
 function 출고고름(종류) { quoteState.cond.deliveryType = 종류; }
 function 수수료바뀜() {
   quoteState.cond.feeRatePct = normalizeFeeRate(quoteState.cond.feeRatePct);
@@ -171,7 +172,8 @@ const 공유시각 = computed(() => {
           <em>%</em>
         </span>
       </label>
-      <p class="sr-fee__note">견적 반영 수수료 {{ 적용수수료 }}% (프리패스 1%{{ quoteState.cond.deliveryType === DELIVERY_TYPES.AGENCY ? ' − 대리점 3%p' : '' }} + 영업 수수료)</p>
+      <p class="sr-fee__note">견적 반영 수수료 {{ 적용수수료 }}% (프리패스 1% + 영업 수수료 · 출고 구분과 무관)</p>
+      <p class="sr-fee__note sr-fee__note--pay">프리패스 지급 영업수수료 <b>{{ 지급수수료 }}%</b><template v-if="quoteState.cond.deliveryType === DELIVERY_TYPES.AGENCY"> · 대리점 출고: 나머지 {{ Math.round((quoteState.cond.feeRatePct - 지급수수료) * 10) / 10 }}%p 는 대리점에서 별도 수령</template></p>
     </div>
 
     <!-- 조건 — 결과의 보조정보이므로 2열 요약으로 압축 -->
