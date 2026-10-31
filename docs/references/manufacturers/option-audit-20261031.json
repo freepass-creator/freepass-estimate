@@ -1,0 +1,712 @@
+{
+  "schema": "freepass-option-research-audit/v1",
+  "observedDate": "2026-10-31",
+  "verdict": "REVIEW_REQUIRED_NOT_OPERATIONAL_VERIFICATION",
+  "snapshot": {
+    "repository": "freepass-creator/freepass-estimate",
+    "commit": "d483fd46f8b3b0c9ee334cc45a47ba71b9b25f3d",
+    "path": "apps/new/public/vehicle-db.js",
+    "dataAsOf": "2026-09-18",
+    "scope": "repository UI snapshot only; no operational ACTIVE release inspected"
+  },
+  "sourceRuleCount": 35,
+  "structure": {
+    "stats": {
+      "models": 64,
+      "variants": 106,
+      "trims": 535,
+      "optionEntries": 4474,
+      "exclusiveGroups": 426,
+      "requiresRefs": 95,
+      "excludesRefs": 413
+    },
+    "issues": [
+      {
+        "model": "쏘나타 디 엣지",
+        "variant": "가솔린 1.6 터보",
+        "code": "REQUIRED_OPTION_NOT_SELECTABLE_IN_TRIM",
+        "trimId": "DNJS4RUT7",
+        "optionId": "o_479e03a18fe9",
+        "target": "o_94887206b6a3"
+      },
+      {
+        "model": "쏘나타 디 엣지",
+        "variant": "가솔린 1.6 터보",
+        "code": "REQUIRED_OPTION_NOT_SELECTABLE_IN_TRIM",
+        "trimId": "DNJS4TLT7",
+        "optionId": "o_32ce475ff3ed",
+        "target": "o_2efe6ef3717e"
+      },
+      {
+        "model": "쏘나타 디 엣지",
+        "variant": "가솔린 2.0",
+        "code": "REQUIRED_OPTION_NOT_SELECTABLE_IN_TRIM",
+        "trimId": "DNJS4SUT7",
+        "optionId": "o_0113ac5740b0",
+        "target": "o_702ed8412ae6"
+      },
+      {
+        "model": "쏘나타 디 엣지",
+        "variant": "하이브리드 2.0",
+        "code": "REQUIRED_OPTION_NOT_SELECTABLE_IN_TRIM",
+        "trimId": "DNJS4ZUT7",
+        "optionId": "o_55c2a660c7da",
+        "target": "o_3dfdb99f15f3"
+      },
+      {
+        "model": "아이오닉 5 N",
+        "variant": "전기",
+        "code": "CYCLIC_REQUIREMENT",
+        "trimId": "NEJJ58RA7",
+        "path": [
+          "o_5278fb000e14",
+          "o_5092462ea7ae",
+          "o_5278fb000e14"
+        ]
+      },
+      {
+        "model": "아이오닉 5 N",
+        "variant": "전기",
+        "code": "CYCLIC_REQUIREMENT",
+        "trimId": "NEJJ58RA7",
+        "path": [
+          "o_5092462ea7ae",
+          "o_5278fb000e14",
+          "o_5092462ea7ae"
+        ]
+      },
+      {
+        "model": "코나",
+        "variant": "가솔린 1.6 터보",
+        "code": "REQUIRED_OPTION_NOT_SELECTABLE_IN_TRIM",
+        "trimId": "SXJJ5TCD4",
+        "optionId": "o_fe7ac3ec9cfe",
+        "target": "o_b270062c336e"
+      },
+      {
+        "model": "코나",
+        "variant": "가솔린 1.6 터보",
+        "code": "REQUIRED_OPTION_NOT_SELECTABLE_IN_TRIM",
+        "trimId": "SXJJ5TCE4",
+        "optionId": "o_5cfb9dae6f93",
+        "target": "o_5273fff287ab"
+      },
+      {
+        "model": "코나",
+        "variant": "하이브리드 1.6",
+        "code": "REQUIRED_OPTION_NOT_SELECTABLE_IN_TRIM",
+        "trimId": "SXJJ5ZCD4",
+        "optionId": "o_897f8958b741",
+        "target": "o_64f7b2439626"
+      }
+    ]
+  },
+  "findingsByType": {
+    "CANDIDATE_PRICE_DIFFERENCE": 5,
+    "SNAPSHOT_VALUE_MATCH": 5,
+    "INCLUDED_ITEM_STILL_SELECTABLE_REVIEW": 1,
+    "MANUAL_SCOPE_OR_SCHEMA_REVIEW": 10,
+    "SNAPSHOT_RELATION_PRESENT": 2,
+    "CANDIDATE_RELATION_MISSING": 4,
+    "OPTION_NOT_IN_SNAPSHOT_SCOPE": 15,
+    "NOT_OFFERED_SEPARATELY": 1,
+    "NO_EXACT_SNAPSHOT_SCOPE": 5,
+    "BUNDLE_CHILDREN_MUTUALLY_BLOCKED_REVIEW": 4
+  },
+  "observations": [
+    {
+      "ruleId": "sportage-prestige-style",
+      "model": "스포티지",
+      "variant": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sportage_가솔린1.6터보_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_PRICE_DIFFERENCE",
+      "optionId": "o_6e2f1e2505df",
+      "snapshotWon": 890000,
+      "officialWon": 690000,
+      "differenceWon": 200000
+    },
+    {
+      "ruleId": "sportage-noblesse-style",
+      "model": "스포티지",
+      "variant": "가솔린 1.6 터보",
+      "trim": "노블레스",
+      "trimId": "kia_sportage_가솔린1.6터보_노블레스",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "SNAPSHOT_VALUE_MATCH",
+      "optionId": "o_2d7a15965996",
+      "snapshotWon": 890000,
+      "officialWon": 890000,
+      "differenceWon": 0
+    },
+    {
+      "ruleId": "sportage-prestige-sunroof",
+      "model": "스포티지",
+      "variant": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sportage_가솔린1.6터보_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "SNAPSHOT_VALUE_MATCH",
+      "optionId": "o_bb0e6ef7a33e",
+      "snapshotWon": 1190000,
+      "officialWon": 1190000,
+      "differenceWon": 0
+    },
+    {
+      "ruleId": "sportage-prestige-4wd",
+      "model": "스포티지",
+      "variant": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sportage_가솔린1.6터보_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "SNAPSHOT_VALUE_MATCH",
+      "optionId": "o_ed79bc1d6150",
+      "snapshotWon": 2230000,
+      "officialWon": 2230000,
+      "differenceWon": 0
+    },
+    {
+      "ruleId": "sportage-navigation-included",
+      "model": "스포티지",
+      "variant": "가솔린 1.6 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sportage_가솔린1.6터보_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "INCLUDED_ITEM_STILL_SELECTABLE_REVIEW",
+      "optionIds": [
+        "o_15f68a742573"
+      ]
+    },
+    {
+      "ruleId": "sportage-matte-scope",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 14
+    },
+    {
+      "ruleId": "sorento-seat-choice",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sorento_가솔린2.5터보_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "SNAPSHOT_RELATION_PRESENT",
+      "optionId": "o_8ce4e88c94fc",
+      "target": "o_07031807e73c"
+    },
+    {
+      "ruleId": "sorento-hud-prerequisite",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sorento_가솔린2.5터보_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_RELATION_MISSING",
+      "optionId": "o_362fac9c72ff",
+      "target": "o_b2409b4d3272"
+    },
+    {
+      "ruleId": "sorento-style-prestige",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sorento_가솔린2.5터보_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "SNAPSHOT_VALUE_MATCH",
+      "optionId": "o_698aa404cd55",
+      "snapshotWon": 1240000,
+      "officialWon": 1240000,
+      "differenceWon": 0
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sorento_가솔린2.5터보_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "trim": "노블레스",
+      "trimId": "kia_sorento_가솔린2.5터보_노블레스",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "trim": "시그니처",
+      "trimId": "kia_sorento_가솔린2.5터보_시그니처",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "trim": "X-Line",
+      "trimId": "kia_sorento_가솔린2.5터보_xline",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "가솔린 2.5 터보",
+      "trim": "블랙 에디션",
+      "trimId": "kia_sorento_가솔린2.5터보_블랙에디션",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sorento_하이브리드터보_프레스티지2wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "프레스티지",
+      "trimId": "kia_sorento_하이브리드터보_프레스티지전자식4wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "trimId": "kia_sorento_하이브리드터보_노블레스2wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "노블레스",
+      "trimId": "kia_sorento_하이브리드터보_노블레스전자식4wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "trimId": "kia_sorento_하이브리드터보_시그니처2wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "X-Line",
+      "trimId": "kia_sorento_하이브리드터보_xline2wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "블랙 에디션",
+      "trimId": "kia_sorento_하이브리드터보_블랙에디션2wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "시그니처",
+      "trimId": "kia_sorento_하이브리드터보_시그니처전자식4wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "X-Line",
+      "trimId": "kia_sorento_하이브리드터보_xline전자식4wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-step-trailer",
+      "model": "쏘렌토",
+      "variant": "하이브리드 1.6 터보",
+      "trim": "블랙 에디션",
+      "trimId": "kia_sorento_하이브리드터보_블랙에디션전자식4wd",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "OPTION_NOT_IN_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "sorento-suspension-restriction",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 15
+    },
+    {
+      "ruleId": "sorento-hev-4wd-tax",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 10
+    },
+    {
+      "ruleId": "carnival-prestige-style",
+      "model": "카니발",
+      "variant": "가솔린 3.5",
+      "trim": "프레스티지(9인)",
+      "trimId": "kia_carnival_가솔린3.5_프레스티지9인",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_PRICE_DIFFERENCE",
+      "optionId": "o_42303e93e730",
+      "snapshotWon": 1000000,
+      "officialWon": 700000,
+      "differenceWon": 300000
+    },
+    {
+      "ruleId": "carnival-prestige-drivewise",
+      "model": "카니발",
+      "variant": "가솔린 3.5",
+      "trim": "프레스티지(9인)",
+      "trimId": "kia_carnival_가솔린3.5_프레스티지9인",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_PRICE_DIFFERENCE",
+      "optionId": "o_b2a92e861325",
+      "snapshotWon": 1200000,
+      "officialWon": 750000,
+      "differenceWon": 450000
+    },
+    {
+      "ruleId": "carnival-prestige-monitoring",
+      "model": "카니발",
+      "variant": "가솔린 3.5",
+      "trim": "프레스티지(9인)",
+      "trimId": "kia_carnival_가솔린3.5_프레스티지9인",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_PRICE_DIFFERENCE",
+      "optionId": "o_6811ed515117",
+      "snapshotWon": 900000,
+      "officialWon": 1200000,
+      "differenceWon": -300000
+    },
+    {
+      "ruleId": "carnival-prestige-hud-price",
+      "model": "카니발",
+      "variant": "가솔린 3.5",
+      "trim": "프레스티지(9인)",
+      "trimId": "kia_carnival_가솔린3.5_프레스티지9인",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "SNAPSHOT_VALUE_MATCH",
+      "optionId": "o_c7e5674aa6c4",
+      "snapshotWon": 1200000,
+      "officialWon": 1200000,
+      "differenceWon": 0
+    },
+    {
+      "ruleId": "carnival-prestige-hud-requires",
+      "model": "카니발",
+      "variant": "가솔린 3.5",
+      "trim": "프레스티지(9인)",
+      "trimId": "kia_carnival_가솔린3.5_프레스티지9인",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_RELATION_MISSING",
+      "optionId": "o_c7e5674aa6c4",
+      "target": "o_4334d4fb5b78"
+    },
+    {
+      "ruleId": "carnival-prestige-rear-entertainment",
+      "model": "카니발",
+      "variant": "가솔린 3.5",
+      "trim": "프레스티지(9인)",
+      "trimId": "kia_carnival_가솔린3.5_프레스티지9인",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "NOT_OFFERED_SEPARATELY",
+      "optionIds": []
+    },
+    {
+      "ruleId": "carnival-noblesse-rear-price",
+      "model": "카니발",
+      "variant": "가솔린 3.5",
+      "trim": "노블레스(9인)",
+      "trimId": "kia_carnival_가솔린3.5_노블레스9인",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_PRICE_DIFFERENCE",
+      "optionId": "o_bd9e0cd29760",
+      "snapshotWon": 2680000,
+      "officialWon": 2730000,
+      "differenceWon": -50000
+    },
+    {
+      "ruleId": "carnival-seats-package-price",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 12
+    },
+    {
+      "ruleId": "carnival-pearl-body-price",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 12
+    },
+    {
+      "ruleId": "carnival-color-body-restriction",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 12
+    },
+    {
+      "ruleId": "k5-rent-sunroof-price",
+      "finding": "NO_EXACT_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "k5-rent-wise-sbw",
+      "finding": "NO_EXACT_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "k5-rent-roof-aftermarket",
+      "finding": "NO_EXACT_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "k5-rent-smart-cluster",
+      "finding": "NO_EXACT_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "k5-rent-cluster-price",
+      "finding": "NO_EXACT_SNAPSHOT_SCOPE"
+    },
+    {
+      "ruleId": "k5-hev-style-black",
+      "model": "K5",
+      "variant": "하이브리드 2.0",
+      "trim": "시그니처",
+      "trimId": "kia_k5_하이브리드_시그니처",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "SNAPSHOT_RELATION_PRESENT",
+      "optionId": "o_f2af2d9f604e",
+      "target": "o_df5457f73839"
+    },
+    {
+      "ruleId": "k5-hev-hud-cluster",
+      "model": "K5",
+      "variant": "하이브리드 2.0",
+      "trim": "프레스티지",
+      "trimId": "kia_k5_하이브리드_프레스티지",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_RELATION_MISSING",
+      "optionId": "o_e2028bcb4bca",
+      "target": "o_1a5863a29116"
+    },
+    {
+      "ruleId": "k5-black-interior-restriction",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 1
+    },
+    {
+      "ruleId": "g80-package-overrestriction",
+      "model": "G80",
+      "variant": "가솔린 2.5 터보",
+      "trim": "스탠다드",
+      "trimId": "genesis_g80__가솔린_2.5_터보_2WD__스탠다드",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "BUNDLE_CHILDREN_MUTUALLY_BLOCKED_REVIEW",
+      "blockedPairs": [
+        {
+          "optionIds": [
+            "o_c22d6dab0aa4",
+            "o_d122ee5f5060"
+          ],
+          "selectedAfterReplay": [
+            "o_d122ee5f5060"
+          ]
+        },
+        {
+          "optionIds": [
+            "o_c22d6dab0aa4",
+            "o_3d0e10cfbf12"
+          ],
+          "selectedAfterReplay": [
+            "o_3d0e10cfbf12"
+          ]
+        },
+        {
+          "optionIds": [
+            "o_d122ee5f5060",
+            "o_3d0e10cfbf12"
+          ],
+          "selectedAfterReplay": [
+            "o_3d0e10cfbf12"
+          ]
+        }
+      ],
+      "confidence": "OFFICIAL_BTO_COEXISTENCE_CONFIRMATION_REQUIRED"
+    },
+    {
+      "ruleId": "g80-package-overrestriction",
+      "model": "G80",
+      "variant": "가솔린 2.5 터보",
+      "trim": "스탠다드",
+      "trimId": "genesis_g80__가솔린_2.5_터보_AWD__스탠다드",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "BUNDLE_CHILDREN_MUTUALLY_BLOCKED_REVIEW",
+      "blockedPairs": [
+        {
+          "optionIds": [
+            "o_e51312558954",
+            "o_82d1d392e140"
+          ],
+          "selectedAfterReplay": [
+            "o_82d1d392e140"
+          ]
+        },
+        {
+          "optionIds": [
+            "o_e51312558954",
+            "o_0fc4006a6c26"
+          ],
+          "selectedAfterReplay": [
+            "o_0fc4006a6c26"
+          ]
+        },
+        {
+          "optionIds": [
+            "o_82d1d392e140",
+            "o_0fc4006a6c26"
+          ],
+          "selectedAfterReplay": [
+            "o_0fc4006a6c26"
+          ]
+        }
+      ],
+      "confidence": "OFFICIAL_BTO_COEXISTENCE_CONFIRMATION_REQUIRED"
+    },
+    {
+      "ruleId": "g80-package-overrestriction",
+      "model": "G80",
+      "variant": "가솔린 3.5 터보",
+      "trim": "스탠다드",
+      "trimId": "genesis_g80__가솔린_3.5_터보_2WD__스탠다드",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "BUNDLE_CHILDREN_MUTUALLY_BLOCKED_REVIEW",
+      "blockedPairs": [
+        {
+          "optionIds": [
+            "o_579989f5f813",
+            "o_0c02ff513bcf"
+          ],
+          "selectedAfterReplay": [
+            "o_0c02ff513bcf"
+          ]
+        },
+        {
+          "optionIds": [
+            "o_579989f5f813",
+            "o_68b050ef1cce"
+          ],
+          "selectedAfterReplay": [
+            "o_68b050ef1cce"
+          ]
+        },
+        {
+          "optionIds": [
+            "o_0c02ff513bcf",
+            "o_68b050ef1cce"
+          ],
+          "selectedAfterReplay": [
+            "o_68b050ef1cce"
+          ]
+        }
+      ],
+      "confidence": "OFFICIAL_BTO_COEXISTENCE_CONFIRMATION_REQUIRED"
+    },
+    {
+      "ruleId": "g80-package-overrestriction",
+      "model": "G80",
+      "variant": "가솔린 3.5 터보",
+      "trim": "스탠다드",
+      "trimId": "genesis_g80__가솔린_3.5_터보_AWD__스탠다드",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "BUNDLE_CHILDREN_MUTUALLY_BLOCKED_REVIEW",
+      "blockedPairs": [
+        {
+          "optionIds": [
+            "o_8d02c650a098",
+            "o_da321e4552df"
+          ],
+          "selectedAfterReplay": [
+            "o_da321e4552df"
+          ]
+        },
+        {
+          "optionIds": [
+            "o_8d02c650a098",
+            "o_31f7195990ea"
+          ],
+          "selectedAfterReplay": [
+            "o_31f7195990ea"
+          ]
+        },
+        {
+          "optionIds": [
+            "o_da321e4552df",
+            "o_31f7195990ea"
+          ],
+          "selectedAfterReplay": [
+            "o_31f7195990ea"
+          ]
+        }
+      ],
+      "confidence": "OFFICIAL_BTO_COEXISTENCE_CONFIRMATION_REQUIRED"
+    },
+    {
+      "ruleId": "g80-suspension-scope",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 4
+    },
+    {
+      "ruleId": "avante-parking-choice",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 0
+    },
+    {
+      "ruleId": "avante-parking-prices",
+      "finding": "MANUAL_SCOPE_OR_SCHEMA_REVIEW",
+      "matchingSnapshotTrims": 0
+    },
+    {
+      "ruleId": "ioniq5n-2025-cam-mirror-exclusion",
+      "model": "아이오닉 5 N",
+      "variant": "전기",
+      "trim": "IONIQ 5 N",
+      "trimId": "NEJJ58RA7",
+      "identityStatus": "OPERATING_RELEASE_AND_MODEL_YEAR_ALIGNMENT_UNVERIFIED",
+      "finding": "CANDIDATE_RELATION_MISSING",
+      "optionId": "o_5278fb000e14",
+      "target": "o_5092462ea7ae"
+    }
+  ],
+  "productionWrites": 0,
+  "limitations": [
+    "No current CANONICAL_ACTIVE payload or live UI/API was read.",
+    "Model year, generation, powertrain, body, trim, tax basis and effective date must align before approving any correction.",
+    "A structural pass does not prove official compatibility. A snapshot match does not prove production correctness.",
+    "Unmatched scopes are not guessed; no manufacturer facts or IDs are imported into a runtime master.",
+    "Bundle inclusion is not proof of sibling mutual exclusion; G80 remains a reviewed candidate pending official BTO coexistence confirmation."
+  ],
+  "actualInputSha256": "ed7b0d4a3bf48f9371f06334844271d69b406cfd3e2106623eb45e18bfd3763d",
+  "actualSnapshotMeta": {
+    "source": "freepasserp4/new_car_trim",
+    "data_as_of": "2026-09-18",
+    "product_count": 535,
+    "generated_at": "2026-09-19T08:30:03.705Z"
+  }
+}
