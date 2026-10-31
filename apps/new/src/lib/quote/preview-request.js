@@ -1,4 +1,4 @@
-import { COMMISSION_POLICY, commissionForAgent } from './commission-policy.js';
+import { COMMISSION_POLICY, DEFAULT_AGENT_POINTS, commissionForAgent } from './commission-policy.js';
 import { QUOTE_REQUEST_CONTRACT, LEGACY_QUOTE_VERSION } from './contracts.js';
 import { createQuoteConditionCosts } from './condition-cost-contract.js';
 
@@ -214,8 +214,8 @@ export function buildCatalogPreviewRequest({
       하이패스비: 비용.hipassFee,
       비용,
       수수료정책: COMMISSION_POLICY,
-      영업수수료P: commissionForAgent(Number(conditions.feeRatePct || 0)).agentPoints,
-      수수료율: commissionForAgent(Number(conditions.feeRatePct || 0)).totalPoints,
+      영업수수료P: commissionForAgent(Number(conditions.feeRatePct ?? DEFAULT_AGENT_POINTS)).agentPoints,
+      수수료율: commissionForAgent(Number(conditions.feeRatePct ?? DEFAULT_AGENT_POINTS)).totalPoints,
     },
     안들: scenarios.map((scenario) => Object.freeze({
       기간: Number(scenario.term),

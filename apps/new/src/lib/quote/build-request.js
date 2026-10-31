@@ -1,5 +1,5 @@
 import { QUOTE_REGION } from './launch-region.js';
-import { COMMISSION_POLICY, commissionForAgent } from './commission-policy.js';
+import { COMMISSION_POLICY, DEFAULT_AGENT_POINTS, commissionForAgent } from './commission-policy.js';
 // ============================================================================
 // 화면 상태 → provider-neutral 견적 요청
 // UI는 계산 공급자를 모른다. 차량/조건의 사실만 싣고 provider가 자기 방식으로 해석한다.
@@ -136,8 +136,8 @@ export function 요청만들기() {
       하이패스비: 비용.hipassFee,
       비용,
       수수료정책: COMMISSION_POLICY,
-      영업수수료P: commissionForAgent(+c.feeRatePct || 0).agentPoints,
-      수수료율: commissionForAgent(+c.feeRatePct || 0).totalPoints,
+      영업수수료P: commissionForAgent(Number(c.feeRatePct ?? DEFAULT_AGENT_POINTS)).agentPoints,
+      수수료율: commissionForAgent(Number(c.feeRatePct ?? DEFAULT_AGENT_POINTS)).totalPoints,
     },
     안들: (quoteState.scenarios || []).map((sc) => ({
       기간: sc.term,

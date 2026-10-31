@@ -1,6 +1,7 @@
 export const COMMISSION_POLICY = 'company-1-agent-5/v1';
 export const COMPANY_POINTS = 1;
 export const MAX_AGENT_POINTS = 5;
+export const DEFAULT_AGENT_POINTS = MAX_AGENT_POINTS;
 export const AGENT_POINTS_STEP = 0.5;
 export function commissionForAgent(agentPoints) {
   if (typeof agentPoints !== 'number' || !Number.isFinite(agentPoints) || agentPoints < 0 || agentPoints > MAX_AGENT_POINTS || Math.abs(agentPoints / AGENT_POINTS_STEP - Math.round(agentPoints / AGENT_POINTS_STEP)) > 1e-8) {

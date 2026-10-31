@@ -19,6 +19,8 @@ function toggleTerm(t) {
   <div class="sc">
     <h2 class="sc-title">계약 조건을<br>설정해 주세요</h2>
 
+    <p class="sc-note">보증금·선납금과 영업 수수료를 정한 뒤 견적을 확인하세요. 수수료는 풀피 5.0P로 시작합니다.</p>
+
     <div class="sc-field">
       <div class="sc-label">
         기간 <span class="sc-label__hint">복수 선택 가능</span>

@@ -13,6 +13,7 @@ Object.assign(f.master.data[0], { maker:'현대', model:'디 올 뉴 아반떼',
 const browser = await chromium.launch({ ...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH} : {}), args:['--no-sandbox'] });
 try {
   const context = await browser.newContext({ viewport:{width:1440,height:1000}, serviceWorkers:'block' });
+  await context.addInitScript(() => localStorage.setItem('freepass_agent_points_v2','0'));
   await context.route('**/api/freepass-data-master', route => route.fulfill({json:{ok:true,...f.master}}));
   await context.route('**/api/stock', route => route.fulfill({json:{ok:true,data:[]}}));
   let calculations = 0;
@@ -48,6 +49,8 @@ try {
   await page.locator('.m-footer .m-btn--primary:visible').click();
   await page.locator('.sc-title').waitFor();
   const fee = page.locator('.sc').getByLabel('영업 수수료',{exact:true});
+  assert.equal(await fee.inputValue(),'5','a new quotation starts at full agent 5P despite a previous reduced fee');
+  assert.match(await page.locator('.fee-control__hint').innerText(),/적용 6.0P/);
   await fee.fill('2.5'); await fee.blur();
   await page.locator('.m-footer .m-btn--primary:visible').click();
   await page.waitForFunction(() => document.querySelectorAll('.sr-term__monthly b').length === 9);
