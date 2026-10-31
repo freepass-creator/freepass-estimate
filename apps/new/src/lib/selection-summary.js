@@ -17,6 +17,6 @@ export function selectionSummary(db, state, quote) {
       trim && [trim._ui_powertrain_group || trim.group, trim.name].filter(Boolean).join(' ')].filter(Boolean).join(' · '),
     exterior: trim && state.color != null ? exteriorColorsFor(model,trim)[state.color]?.name || '미선택' : '미선택',
     interior: trim ? quote.cond?.colorInt || '미선택' : '미선택',
-    options: trim ? [...state.options].map(id => variant.options_master?.[id]?.name).filter(Boolean) : [],
+    options: trim ? [...state.options].map(id => (trim._options_master || variant.options_master)?.[id]?.name).filter(Boolean) : [],
   };
 }

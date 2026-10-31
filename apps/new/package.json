@@ -41,7 +41,8 @@
     "check:data-authority": "node scripts/check-freepass-data-authority.mjs",
     "check:kamatch": "node --test scripts/kamatch-formula.test.mjs scripts/kamatch-rates.test.mjs scripts/kamatch-comparison.test.mjs",
     "check:commission": "node --test scripts/commission-policy.test.mjs",
-    "check:standard-inference": "node --test scripts/standard-inference.test.mjs scripts/quote-benchmark.test.mjs scripts/manufacturer-parity.test.mjs"
+    "check:standard-inference": "node --test scripts/standard-inference.test.mjs scripts/quote-benchmark.test.mjs scripts/manufacturer-parity.test.mjs",
+    "test:workspace": "node scripts/e2e-unified-workspace.mjs"
   },
   "devDependencies": {
     "vite": "^8.0.4"

@@ -193,6 +193,7 @@ export default defineConfig(({ mode }) => {
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'index.html'),
+        legacyQuote: resolve(__dirname, 'legacy-quote.html'),
         mobile: resolve(__dirname, 'mobile.html'),
         home: resolve(__dirname, 'home.html'),
         vehicles: resolve(__dirname, 'vehicles.html'),

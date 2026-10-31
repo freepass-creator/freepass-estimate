@@ -17,6 +17,7 @@ import StickyQuote from './StickyQuote.vue';
 import SendSheet from './SendSheet.vue';
 import SelectionSummary from './SelectionSummary.vue';
 import QuoteComparison from '../QuoteComparison.vue';
+import DesktopQuoteCompanion from '../DesktopQuoteCompanion.vue';
 function openComparison() { window.dispatchEvent(new CustomEvent('freepass:open-comparison')); }
 const footer = ref(null);
 const footerHeight = ref(78);
@@ -340,6 +341,7 @@ async function shareSignLink() {
 </script>
 
 <template>
+  <div class="estimate-workspace">
   <div class="m-shell" :style="{ '--footer-height': footerHeight + 'px' }">
     <!-- 상단은 표시 전용: 브랜드/제목/상태만. CTA는 하단 액션 영역만 사용. -->
     <header class="m-header">
@@ -413,6 +415,8 @@ async function shareSignLink() {
 
     <SendSheet :open="sendOpen" @close="sendOpen = false" />
     <QuoteComparison />
+  </div>
+  <DesktopQuoteCompanion />
   </div>
 </template>
 
@@ -543,4 +547,22 @@ async function shareSignLink() {
 }
 .m-btn--soft:active { background: var(--line-2); }
 .m-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+</style>
+
+<style>
+.estimate-workspace { min-width:0; }
+.desktop-companion { display:none; }
+@media (min-width:1100px) {
+  html body { --workspace-width:min(1160px, calc(100vw - 64px)); --flow-left:calc((100vw - var(--workspace-width)) / 2); background:var(--fp-canvas); }
+  html #m-app { width:var(--workspace-width); max-width:1160px; margin-inline:auto; box-shadow:none; background:transparent; }
+  .estimate-workspace { display:grid; grid-template-columns:480px minmax(0,1fr); gap:48px; align-items:start; }
+  .estimate-workspace .m-shell { min-width:0; }
+  html .estimate-workspace .m-header, html .estimate-workspace .m-progress,
+  html .estimate-workspace .m-footer, html .estimate-workspace .sq {
+    left:var(--flow-left); right:auto; width:480px; max-width:480px; margin-inline:0;
+  }
+  .estimate-workspace .sq { display:none; }
+  .estimate-workspace .m-main--quote { padding-bottom:calc(var(--footer-height, 78px) + 24px); }
+  .desktop-companion { display:block; position:sticky; top:32px; max-height:calc(100dvh - 64px); overflow:auto; padding:8px 4px 24px; }
+}
 </style>

@@ -58,17 +58,6 @@
       /* 화면을 당겼다 놓을 때 브라우저 '당겨서 새로고침'으로 견적 데이터가 날아가는 것 방지 */
       overscroll-behavior-y: contain;
     }
-    /* 1024px 초과 (PC) 진입 시 데스크탑으로 리다이렉트 — 모바일 페이지인데 PC 로 들어오면 어색
-       ★?force=mobile 이면 넘기지 않으므로 이 안내도 띄우지 않는다(html.force-mobile).
-         예전엔 넘기기는 멈추고 이 안내만 떠서, PC 로 연 손님 링크가 「PC 버전으로 이동합니다」에 멈춰 있었다. */
-    @media (min-width: 1025px) {
-      html:not(.force-mobile) body::before {
-        content: '데스크탑 환경입니다 — PC 버전으로 이동합니다';
-        position: fixed; inset: 0;
-        display: flex; align-items: center; justify-content: center;
-        background: var(--bg); color: var(--ink-3); font-size: 14px;
-      }
-    }
     #m-app { min-height: 100vh; display: flex; flex-direction: column; }
 
     /* 폰보다 넓은 화면(태블릿·PC) — 견적기를 폰 폭 기둥으로 가운데 모은다.
@@ -84,13 +73,6 @@
         box-shadow: var(--fp-elevation-float);
       }
     }
-    @media (min-width: 900px) {
-      /* PC에서 손님 링크를 열어도 모바일 흐름은 유지하되, 폰보다 조금 넓게 읽힌다. */
-      html #m-app, html .m-header, html .m-progress, html .m-footer, html .sq {
-        max-width: 540px;
-      }
-    }
-
     /* 진입 게이트 — Admin PR #92 line-free mobile grammar */
     .gate-bg {
       position: fixed; inset: 0;
@@ -173,16 +155,11 @@
     }
   </style>
   <script>
-    // PC viewport 로 들어오면 데스크탑 페이지로 redirect (단, ?force=mobile 이면 유지)
-    (function () {
-      const params = new URLSearchParams(location.search);
-      if (params.get('force') === 'mobile') { document.documentElement.classList.add('force-mobile'); return; }
-      if (window.innerWidth > 1024) {
-        const target = location.pathname.replace(/mobile\.html$/, 'index.html');
-        if (target === location.pathname) { document.documentElement.classList.add('force-mobile'); return; }
-        location.replace(target + location.search + location.hash);
-      }
-    })();
+    // Retain historical saved-quote/admin URLs without exposing the old builder.
+    const legacyParams = new URLSearchParams(location.search);
+    if (legacyParams.has('q') || legacyParams.get('admin') === '1') {
+      location.replace('/legacy-quote.html' + location.search + location.hash);
+    }
   </script>
   <script src="/newcar-launch-policy.js"></script>
 <script src="/feature-options.js"></script>

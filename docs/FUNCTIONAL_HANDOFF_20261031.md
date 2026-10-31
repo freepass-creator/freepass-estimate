@@ -75,3 +75,14 @@ npm run check:condition-cost-authority
 - 공개 API/응답: `api/public-quotes.js`, `api/_private/public-offers.js`
 
 UI 수정 시 공급사 명칭 비노출, 동일 가격 기준, 회사 고정 1P, 고객 수수료 코드, 저장 견적 금액 불변 계약을 유지한다.
+
+
+## 웹·모바일 통합 화면 (사용자 후속 요청)
+
+웹의 신규 견적 진입도 이제 모바일과 같은 `MobileApp.vue`다. 화면 폭이 1100px 이상이면 왼쪽에 동일한 선택 흐름, 오른쪽에 선택 내역/가격 구성/계약 조건/3종 월료를 보조적으로 보여준다. 오른쪽은 공통 계산 결과를 읽는 표시 전용이며 추가 API 요청을 발생시키지 않는다. 1100px 미만에서는 한 열로 돌아오며 선택 상태와 단계가 유지된다.
+
+화면 접점: `src/components/DesktopQuoteCompanion.vue`, `src/components/mobile/MobileApp.vue`. `index.html`과 `mobile.html`은 같은 앱을 시작한다. 과거 `?q=` 저장 견적과 관리자 URL은 `legacy-quote.html`에서 보존한다.
+
+검증: 브라우저에서 선택 요약 즉시 반영, 양쪽 9개 월료 일치, 화면 폭 변경 후 상태/금액 보존, 오른쪽으로 인한 추가 계산 없음, PNG 복사/상세 링크 재열기/재복사, 공급사 명칭 비노출을 확인했다. 실 API를 포함한 실행의 차량/카매치 자료는 기존과 같이 합성 fixture이며 웰릭스는 실제 요청이었다. 별도 UI 회귀 검사 `npm run test:workspace`는 명시적인 합성 응답을 사용한다. Playwright 설치 환경에서 실행하고, 기존 실행 환경의 모듈을 쓸 경우 `PLAYWRIGHT_MODULE`/`CHROMIUM_PATH`/`BASE_URL`을 지정할 수 있다.
+
+[통합 웹 선택 화면 캡처](assets/unified-estimate-desktop.png): UI 회귀 테스트의 합성 차량과 금액이며 운영 견적 증거가 아니다.

@@ -143,19 +143,21 @@ if (process.env.FREEPASS_LEGACY_RUNTIME_ROOT) {
   console.log('operational share interoperability: PASS — v2, original trim/options, re-share and selected periods');
 }
 
-// Run the real inline entry guard: bare /s paths must not redirect to themselves.
+// Unified entries never redirect new/saved-snapshot quotes by viewport width.
+// Historical database-backed quote/admin URLs keep their isolated compatibility entry.
 {
   const { readFileSync } = await import('node:fs');
   const { runInNewContext } = await import('node:vm');
-  const html = readFileSync(new URL('../mobile.html', import.meta.url), 'utf8');
-  const entry = [...html.matchAll(/<script>[\s\S]*?<\/script>/g)].map(m => m[0]).find(t => t.includes('PC viewport'));
-  assert.ok(entry, 'desktop entry guard present');
-  const script = entry.replace(/^<script>|<\/script>$/g, '');
-  for (const pathname of ['/s/abcd1234', '/s/ABCD1234', '/s/abcd1234/', '/s/zzz', '/mobile.html']) {
-    const redirects = [];
-    const classes = [];
-    runInNewContext(script, { URLSearchParams, location: { pathname, search: '', hash: '', replace: url => redirects.push(url) }, window: { innerWidth: 1280 }, document: { documentElement: { classList: { add(name) { classes.push(name); } } } } });
-    assert.deepEqual(redirects, pathname.startsWith('/s/') ? [] : ['/index.html']);
-    assert.deepEqual(classes, pathname.startsWith('/s/') ? ['force-mobile'] : []);
+  for (const file of ['index.html','mobile.html']) {
+    const html = readFileSync(new URL('../'+file, import.meta.url), 'utf8');
+    const entry = [...html.matchAll(/<script>[\s\S]*?<\/script>/g)].map(m => m[0]).find(t => t.includes('legacyParams'));
+    assert.ok(entry, 'legacy compatibility guard present');
+    const script = entry.replace(/^<script>|<\/script>$/g, '');
+    for (const width of [390,1440]) for (const search of ['', '?qs=snapshot', '?staff=1', '?q=old-quote', '?admin=1']) {
+      const redirects = [];
+      runInNewContext(script, { URLSearchParams, location: {search,hash:'#detail', replace:url => redirects.push(url)}, window:{innerWidth:width} });
+      assert.deepEqual(redirects, search.startsWith('?q=') || search === '?admin=1' ? ['/legacy-quote.html'+search+'#detail'] : []);
+    }
   }
+  console.log('unified entry compatibility: PASS — no viewport redirects; historical quote/admin URLs preserved');
 }
