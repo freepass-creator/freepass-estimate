@@ -7,7 +7,6 @@ import { 지금주소 } from '../../lib/share-link.js';
 import { quoteActionReadiness, resetForRequote } from '../../lib/feature/actions.js';
 import StepVehicle from './StepVehicle.vue';
 import StepConditions from './StepConditions.vue';
-import StepExtras from './StepExtras.vue';
 import StepResult from './StepResult.vue';
 import { 다시표시계산 as 다시계산, 표시견적 as 견적상태 } from '../../lib/quote/display-runtime.js';
 import { requestCommissionMark } from '../../lib/commission-mark.js';
@@ -37,7 +36,6 @@ const 공유제목 = computed(() => '신차 장기렌트 견적');
 // 발송/공유는 단계(step)가 아니다. 결과 화면의 하단 액션 영역에서만 노출한다.
 const STEPS = [
   { key: 'vehicle',    label: '차량',     comp: StepVehicle    },
-  { key: 'extras',     label: '용품·서비스', comp: StepExtras   },
   { key: 'conditions', label: '계약 조건', comp: StepConditions },
   /* ★견적은 별도 페이지로 (대표 2026-09-18) */
   { key: 'result',     label: '견적',     comp: StepResult     },

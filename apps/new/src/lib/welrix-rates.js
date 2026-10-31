@@ -60,3 +60,5 @@ export const 웰릭스기본 = {
 
 export const 썬팅값 = (이름) => 썬팅들.find((x) => x.name === 이름)?.price || 0;
 export const 블박값 = (이름) => 블박들.find((x) => x.name === 이름)?.price || 0;
+
+export const 기본용품표시 = name => ({'루마 일반':'기본 선팅','파인뷰 SF500':'기본 블랙박스'}[name] || name);

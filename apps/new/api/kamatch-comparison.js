@@ -1,3 +1,4 @@
+import { kamatchExtraOptions } from './_kamatch/condition-costs.js';
 import { commissionFromConditions } from '../src/lib/quote/commission-policy.js';
 import { authoritativeQuoteRequest } from './_master/authoritative-request.js';
 import { calculateKamatchScenario } from './_kamatch/calculate.js';
@@ -21,7 +22,7 @@ export function createKamatchComparisonHandler({ loadMaster, loadReference = loa
       if(!Number.isFinite(mileage)||mileage<=0||!Number.isFinite(conditions.수수료율)||conditions.수수료율 < -10||conditions.수수료율>7) throw kamatchError('주행거리 또는 수수료를 확인해 주세요.','KAMATCH_INPUT_INVALID',400);
       const costs=conditions.비용;
       if(!costs||['deliveryFee','tintFee','dashcamFee','naviFee','hipassFee'].some(k=>!Number.isSafeInteger(costs[k])||costs[k]<0)) throw kamatchError('용품 비용을 확인해 주세요.','KAMATCH_COST_MAPPING_UNAVAILABLE',422);
-      const extraOptions=['deliveryFee','tintFee','dashcamFee'].map(k=>({ amount:costs[k],baseline:profile.baselines[k],removed:costs[k]===0 }));
+      const extraOptions=kamatchExtraOptions(costs,profile.baselines);
       const creditType=conditions.신용==='저신용'?'low':'general';
       const price=canonical.priceBasis;
       const vehicles=reference.tables['/api/vehicles'].filter(v=>['brand','model','lineup','trim'].every(k=>v[k]===profile[k]));

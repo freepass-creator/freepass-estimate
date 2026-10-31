@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { quoteState } from '../../store.js';
 import { KM_OPTIONS, toggleQuoteTerm, applyScenarioPercent } from '../../lib/feature/conditions.js';
 import FeeControl from '../FeeControl.vue';
+import StepExtras from './StepExtras.vue';
 
 const TERMS = [36, 48, 60];
 const KMS = KM_OPTIONS;
@@ -19,7 +20,12 @@ function toggleTerm(t) {
   <div class="sc">
     <h2 class="sc-title">계약 조건을<br>설정해 주세요</h2>
 
-    <p class="sc-note">보증금·선납금과 영업 수수료를 정한 뒤 견적을 확인하세요. 수수료는 풀피 5.0P로 시작합니다.</p>
+    <div class="sc-finance">
+      <label class="sc-finance__field"><span>보증금</span><span class="sc-finance__input"><input aria-label="보증금" type="number" inputmode="decimal" :value="quoteState.cond.dep" min="0" max="30" step="1" @input="applyScenarioPercent(quoteState, 'dep', $event.target.value)" /><span>%</span></span></label>
+      <label class="sc-finance__field"><span>선납금</span><span class="sc-finance__input"><input aria-label="선납금" type="number" inputmode="decimal" :value="quoteState.cond.pre" min="0" max="30" step="1" @input="applyScenarioPercent(quoteState, 'pre', $event.target.value)" /><span>%</span></span></label>
+      <div class="sc-finance__fees"><FeeControl compact /></div>
+    </div>
+    <p class="sc-note">영업 수수료 기본 풀피 5.0P · 회사 고정 1.0P 별도 합산. 위 조건을 정한 뒤 견적을 확인하세요.</p>
 
     <div class="sc-field">
       <div class="sc-label">
@@ -45,13 +51,15 @@ function toggleTerm(t) {
       </div>
     </div>
 
-    <div class="sc-finance">
-      <label class="sc-finance__field"><span>보증금</span><span class="sc-finance__input"><input aria-label="보증금" type="number" inputmode="decimal" :value="quoteState.cond.dep" min="0" max="30" step="1" @input="applyScenarioPercent(quoteState, 'dep', $event.target.value)" /><span>%</span></span></label>
-      <label class="sc-finance__field"><span>선납금</span><span class="sc-finance__input"><input aria-label="선납금" type="number" inputmode="decimal" :value="quoteState.cond.pre" min="0" max="30" step="1" @input="applyScenarioPercent(quoteState, 'pre', $event.target.value)" /><span>%</span></span></label>
-      <FeeControl />
+    <details class="sc-extra-conditions">
+      <summary>기본 조건 · 수도권 · 만 26세 이상 · 정비 제외 <span>변경</span></summary>
+      <StepExtras embedded />
+    </details>
+    <details class="sc-staff">
+      <summary>담당자 정보 <span>{{ quoteState.staff.name || '입력' }}</span></summary>
       <label class="sc-finance__field"><span>담당자 이름</span><input v-model.trim="quoteState.staff.name" aria-label="담당자 이름" type="text" autocomplete="name" maxlength="40" placeholder="이름 또는 직함" /></label>
       <label class="sc-finance__field"><span>담당자 연락처</span><input v-model.trim="quoteState.staff.tel" aria-label="담당자 연락처" type="tel" autocomplete="tel" maxlength="30" placeholder="010-0000-0000" /></label>
-    </div>
+    </details>
   </div>
 </template>
 
@@ -136,4 +144,17 @@ function toggleTerm(t) {
   font-style: normal; font-size: var(--fs-md);
   color: var(--ink-4); flex-shrink: 0;
 }
+</style>
+
+<style scoped>
+.sc-finance { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:16px 0 12px; align-items:start; }
+.sc-finance > .sc-finance__field { display:flex; flex-direction:column; align-items:stretch; margin:0; gap:8px; min-width:0; font-size:13px; }
+.sc-finance__input { padding-inline:8px; gap:3px; min-height:56px; }
+.sc-finance__input input { width:100%; min-width:0; text-align:center; }
+.sc-finance__fees { min-width:0; }
+.sc-extra-conditions,.sc-staff { margin:24px 0; font-size:13px; }
+summary { cursor:pointer; line-height:1.8; color:var(--ink-2); }
+summary span { color:var(--ink-3); margin-left:8px; }
+.sc-extra-conditions[open] > summary,.sc-staff[open] > summary { margin-bottom:20px; }
+.sc-note { margin-bottom:24px; }
 </style>

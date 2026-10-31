@@ -28,3 +28,11 @@ test('option rules and public insurance/maintenance conditions are checked befor
   const f=setup();f.master.data[0].options[0].requires=['other'];let res=response();await f.handler({method:'POST',body:{request:f.request}},res);assert.equal(res.body.code,'FREEPASS_DATA_OPTION_RULE_VIOLATION');
   f.master.data[0].options[0].requires=[];f.request.조건.정비='포함';res=response();await f.handler({method:'POST',body:{request:f.request}},res);assert.equal(res.body.code,'KAMATCH_CONDITIONS_UNSUPPORTED');
 });
+test('basic metropolitan supplies do not add another provider accessory-price difference',async()=>{
+  const f=setup();
+  const original=response();await f.handler({method:'POST',body:{request:f.request}},original);
+  f.request.조건.비용={...f.request.조건.비용,deliveryFee:130000,tintFee:105000,dashcamFee:180000,
+    basis:{delivery:'LAUNCH_REGION:수도권',tint:'COMPAT_FIXED:루마 일반',dashcam:'COMPAT_FIXED:파인뷰 SF500'}};
+  const basic=response();await f.handler({method:'POST',body:{request:f.request}},basic);
+  assert.equal(basic.code,200);assert.deepEqual(basic.body.results,original.body.results);
+});

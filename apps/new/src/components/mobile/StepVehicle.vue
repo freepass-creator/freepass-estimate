@@ -5,7 +5,7 @@ import { 역할 } from '../../lib/role.js';
 import { rolePolicy } from '../../lib/feature/roles.js';
 import { POPULAR_BRAND, POPULAR_MODELS, sortByRank } from '../../data/popular-rankings.js';
 import { fmt, guessColor } from '../../lib/format.js';
-import { colorPriceLabel, exteriorColorsFor } from '../../lib/exterior-paint.js';
+import { colorPriceLabel, exteriorColorsFor, defaultColorIndex } from '../../lib/exterior-paint.js';
 import SelectionSummary from './SelectionSummary.vue';
 import { resolveCanonicalIdentity } from '../../lib/newcar/configuration-resolver.js';
 
@@ -79,7 +79,7 @@ onMounted(() => {
   /* ★공유 링크로 들어온 경우 — 트림은 이미 정해져 있는데 «트림을 고를 때 도는 뒷일»
      (syncVehicle)이 안 돌아서 월 대여료가 «—» 로 남는다. 여기서 한 번 돌려 준다.
      손으로 고른 경우엔 selectTrim 이 이미 돌렸으므로 다시 돌아도 값이 같다. */
-  if (vehicleState.trim) syncVehicle();
+  if (vehicleState.trim) { ensureDefaultColors(); syncVehicle(); }
 });
 
 // sub-step — vehicleState.subStep 에 저장 (MobileApp next() 와 통합)
@@ -344,6 +344,20 @@ function selectSpec(g) {
   resetQuoteVehicleWhenSelectionChanges(result);
   subStep.value = vehicleSelection.nextStepAfterSelection('trimGroup');
 }
+function ensureDefaultColors() {
+  if (!exteriorColors.value[vehicleState.color] || exteriorColors.value[vehicleState.color]?._paintUnavailable) {
+    vehicleState.color = defaultColorIndex(exteriorColors.value);
+  }
+  const current = 내장색들.value.find(color => color.stableId && color.stableId === quoteState.cond.colorIntId || color.value === quoteState.cond.colorInt);
+  if (!current) {
+    const index = defaultColorIndex(내장색들.value);
+    const color = index == null ? null : 내장색들.value[index];
+    quoteState.cond.colorInt = color?.value || '';
+    quoteState.cond.colorIntPrice = color?.price || 0;
+    quoteState.cond.colorIntId = color?.stableId || null;
+  }
+}
+
 function selectTrim(t) {
   const result = vehicleSelection.applySelection(vehicleState, 'trim', t.trim_id);
   if (result.changed) {
@@ -351,8 +365,10 @@ function selectTrim(t) {
     quoteState.cond.colorIntPrice = 0;
     quoteState.cond.colorIntId = null;
     quoteState.vehicle = null;
+    ensureDefaultColors();
     syncVehicle();
   } else if (!quoteState.vehicle) {
+    ensureDefaultColors();
     syncVehicle();
   }
 

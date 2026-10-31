@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue';
 import { commissionForAgent } from '../lib/quote/commission-policy.js';
 import { quoteState } from '../store.js';
 import { CONDITION_LIMITS, normalizeFeeRate } from '../lib/feature/conditions.js';
+defineProps({ compact: { type:Boolean, default:false } });
 const rule = CONDITION_LIMITS.feeRatePct;
 const commission = computed(() => commissionForAgent(quoteState.cond.feeRatePct));
 const draft = ref(String(quoteState.cond.feeRatePct));
@@ -21,7 +22,7 @@ function adjust(direction) {
 </script>
 
 <template>
-  <div class="fee-control">
+  <div class="fee-control" :class="{ 'fee-control--compact':compact }">
     <span>영업 수수료</span>
     <div class="fee-control__input">
       <input type="number" aria-label="영업 수수료" inputmode="decimal" :value="draft" :min="rule.min" :max="rule.max" :step="rule.step" @input="draft = $event.target.value" @change="apply(draft)" @blur="apply(draft)" @keydown.enter="apply(draft)" />
@@ -32,7 +33,7 @@ function adjust(direction) {
       </div>
     </div>
   </div>
-  <p class="fee-control__hint">0.5P 단위 · 회사 1.0P 고정 + 영업 {{ commission.agentPoints.toFixed(1) }}P = 적용 {{ commission.totalPoints.toFixed(1) }}P</p>
+  <p class="fee-control__hint" :class="{ 'fee-control__hint--compact':compact }">0.5P 단위 · 회사 1.0P 고정 + 영업 {{ commission.agentPoints.toFixed(1) }}P = 적용 {{ commission.totalPoints.toFixed(1) }}P</p>
 </template>
 
 <style scoped>
@@ -49,4 +50,12 @@ input::-webkit-inner-spin-button, input::-webkit-outer-spin-button { -webkit-app
 .fee-control__buttons button { border:0; background:transparent; color:var(--fp-text); min-width:44px; min-height:32px; cursor:pointer; font-size:12px; }
 .fee-control__buttons button:disabled { opacity:.3; cursor:default; }
 .fee-control__buttons button:focus-visible { outline:3px solid var(--fp-focus-ring); border-radius:4px; }
+</style>
+
+<style scoped>
+.fee-control--compact { display:flex; flex-direction:column; align-items:stretch; gap:8px; max-width:none; margin:0; font-size:13px; }
+.fee-control--compact .fee-control__input { gap:3px; padding:0 6px; min-width:0; }
+.fee-control--compact input { width:100%; min-width:0; text-align:center; }
+.fee-control--compact .fee-control__buttons button { min-width:28px; min-height:28px; }
+.fee-control__hint--compact { display:none; }
 </style>

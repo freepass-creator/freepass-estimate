@@ -1,9 +1,11 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 썬팅들, 블박들 } from '../../lib/welrix-rates.js';
+import { 썬팅들, 블박들, 기본용품표시 } from '../../lib/welrix-rates.js';
 import { fmt } from '../../lib/format.js';
 import { resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
+
+defineProps({ embedded: { type:Boolean, default:false } });
 
 const INS = [
   { value: '1억', label: '1억' },
@@ -26,7 +28,7 @@ const dashcamFee = computed(() => currentCosts.value.dashcamFee);
 
 <template>
   <div class="se">
-    <h2 class="se-title">추가 조건을<br>선택해 주세요</h2>
+    <h2 v-if="!embedded" class="se-title">추가 조건을<br>선택해 주세요</h2>
 
     <p class="se-maintenance">정비 제외</p>
 
@@ -64,14 +66,14 @@ const dashcamFee = computed(() => currentCosts.value.dashcamFee);
     <div class="se-field">
       <div class="se-label">
         선팅
-        <span v-if="tintFee" class="se-label__val">+{{ fmt(tintFee) }}원</span>
+        <span v-if="tintFee && quoteState.tint.product !== '루마 일반'" class="se-label__val">+{{ fmt(tintFee) }}원</span>
       </div>
       <div class="se-chips">
         <button
           v-for="t in 썬팅들" :key="t.name"
           type="button" class="se-chip" :class="{ 'is-selected': quoteState.tint.product === t.name }" :aria-pressed="quoteState.tint.product === t.name"
           @click="quoteState.tint.product = t.name"
-        >{{ t.name }}<small v-if="t.price"> +{{ fmt(t.price) }}</small></button>
+        >{{ 기본용품표시(t.name) }}<small v-if="t.price && t.name !== '루마 일반'"> +{{ fmt(t.price) }}</small></button>
       </div>
     </div>
 
@@ -79,7 +81,7 @@ const dashcamFee = computed(() => currentCosts.value.dashcamFee);
     <div class="se-field">
       <div class="se-label">
         블랙박스
-        <span v-if="dashcamFee" class="se-label__val">
+        <span v-if="dashcamFee && quoteState.extras.blackbox !== '파인뷰 SF500'" class="se-label__val">
           +{{ fmt(dashcamFee) }}원</span>
       </div>
       <div class="se-chips">
@@ -87,7 +89,7 @@ const dashcamFee = computed(() => currentCosts.value.dashcamFee);
           v-for="b in 블박들" :key="b.name"
           type="button" class="se-chip" :class="{ 'is-selected': quoteState.extras.blackbox === b.name }" :aria-pressed="quoteState.extras.blackbox === b.name"
           @click="quoteState.extras.blackbox = b.name"
-        >{{ b.name }}<small v-if="b.price"> +{{ fmt(b.price) }}</small></button>
+        >{{ 기본용품표시(b.name) }}<small v-if="b.price && b.name !== '파인뷰 SF500'"> +{{ fmt(b.price) }}</small></button>
       </div>
     </div>
 

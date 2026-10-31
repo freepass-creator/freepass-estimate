@@ -6,6 +6,7 @@ import { selectionSummary } from '../lib/selection-summary.js';
 import { PUBLIC_OFFERS, publicOfferDefinition } from '../lib/quote/public-offers.js';
 import { vehiclePriceBreakdown } from '../lib/vehicle-price-breakdown.js';
 import { QUOTE_REGION } from '../lib/quote/launch-region.js';
+import { 기본용품표시 } from '../lib/welrix-rates.js';
 import { fmt } from '../lib/format.js';
 
 // Read the shared selection and calculation only. This panel never issues requests.
@@ -39,8 +40,8 @@ const conditionRows = computed(() => [
   ['보증금 / 선납금', financeText.value],
   ['운전자 / 정비', '만 26세 이상 / 정비 제외'],
   ['대물 / 추가 운전자', `${conditions.value.insProperty || '1억'} / ${conditions.value.extraDriver || '없음'}`],
-  ['선팅', snapshot.value ? conditions.value.tint : quoteState.tint?.product || '없음'],
-  ['블랙박스', snapshot.value ? conditions.value.blackbox : quoteState.extras?.blackbox || '미설치'],
+  ['선팅', 기본용품표시(snapshot.value ? conditions.value.tint : quoteState.tint?.product || '없음')],
+  ['블랙박스', 기본용품표시(snapshot.value ? conditions.value.blackbox : quoteState.extras?.blackbox || '미설치')],
   ['탁송 기준', snapshot.value?.conditions?.deliveryCity || QUOTE_REGION],
 ]);
 </script>
