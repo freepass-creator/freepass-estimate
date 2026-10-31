@@ -1,0 +1,30 @@
+{
+  "catalogRows": 1123,
+  "visibleRows": 949,
+  "brands": [
+    "BMW",
+    "KGM",
+    "기아",
+    "기아 전기차",
+    "르노",
+    "벤츠",
+    "제네시스",
+    "폭스바겐",
+    "현대",
+    "현대 전기차"
+  ],
+  "modelLabels": 108,
+  "optionPriceEntries": 11404,
+  "counts": {
+    "fee-rates": 192,
+    "residual-rates": 12,
+    "model-fee-rates": 96,
+    "gaeso-reg-rates": 1,
+    "commission-rates": 18,
+    "residual-grade-rates": 66
+  },
+  "catalogSha256": "424c4e156637980c40841c250f21066735fc5fa500260a5a74e5ea2c03fd895d",
+  "catalogGzipSha256": "62b7ec14f353820aceef1db5d0991a4bfbc4050f4759eb42fd44054708fd4708",
+  "masterUpdated": false,
+  "productionIntegrated": false
+}

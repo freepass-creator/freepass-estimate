@@ -1,0 +1,3050 @@
+{
+  "fee-rates": [
+    {
+      "id": "899939ec-4542-4995-a988-06ce96d52a4e",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.975
+    },
+    {
+      "id": "250a2f68-0202-4feb-addb-08ffe48a44e9",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.0185
+    },
+    {
+      "id": "6a6604bb-3618-4970-bb40-8600d41a000c",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0
+    },
+    {
+      "id": "cf4af85e-794d-48d7-a5cd-55dbb741170c",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.17
+    },
+    {
+      "id": "6c8882ed-70f5-4a05-b838-f52eb5b860c4",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.97
+    },
+    {
+      "id": "1ffd8fb8-74c9-4ff6-ae28-ee2d755e3822",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.085
+    },
+    {
+      "id": "4831ad9d-9e4b-46eb-8df1-74551544ac43",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.2
+    },
+    {
+      "id": "ecfb3bf9-c426-44bb-ad6b-12ecf67c7e20",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.99
+    },
+    {
+      "id": "649d3376-5c21-4e0b-8acf-5a2c78f343e7",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1
+    },
+    {
+      "id": "58c59d0b-2c6e-4e9c-aff3-164c16015865",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.05
+    },
+    {
+      "id": "6db74b9b-2a4f-46cf-8553-0dc3f9155354",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0
+    },
+    {
+      "id": "9f49ed4c-47b4-4052-ae82-51bbd4a3509a",
+      "depositRate": 5,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.1
+    },
+    {
+      "id": "91c41f67-f055-445f-9b7c-b4157154738a",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.3
+    },
+    {
+      "id": "4a9086c0-8656-4417-b3ce-94835354a89b",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 1.17
+    },
+    {
+      "id": "6e410af1-f530-4cd8-97e9-da07300d68cb",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.305
+    },
+    {
+      "id": "87e71de0-ba3b-4d19-8e34-382e250ef59c",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0
+    },
+    {
+      "id": "5fcb3ecb-f478-4968-b7b6-e07ddf1bbab0",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.155
+    },
+    {
+      "id": "c5f3340a-196d-46e1-a4ac-4a22041b3701",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.1
+    },
+    {
+      "id": "3bb444fc-a6c8-4c18-b208-7f3d65be63ec",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.197
+    },
+    {
+      "id": "d2e098eb-4cab-43d7-86e4-431b89955fa9",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 1.19
+    },
+    {
+      "id": "b991dd13-9152-4848-93d1-c0e34c54192c",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.34
+    },
+    {
+      "id": "79784b7f-bd3d-4aef-b7e4-6c8a11cc5ed7",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.32
+    },
+    {
+      "id": "50a0aeda-a39e-4b70-9883-4b60cdbfedf4",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0
+    },
+    {
+      "id": "8e4f14e4-7a6b-4ccc-8e7b-a693768a35a1",
+      "depositRate": 5,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.14
+    },
+    {
+      "id": "126013c9-c756-4338-ac29-3041ca708bbf",
+      "depositRate": 5,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0
+    },
+    {
+      "id": "15801f09-eb25-4dcd-b017-e5218428d215",
+      "depositRate": 5,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.3
+    },
+    {
+      "id": "d9926728-5b2f-44f4-a31c-8e6d88e584da",
+      "depositRate": 5,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.365
+    },
+    {
+      "id": "e837b53f-1fc1-4502-aa02-392ab528eff6",
+      "depositRate": 5,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.5
+    },
+    {
+      "id": "16d769f3-6b66-4a00-b043-e3918efb9662",
+      "depositRate": 5,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0
+    },
+    {
+      "id": "ee8b05a5-729a-4ae3-9087-125cfb502d2a",
+      "depositRate": 5,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.54
+    },
+    {
+      "id": "43037e9c-92af-4059-a8ba-7dd76ecddfcf",
+      "depositRate": 5,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.407
+    },
+    {
+      "id": "1b308a19-a463-4b3f-a194-29720f589e02",
+      "depositRate": 5,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.34
+    },
+    {
+      "id": "9ddf0ca2-52f5-4e2a-a598-116a56b7bfd7",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.91
+    },
+    {
+      "id": "40485424-ec1f-40a6-a26b-89c6ce83914f",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.915
+    },
+    {
+      "id": "eaf88585-18ad-4c1a-8f71-ae8ff3608292",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.025
+    },
+    {
+      "id": "1d0aae4c-0b8e-4146-9ec2-03c84e9f2271",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.9585
+    },
+    {
+      "id": "4bdea896-208e-4ff7-88ed-738abccbd7c0",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.97
+    },
+    {
+      "id": "d5e10e70-8a20-460c-bb63-8bf84ff703b7",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.11
+    },
+    {
+      "id": "f15bfddb-7c2b-408b-805d-539dcfe0a040",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.94
+    },
+    {
+      "id": "c913027b-c6ef-437c-9bd0-03a5bc08c8db",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1
+    },
+    {
+      "id": "2abbd9bf-843e-434a-bc95-de2a4f2b5c0a",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.04
+    },
+    {
+      "id": "24174535-be19-4e26-9c0b-fdfe1e13c1eb",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.99
+    },
+    {
+      "id": "0fc93772-7795-43e2-96a2-f4b5fee76ad3",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.94
+    },
+    {
+      "id": "ff37e5b2-33de-40bc-b55e-e2e6de26db36",
+      "depositRate": 10,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.93
+    },
+    {
+      "id": "d45fb54e-e87f-4129-a2fc-88833279eb3b",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.24
+    },
+    {
+      "id": "85474cc2-cc03-410b-a132-28f913794f65",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 1.11
+    },
+    {
+      "id": "3a53fb8b-ecb1-4729-b975-a3bf6aa31bea",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.095
+    },
+    {
+      "id": "fb383720-33c2-4899-bd4e-7ecefe3479c7",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.04
+    },
+    {
+      "id": "277c9c02-e3ba-4bbc-88c6-a49a22afc30c",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.245
+    },
+    {
+      "id": "09d140b9-ccb3-40a6-918b-bb9658ec756d",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.1
+    },
+    {
+      "id": "2b487dc6-3d2c-4642-9562-4babe280f3fa",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 1.13
+    },
+    {
+      "id": "b175e5c0-6095-4faf-a69e-ce9b63ec74f1",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.26
+    },
+    {
+      "id": "fc2be3e6-a90d-4981-8830-7e213db29728",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.137
+    },
+    {
+      "id": "3d333663-ff4c-48b9-89fd-59765ab9009d",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.14
+    },
+    {
+      "id": "a34e3460-db54-4849-a3c6-fb900157d3a3",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.08
+    },
+    {
+      "id": "3f87c4f9-5a65-4653-87a1-bcf11a5f1e86",
+      "depositRate": 10,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.28
+    },
+    {
+      "id": "4ee6bd49-292e-49a0-a4b1-d048d76501f3",
+      "depositRate": 10,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.44
+    },
+    {
+      "id": "e8a67382-1862-4912-b941-fbef9ccc8637",
+      "depositRate": 10,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.3
+    },
+    {
+      "id": "fb6a00c2-7e00-4c38-80e6-47c9560f6837",
+      "depositRate": 10,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.24
+    },
+    {
+      "id": "f9e61fd4-dbf1-4b80-a9fa-90065ca0f978",
+      "depositRate": 10,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.305
+    },
+    {
+      "id": "b6491fcc-63da-4153-a142-f79e4e9080c4",
+      "depositRate": 10,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.34
+    },
+    {
+      "id": "92b18e6f-572b-4f4d-8cbe-294bd1fd4d5f",
+      "depositRate": 10,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.347
+    },
+    {
+      "id": "2d720346-c7ed-4d88-bf25-855c6a23c06c",
+      "depositRate": 10,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.48
+    },
+    {
+      "id": "a3c3555c-a6f5-4f2f-a28f-e4f361f5d572",
+      "depositRate": 10,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.28
+    },
+    {
+      "id": "63cdb8fb-488c-4e47-a008-4428167e3c49",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.88
+    },
+    {
+      "id": "4340c7e3-0c98-4d76-abe8-5d3f5b7a8972",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.855
+    },
+    {
+      "id": "72fcd47b-37cc-472d-88e9-0d20fb892613",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.08
+    },
+    {
+      "id": "8df0bfd9-7b07-461c-a6b9-f151922b0d4e",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.91
+    },
+    {
+      "id": "2afe2a0c-b2b2-4be6-8288-051c53eb62f0",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.9285
+    },
+    {
+      "id": "ec6a2b0b-ae81-4d26-ae95-8a5edebeb644",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 0.965
+    },
+    {
+      "id": "f05cf547-2496-476d-b50b-2ade595f6310",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.94
+    },
+    {
+      "id": "965c1660-3006-4bba-8f60-09b05e48f6a4",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.11
+    },
+    {
+      "id": "cc0b619f-0cd9-452a-acdd-7475238c8954",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.91
+    },
+    {
+      "id": "da980985-1420-4aae-b700-82ec73556d36",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 0.98
+    },
+    {
+      "id": "2fb8d2e5-3fa7-4c03-97ac-ea56c65caf9d",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.87
+    },
+    {
+      "id": "97713dc3-e7c9-4d21-b1bf-433576330ec9",
+      "depositRate": 15,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.96
+    },
+    {
+      "id": "3e00db3e-4ffe-4e12-b5ef-7592c27b2e0e",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.185
+    },
+    {
+      "id": "2cfa13aa-0687-4d58-ac5b-5010fbd5b79d",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.065
+    },
+    {
+      "id": "75181a87-c827-46ed-a362-fc5409f0669a",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.21
+    },
+    {
+      "id": "cadae3cf-4aa1-405d-9a1b-922ea1db3f8b",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.04
+    },
+    {
+      "id": "fdd94096-9866-4796-8cf3-cb7560f8c0c8",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.01
+    },
+    {
+      "id": "e190bc12-f61b-4fb2-8997-b731d14cf061",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 1.05
+    },
+    {
+      "id": "8bae96f8-9030-4055-9eef-9496a746e183",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.25
+    },
+    {
+      "id": "dd0c8647-a2f6-4f5b-b748-a27ca43f5342",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.08
+    },
+    {
+      "id": "4a1916f1-0730-49fc-9840-f481aaaa96fa",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 1.07
+    },
+    {
+      "id": "9134ea05-505d-43fe-bafb-5d503cd04c9f",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.2
+    },
+    {
+      "id": "8f6a0510-720a-4e79-84c0-f1ee5b5aed38",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.107
+    },
+    {
+      "id": "800d5a40-718e-436d-ac11-faa6a08d5696",
+      "depositRate": 15,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.05
+    },
+    {
+      "id": "19d88ec3-0aed-4b05-af8e-a26710e3bd22",
+      "depositRate": 15,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.21
+    },
+    {
+      "id": "c09107c6-195f-493c-b4da-8aac11e1931f",
+      "depositRate": 15,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.41
+    },
+    {
+      "id": "a8571ce8-3573-48d4-aebd-02a017463848",
+      "depositRate": 15,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.275
+    },
+    {
+      "id": "fb22b978-0e1f-44ec-b5b5-6a53cc7dbdd9",
+      "depositRate": 15,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.24
+    },
+    {
+      "id": "f28c1a25-bdb1-4752-b10f-a568cdcc86ed",
+      "depositRate": 15,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.25
+    },
+    {
+      "id": "068299d8-2199-4fb1-b832-d40bf7a46382",
+      "depositRate": 15,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.45
+    },
+    {
+      "id": "3f433f3b-d54c-49fd-bd23-e90c8595ecb0",
+      "depositRate": 15,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.28
+    },
+    {
+      "id": "88bb9b70-8498-4de4-b76f-df2be28d7fad",
+      "depositRate": 15,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.317
+    },
+    {
+      "id": "46c4438c-7721-4fd7-bf00-3e78f92df84f",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.785
+    },
+    {
+      "id": "4e172f8a-c6c3-4ed2-8152-b768732493c1",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 0.895
+    },
+    {
+      "id": "cae0ef75-3894-44ea-ade1-b37457d1b6bd",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.84
+    },
+    {
+      "id": "25fc7d46-c355-400e-a974-a5f6a18e8e0c",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.8885
+    },
+    {
+      "id": "e3e85eb5-054b-46a2-81e8-a647675ac89e",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.04
+    },
+    {
+      "id": "2e31b4a3-0d0b-4ab9-a251-cb9f6c5c9949",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.88
+    },
+    {
+      "id": "dc82a5fd-f17f-407b-b05c-3337983e57a6",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.07
+    },
+    {
+      "id": "5643cd94-6971-4745-826b-b6af193a700d",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.8
+    },
+    {
+      "id": "6d9f44fb-8d86-4a82-993f-37b4fa7f981a",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.87
+    },
+    {
+      "id": "94d55829-eb1f-474b-9c9c-b899bb1a7b6e",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.91
+    },
+    {
+      "id": "514344f7-3fbb-42f0-8df4-820a88e0edb2",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 0.91
+    },
+    {
+      "id": "dd8c5e59-6201-4499-a3cf-eaaa25ae746f",
+      "depositRate": 20,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.92
+    },
+    {
+      "id": "a5b37b51-5dd8-475c-a6fc-c11638cf8803",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.98
+    },
+    {
+      "id": "e00a2117-85ad-4ff5-9514-67feb39e3206",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.025
+    },
+    {
+      "id": "c644a409-0b2a-4d6e-ad25-97f40b3903d5",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.97
+    },
+    {
+      "id": "330d3293-242d-49d2-a40e-71e743d3d6c4",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.17
+    },
+    {
+      "id": "10af1a60-65b9-4f7d-aaf9-de1cd043ce95",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.01
+    },
+    {
+      "id": "68c4c176-3950-4f87-8028-95f84636d522",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.115
+    },
+    {
+      "id": "cfdfe17f-97c4-4059-888e-5ed738fb9193",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.01
+    },
+    {
+      "id": "656c86a7-2302-47b5-bae7-bd0176644482",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.13
+    },
+    {
+      "id": "44a722e6-c723-4898-b358-c699d033b705",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 1
+    },
+    {
+      "id": "8117b59d-38d5-4be7-ac38-42c82344c928",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.05
+    },
+    {
+      "id": "65d4ab48-2af1-4e09-9d47-d242c3a34db7",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.21
+    },
+    {
+      "id": "23f23a2e-3c10-4999-8a75-cab96a52b9ef",
+      "depositRate": 20,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.067
+    },
+    {
+      "id": "5ee5eaa2-e946-45a7-aafc-283289370d11",
+      "depositRate": 20,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.17
+    },
+    {
+      "id": "3ce3c01e-eb2c-4281-9f65-bd619c400a5b",
+      "depositRate": 20,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.21
+    },
+    {
+      "id": "e9cf4f2f-a391-4a4d-ad15-84f40fd0fe0a",
+      "depositRate": 20,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.235
+    },
+    {
+      "id": "3403c85f-d439-4a64-b421-4d165ac35770",
+      "depositRate": 20,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.37
+    },
+    {
+      "id": "60f4521e-db18-44e1-866c-8d7e5261e0a4",
+      "depositRate": 20,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.25
+    },
+    {
+      "id": "3a11ea2b-ba82-4d9e-bbd4-02fae9b45ab4",
+      "depositRate": 20,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.41
+    },
+    {
+      "id": "9694a61d-609f-4caf-b5b9-80f1ff37b157",
+      "depositRate": 20,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.277
+    },
+    {
+      "id": "03b44634-4f11-4a7c-86aa-134f05058334",
+      "depositRate": 20,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.21
+    },
+    {
+      "id": "55e75b72-30ab-42d3-88ab-fea1d5cbbf8e",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.8
+    },
+    {
+      "id": "2eb76874-de30-4141-99cb-80ae2cad33cc",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.8485
+    },
+    {
+      "id": "2e3d1cf4-8d51-45cf-84e9-4fc5b0ad8877",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1
+    },
+    {
+      "id": "3e02305e-6ce7-49c3-a5ff-eb0f5ec35f96",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.84
+    },
+    {
+      "id": "cbb00fcd-cc6b-49b3-8df5-d41ef8dc2243",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 0.841
+    },
+    {
+      "id": "cd2d376f-a997-4aad-aac0-a034e0d1c405",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.731
+    },
+    {
+      "id": "c8e4c63d-25f1-4592-9f44-373bbba43202",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.746
+    },
+    {
+      "id": "d9fdb16f-d346-4dda-bce6-7fa34ab42051",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.03
+    },
+    {
+      "id": "be5d7525-54cf-4c71-b86d-ca85ca69fb06",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.87
+    },
+    {
+      "id": "69e397ab-8804-473b-bf20-7b4578741cf8",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.88
+    },
+    {
+      "id": "860d6e4c-18e4-44a6-b3bc-1b9c076df295",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.83
+    },
+    {
+      "id": "8e1ad8ad-e44e-4f8d-9df9-c21ab85aae67",
+      "depositRate": 25,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 0.856
+    },
+    {
+      "id": "5c7d250f-1dd2-4d4f-bc81-f7a9053ee8a8",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.061
+    },
+    {
+      "id": "a1977161-3a01-4489-9261-2e180252cff6",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.926
+    },
+    {
+      "id": "506ec79a-33cf-4877-a3d2-86880c7ee27a",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.985
+    },
+    {
+      "id": "d793caeb-cc39-4ce6-8f83-827b9c1f63f8",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.93
+    },
+    {
+      "id": "e21fe0cc-1fef-45c2-8a13-7c33b25475fc",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.13
+    },
+    {
+      "id": "b34e8de1-b98e-4e56-a9d8-a034b8b41998",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.97
+    },
+    {
+      "id": "e2bf2601-6d10-419b-b797-0577b54bfa2d",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.076
+    },
+    {
+      "id": "38833fa9-5ddd-4b83-ab52-84ffa31c4c51",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.027
+    },
+    {
+      "id": "f91fd770-2bcd-4e78-a5bf-712eaae65d4e",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.97
+    },
+    {
+      "id": "0a6290df-77af-4604-b5bd-53d6df8cc02f",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.01
+    },
+    {
+      "id": "e75be17e-86e1-40c3-bac6-d5d58ce683db",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.17
+    },
+    {
+      "id": "c2729b98-efb3-4759-91f5-33291e7b70b2",
+      "depositRate": 25,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.946
+    },
+    {
+      "id": "793351cc-1361-4666-8220-4c167c2ecc3c",
+      "depositRate": 25,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.195
+    },
+    {
+      "id": "d35b9f90-9dcf-4935-8bd1-ddf3214a3b5f",
+      "depositRate": 25,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.13
+    },
+    {
+      "id": "61e5b045-8f21-4bf6-b576-9913868fbfe3",
+      "depositRate": 25,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.33
+    },
+    {
+      "id": "5817f31e-6cb2-4c65-a27e-fcb619d059f4",
+      "depositRate": 25,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.17
+    },
+    {
+      "id": "459a437e-6649-43eb-9919-05d015270570",
+      "depositRate": 25,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.17
+    },
+    {
+      "id": "133f0d64-3bc5-4bff-b5bf-69b429027361",
+      "depositRate": 25,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.21
+    },
+    {
+      "id": "1d57d1c4-b379-423c-a458-cdef35da8d82",
+      "depositRate": 25,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.237
+    },
+    {
+      "id": "f0fbeccc-82ca-4af2-a482-5af5954fb2b6",
+      "depositRate": 25,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.368
+    },
+    {
+      "id": "3690dfc9-bdee-4e0d-9390-d37e8a752aaf",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.7985
+    },
+    {
+      "id": "1d9ce8a1-6608-4ba4-b244-4c26f072af03",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.75
+    },
+    {
+      "id": "da2bb5f0-3220-45a2-9f78-5a7de486ba8b",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 0.805
+    },
+    {
+      "id": "91240ebd-55d8-45ad-b251-7fc5b3f8cc53",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.8
+    },
+    {
+      "id": "93086f57-1fc1-40e2-8da3-9ae39c777f35",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 0.95
+    },
+    {
+      "id": "ef2521e9-991e-4f70-ab7d-5fd53001840e",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.695
+    },
+    {
+      "id": "6101b5c5-8039-43a6-8e5a-608adc8cf183",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.83
+    },
+    {
+      "id": "591f2e6e-0658-4ab1-b2b0-b6c1e28f1419",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 0.82
+    },
+    {
+      "id": "3241e6f8-50d4-4587-b5c5-547674968944",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.71
+    },
+    {
+      "id": "6d607132-7e67-4d51-9706-204c618f354f",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.78
+    },
+    {
+      "id": "74a48204-7014-41fa-811a-37287867efd6",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 0.98
+    },
+    {
+      "id": "b5650ad9-dc35-48c5-b640-752589ba4859",
+      "depositRate": 30,
+      "term": 36,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.83
+    },
+    {
+      "id": "7d7dc3d3-2efd-4443-8bf4-cf495f932d82",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.935
+    },
+    {
+      "id": "dc30dede-2a8f-4760-95b9-a46079ee28e1",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.08
+    },
+    {
+      "id": "d6ee35f6-1bf0-4c6b-896f-7b62c37dee48",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.93
+    },
+    {
+      "id": "742b6834-39ef-4617-be1d-2cea8629cce4",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.025
+    },
+    {
+      "id": "9a26fab6-e606-4ef6-902f-82ba27c8d6f3",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.89
+    },
+    {
+      "id": "31fc528c-934e-4b2d-9fdf-eb3567b4c456",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.88
+    },
+    {
+      "id": "e0c2f98c-55f3-42d5-848f-49acdf9e9f2f",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 0.92
+    },
+    {
+      "id": "e9764f99-9ff7-41d4-8a4b-d2b064d2dbf2",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "lease",
+      "rate": 1.04
+    },
+    {
+      "id": "4de779ae-8e5e-4b18-910a-8c672263bf1a",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "lease",
+      "rate": 0.91
+    },
+    {
+      "id": "c8f37f32-ed24-4209-8acd-d803e0135c5b",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.12
+    },
+    {
+      "id": "83bc3e08-5cf6-4120-ac2e-9fa96aad45cd",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 0.97
+    },
+    {
+      "id": "bcdb4394-84c8-4e8b-9c98-6027add26e7f",
+      "depositRate": 30,
+      "term": 48,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 0.977
+    },
+    {
+      "id": "a48467f2-ac0c-4c42-a01e-c4ba6e605487",
+      "depositRate": 30,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.08
+    },
+    {
+      "id": "94e9ad84-3489-4ea9-b2c3-eb8b24a87fb8",
+      "depositRate": 30,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.28
+    },
+    {
+      "id": "85435391-8a41-4bd5-bea2-394c8936f91f",
+      "depositRate": 30,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.13
+    },
+    {
+      "id": "0ddb9d88-5e42-43a0-9d8f-9d0cc86ccf0f",
+      "depositRate": 30,
+      "term": 60,
+      "mileage": 20000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.145
+    },
+    {
+      "id": "2dba9bac-8108-4916-89a6-6f714c4ee410",
+      "depositRate": 30,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "C",
+      "quoteType": "rent",
+      "rate": 1.32
+    },
+    {
+      "id": "33ac0216-14df-425c-9e75-93c51f4df494",
+      "depositRate": 30,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "A",
+      "quoteType": "rent",
+      "rate": 1.12
+    },
+    {
+      "id": "fc828c40-b151-4feb-9423-c925aa9d5103",
+      "depositRate": 30,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "D",
+      "quoteType": "rent",
+      "rate": 1.17
+    },
+    {
+      "id": "c580afb4-d137-4dc0-93d3-f0c36dfe5dc0",
+      "depositRate": 30,
+      "term": 60,
+      "mileage": 30000,
+      "vehicleType": "B",
+      "quoteType": "rent",
+      "rate": 1.187
+    }
+  ],
+  "residual-rates": [
+    {
+      "id": "f7a1d8da-9384-4c2b-a0e3-35b0f4035d41",
+      "vehicleType": "A",
+      "term": 36,
+      "rate": 70
+    },
+    {
+      "id": "1548cabf-208d-43ee-a05b-d70e2da178df",
+      "vehicleType": "A",
+      "term": 48,
+      "rate": 60
+    },
+    {
+      "id": "c95520f2-b54d-4674-93b3-5707d419a5b7",
+      "vehicleType": "A",
+      "term": 60,
+      "rate": 50
+    },
+    {
+      "id": "843bdbd8-eeda-4e7f-b4a3-166d9f79fc58",
+      "vehicleType": "B",
+      "term": 36,
+      "rate": 60
+    },
+    {
+      "id": "18a66a2a-89ec-43c7-9dae-67f59195c6ce",
+      "vehicleType": "B",
+      "term": 48,
+      "rate": 50
+    },
+    {
+      "id": "91607afa-d0a0-4231-ad6d-306dd4cbde6e",
+      "vehicleType": "B",
+      "term": 60,
+      "rate": 40
+    },
+    {
+      "id": "873e5e0a-8dc2-45e3-8acd-d8d83ec70a6f",
+      "vehicleType": "C",
+      "term": 36,
+      "rate": 40
+    },
+    {
+      "id": "47682b94-bec0-4c4f-9e4e-faea4ffa7e0e",
+      "vehicleType": "C",
+      "term": 48,
+      "rate": 35
+    },
+    {
+      "id": "f84398e0-87b3-4eb0-b402-61a977cf34bb",
+      "vehicleType": "C",
+      "term": 60,
+      "rate": 30
+    },
+    {
+      "id": "d448ec4a-3450-4065-b829-420c07651136",
+      "vehicleType": "D",
+      "term": 36,
+      "rate": 60
+    },
+    {
+      "id": "b21aad2f-1d33-44c9-8ecd-8e2758752ed9",
+      "vehicleType": "D",
+      "term": 48,
+      "rate": 50
+    },
+    {
+      "id": "0a47ffc9-10b4-496b-a701-8a1bb1003eac",
+      "vehicleType": "D",
+      "term": 60,
+      "rate": 40
+    }
+  ],
+  "model-fee-rates": [
+    {
+      "id": "fcd7e0e9-115b-4eb4-a051-5473b1c7df56",
+      "brand": "기아 전기차",
+      "model": "레이 EV",
+      "rate": 0.048
+    },
+    {
+      "id": "bf1ac8d8-442f-477a-8a19-43653f9b8833",
+      "brand": "KGM",
+      "model": "렉스턴 뉴 아레나",
+      "rate": 0.06
+    },
+    {
+      "id": "cfbe2094-cad4-4efe-9778-b9da94dcbe84",
+      "brand": "현대",
+      "model": "디 올 뉴 팰리세이드",
+      "rate": 0.048
+    },
+    {
+      "id": "179bc07c-cc77-4c5a-a5d4-de0e5080eb24",
+      "brand": "기아",
+      "model": "모닝 밴",
+      "rate": 0.075
+    },
+    {
+      "id": "3b247470-0bb3-454d-88fb-f34ddd124793",
+      "brand": "기아 전기차",
+      "model": "EV4",
+      "rate": 0.033
+    },
+    {
+      "id": "3203ef1c-5a3e-48ca-b6cf-ff287bbb163a",
+      "brand": "기아 전기차",
+      "model": "EV5",
+      "rate": 0.033
+    },
+    {
+      "id": "9f938baf-fb9c-45fe-a709-41206667bf98",
+      "brand": "기아 전기차",
+      "model": "EV6",
+      "rate": 0.033
+    },
+    {
+      "id": "62a30366-5248-42a2-8329-ff6cdd3fc004",
+      "brand": "기아 전기차",
+      "model": "EV6 GT",
+      "rate": 0.033
+    },
+    {
+      "id": "c52c8a29-1b24-4813-9cc5-4b81ac334158",
+      "brand": "기아 전기차",
+      "model": "EV9",
+      "rate": 0.031
+    },
+    {
+      "id": "fd3a0dcc-bd75-4c80-b908-1d8cfeedd409",
+      "brand": "기아 전기차",
+      "model": "EV9 GT",
+      "rate": 0.035
+    },
+    {
+      "id": "3caf633e-291d-4e73-930f-dc1d2af38aa8",
+      "brand": "르노",
+      "model": "Filante",
+      "rate": 0.05
+    },
+    {
+      "id": "03575175-e332-4ff8-95d4-0696e81f0033",
+      "brand": "기아",
+      "model": "K8",
+      "rate": 0.043
+    },
+    {
+      "id": "3ea0822b-4d62-4c90-8415-1cd6b449ed1f",
+      "brand": "기아",
+      "model": "K9",
+      "rate": 0.043
+    },
+    {
+      "id": "d32d53f3-298d-4175-81fc-333fee7a7dce",
+      "brand": "현대",
+      "model": "N",
+      "rate": 0.033
+    },
+    {
+      "id": "3bdc460b-1690-4bd9-adf5-d8df9ea83481",
+      "brand": "기아",
+      "model": "PV5",
+      "rate": 0.05
+    },
+    {
+      "id": "204ed75b-11fa-4c0b-a2e6-d131475202bb",
+      "brand": "BMW",
+      "model": " iX (i20)Series",
+      "rate": 0.05
+    },
+    {
+      "id": "9964f401-e74b-4b19-8c49-206294d20d4c",
+      "brand": "BMW",
+      "model": "1 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "b95bc152-2244-43f0-8c96-31a13b07de6c",
+      "brand": "BMW",
+      "model": "2 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "5a8557d2-e01f-42f1-a8b0-dab7c15e8b33",
+      "brand": "BMW",
+      "model": "3 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "9b1c13c1-6494-47f8-8ee2-3a8de196be4e",
+      "brand": "BMW",
+      "model": "4 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "e44d3581-c428-4d80-9ba6-39669faef6de",
+      "brand": "BMW",
+      "model": "5 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "ae0c93d7-b10f-455a-b947-30c1ea83d18e",
+      "brand": "BMW",
+      "model": "7 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "6b96ff27-5e76-4a6e-a2fc-ca8034e27e90",
+      "brand": "현대",
+      "model": "그랜저",
+      "rate": 0.05
+    },
+    {
+      "id": "645da00f-af5b-484b-88f7-28391f7ab34e",
+      "brand": "기아 전기차",
+      "model": "니로 EV",
+      "rate": 0.033
+    },
+    {
+      "id": "d393111a-c4ef-48c0-b611-2dcdbe4d853f",
+      "brand": "기아",
+      "model": "니로",
+      "rate": 0.033
+    },
+    {
+      "id": "3fae339b-6e1c-4c17-aabd-d7dcab4c4667",
+      "brand": "기아",
+      "model": "더 뉴 니로",
+      "rate": 0.05
+    },
+    {
+      "id": "45982f93-45c8-480f-ad45-527ea774401d",
+      "brand": "기아",
+      "model": "레이 밴",
+      "rate": 0.075
+    },
+    {
+      "id": "5a9ace31-c0df-4144-bcb4-d01d5d9b4cfe",
+      "brand": "KGM",
+      "model": "무쏘",
+      "rate": 0.6
+    },
+    {
+      "id": "bb16be1c-a9fa-4c77-8922-19b1f7e26519",
+      "brand": "기아 전기차",
+      "model": "봉고3 EV",
+      "rate": 0.038
+    },
+    {
+      "id": "67f59fcc-2bfc-4405-b20d-f9c93fe654da",
+      "brand": "기아",
+      "model": "셀토스",
+      "rate": 0.055
+    },
+    {
+      "id": "719da126-caed-47ff-8823-40bd1d4baaa4",
+      "brand": "현대",
+      "model": "스타리아",
+      "rate": 0.06
+    },
+    {
+      "id": "35a526de-383d-46ff-85c1-0ccce1ce09e4",
+      "brand": "현대",
+      "model": "싼타페",
+      "rate": 0.05
+    },
+    {
+      "id": "003e8f38-9549-4db2-884b-fe3ce11b6849",
+      "brand": "현대",
+      "model": "쏘나타 디 엣지",
+      "rate": 0.06
+    },
+    {
+      "id": "87ee0ddb-e55b-41ed-b7ae-0cd6bec73ae4",
+      "brand": "기아",
+      "model": "쏘렌토",
+      "rate": 0.055
+    },
+    {
+      "id": "a20e0765-6c39-4889-9682-9fa507955f51",
+      "brand": "현대",
+      "model": "아반떼",
+      "rate": 0.07
+    },
+    {
+      "id": "5496dbab-5ad6-45f3-971f-d855b3dd3aa3",
+      "brand": "현대 전기차",
+      "model": "아이오닉 5",
+      "rate": 0.033
+    },
+    {
+      "id": "ff5da435-6521-4b28-adb3-b0a145849184",
+      "brand": "기아",
+      "model": "카니발 하이리무진",
+      "rate": 0.05
+    },
+    {
+      "id": "0be70c3b-6a80-43c0-b81b-ebe758ded19a",
+      "brand": "현대",
+      "model": "캐스퍼",
+      "rate": 0.05
+    },
+    {
+      "id": "f158913e-0b93-4c92-92cc-a8645f8f13ab",
+      "brand": "KGM",
+      "model": "토레스",
+      "rate": 0.55
+    },
+    {
+      "id": "cb48415c-3911-4153-8dd5-1219b1885370",
+      "brand": "KGM",
+      "model": "티볼리",
+      "rate": 0.06
+    },
+    {
+      "id": "ba1b3d35-ef9f-40fc-b422-d28b4bd85fc2",
+      "brand": "BMW",
+      "model": "8 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "ca5d257c-ed9c-46de-a8cf-b00ee46a640d",
+      "brand": "기아",
+      "model": "레이",
+      "rate": 0.075
+    },
+    {
+      "id": "1f41755c-e779-4f41-9b38-857e34d6ed5a",
+      "brand": "기아",
+      "model": "모닝",
+      "rate": 0.075
+    },
+    {
+      "id": "78b3b41a-3443-49d2-ba6f-065888bee33f",
+      "brand": "KGM",
+      "model": "무쏘 EV",
+      "rate": 0.38
+    },
+    {
+      "id": "653d4b42-ba73-454b-b8aa-f9082a5b6bda",
+      "brand": "현대",
+      "model": "베뉴",
+      "rate": 0.068
+    },
+    {
+      "id": "3eac91ff-01b9-4543-8405-fcf10f07349c",
+      "brand": "기아",
+      "model": "봉고3 트럭",
+      "rate": 0.06
+    },
+    {
+      "id": "e2f26a61-700d-4029-80fc-f1efb13dd124",
+      "brand": "기아",
+      "model": "스포티지",
+      "rate": 0.055
+    },
+    {
+      "id": "7f55fa5c-7c56-4f31-be18-d96839e1e19c",
+      "brand": "현대 전기차",
+      "model": "아이오닉 6",
+      "rate": 0.033
+    },
+    {
+      "id": "34419ab9-1edc-4ffe-988a-73af87e57230",
+      "brand": "현대 전기차",
+      "model": "아이오닉 9",
+      "rate": 0.033
+    },
+    {
+      "id": "20236d82-c1bf-42fe-81b1-42fa827538c6",
+      "brand": "KGM",
+      "model": "엑티언",
+      "rate": 0.55
+    },
+    {
+      "id": "2ebed5df-bc5c-4004-8a7d-90c15a43f5af",
+      "brand": "KGM",
+      "model": "엑티언 하이브리드",
+      "rate": 0.55
+    },
+    {
+      "id": "733a8b44-6b4d-49fa-beec-09d78ecc9a6b",
+      "brand": "기아",
+      "model": "카니발",
+      "rate": 0.06
+    },
+    {
+      "id": "100fdf7e-9a50-4426-9760-2f7ec3a934e4",
+      "brand": "현대",
+      "model": "코나",
+      "rate": 0.058
+    },
+    {
+      "id": "b267afe9-ba99-429b-8573-47f349a7d4ce",
+      "brand": "현대",
+      "model": "코나 전기차",
+      "rate": 0.035
+    },
+    {
+      "id": "f41690da-f213-4c07-a7bc-d21cdb5d41e6",
+      "brand": "기아",
+      "model": "타스만",
+      "rate": 0.05
+    },
+    {
+      "id": "1f685f7b-8bcf-4e9f-9446-c055d9a5d04a",
+      "brand": "KGM",
+      "model": "토레스 하이브리드",
+      "rate": 0.55
+    },
+    {
+      "id": "335436d9-7c9d-485a-9436-ef5639c4a253",
+      "brand": "KGM",
+      "model": "토레스 EVX",
+      "rate": 0.38
+    },
+    {
+      "id": "82a2a56e-5752-4f6a-86e3-319c1b85fb3d",
+      "brand": "현대",
+      "model": "투싼",
+      "rate": 0.055
+    },
+    {
+      "id": "4ffae9bf-826b-44a5-99b5-b30c832a9704",
+      "brand": "현대",
+      "model": "팰리세이드",
+      "rate": 0.048
+    },
+    {
+      "id": "fbec0d3e-9864-475f-8aa8-f56bf4d0fac1",
+      "brand": "현대",
+      "model": "포터",
+      "rate": 0.07
+    },
+    {
+      "id": "98eba867-9c5f-41a9-b375-18fcaf053ca2",
+      "brand": "벤츠",
+      "model": "A-Class",
+      "rate": 0.05
+    },
+    {
+      "id": "ced3cdde-5e0c-4e8b-9bd9-4717242edb04",
+      "brand": "르노",
+      "model": "Arkana",
+      "rate": 0.05
+    },
+    {
+      "id": "caf0054b-2f49-4cd0-a836-bde6f84ab0b9",
+      "brand": "벤츠",
+      "model": "C-Class",
+      "rate": 0.05
+    },
+    {
+      "id": "126d7128-dbc2-4357-b268-263d27bd12e9",
+      "brand": "벤츠",
+      "model": "CLE",
+      "rate": 0.05
+    },
+    {
+      "id": "434c237d-b8c6-4401-ba45-182161f01199",
+      "brand": "벤츠",
+      "model": "E-Class",
+      "rate": 0.05
+    },
+    {
+      "id": "9de5470b-7c52-4551-b2b1-c11e05dfc5a3",
+      "brand": "벤츠",
+      "model": "EQA",
+      "rate": 0.05
+    },
+    {
+      "id": "ca4dd360-e3ff-4f9b-9be4-40502ae752dd",
+      "brand": "벤츠",
+      "model": "EQB",
+      "rate": 0.05
+    },
+    {
+      "id": "5c89c6de-0802-41fc-b210-ea5adfdb55bb",
+      "brand": "제네시스",
+      "model": "G80",
+      "rate": 0.041
+    },
+    {
+      "id": "35315bbe-88ab-4173-86ae-248e870443dc",
+      "brand": "제네시스",
+      "model": "G90",
+      "rate": 0.035
+    },
+    {
+      "id": "009df148-e7f7-4c89-97cb-4faf2766b7a6",
+      "brand": "르노",
+      "model": "Grand Koleos",
+      "rate": 0.05
+    },
+    {
+      "id": "a4819c0d-fa9c-4023-99c2-27a9f676dff3",
+      "brand": "제네시스",
+      "model": "GV60 MAGMA",
+      "rate": 0.046
+    },
+    {
+      "id": "3dd6be53-001c-45a4-b9d0-09fda3fb1ce7",
+      "brand": "기아",
+      "model": "K5",
+      "rate": 0.06
+    },
+    {
+      "id": "c623b5e6-4994-4b74-acca-14ca8fe0ca64",
+      "brand": "르노",
+      "model": "SCENIC",
+      "rate": 0.05
+    },
+    {
+      "id": "2fcbc306-0ac6-4057-8a80-03eb34a4c8dd",
+      "brand": "벤츠",
+      "model": "EQE",
+      "rate": 0.05
+    },
+    {
+      "id": "f5a19e6f-3380-4039-ac3c-729267dc07e0",
+      "brand": "벤츠",
+      "model": "EQS",
+      "rate": 0.05
+    },
+    {
+      "id": "3b732035-6610-4314-ab2d-576145689b7e",
+      "brand": "기아 전기차",
+      "model": "EV3",
+      "rate": 0.033
+    },
+    {
+      "id": "9274e55f-413e-4bd9-bd03-c8460fd0cf1d",
+      "brand": "제네시스",
+      "model": "G70",
+      "rate": 0.046
+    },
+    {
+      "id": "e1ddbb24-29ed-4570-be47-ea44b0288479",
+      "brand": "벤츠",
+      "model": "G바겐",
+      "rate": 0.05
+    },
+    {
+      "id": "e908d512-44f7-4b6e-93b0-2d252e10d4ce",
+      "brand": "벤츠",
+      "model": "GLA",
+      "rate": 0.05
+    },
+    {
+      "id": "f2d0c776-cbec-4227-b3e2-23e241b12da0",
+      "brand": "벤츠",
+      "model": "GLB",
+      "rate": 0.05
+    },
+    {
+      "id": "53378100-8c4e-43a6-9d6c-b33fcd020a7c",
+      "brand": "벤츠",
+      "model": "GLC",
+      "rate": 0.05
+    },
+    {
+      "id": "6ffab4ec-3a85-4663-9603-dc71fddcb6a7",
+      "brand": "벤츠",
+      "model": "GLE",
+      "rate": 0.05
+    },
+    {
+      "id": "83718cc3-e942-4041-98fb-2f2cbfed50a6",
+      "brand": "제네시스",
+      "model": "GV70",
+      "rate": 0.043
+    },
+    {
+      "id": "f5d23b28-30f0-45d9-be82-8f710e91f7d1",
+      "brand": "제네시스",
+      "model": "GV80",
+      "rate": 0.04
+    },
+    {
+      "id": "8af78b44-7eb0-4887-9cd6-e36d8ca4dee0",
+      "brand": "제네시스",
+      "model": "GV80 COUPE",
+      "rate": 0.05
+    },
+    {
+      "id": "d20d795f-747e-4ed5-b00c-de69dd31348e",
+      "brand": "기아 전기차",
+      "model": "PV5",
+      "rate": 0.05
+    },
+    {
+      "id": "596ec652-e8aa-456c-b5ca-96dd865e62f4",
+      "brand": "벤츠",
+      "model": "S-Class",
+      "rate": 0.05
+    },
+    {
+      "id": "7621210d-4a9e-418b-82ca-4f544dfa18a5",
+      "brand": "BMW",
+      "model": "X1 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "4c1d1ec9-5c39-49ba-949e-b743d1943e7a",
+      "brand": "BMW",
+      "model": "X2 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "f03ad6d2-b44b-477e-b03c-6d7673dcc839",
+      "brand": "BMW",
+      "model": "X3 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "06041378-5557-4524-a920-b23b6cdee3fc",
+      "brand": "BMW",
+      "model": "X4 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "a84382cf-0d2a-40cc-a6bb-a9c7f9dd14ec",
+      "brand": "BMW",
+      "model": "X5 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "e9109581-551d-430d-b65b-6816a6d476b5",
+      "brand": "BMW",
+      "model": "X6 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "9d72b2e3-6d86-4f4a-9e50-dc266ae68b5b",
+      "brand": "BMW",
+      "model": "X7 Series",
+      "rate": 0.05
+    },
+    {
+      "id": "8a2d1aed-a787-4ba6-a0af-7f77966210f0",
+      "brand": "BMW",
+      "model": "XM Label",
+      "rate": 0.05
+    },
+    {
+      "id": "493450a8-1013-422c-aa49-2fad9d3ee036",
+      "brand": "BMW",
+      "model": "Z4",
+      "rate": 0.05
+    }
+  ],
+  "gaeso-reg-rates": [
+    {
+      "id": "4ca36e92-bd84-4426-b0a5-22e4763c4c81",
+      "gaesoIndex": 1.1,
+      "regFeeRate": 4
+    }
+  ],
+  "settings": {
+    "productInterestRate": 13.5,
+    "defaultInsurance": 0,
+    "defaultEtcCost": 0,
+    "corpCommissionGeneral5": 2.5,
+    "corpCommissionGeneral10": 2.5,
+    "corpCommissionLow5": 1,
+    "corpCommissionLow10": 1.5,
+    "corpCommissionGeneral5Special": 2.5,
+    "corpCommissionGeneral10Special": 2.5,
+    "corpCommissionLow5Special": 2,
+    "corpCommissionLow10Special": 2.5,
+    "dealerDiscountRate": 0,
+    "specialDiscountRate": 0,
+    "dealerDiscountRateKia": 0,
+    "specialDiscountRateKia": 0,
+    "acqConstKia": 300000,
+    "acqConstDefault": 300000,
+    "acqConstKiaSpecial": -200000,
+    "acqConstDefaultSpecial": 300000,
+    "regFeeRate": 8.55,
+    "regFeeFixed": 77500,
+    "commissionSupplyRate5": 3.3,
+    "commissionSupplyRate10": 4,
+    "residualAdjust": -5,
+    "depositPmtRatio": 50,
+    "vatRate": 10,
+    "insuranceSurcharge2123": 70000,
+    "insuranceSurcharge2425": 30000,
+    "showCreditType": true,
+    "showDeliveryType": true,
+    "showCreditGeneral": false,
+    "showCreditLow": true,
+    "showDeliveryDealer": true,
+    "showDeliverySpecial": false,
+    "showLowSalesFee": true,
+    "lowSalesFeeRate": 3.3,
+    "salesFeeBaseDiscounted": true,
+    "depositBaseDiscounted": true,
+    "showCardPayment": false,
+    "forceResidualDisplay": true
+  },
+  "commission-rates": [
+    {
+      "creditType": "general",
+      "deliveryType": "dealer",
+      "depositRate": 0,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "dealer",
+      "depositRate": 5,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "dealer",
+      "depositRate": 10,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "dealer",
+      "depositRate": 20,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "dealer",
+      "depositRate": 30,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "special",
+      "depositRate": 0,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "special",
+      "depositRate": 5,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "special",
+      "depositRate": 10,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "special",
+      "depositRate": 20,
+      "rate": 8
+    },
+    {
+      "creditType": "general",
+      "deliveryType": "special",
+      "depositRate": 30,
+      "rate": 8
+    },
+    {
+      "creditType": "low",
+      "deliveryType": "dealer",
+      "depositRate": 5,
+      "rate": 13.5
+    },
+    {
+      "creditType": "low",
+      "deliveryType": "dealer",
+      "depositRate": 10,
+      "rate": 12.7
+    },
+    {
+      "creditType": "low",
+      "deliveryType": "dealer",
+      "depositRate": 20,
+      "rate": 12.7
+    },
+    {
+      "creditType": "low",
+      "deliveryType": "dealer",
+      "depositRate": 30,
+      "rate": 12.7
+    },
+    {
+      "creditType": "low",
+      "deliveryType": "special",
+      "depositRate": 5,
+      "rate": 13.5
+    },
+    {
+      "creditType": "low",
+      "deliveryType": "special",
+      "depositRate": 10,
+      "rate": 12.7
+    },
+    {
+      "creditType": "low",
+      "deliveryType": "special",
+      "depositRate": 20,
+      "rate": 12.7
+    },
+    {
+      "creditType": "low",
+      "deliveryType": "special",
+      "depositRate": 30,
+      "rate": 12.7
+    }
+  ],
+  "residual-grade-rates": [
+    {
+      "grade": "A",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 68
+    },
+    {
+      "grade": "B",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 65
+    },
+    {
+      "grade": "C",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 62
+    },
+    {
+      "grade": "D",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 60
+    },
+    {
+      "grade": "E",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 55
+    },
+    {
+      "grade": "F",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 53
+    },
+    {
+      "grade": "G",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 50
+    },
+    {
+      "grade": "H",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 45
+    },
+    {
+      "grade": "S",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 71
+    },
+    {
+      "grade": "SS",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 73
+    },
+    {
+      "grade": "SSS",
+      "term": 36,
+      "mileage": 20000,
+      "rate": 77
+    },
+    {
+      "grade": "A",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 65
+    },
+    {
+      "grade": "B",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 62
+    },
+    {
+      "grade": "C",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 59
+    },
+    {
+      "grade": "D",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 57
+    },
+    {
+      "grade": "E",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 52
+    },
+    {
+      "grade": "F",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 50
+    },
+    {
+      "grade": "G",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 47
+    },
+    {
+      "grade": "H",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 42
+    },
+    {
+      "grade": "S",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 68
+    },
+    {
+      "grade": "SS",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 70
+    },
+    {
+      "grade": "SSS",
+      "term": 36,
+      "mileage": 30000,
+      "rate": 74
+    },
+    {
+      "grade": "A",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 58
+    },
+    {
+      "grade": "B",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 55
+    },
+    {
+      "grade": "C",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 51
+    },
+    {
+      "grade": "D",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 49
+    },
+    {
+      "grade": "E",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 45
+    },
+    {
+      "grade": "F",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 42
+    },
+    {
+      "grade": "G",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 39
+    },
+    {
+      "grade": "H",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 34
+    },
+    {
+      "grade": "S",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 61
+    },
+    {
+      "grade": "SS",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 63
+    },
+    {
+      "grade": "SSS",
+      "term": 48,
+      "mileage": 20000,
+      "rate": 67
+    },
+    {
+      "grade": "A",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 55
+    },
+    {
+      "grade": "B",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 52
+    },
+    {
+      "grade": "C",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 48
+    },
+    {
+      "grade": "D",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 46
+    },
+    {
+      "grade": "E",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 42
+    },
+    {
+      "grade": "F",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 39
+    },
+    {
+      "grade": "G",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 36
+    },
+    {
+      "grade": "H",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 31
+    },
+    {
+      "grade": "S",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 58
+    },
+    {
+      "grade": "SS",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 60
+    },
+    {
+      "grade": "SSS",
+      "term": 48,
+      "mileage": 30000,
+      "rate": 64
+    },
+    {
+      "grade": "A",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 48
+    },
+    {
+      "grade": "B",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 45
+    },
+    {
+      "grade": "C",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 41
+    },
+    {
+      "grade": "D",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 38
+    },
+    {
+      "grade": "E",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 35
+    },
+    {
+      "grade": "F",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 33
+    },
+    {
+      "grade": "G",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 28
+    },
+    {
+      "grade": "H",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 25
+    },
+    {
+      "grade": "S",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 51
+    },
+    {
+      "grade": "SS",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 53
+    },
+    {
+      "grade": "SSS",
+      "term": 60,
+      "mileage": 20000,
+      "rate": 57
+    },
+    {
+      "grade": "A",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 45
+    },
+    {
+      "grade": "B",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 42
+    },
+    {
+      "grade": "C",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 38
+    },
+    {
+      "grade": "D",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 35
+    },
+    {
+      "grade": "E",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 32
+    },
+    {
+      "grade": "F",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 30
+    },
+    {
+      "grade": "G",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 25
+    },
+    {
+      "grade": "H",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 22
+    },
+    {
+      "grade": "S",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 48
+    },
+    {
+      "grade": "SS",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 50
+    },
+    {
+      "grade": "SSS",
+      "term": 60,
+      "mileage": 30000,
+      "rate": 54
+    }
+  ],
+  "supplies": {
+    "delivery": [
+      {
+        "origin": "2차탁송 (안양출발)",
+        "destination": "서울/경기/인천",
+        "price": 82500
+      },
+      {
+        "origin": "2차탁송 (안양출발)",
+        "destination": "대전/충청",
+        "price": 132000
+      },
+      {
+        "origin": "2차탁송 (안양출발)",
+        "destination": "전라도",
+        "price": 220000
+      },
+      {
+        "origin": "2차탁송 (안양출발)",
+        "destination": "강원도",
+        "price": 220000
+      },
+      {
+        "origin": "2차탁송 (안양출발)",
+        "destination": "부산/경상도",
+        "price": 220000
+      },
+      {
+        "origin": "2차탁송 (안양출발)",
+        "destination": "제주",
+        "price": 385000
+      }
+    ],
+    "carrierDelivery": [
+      {
+        "origin": "2차탁송 (하남출발)",
+        "destination": "서울/경기",
+        "price": 70000
+      },
+      {
+        "origin": "2차탁송 (하남출발)",
+        "destination": "대전/충청",
+        "price": 90000
+      },
+      {
+        "origin": "2차탁송 (하남출발)",
+        "destination": "강원도",
+        "price": 100000
+      },
+      {
+        "origin": "2차탁송 (하남출발)",
+        "destination": "전라도",
+        "price": 100000
+      },
+      {
+        "origin": "2차탁송 (하남출발)",
+        "destination": "부산/경상도",
+        "price": 100000
+      },
+      {
+        "origin": "2차탁송 (하남출발)",
+        "destination": "제주",
+        "price": 200000
+      }
+    ],
+    "tintFront": [
+      {
+        "brand": "레이노",
+        "productName": "모노카본",
+        "price": 66000
+      }
+    ],
+    "tintSideRear": [
+      {
+        "brand": "레이노",
+        "productName": "모노카본(쿠폰)",
+        "price": 0
+      }
+    ],
+    "tintSunroofNormal": [
+      {
+        "brand": "레이노",
+        "productName": "모노카본",
+        "price": 55000
+      }
+    ],
+    "tintSunroofPanorama": [
+      {
+        "brand": "레이노",
+        "productName": "모노카본",
+        "price": 121000
+      }
+    ],
+    "blackbox": [
+      {
+        "brand": "뷰게라",
+        "productName": "808P",
+        "common": "2CH 3.5인치 LCD",
+        "frontSpec": "FHD",
+        "rearSpec": "HD",
+        "memory": "32G",
+        "price": 154000
+      }
+    ]
+  },
+  "schema": "kamatch-policy-snapshot/v1",
+  "observedDate": "2026-10-31",
+  "sourceBundle": "https://kamatch.kr/assets/index-CHezQoaB.js",
+  "sourceBundleSha256": "63e50c4abf5b64ae7b80b826c0aa529a31c71cdfae0ab35e000f8e1acc38da22"
+}

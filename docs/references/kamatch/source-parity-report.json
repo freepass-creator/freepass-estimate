@@ -1,0 +1,52 @@
+{
+  "reference": "published browser multi-term source, executed as isolated pure equations; no authenticated requests or credentials",
+  "vehicles": 940,
+  "compared": 45072,
+  "rejected": 16,
+  "exclusions": [
+    {
+      "id": "1c7f2b53-572f-45a7-970b-c4de553f76d6",
+      "reason": "INVALID_BASE_PRICE",
+      "price": 0
+    },
+    {
+      "id": "fbba6d51-efa0-40aa-92a2-979d88df7bc4",
+      "reason": "GAESO_INDEX_MISSING"
+    },
+    {
+      "id": "52c693fb-a892-4cb2-b2b1-b34f02aaae1e",
+      "reason": "GAESO_INDEX_MISSING"
+    },
+    {
+      "id": "7e67ed74-2302-4c1e-adcb-e5990c7160d6",
+      "reason": "GAESO_INDEX_MISSING"
+    },
+    {
+      "id": "6db82e4a-d59d-4ea1-93a6-78ad4508f48b",
+      "reason": "GAESO_INDEX_MISSING"
+    },
+    {
+      "id": "ff3d8408-98eb-4fbb-9428-4807ca989d62",
+      "reason": "GAESO_INDEX_MISSING"
+    },
+    {
+      "id": "bac74cd0-9946-4ea6-9b1d-fd6b0e3d3909",
+      "reason": "GAESO_INDEX_MISSING"
+    },
+    {
+      "id": "954664d9-8f0d-45a8-abdb-bfa351e6a288",
+      "reason": "GAESO_INDEX_MISSING"
+    },
+    {
+      "id": "20fe2fd9-84c3-4bcc-8613-6d4056533ccf",
+      "reason": "GAESO_INDEX_MISSING"
+    },
+    {
+      "id": "3611a25d-5e3c-48aa-b046-ba3eb8d7f17f",
+      "reason": "GAESO_INDEX_MISSING"
+    }
+  ],
+  "mismatches": 0,
+  "examples": [],
+  "validVehicles": 939
+}
