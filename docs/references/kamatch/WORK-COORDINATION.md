@@ -1,3 +1,17 @@
+# 2026-10-31 실 배포 첫 화면 장애 — Data 담당 Work 인수
+
+사용자 실제 모바일에서 신규 견적 첫 화면이 차단됨. Estimate 최신 배포 `c976197`, `dpl_EuRgeqMt6rFnwWt5MT9jt5rcQL4L`, https://freepass-estimator.vercel.app/ .
+
+실측: `GET /` 200, `GET /api/freepass-data-master` 503 `NO_ACTIVE_RELEASE`. 이전 배포에서도 같은 상태. 인증 실패가 아니라 Data의 `/v1/consumers/freepass-estimate/estimate-newcar-master`에 활성 projection release가 없는 상태다.
+
+Data 코드 확인: `docs/ESTIMATE-NEWCAR-MASTER-CONTRACT.md`의 publication 절은 발행 경로가 미완료라고 명시한다. `estimate-master-readiness.ts`도 publicationImplemented=false다. 단순 env 재설정·견적기 재배포로 해결되지 않는다. 검증되지 않은 차량 가격, 연식, productId/colorDomain bridge를 만들어 활성화하지 않는다.
+
+기존 Data 작업선의 canonical 차량/옵션/색상/가격·상업 productId bridge 증거를 확인해, READY 검증과 release manifest를 갖춘 신차 master를 기존 Data 소유 발행 경로로 제공해야 한다. 이 기록은 미검토 데이터 활성화 권한이나 Firebase/IAM 변경 승인이 아니다. 실제 활성화/권한 작업은 기존 운영 절차와 적용 가능한 사용자 지시 범위에서 처리한다.
+
+Estimate 실제 링크 재검증: `cd apps/new && npm run check:live`. 첫 master 경계부터 3종 × 36/48/60개월 실제 API 결과까지 확인하며 브라우저 mock을 쓰지 않는다. 현재 명령은 NO_ACTIVE_RELEASE로 BLOCKED가 정상 증거다. 복구 후 PASS가 나오기 전 실제 견적 테스트 완료라고 보고하지 않는다. 카매치 검토 매핑/원본 요율 설치도 실제 결과 3종 검사에 포함된다.
+
+---
+
 # 세션 간 작업 전달 및 응답
 
 작성일: 2026-10-31 UTC
