@@ -1,3 +1,4 @@
+import { QUOTE_DELIVERY_FEE } from './quote/launch-region.js';
 import { commissionForAgent } from './quote/commission-policy.js';
 // 견적 입력 조립 — 단일 SSOT
 // 웹 ERP(quote.js recompute)·모바일(StickyQuote/SendSheet)·홈(QuoteWidget) 가
@@ -137,7 +138,7 @@ export function buildCalcInput(state, sc, vehicles) {
     options: {
       optPrice: 0,
       discount: (cond.discount || 0) * 10000,
-      deliveryFee: FLAT_DELIVERY[cond.deliveryCity] || 0,
+      deliveryFee: QUOTE_DELIVERY_FEE,
       itemsFee: itemsFeeForCalc(state),
       etc: 0,
     },

@@ -43,7 +43,7 @@ export const 웰릭스기본 = {
   svc: '정비 제외',
   insProperty: '1억',
   extraDriver: '없음',
-  deliveryRegion: '서울',
+  deliveryRegion: '수도권',
   tint: '루마 일반',            // 105,000
   blackbox: '파인뷰 SF500',     // 180,000
   dep: 10,                     // %  ★웰릭스 기본 보증금이 10% 다

@@ -1,3 +1,4 @@
+import { QUOTE_REGION } from './launch-region.js';
 import { COMMISSION_POLICY, commissionForAgent } from './commission-policy.js';
 // ============================================================================
 // 화면 상태 → provider-neutral 견적 요청
@@ -122,6 +123,7 @@ export function 요청만들기() {
     },
     조건: {
       견적기: 'bundle',
+      탁송지역: QUOTE_REGION,
       신용: c.credit || '중신용',
       주행: (c.km ?? 2) + '만km',
       정비: '정비 제외',

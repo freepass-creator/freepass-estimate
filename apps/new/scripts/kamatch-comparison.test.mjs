@@ -1,10 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createRequire } from 'node:module';
 import { createKamatchComparisonHandler } from '../api/kamatch-comparison.js';
-import { resolveKamatchRates } from '../api/_kamatch/rates.js';
+import { calculateKamatchScenario } from '../api/_kamatch/calculate.js';
 import { fixture } from './fixtures/kamatch-test-reference.mjs';
-const source=createRequire(import.meta.url)('./fixtures/kamatch-public-arithmetic.cjs');
 function response(){return{code:200,setHeader(){},status(code){this.code=code;return this},json(body){this.body=body;return this}}}
 function setup(){const f=fixture();return{...f,handler:createKamatchComparisonHandler({loadMaster:async()=>f.master,loadReference:async()=>f.reference,loadProfiles:async()=>f.profiles})}}
 test('factory configuration and 1–5% fees reach the original formula without browser-price or commission leaks',async()=>{
@@ -14,9 +12,9 @@ test('factory configuration and 1–5% fees reach the original formula without b
     const res=response();await f.handler({method:'POST',body:{request:f.request}},res);assert.equal(res.code,200,JSON.stringify(res.body));
     assert.equal(res.body.priceBasis.basePrice,23980000);assert.equal(res.body.priceBasis.optionPrice,450000);assert.equal(res.body.priceBasis.exteriorColorPrice,110000);assert.equal(res.body.priceBasis.interiorColorPrice,220000);
     for(const [i,sc]of f.request.안들.entries()){
-      const rates=resolveKamatchRates(f.reference,f.profile,{term:sc.기간,mileage:30000,depositRate:deposit,creditType:'low',deliveryType:'dealer'});
-      const out=source.calculate({...rates,vehiclePrice:23980000,optionPrice:780000,discountAmount:0,term:sc.기간,mileage:30000,depositRate:deposit,advanceRate:prepay,salesFeeRate:fee+1,brand:'현대',deliveryType:'dealer',insuranceAge:'만26세',miscAmount:0,extraOptions:[]});
-      assert.deepEqual(res.body.results[i],{monthlyRent:out.monthlyRent,deposit:out.depositAmount,prepay:out.advancePayment,acquirePrice:out.residualValue,totalCarPrice:24760000});
+      const policy=Object.fromEntries(Object.entries(f.reference.tables).map(([k,v])=>[k.replace('/api/',''),v]));policy.settings=policy['commission-settings'];
+      const out=calculateKamatchScenario({priceBasis:res.body.priceBasis,vehiclePolicy:{...f.reference.tables['/api/vehicles'][0],vehicleType:f.profile.vehicleType},policy,conditions:{termMonths:sc.기간,annualKm:30000,depositPercent:deposit,prepayPercent:prepay,creditType:'low',deliveryType:'dealer',salesFeeRate:fee+1,insuranceAge:'만 26세 이상',extraOptions:[]}});
+      assert.deepEqual(res.body.results[i],{monthlyRent:out.monthlyRent,deposit:out.deposit,prepay:out.prepay,acquirePrice:out.residualAmount,totalCarPrice:24760000});
     }
     assert.equal(res.body.results[0].commission,undefined);assert.equal(res.body.feeRatePct,undefined);
   }

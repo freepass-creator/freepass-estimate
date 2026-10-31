@@ -1,7 +1,7 @@
 import { commissionFromConditions } from '../src/lib/quote/commission-policy.js';
 import { authoritativeQuoteRequest } from './_master/authoritative-request.js';
-import { calculateKamatch } from './_kamatch/formula.js';
-import { kamatchError, resolveKamatchRates, validateReference } from './_kamatch/rates.js';
+import { calculateKamatchScenario } from './_kamatch/calculate.js';
+import { kamatchError, validateReference } from './_kamatch/rates.js';
 import { KAMATCH_APP_DIGEST, loadKamatchReference, loadKamatchProfiles, resolveKamatchProfile } from './_kamatch/reference.js';
 
 export function createKamatchComparisonHandler({ loadMaster, loadReference = loadKamatchReference, loadProfiles = loadKamatchProfiles } = {}) {
@@ -24,14 +24,18 @@ export function createKamatchComparisonHandler({ loadMaster, loadReference = loa
       const extraOptions=['deliveryFee','tintFee','dashcamFee'].map(k=>({ amount:costs[k],baseline:profile.baselines[k],removed:costs[k]===0 }));
       const creditType=conditions.신용==='저신용'?'low':'general';
       const price=canonical.priceBasis;
+      const vehicles=reference.tables['/api/vehicles'].filter(v=>['brand','model','lineup','trim'].every(k=>v[k]===profile[k]));
+      if(vehicles.length!==1||vehicles[0].visible===false) throw kamatchError('차량 요율 매핑을 확인해 주세요.','KAMATCH_MAPPING_UNAVAILABLE',422);
+      const vehiclePolicy={...vehicles[0],vehicleType:profile.vehicleType};
+      const policy=Object.fromEntries(Object.entries(reference.tables).map(([k,v])=>[k.replace('/api/',''),v]));
+      policy.settings=policy['commission-settings'];
       const results=scenarios.map(sc=>{
         if(![36,48,60].includes(sc.기간)||[sc.보증금,sc.선납].some(v=>!Number.isFinite(v)||v<0||v>30)) throw kamatchError('기간·보증금·선납금을 확인해 주세요.','KAMATCH_INPUT_INVALID',400);
-        const rates=resolveKamatchRates(reference,profile,{term:sc.기간,mileage,depositRate:sc.보증금,creditType,deliveryType:'dealer'});
-        const result=calculateKamatch({...rates,vehiclePrice:price.basePrice,optionPrice:price.optionPrice+price.exteriorColorPrice+price.interiorColorPrice,
-          discountAmount:price.discount,term:sc.기간,mileage,depositRate:sc.보증금,advanceRate:sc.선납,
-          salesFeeRate:commission.totalPoints,brand:profile.brand,deliveryType:'dealer',insuranceAge:'만26세',
-          miscAmount:costs.naviFee+costs.hipassFee,extraOptions});
-        const out={monthlyRent:result.monthlyRent,deposit:result.depositAmount,prepay:result.advancePayment,acquirePrice:result.residualValue,totalCarPrice:result.totalAcquisition};
+        const result=calculateKamatchScenario({priceBasis:price,vehiclePolicy,policy,conditions:{
+          termMonths:sc.기간,creditType,deliveryType:'dealer',depositPercent:sc.보증금,prepayPercent:sc.선납,
+          annualKm:mileage,salesFeeRate:commission.totalPoints,insuranceAge:'만 26세 이상',
+          miscAmount:costs.naviFee+costs.hipassFee,extraOptions}});
+        const out={monthlyRent:result.monthlyRent,deposit:result.deposit,prepay:result.prepay,acquirePrice:result.residualAmount,totalCarPrice:price.totalVehiclePrice};
         if(Object.values(out).some(v=>!Number.isSafeInteger(v)||v<0)||out.totalCarPrice!==price.totalVehiclePrice) throw kamatchError('카매치 계산 결과를 확인할 수 없습니다.','KAMATCH_RESULT_INVALID',502);
         return out;
       });

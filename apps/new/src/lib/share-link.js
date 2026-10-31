@@ -1,3 +1,4 @@
+import { QUOTE_REGION } from './quote/launch-region.js';
 import { publicOfferDefinition } from './quote/public-offers.js';
 import { isCommissionMark } from './commission-mark.js';
 import { vehiclePriceBreakdown } from './vehicle-price-breakdown.js';
@@ -145,7 +146,7 @@ function 스냅샷만들기(quoteState, 견적상태) {
       svc: c.svc || '웰스 Basic',
       insProperty: c.insProperty || '1억',
       extraDriver: c.extraDriver || '없음',
-      deliveryCity: c.deliveryCity || '서울',
+      deliveryCity: QUOTE_REGION,
       tint: quoteState?.tint?.product || '없음',
       blackbox: quoteState?.extras?.blackbox || '미설치',
     },

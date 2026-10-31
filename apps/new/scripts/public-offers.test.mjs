@@ -18,7 +18,7 @@ test('public API returns only eligibility categories, even when internal respons
  const {canonicalizeQuoteRequestFromMaster}=await import('../api/_master/authoritative-request.js');
  const f=fixture(),canonical=canonicalizeQuoteRequestFromMaster(f.request,f.master);
  const data={priceBasis:canonical.priceBasis,bankName:'웰릭스 카매치 welrix kamatch',source:'https://kamatch.kr/',priceComponents:{base:23980000,options:450000,exterior:110000,interior:220000,discount:0,items:[]},results:f.request.안들.map(()=>({monthlyRent:600000,deposit:1238000,prepay:0,acquirePrice:13000000,totalCarPrice:24760000}))};
- const handler=createPublicQuotesHandler({loadMaster:async()=>f.master,welrixLookup:async()=>({ok:true,data:structuredClone(data)}),kamatchLookup:async()=>({ok:true,data:structuredClone(data)})});
+ const handler=createPublicQuotesHandler({loadMaster:async()=>f.master,welrixLookup:async(request)=>{assert.equal(request.조건.탁송지역,'수도권');assert.equal(request.조건.탁송비,130000);assert.equal(request.조건.비용.deliveryFee,130000);return {ok:true,data:structuredClone(data)}},kamatchLookup:async(request)=>{assert.equal(request.조건.비용.deliveryFee,130000);assert.equal(request.조건.비용.totalPrepFee,130000+77000+180000);return {ok:true,data:structuredClone(data)}}});
  const response={code:200,setHeader(){},status(code){this.code=code;return this},json(body){this.body=body;return this}};
  await handler({method:'POST',body:{request:f.request}},response);
  assert.equal(response.code,200);assert.equal(response.body.offers.length,3);assert.doesNotMatch(JSON.stringify(response.body),/카매치|웰릭스|kamatch|welrix/i);

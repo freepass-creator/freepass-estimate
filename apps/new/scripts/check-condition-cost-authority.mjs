@@ -17,14 +17,14 @@ const mobileDefault = resolveQuoteConditionCosts({
 });
 assert.equal(mobileDefault.contract, QUOTE_CONDITION_COSTS_CONTRACT);
 assert.equal(mobileDefault.policyId, QUOTE_CONDITION_COST_POLICY);
-assert.equal(mobileDefault.deliveryFee, 99000, 'FreePass Seoul city price must win over compatibility 120k');
+assert.equal(mobileDefault.deliveryFee, 130000, 'New quotations use the metropolitan launch baseline');
 assert.equal(mobileDefault.tintFee, 105000);
 assert.equal(mobileDefault.dashcamFee, 180000);
 assert.equal(mobileDefault.naviFee, 0);
 assert.equal(mobileDefault.hipassFee, 0);
 assert.equal(mobileDefault.accessoryFee, 180000);
-assert.equal(mobileDefault.totalPrepFee, 384000);
-assert.equal(assertQuoteConditionCosts(mobileDefault).totalPrepFee, 384000);
+assert.equal(mobileDefault.totalPrepFee, 415000);
+assert.equal(assertQuoteConditionCosts(mobileDefault).totalPrepFee, 415000);
 assert.equal(conditionCostsFromRequest({
   조건: {
     탁송비: mobileDefault.deliveryFee,
@@ -34,7 +34,7 @@ assert.equal(conditionCostsFromRequest({
     하이패스비: mobileDefault.hipassFee,
     비용: mobileDefault,
   },
-}).totalPrepFee, 384000);
+}).totalPrepFee, 415000);
 
 const desktop = resolveQuoteConditionCosts({
   cond: { deliveryRegion: '경기도', deliveryCity: '수원' },
@@ -45,24 +45,20 @@ const desktop = resolveQuoteConditionCosts({
     hipass: 'SET-550 (엠피온)',
   },
 });
-assert.equal(desktop.deliveryFee, 77000);
+assert.equal(desktop.deliveryFee, 130000);
 assert.equal(desktop.tintFee, 105000);
 assert.equal(desktop.dashcamFee, 175000);
 assert.equal(desktop.naviFee, 220000);
 assert.equal(desktop.hipassFee, 110000);
 assert.equal(desktop.accessoryFee, 505000);
-assert.equal(desktop.totalPrepFee, 687000);
+assert.equal(desktop.totalPrepFee, 740000);
 
 const coarse = resolveDeliveryCost({ deliveryRegion: '충북', deliveryCity: '충북' });
 assert.equal(coarse.amount, 140000);
 assert.match(coarse.basis, /^COMPAT_REGION:/);
 
 assert.throws(
-  () => resolveQuoteConditionCosts({
-    cond: { deliveryRegion: '미확인', deliveryCity: '미확인' },
-    tint: { product: '루마 일반', areas: new Set() },
-    extras: { blackbox: '파인뷰 SF500' },
-  }),
+  () => resolveDeliveryCost({ deliveryRegion: '미확인', deliveryCity: '미확인' }),
   (error) => error?.code === 'QUOTE_CONDITION_COST_UNRESOLVED'
 );
 

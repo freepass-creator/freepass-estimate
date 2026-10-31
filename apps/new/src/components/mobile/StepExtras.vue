@@ -1,11 +1,9 @@
 <script setup>
 import { computed } from 'vue';
 import { quoteState } from '../../store.js';
-import { 역할 } from '../../lib/role.js';
-import { rolePolicy } from '../../lib/feature/roles.js';
-import { 썬팅들, 블박들, 탁송권역 } from '../../lib/welrix-rates.js';
+import { 썬팅들, 블박들 } from '../../lib/welrix-rates.js';
 import { fmt } from '../../lib/format.js';
-import { resolveDeliveryCost, resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
+import { resolveQuoteConditionCosts } from '../../lib/quote/condition-costs.js';
 
 const INS = [
   { value: '1억', label: '1억' },
@@ -20,24 +18,10 @@ const EXTRA = [
   { value: '3명', label: '3명' },
 ];
 
-const 담당자 = rolePolicy(역할()).canEditDeliveryRegion;   // 손님이면 탁송 권역을 안 묻는다 (기본 서울)
-
-// 탁송 UI는 기존 10권역을 유지하되 금액은 canonical resolver가 결정한다.
-const regions = 탁송권역;
 const currentCosts = computed(() => resolveQuoteConditionCosts(quoteState));
 const deliveryFee = computed(() => currentCosts.value.deliveryFee);
 const tintFee = computed(() => currentCosts.value.tintFee);
 const dashcamFee = computed(() => currentCosts.value.dashcamFee);
-function deliveryLabel(region) {
-  const { amount } = resolveDeliveryCost({ deliveryRegion: region, deliveryCity: region });
-  return amount ? `${fmt(amount)}원` : '별도협의';
-}
-function onRegionChange(e) {
-  const r = e.target.value;
-  quoteState.cond.deliveryRegion = r;
-  quoteState.cond.deliveryCity = r;      // 권역 하나로 쓴다
-}
-
 </script>
 
 <template>
@@ -72,17 +56,8 @@ function onRegionChange(e) {
 
     <div class="se-divider"></div>
 
-    <!-- 탁송 지역/도시 — drop-down -->
-    <!-- 손님에게는 안 묻는다. store.js 기본값이 이미 「광역시 · 서울」이라
-         서울 기준으로 계산된다. 지역이 다르면 상담에서 맞춘다. -->
-    <div class="se-field" v-if="담당자">
-      <div class="se-label">
-        탁송 지역
-        <span v-if="deliveryFee" class="se-label__val">+{{ fmt(deliveryFee) }}원</span>
-      </div>
-      <select class="se-select" :value="quoteState.cond.deliveryRegion" @change="onRegionChange">
-        <option v-for="r in regions" :key="r" :value="r">{{ r }} · {{ deliveryLabel(r) }}</option>
-      </select>
+    <div class="se-field">
+      <div class="se-label">탁송 기준 <span class="se-label__val">수도권 · {{ fmt(deliveryFee) }}원</span></div>
     </div>
 
     <!-- 선팅 — ★웰릭스와 똑같이 3택. 기본은 「루마 일반」 -->

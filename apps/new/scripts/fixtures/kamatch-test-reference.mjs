@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+const testSettings=JSON.parse(readFileSync(new URL('../../api/_kamatch/policy.snapshot.json',import.meta.url),'utf8')).settings;
 // Synthetic test data only. Never loaded by application routes.
 import { KAMATCH_APP_DIGEST, tableDigest } from '../../api/_kamatch/reference.js';
 const money=amount=>({amount,currency:'KRW'});
@@ -9,7 +11,7 @@ export function fixture() {
     '/api/commission-rates':['low','general'].flatMap(creditType=>['dealer','special'].flatMap(deliveryType=>[0,5,10,20,30].map(depositRate=>({creditType,deliveryType,depositRate,rate:depositRate===5?7.5:6.5})))),
     '/api/residual-grade-rates':['A','B'].flatMap(grade=>[20000,30000].flatMap(mileage=>[36,48,60].map(term=>({grade,mileage,term,rate:term===36?79:term===48?69:59})))),
     '/api/gaeso-reg-rates':[{gaesoIndex:1.1715,regFeeRate:8.55},{gaesoIndex:1.072,regFeeRate:7}], '/api/residual-rates':[], '/api/supplies-prices':{},
-    '/api/commission-settings':{productInterestRate:8,corpCommissionLow5:3,corpCommissionLow10:4,corpCommissionGeneral5:2,corpCommissionGeneral10:3,corpCommissionLow5Special:2.5,defaultInsurance:100000,defaultEtcCost:15000},
+    '/api/commission-settings':{...testSettings,productInterestRate:8,corpCommissionLow5:3,corpCommissionLow10:4,corpCommissionGeneral5:2,corpCommissionGeneral10:3,corpCommissionLow5Special:2.5,defaultInsurance:100000,defaultEtcCost:15000},
   }};
   // Normalize canonical origin to the browser collector's value.
   reference.source='https://kamatch.kr';

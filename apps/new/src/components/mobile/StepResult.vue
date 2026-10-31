@@ -1,4 +1,5 @@
 <script setup>
+import { QUOTE_REGION } from '../../lib/quote/launch-region.js';
 /* ── 견적 페이지 — 마지막 걸음 ────────────────────────────────────────────
  * ★대표 2026-09-18 「옵션 고르기 전까지는 하단에 견적 보여주지 말고, 견적도 별도 페이지로 보이게」
  *   고른 차·옵션·조건을 한 장에 모으고, 기간별 월 렌트료를 크게 보인다.
@@ -66,7 +67,7 @@ const 조건들 = computed(() => {
   const svc = 공유견적.value ? sc.svc : c.value.svc;
   const ins = 공유견적.value ? sc.insProperty : c.value.insProperty;
   const driver = 공유견적.value ? sc.extraDriver : c.value.extraDriver;
-  const delivery = 공유견적.value ? sc.deliveryCity : c.value.deliveryCity;
+  const delivery = 공유견적.value ? sc.deliveryCity : QUOTE_REGION;
   const tint = 공유견적.value ? sc.tint : quoteState.tint?.product;
   const blackbox = 공유견적.value ? sc.blackbox : quoteState.extras?.blackbox;
 
@@ -76,6 +77,7 @@ const 조건들 = computed(() => {
     ['보험', `대물 ${ins || '1억'}`],
     ['정비', 공유견적.value && !['정비 제외', '웰스 Self'].includes(sc.svc) ? '기존 조건 · 재계산 필요' : '제외'],
     ['부가세', '포함'],
+    ['탁송 기준', delivery || QUOTE_REGION],
   ];
 });
 
